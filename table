@@ -1,0 +1,200 @@
+0. admin(관리자)
+1. member (구매자, 회원정보) - 회원가입시 생성
+2. shop (상점) - 회원가입시 생성 
+3. item (상품정보) - 포스팅시 생성
+4. img (상품이미지) - 상품등록시 같이 생성
+5. review (후기) - 후기 작성시 생김 (myPage 후기, 구매완료)
+6. 
+7. wish (찜) - 
+8. star (별점) - 후기 등록시 생성
+9. basket (장바구니) - 장바구니 담기 클릭시 생성
+예외 : 같은 아이템을 장바구니에 담을시 -> '이미 장바구니에 있습니다' 알림띄우기
+10. order (주문) - 상품 상세정보, 장바구니에서 구매하기 클릭 후 결제 완료시 생성 
+11. reserved (예약) - 판매자가 구매자와 1:1 문의 중 예약걸기 버튼 클릭시 생성 + 아이템 락
+12. mainCategory (메인 카테고리) - 큰거 10개 
+13. category (소분류) -  
+14. coupon (쿠폰) - 일단 회원가입시 생성 / 생일날 00시 기준 생성
+15. follow (팔로우) - 팔로우 클릭시 생성 
+16. alarm (알림) - ( 구매완료 / 예약완료 / 후기 등등 알림 주기 ... 나중에 생각나면 다적기) 
+★★★★★ 알람 헤더 만들어야함
+17. msgHeader (메시지 헤더) - 1:1 문의 버튼 클릭 시 생성 
+18. msgChat (채팅 내용) - 채팅 발송 시 생성 
+
+CREATE TABLE admin (
+	admin_id PRIMARY KEY,
+	admin_pass PRIMARY KEY
+);
+
+CREATE TABLE member (
+	member_id varchar(20) PRIMARY KEY,
+	member_pass varchar(20),
+	member_email varchar(50),
+	member_phone varchar(13),
+	member_nick varchar(20),
+	member_logo varchar(100),
+	member_birth varchar(20),
+	member_date varchar(8),
+	member_status varchar(20)
+);
+
+CREATE TABLE shop (
+	shop_idx varchar(20),
+	member_id varchar(20),
+	shop_name varchar(20),
+	shop_img varchar(100),
+	shop_content varchar(50),
+	shop_level varchar(3),
+	PRIMARY KEY (shop_idx ,member_id)
+);
+
+CREATE TABLE item (
+	item_idx varchar(20),
+	shop_idx varchar(20),
+	item_title varchar(20),
+	item_content varchar(2000),
+	item_price varchar(20),
+	item_date varchar(8),
+	item_endDate varchar(8),
+	item_status varchar(3),
+	item_hide varchar(3),
+	item_readCnt varchar(20),
+	item_region varchar(40),
+	item_quantity varchar(10),
+	PRIMARY KEY (item_idx ,shop_idx) 
+);
+
+CREATE TABLE img(
+	img_idx varchar(20),
+	item_idx varchar(20),
+	shop_name varchar(20),
+	img_real_name varchar(50),
+	img_name varchar(50),
+	PRIMARY KEY (img_idx ,item_idx) 
+);
+
+CREATE TABLE review (
+	member_id varchar(20),
+	item_idx varchar(20),
+	shop_idx varchar(20),
+	item_title varchar(50),
+	review_content varchar(1000),
+	review_star varchar(20),
+	review_date varchar(20),
+	shop_level varchar(20),
+	PRIMARY KEY (item_idx ,member_id) 
+);
+
+CREATE TABLE wish (
+	item_idx varchar(20),
+	member_id varchar(20),
+	wish_status varchar(3),
+	PRIMARY KEY (item_idx, member_id) 
+);
+
+CREATE TABLE star (
+	review_idx varchar(20) PRIMARY KEY,
+	shop_idx varchar(20),
+	star_total varchar(20)
+);
+
+CREATE TABLE basket (
+	member_id varchar(20),
+	item_idx varchar(20),
+	img_idx varchar(20),
+	shop_name varchar(50),
+	item_title varchar(20),
+	item_price varchar(50),
+	item_quantity varchar(20),
+	PRIMARY KEY (member_id, item_idx)
+);
+
+
+CREATE TABLE ord (
+	item_idx varchar(20),
+	member_id varchar(20),
+	shop_name varchar(20),
+	item_title varchar(50),
+	item_price varchar(20),
+	order_date varchar(8),
+	item_quantity varchar(20),
+	order_reqContent varchar(1000),
+	PRIMARY KEY (item_idx, member_id)
+);
+
+
+CREATE TABLE reserved (
+	item_idx varchar(20),
+	member_id varchar(20),
+	PRIMARY KEY (item_idx, member_id)
+);
+
+
+
+CREATE TABLE mainCategory (
+	category_big varchar(20) PRIMARY KEY,
+	category_big_readCnt varchar(20)
+);
+
+
+CREATE TABLE category  (
+	category_big varchar(20),
+	category_small varchar(20),
+	item_idx varchar(20),
+	category_small_readCnt varchar(20),
+	PRIMARY KEY (category_big, category_small)
+);
+
+
+CREATE TABLE coupon (
+	coupon_idx varchar(20) PRIMARY KEY,
+	member_id varchar(20),
+	coupon_name varchar(50),
+	coupon_price varchar(50)
+);
+
+CREATE TABLE follow (
+	member_id varchar(20),
+	shop_idx varchar(20),
+	PRIMARY KEY (member_id, shop_idx)
+);
+
+CREATE TABLE alarm (
+	alarm_idx varchar(20) PRIMARY KEY,
+	shop_idx varchar(20),
+	alarm_title varchar(50),
+	alarm_content varchar(1000),
+	alarm_status varchar(5)
+);
+
+CREATE TABLE msgHeader (
+	msgList_idx varchar(20),
+	shop_idx varchar(20),
+	member_id varchar(20),
+	msgList_last_content varchar(50),
+	msgList_time varchar(20),
+	msgList_status varchar(5),
+	PRIMARY KEY (msgList_idx, shop_idx)
+);
+
+CREATE TABLE msgChat (
+	msgChat_idx varchar(20),
+	shop_idx varchar(20),
+	member_id varchar(20),
+	msgChat_content varchar(500),
+	msgChat_time varchar(20),
+	PRIMARY KEY (shop_idx, member_id)
+);
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ관리자ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+notice (공지 사항) - 관리자가 공지사항 등록시 생성
+CREATE TABLE notice (
+	notice_idx varchar(20),
+	admin_id varchar(20),
+	notice_subject varchar(50),
+	notice_content varchar(500),
+	notice_date varchar(8)
+);
+
+
+qna (1:1 문의) - 
