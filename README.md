@@ -36,4 +36,4 @@
 
 위키로 이동 : [wiki][8]
 
-[8]: https://github.com/Sodong1234/ITWILL_proj/wiki
+[8]: https://github.com/BrainHellChang/CONO_test
