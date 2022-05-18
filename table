@@ -141,7 +141,7 @@ CREATE TABLE category  (
 	category_small varchar(20),
 	item_idx varchar(20),
 	category_small_readCnt varchar(20),
-	PRIMARY KEY (category_big, category_small)
+	PRIMARY KEY (category_big, category_small, item_idx)
 );
 
 
