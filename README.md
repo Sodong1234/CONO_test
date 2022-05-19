@@ -36,4 +36,4 @@
 
 위키로 이동 : [wiki][8]
 
-[8]: https://github.com/BrainHellChang/CONO_test
+[8]: https://github.com/BrainHellChang/CONO_test/wiki
