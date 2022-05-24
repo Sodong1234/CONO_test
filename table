@@ -87,7 +87,6 @@ CREATE TABLE review (
 CREATE TABLE wish (
 	item_idx varchar(20),
 	member_id varchar(20),
-	wish_status varchar(3),
 	PRIMARY KEY (item_idx, member_id) 
 );
 
