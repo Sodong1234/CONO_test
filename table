@@ -66,7 +66,6 @@ CREATE TABLE item (
 CREATE TABLE img(
 	img_idx varchar(20),
 	item_idx varchar(20),
-	shop_name varchar(20),
 	img_real_name varchar(50),
 	img_name varchar(50),
 	PRIMARY KEY (img_idx ,item_idx) 
@@ -75,8 +74,6 @@ CREATE TABLE img(
 CREATE TABLE review (
 	member_id varchar(20),
 	item_idx varchar(20),
-	shop_idx varchar(20),
-	item_title varchar(50),
 	review_content varchar(1000),
 	review_star varchar(20),
 	review_date varchar(20),
@@ -99,11 +96,6 @@ CREATE TABLE star (
 CREATE TABLE basket (
 	member_id varchar(20),
 	item_idx varchar(20),
-	img_idx varchar(20),
-	shop_name varchar(50),
-	item_title varchar(20),
-	item_price varchar(50),
-	item_quantity varchar(20),
 	PRIMARY KEY (member_id, item_idx)
 );
 
@@ -112,10 +104,7 @@ CREATE TABLE ord (
 	item_idx varchar(20),
 	member_id varchar(20),
 	shop_name varchar(20),
-	item_title varchar(50),
-	item_price varchar(20),
 	order_date varchar(8),
-	item_quantity varchar(20),
 	order_reqContent varchar(1000),
 	PRIMARY KEY (item_idx, member_id)
 );
@@ -166,22 +155,38 @@ CREATE TABLE alarm (
 );
 
 CREATE TABLE msgHeader (
-	msgList_idx varchar(20),
-	shop_idx varchar(20),
 	member_id varchar(20),
+	shop_idx varchar(20),
 	msgList_last_content varchar(50),
 	msgList_time varchar(20),
 	msgList_status varchar(5),
-	PRIMARY KEY (msgList_idx, shop_idx)
+	PRIMARY KEY (member_id, shop_idx)
 );
 
 CREATE TABLE msgChat (
-	msgChat_idx varchar(20),
-	shop_idx varchar(20),
 	member_id varchar(20),
+	shop_idx varchar(20),
 	msgChat_content varchar(500),
 	msgChat_time varchar(20),
-	PRIMARY KEY (shop_idx, member_id)
+	PRIMARY KEY (member_id, shop_idx)
+);
+
+CREATE TABLE coin (
+	coin_idx VARCHAR(50),
+	member_id VARCHAR(20),
+    coin_add VARCHAR(50),
+    coin_use VARCHAR(50),
+    coin_total VARCHAR(50),
+    PRIMARY KEY(coin_idx, member_id)
+);
+
+CREATE TABLE safe (
+	safe_idx VARCHAR(50),
+    member_id VARCHAR(20),
+    shop_id VARCHAR(20),
+    coin_use VARCHAR(50),
+    safe_status VARCHAR(2),
+    PRIMARY KEY(safe_idx, member_id)
 );
 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ관리자ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
