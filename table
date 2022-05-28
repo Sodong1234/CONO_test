@@ -32,8 +32,8 @@ CREATE TABLE member (
 	member_phone varchar(13),
 	member_nick varchar(20),
 	member_logo varchar(100),
-	member_birth varchar(20),
-	member_date varchar(8),
+	member_birth varchar(14),
+	member_date varchar(14),
 	member_status varchar(20)
 );
 
@@ -53,8 +53,8 @@ CREATE TABLE item (
 	item_title varchar(20),
 	item_content varchar(2000),
 	item_price varchar(20),
-	item_date varchar(8),
-	item_endDate varchar(8),
+	item_date varchar(14),
+	item_endDate varchar(14),
 	item_status varchar(3),
 	item_hide varchar(3),
 	item_readCnt varchar(20),
@@ -76,7 +76,7 @@ CREATE TABLE review (
 	item_idx varchar(20),
 	review_content varchar(1000),
 	review_star varchar(20),
-	review_date varchar(20),
+	review_date varchar(14),
 	shop_level varchar(20),
 	PRIMARY KEY (item_idx ,member_id) 
 );
@@ -104,7 +104,7 @@ CREATE TABLE ord (
 	item_idx varchar(20),
 	member_id varchar(20),
 	shop_name varchar(20),
-	order_date varchar(8),
+	order_date varchar(14),
 	order_reqContent varchar(1000),
 	PRIMARY KEY (item_idx, member_id)
 );
@@ -158,7 +158,7 @@ CREATE TABLE msgHeader (
 	member_id varchar(20),
 	shop_idx varchar(20),
 	msgList_last_content varchar(50),
-	msgList_time varchar(20),
+	msgList_time varchar(14),
 	msgList_status varchar(5),
 	PRIMARY KEY (member_id, shop_idx)
 );
@@ -167,13 +167,13 @@ CREATE TABLE msgChat (
 	member_id varchar(20),
 	shop_idx varchar(20),
 	msgChat_content varchar(500),
-	msgChat_time varchar(20),
+	msgChat_time varchar(14),
 	PRIMARY KEY (member_id, shop_idx)
 );
 
 CREATE TABLE coin (
-	coin_idx VARCHAR(50),
-	member_id VARCHAR(20),
+    coin_idx VARCHAR(50),
+    member_id VARCHAR(20),
     coin_add VARCHAR(50),
     coin_use VARCHAR(50),
     coin_total VARCHAR(50),
@@ -181,7 +181,7 @@ CREATE TABLE coin (
 );
 
 CREATE TABLE safe (
-	safe_idx VARCHAR(50),
+    safe_idx VARCHAR(50),
     member_id VARCHAR(20),
     shop_id VARCHAR(20),
     coin_use VARCHAR(50),
