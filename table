@@ -189,6 +189,13 @@ CREATE TABLE safe (
     PRIMARY KEY(safe_idx, member_id)
 );
 
+CREATE TABLE recentView (
+	member_id VARCHAR(20),
+	item_idx VARCHAR(20),
+	viewTime VARCHAR(30)
+);
+
+
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ관리자ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 notice (공지 사항) - 관리자가 공지사항 등록시 생성
