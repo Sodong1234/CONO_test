@@ -183,9 +183,9 @@ CREATE TABLE coin (
 
 CREATE TABLE safe (
     safe_idx VARCHAR(50),
+    item_idx VARCHAR(20),
     member_id VARCHAR(20),
     shop_id VARCHAR(20),
-    coin_use VARCHAR(50),
     safe_status VARCHAR(2),
     PRIMARY KEY(safe_idx, member_id)
 );
