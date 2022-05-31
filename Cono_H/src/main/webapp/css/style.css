@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    color:black;
+}
+
+.intro_bg{
+    width: 100%;
+    height: 460px;
+    background-color: rgb(234, 237, 242);
+}
+
+.header{
+    display: flex;
+    width: auto;
+    height: 70px;
+    margin: auto;   /* 가운데 배치?*/
+    background-color: #fff;
+}
+.search_area{
+    width: 300px;
+    height:40px;
+    background-color: rgba(214, 214, 235, 0.5);
+    border-radius: 5px;  /*모서리 동글동글*/
+    margin-top: 24px;
+}
+.search_area > form > input{
+    border: none;
+    width: 250px;
+    height: 40px;
+    background-color: rgba(0,0,0,0);
+    color: #fff;
+    padding-left: 10px;
+}
+.search_area > form > span{
+    width: 50px;
+    color:#000;
+    font-weight: bold;
+    cursor: pointer;
+}
+.nav1{
+	display: flex;
+    width: calc(1280px - 100px);
+    line-height: 86px;
+    color: #000;
+}
+.nav2{
+    display: flex;
+    width: calc(1280px - 800px);
+    line-height: 86px;
+    color: #000;
+
+}
+
+.nav2 > li{
+    margin-left: 84px;
+}
+.nav2 > li > a{
+    color: #000;
+}
+.intro_text{
+    width: 100%;
+    margin:231px auto 231px auto; /* 상 우 하 좌 */
+    text-align: center; /* 가운데 정령 */
+}
+.intro_text > h1, .intro_text > h4{
+    color: #000;
+}
