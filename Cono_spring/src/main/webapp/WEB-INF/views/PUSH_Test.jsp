@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>새로입력한 코드입니다.</h1>
 </body>
 </html>
