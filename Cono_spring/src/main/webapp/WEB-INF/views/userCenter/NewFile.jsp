@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>양윤석 재커밋</h1>
+	<h2>양윤석 재커밋</h2>
 </body>
 </html>
