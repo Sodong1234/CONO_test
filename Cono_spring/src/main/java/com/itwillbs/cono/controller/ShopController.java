@@ -1,25 +1,14 @@
 package com.itwillbs.cono.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.cono.service.ShopService;
-import com.itwillbs.cono.vo.CategoryDTO;
-import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.ShopDTO;
 
 @Controller
@@ -53,24 +42,5 @@ public class ShopController {
 	}
 	// -------------------------------------------------------------------------
 	
-	// ---------------------- 상품 등록 페이지 이동 - 이소영  ------------------
-	@RequestMapping(value = "/ItemUploadForm.shop", method = RequestMethod.GET)
-	public String uploadItem() {
-		return "myshop/item_upload";
-	}
-	// -------------------------------------------------------------------------
 	
-	// -------------------- 상품 등록 비즈니스 로직 - 이소영  ------------------
-	@RequestMapping(value = "/ItemUploadPro.shop", method = RequestMethod.POST)
-	public String uploadItemPost(@ModelAttribute ItemDTO item, @ModelAttribute CategoryDTO category, MultipartFile[] upload, HttpServletRequest request, HttpSession session, Model model) {
-		//파일이 업로드 될 경로 설정
-//        String saveDir = request.getSession().getServletContext().getRealPath("/views/upload/file");
-        
-		String member_id = session.getAttribute("sId").toString();
-		
-        int insertCount[] = service.uploadItem(item, category, upload, request, member_id);
-        
-		return "redirect:/ProductMyshop.shop";
-	}
-	// -------------------------------------------------------------------------
 }

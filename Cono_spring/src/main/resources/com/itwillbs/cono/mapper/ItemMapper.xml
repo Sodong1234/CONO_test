@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.cono.mapper.ItemMapper">
+
+<!-- 등록된 상품 개수(item_idx) 조회 -->
+	<select id="selectItemIdx" resultType="java.lang.Integer">
+		SELECT COUNT(item_idx) FROM item
+	</select>
+	
+	<insert id="insertItem">
+		INSERT INTO item
+		VALUES (#{item.item_idx}, (SELECT shop_idx FROM shop WHERE member_id=#{member_id})
+		,#{item.item_title}, #{item.item_content}, #{item.item_price}, '', '0', 'N', 'N', '0', #{item.item_region}, #{item.item_quantity})
+	</insert>
+	
+	<insert id="insertCategory">
+		INSERT INTO category VALUES (#{category.category_big},#{category.category_small},#{item.item_idx},'0')
+	</insert>
+	
+	<select id="selectImgIdx" resultType="java.lang.Integer">
+		SELECT COUNT(img_idx) FROM img WHERE item_idx = #{item_idx}
+	</select>
+	
+	<insert id="insertImg">
+		INSERT INTO img 
+		VALUES (#{img.img_idx},
+			    #{item.item_idx}, #{img.img_name})
+	</insert>
+</mapper>
