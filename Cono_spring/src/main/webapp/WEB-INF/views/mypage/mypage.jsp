@@ -25,7 +25,7 @@
 	<div>
 		<table border="1">
 			<tr><th>나의 코노</th></tr>
-			<tr><td><a href="mypage/recentView">최근 본 상품</a></td></tr>
+			<tr><td><a href="mypage/recentViewList">최근 본 상품</a></td></tr>
 			<tr><td><a href="MypageListFollow.mypage">팔로잉 & 팔로워</a></td></tr>
 			<tr><td><a href="MypageList_myReview.jsp">나의 후기</a></td></tr>
 			
@@ -34,7 +34,7 @@
 			<tr><td><a href="MypageList_dm.mypage">메세지</a></td></tr>
 			
 			<tr><th>내 정보</th></tr>
-			<tr><td><a href="memberInfo_modify">회원 정보 수정</a></td></tr>
+			<tr><td><a href="mypage/memberInfo_modify">회원 정보 수정</a></td></tr>
 			<tr><td><a href="MypageList_account.mypage">계좌 정보 관리</a></td></tr>
 			<tr><td><a href="mypageList_deleteId.jsp">회원 탈퇴</a></td></tr>
 		

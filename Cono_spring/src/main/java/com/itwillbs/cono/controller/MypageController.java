@@ -2,6 +2,8 @@ package com.itwillbs.cono.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwillbs.cono.service.MypageService;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PageInfo;
-import com.itwillbs.cono.vo.RecentViewDTO;
 
 @Controller
 public class MypageController {
@@ -28,7 +29,7 @@ public class MypageController {
 	
 	// 2. 최근조회화면 첫 이동
 	@RequestMapping(value = "mypage/recentViewList", method = RequestMethod.GET)
-	public String recentView(@RequestParam(defaultValue = "1") int pageNum, Model model, RecentViewDTO recentViewDTO) {
+	public String recentView(@RequestParam(defaultValue = "1") int pageNum, Model model, HttpSession session) {
 		// 페이징 처리에 필요한 전체 게시물 수 조회 - getRecentViewListCount()
 		// => 파라미터 : 없음, 리턴타입 : int(listCount)
 		// => 게시물이 없을 경우 null 이 아닌 0 이 리턴되므로 Integer 대신 int 사용 가능
@@ -54,8 +55,10 @@ public class MypageController {
 		pageInfo.setStartRow(startRow);
 		pageInfo.setListLimit(listLimit);
 		
-		List<List<String>> recentViewList = service.getRecentViewList("", "", pageInfo, recentViewDTO);	
+		String sId = (String)session.getAttribute("sId");
 		
+		List<List<String>> recentViewList = service.getRecentViewList("", "", pageInfo, sId);	
+		System.out.println(recentViewList);
 		model.addAttribute("recentViewList", recentViewList);
 		model.addAttribute("pageInfo", pageInfo);
 		
@@ -74,11 +77,12 @@ public class MypageController {
 		
 		// 회원 정보 수정
 		@RequestMapping(value = "/mypage/memberInfo_modify", method = RequestMethod.GET)
-		public String modify(String sId, @RequestParam Model model) {
+		public String modify(Model model, HttpSession session) {
+			String sId = (String)session.getAttribute("sId");
 			MemberDTO member = service.getMemberDetail(sId);
 			
 			model.addAttribute("member",member);
-			
+			System.out.println(member);
 			return "mypage/memberInfo_modify_form";	// 폼
 		}
 		

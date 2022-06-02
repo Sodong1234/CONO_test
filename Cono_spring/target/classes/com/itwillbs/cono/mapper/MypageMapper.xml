@@ -7,15 +7,15 @@
 	</select>  
 	
 	<select id="selectBoardList" resultType="java.util.List">
-		SELECT it.item_idx, im.img_real_name, it.item_title, s.shop_name, it.item_price, it.item_region , it.item_date
-		FROM item it, recentView re, img im, shop s
-		WHERE re.member_id =  AND it.item_idx IN (re.item_idx) AND it.item_idx = im.item_idx AND im.img_idx = '1' AND s.shop_idx = it.shop_idx
+		SELECT it.item_idx, im.img_real_name, it.item_title, s.shop_name, it.item_price, it.item_region , it.item_date 
+		FROM item it, recentView re, img im, shop s 
+		WHERE re.member_id = #{sId} AND it.item_idx IN (re.item_idx) AND it.item_idx = im.item_idx AND im.img_idx = '1' AND s.shop_idx = it.shop_idx
 		ORDER BY re.viewTime DESC
 	</select>
 	
 <!-- 	회원 상세 정보 (for 회원 정보 수정) -->
 	<select id="selectMemberInfo" resultType="com.itwillbs.cono.vo.MemberDTO">
-		SELECT * FROM member
+		SELECT * FROM member 
 		WHERE member_id = #{sId}
 	</select>
 </mapper>
