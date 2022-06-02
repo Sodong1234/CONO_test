@@ -49,12 +49,12 @@ if(session.getAttribute("sId") == null) {
 				<tr>
 					<th>상품 이미지</th>
 					<td>
-						<input type="file" class="img" accept=".gif, .jpg, .png" name="item_img1"><br>
-						<input type="file" class="img" accept=".gif, .jpg, .png" name="item_img2"><br>
-						<input type="file" class="img" accept=".gif, .jpg, .png" name="item_img3"><br>
-						<input type="file" class="img" accept=".gif, .jpg, .png" name="item_img4"><br>
-						<input type="file" class="img" accept=".gif, .jpg, .png" name="item_img5"><br>
-						<input type="file" class="img" accept=".gif, .jpg, .png" name="item_img6"><br>
+						<input type="file" class="img" accept=".gif, .jpg, .png" name="upload"><br>
+						<input type="file" class="img" accept=".gif, .jpg, .png" name="upload"><br>
+						<input type="file" class="img" accept=".gif, .jpg, .png" name="upload"><br>
+						<input type="file" class="img" accept=".gif, .jpg, .png" name="upload"><br>
+						<input type="file" class="img" accept=".gif, .jpg, .png" name="upload"><br>
+						<input type="file" class="img" accept=".gif, .jpg, .png" name="upload"><br>
 					</td>
 				</tr>
 				<tr>

@@ -1,5 +1,12 @@
 package com.itwillbs.cono.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,10 +62,15 @@ public class ShopController {
 	
 	// -------------------- 상품 등록 비즈니스 로직 - 이소영  ------------------
 	@RequestMapping(value = "/ItemUploadPro.shop", method = RequestMethod.POST)
-	public String uploadItemPost(MultipartFile uploadFile, @ModelAttribute ItemDTO item, @ModelAttribute CategoryDTO category, Model model) {
-		System.out.println(uploadFile);
-//		boolean isUploadSuccess = service.uploadItem(item,category);
-		return "ItemUploadPro.shop";
+	public String uploadItemPost(@ModelAttribute ItemDTO item, @ModelAttribute CategoryDTO category, MultipartFile[] upload, HttpServletRequest request, HttpSession session, Model model) {
+		//파일이 업로드 될 경로 설정
+//        String saveDir = request.getSession().getServletContext().getRealPath("/views/upload/file");
+        
+		String member_id = session.getAttribute("sId").toString();
+		
+        int insertCount[] = service.uploadItem(item, category, upload, request, member_id);
+        
+		return "redirect:/ProductMyshop.shop";
 	}
 	// -------------------------------------------------------------------------
 }
