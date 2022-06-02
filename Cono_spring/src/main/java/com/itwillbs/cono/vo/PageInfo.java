@@ -1,23 +1,15 @@
 package com.itwillbs.cono.vo;
 
-// 페이징 처리 관련 정보를 저장하는 클래스
+//페이징 처리 관련 정보를 저장하는 클래스
 public class PageInfo {
 	private int pageNum; // 현재 페이지 번호
 	private int maxPage; // 최대 페이지 수
 	private int startPage; // 시작 페이지 번호
 	private int endPage; // 끝 페이지 번호
 	private int listCount; // 총 게시물 수
+	private int startRow; // 조회 시작 행 번호
+	private int listLimit; // 페이지 당 게시물 수
 	
-	public PageInfo() {}
-
-	public PageInfo(int pageNum, int maxPage, int startPage, int endPage, int listCount) {
-		this.pageNum = pageNum;
-		this.maxPage = maxPage;
-		this.startPage = startPage;
-		this.endPage = endPage;
-		this.listCount = listCount;
-	}
-
 	public int getPageNum() {
 		return pageNum;
 	}
@@ -56,6 +48,22 @@ public class PageInfo {
 
 	public void setListCount(int listCount) {
 		this.listCount = listCount;
+	}
+
+	public int getStartRow() {
+		return startRow;
+	}
+
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+
+	public int getListLimit() {
+		return listLimit;
+	}
+
+	public void setListLimit(int listLimit) {
+		this.listLimit = listLimit;
 	}
 	
 }
