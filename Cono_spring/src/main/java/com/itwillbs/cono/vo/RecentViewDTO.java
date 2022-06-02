@@ -1,6 +1,6 @@
 package com.itwillbs.cono.vo;
 
-public class RecentView {
+public class RecentViewDTO {
 	private String member_id;
 	private String item_idx;
 	private String viewTime;

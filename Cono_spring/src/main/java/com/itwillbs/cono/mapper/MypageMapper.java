@@ -1,8 +1,21 @@
 package com.itwillbs.cono.mapper;
 
+import java.util.List;
+
+import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.PageInfo;
+import com.itwillbs.cono.vo.RecentViewDTO;
+
 public interface MypageMapper {
 
-	// 1. 최근 조회 게시물 수
+	// 최근 조회 게시물 수
 	public int selectRecentViewCount();
+
+	public List<List<String>> selectBoardList(String searchType, String keyword, PageInfo pageInfo, RecentViewDTO recentViewDTO);
+
+	// 회원 상세 조회 (for 수정)
+	public MemberDTO selectMemberInfo(String sId);
+	
+	
 	
 }

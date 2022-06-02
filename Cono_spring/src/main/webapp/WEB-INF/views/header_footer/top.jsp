@@ -61,7 +61,7 @@ String sId = (String)session.getAttribute("sId");
 			<a href="MemberHowJoin.func">회원가입</a> | 
 			<a href="MemberLogin.func">로그인</a> | 
 		<%} else { %>
-			<a href="MypagePass.mypage"><%=sId %>님</a>
+			<a href="mypage"><%=sId %>님</a>
 			<a href="../mypage/mypageList_alarm.jsp">알림</a> | 
 			<a href="../mypage/mypageList_dm.jsp">메세지</a> | 
 			<input type="button" value="판매자 전용 마이페이지" onclick="location.href='ProductMyshop.shop'">
