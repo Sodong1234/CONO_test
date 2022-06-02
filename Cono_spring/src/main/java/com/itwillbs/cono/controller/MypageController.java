@@ -1,5 +1,7 @@
 package com.itwillbs.cono.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,9 @@ public class MypageController {
 	// 1. mypage 화면 이동
 	@RequestMapping(value = "mypage/recentViewList", method = RequestMethod.GET)
 	public String recentView(@RequestParam(defaultValue = "1") int pageNum, Model model) {
+		// 페이징 처리에 필요한 전체 게시물 수 조회 - getRecentViewListCount()
+		// => 파라미터 : 없음, 리턴타입 : int(listCount)
+		// => 게시물이 없을 경우 null 이 아닌 0 이 리턴되므로 Integer 대신 int 사용 가능
 		int listCount = service.getRecentViewListCount();
 		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
 		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
@@ -40,6 +45,7 @@ public class MypageController {
 		pageInfo.setListCount(listCount);
 		pageInfo.setStartRow(startRow);
 		pageInfo.setListLimit(listLimit);
+		
 		
 		return "mypage/list_recentView";
 	}
