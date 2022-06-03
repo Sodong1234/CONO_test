@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,8 +41,6 @@ public class ItemService {
 		
 		// category 테이블 insert
 		insertCount[1] = mapper.insertCategory(category, item);
-		
-		
 		
 		if(insertCount[0] > 0 && insertCount[1] > 0) {
 			// 파일이 업로드 될 경로 설정
@@ -87,6 +86,25 @@ public class ItemService {
 			isUploadSuccess = true;
 		}
 		return isUploadSuccess;
+	}
+
+	public List<HashMap<String, String>> selectItemList(String member_id, String keyword, String sell_status) {
+		
+		List<HashMap<String, String>> itemList = null;
+		
+		if(keyword == null) {
+			keyword = "%%";
+		} else {
+			keyword = "%" + keyword + "%";
+		}
+		
+		if(sell_status == null) {
+			sell_status = "%%";
+		}
+		itemList = mapper.selectItemList(member_id, keyword, sell_status);
+		
+		
+		return itemList;
 	}
 	
 }

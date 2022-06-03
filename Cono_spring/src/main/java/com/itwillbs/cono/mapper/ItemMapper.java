@@ -1,5 +1,8 @@
 package com.itwillbs.cono.mapper;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.cono.vo.CategoryDTO;
@@ -22,6 +25,9 @@ public interface ItemMapper {
 	
 	// img 테이블 insert
 	void insertImg(@Param("img") ImgDTO img, @Param("item") ItemDTO item);
+	
+	// 상품 관리 (상품 리스트 조회)
+	List<HashMap<String, String>> selectItemList(@Param("member_id") String member_id, @Param("keyword") String keyword, @Param("sell_status") String sell_status);
 
 	
 }

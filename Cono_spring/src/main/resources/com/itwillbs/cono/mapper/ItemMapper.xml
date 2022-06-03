@@ -26,4 +26,22 @@
 		VALUES (#{img.img_idx},
 			    #{item.item_idx}, #{img.img_name})
 	</insert>
+	
+	<select id="selectItemList" resultType="java.util.HashMap">
+			<!-- 임시 코드... -->
+			SELECT i.item_idx, g.img_name, i.item_title, i.item_price, i.item_date, i.item_status, COUNT(w.member_id), i.item_readCnt, i.item_hide
+			FROM item AS i
+			LEFT OUTER JOIN wish AS w
+			ON i.item_idx = w.item_idx
+			JOIN shop AS s
+			ON i.shop_idx = s.shop_idx
+			JOIN img AS g
+			ON i.item_idx = g.item_idx
+			WHERE s.member_id = 'seller'
+			AND g.img_idx='1'
+			AND i.item_title LIKE '%%'
+			AND i.item_status = 'N'
+			GROUP BY i.item_idx
+			ORDER BY i.item_idx+0 ASC
+	</select>
 </mapper>

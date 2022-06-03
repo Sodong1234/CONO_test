@@ -1,5 +1,8 @@
 package com.itwillbs.cono.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -44,5 +47,23 @@ public class ItemController {
 		return "redirect:/ProductMyshop.shop";
 	}
 	// -------------------------------------------------------------------------
-
+	
+	// -------------------- 상품 조회(리스트) (시작) - 이소영 ------------------
+		@RequestMapping(value = "/ItemMng.shop")
+		public String selectItemList(String keyword, String sell_status, HttpSession session, Model model) {
+			
+			String member_id = session.getAttribute("sId").toString();
+			
+			List<HashMap<String, String>> itemList = service.selectItemList(member_id, keyword, sell_status);
+			
+			for(HashMap<String, String> item : itemList) {
+				System.out.println(item.get("img_name"));
+			}
+			
+			model.addAttribute("itemList", itemList);
+			model.addAttribute("keyword", keyword);
+			model.addAttribute("sell_status", sell_status);
+			return "myshop/item_mng";
+		}
+	// -------------------------------------------------------------------------
 }
