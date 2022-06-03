@@ -28,8 +28,11 @@ public class MypageService {
 
 	// 회원정보 가져오기 (for 수정)
 	public MemberDTO getMemberDetail(String sId) {
-		System.out.println("sId = " + sId);
 		return mapper.selectMemberInfo(sId);
+	}
+	// 회원정보 수정
+	public int modifyMember(String sId, MemberDTO member) {
+		return mapper.updateMemberInfo(sId, member);
 	}
 
 }

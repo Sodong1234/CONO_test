@@ -51,8 +51,7 @@
 			<tr>
 				<td>
 					코인<hr>
-<!-- 					<a href="" class="coin">1</a> -->
-					<input type="button" class="coin" value="1">
+					<a href="mypage/coin" class="coin">보유 코인</a>
 				</td>
 				<td>
 					예약 중인 상품<hr>

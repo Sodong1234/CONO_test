@@ -75,16 +75,31 @@ public class MypageController {
 		
 		// 1:1 메시지
 		
-		// 회원 정보 수정
+		// 회원 정보 수정페이지 이동
 		@RequestMapping(value = "/mypage/memberInfo_modify", method = RequestMethod.GET)
 		public String modify(Model model, HttpSession session) {
 			String sId = (String)session.getAttribute("sId");
-			MemberDTO member = service.getMemberDetail(sId);
+			MemberDTO member = service.getMemberDetail(sId); // 기존 데이터 자동 입력
 			
 			model.addAttribute("member",member);
 			System.out.println(member);
 			return "mypage/memberInfo_modify_form";	// 폼
 		}
+		@RequestMapping(value = "/memberInfo_modify", method = RequestMethod.POST )
+		public String modify(HttpSession session, MemberDTO member, Model model) {
+			String sId = (String)session.getAttribute("sId");
+			
+			int updateCount = service.modifyMember(sId, member);
+			
+			if(updateCount == 0) {
+				model.addAttribute("msg", "정보 수정 실패");
+				return "fail_back";
+			}
+			
+			return "mypage/mypage";
+		}
+		
+		
 		
 		// 계좌 정보 관리
 		
@@ -95,7 +110,11 @@ public class MypageController {
 		//===============================================
 		
 		// 코인 이용 내역
-		
+		@RequestMapping(value = "mypage/coin", method = RequestMethod.GET)
+		public String coin() {
+			
+			return "center_coin";
+		}
 		// 쿠폰
 		
 		// 예약중인 상품 조회

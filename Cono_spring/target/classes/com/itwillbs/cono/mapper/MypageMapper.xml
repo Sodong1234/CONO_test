@@ -18,4 +18,11 @@
 		SELECT * FROM member 
 		WHERE member_id = #{sId}
 	</select>
+	
+<!-- 	회원 정보 수정 -->
+	<update id="updateMemberInfo">
+		UPDATE member
+		SET member_pass = #{member.member_pass}, member_nick = #{member.member_nick}, member_email = #{member.member_email}, member_phone = #{member.member_phone}
+		WHERE member_id = #{sId}
+	</update>
 </mapper>
