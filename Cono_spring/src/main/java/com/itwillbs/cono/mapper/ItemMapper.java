@@ -28,6 +28,9 @@ public interface ItemMapper {
 	
 	// 상품 관리 (상품 리스트 조회)
 	List<HashMap<String, String>> selectItemList(@Param("member_id") String member_id, @Param("keyword") String keyword, @Param("sell_status") String sell_status);
+	
+	// 상품 숨김 기능
+	int updateItemHide(@Param("item_idx") String item_idx, @Param("item_hide") String item_hide);
 
 	
 }

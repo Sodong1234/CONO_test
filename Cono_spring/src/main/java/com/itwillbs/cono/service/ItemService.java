@@ -87,7 +87,7 @@ public class ItemService {
 		}
 		return isUploadSuccess;
 	}
-
+	// 상품 관리 (상품 리스트 조회)
 	public List<HashMap<String, String>> selectItemList(String member_id, String keyword, String sell_status) {
 		
 		List<HashMap<String, String>> itemList = null;
@@ -105,6 +105,18 @@ public class ItemService {
 		
 		
 		return itemList;
+	}
+
+	// 상품 숨김 기능
+	public int updateItemHide(String item_idx, String item_hide) {
+		
+		if(item_hide.equals("N")) {
+			item_hide = "Y";
+		} else if(item_hide.equals("Y")) {
+			item_hide = "N";
+		}
+		
+		return mapper.updateItemHide(item_idx, item_hide);
 	}
 	
 }
