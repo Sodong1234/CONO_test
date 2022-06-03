@@ -37,4 +37,15 @@ public class MainController {
 			return "redirect:/";
 		}
 	}
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.getAttribute("sId");
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "home", method = RequestMethod.GET)
+	public String home() {
+		return "redirect:/";
+	}
 }

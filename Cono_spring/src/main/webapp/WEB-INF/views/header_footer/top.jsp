@@ -5,20 +5,17 @@
 String sId = (String)session.getAttribute("sId");
 %>
 <script type="text/javascript">
+	// 
 	function userCenterList() {
-// 		let state = document.getElementById("userCenterList").style.visibility;	
-// 		state = (state == "hidden") ? "visible" : "hidden";
-
 		let userCenterList = document.getElementById("userCenterList");
 		userCenterList.style.visibility = "visible";
 	}
-	// =========================양윤석==================================
+	// 로그아웃
 	function confirmLogout() {
 		if(confirm("로그아웃 하시겠습니까?")) {
-			location.href = "./MemberLogout.func";
+			location.href = "logout";
 		}
 	}
-	// =========================양윤석==================================
 </script>
 <!-- 			<nav > -->
 				
@@ -56,7 +53,7 @@ String sId = (String)session.getAttribute("sId");
             
 <header>
 	<span id="login">
-		<span id=""><a href = "main.func"> 홈 </a>-------</span>
+		<span id=""><a href = "home"> 홈 </a>-------</span>
 		<%if(sId == null) { %>
 			<a href="MemberHowJoin.func">회원가입</a> | 
 			<a href="MemberLogin.func">로그인</a> | 
