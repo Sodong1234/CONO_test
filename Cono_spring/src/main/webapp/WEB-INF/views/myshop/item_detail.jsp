@@ -34,65 +34,65 @@
 				<tr>
 					<td colspan="2">
 						<input type="submit" value="수정하기">
-						<input type="button" value="삭제하기" onclick="location.href='ItemDelete.shop?item_idx=${itemDetail[0]}'">
-						<input type="hidden" name="item_idx" value="${itemDetail[0] }">
+						<input type="button" value="삭제하기" onclick="location.href='ItemDelete.shop?item_idx=${itemDetail.get('item_idx')}'">
+						<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}">
 					</td>
 				</tr>
 				<tr>
 					<th>상품 이미지</th>
 					<td>
 						<c:forEach items="${imgList }" var="item">
-							<img src="upload/${item.getImg_real_name() }"><br>
+							<img src="resources/upload/file/${item.getImg_name() }"><br>
 						</c:forEach>
 					</td>
 				</tr>
 				<tr>
 					<th>상품번호</th>
-					<td>${itemDetail[0] }</td>
+					<td>${itemDetail.get('item_idx')}</td>
 				</tr>
 				<tr>
 					<th>상품명</th>
-					<td>${itemDetail[1] }</td>
+					<td>${itemDetail.get('item_title')}</td>
 				</tr>
 				<tr>
 					<th>상품 소개</th>
-					<td>${itemDetail[2] }</td>
+					<td>${itemDetail.get('item_content')}</td>
 				</tr>
 				<tr>
 					<th>가격</th>
-					<td>${itemDetail[3] }</td>
+					<td>${itemDetail.get('item_price')}</td>
 				</tr>
 				<tr>
 					<th>수량</th>
-					<td>${itemDetail[12] }</td>
+					<td>${itemDetail.get('item_quantity')}</td>
 				</tr>
 				<tr>
 					<th>상품 등록일</th>
-					<td>${itemDetail[4] }</td>
+					<td>${itemDetail.get('item_date')}</td>
 				</tr>
 				<tr>
 					<th>판매 상태</th>
-					<td>${itemDetail[5] }</td>
+					<td>${itemDetail.get('item_status')}</td>
 				</tr>
 				<tr>
 					<th>찜</th>
-					<td>${itemDetail[6] }</td>
+					<td>${itemDetail.get('COUNT(w.member_id)')}</td>
 				</tr>
 				<tr>
 					<th>조회수</th>
-					<td>${itemDetail[7] }</td>
+					<td>${itemDetail.get('item_readCnt')}</td>
 				</tr>
 				<tr>
 					<th>카테고리</th>
-					<td>${itemDetail[8] } > ${itemDetail[9] }</td>
+					<td>${itemDetail.get('category_big')} > ${itemDetail.get('category_small')}</td>
 				</tr>
 				<tr>
 					<th>거래지역</th>
-					<td>${itemDetail[10] }</td>
+					<td>${itemDetail.get('item_region')}</td>
 				</tr>
 				<tr>
 					<th>숨김</th>
-					<td>${itemDetail[11] }</td>
+					<td>${itemDetail.get('item_hide')}</td>
 				</tr>
 			</table>
 		</form>

@@ -33,25 +33,45 @@
 	
 	<!-- 상품 관리 (상품 리스트 조회) -->
 	<select id="selectItemList" resultType="java.util.HashMap">
-			<!-- 임시 코드... -->
-			SELECT i.item_idx, g.img_name, i.item_title, i.item_price, i.item_date, i.item_status, COUNT(w.member_id), i.item_readCnt, i.item_hide
-			FROM item AS i
-			LEFT OUTER JOIN wish AS w
-			ON i.item_idx = w.item_idx
-			JOIN shop AS s
-			ON i.shop_idx = s.shop_idx
-			JOIN img AS g
-			ON i.item_idx = g.item_idx
-			WHERE s.member_id = 'seller'
-			AND g.img_idx='1'
-			AND i.item_title LIKE '%%'
-			AND i.item_status = 'N'
-			GROUP BY i.item_idx
-			ORDER BY i.item_idx+0 ASC
+		<!-- 임시 코드... -->
+		SELECT i.item_idx, g.img_name, i.item_title, i.item_price, i.item_date, i.item_status, COUNT(w.member_id), i.item_readCnt, i.item_hide
+		FROM item AS i
+		LEFT OUTER JOIN wish AS w
+		ON i.item_idx = w.item_idx
+		JOIN shop AS s
+		ON i.shop_idx = s.shop_idx
+		JOIN img AS g
+		ON i.item_idx = g.item_idx
+		WHERE s.member_id = #{member_id}
+		AND g.img_idx='1'
+		<if test="keyword != null">
+			AND i.item_title LIKE #{keyword}
+		</if>
+		<if test="sell_status != null and !sell_status.equals('')">
+			AND i.item_status = #{sell_status}
+		</if>
+		GROUP BY i.item_idx
+		ORDER BY i.item_idx+0 ASC
 	</select>
 	
 	<!-- 상품 숨김 기능 -->
 	<update id="updateItemHide">
 		UPDATE item SET item_hide=#{item_hide} WHERE item_idx=#{item_idx}
 	</update>
+	
+	<!-- 상품 상세 정보 조회 -->
+	<select id="selectItemDetail" resultType="java.util.HashMap">
+		SELECT i.item_idx, i.item_title, i.item_content, i.item_price, i.item_date, i.item_status, COUNT(w.member_id), i.item_readCnt
+			   , c.category_big, c.category_small, i.item_region, i.item_hide, i.item_quantity
+	      FROM item AS i
+	      LEFT JOIN wish AS w
+	        ON i.item_idx = w.item_idx
+	      JOIN category AS c
+	        ON i.item_idx = c.item_idx
+	     WHERE i.item_idx = #{item_idx}
+	</select>
+	
+	<select id="selectImgList" resultType="com.itwillbs.cono.vo.ImgDTO">
+		SELECT img_idx, img_name FROM img WHERE item_idx=#{item_idx}
+	</select>
 </mapper>

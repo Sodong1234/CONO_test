@@ -31,6 +31,12 @@ public interface ItemMapper {
 	
 	// 상품 숨김 기능
 	int updateItemHide(@Param("item_idx") String item_idx, @Param("item_hide") String item_hide);
+	
+	// 상품 상세 정보 조회
+	HashMap<String, String> selectItemDetail(String item_idx);
+	
+	// 상품 이미지 조회
+	List<ImgDTO> selectImgList(String item_idx);
 
 	
 }

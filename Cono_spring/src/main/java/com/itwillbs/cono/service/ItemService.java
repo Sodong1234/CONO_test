@@ -92,14 +92,8 @@ public class ItemService {
 		
 		List<HashMap<String, String>> itemList = null;
 		
-		if(keyword == null) {
-			keyword = "%%";
-		} else {
+		if(keyword != null) {
 			keyword = "%" + keyword + "%";
-		}
-		
-		if(sell_status == null) {
-			sell_status = "%%";
 		}
 		itemList = mapper.selectItemList(member_id, keyword, sell_status);
 		
@@ -117,6 +111,16 @@ public class ItemService {
 		}
 		
 		return mapper.updateItemHide(item_idx, item_hide);
+	}
+	
+	// 상품 상세 정보 조회
+	public HashMap<String, String> selectItemDetail(String item_idx) {
+		return mapper.selectItemDetail(item_idx);
+	}
+	
+	// 상품 이미지 조회
+	public List<ImgDTO> selectImgList(String item_idx) {
+		return mapper.selectImgList(item_idx);
 	}
 	
 }
