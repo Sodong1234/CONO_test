@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +52,7 @@
 			<tr>
 				<td>
 					코인<hr>
-					<a href="mypage/coin" class="coin">보유 코인</a>
+					<a href="mypage/coin" class="coin">${coin_total}P</a>
 				</td>
 				<td>
 					예약 중인 상품<hr>

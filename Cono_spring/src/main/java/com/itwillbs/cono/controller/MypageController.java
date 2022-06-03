@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.cono.service.MypageService;
+import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PageInfo;
 
@@ -23,7 +24,12 @@ public class MypageController {
 	
 	// 1. mypage 화면 이동
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
-	public String mypage() {
+	public String mypage(HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		
+		String coin_total = service.getCoinTotal(sId);
+		model.addAttribute("coin_total", coin_total);
+		
 		return "mypage/mypage";
 	}
 	
@@ -83,9 +89,9 @@ public class MypageController {
 			
 			model.addAttribute("member",member);
 			System.out.println(member);
-			return "mypage/memberInfo_modify_form";	// 폼
+			return "mypage/list_memberInfo_modify_form";	// 폼
 		}
-		@RequestMapping(value = "/memberInfo_modify", method = RequestMethod.POST )
+		@RequestMapping(value = "/mypage/memberInfo_modify", method = RequestMethod.POST)
 		public String modify(HttpSession session, MemberDTO member, Model model) {
 			String sId = (String)session.getAttribute("sId");
 			
@@ -96,7 +102,7 @@ public class MypageController {
 				return "fail_back";
 			}
 			
-			return "mypage/mypage";
+			return "redirect:/mypage";
 		}
 		
 		
@@ -111,9 +117,47 @@ public class MypageController {
 		
 		// 코인 이용 내역
 		@RequestMapping(value = "mypage/coin", method = RequestMethod.GET)
-		public String coin() {
+		public String coin(HttpSession session, Model model) {
+			String sId = (String)session.getAttribute("sId");
 			
-			return "center_coin";
+//			int listCount = service.getCoinListCount(sId);	// 전체 코인 내역 수
+//			int listLimit = 10; // 한 페이지 당 표시할 목록 갯수
+//			int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
+//			
+//			// 페이징 처리를 위한 계산 작업
+//			int maxPage = (int)Math.ceil((double)listCount / listLimit);
+//			int startPage = ((int)((double)pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+//			int endPage = startPage + pageLimit - 1;
+//			if(endPage > maxPage) {
+//				endPage = maxPage;
+//			}
+//			// 조회 시작 게시물 번호(행 번호) 계산
+//			int startRow = (pageNum - 1) * listLimit;
+//			
+//			// 페이징 처리 정보를 PageInfo 객체에 저장
+//			PageInfo pageInfo = new PageInfo();
+//			pageInfo.setPageNum(pageNum);
+//			pageInfo.setMaxPage(maxPage);
+//			pageInfo.setStartPage(startPage);
+//			pageInfo.setEndPage(endPage);
+//			pageInfo.setListCount(listCount);
+//			pageInfo.setStartRow(startRow);
+//			pageInfo.setListLimit(listLimit);
+			
+			String coin_total = service.getCoinTotal(sId);
+			List<CoinDTO> coin = service.getCoinInfoList(sId);
+//			System.out.println(coin.toString());
+//			
+			model.addAttribute("coin_total", coin_total);
+			model.addAttribute("coin", coin);
+			
+			return "mypage/center_coin";
+		}
+		
+		// 코인 결제 창 이동
+		@RequestMapping(value = "mypage/center_coin_payment", method = RequestMethod.GET)
+		public String coinPayment() {
+			return "mypage/center_coin_payment";
 		}
 		// 쿠폰
 		
