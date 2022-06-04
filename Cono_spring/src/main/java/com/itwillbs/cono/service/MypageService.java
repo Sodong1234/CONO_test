@@ -1,5 +1,6 @@
 package com.itwillbs.cono.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +49,29 @@ public class MypageService {
 	public String getCoinTotal(String sId) {
 		return mapper.coinTotal(sId);
 	}
-
+	// 쿠폰 리스트
 	public List<CouponDTO> getCouponList(String sId) {
 		return mapper.couponList(sId);
+	}
+	// 장바구니 리스트
+	public List<HashMap<String, String>> getBasketList(String sId) {
+		return mapper.selectBasketList(sId);
+	}
+	// 구매완료 리스트
+	public List<HashMap<String, String>> getPerchasedList(String sId) {
+		return mapper.selectPerchasedList(sId);
+	}
+	// 예약 중인 상품 리스트
+	public List<HashMap<String, String>> getReservedList(String sId) {
+		return mapper.selectReservedList(sId);
+	}
+	// 팔로잉 리스트
+	public List<HashMap<String, String>> getfollowingList(String sId) {
+		return mapper.selectFollowingList(sId);
+	}
+
+	public List<HashMap<String, String>> getfollowerList(String sId) {
+		return mapper.selectFollowerList(sId);
 	}
 
 }

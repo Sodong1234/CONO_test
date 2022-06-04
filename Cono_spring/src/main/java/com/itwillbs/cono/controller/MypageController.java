@@ -1,5 +1,6 @@
 package com.itwillbs.cono.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,21 +20,21 @@ import com.itwillbs.cono.vo.PageInfo;
 
 @Controller
 public class MypageController {
-	
+
 	@Autowired
 	private MypageService service;
-	
+
 	// 1. mypage 화면 이동
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session, Model model) {
-		String sId = (String)session.getAttribute("sId");
-		
+		String sId = (String) session.getAttribute("sId");
+
 		String coin_total = service.getCoinTotal(sId);
 		model.addAttribute("coin_total", coin_total);
-		
+
 		return "mypage/mypage";
 	}
-	
+
 	// 2. 최근조회화면 첫 이동
 	@RequestMapping(value = "mypage/recentViewList", method = RequestMethod.GET)
 	public String recentView(@RequestParam(defaultValue = "1") int pageNum, Model model, HttpSession session) {
@@ -43,16 +44,16 @@ public class MypageController {
 		int listCount = service.getRecentViewListCount();
 		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
 		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
-		
-		int maxPage = (int)Math.ceil((double)listCount / listLimit);
-		int startPage = ((int)((double)pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+
+		int maxPage = (int) Math.ceil((double) listCount / listLimit);
+		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
 		int endPage = startPage + pageLimit - 1;
-		if(endPage > maxPage) {
+		if (endPage > maxPage) {
 			endPage = maxPage;
 		}
-		
+
 		int startRow = (pageNum - 1) * listLimit;
-		
+
 		PageInfo pageInfo = new PageInfo();
 		pageInfo.setPageNum(pageNum);
 		pageInfo.setMaxPage(maxPage);
@@ -61,66 +62,78 @@ public class MypageController {
 		pageInfo.setListCount(listCount);
 		pageInfo.setStartRow(startRow);
 		pageInfo.setListLimit(listLimit);
-		
-		String sId = (String)session.getAttribute("sId");
-		
-		List<List<String>> recentViewList = service.getRecentViewList("", "", pageInfo, sId);	
+
+		String sId = (String) session.getAttribute("sId");
+
+		List<List<String>> recentViewList = service.getRecentViewList("", "", pageInfo, sId);
 		System.out.println(recentViewList);
 		model.addAttribute("recentViewList", recentViewList);
 		model.addAttribute("pageInfo", pageInfo);
-		
-		
+
 		return "mypage/list_recentView";
 	}
-	
-	// 팔로잉 & 팔로워
-	
-	
-		// 나의 후기 ( 구매 후기 작성 / 내가 쓴 후기 확인)
+
+	// 팔로잉
+	@RequestMapping(value = "mypage/following", method = RequestMethod.GET)
+	public String following(HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
 		
-		// 알림 
+		List<HashMap<String, String>> followingList = service.getfollowingList(sId);
 		
-		// 1:1 메시지
+		return "mypage/list_following";
+	}
+	// 팔로워
+	@RequestMapping(value = "mypage/follower", method = RequestMethod.GET)
+	public String follower(HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
 		
-		// 회원 정보 수정페이지 이동
-		@RequestMapping(value = "/mypage/memberInfo_modify", method = RequestMethod.GET)
-		public String modify(Model model, HttpSession session) {
-			String sId = (String)session.getAttribute("sId");
-			MemberDTO member = service.getMemberDetail(sId); // 기존 데이터 자동 입력
-			
-			model.addAttribute("member",member);
-			System.out.println(member);
-			return "mypage/list_memberInfo_modify_form";	// 폼
+		List<HashMap<String, String>> followerList = service.getfollowerList(sId);
+		
+		return "mypage/list_follower";
+	}
+ 
+	// 나의 후기 ( 구매 후기 작성 / 내가 쓴 후기 확인)
+
+	// 알림
+
+	// 1:1 메시지
+
+	// 회원 정보 수정페이지 이동
+	@RequestMapping(value = "/mypage/memberInfo_modify", method = RequestMethod.GET)
+	public String modify(Model model, HttpSession session) {
+		String sId = (String) session.getAttribute("sId");
+		MemberDTO member = service.getMemberDetail(sId); // 기존 데이터 자동 입력
+
+		model.addAttribute("member", member);
+		System.out.println(member);
+		return "mypage/list_memberInfo_modify_form"; // 폼
+	}
+
+	@RequestMapping(value = "/mypage/memberInfo_modify", method = RequestMethod.POST)
+	public String modify(HttpSession session, MemberDTO member, Model model) {
+		String sId = (String) session.getAttribute("sId");
+
+		int updateCount = service.modifyMember(sId, member);
+
+		if (updateCount == 0) {
+			model.addAttribute("msg", "정보 수정 실패");
+			return "fail_back";
 		}
-		@RequestMapping(value = "/mypage/memberInfo_modify", method = RequestMethod.POST)
-		public String modify(HttpSession session, MemberDTO member, Model model) {
-			String sId = (String)session.getAttribute("sId");
-			
-			int updateCount = service.modifyMember(sId, member);
-			
-			if(updateCount == 0) {
-				model.addAttribute("msg", "정보 수정 실패");
-				return "fail_back";
-			}
-			
-			return "redirect:/mypage";
-		}
-		
-		
-		
-		// 계좌 정보 관리
-		
-		
-		
-		// 회원 탈퇴
-		
-		//===============================================
-		
-		// 코인 이용 내역
-		@RequestMapping(value = "mypage/coin", method = RequestMethod.GET)
-		public String coin(HttpSession session, Model model) {
-			String sId = (String)session.getAttribute("sId");
-			
+
+		return "redirect:/mypage";
+	}
+
+	// 계좌 정보 관리
+
+	// 회원 탈퇴
+
+	// ===============================================
+
+	// 코인 이용 내역
+	@RequestMapping(value = "mypage/coin", method = RequestMethod.GET)
+	public String coin(HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+
 //			int listCount = service.getCoinListCount(sId);	// 전체 코인 내역 수
 //			int listLimit = 10; // 한 페이지 당 표시할 목록 갯수
 //			int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
@@ -144,39 +157,61 @@ public class MypageController {
 //			pageInfo.setListCount(listCount);
 //			pageInfo.setStartRow(startRow);
 //			pageInfo.setListLimit(listLimit);
-			
-			String coin_total = service.getCoinTotal(sId);
-			List<CoinDTO> coin = service.getCoinInfoList(sId);
-//			System.out.println(coin.toString());
-//			
-			model.addAttribute("coin_total", coin_total);
-			model.addAttribute("coin", coin);
-			
-			return "mypage/center_coin";
-		}
-		
-		// 코인 결제 창 이동
-		@RequestMapping(value = "mypage/center_coin_payment", method = RequestMethod.GET)
-		public String coinPayment(HttpSession session, Model model) {
-			String sId = (String)session.getAttribute("sId");
-			
-			MemberDTO member = service.getMemberDetail(sId);
-			model.addAttribute("member",member);
-			return "mypage/center_coin_payment";
-		}
-		// 쿠폰
-		@RequestMapping(value = "mypage/coupon", method = RequestMethod.GET)
-		public String coupon(HttpSession session, Model model) {
-			String sId = (String)session.getAttribute("sId");
-			
-			List<CouponDTO> coupon = service.getCouponList(sId);
-			model.addAttribute("coupon", coupon);
-			return "mypage/coupon";
-		}
-		// 예약중인 상품 조회
 
-		// 장바구니
-		
-		// 구매완료
-	
+		String coin_total = service.getCoinTotal(sId);
+		List<CoinDTO> coin = service.getCoinInfoList(sId);
+//		System.out.println(coin.toString());
+//			
+		model.addAttribute("coin_total", coin_total);
+		model.addAttribute("coin", coin);
+
+		return "mypage/center_coin";
+	}
+
+	// 코인 결제 창 이동
+	@RequestMapping(value = "mypage/center_coin_payment", method = RequestMethod.GET)
+	public String coinPayment(HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+
+		MemberDTO member = service.getMemberDetail(sId);
+		model.addAttribute("member", member);
+		return "mypage/center_coin_payment";
+	}
+
+	// 쿠폰
+	@RequestMapping(value = "mypage/coupon", method = RequestMethod.GET)
+	public String coupon(HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+
+		List<CouponDTO> coupon = service.getCouponList(sId);
+		model.addAttribute("coupon", coupon);
+		return "mypage/center_coupon";
+	}
+	// 예약중인 상품 조회
+
+	public String reserved(HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+
+		List<HashMap<String, String>> reservedList = service.getReservedList(sId);
+		return "mypage/center_coupon";
+	}
+
+	// 장바구니
+	@RequestMapping(value = "mypage/basket", method = RequestMethod.GET)
+	public String basket(HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+
+		List<HashMap<String, String>> basketList = service.getBasketList(sId);
+
+		return "mypage/center_coupon";
+	}
+
+	// 구매완료
+	@RequestMapping(value = "mypage/perchased", method = RequestMethod.GET)
+	public String perchased(HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+
+		List<HashMap<String, String>> perchasedList = service.getPerchasedList(sId);
+		return "mypage/center_perchased";
+	}
 }
