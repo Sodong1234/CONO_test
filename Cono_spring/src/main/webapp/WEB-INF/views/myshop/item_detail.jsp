@@ -29,11 +29,11 @@
 	<h3>상품 정보 상세</h3>
 	<div>
 		<hr>
-		<form action="ItemModifyForm.shop">
+		<form>
 			<table border="1">
 				<tr>
 					<td colspan="2">
-						<input type="submit" value="수정하기">
+						<input type="button" value="수정하기" onclick="location.href='ItemModifyForm.shop?item_idx=${itemDetail.get('item_idx')}'">
 						<input type="button" value="삭제하기" onclick="location.href='ItemDelete.shop?item_idx=${itemDetail.get('item_idx')}'">
 						<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}">
 					</td>

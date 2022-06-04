@@ -23,6 +23,10 @@ public class ShopController {
 		
 		String member_id = session.getAttribute("sId").toString();
 		
+		if(member_id == null) {
+			return "redirect:/login";
+		}
+		
 		// 상점 정보 조회
 		ShopDTO myShop = service.getMyShop(member_id);
 		

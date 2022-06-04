@@ -28,6 +28,7 @@ public class ItemController {
 	// ---------------------- 상품 등록 페이지 이동 - 이소영  ------------------
 	@RequestMapping(value = "/ItemUploadForm.shop", method = RequestMethod.GET)
 	public String uploadItem() {
+		
 		return "myshop/item_upload";
 	}
 	// -------------------------------------------------------------------------
@@ -50,48 +51,77 @@ public class ItemController {
 	// -------------------------------------------------------------------------
 	
 	// -------------------- 상품 조회(리스트) (시작) - 이소영 ------------------
-		@RequestMapping(value = "/ItemMng.shop", method = RequestMethod.GET)
-		public String selectItemList(String keyword, String sell_status, HttpSession session, Model model) {
-			
-			String member_id = session.getAttribute("sId").toString();
-			
-			List<HashMap<String, String>> itemList = service.selectItemList(member_id, keyword, sell_status);
-			model.addAttribute("itemList", itemList);
-			model.addAttribute("keyword", keyword);
-			model.addAttribute("sell_status", sell_status);
-			return "myshop/item_mng";
-		}
+	@RequestMapping(value = "/ItemMng.shop", method = RequestMethod.GET)
+	public String selectItemList(String keyword, String sell_status, HttpSession session, Model model) {
+		
+		String member_id = session.getAttribute("sId").toString();
+		
+		List<HashMap<String, String>> itemList = service.selectItemList(member_id, keyword, sell_status);
+		model.addAttribute("itemList", itemList);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("sell_status", sell_status);
+		return "myshop/item_mng";
+	}
 	// -------------------------------------------------------------------------
 	
 	// ----------------- 상품 숨김 기능 (시작) - 이소영 ------------------------
-		@RequestMapping(value = "/ItemHide.shop", method = RequestMethod.GET)
-		public String hideItem(String item_idx, String item_hide, Model model) {
-			
-			int updateCount = service.updateItemHide(item_idx, item_hide);
-			
-			if(updateCount > 0) {
-				return "redirect:/ItemMng.shop";
-			} else {
-				model.addAttribute("msg", "상품 숨김 실패");
-	        	return "fail_back";
-			}
-			
+	@RequestMapping(value = "/ItemHide.shop", method = RequestMethod.GET)
+	public String hideItem(String item_idx, String item_hide, Model model) {
+		
+		int updateCount = service.updateItemHide(item_idx, item_hide);
+		
+		if(updateCount > 0) {
+			return "redirect:/ItemMng.shop";
+		} else {
+			model.addAttribute("msg", "상품 숨김 실패");
+        	return "fail_back";
 		}
+		
+	}
 	// -------------------------------------------------------------------------
 		
 	// ------------------ 상품 상세 정보 조회 (시작) - 이소영 ------------------
-		@RequestMapping(value = "/ItemDetail.shop", method = RequestMethod.GET)
-		public String selectItemDetail(String item_idx, Model model, HttpServletRequest request) {
-			
-			// 상품 상세 정보 조회
-			HashMap<String, String> itemDetail = service.selectItemDetail(item_idx); 
-			
-			// 상품 이미지 조회
-			List<ImgDTO> imgList = service.selectImgList(item_idx);
-			model.addAttribute("itemDetail", itemDetail);
-			model.addAttribute("imgList", imgList);
-			
-			return "myshop/item_detail";
-		}
+	@RequestMapping(value = "/ItemDetail.shop", method = RequestMethod.GET)
+	public String selectItemDetail(String item_idx, Model model, HttpServletRequest request) {
+		
+		// 상품 상세 정보 조회
+		HashMap<String, String> itemDetail = service.selectItemDetail(item_idx); 
+		
+		// 상품 이미지 조회
+		List<ImgDTO> imgList = service.selectImgList(item_idx);
+		model.addAttribute("itemDetail", itemDetail);
+		model.addAttribute("imgList", imgList);
+		
+		return "myshop/item_detail";
+	}
+	// -------------------------------------------------------------------------
+		
+	// ------------------ 상품 상세 정보 수정 (시작) - 이소영 ------------------
+	@RequestMapping(value = "/ItemModifyForm.shop", method = RequestMethod.GET)
+	public String modifyItem(String item_idx, Model model) {
+		
+		// 상품 상세 정보 조회
+		HashMap<String, String> itemDetail = service.selectItemDetail(item_idx);
+		
+		// 상품 이미지 조회
+		List<ImgDTO> imgList = service.selectImgList(item_idx);
+		model.addAttribute("itemDetail", itemDetail);
+		model.addAttribute("imgList", imgList);
+		
+		
+		return "myshop/item_modify";
+	}
+	// -------------------------------------------------------------------------
+	
+	// ------------------ 상품 상세 정보 수정 (시작) - 이소영 ------------------
+	@RequestMapping(value = "/ItemModifyPro.shop", method = RequestMethod.POST)
+	public String modifyItemPost(String item_idx, String imgStatus, ItemDTO item, CategoryDTO category, MultipartFile[] upload, HttpServletRequest request, Model model) {
+		
+		item.setItem_idx(item_idx);
+		
+		boolean isUpdateSuccess = service.modifyItem(imgStatus, item, category, upload, request);
+		
+		return "";
+	}
 	// -------------------------------------------------------------------------
 }

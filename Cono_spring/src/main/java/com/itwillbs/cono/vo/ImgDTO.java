@@ -11,7 +11,7 @@ CREATE TABLE img(
 public class ImgDTO {
 	private String img_idx;
 	private String item_idx;
-	private String shop_name;
+	private String img_real_name;
 	private String img_name;
 	
 	
@@ -27,11 +27,11 @@ public class ImgDTO {
 	public void setItem_idx(String item_idx) {
 		this.item_idx = item_idx;
 	}
-	public String getShop_name() {
-		return shop_name;
+	public String getImg_real_name() {
+		return img_real_name;
 	}
-	public void setShop_name(String shop_name) {
-		this.shop_name = shop_name;
+	public void setImg_real_name(String img_real_name) {
+		this.img_real_name = img_real_name;
 	}
 	public String getImg_name() {
 		return img_name;
@@ -43,7 +43,7 @@ public class ImgDTO {
 	
 	@Override
 	public String toString() {
-		return "ImgDTO [img_idx=" + img_idx + ", item_idx=" + item_idx + ", shop_name=" + shop_name + ", img_name=" + img_name + "]";
+		return "ImgDTO [img_idx=" + img_idx + ", item_idx=" + item_idx + ", img_real_name=" + img_real_name + ", img_name=" + img_name + "]";
 	}
 	
 	

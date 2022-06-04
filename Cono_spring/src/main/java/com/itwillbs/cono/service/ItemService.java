@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -45,35 +46,43 @@ public class ItemService {
 		if(insertCount[0] > 0 && insertCount[1] > 0) {
 			// 파일이 업로드 될 경로 설정
 			String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/file");
-			System.out.println(saveDir);
 			//위에서 설정한 경로의 폴더가 없을 경우 생성
 	        File dir = new File(saveDir);
 	        if(!dir.exists()) {
 	            dir.mkdirs();
 	        }
 			
-			// 파일 업로드
-			for(MultipartFile f : upload) {
-				ImgDTO img = new ImgDTO();
-				if(!f.isEmpty()) {
-					// 기존 파일 이름을 받고 확장자 저장
+	        System.out.println(upload.length);
+	        
+	        for(int i = 0; i < upload.length; i++) {
+	        	ImgDTO img = new ImgDTO();
+	        	MultipartFile f = upload[i];
+	        	if(f.isEmpty()) {
+	        		img.setImg_idx((i+1) + "");
+	        		img.setImg_real_name(null);
+	        		img.setImg_name(null);
+	        		
+	        		mapper.insertImgList(img, item);
+	        	} else {
+	        		img.setImg_idx((i+1) + "");
+	        		// 기존 파일 이름을 받고 확장자 저장
 					String orifileName = f.getOriginalFilename();
 					String ext = orifileName.substring(orifileName.lastIndexOf("."));
+					img.setImg_real_name(orifileName);
 					
 					 // 이름 값 변경을 위한 설정
-	                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd-HHmmssSSS");
-	                int rand = (int)(Math.random()*1000);
+	                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+//	                int rand = (int)(Math.random()*1000);
+	                String uuid = UUID.randomUUID().toString();
 	                
 	                // 파일 이름 변경
-	                String reName = sdf.format(System.currentTimeMillis()) + "_" + rand + ext;
+	                String reName = sdf.format(System.currentTimeMillis()) + "_" + uuid + ext;
 	                img.setImg_name(reName);
-	                
-	                // img 테이블 img_idx 조회
-	                Integer img_idx = mapper.selectImgIdx(item) + 1;
-	                img.setImg_idx(img_idx.toString());  
+//	                System.out.println("img_name : " + reName);
+//	                System.out.println("img_real_name : " + orifileName);
 	                
 	                // img 테이블 insert
-	    			mapper.insertImg(img, item);
+	    			mapper.insertImgList(img, item);
 	                
 			        // 파일 저장
 			        try {
@@ -81,8 +90,9 @@ public class ItemService {
 			        }catch (IllegalStateException | IOException e) {
 			            e.printStackTrace();
 			        }
-				}
-			}
+	        	}
+	        }
+	        
 			isUploadSuccess = true;
 		}
 		return isUploadSuccess;
@@ -121,6 +131,80 @@ public class ItemService {
 	// 상품 이미지 조회
 	public List<ImgDTO> selectImgList(String item_idx) {
 		return mapper.selectImgList(item_idx);
+	}
+	public boolean modifyItem(String imgStatus, ItemDTO item, CategoryDTO category, MultipartFile[] upload, HttpServletRequest request) {
+		boolean isUpdateSuccess = false;
+		int deleteCount = -1;
+		int insertCount = -1;
+		int updateCount = -1;
+		// String 으로 넘어온 이미지 상태를 배열로 변환
+		String[] imgStatusArr = imgStatus.split("/");
+		
+		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/file");
+		
+		// 원본 이미지리스트 조회
+		List<ImgDTO> orgImgList = mapper.selectImgList(item.getItem_idx());
+		for(int i = 0; i < imgStatusArr.length; i++) {
+			
+			ImgDTO img = new ImgDTO();
+			MultipartFile f = upload[i];
+			String reName = "";
+			
+			if(!f.isEmpty()) {
+				img.setImg_idx((i+1) + "");
+				
+				// 파일 이름을 받고 확장자 저장
+				String orifileName = f.getOriginalFilename();
+				String ext = orifileName.substring(orifileName.lastIndexOf("."));
+				img.setImg_real_name(orifileName);
+				
+				 // 이름 값 변경을 위한 설정
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                String uuid = UUID.randomUUID().toString();
+                
+                // 파일 이름 변경
+                reName = sdf.format(System.currentTimeMillis()) + "_" + uuid + ext;
+                img.setImg_name(reName);
+			} else {
+				img.setImg_idx((i+1) + "");
+				img.setImg_real_name(null);
+				img.setImg_name(null);
+			}
+			// 원본 이미지가 있고, 수정된 이미지 상태가 N(없음)일 경우 원본 이미지 삭제 작업 진행
+			if(imgStatusArr[i].equals("N") && orgImgList.get(i).getImg_name() != null) {
+				System.out.println(orgImgList.get(i).toString());
+				deleteCount = mapper.updateImg(item, img, orgImgList.get(i).getImg_idx());
+				
+				File file = new File(saveDir + "/" + orgImgList.get(i).getImg_name());
+				file.delete();
+				
+				// 원본 이미지가 있고, 수정된 이미지 상태가 Y(있음)일 경우 이미지 수정 작업 진행
+            } else if(imgStatusArr[i].equals("Y") && orgImgList.get(i).getImg_name() != null) {
+				updateCount = mapper.updateImg(item, img, orgImgList.get(i).getImg_idx());
+				
+				try {
+					f.transferTo(new File(saveDir + "/" + reName));
+				}catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}
+				
+			// 원본 이미지가 없고, 수정된 이미지 상태가 Y(있음)일 경우 이미지 추가 작업 진행
+            } else if(imgStatusArr[i].equals("Y") && orgImgList.get(i).getImg_name() == null) {
+            	
+//            	insertCount = mapper.insertImg(item, img, orgImgList.get(i).getImg_idx());
+            	
+				try {
+		            f.transferTo(new File(saveDir + "/" + reName));
+		        }catch (IllegalStateException | IOException e) {
+		            e.printStackTrace();
+		        }
+            }
+		}
+		
+		if(deleteCount > 0 && updateCount > 0 && insertCount > 0) {
+			isUpdateSuccess = true;
+		}
+		return isUpdateSuccess;
 	}
 	
 }

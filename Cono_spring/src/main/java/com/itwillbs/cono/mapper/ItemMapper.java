@@ -24,7 +24,7 @@ public interface ItemMapper {
 	Integer selectImgIdx(ItemDTO item);
 	
 	// img 테이블 insert
-	void insertImg(@Param("img") ImgDTO img, @Param("item") ItemDTO item);
+	void insertImgList(@Param("img") ImgDTO img, @Param("item") ItemDTO item);
 	
 	// 상품 관리 (상품 리스트 조회)
 	List<HashMap<String, String>> selectItemList(@Param("member_id") String member_id, @Param("keyword") String keyword, @Param("sell_status") String sell_status);
@@ -37,6 +37,15 @@ public interface ItemMapper {
 	
 	// 상품 이미지 조회
 	List<ImgDTO> selectImgList(String item_idx);
+
+//	// 상품 이미지 삭제
+//	int deleteImg(@Param("item") ItemDTO item, @Param("img") ImgDTO img, @Param("img_idx") String img_idx);
+	
+	// 상품 이미지 변경
+	int updateImg(@Param("item") ItemDTO item, @Param("img") ImgDTO img, @Param("img_idx") String img_idx);
+	
+//	// 상품 이미지 추가
+//	int insertImg(@Param("item") ItemDTO item, @Param("img") ImgDTO img, @Param("img_idx") String img_idx);
 
 	
 }
