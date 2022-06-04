@@ -10,22 +10,31 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <script>
-$("btn_payment").click(function() {
-	  //class가 btn_payment인 태그를 선택했을 때 작동한다.
+	function requestPay() {
 		
+	  	var payment = document.getElementsByName("payment");
+	  	var payment_name;
+	  	var payment_value;
+	  	for(var i=0; i<payment.length; i++) {
+	  		if(payment[i].checked) {
+				payment_name = payment[i].value + " 코인";
+	  			payment_value = Number(payment[i].value);
+	  		}
+	  	}
+	  	alert(payment_name + " " + payment_value);
+	  	
+		// 가맹점 식별 코드 : imp64297364
+		// REST API : 7440562304225525
 	  	IMP.init(imp64297364);
 	  	//결제시 전달되는 정보
 		IMP.request_pay({
 				    pg : 'inicis', 
 				    pay_method : 'card',
 				    merchant_uid : 'merchant_' + new Date().getTime(),
-				    name : '주문명:결제테스트'/*상품명*/,
-				    amount : 1000/*상품 가격*/, 
-				    buyer_email : 'iamport@siot.do'/*구매자 이메일*/,
-				    buyer_name : '구매자이름',
-				    buyer_tel : '010-1234-5678'/*구매자 연락처*/,
-				    buyer_addr : '서울특별시 강남구 삼성동'/*구매자 주소*/,
-				    buyer_postcode : '123-456'/*구매자 우편번호*/
+				    name : payment_name,/*상품명*/,
+				    amount : payment_value,/*상품 가격*/, 
+				    member_id : ${member.member_id },
+				    member_phone : ${member.member_phone}/*구매자 연락처*/,
 				}, function(rsp) {
 					var result = '';
 				    if ( rsp.success ) {

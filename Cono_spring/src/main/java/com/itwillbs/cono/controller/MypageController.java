@@ -156,7 +156,11 @@ public class MypageController {
 		
 		// 코인 결제 창 이동
 		@RequestMapping(value = "mypage/center_coin_payment", method = RequestMethod.GET)
-		public String coinPayment() {
+		public String coinPayment(HttpSession session, Model model) {
+			String sId = (String)session.getAttribute("sId");
+			
+			MemberDTO member = service.getMemberDetail(sId);
+			model.addAttribute("member",member);
 			return "mypage/center_coin_payment";
 		}
 		// 쿠폰
