@@ -49,4 +49,12 @@
 		ORDER BY coin_idx DESC
 		LIMIT 1;
 	</select>
+	
+<!-- 	현재 보유 쿠폰 리스트 -->
+	<select id="couponList" resultType="com.itwillbs.cono.vo.CouponDTO">
+		SELECT *
+		FROM coupon
+		WHERE member_id = #{sId}
+	</select>
+
 </mapper>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.cono.service.MypageService;
 import com.itwillbs.cono.vo.CoinDTO;
+import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PageInfo;
 
@@ -164,7 +165,14 @@ public class MypageController {
 			return "mypage/center_coin_payment";
 		}
 		// 쿠폰
-		
+		@RequestMapping(value = "mypage/coupon", method = RequestMethod.GET)
+		public String coupon(HttpSession session, Model model) {
+			String sId = (String)session.getAttribute("sId");
+			
+			List<CouponDTO> coupon = service.getCouponList(sId);
+			model.addAttribute("coupon", coupon);
+			return "mypage/coupon";
+		}
 		// 예약중인 상품 조회
 
 		// 장바구니

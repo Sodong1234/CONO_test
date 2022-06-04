@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.cono.vo.CoinDTO;
+import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PageInfo;
 
@@ -28,6 +29,8 @@ public interface MypageMapper {
 	public List<CoinDTO> selectCoinInfoList(@Param("sId") String sId);
 
 	public String coinTotal(String sId);
+
+	public List<CouponDTO> couponList(String sId);
 
 	
 	

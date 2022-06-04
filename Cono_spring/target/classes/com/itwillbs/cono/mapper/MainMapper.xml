@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.itwillbs.cono.mapper.MainMapper">
-  
-  <select id="checkMember" resultType="com.itwillbs.cono.vo.MemberDTO">
+<!--   	로그인 -->
+	<select id="checkMember" resultType="com.itwillbs.cono.vo.MemberDTO">
 		SELECT * FROM member
 		WHERE member_id=#{member_id} AND member_pass=#{member_pass}
 	</select>
 	
+<!-- 	회원가입 -->
+	<insert id="insertMember">
+		INSERT INTO member 
+		VALUES (#{member.member_id}, #{member.member_pass},#{member.member_email},
+			    #{member.member_phone}, #{member.member_nick}, #{member.member_logo},
+			    #{member.member_birth}, date_format(now(), '%Y%m%d%'), "Y")
+	</insert>
+	
+<!-- 	회원가입 축하 쿠폰 -->
+	<insert id="insertJoinCoupon">
+		INSERT INTO coupon
+		VALUES ('1', #{member_id}, '가입 축하 쿠폰', '5000');
+	</insert>
 </mapper>
 

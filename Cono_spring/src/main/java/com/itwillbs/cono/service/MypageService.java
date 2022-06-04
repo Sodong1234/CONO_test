@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.cono.mapper.MypageMapper;
 import com.itwillbs.cono.vo.CoinDTO;
+import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PageInfo;
 
@@ -46,6 +47,10 @@ public class MypageService {
 	// 현재 보유 코인
 	public String getCoinTotal(String sId) {
 		return mapper.coinTotal(sId);
+	}
+
+	public List<CouponDTO> getCouponList(String sId) {
+		return mapper.couponList(sId);
 	}
 
 }

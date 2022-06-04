@@ -16,4 +16,12 @@ public class MainService {
 		return mapper.checkMember(member);
 	}
 
+	public int joinMember(MemberDTO member) {
+		return mapper.insertMember(member);
+	}
+
+	public void joinCoupon(String member_id) {
+		mapper.insertJoinCoupon(member_id);
+	}
+
 }
