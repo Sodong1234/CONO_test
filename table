@@ -197,6 +197,13 @@ CREATE TABLE recentView (
 	viewTime VARCHAR(30)
 );
 
+CREATE TABLE payment (
+	payment_idx VARCHAR(20) PRIMARY KEY,
+	member_id VARCHAR(20),
+	member_phone VARCHAR(13),
+	payment_name  VARCHAR(20),
+	payment_amount  VARCHAR(20)
+);
 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ관리자ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
