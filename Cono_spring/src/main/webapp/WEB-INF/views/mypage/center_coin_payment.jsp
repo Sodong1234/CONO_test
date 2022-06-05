@@ -6,35 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
 <script>
-	function requestPay() {
-		
-	  	var payment = document.getElementsByName("payment");
-	  	var payment_name;
-	  	var payment_value;
-	  	for(var i=0; i<payment.length; i++) {
-	  		if(payment[i].checked) {
-				payment_name = payment[i].value + " 코인";
-	  			payment_value = Number(payment[i].value);
-	  		}
-	  	}
-	  	alert(payment_name + " " + payment_value);
-	  	
 		// 가맹점 식별 코드 : imp64297364
 		// REST API : 7440562304225525
-	  	IMP.init(imp64297364);
+	  	var IMP = window.IMP;
+  		IMP.init("imp64297364"); // "iamport" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
 	  	//결제시 전달되는 정보
 		IMP.request_pay({
 				    pg : 'inicis', 
 				    pay_method : 'card',
-				    merchant_uid : 'merchant_' + new Date().getTime(),
-				    name : payment_name,/*상품명*/,
-				    amount : payment_value,/*상품 가격*/, 
-				    member_id : ${member.member_id },
-				    member_phone : ${member.member_phone}/*구매자 연락처*/,
+				    merchant_uid : 'Coin' + new Date().getTime(),
+				    name: "노르웨이 회전 의자",	// 상품 이름
+				    amount: 64900,	
+				    buyer_name: "홍길동",
+				    buyer_tel: "010-4242-4242"
 				}, function(rsp) {
 					var result = '';
 				    if ( rsp.success ) {
@@ -54,18 +43,11 @@
 				    }
 				    alert(msg);
 				});
-			}
 </script>
 </head>
 <body>
-	<h1>결제하기</h1>
-		<table>
-			<tr><td><input type="radio" name="payment" value="10000"></td><td colspan="1">10,000원</td></tr>
-			<tr><td><input type="radio" name="payment" value="30000"></td><td colspan="2">30,000원</td></tr>
-			<tr><td><input type="radio" name="payment" value="50000"></td><td colspan="2">50,000원</td></tr>
-			<tr><td><input type="radio" name="payment" value="100000"></td><td colspan="2">100,000원</td></tr>
-<!-- 			<tr><td><input type="checkbox" name="payment" value=""></td><td>직접 입력</td><td><input type="text" name="payment"></td></tr> -->
-		</table>
-		<input type="button" value="결제하기" onclick="requestPay()">
+	
+		<input type="button" value="결제하기" onclick="IMP.request_pay(param, callback)">
+		<input type="button" value="mypage 돌아가기" onclick="location.href='mypage'">
 </body>
 </html>
