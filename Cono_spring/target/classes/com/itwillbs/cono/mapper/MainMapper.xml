@@ -10,9 +10,9 @@
 <!-- 	회원가입 -->
 	<insert id="insertMember">
 		INSERT INTO member 
-		VALUES (#{member.member_id}, #{member.member_pass},#{member.member_email},
-			    #{member.member_phone}, #{member.member_nick}, #{member.member_logo},
-			    #{member.member_birth}, date_format(now(), '%Y%m%d%'), "Y")
+		VALUES (#{member_id},#{member_pass},#{member_email},
+			    #{member_phone},#{member_nick},"logo",
+			    #{member_birth}, date_format(now(), '%Y%m%d'), "Y")
 	</insert>
 	
 <!-- 	회원가입 축하 쿠폰 -->

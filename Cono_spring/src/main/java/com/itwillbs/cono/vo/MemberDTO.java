@@ -21,10 +21,6 @@ public class MemberDTO {
 	private String member_birth;
 	private String member_date;
 	private String member_status;
-
-	
-
-	
 	public String getMember_id() {
 		return member_id;
 	}
@@ -79,7 +75,9 @@ public class MemberDTO {
 	public void setMember_status(String member_status) {
 		this.member_status = member_status;
 	}
+
 	
+
 	
 
 }

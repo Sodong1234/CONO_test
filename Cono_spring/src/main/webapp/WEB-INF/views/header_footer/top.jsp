@@ -55,7 +55,7 @@ String sId = (String)session.getAttribute("sId");
 	<span id="login">
 		<span id=""><a href = "home"> 홈 </a>-------</span>
 		<%if(sId == null) { %>
-			<a href="MemberHowJoin.func">회원가입</a> | 
+			<a href="joinHow">회원가입</a> | 
 			<a href="MemberLogin.func">로그인</a> | 
 		<%} else { %>
 			<a href="mypage"><%=sId %>님</a>

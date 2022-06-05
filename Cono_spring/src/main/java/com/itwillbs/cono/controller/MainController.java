@@ -26,6 +26,7 @@ public class MainController {
 		return "redirect:/";
 	}
 	
+	// 로그인창 이동
 	@RequestMapping(value = "/MemberLogin.func", method = RequestMethod.GET)
 	public String login() {
 		return "member/login";
@@ -53,21 +54,26 @@ public class MainController {
 		return "redirect:/";
 	}
 	
+	// 회원가입 방법 선택창 이동
+	@RequestMapping(value = "joinHow", method = RequestMethod.GET)
+	public String joinHow() {
+		return "member/joinHow";
+	}
+	
 	// 회원가입 창이동 
 	@RequestMapping(value = "join", method = RequestMethod.GET)
 	public String join() {
-		return "main/join";
+		return "member/join";
 	}
 	// 회원가입 프로 - 회원가입 쿠폰 지급
 	@RequestMapping(value = "joinPost", method = RequestMethod.POST)
-	public String joinPost(@RequestParam MemberDTO member, Model model) {
-		
+	public String joinPost(@ModelAttribute MemberDTO member, Model model) {
 		int insertCount = service.joinMember(member);
-		
-		if(insertCount == 1) {
+
+		if(insertCount > 1) {
 			service.joinCoupon(member.getMember_id());	// 회원가입 쿠폰 DB 입력
 			model.addAttribute("msg","회원가입을 축하합니다! 가입 축하 쿠폰이 지급되었습니다!");
-			return "success_msg";
+			return "member/success_msg";
 		} else {
 			model.addAttribute("msg","회원가입 실패!");
 			return "fail_msg";
