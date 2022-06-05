@@ -75,20 +75,9 @@
 		SELECT img_idx, img_real_name , img_name FROM img WHERE item_idx=#{item_idx}
 	</select>
 	
-	<!-- 상품 이미지 삭제 -->
-<!-- 	<delete id="deleteImg"> -->
-<!-- 		DELETE FROM img WHERE item_idx=#{item.item_idx} AND img_idx=#{img_idx} -->
-<!-- 	</delete> -->
-	
 	<!-- 상품 이미지 변경 -->
 	<update id="updateImg">
 		UPDATE img SET img_real_name=#{img.img_real_name}, img_name=#{img.img_name} WHERE item_idx=#{item.item_idx} AND img_idx=#{img_idx}
 	</update>
 		
-	<!-- 상품 이미지 추가 -->
-<!-- 	<insert id="insertImg"> -->
-<!-- 		INSERT INTO img  -->
-<!-- 		VALUES (#{img_idx}, -->
-<!-- 			    #{item.item_idx}, #{img.img_real_name}, #{img.img_name}) -->
-<!-- 	</insert> -->
 </mapper>

@@ -38,14 +38,9 @@ public interface ItemMapper {
 	// 상품 이미지 조회
 	List<ImgDTO> selectImgList(String item_idx);
 
-//	// 상품 이미지 삭제
-//	int deleteImg(@Param("item") ItemDTO item, @Param("img") ImgDTO img, @Param("img_idx") String img_idx);
-	
 	// 상품 이미지 변경
 	int updateImg(@Param("item") ItemDTO item, @Param("img") ImgDTO img, @Param("img_idx") String img_idx);
 	
-//	// 상품 이미지 추가
-//	int insertImg(@Param("item") ItemDTO item, @Param("img") ImgDTO img, @Param("img_idx") String img_idx);
 
 	
 }

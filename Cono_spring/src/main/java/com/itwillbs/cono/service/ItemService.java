@@ -70,14 +70,11 @@ public class ItemService {
 					
 					 // 이름 값 변경을 위한 설정
 	                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-//	                int rand = (int)(Math.random()*1000);
 	                String uuid = UUID.randomUUID().toString();
 	                
 	                // 파일 이름 변경
 	                String reName = sdf.format(System.currentTimeMillis()) + "_" + uuid + ext;
 	                img.setImg_name(reName);
-//	                System.out.println("img_name : " + reName);
-//	                System.out.println("img_real_name : " + orifileName);
 	                
 	                // img 테이블 insert
 	    			mapper.insertImgList(img, item);

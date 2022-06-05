@@ -50,7 +50,7 @@ public class ItemController {
 	}
 	// -------------------------------------------------------------------------
 	
-	// -------------------- 상품 조회(리스트) (시작) - 이소영 ------------------
+	// ------------------------- 상품 조회(리스트) - 이소영 --------------------
 	@RequestMapping(value = "/ItemMng.shop", method = RequestMethod.GET)
 	public String selectItemList(String keyword, String sell_status, HttpSession session, Model model) {
 		
@@ -64,7 +64,7 @@ public class ItemController {
 	}
 	// -------------------------------------------------------------------------
 	
-	// ----------------- 상품 숨김 기능 (시작) - 이소영 ------------------------
+	// --------------------- 상품 숨김 기능 - 이소영 ---------------------------
 	@RequestMapping(value = "/ItemHide.shop", method = RequestMethod.GET)
 	public String hideItem(String item_idx, String item_hide, Model model) {
 		
@@ -80,7 +80,7 @@ public class ItemController {
 	}
 	// -------------------------------------------------------------------------
 		
-	// ------------------ 상품 상세 정보 조회 (시작) - 이소영 ------------------
+	// ----------------------- 상품 상세 정보 조회 - 이소영 --------------------
 	@RequestMapping(value = "/ItemDetail.shop", method = RequestMethod.GET)
 	public String selectItemDetail(String item_idx, Model model, HttpServletRequest request) {
 		
@@ -96,7 +96,7 @@ public class ItemController {
 	}
 	// -------------------------------------------------------------------------
 		
-	// ------------------ 상품 상세 정보 수정 (시작) - 이소영 ------------------
+	// ------------ 상품 상세 정보 수정 원본 데이터 조회 - 이소영 --------------
 	@RequestMapping(value = "/ItemModifyForm.shop", method = RequestMethod.GET)
 	public String modifyItem(String item_idx, Model model) {
 		
@@ -113,7 +113,7 @@ public class ItemController {
 	}
 	// -------------------------------------------------------------------------
 	
-	// ------------------ 상품 상세 정보 수정 (시작) - 이소영 ------------------
+	// -------------- 상품 상세 정보 수정 비즈니스 로직 - 이소영 ---------------
 	@RequestMapping(value = "/ItemModifyPro.shop", method = RequestMethod.POST)
 	public String modifyItemPost(String item_idx, String imgStatus, ItemDTO item, CategoryDTO category, MultipartFile[] upload, HttpServletRequest request, Model model) {
 		
@@ -125,5 +125,21 @@ public class ItemController {
 		
 		return "redirect:/ItemDetail.shop";
 	}
+	// -------------------------------------------------------------------------
+	
+	// -------------------- 상품 삭제 페이지 이동 - 이소영 ---------------------
+	@RequestMapping(value = "/ItemDelete.shop", method = RequestMethod.GET)
+	public String deleteItem(String item_idx, Model model) {
+		
+		return "myshop/item_delete";
+	}
+	// -------------------------------------------------------------------------
+	
+	// -------------------- 상품 삭제 비즈니스 로직 - 이소영 -------------------
+	
+	// -------------------------------------------------------------------------
+	
+	// ----------------------- 상품 후기 조회 - 이소영 -------------------------
+	
 	// -------------------------------------------------------------------------
 }
