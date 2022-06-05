@@ -19,11 +19,11 @@
 		IMP.request_pay({
 				    pg : 'inicis', 
 				    pay_method : 'card',
-				    merchant_uid : 'Coin' + new Date().getTime(),
+				    merchant_uid : 'Coin' + "${payment.payment_date}",
 				    name: "${payment.payment_name}",	// 상품 이름
 				    amount: ${payment.payment_value},	
-				    buyer_name: "$payment.member_id",
-				    buyer_tel: "payment.member_phone"
+				    buyer_name: "${payment.member_id}",
+				    buyer_tel: "${payment.member_phone}"
 				}, function(rsp) {
 					var result = '';
 				    if ( rsp.success ) {
@@ -46,8 +46,9 @@
 </script>
 </head>
 <body>
-	
-		<input type="button" value="결제하기" onclick="IMP.request_pay(param, callback)">
-		<input type="button" value="mypage 돌아가기" onclick="location.href='mypage'">
+	<h2>${param.payment_name }</h2>	
+	<h2>${param.payment_value }</h2>	
+	<input type="button" value="결제하기" onclick="IMP.request_pay(param, callback)">
+	<input type="button" value="mypage 돌아가기" onclick="location.href='mypage'">
 </body>
 </html>

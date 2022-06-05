@@ -27,7 +27,7 @@
 		<table border="1">
 			<tr><th>나의 코노</th></tr>
 			<tr><td><a href="mypage/recentViewList">최근 본 상품</a></td></tr>
-			<tr><td><a href="MypageListFollow.mypage">팔로잉 & 팔로워</a></td></tr>
+			<tr><td><a href="mypage/follow">팔로잉&팔로워</a></td></tr>
 			<tr><td><a href="MypageList_myReview.jsp">나의 후기</a></td></tr>
 			
 			<tr><th>알림 및 메세지</th></tr>

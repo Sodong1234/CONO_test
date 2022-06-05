@@ -1,0 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>팔로잉하는 상점</h1>
+	<section>
+	<h3>총 n 개의 상점</h3>
+<!-- 		s.shop_idx, s.shop_img, s.shop_name, s.shop_content -->
+	</section>
+	<section>
+		<c:forEach var="following" items="${followingList }">
+			<table border="1">
+				<tr>
+					<td rowspan="2">${following.shop_idx }</td>
+					<td rowspan="2">${following.shop_img }</td>
+					<td rowspan="2">${following.shop_name }</td>
+					<td rowspan="2">${following.shop_content }</td>
+					<td rowspan="2"><button onclick="deleteFollowing()" id="deleteFollowing" value="">팔로잉</button></td>
+				</tr>
+			</table>
+		</c:forEach>
+	</section>
+
+	<h1>팔로워 상점</h1>
+	<section>
+	<h3>총 n 개의 상점</h3>
+	</section>
+	<section>
+		<c:forEach var="follower" items="${followerList }">
+			<table border="1">
+				<tr>
+					<td rowspan="2">${follower.shop_idx }</td>
+					<td rowspan="2">${follower.shop_img }</td>
+					<td rowspan="2">${follower.shop_name }</td>
+					<td rowspan="2">${follower.shop_content }</td>
+					<td rowspan="2"><button onclick="deleteFollowing()" id="deleteFollowing" value="">차단</button></td>
+				</tr>
+			</table>
+		</c:forEach>
+	</section>
+
+
+</body>
+</html>

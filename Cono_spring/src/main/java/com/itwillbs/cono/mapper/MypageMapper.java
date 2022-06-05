@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
-import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.PaymentDTO;
 
 public interface MypageMapper {
@@ -17,7 +16,7 @@ public interface MypageMapper {
 	public int selectRecentViewCount();
 
 	// 아직 ㄴㄴ
-	public List<List<String>> selectBoardList(String searchType, String keyword, PageInfo pageInfo, String sId);
+	public List<List<String>> selectBoardList(String sId);
 
 	// 회원 상세 조회 (for 수정)
 	public MemberDTO selectMemberInfo(String sId);
@@ -55,12 +54,16 @@ public interface MypageMapper {
 	// 예약 중 - 예약 진행 중인 상품 리스트
 	public List<HashMap<String, String>> selectReservedList(String sId);
 
+	// 팔로잉
 	public List<HashMap<String, String>> selectFollowingList(String sId);
 
+	// 팔로워
 	public List<HashMap<String, String>> selectFollowerList(String sId);
 
+	// 결제
 	public Integer insertPayment(String sId, String payment_name, String payment_value);
 
+	// 결제 데이터 받아오기
 	public PaymentDTO selectPayment(String sId);
 
 	

@@ -6,10 +6,10 @@
 		
 	</select>  
 	
-	<select id="selectBoardList" resultType="java.util.List">
-		SELECT it.item_idx, im.img_real_name, it.item_title, s.shop_name, it.item_price, it.item_region , it.item_date 
-		FROM item it, recentView re, img im, shop s 
-		WHERE re.member_id = #{sId} AND it.item_idx IN (re.item_idx) AND it.item_idx = im.item_idx AND im.img_idx = '1' AND s.shop_idx = it.shop_idx
+	<select id="selectBoardList" resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_price, it.item_region , it.item_date 
+		FROM item it, recentView re, img im
+		WHERE re.member_id = #{sId} AND it.item_idx IN (re.item_idx) AND it.item_idx = im.item_idx AND im.img_idx = '1'
 		ORDER BY re.viewTime DESC
 	</select>
 	
@@ -50,6 +50,22 @@
 		LIMIT 1;
 	</select>
 	
+<!-- 	결제 데이터 삽입하기 -->
+	<insert id="insertPayment">
+		INSERT INTO payment
+		VALUES (1+(SELECT COUNT(p.payment_idx) FROM payment p), #{sId}, (SELECT m.member_phone FROM member m WHERE m.member_id = #{sId}),
+			    #{payment_name},#{payment_value},date_format(now(), '%Y%m%d%H%i%S'))
+	</insert>
+	
+<!-- 	결제 데이터 받아오기 -->
+	<select id="selectPayment">
+		SELECT  payment_idx, member_id, member_phone, payment_name, payment_amount, payment_date
+		FROM payment
+		WHERE member_id = #{sId}
+		ORDER BY payment_idx DESC
+		LIMIT 1
+	</select>
+	
 <!-- 	현재 보유중인 쿠폰 수 -->
 	<select id="selectCouponCount" resultType="java.lang.Integer">
 		SELECT COUNT(coupon_idx)
@@ -62,23 +78,6 @@
 		SELECT coupon_idx, coupon_title, coupon_content, coupon_condition, coupon_price
 		FROM coupon
 		WHERE member_id = #{sId}
-	</select>
-	
-	<insert id="insertPayment">
-		INSERT INTO payment
-		VALUES ((SELECT COUNT(p.payment_idx) FROM payment p WHERE p.member_id = #{sId}), 
-				(SELECT m.member_phone FROM member m WHERE m.member_id = #{sId}),
-				#{payment_name},
-				#{payment_value},
-				date_format(now(), '%Y%m%d%H%i%S'))
-	</insert>
-	
-	<select id="selectPayment" resultType="com.itwillbs.cono.vo.PaymentDTO">
-		SELECT * 
-		FROM payment
-		WHERE member_id = #{sId}
-		ORDER BY payment_idx DESC
-		LIMIT 1
 	</select>
 	
 <!-- 	예약 중인 상품 수 -->
@@ -113,5 +112,18 @@
 		AND im.item_idx = it.item_idx
 	</select>
 <!-- 	================================================ Center =================================================== -->
-	
+<!-- 	================================================ List =================================================== -->
+<!-- 	팔로잉 -->
+	<select id="selectFollowingList" resultType="java.util.HashMap">
+		SELECT s.shop_idx, s.shop_img, s.shop_name, s.shop_content
+		FROM shop s, follow f
+		WHERE f.member_id = #{sId} AND s.shop_idx = f.shop_idx
+	</select>
+<!-- 	팔로워 -->
+	<select id="selectFollowerList" resultType="java.util.HashMap">
+		SELECT s.shop_idx, s.shop_img, s.shop_name, s.shop_content
+		FROM shop s, follow f
+		WHERE f.shop_idx = #{sId} AND f.member_id = s.member_id
+	</select>
+
 </mapper>

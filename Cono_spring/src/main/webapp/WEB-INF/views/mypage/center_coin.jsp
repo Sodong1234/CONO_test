@@ -10,11 +10,11 @@
 <script type="text/javascript">
 	function visiblePayCheck() {
 		var checkBox = document.getElementById("payCheck");
-		var vis = checkBox.style.visibility;
-		if(vis == "" || vis == "hidden") {
-			vis = "visible";
+		
+		if(checkBox.style.display == "" || checkBox.style.display == "none") {
+			checkBox.style.display = "block";
 		} else {
-			vis = "hidden";
+			checkBox.style.display = "none";
 		}
 		
 	}
@@ -38,15 +38,16 @@
 
 	<h1>코인페이지</h1>
 	<button onclick="visiblePayCheck()">코인충전</button>
-	<h1>결제하기</h1>
-		<table border="1" id="payCheck" hidden="">
+	<section id="payCheck" style="display: none;">
+		<table border="1">
 			<tr><td><input type="radio" name="payment" value="10000"></td><td colspan="1">10,000원</td></tr>
 			<tr><td><input type="radio" name="payment" value="30000"></td><td colspan="2">30,000원</td></tr>
 			<tr><td><input type="radio" name="payment" value="50000"></td><td colspan="2">50,000원</td></tr>
 			<tr><td><input type="radio" name="payment" value="100000"></td><td colspan="2">100,000원</td></tr>
-<!-- 			<tr><td><input type="checkbox" name="payment" value=""></td><td>직접 입력</td><td><input type="text" name="payment"></td></tr> -->
 		</table>
 		<button onclick='requestPay()'>결제하기</button>
+	</section>
+		
 	<table border="1">
 		
 		<tr><td colspan="4">사용가능한 코인</td><td>${coin_total}</td></tr>

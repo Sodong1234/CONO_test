@@ -55,56 +55,58 @@ public class MypageController {
 		// 페이징 처리에 필요한 전체 게시물 수 조회 - getRecentViewListCount()
 		// => 파라미터 : 없음, 리턴타입 : int(listCount)
 		// => 게시물이 없을 경우 null 이 아닌 0 이 리턴되므로 Integer 대신 int 사용 가능
-		int listCount = service.getRecentViewListCount();
-		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
-		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
-
-		int maxPage = (int) Math.ceil((double) listCount / listLimit);
-		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
-		int endPage = startPage + pageLimit - 1;
-		if (endPage > maxPage) {
-			endPage = maxPage;
-		}
-
-		int startRow = (pageNum - 1) * listLimit;
-
-		PageInfo pageInfo = new PageInfo();
-		pageInfo.setPageNum(pageNum);
-		pageInfo.setMaxPage(maxPage);
-		pageInfo.setStartPage(startPage);
-		pageInfo.setEndPage(endPage);
-		pageInfo.setListCount(listCount);
-		pageInfo.setStartRow(startRow);
-		pageInfo.setListLimit(listLimit);
+//		int listCount = service.getRecentViewListCount();
+//		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
+//		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
+//
+//		int maxPage = (int) Math.ceil((double) listCount / listLimit);
+//		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+//		int endPage = startPage + pageLimit - 1;
+//		if (endPage > maxPage) {
+//			endPage = maxPage;
+//		}
+//
+//		int startRow = (pageNum - 1) * listLimit;
+//
+//		PageInfo pageInfo = new PageInfo();
+//		pageInfo.setPageNum(pageNum);
+//		pageInfo.setMaxPage(maxPage);
+//		pageInfo.setStartPage(startPage);
+//		pageInfo.setEndPage(endPage);
+//		pageInfo.setListCount(listCount);
+//		pageInfo.setStartRow(startRow);
+//		pageInfo.setListLimit(listLimit);
 
 		String sId = (String) session.getAttribute("sId");
 
-		List<List<String>> recentViewList = service.getRecentViewList("", "", pageInfo, sId);
+		List<List<String>> recentViewList = service.getRecentViewList(sId);
 		System.out.println(recentViewList);
 		model.addAttribute("recentViewList", recentViewList);
-		model.addAttribute("pageInfo", pageInfo);
 
 		return "mypage/list_recentView";
 	}
 
 	// 팔로잉
-	@RequestMapping(value = "mypage/following", method = RequestMethod.GET)
+	@RequestMapping(value = "mypage/follow", method = RequestMethod.GET)
 	public String following(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
 		
 		List<HashMap<String, String>> followingList = service.getfollowingList(sId);
+		model.addAttribute("followingList", followingList);
+		List<HashMap<String, String>> followerList = service.getfollowerList(sId);
+		model.addAttribute("followerList", followerList);
 		
-		return "mypage/list_following";
+		return "mypage/list_follow";
 	}
 	// 팔로워
-	@RequestMapping(value = "mypage/follower", method = RequestMethod.GET)
-	public String follower(HttpSession session, Model model) {
-		String sId = (String) session.getAttribute("sId");
-		
-		List<HashMap<String, String>> followerList = service.getfollowerList(sId);
-		
-		return "mypage/list_follower";
-	}
+//	@RequestMapping(value = "mypage/follower", method = RequestMethod.GET)
+//	public String follower(HttpSession session, Model model) {
+//		String sId = (String) session.getAttribute("sId");
+//
+//		
+//
+//		return "mypage/list_follower";
+//	}
  
 	// 나의 후기 ( 구매 후기 작성 / 내가 쓴 후기 확인)
 
@@ -184,13 +186,13 @@ public class MypageController {
 
 	// 코인 결제 창 이동
 	@RequestMapping(value = "mypage/center_coin_payment", method = RequestMethod.GET)
-	public String coinPayment(HttpSession session, @RequestParam Model model, String payment_name, String payment_value) {
+	public String coinPayment(HttpSession session, @RequestParam Model model,@RequestParam String payment_name,@RequestParam String payment_value) {
 		String sId = (String) session.getAttribute("sId");
-		
+		System.out.println(payment_name + "----" + payment_value);
 		service.setPaymentInfo(sId, payment_name, payment_value);
 		PaymentDTO payment = service.getPaymentInfo(sId);
 		model.addAttribute("payment", payment);
-		return "mypage/center_coin_payment";
+		return "center_coin_payment";
 	}
 
 	// 쿠폰

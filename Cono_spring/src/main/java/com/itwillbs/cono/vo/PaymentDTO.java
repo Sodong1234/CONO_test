@@ -6,7 +6,14 @@ public class PaymentDTO {
 	private String member_phone;
 	private String payment_name;
 	private String payment_amount;
+	private String payment_date;
 	
+	public String getPayment_date() {
+		return payment_date;
+	}
+	public void setPayment_date(String payment_date) {
+		this.payment_date = payment_date;
+	}
 	public String getPayment_idx() {
 		return payment_idx;
 	}
