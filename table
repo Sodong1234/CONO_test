@@ -135,7 +135,9 @@ CREATE TABLE category  (
 CREATE TABLE coupon (
 	coupon_idx varchar(20) PRIMARY KEY,
 	member_id varchar(20),
-	coupon_name varchar(50),
+	coupon_title varchar(50),
+	coupon_content varchar(100),
+	coupon_condition varchar(10),
 	coupon_price varchar(50)
 );
 
