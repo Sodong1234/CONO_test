@@ -11,6 +11,7 @@ import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PageInfo;
+import com.itwillbs.cono.vo.PaymentDTO;
 
 @Service
 public class MypageService {
@@ -49,17 +50,34 @@ public class MypageService {
 	public String getCoinTotal(String sId) {
 		return mapper.coinTotal(sId);
 	}
+	//===================== 쿠폰 start =========================	
+	// 쿠폰 수
+	public int getCouponCount(String sId) {
+		return mapper.selectCouponCount(sId);
+	}
 	// 쿠폰 리스트
 	public List<CouponDTO> getCouponList(String sId) {
 		return mapper.couponList(sId);
+	}
+	//===================== 쿠폰 finish =========================	
+	//===================== 장바구니 start =========================	
+	// 장바구니 아이템 수
+	public int getBasketCount(String sId) {
+		return mapper.selectBasketCount(sId);
 	}
 	// 장바구니 리스트
 	public List<HashMap<String, String>> getBasketList(String sId) {
 		return mapper.selectBasketList(sId);
 	}
+	//===================== 장바구니 finish =========================	
+
 	// 구매완료 리스트
 	public List<HashMap<String, String>> getPerchasedList(String sId) {
 		return mapper.selectPerchasedList(sId);
+	}
+	// 예약 중인 상품 COUNT 
+	public int getReservedCount(String sId) {
+		return mapper.selectReservedCount(sId);
 	}
 	// 예약 중인 상품 리스트
 	public List<HashMap<String, String>> getReservedList(String sId) {
@@ -72,6 +90,14 @@ public class MypageService {
 
 	public List<HashMap<String, String>> getfollowerList(String sId) {
 		return mapper.selectFollowerList(sId);
+	}
+
+	public Integer setPaymentInfo(String sId, String payment_name, String payment_value) {
+		return mapper.insertPayment(sId, payment_name, payment_value);
+	}
+
+	public PaymentDTO getPaymentInfo(String sId) {
+		return mapper.selectPayment(sId);
 	}
 
 }

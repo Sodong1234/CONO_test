@@ -17,6 +17,7 @@ import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PageInfo;
+import com.itwillbs.cono.vo.PaymentDTO;
 
 @Controller
 public class MypageController {
@@ -29,9 +30,22 @@ public class MypageController {
 	public String mypage(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
 
+		// 코인 잔액
 		String coin_total = service.getCoinTotal(sId);
 		model.addAttribute("coin_total", coin_total);
-
+		
+		// 예약 상품 수
+		int reservedCount = service.getReservedCount(sId);
+		model.addAttribute("reservedCount",reservedCount);
+		
+		// 쿠폰 수
+		int couponCount = service.getCouponCount(sId);
+		model.addAttribute("couponCount", couponCount);
+		
+		// 장바구니 상품 수
+		int basketCount = service.getBasketCount(sId);
+		model.addAttribute("basketCount", basketCount);
+		
 		return "mypage/mypage";
 	}
 
@@ -170,11 +184,12 @@ public class MypageController {
 
 	// 코인 결제 창 이동
 	@RequestMapping(value = "mypage/center_coin_payment", method = RequestMethod.GET)
-	public String coinPayment(HttpSession session, Model model) {
+	public String coinPayment(HttpSession session, @RequestParam Model model, String payment_name, String payment_value) {
 		String sId = (String) session.getAttribute("sId");
-
-		MemberDTO member = service.getMemberDetail(sId);
-		model.addAttribute("member", member);
+		
+		service.setPaymentInfo(sId, payment_name, payment_value);
+		PaymentDTO payment = service.getPaymentInfo(sId);
+		model.addAttribute("payment", payment);
 		return "mypage/center_coin_payment";
 	}
 
@@ -188,12 +203,13 @@ public class MypageController {
 		return "mypage/center_coupon";
 	}
 	// 예약중인 상품 조회
-
+	@RequestMapping(value = "mypage/reserved", method = RequestMethod.GET)
 	public String reserved(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
 
 		List<HashMap<String, String>> reservedList = service.getReservedList(sId);
-		return "mypage/center_coupon";
+		model.addAttribute("reservedList",reservedList);
+		return "mypage/center_reservedList";
 	}
 
 	// 장바구니
@@ -203,7 +219,7 @@ public class MypageController {
 
 		List<HashMap<String, String>> basketList = service.getBasketList(sId);
 
-		return "mypage/center_coupon";
+		return "mypage/center_basket";
 	}
 
 	// 구매완료

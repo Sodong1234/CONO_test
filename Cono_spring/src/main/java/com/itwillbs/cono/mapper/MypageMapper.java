@@ -9,6 +9,7 @@ import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PageInfo;
+import com.itwillbs.cono.vo.PaymentDTO;
 
 public interface MypageMapper {
 
@@ -33,21 +34,34 @@ public interface MypageMapper {
 	// 현재 보유 코인
 	public String coinTotal(String sId);
 	
+	// 쿠폰 수
+	public int selectCouponCount(String sId);
+	
 	// 쿠폰함 - 보유 쿠폰
 	public List<CouponDTO> couponList(String sId);
 
+	// 장바구니 아이템 수
+	public int selectBasketCount(String sId);
+	
 	// 장바구니 - 장바구니 아이템 리스트
 	public List<HashMap<String, String>> selectBasketList(String sId);
 
 	// 구매완료 - 구매완료 아이템 리스트
 	public List<HashMap<String, String>> selectPerchasedList(String sId);
 
+	// 예약 중인 아이템 수
+	public int selectReservedCount(String sId);
+	
 	// 예약 중 - 예약 진행 중인 상품 리스트
 	public List<HashMap<String, String>> selectReservedList(String sId);
 
 	public List<HashMap<String, String>> selectFollowingList(String sId);
 
 	public List<HashMap<String, String>> selectFollowerList(String sId);
+
+	public Integer insertPayment(String sId, String payment_name, String payment_value);
+
+	public PaymentDTO selectPayment(String sId);
 
 	
 	

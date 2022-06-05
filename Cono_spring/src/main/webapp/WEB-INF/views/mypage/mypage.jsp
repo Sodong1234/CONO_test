@@ -56,28 +56,20 @@
 				</td>
 				<td>
 					예약 중인 상품<hr>
-					<input type="button" class=reserved_item value="2">
+					<a href="mypage/reserved">${reservedCount}</a>
 				</td>
-				<td>
-					구매완료<hr>
-					<input type="button" class="purchased_item" value="3">
-				</td>
-			</tr>
-			<tr>
 				<td>
 					장바구니<hr>
-					<input type="button" class="basket" value="4">
-				</td>
-				<td>
-					찜한상품<hr>
-					<input type="button" class="interested_item" value="5">
+					<a href="mypage/basket">${basketCount}</a>
 				</td>
 				<td>
 					쿠폰<hr>
-					<input type="button" class="coupon" value="6">
+					<a href="mypage/coupon">${couponCount}</a>
 				</td>
 			</tr>
 		</table>
+		<br><hr><br>
+		구매완료<hr>
 	</section>
 	<section class="mypage_info_detail">
 		

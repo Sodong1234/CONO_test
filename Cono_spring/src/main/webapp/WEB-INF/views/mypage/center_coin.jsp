@@ -12,9 +12,9 @@
 		var checkBox = document.getElementById("payCheck");
 		var vis = checkBox.style.visibility;
 		if(vis == "" || vis == "hidden") {
-			vis = "hidden";
-		} else {
 			vis = "visible";
+		} else {
+			vis = "hidden";
 		}
 		
 	}
@@ -30,7 +30,7 @@
 	  		}
 	  	}
 	  	alert(payment_name + " " + payment_value);
-	  	location.href="mypage/center_coin_payment?payment_name="payment_name"&payment_value="payment_value;
+	  	location.href="mypage/center_coin_payment?payment_name=" + payment_name + "&payment_value=" + payment_value;
 	}
 </script>
 </head>

@@ -20,10 +20,10 @@
 				    pg : 'inicis', 
 				    pay_method : 'card',
 				    merchant_uid : 'Coin' + new Date().getTime(),
-				    name: "노르웨이 회전 의자",	// 상품 이름
-				    amount: 64900,	
-				    buyer_name: "홍길동",
-				    buyer_tel: "010-4242-4242"
+				    name: "${payment.payment_name}",	// 상품 이름
+				    amount: ${payment.payment_value},	
+				    buyer_name: "$payment.member_id",
+				    buyer_tel: "payment.member_phone"
 				}, function(rsp) {
 					var result = '';
 				    if ( rsp.success ) {
