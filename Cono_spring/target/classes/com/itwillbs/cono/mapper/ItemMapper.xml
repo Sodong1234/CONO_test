@@ -72,7 +72,7 @@
 	</select>
 	<!-- 상품 이미지 조회 -->
 	<select id="selectImgList" resultType="com.itwillbs.cono.vo.ImgDTO">
-		SELECT img_idx, img_name FROM img WHERE item_idx=#{item_idx}
+		SELECT img_idx, img_real_name , img_name FROM img WHERE item_idx=#{item_idx}
 	</select>
 	
 	<!-- 상품 이미지 삭제 -->

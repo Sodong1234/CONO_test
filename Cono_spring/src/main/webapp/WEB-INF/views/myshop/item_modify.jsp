@@ -2,15 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-// String[] itemDetail = (String[])request.getAttribute("itemDetail");
-
-// ArrayList<ImgDTO> preImgList = (ArrayList<ImgDTO>)request.getAttribute("imgList");
-// String preImgName = "";
-// for(ImgDTO preImg : preImgList) {
-// 	preImgName += preImg.getImg_name() + "/";
-// }
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,6 +62,9 @@
 	img {
 		width: 200px;
 	}
+	input[type=file] {
+		display: none;
+	}
 </style>
 </head>
 <body>
@@ -95,7 +89,6 @@
 		<hr>
 		<form name="fr" action="ItemModifyPro.shop" method="post" enctype="multipart/form-data" onsubmit="return imgStatusCheck()">
 			<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}">
-<%-- 			<input type="hidden" name="preImgName" value="<%=preImgName%>"> --%>
 			<input type="hidden" name="imgStatus" value="">
 			
 			<table border="1">
@@ -106,13 +99,13 @@
 							<c:choose>
 								<c:when test="${imgList.get(i-1).getImg_name() ne null}">
 									<img id="target_img${i }" src="resources/upload/file/${imgList.get(i-1).getImg_name() }">
-									<input type="file" id="file${i }" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile${i }(this)" >
-									<input type="button" id="delFile${i }" onclick="deleteImg${i}()"><br>
+									<input type="file" id="file${i }" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile${i }(this)">
+									<input type="button" id="delFile${i }" value="x" onclick="deleteImg${i}()"><br>
 								</c:when>
 								<c:when test="${imgList.get(i-1).getImg_name() eq null}">
 									<img id="target_img${i }" src="resources/upload/default_img.png">
-									<input type="file" id="file${i }" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile${i }(this)" >
-									<input type="button" id="delFile${i }" onclick="deleteImg${i}()"><br>
+									<input type="file" id="file${i }" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile${i }(this)">
+									<input type="button" id="delFile${i }" value="x" onclick="deleteImg${i}()"><br>
 								</c:when>
 							</c:choose>
 						</c:forEach>

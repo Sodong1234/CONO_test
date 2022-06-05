@@ -119,9 +119,11 @@ public class ItemController {
 		
 		item.setItem_idx(item_idx);
 		
-		boolean isUpdateSuccess = service.modifyItem(imgStatus, item, category, upload, request);
+		service.modifyItem(imgStatus, item, category, upload, request);
 		
-		return "";
+		model.addAttribute("item_idx", item_idx);
+		
+		return "redirect:/ItemDetail.shop";
 	}
 	// -------------------------------------------------------------------------
 }

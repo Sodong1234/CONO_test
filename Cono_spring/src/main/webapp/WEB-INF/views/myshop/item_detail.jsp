@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>myshop/item_detail.jsp</title>
+<style type="text/css">
+	img {
+		width: 200px;
+	}
+</style>
 </head>
 <body>
 	
@@ -42,7 +47,14 @@
 					<th>상품 이미지</th>
 					<td>
 						<c:forEach items="${imgList }" var="item">
-							<img src="resources/upload/file/${item.getImg_name() }"><br>
+							<c:choose>
+								<c:when test="${item.getImg_name() != null}">
+									<img src="resources/upload/file/${item.getImg_name() }"><br>
+								</c:when>
+								<c:when test="${item.getImg_name() == null}">
+									<img src="resources/upload/default_img.png"><br>
+								</c:when>
+							</c:choose>
 						</c:forEach>
 					</td>
 				</tr>

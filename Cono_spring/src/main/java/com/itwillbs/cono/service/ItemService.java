@@ -52,8 +52,6 @@ public class ItemService {
 	            dir.mkdirs();
 	        }
 			
-	        System.out.println(upload.length);
-	        
 	        for(int i = 0; i < upload.length; i++) {
 	        	ImgDTO img = new ImgDTO();
 	        	MultipartFile f = upload[i];
@@ -132,11 +130,8 @@ public class ItemService {
 	public List<ImgDTO> selectImgList(String item_idx) {
 		return mapper.selectImgList(item_idx);
 	}
-	public boolean modifyItem(String imgStatus, ItemDTO item, CategoryDTO category, MultipartFile[] upload, HttpServletRequest request) {
-		boolean isUpdateSuccess = false;
-		int deleteCount = -1;
-		int insertCount = -1;
-		int updateCount = -1;
+	public void modifyItem(String imgStatus, ItemDTO item, CategoryDTO category, MultipartFile[] upload, HttpServletRequest request) {
+
 		// String 으로 넘어온 이미지 상태를 배열로 변환
 		String[] imgStatusArr = imgStatus.split("/");
 		
@@ -172,26 +167,36 @@ public class ItemService {
 			}
 			// 원본 이미지가 있고, 수정된 이미지 상태가 N(없음)일 경우 원본 이미지 삭제 작업 진행
 			if(imgStatusArr[i].equals("N") && orgImgList.get(i).getImg_name() != null) {
-				System.out.println(orgImgList.get(i).toString());
-				deleteCount = mapper.updateImg(item, img, orgImgList.get(i).getImg_idx());
 				
-				File file = new File(saveDir + "/" + orgImgList.get(i).getImg_name());
-				file.delete();
+				mapper.updateImg(item, img, orgImgList.get(i).getImg_idx());
 				
-				// 원본 이미지가 있고, 수정된 이미지 상태가 Y(있음)일 경우 이미지 수정 작업 진행
-            } else if(imgStatusArr[i].equals("Y") && orgImgList.get(i).getImg_name() != null) {
-				updateCount = mapper.updateImg(item, img, orgImgList.get(i).getImg_idx());
-				
-				try {
-					f.transferTo(new File(saveDir + "/" + reName));
-				}catch (IllegalStateException | IOException e) {
-					e.printStackTrace();
+				File file = new File(saveDir + "\\" + orgImgList.get(i).getImg_name());
+				if(file.exists()) {
+					file.delete();
 				}
+				
+			// 원본 이미지가 있고, 수정된 이미지 상태가 Y(있음)일 경우 이미지 수정 작업 진행
+            } else if(imgStatusArr[i].equals("Y") && orgImgList.get(i).getImg_name() != null) {
+            	
+            	if(img.getImg_real_name() != null) {
+            		mapper.updateImg(item, img, orgImgList.get(i).getImg_idx());
+            		
+            		File file = new File(saveDir + "/" + orgImgList.get(i).getImg_name());
+            		if(file.exists()) {
+            			file.delete();
+            		}
+            		
+            		try {
+            			f.transferTo(new File(saveDir + "/" + reName));
+            		}catch (IllegalStateException | IOException e) {
+            			e.printStackTrace();
+            		}
+            	}
 				
 			// 원본 이미지가 없고, 수정된 이미지 상태가 Y(있음)일 경우 이미지 추가 작업 진행
             } else if(imgStatusArr[i].equals("Y") && orgImgList.get(i).getImg_name() == null) {
             	
-//            	insertCount = mapper.insertImg(item, img, orgImgList.get(i).getImg_idx());
+            	mapper.updateImg(item, img, orgImgList.get(i).getImg_idx());
             	
 				try {
 		            f.transferTo(new File(saveDir + "/" + reName));
@@ -200,11 +205,5 @@ public class ItemService {
 		        }
             }
 		}
-		
-		if(deleteCount > 0 && updateCount > 0 && insertCount > 0) {
-			isUpdateSuccess = true;
-		}
-		return isUpdateSuccess;
-	}
-	
+	}	
 }
