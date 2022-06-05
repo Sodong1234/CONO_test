@@ -48,7 +48,7 @@
 <nav>
 	<section class="mypage_info">
 		<table border="1">
-			<tr><th colspan="3">내 정보</th></tr>
+			<tr><th colspan="4">내 정보</th></tr>
 			<tr>
 				<td>
 					코인<hr>

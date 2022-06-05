@@ -198,8 +198,8 @@ public class MypageController {
 	public String coupon(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
 
-		List<CouponDTO> coupon = service.getCouponList(sId);
-		model.addAttribute("coupon", coupon);
+		List<CouponDTO> couponList = service.getCouponList(sId);
+		model.addAttribute("couponList", couponList);
 		return "mypage/center_coupon";
 	}
 	// 예약중인 상품 조회
@@ -218,6 +218,7 @@ public class MypageController {
 		String sId = (String) session.getAttribute("sId");
 
 		List<HashMap<String, String>> basketList = service.getBasketList(sId);
+		model.addAttribute("basketList",basketList);
 
 		return "mypage/center_basket";
 	}

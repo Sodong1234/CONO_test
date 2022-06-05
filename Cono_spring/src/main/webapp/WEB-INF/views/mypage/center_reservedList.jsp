@@ -10,14 +10,14 @@
 </head>
 <body>
 <h1>예약 중인 상품</h1>
-<c:forEach var="reserved" items="reservedList">
-	<table border="1">
+<c:forEach var="reserved" items="${reservedList}">
+	<table border="1" onclick="location.href='아이템디테일?idx'">
 		<tr>
-			<td>${reserved.it.item_idx }</td>
-			<td>${reserved.im.img_real_name }</td>
-			<td>${reserved.it.it.item_title }</td>
-			<td>${reserved.it.item_region }</td>
-			<td>${reserved.it.item_price }</td>
+			<td>${reserved.item_idx }</td>
+			<td>${reserved.img_real_name }</td>
+			<td>${reserved.item_title }</td>
+			<td>${reserved.item_region }</td>
+			<td>${reserved.item_price }</td>
 		</tr>
 	</table>
 	<br>
