@@ -54,12 +54,12 @@
 	<insert id="insertPayment">
 		INSERT INTO payment
 		VALUES (1+(SELECT COUNT(p.payment_idx) FROM payment p), #{sId}, (SELECT m.member_phone FROM member m WHERE m.member_id = #{sId}),
-			    #{payment_name},#{payment_value},date_format(now(), '%Y%m%d%H%i%S'))
+			    #{payment_value},date_format(now(), '%Y%m%d%H%i%S'))
 	</insert>
 	
 <!-- 	결제 데이터 받아오기 -->
-	<select id="selectPayment">
-		SELECT  payment_idx, member_id, member_phone, payment_name, payment_amount, payment_date
+	<select id="selectPayment" resultType="com.itwillbs.cono.vo.PaymentDTO">
+		SELECT  payment_idx, member_id, member_phone, payment_amount, payment_date
 		FROM payment
 		WHERE member_id = #{sId}
 		ORDER BY payment_idx DESC

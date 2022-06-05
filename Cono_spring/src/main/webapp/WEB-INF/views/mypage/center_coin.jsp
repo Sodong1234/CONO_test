@@ -25,12 +25,11 @@
 	  	var payment_value;
 	  	for(var i=0; i<payment.length; i++) {
 	  		if(payment[i].checked) {
-				payment_name = payment[i].value + " 코인";
+				payment_name = payment[i].value + "코인";
 	  			payment_value = Number(payment[i].value);
 	  		}
 	  	}
-	  	alert(payment_name + " " + payment_value);
-	  	location.href="mypage/center_coin_payment?payment_name=" + payment_name + "&payment_value=" + payment_value;
+	  	location.href="payment?payment_name=" + payment_name + "&payment_value=" + payment_value;
 	}
 </script>
 </head>
@@ -38,14 +37,27 @@
 
 	<h1>코인페이지</h1>
 	<button onclick="visiblePayCheck()">코인충전</button>
+<!-- 	<section id="payCheck" style="display: none;"> -->
+<!-- 		<table border="1"> -->
+<!-- 			<tr><td><input type="radio" name="payment" value="10000"></td><td colspan="1">10,000원</td></tr> -->
+<!-- 			<tr><td><input type="radio" name="payment" value="30000"></td><td colspan="2">30,000원</td></tr> -->
+<!-- 			<tr><td><input type="radio" name="payment" value="50000"></td><td colspan="2">50,000원</td></tr> -->
+<!-- 			<tr><td><input type="radio" name="payment" value="100000"></td><td colspan="2">100,000원</td></tr> -->
+<!-- 		</table> -->
+<!-- 		<button onclick='requestPay()'>결제하기</button> -->
+<!-- 	</section> -->
+		
 	<section id="payCheck" style="display: none;">
-		<table border="1">
-			<tr><td><input type="radio" name="payment" value="10000"></td><td colspan="1">10,000원</td></tr>
-			<tr><td><input type="radio" name="payment" value="30000"></td><td colspan="2">30,000원</td></tr>
-			<tr><td><input type="radio" name="payment" value="50000"></td><td colspan="2">50,000원</td></tr>
-			<tr><td><input type="radio" name="payment" value="100000"></td><td colspan="2">100,000원</td></tr>
-		</table>
-		<button onclick='requestPay()'>결제하기</button>
+		<form action="payment" method="post">
+			<table border="1">
+				<tr><td><input type="radio" name="payment_value" value="10000"></td><td colspan="1">10,000원</td></tr>
+				<tr><td><input type="radio" name="payment_value" value="30000"></td><td colspan="2">30,000원</td></tr>
+				<tr><td><input type="radio" name="payment_value" value="50000"></td><td colspan="2">50,000원</td></tr>
+				<tr><td><input type="radio" name="payment_value" value="100000"></td><td colspan="2">100,000원</td></tr>
+			</table>
+			<input type="submit" value="결제하기">
+		</form>
+		
 	</section>
 		
 	<table border="1">

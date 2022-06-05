@@ -50,6 +50,14 @@ public class MypageService {
 	public String getCoinTotal(String sId) {
 		return mapper.coinTotal(sId);
 	}
+	// 결제 정보 입력
+	public Integer setPaymentInfo(String sId, String payment_value) {
+		return mapper.insertPayment(sId, payment_value);
+	}
+	// 결제 정보 출력
+	public PaymentDTO getPaymentInfo(String sId) {
+		return mapper.selectPayment(sId);
+	}
 	//===================== 쿠폰 start =========================	
 	// 쿠폰 수
 	public int getCouponCount(String sId) {
@@ -92,12 +100,6 @@ public class MypageService {
 		return mapper.selectFollowerList(sId);
 	}
 
-	public Integer setPaymentInfo(String sId, String payment_name, String payment_value) {
-		return mapper.insertPayment(sId, payment_name, payment_value);
-	}
 
-	public PaymentDTO getPaymentInfo(String sId) {
-		return mapper.selectPayment(sId);
-	}
 
 }

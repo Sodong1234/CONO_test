@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -146,7 +147,7 @@ public class MypageController {
 	// ===============================================
 
 	// 코인 이용 내역
-	@RequestMapping(value = "mypage/coin", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage/coin", method = RequestMethod.GET)
 	public String coin(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
 
@@ -185,18 +186,19 @@ public class MypageController {
 	}
 
 	// 코인 결제 창 이동
-	@RequestMapping(value = "mypage/center_coin_payment", method = RequestMethod.GET)
-	public String coinPayment(HttpSession session, @RequestParam Model model,@RequestParam String payment_name,@RequestParam String payment_value) {
-		String sId = (String) session.getAttribute("sId");
-		System.out.println(payment_name + "----" + payment_value);
-		service.setPaymentInfo(sId, payment_name, payment_value);
+	@RequestMapping(value = "/mypage/payment", method = RequestMethod.POST)
+	public String coinPayment(HttpSession session, Model model, @RequestParam String payment_value) {
+		String sId = (String)session.getAttribute("sId");
+		
+		service.setPaymentInfo(sId, payment_value);
+		System.out.println(payment_value);
 		PaymentDTO payment = service.getPaymentInfo(sId);
 		model.addAttribute("payment", payment);
-		return "center_coin_payment";
+		return "mypage/center_coin_payment";
 	}
 
 	// 쿠폰
-	@RequestMapping(value = "mypage/coupon", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage/coupon", method = RequestMethod.GET)
 	public String coupon(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
 
@@ -205,7 +207,7 @@ public class MypageController {
 		return "mypage/center_coupon";
 	}
 	// 예약중인 상품 조회
-	@RequestMapping(value = "mypage/reserved", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage/reserved", method = RequestMethod.GET)
 	public String reserved(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
 

@@ -33,6 +33,12 @@ public interface MypageMapper {
 	// 현재 보유 코인
 	public String coinTotal(String sId);
 	
+	// 결제
+	public Integer insertPayment(String sId, String payment_value);
+
+	// 결제 데이터 받아오기
+	public PaymentDTO selectPayment(String sId);
+	
 	// 쿠폰 수
 	public int selectCouponCount(String sId);
 	
@@ -60,11 +66,7 @@ public interface MypageMapper {
 	// 팔로워
 	public List<HashMap<String, String>> selectFollowerList(String sId);
 
-	// 결제
-	public Integer insertPayment(String sId, String payment_name, String payment_value);
 
-	// 결제 데이터 받아오기
-	public PaymentDTO selectPayment(String sId);
 
 	
 	
