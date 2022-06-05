@@ -3,6 +3,11 @@
 <%@page import="com.mysql.cj.x.protobuf.MysqlxDatatypes.Array"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+if(session.getAttribute("sId") == null) {
+	response.sendRedirect("MemberLogin.func");
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>

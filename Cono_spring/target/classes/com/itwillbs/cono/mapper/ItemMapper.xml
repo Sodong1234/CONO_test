@@ -80,4 +80,25 @@
 		UPDATE img SET img_real_name=#{img.img_real_name}, img_name=#{img.img_name} WHERE item_idx=#{item.item_idx} AND img_idx=#{img_idx}
 	</update>
 		
+	<!-- 상품 삭제 (item) -->
+	<delete id="deleteItem">
+		DELETE FROM item
+		      WHERE item_idx=#{item_idx}
+		        AND shop_idx = (SELECT shop_idx
+		                          FROM shop
+		                         WHERE member_id=#{member.member_id}
+		                       )
+	</delete>
+	
+	<!-- 상품 삭제 (img) -->
+	<delete id="deleteImg">
+		DELETE FROM img
+		      WHERE item_idx=#{item_idx}
+	</delete>
+	
+	<!-- 상품 삭제 (img) -->
+	<delete id="deleteCategory">
+		DELETE FROM category
+		      WHERE item_idx=#{item_idx}
+	</delete>
 </mapper>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 if(session.getAttribute("sId") == null) {
-	response.sendRedirect("../member/login.jsp");
+	response.sendRedirect("MemberLogin.func");
 }
 %>
 <!DOCTYPE html>

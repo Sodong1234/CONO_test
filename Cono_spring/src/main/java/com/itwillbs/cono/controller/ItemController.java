@@ -18,6 +18,7 @@ import com.itwillbs.cono.service.ItemService;
 import com.itwillbs.cono.vo.CategoryDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.ItemDTO;
+import com.itwillbs.cono.vo.MemberDTO;
 
 @Controller
 public class ItemController {
@@ -74,7 +75,7 @@ public class ItemController {
 			return "redirect:/ItemMng.shop";
 		} else {
 			model.addAttribute("msg", "상품 숨김 실패");
-        	return "fail_back";
+        	return "redirect:/fail_back";
 		}
 		
 	}
@@ -136,7 +137,17 @@ public class ItemController {
 	// -------------------------------------------------------------------------
 	
 	// -------------------- 상품 삭제 비즈니스 로직 - 이소영 -------------------
-	
+	@RequestMapping(value = "/ItemDeletePro.shop", method = RequestMethod.POST)
+	public String deleteItemPost(MemberDTO member, String item_idx, HttpServletRequest request, Model model) {
+		
+		boolean isDeleteSuccess = service.deleteItem(member, item_idx, request);
+		
+		if(!isDeleteSuccess) {
+			model.addAttribute("msg", "상품 삭제 실패");
+        	return "redirect:/fail_back";
+		}
+		return "redirect:/ItemMng.shop";
+	}
 	// -------------------------------------------------------------------------
 	
 	// ----------------------- 상품 후기 조회 - 이소영 -------------------------

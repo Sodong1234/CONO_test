@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+if(session.getAttribute("sId") == null) {
+	response.sendRedirect("MemberLogin.func");
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +31,7 @@
 	<div>
 		<h3>상품 삭제</h3>
 		<hr>
-		<form action="ItemDeletePro.shop">
+		<form action="ItemDeletePro.shop" method="post">
 			<input type="hidden" name="item_idx" value="${param.item_idx}">
 			<input type="text" name="member_id" placeholder="아이디를 입력하세요"><br>
 			<input type="password" name="member_pass" placeholder="패스워드를 입력하세요"><br>

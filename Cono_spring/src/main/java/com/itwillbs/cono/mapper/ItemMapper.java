@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.itwillbs.cono.vo.CategoryDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.ItemDTO;
+import com.itwillbs.cono.vo.MemberDTO;
 
 public interface ItemMapper {
 	
@@ -40,6 +41,15 @@ public interface ItemMapper {
 
 	// 상품 이미지 변경
 	int updateImg(@Param("item") ItemDTO item, @Param("img") ImgDTO img, @Param("img_idx") String img_idx);
+	
+	// 상품 삭제 (item)
+	int deleteItem(@Param("member") MemberDTO member, @Param("item_idx") String item_idx);
+	
+	// 상품 삭제 (img)
+	int deleteImg(String item_idx);
+	
+	// 상품 삭제 (category)
+	int deleteCategory(String item_idx);
 	
 
 	

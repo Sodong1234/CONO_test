@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.itwillbs.cono.mapper.ItemMapper;
 import com.itwillbs.cono.vo.CategoryDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.ItemDTO;
+import com.itwillbs.cono.vo.MemberDTO;
 
 @Service
 public class ItemService {
@@ -127,6 +127,8 @@ public class ItemService {
 	public List<ImgDTO> selectImgList(String item_idx) {
 		return mapper.selectImgList(item_idx);
 	}
+	
+	// 상품 정보 수정
 	public void modifyItem(String imgStatus, ItemDTO item, CategoryDTO category, MultipartFile[] upload, HttpServletRequest request) {
 
 		// String 으로 넘어온 이미지 상태를 배열로 변환
@@ -202,5 +204,39 @@ public class ItemService {
 		        }
             }
 		}
+	}
+	
+	// 상품 삭제
+	public boolean deleteItem(MemberDTO member, String item_idx, HttpServletRequest request) {
+		boolean isDeleteSuccess = false;
+		
+		int[] deleteCount = new int[3];
+		
+		List<ImgDTO> imgList = mapper.selectImgList(item_idx);
+		
+		deleteCount[0] = mapper.deleteItem(member, item_idx);
+		
+		deleteCount[1] = mapper.deleteImg(item_idx);
+		
+		deleteCount[2] = mapper.deleteCategory(item_idx);
+		
+		for(int cnt : deleteCount) {
+			if(cnt == 0) {
+				break;
+			}
+			isDeleteSuccess = true;
+		}
+		
+		if(isDeleteSuccess) {
+			String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/file");
+			for(int i = 0; i < imgList.size(); i++) {
+				File file = new File(saveDir + "/" + imgList.get(i).getImg_name());
+				if(file.exists()) {
+					file.delete();
+				}
+			}
+		}
+		
+		return isDeleteSuccess;
 	}	
 }
