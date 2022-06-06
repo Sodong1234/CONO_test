@@ -43,7 +43,6 @@ CREATE TABLE shop (
 	shop_name varchar(20),
 	shop_img varchar(100),
 	shop_content varchar(50),
-	shop_level varchar(3),
 	PRIMARY KEY (shop_idx ,member_id)
 );
 
@@ -66,18 +65,18 @@ CREATE TABLE item (
 CREATE TABLE img(
 	img_idx varchar(20),
 	item_idx varchar(20),
-	img_name varchar(30),
+	img_real_name varchar(50),
+	img_name varchar(100),
 	PRIMARY KEY (img_idx ,item_idx) 
 );
 
 CREATE TABLE review (
-	member_id varchar(20),
-	item_idx varchar(20),
-	review_content varchar(1000),
-	review_star varchar(20),
-	review_date varchar(14),
-	shop_level varchar(20),
-	PRIMARY KEY (item_idx ,member_id) 
+	review_idx varchar(20),
+   	member_id varchar(20),
+   	item_idx varchar(20),
+   	review_content varchar(1000),
+   	review_date varchar(14),
+   	PRIMARY KEY (review_idx, item_idx ,member_id)  
 );
 
 CREATE TABLE wish (
@@ -88,8 +87,8 @@ CREATE TABLE wish (
 
 CREATE TABLE star (
 	review_idx varchar(20) PRIMARY KEY,
-	shop_idx varchar(20),
-	star_total varchar(20)
+	item_idx varchar(20),
+	item_score varchar(3)
 );
 
 CREATE TABLE basket (
