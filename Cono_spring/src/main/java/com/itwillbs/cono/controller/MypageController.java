@@ -87,27 +87,23 @@ public class MypageController {
 		return "mypage/list_recentView";
 	}
 
-	// 팔로잉
+	// 팔로잉 & 팔로워
 	@RequestMapping(value = "follow", method = RequestMethod.GET)
 	public String following(HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
-		
+		// 팔로잉 팔로워 정보 
 		List<HashMap<String, String>> followingList = service.getfollowingList(sId);
-		model.addAttribute("followingList", followingList);
 		List<HashMap<String, String>> followerList = service.getfollowerList(sId);
+		// 팔로잉 팔로워 수
+		int followingCount = service.getFollowingCount(sId);
+		int followerCount = service.getFollowerCount(sId);
+		model.addAttribute("followingList", followingList);
 		model.addAttribute("followerList", followerList);
-		
+		model.addAttribute("followingCount", followingCount);
+		model.addAttribute("followerCount", followerCount);
+
 		return "mypage/list_follow";
 	}
-	// 팔로워
-//	@RequestMapping(value = "mypage/follower", method = RequestMethod.GET)
-//	public String follower(HttpSession session, Model model) {
-//		String sId = (String) session.getAttribute("sId");
-//
-//		
-//
-//		return "mypage/list_follower";
-//	}
  
 	// 나의 후기 ( 구매 후기 작성 / 내가 쓴 후기 확인)
 
@@ -141,9 +137,19 @@ public class MypageController {
 	}
 
 	// 계좌 정보 관리
-
+	@RequestMapping(value = "accountInfo", method = RequestMethod.GET)
+	public String account(HttpSession session, Model model) {
+		return "mypage/list_account";
+	}
 	// 회원 탈퇴
-
+	@RequestMapping(value = "delete_id", method = RequestMethod.GET)
+	public String delete_id (HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		
+		String coin_total = service.getCoinTotal(sId);
+		model.addAttribute("coin_total", coin_total);
+		return "mypage/list_delete_id";
+	}
 	// ===============================================
 
 	// 코인 이용 내역

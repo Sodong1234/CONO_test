@@ -58,6 +58,10 @@ public class MypageService {
 	public PaymentDTO getPaymentInfo(String sId) {
 		return mapper.selectPayment(sId);
 	}
+	// 코인 충전
+	public void setCoinAdd(String sId, String payment_value, String balance) {
+		mapper.insertCoinAdd(sId, payment_value, balance);
+	}
 	//===================== 쿠폰 start =========================	
 	// 쿠폰 수
 	public int getCouponCount(String sId) {
@@ -95,15 +99,21 @@ public class MypageService {
 	public List<HashMap<String, String>> getfollowingList(String sId) {
 		return mapper.selectFollowingList(sId);
 	}
-
+	// 팔로워 리스트
 	public List<HashMap<String, String>> getfollowerList(String sId) {
 		return mapper.selectFollowerList(sId);
 	}
-
-	public void setCoinAdd(String sId, String payment_value, String balance) {
-		mapper.insertCoinAdd(sId, payment_value, balance);
+	// 팔로잉 수
+	public int getFollowingCount(String sId) {
+		return mapper.selectFollowingCount(sId);
+	}
+	// 팔로워 수
+	public int getFollowerCount(String sId) {
+		return mapper.selectFollowerCount(sId);
 	}
 
+	
+	
 
 
 }

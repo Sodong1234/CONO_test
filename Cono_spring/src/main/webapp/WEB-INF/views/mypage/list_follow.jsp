@@ -15,7 +15,7 @@
 	
 	<h1>팔로잉하는 상점</h1>
 	<section>
-	<h3>총 n 개의 상점</h3>
+	<h3>총 ${followingCount } 개의 상점</h3>
 <!-- 		s.shop_idx, s.shop_img, s.shop_name, s.shop_content -->
 	</section>
 	<section>
@@ -34,7 +34,7 @@
 
 	<h1>팔로워 상점</h1>
 	<section>
-	<h3>총 n 개의 상점</h3>
+	<h3>총 ${followerCount } 개의 상점</h3>
 	</section>
 	<section>
 		<c:forEach var="follower" items="${followerList }">

@@ -36,8 +36,8 @@
 			
 			<tr><th>내 정보</th></tr>
 			<tr><td><a href="memberInfo_modify">회원 정보 수정</a></td></tr>
-			<tr><td><a href="MypageList_account.mypage">계좌 정보 관리</a></td></tr>
-			<tr><td><a href="mypageList_deleteId.jsp">회원 탈퇴</a></td></tr>
+			<tr><td><a href="accountInfo">계좌 정보 관리</a></td></tr>
+			<tr><td><a href="delete_id">회원 탈퇴</a></td></tr>
 		
 		</table>
 	</div>

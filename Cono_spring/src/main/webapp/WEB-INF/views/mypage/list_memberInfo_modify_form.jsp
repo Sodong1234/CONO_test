@@ -24,8 +24,8 @@
 				<input type="email" name="member_email" id="email" required="required" value="${member.member_email }" placeholder="이메일을 입력해주세요">
 			<br>
 			<label>전화번호</label><br>
-			<input type="number" name="member_phone" id="number" required="required" value="${member.member_phone }" placeholder="전화번호입력"><input type="button" value="인증요청"><br>
-			<input type="number" name="number" id="number" required="required" placeholder="인증번호"><input type="button" value="확인"><br>
+			<input type="text" name="member_phone" id="number" required="required" value="${member.member_phone }" placeholder="전화번호입력"><input type="button" value="인증요청"><br>
+			<input type="text" name="number" id="number" required="required" placeholder="인증번호"><input type="button" value="확인"><br>
 			<input type="submit" value="수정">
 		</fieldset>
 	</form>
