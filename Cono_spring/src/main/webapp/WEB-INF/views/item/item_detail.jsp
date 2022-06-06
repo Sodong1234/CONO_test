@@ -1,18 +1,11 @@
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%
-if(session.getAttribute("sId") == null) {
-	response.sendRedirect("MemberLogin.func");
-}
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>myshop/item_detail.jsp</title>
+<title>item/item_detail.jsp</title>
 <style type="text/css">
 	img {
 		width: 200px;
@@ -20,35 +13,16 @@ if(session.getAttribute("sId") == null) {
 </style>
 </head>
 <body>
-	
 	<div>
 		<!-- 상단 부분 -->
 		<jsp:include page="../header_footer/top.jsp"/>
 	</div>
 	
-	<nav>
-		<ul>
-			<li><a href="ProductMyshop.shop">내 상점</a></li>
-			<li><a href="ItemUploadForm.shop">상품 등록</a></li>
-			<li><a href="ItemMng.shop">상품 관리</a></li>
-			<li><a href="ItemReviewMng.shop">상품 후기 관리</a></li>
-			<li><a href="item_order_mng.jsp">상품 주문 관리</a></li>
-			<li><a href="follow_shop.jsp">팔로우 상점</a></li>
-		</ul>
-	</nav>
 	<!-------- 본문 -------->
-	<h3>상품 정보 상세</h3>
 	<div>
 		<hr>
 		<form>
 			<table border="1">
-				<tr>
-					<td colspan="2">
-						<input type="button" value="수정하기" onclick="location.href='ItemModifyForm.shop?item_idx=${itemDetail.get('item_idx')}'">
-						<input type="button" value="삭제하기" onclick="location.href='ItemDelete.shop?item_idx=${itemDetail.get('item_idx')}'">
-						<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}">
-					</td>
-				</tr>
 				<tr>
 					<th>상품 이미지</th>
 					<td>
@@ -57,16 +31,9 @@ if(session.getAttribute("sId") == null) {
 								<c:when test="${item.getImg_name() != null}">
 									<img src="resources/upload/file/${item.getImg_name() }"><br>
 								</c:when>
-								<c:when test="${item.getImg_name() == null}">
-									<img alt="상점 이미지" src="<spring:url value='/resources/default_img.png'/>"><br>
-								</c:when>
 							</c:choose>
 						</c:forEach>
 					</td>
-				</tr>
-				<tr>
-					<th>상품번호</th>
-					<td>${itemDetail.get('item_idx')}</td>
 				</tr>
 				<tr>
 					<th>상품명</th>
@@ -107,10 +74,6 @@ if(session.getAttribute("sId") == null) {
 				<tr>
 					<th>거래지역</th>
 					<td>${itemDetail.get('item_region')}</td>
-				</tr>
-				<tr>
-					<th>숨김</th>
-					<td>${itemDetail.get('item_hide')}</td>
 				</tr>
 			</table>
 		</form>

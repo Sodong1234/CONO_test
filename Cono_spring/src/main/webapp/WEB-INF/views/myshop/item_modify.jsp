@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%
 if(session.getAttribute("sId") == null) {
 	response.sendRedirect("MemberLogin.func");
@@ -41,10 +42,10 @@ if(session.getAttribute("sId") == null) {
 	}
 	
 	// 이미지 초기화
-		function deleteImg${i}() {
-				document.getElementById('target_img${i}').src = "http://localhost:8080/cono/resources/upload/default_img.png";
-				$("#file${i}").val("");
-		}
+	function deleteImg${i}() {
+			document.getElementById('target_img${i}').src = "http://localhost:8080/cono/resources/upload/default_img.png";
+			$("#file${i}").val("");
+	}
 	</c:forEach>
 	
 	// 이미지 유무 상태 체크
@@ -108,7 +109,7 @@ if(session.getAttribute("sId") == null) {
 									<input type="button" id="delFile${i }" value="x" onclick="deleteImg${i}()"><br>
 								</c:when>
 								<c:when test="${imgList.get(i-1).getImg_name() eq null}">
-									<img id="target_img${i }" src="resources/upload/default_img.png">
+									<img id="target_img${i }" alt="상점 이미지" src="<spring:url value='/resources/default_img.png'/>">
 									<input type="file" id="file${i }" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile${i }(this)">
 									<input type="button" id="delFile${i }" value="x" onclick="deleteImg${i}()"><br>
 								</c:when>

@@ -3,51 +3,34 @@
 <%@page import="com.mysql.cj.x.protobuf.MysqlxDatatypes.Array"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%
 if(session.getAttribute("sId") == null) {
 	response.sendRedirect("MemberLogin.func");
 }
-%>
-<!DOCTYPE html>
-<html>
-<head>
-<script type="text/javascript">
-	function openModifyImage() {
-		window.open("my_page_image.jsp","","width=700,height=250");
-	}
-	function useId(id) {
-		// 자식창(나)에서 부모창(나를 연 창)을 제어하려면 window.opener.xxx 형태로 제어
-		// => xxx 은 원래 해당 요소에 접근하는 문법 그대로 사용
-		// 1. 사용 가능한 아이디를 부모창의 아이디 입력란에 표시
-		window.opener.document.fr.id.value = id;
-		// 2. 부모창의 전역변수 checkIdResult 값을 true 로 변경
-		window.opener.checkIdResult = true;
-		// 3. 자식창 닫기
-		window.close();
-	}
-</script>
-		<%
-		ShopDTO myShop = (ShopDTO)request.getAttribute("myShop");
-		String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
-		
-		
-		// 상점 오픈일 가져오기
-		
+ShopDTO myShop = (ShopDTO)request.getAttribute("myShop");
+String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
+
+
+// 상점 오픈일 가져오기
+
 // 		MemberDAO mdao = new MemberDAO();
 // 		MemberDTO mb = mdao.getMember();
 // => MemberDAO에서 회원정보조회 메서드 가져와서 찍기
-		%> 
+%> 
+<!DOCTYPE html>
+<html>
+<head>
 <meta charset="UTF-8">
 <title>myShop/my_page.jsp</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 </head>
 <body>
-	<h1> 내 상점</h1>
 	<div>
 		<!-- 상단 부분 -->
 			<jsp:include page="../header_footer/top.jsp"/>
 	</div>
-	
 	<nav>
 		<ul>
 			<li><a href="ProductMyshop.shop">내 상점</a></li>
@@ -60,33 +43,21 @@ if(session.getAttribute("sId") == null) {
 	</nav>
 	
 	<hr>
-		
-		<form action="./ProductMyshopModifyPro.shop" name="shopForm" method="post" enctype="multipart/form-data">
+	<div id="shopInfo">
+		<form action="ProductMyshopModifyForm.shop" name="shopForm" method="post" enctype="multipart/form-data">
 			<!-- input type="hidden" 사용하여 글번호(board_num)와 페이지번호(page) 전달 -->
-			
-		
-		
-		<!-- 편집 누르면 상점 이름 변경 칸 생기면서 입력 가능 -->
-
-			<table>
-			
+			<table border="1">
 				<tr>
-			<td class="td_left"><label for="member_id">상점번호</label></td>
-				<td class="td_right">
-			<input type="hidden" name="shop_idx" value="<%=myShop.getShop_idx() %>">
-<%-- 			<input type="hidden" name="page" value="<%=request.getParameter("page")%>"> --%>
-				</td>
+					<td class="td_left"><label for="shop_idx">상점번호</label></td>
+					<td class="td_right">
+						<input type="hidden" name="shop_idx" value="<%=myShop.getShop_idx() %>">
+					</td>
 				</tr>
-			
 				<tr>
-					<td id="img" style="width:100px;height:100px;border:1px solid black;">
-			
-			상점 이미지(보이게하려고 스타일 쫌 넣어둠)
-			
-				</td>
-				
-				
-				
+					<td id="img" style="width:100px;">
+						<img alt="상점 이미지" src="<spring:url value='/resources/default_img.png'/>">
+					</td>
+				</tr>
 				<tr>
 					<td class="td_left"><label for="member_id">판매자이름</label></td>
 					<td class="td_right">
@@ -115,51 +86,29 @@ if(session.getAttribute("sId") == null) {
 				<tr>
 					<td class="td_left"><label for="shop_img">이미지</label></td>
 					<td class="td_right"><%=myShop.getShop_img() %>
-					
 					파일 수정 기능은 제외(파일명만 표시)(수정불가)</td>
-					
 				</tr>
-				
 				<tr>
-					<td class="td_left"><label for="shop_sellNum">판매횟수<%=myShopCountInfo[0] %>번</label></td>
-					
-					<td class="td_right">
-					
+					<td class="td_left"><label for="shop_sellNum">판매횟수</label></td>
+					<td class="td_right"><%=myShopCountInfo[0] %>번</td>
 				</tr>
-				
 				<tr>
-					<td class="td_left"><label for="shop_item">상품 갯수 <%=myShopCountInfo[1]%>개</label></td>
-					
-					<td class="td_right">
-					
+					<td class="td_left"><label for="shop_item">상품 갯수 </label></td>
+					<td class="td_right"><%=myShopCountInfo[1]%>개</td>
 				</tr>
-				
 				<tr>
-					<td class="td_left"><label for="follower">팔로워 x명</label></td>
-					
-					<td class="td_right">
-					
+					<td class="td_left"><label for="follower">팔로워 </label></td>
+					<td class="td_right">x명</td>
 				</tr>
-				
 				<tr>
-					<td class="td_left"><label for="shop_openDate">상점 오픈일 xx.xx.xx</label></td>
-					
-					<td class="td_right">
-					
+					<td class="td_left"><label for="shop_openDate">상점 오픈일 </label></td>
+					<td class="td_right">xx.xx.xx</td>
 				</tr>
-				
-				
 			</table>
-			</form>
-			
-		이미지 수정하기<input type="button" value="편집(이미지)" class="img" id="id" onclick="openModifyImage()">
-		수정하기 <input type="button" value="수정" onclick="location.href='ProductMyshopModifyForm.shop'">
-		취소 <input type="button" value="취소" onclick="history.back()">
-	
-	<button type="button" class="btn btn-warning">Warning</button>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-	</body>
-	
+			<input type="button" id="modify" value="수정" onclick="location.href='ProductMyshopModifyForm.shop'">
+			<input type="button" value="취소" onclick="history.back()">
+		</form>
+	</div>
 	<div>
 		<!-- 하단 부분 -->
 		<jsp:include page="../header_footer/bottom.jsp"/>
