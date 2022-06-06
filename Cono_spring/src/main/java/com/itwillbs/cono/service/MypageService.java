@@ -100,6 +100,10 @@ public class MypageService {
 		return mapper.selectFollowerList(sId);
 	}
 
+	public void setCoinAdd(String sId, String payment_value, String balance) {
+		mapper.insertCoinAdd(sId, payment_value, balance);
+	}
+
 
 
 }

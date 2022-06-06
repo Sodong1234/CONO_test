@@ -9,6 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div id="wrap">
+		<jsp:include page="../header_footer/top.jsp"/>
+	</div>
+	
 	<h1>팔로잉하는 상점</h1>
 	<section>
 	<h3>총 n 개의 상점</h3>

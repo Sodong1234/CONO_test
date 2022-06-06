@@ -51,7 +51,7 @@ public class MypageController {
 	}
 
 	// 2. 최근조회화면 첫 이동
-	@RequestMapping(value = "mypage/recentViewList", method = RequestMethod.GET)
+	@RequestMapping(value = "recentViewList", method = RequestMethod.GET)
 	public String recentView(@RequestParam(defaultValue = "1") int pageNum, Model model, HttpSession session) {
 		// 페이징 처리에 필요한 전체 게시물 수 조회 - getRecentViewListCount()
 		// => 파라미터 : 없음, 리턴타입 : int(listCount)
@@ -78,7 +78,7 @@ public class MypageController {
 //		pageInfo.setStartRow(startRow);
 //		pageInfo.setListLimit(listLimit);
 
-		String sId = (String) session.getAttribute("sId");
+		String sId = (String)session.getAttribute("sId");
 
 		List<List<String>> recentViewList = service.getRecentViewList(sId);
 		System.out.println(recentViewList);
@@ -88,9 +88,9 @@ public class MypageController {
 	}
 
 	// 팔로잉
-	@RequestMapping(value = "mypage/follow", method = RequestMethod.GET)
+	@RequestMapping(value = "follow", method = RequestMethod.GET)
 	public String following(HttpSession session, Model model) {
-		String sId = (String) session.getAttribute("sId");
+		String sId = (String)session.getAttribute("sId");
 		
 		List<HashMap<String, String>> followingList = service.getfollowingList(sId);
 		model.addAttribute("followingList", followingList);
@@ -116,9 +116,9 @@ public class MypageController {
 	// 1:1 메시지
 
 	// 회원 정보 수정페이지 이동
-	@RequestMapping(value = "/mypage/memberInfo_modify", method = RequestMethod.GET)
+	@RequestMapping(value = "memberInfo_modify", method = RequestMethod.GET)
 	public String modify(Model model, HttpSession session) {
-		String sId = (String) session.getAttribute("sId");
+		String sId = (String)session.getAttribute("sId");
 		MemberDTO member = service.getMemberDetail(sId); // 기존 데이터 자동 입력
 
 		model.addAttribute("member", member);
@@ -126,9 +126,9 @@ public class MypageController {
 		return "mypage/list_memberInfo_modify_form"; // 폼
 	}
 
-	@RequestMapping(value = "/mypage/memberInfo_modify", method = RequestMethod.POST)
+	@RequestMapping(value = "memberInfo_modify", method = RequestMethod.POST)
 	public String modify(HttpSession session, MemberDTO member, Model model) {
-		String sId = (String) session.getAttribute("sId");
+		String sId = (String)session.getAttribute("sId");
 
 		int updateCount = service.modifyMember(sId, member);
 
@@ -147,9 +147,9 @@ public class MypageController {
 	// ===============================================
 
 	// 코인 이용 내역
-	@RequestMapping(value = "/mypage/coin", method = RequestMethod.GET)
+	@RequestMapping(value = "coin", method = RequestMethod.GET)
 	public String coin(HttpSession session, Model model) {
-		String sId = (String) session.getAttribute("sId");
+		String sId = (String)session.getAttribute("sId");
 
 //			int listCount = service.getCoinListCount(sId);	// 전체 코인 내역 수
 //			int listLimit = 10; // 한 페이지 당 표시할 목록 갯수
@@ -186,28 +186,36 @@ public class MypageController {
 	}
 
 	// 코인 결제 창 이동
-	@RequestMapping(value = "/mypage/payment", method = RequestMethod.POST)
-	public String coinPayment(HttpSession session, Model model, @RequestParam String payment_value) {
+	@RequestMapping(value = "payment", method = RequestMethod.POST)
+	public String coinPayment(HttpSession session, Model model, String payment_value) {
 		String sId = (String)session.getAttribute("sId");
-		
 		service.setPaymentInfo(sId, payment_value);
-		System.out.println(payment_value);
 		PaymentDTO payment = service.getPaymentInfo(sId);
 		model.addAttribute("payment", payment);
 		return "mypage/center_coin_payment";
 	}
+	
+	// 코인 충전
+	@RequestMapping(value = "addCoin", method = RequestMethod.GET)
+	public String coinAdd (HttpSession session, String payment_value) {
+		String sId = (String)session.getAttribute("sId");
+		String balance = service.getCoinTotal(sId);
+		service.setCoinAdd(sId, payment_value, balance);
+		
+		return "redirect:/mypage";
+	}
 
 	// 쿠폰
-	@RequestMapping(value = "/mypage/coupon", method = RequestMethod.GET)
+	@RequestMapping(value = "coupon", method = RequestMethod.GET)
 	public String coupon(HttpSession session, Model model) {
-		String sId = (String) session.getAttribute("sId");
+		String sId = (String)session.getAttribute("sId");
 
 		List<CouponDTO> couponList = service.getCouponList(sId);
 		model.addAttribute("couponList", couponList);
 		return "mypage/center_coupon";
 	}
 	// 예약중인 상품 조회
-	@RequestMapping(value = "/mypage/reserved", method = RequestMethod.GET)
+	@RequestMapping(value = "reserved", method = RequestMethod.GET)
 	public String reserved(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
 
@@ -217,7 +225,7 @@ public class MypageController {
 	}
 
 	// 장바구니
-	@RequestMapping(value = "mypage/basket", method = RequestMethod.GET)
+	@RequestMapping(value = "basket", method = RequestMethod.GET)
 	public String basket(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
 
@@ -228,7 +236,7 @@ public class MypageController {
 	}
 
 	// 구매완료
-	@RequestMapping(value = "mypage/perchased", method = RequestMethod.GET)
+	@RequestMapping(value = "perchased", method = RequestMethod.GET)
 	public String perchased(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
 

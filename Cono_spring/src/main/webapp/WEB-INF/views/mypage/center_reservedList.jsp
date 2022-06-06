@@ -9,18 +9,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>예약 중인 상품</h1>
-<c:forEach var="reserved" items="${reservedList}">
-	<table border="1" onclick="location.href='아이템디테일?idx'">
-		<tr>
-			<td>${reserved.item_idx }</td>
-			<td>${reserved.img_real_name }</td>
-			<td>${reserved.item_title }</td>
-			<td>${reserved.item_region }</td>
-			<td>${reserved.item_price }</td>
-		</tr>
-	</table>
-	<br>
-</c:forEach>
+	<div id="wrap">
+		<jsp:include page="../header_footer/top.jsp"/>
+	</div>
+	<h1>예약 중인 상품</h1>
+	
+	<c:forEach var="reserved" items="${reservedList}">
+		<table border="1" onclick="location.href='아이템디테일?idx'">
+			<tr>
+				<td>${reserved.item_idx }</td>
+				<td>${reserved.img_real_name }</td>
+				<td>${reserved.item_title }</td>
+				<td>${reserved.item_region }</td>
+				<td>${reserved.item_price }</td>
+			</tr>
+		</table>
+		<br>
+	</c:forEach>
 </body>
 </html>

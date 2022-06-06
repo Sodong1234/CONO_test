@@ -9,6 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div id="wrap">
+		<jsp:include page="../header_footer/top.jsp"/>
+	</div>
 	<h1>쿠폰</h1>
 	<c:forEach var="coupon" items="${couponList }">
 		<table border="1">

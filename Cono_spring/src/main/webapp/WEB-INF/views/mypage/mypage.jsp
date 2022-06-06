@@ -26,8 +26,8 @@
 	<div>
 		<table border="1">
 			<tr><th>나의 코노</th></tr>
-			<tr><td><a href="mypage/recentViewList">최근 본 상품</a></td></tr>
-			<tr><td><a href="mypage/follow">팔로잉&팔로워</a></td></tr>
+			<tr><td><a href="recentViewList">최근 본 상품</a></td></tr>
+			<tr><td><a href="follow">팔로잉&팔로워</a></td></tr>
 			<tr><td><a href="MypageList_myReview.jsp">나의 후기</a></td></tr>
 			
 			<tr><th>알림 및 메세지</th></tr>
@@ -35,7 +35,7 @@
 			<tr><td><a href="MypageList_dm.mypage">메세지</a></td></tr>
 			
 			<tr><th>내 정보</th></tr>
-			<tr><td><a href="mypage/memberInfo_modify">회원 정보 수정</a></td></tr>
+			<tr><td><a href="memberInfo_modify">회원 정보 수정</a></td></tr>
 			<tr><td><a href="MypageList_account.mypage">계좌 정보 관리</a></td></tr>
 			<tr><td><a href="mypageList_deleteId.jsp">회원 탈퇴</a></td></tr>
 		
@@ -52,19 +52,19 @@
 			<tr>
 				<td>
 					코인<hr>
-					<a href="mypage/coin" class="coin">${coin_total}P</a>
+					<a href="coin" class="coin">${coin_total}P</a>
 				</td>
 				<td>
 					예약 중인 상품<hr>
-					<a href="mypage/reserved">${reservedCount}</a>
+					<a href="reserved">${reservedCount}</a>
 				</td>
 				<td>
 					장바구니<hr>
-					<a href="mypage/basket">${basketCount}</a>
+					<a href="basket">${basketCount}</a>
 				</td>
 				<td>
 					쿠폰<hr>
-					<a href="mypage/coupon">${couponCount}</a>
+					<a href="coupon">${couponCount}</a>
 				</td>
 			</tr>
 		</table>

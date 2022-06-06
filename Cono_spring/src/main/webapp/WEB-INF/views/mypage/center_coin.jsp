@@ -34,6 +34,9 @@
 </script>
 </head>
 <body>
+	<div id="wrap">
+		<jsp:include page="../header_footer/top.jsp"/>
+	</div>
 
 	<h1>코인페이지</h1>
 	<button onclick="visiblePayCheck()">코인충전</button>

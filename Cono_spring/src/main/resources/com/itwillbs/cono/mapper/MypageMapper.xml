@@ -59,12 +59,23 @@
 	
 <!-- 	결제 데이터 받아오기 -->
 	<select id="selectPayment" resultType="com.itwillbs.cono.vo.PaymentDTO">
-		SELECT  payment_idx, member_id, member_phone, payment_amount, payment_date
+		SELECT  payment_idx, member_id, member_phone, payment_value, payment_date
 		FROM payment
 		WHERE member_id = #{sId}
 		ORDER BY payment_idx DESC
 		LIMIT 1
 	</select>
+	
+<!-- 	코인 충전 -->
+	<insert id="insertCoinAdd">
+		INSERT INTO coin
+		VALUES (1+(	SELECT COUNT(c.coin_idx) FROM coin c WHERE c.member_id = #{sId}),
+				#{sId}, 
+				#{payment_value}, 
+				'0', 
+				#{payment_value} + #{balance}, 
+				date_format(now(), '%Y%m%d%H%i%S'))
+	</insert>
 	
 <!-- 	현재 보유중인 쿠폰 수 -->
 	<select id="selectCouponCount" resultType="java.lang.Integer">

@@ -9,6 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div id="wrap">
+		<jsp:include page="../header_footer/top.jsp"/>
+	</div>
+<h1>예약 중인 상품</h1>
 	<form action="">
 		<table border="1">
 			<tr>
