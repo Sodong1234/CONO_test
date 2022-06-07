@@ -180,7 +180,30 @@ public class ShopController {
 	// -------------------------------------------------------------------------
 	
 	// ----------------------- 상품 후기 조회 - 이소영 -------------------------
-	
+	@RequestMapping(value = "/ItemReviewMng.shop", method = RequestMethod.GET)
+	public String selectReview(HttpSession session, Model model) {
+		
+		String member_id = session.getAttribute("sId").toString();
+		
+		// 평균 평점과 후기 달린 아이템 개수 조회 
+		HashMap<String, String> itemAvg = service.selectItemAvg(member_id);
+		
+		// 점수 별 상품 개수 조회
+		HashMap<String, String> itemScore =  service.selectItemScore(member_id);
+		
+		// 상품 고를 때 클릭할 이미지(img_name) 조회
+		List<HashMap<String, String>> imgNameList = service.selectItemImgName(member_id);
+		
+		// 후기 리스트 조회
+		List<HashMap<String, String>> reviewList = service.selectReviewList(member_id);
+		
+		model.addAttribute("itemAvg", itemAvg);
+		model.addAttribute("itemScore", itemScore);
+		model.addAttribute("imgNameList", imgNameList);
+		model.addAttribute("reviewList", reviewList);
+		
+		return "myshop/item_review_mng";
+	}
 	// -------------------------------------------------------------------------
 	
 	// --------------- 내상점 수정 원본 데이터 조회 - 문현진 -------------------

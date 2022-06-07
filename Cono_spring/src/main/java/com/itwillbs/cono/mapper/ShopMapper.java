@@ -66,5 +66,18 @@ public interface ShopMapper {
 	
 	// 상점 정보 수정
 	void updateMyshop(@Param("shop") ShopDTO shop);
+	
+	// 상품 평균 평점과 후기 달린 상품의 개수 조회
+	HashMap<String, String> selectItemAvg(String member_id);
+	
+	// 각 점수 별 상품 개수 조회
+	String selectItemScore(@Param("member_id") String member_id, @Param("i") String i);
+
+	//상품 고를 때 클릭할 이미지 조회
+	List<HashMap<String, String>> selectItemImgName(String member_id);
+
+	// 후기 리스트 조회
+	List<HashMap<String, String>> selectReviewList(String member_id);
+
 
 }

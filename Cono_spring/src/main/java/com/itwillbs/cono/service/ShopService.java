@@ -315,5 +315,31 @@ public class ShopService {
 	    		}
 			}
 		}
+	}
+	
+	// 상품 평균 평점과 후기 달린 아이템의 개수 조회
+	public HashMap<String, String> selectItemAvg(String member_id) {
+		return mapper.selectItemAvg(member_id);
+	}
+
+	// 점수 별 상품 개수 조회
+	public HashMap<String, String> selectItemScore(String member_id) {
+		HashMap<String, String> itemScore = new HashMap<String, String>();
+		for(int i = 1; i < 6; i++) {
+			
+			itemScore.put(i+"", mapper.selectItemScore(member_id, i+""));
+		}
+		return itemScore;
 	}	
+	
+	//상품 고를 때 클릭할 이미지 조회
+	public List<HashMap<String, String>> selectItemImgName(String member_id) {
+		return mapper.selectItemImgName(member_id);
+	}
+
+	// 후기 리스트 조회
+	public List<HashMap<String, String>> selectReviewList(String member_id) {
+		return mapper.selectReviewList(member_id);
+	}
+
 }

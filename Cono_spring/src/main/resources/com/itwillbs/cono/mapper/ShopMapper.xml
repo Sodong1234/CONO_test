@@ -92,6 +92,7 @@
 	        ON i.item_idx = c.item_idx
 	     WHERE i.item_idx = #{item_idx}
 	</select>
+	
 	<!-- 상품 이미지 조회 -->
 	<select id="selectImgList" resultType="com.itwillbs.cono.vo.ImgDTO">
 		SELECT img_idx, img_real_name , img_name FROM img WHERE item_idx=#{item_idx}
@@ -140,5 +141,47 @@
 		       shop_content = #{shop.shop_content}
 		 WHERE shop_idx = #{shop.shop_idx}
 	</update>
+	
+	
+	<!-- 평균 평점과 후기 달린 아이템 개수 조회 -->
+	<select id="selectItemAvg" resultType="java.util.HashMap">
+		SELECT SUM(st.item_score)/COUNT(i.item_idx) as avg, COUNT(i.item_idx) as item_idx
+	  	  FROM review r, item i, star st, shop s
+		 WHERE r.review_idx = st.review_idx
+		   AND st.item_idx = i.item_idx
+		   AND i.shop_idx = s.shop_idx
+		   AND s.member_id = #{member_id}
+	</select>
+	
+	<!-- 각 점수 별 상품 개수 조회 -->
+	<select id="selectItemScore" resultType="java.lang.String">
+		SELECT COUNT(i.item_idx)
+		FROM shop s, item i, star st
+		WHERE st.item_idx = i.item_idx
+		AND i.shop_idx = s.shop_idx
+		AND s.member_id = #{member_id}
+		AND st.item_score = #{i}
+	</select>
+	
+	<!-- 상품 고를 때 클릭할 이미지 조회 -->
+	<select id="selectItemImgName" resultType="java.util.HashMap">
+		SELECT i.item_idx, g.img_name
+		FROM item i, img g, shop s
+		WHERE i.shop_idx = s.shop_idx
+		AND g.item_idx = i.item_idx
+		AND g.img_idx = '1'
+		AND s.member_id = #{member_id}
+		ORDER BY i.item_idx*1
+	</select>
+	
+	<!-- 후기 리스트 조회 -->
+	<select id="selectReviewList" resultType="java.util.HashMap">
+		SELECT r.review_idx, r.review_content, r.review_date, r.member_id, st.item_score 
+		FROM review r, star st, item i, shop s
+		WHERE r.review_idx = st.review_idx 
+		AND i.item_idx = r.item_idx 
+		AND i.shop_idx = s.shop_idx
+		AND s.member_id = #{member_id};
+	</select>
+	
 </mapper>
-
