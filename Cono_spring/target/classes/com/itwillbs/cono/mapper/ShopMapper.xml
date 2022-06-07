@@ -3,8 +3,11 @@
 <mapper namespace="com.itwillbs.cono.mapper.ShopMapper">
 	
 	<!-- 내 상점 정보 조회 -->
-	<select id="selectMyShop" resultType="com.itwillbs.cono.vo.ShopDTO">
-		SELECT * FROM shop WHERE member_id=#{member_id}
+	<select id="selectMyShop" resultType="java.util.HashMap">
+		SELECT s.shop_idx, s.shop_img, s.member_id, s.shop_name, s.shop_content, m.member_date
+		  FROM shop s, member m
+		 WHERE s.member_id = m.member_id
+		   AND m.member_id = #{member_id}
 	</select>
 	
 	<!-- 내 상점 판매 횟수 조회 -->
@@ -131,7 +134,11 @@
 	
 	<!-- 상점 정보 수정 -->
 	<update id="updateMyshop">
-	
+		UPDATE shop
+		   SET shop_img = #{shop.shop_img},
+		       shop_name = #{shop.shop_name},
+		       shop_content = #{shop.shop_content}
+		 WHERE shop_idx = #{shop.shop_idx}
 	</update>
 </mapper>
 

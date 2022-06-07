@@ -38,7 +38,7 @@ public class ShopController {
 		}
 		
 		// 상점 정보 조회
-		ShopDTO myShop = service.getMyShop(member_id);
+		HashMap<String, String> myShop = service.getMyShop(member_id);
 		
 		String[] myShopCountInfo = new String[2];
 		
@@ -190,7 +190,7 @@ public class ShopController {
 		String member_id = session.getAttribute("sId").toString();
 		
 		// 상점 정보 조회
-		ShopDTO myShop = service.getMyShop(member_id);
+		HashMap<String, String> myShop = service.getMyShop(member_id);
 		
 		model.addAttribute("myShop", myShop);
 		
@@ -200,7 +200,7 @@ public class ShopController {
 	
 	// ---------------- 내상점 수정 비즈니스 로직 - 문현진 ---------------------
 	@RequestMapping(value = "/ProductMyshopModifyPro.shop", method = RequestMethod.POST)
-	public String getMyShopPost(HttpSession session, HttpServletRequest request, MemberDTO member, ShopDTO shop, MultipartFile upload, Model model) {
+	public String getMyShopPost(HttpSession session, HttpServletRequest request, MemberDTO member, ShopDTO shop, MultipartFile[] upload, Model model) {
 		
 		member.setMember_id(session.getAttribute("sId").toString());
 		

@@ -3,12 +3,7 @@ package com.itwillbs.cono.mapper;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
-import com.itwillbs.cono.vo.CategoryDTO;
 import com.itwillbs.cono.vo.ImgDTO;
-import com.itwillbs.cono.vo.ItemDTO;
-import com.itwillbs.cono.vo.MemberDTO;
 
 public interface ItemMapper {
 	

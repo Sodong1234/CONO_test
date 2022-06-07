@@ -1,6 +1,7 @@
 <%@page import="com.itwillbs.cono.vo.ShopDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
@@ -45,11 +46,6 @@
 		$("#file").val("");
 	}
 </script>
-		<%
-		ShopDTO myShop = (ShopDTO)request.getAttribute("myShop");
-		
-		System.out.println(myShop);
-		%> 
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -59,12 +55,19 @@
 			<jsp:include page="../header_footer/top.jsp"/>
 	</div>
 	<form action="ProductMyshopModifyPro.shop" name="shopForm" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="shop_idx" value="<%=myShop.getShop_idx() %>">
+			<input type="hidden" name="shop_idx" value="${myShop.get('shop_idx') }">
 			<table>
 				<tr>
 					<td style="width:100px;">
-						<img alt="상점 이미지" name="upload" id="img" style="width: 200px;" src="<spring:url value='/resources/default_img.png'/>" >
-						<input type="file" id="file" onchange="readInputFile(this)" style="display: none;">
+						<c:choose>
+						<c:when test="${myShop.get('shop_img') eq null }">
+							<img alt="상점 이미지" id="img" style="width: 200px;" src="<spring:url value='/resources/default_img.png'/>" >
+						</c:when>
+						<c:when test="${myShop.get('shop_img') ne null }">
+							<img alt="상점 이미지" id="img" style="width: 200px;" src="<spring:url value='/resources/upload/shopImg/${myShop.get("shop_img") }'/>">
+						</c:when>
+						</c:choose>
+						<input type="file" id="file" name="upload" onchange="readInputFile(this)" style="display: none;">
 						<input type="button" id="delFile" value="x" onclick="deleteImg()"><br>
 					</td>
 				</tr>
@@ -77,13 +80,13 @@
 				<tr>
 					<td class="td_left"><label for="shop_name">상점이름</label></td>
 					<td class="td_right">
-						<input type="text" name="shop_name" value="<%=myShop.getShop_name() %>"  />
+						<input type="text" name="shop_name" value="${myShop.get('shop_name') }"  />
 					</td>
 				</tr>
 				<tr>
 					<td class="td_left"><label for="shop_content">내용</label></td>
 					<td class="td_right">
-						<textarea id="board_content" name="shop_content" cols="40" rows="15" ><%=myShop.getShop_content() %></textarea>
+						<textarea id="board_content" name="shop_content" cols="40" rows="15" >${myShop.get('shop_content') }</textarea>
 					</td>
 				</tr>
 				<tr>

@@ -28,7 +28,7 @@ public class ShopService {
 	ShopMapper mapper;
 	
 	// 상점 정보 조회
-	public ShopDTO getMyShop(String member_id) {
+	public HashMap<String, String> getMyShop(String member_id) {
 		return mapper.selectMyShop(member_id);
 	}
 	
@@ -262,47 +262,54 @@ public class ShopService {
 		return mapper.selectMember(member);
 	}
 
-	public void modifyMyshop(HttpServletRequest request, ShopDTO shop, MultipartFile upload, MemberDTO member) {
+	// 상점 정보 수정
+	public void modifyMyshop(HttpServletRequest request, ShopDTO shop, MultipartFile[] upload, MemberDTO member) {
+        
+		System.out.println(upload.toString());
 		
 		// 상점 원본 이미지 가져오기
-		ShopDTO orgShopImg = mapper.selectMyShop(member.getMember_id());
+		HashMap<String, String> orgShopImg = mapper.selectMyShop(member.getMember_id());
 		
 		// 상점 이미지 저장 경로 
 		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/shopImg");
 		
+		File dir = new File(saveDir);
+        if(!dir.exists()) {
+            dir.mkdirs();
+        }
+		MultipartFile f = upload[0];
 		// 전달 받은 파일이 없을 경우
-		if(upload.isEmpty()) {
+		if(f.isEmpty()) {
 			// 원본 이미지가 있을 경우
-			if(orgShopImg.getShop_img() != null) {
+			if(orgShopImg.get("shop_img") != null) {
 				shop.setShop_img(null);
-				mapper.updateMyshop(shop, member);
+				mapper.updateMyshop(shop);
 				
-				File file = new File(saveDir + "/" + orgShopImg.getShop_img());
+				File file = new File(saveDir + "/" + orgShopImg.get("shop_img"));
 	    		if(file.exists()) {	// 원본 이미지 삭제
 	    			file.delete();
 	    		}
 			}
 		// 전달 받은 파일이 있을 경우
 		} else {
-			shop.setShop_img(upload.getOriginalFilename());
-			mapper.updateMyshop(shop, member);
+			shop.setShop_img(f.getOriginalFilename());
+			mapper.updateMyshop(shop);
 			
 			// 원본 이미지가 있을 경우
-			if(orgShopImg.getShop_img() != null) {
-				File file = new File(saveDir + "/" + orgShopImg.getShop_img());
+			if(orgShopImg.get("shop_img") != null) {
+				File file = new File(saveDir + "/" + orgShopImg.get("shop_img"));
 	    		if(file.exists()) {
 	    			file.delete(); // 원본 이미지 파일 삭제
 	    		}
-	    		
 	    		try {
-	    			upload.transferTo(new File(saveDir + "/" + upload.getOriginalFilename()));	// 전달 받은 이미지 파일 저장
+	    			f.transferTo(new File(saveDir + "/" + f.getOriginalFilename()));	// 전달 받은 이미지 파일 저장
 	    		}catch (IllegalStateException | IOException e) {
 	    			e.printStackTrace();
 	    		}
 	    	// 원본 이미지가 없을 경우
 			} else {
 				try {
-	    			upload.transferTo(new File(saveDir + "/" + upload.getOriginalFilename()));	// 전달 받은 이미지 저장
+					f.transferTo(new File(saveDir + "/" + f.getOriginalFilename()));	// 전달 받은 이미지 저장
 	    		}catch (IllegalStateException | IOException e) {
 	    			e.printStackTrace();
 	    		}
