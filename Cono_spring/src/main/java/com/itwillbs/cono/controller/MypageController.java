@@ -132,8 +132,9 @@ public class MypageController {
 			model.addAttribute("msg", "정보 수정 실패");
 			return "fail_back";
 		}
-
-		return "redirect:/mypage";
+		session.invalidate();
+		
+		return "redirect:/main";
 	}
 
 	// 계좌 정보 관리

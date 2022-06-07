@@ -8,19 +8,6 @@
 <head>
 <script src="resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
-// 	function openModifyImage() {
-// 		window.open("ModifyMyshopImg.shop","","width=700,height=250");
-// 	}
-// 	function useId(id) {
-// 		// 자식창(나)에서 부모창(나를 연 창)을 제어하려면 window.opener.xxx 형태로 제어
-// 		// => xxx 은 원래 해당 요소에 접근하는 문법 그대로 사용
-// 		// 1. 사용 가능한 아이디를 부모창의 아이디 입력란에 표시
-// 		window.opener.document.fr.id.value = id;
-// 		// 2. 부모창의 전역변수 checkIdResult 값을 true 로 변경
-// 		window.opener.checkIdResult = true;
-// 		// 3. 자식창 닫기
-// 		window.close();
-// 	}
 	$(function() {
 		// 이미지 클릭 시 파일 선택 창 열림
 		$('#img').click(function (e) {

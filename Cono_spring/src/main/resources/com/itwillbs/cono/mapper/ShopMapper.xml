@@ -33,7 +33,7 @@
 	<insert id="insertItem">
 		INSERT INTO item
 		VALUES (#{item.item_idx}, (SELECT shop_idx FROM shop WHERE member_id=#{member_id})
-		,#{item.item_title}, #{item.item_content}, #{item.item_price}, '', '0', 'N', 'N', '0', #{item.item_region}, #{item.item_quantity})
+		,#{item.item_title}, #{item.item_content}, #{item.item_price}, date_format(now(), '%Y%m%d'), '0', 'N', 'N', '0', #{item.item_region}, #{item.item_quantity})
 	</insert>
 	
 	<!-- category 테이블 insert -->

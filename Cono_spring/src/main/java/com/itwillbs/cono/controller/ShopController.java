@@ -76,7 +76,7 @@ public class ShopController {
         	return "fail_back";
         }
         
-		return "redirect:/ProductMyshop.shop";
+		return "redirect:/ItemMng.shop";
 	}
 	// -------------------------------------------------------------------------
 	
