@@ -134,7 +134,7 @@ public class MypageController {
 		}
 		session.invalidate();
 		
-		return "redirect:/main";
+		return "redirect:/";
 	}
 
 	// 계좌 정보 관리
