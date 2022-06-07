@@ -56,11 +56,11 @@ String sId = (String)session.getAttribute("sId");
 		<span id=""><a href = "home"> 홈 </a>-------</span>
 		<%if(sId == null) { %>
 			<a href="joinHow">회원가입</a> | 
-			<a href="MemberLogin.func">로그인</a> | 
+			<a href="login">로그인</a> | 
 		<%} else { %>
-			<a href="mypage"><%=sId %>님</a>
+			<a href="mypage">${member_nick }님</a>
 			<a href="../mypage/mypageList_alarm.jsp">알림</a> | 
-			<a href="../mypage/mypageList_dm.jsp">메세지</a> | 
+			<a href="message_list">메세지</a> | 
 			<input type="button" value="판매자 전용 마이페이지" onclick="location.href='ProductMyshop.shop'">
 			<input type="button" value="관리자 전용 마이페이지" onclick="location.href='./admin_center/main.jsp'">
 			<!-- 			==============================양윤석============================= -->

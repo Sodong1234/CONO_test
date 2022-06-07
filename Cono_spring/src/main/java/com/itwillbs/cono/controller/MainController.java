@@ -27,22 +27,25 @@ public class MainController {
 	}
 	
 	// 로그인창 이동
-	@RequestMapping(value = "/MemberLogin.func", method = RequestMethod.GET)
+	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login() {
 		return "member/login";
 	}
 	
 	// 로그인
-	@RequestMapping(value = "/MemberLoginPro.func", method = RequestMethod.POST)
+	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(@ModelAttribute MemberDTO member, Model model, HttpSession session) {
 		
 		MemberDTO memberResult = service.loginMember(member);
 		
 		if(memberResult == null) {
-			model.addAttribute("msg", "가입 실패!");
+			model.addAttribute("msg", "로그인!");
 			return "member/fail_back";
 		} else {
+			String member_nick = memberResult.getMember_nick();
+			System.out.println(member_nick);
 			session.setAttribute("sId", memberResult.getMember_id());
+			session.setAttribute("member_nick", member_nick);
 			return "redirect:/";
 		}
 	}

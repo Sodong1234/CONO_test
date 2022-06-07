@@ -19,7 +19,7 @@
 		  	간편로그인<br>
 		  	<input type="button" value="카카오톡으로 로그인"><br>
 		  	<input type="button" value="네이버로 로그인">
-		  	<form action="MemberLoginPro.func" method="post" id="login">
+		  	<form action="login" method="post" id="login">
 		  		<fieldset>
 		  			<legend>일반 로그인</legend>
 		  			<input type="text" name="member_id" placeholder="Username"><br>
