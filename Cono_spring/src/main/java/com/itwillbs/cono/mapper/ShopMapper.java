@@ -77,7 +77,10 @@ public interface ShopMapper {
 	List<HashMap<String, String>> selectItemImgName(String member_id);
 
 	// 후기 리스트 조회
-	List<HashMap<String, String>> selectReviewList(String member_id);
+	List<HashMap<String, String>> selectReviewList(@Param("member_id") String member_id,  @Param("item_idx") String item_idx);
+	
+	// 클릭된 이미지 조회
+	String selectImg(String item_idx);
 
 
 }

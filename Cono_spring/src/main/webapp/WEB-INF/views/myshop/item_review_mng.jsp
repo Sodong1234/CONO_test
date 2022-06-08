@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +40,7 @@ img {
 			<tr>
 				<td>5점</td>
 				<td>${itemScore.get('5') }</td>
+				<td rowspan="5"><img alt="" src="resources/upload/file/${img }"></td>
 			</tr>
 			<tr>
 				<td>4점</td>
@@ -58,23 +60,27 @@ img {
 			</tr>
 		</table>
 	</div>
-
+	
+	<hr>
+	
 	<div>
 		<table>
 			<!-- 페이징 처리 처럼 옆으로 누르면 넘어가는 방식(한 칸씩 이동..! 부드럽게) -->
 			<!-- URL 파라미터로 구분(상품 번호?) -->
 			<tr>
 				<c:forEach items="${imgNameList }" var="imgName">
-					<td onclick="location.href='item_review_mng.jsp'"><img alt=""
-						src="resources/upload/file/${imgName.get('img_name') }"> <span>${imgName.get('item_idx') }</span></td>
+					<td onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }'">
+						<c:choose>
+							<c:when test="${imgName.get('img_name') ne null }">
+								<img alt="" src="resources/upload/file/${imgName.get('img_name') }">
+							</c:when>
+							<c:otherwise>
+								<img alt="" src="<spring:url value='/resources/default_img.png'/>">
+							</c:otherwise>
+						</c:choose>
+						<span>${imgName.get('item_idx') }</span>
+					</td>
 				</c:forEach>
-				<!-- 				<td><<</td> -->
-				<!-- 				<td onclick="location.href='item_review_mng.jsp'">상품 1 이미지</td> -->
-				<!-- 				<td onclick="location.href='item_review_mng.jsp'">상품 2 이미지</td> -->
-				<!-- 				<td onclick="location.href='item_review_mng.jsp'">상품 3 이미지</td> -->
-				<!-- 				<td onclick="location.href='item_review_mng.jsp'">상품 4 이미지</td> -->
-				<!-- 				<td onclick="location.href='item_review_mng.jsp'">상품 5 이미지</td> -->
-				<!-- 				<td>>></td> -->
 			</tr>
 		</table>
 	</div>

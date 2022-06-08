@@ -181,7 +181,19 @@
 		WHERE r.review_idx = st.review_idx 
 		AND i.item_idx = r.item_idx 
 		AND i.shop_idx = s.shop_idx
-		AND s.member_id = #{member_id};
+		AND s.member_id = #{member_id}
+		<if test="item_idx != null">
+			AND i.item_idx = #{item_idx}
+		</if>
 	</select>
+	
+	<!-- 클릭된 이미지 조회 -->
+	<select id="selectImg" resultType="java.lang.String">
+		SELECT img_name
+		  FROM img
+		 WHERE item_idx = #{item_idx}
+		   AND img_idx = '1'
+	</select>
+	
 	
 </mapper>

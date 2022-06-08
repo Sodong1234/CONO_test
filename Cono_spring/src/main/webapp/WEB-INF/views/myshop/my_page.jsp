@@ -97,7 +97,6 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 				</tr>
 			</table>
 			<input type="button" id="modify" value="수정" onclick="location.href='ProductMyshopModifyForm.shop'">
-			<input type="button" value="취소" onclick="history.back()">
 		</form>
 	</div>
 	<div>

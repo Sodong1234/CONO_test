@@ -79,6 +79,7 @@
 				<tr>
 					<td colspan="2">
 						<input type="submit" value="수정"> 
+						<input type="button" value="취소" onclick="history.back()">
 					</td>
 				</tr>
 			</table>

@@ -338,8 +338,12 @@ public class ShopService {
 	}
 
 	// 후기 리스트 조회
-	public List<HashMap<String, String>> selectReviewList(String member_id) {
-		return mapper.selectReviewList(member_id);
+	public List<HashMap<String, String>> selectReviewList(String member_id, String item_idx) {
+		return mapper.selectReviewList(member_id, item_idx);
+	}
+
+	public String selectImg(String item_idx) {
+		return mapper.selectImg(item_idx);
 	}
 
 }
