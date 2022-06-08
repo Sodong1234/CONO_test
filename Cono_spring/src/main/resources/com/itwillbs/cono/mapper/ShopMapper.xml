@@ -34,17 +34,17 @@
 		INSERT INTO item
 		VALUES (#{item.item_idx}
 			   , (SELECT shop_idx FROM shop WHERE member_id=#{member_id})
+			   , null
 			   , #{item.item_title}
 			   , #{item.item_content}
 			   , #{item.item_price}
 			   , date_format(now(), '%Y%m%d')
 			   , '0'
-			   , 'N'
+			   , '0'
 			   , 'N'
 			   , '0'
 			   , #{item.item_region}
 			   , #{item.item_quantity}
-			   , null
 			   )
 	</insert>
 	
@@ -209,12 +209,21 @@
 	
 	<!-- 상품 주문 (진행중) 리스트 조회 -->
 	<select id="selectOrdList" resultType="java.util.HashMap">
-		SELECT ord.order_date, i.item_title, i.member_id , i.item_price, ord.order_reqContent
+		SELECT ord.ord_date, i.item_title, i.member_id , i.item_price, ord.ord_reqContent
 		  FROM ord ord, item i, shop s
 		 WHERE i.shop_idx = s.shop_idx
 		   AND ord.item_idx = i.item_idx
 		   AND s.member_id = #{member_id}
-		   AND i.item_status = 'I';
+		   AND i.item_status = '1';
 	</select>
-	
+
+	<!-- 상품 주문 (완료) 리스트 조회 -->
+	<select id="selectFinishOrdList" resultType="java.util.HashMap">
+		SELECT ord.ord_date, i.item_title, i.member_id , i.item_price, ord.ord_reqContent
+		  FROM ord ord, item i, shop s
+		 WHERE i.shop_idx = s.shop_idx
+		   AND ord.item_idx = i.item_idx
+		   AND s.member_id = #{member_id}
+		   AND i.item_status = '2';
+	</select>
 </mapper>

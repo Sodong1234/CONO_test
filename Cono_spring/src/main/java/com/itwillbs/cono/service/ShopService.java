@@ -358,4 +358,9 @@ public class ShopService {
 		return mapper.selectOrdList(member_id);
 	}
 
+	// 상품 주문 (완료) 리스트 조회
+	public List<HashMap<String, String>> getFinishOrdList(String member_id) {
+		return mapper.selectFinishOrdList(member_id);
+	}
+
 }

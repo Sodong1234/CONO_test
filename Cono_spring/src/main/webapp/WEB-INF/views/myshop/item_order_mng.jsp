@@ -36,9 +36,10 @@
 	구매 완료 ('F') : ord 테이블 delete할 때
 	예약 중('R')
 	 -->
+
 	
+	<h3>구매 진행중</h3>
 	<div>
-		<h4>주문 진행 중</h4>
 		<table border="1">
 			<tr>
 				<th>주문일시</th>
@@ -50,12 +51,38 @@
 			</tr>
 			<c:forEach items="${ordList }" var="ord">
 				<tr>
-					<td>${ord.get('order_date') }</td>
+					<td>${ord.get('ord_date') }</td>
 					<td>${ord.get('item_title') }</td>
 <%-- 					<td>${ord.get('ord_quantity') }</td> --%>
 					<td>${ord.get('member_id') }</td>
 					<td>${ord.get('item_price') }</td>
-					<td>${ord.get('order_reqContent') }</td>
+					<td>${ord.get('ord_reqContent') }</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+	
+	<hr>
+	
+	<h3>구매 완료</h3>
+	<div>
+		<table border="1">
+			<tr>
+				<th>주문일시</th>
+				<th>주문상품</th>
+<!-- 				<th>주문수량</th> -->
+				<th>주문한 사람</th>
+				<th>가격</th>
+				<th>주문 요청사항</th>
+			</tr>
+			<c:forEach items="${finishOrdList }" var="ord">
+				<tr>
+					<td>${ord.get('ord_date') }</td>
+					<td>${ord.get('item_title') }</td>
+<%-- 					<td>${ord.get('ord_quantity') }</td> --%>
+					<td>${ord.get('member_id') }</td>
+					<td>${ord.get('item_price') }</td>
+					<td>${ord.get('ord_reqContent') }</td>
 				</tr>
 			</c:forEach>
 		</table>

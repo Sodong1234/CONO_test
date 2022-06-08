@@ -94,7 +94,16 @@ String sell_status = request.getParameter("sell_status");
 					<c:forEach items="${itemList}" var="item">
 						<tr class="align-middle">
 							<td>${item.get("item_idx") }</td>
-							<td><img src="resources/upload/file/${item.get('img_name') }"></td>
+							<td>
+								<c:choose>
+									<c:when test="${item.get('img_name') ne null }">
+										<img src="resources/upload/file/${item.get('img_name') }">
+									</c:when>
+									<c:when test="${item.get('img_name') eq null }">
+										<img src="resources/default_img.png">
+									</c:when>
+								</c:choose>
+							</td>
 							<td onclick="location.href='ItemDetail.shop?item_idx=${item.get('item_idx') }'">${item.get("item_title") }</td>
 							<td>${item.get("item_price") }</td>
 							<td>${item.get("item_date") }</td>

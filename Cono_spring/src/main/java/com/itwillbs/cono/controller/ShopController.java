@@ -266,7 +266,7 @@ public class ShopController {
 	}
 	// -------------------------------------------------------------------------
 	
-	// --------------- 상품 주문 관리 - 문현진 -------------------
+	// --------------------- 상품 주문 관리 - 문현진 ---------------------------
 	@RequestMapping(value = "/ItemOrdMng.shop", method = RequestMethod.GET)
 	public String getOrdList(HttpSession session, Model model) {
 		
@@ -276,10 +276,14 @@ public class ShopController {
 			return "redirect:/login";
 		}
 		
-		// 상점 정보 조회
+		// 상품 주문 조회(진행중)
 		List<HashMap<String, String>> ordList = service.getOrdList(member_id);
 		
+		// 상품 주문 조회(완료)
+		List<HashMap<String, String>> finishOrdList = service.getFinishOrdList(member_id);
+		
 		model.addAttribute("ordList", ordList);
+		model.addAttribute("finishOrdList", finishOrdList);
 		
 		return "myshop/item_order_mng";
 	}

@@ -109,7 +109,7 @@ if(session.getAttribute("sId") == null) {
 									<input type="button" id="delFile${i }" value="x" onclick="deleteImg${i}()"><br>
 								</c:when>
 								<c:when test="${imgList.get(i-1).getImg_name() eq null}">
-									<img id="target_img${i }" alt="상점 이미지" src="<spring:url value='/resources/default_img.png'/>">
+									<img id="target_img${i }" alt="상점 이미지" src="resources/default_img.png">
 									<input type="file" id="file${i }" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile${i }(this)">
 									<input type="button" id="delFile${i }" value="x" onclick="deleteImg${i}()"><br>
 								</c:when>

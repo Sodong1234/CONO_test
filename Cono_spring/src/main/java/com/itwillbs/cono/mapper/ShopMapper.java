@@ -85,5 +85,8 @@ public interface ShopMapper {
 	// 상품 주문 (진행중) 리스트 조회
 	List<HashMap<String, String>> selectOrdList(String member_id);
 
+	// 상품 주문 (완료) 리스트 조회
+	List<HashMap<String, String>> selectFinishOrdList(String member_id);
+
 
 }
