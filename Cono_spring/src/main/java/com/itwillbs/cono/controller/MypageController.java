@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +16,6 @@ import com.itwillbs.cono.service.MypageService;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
-import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.PaymentDTO;
 
 @Controller
