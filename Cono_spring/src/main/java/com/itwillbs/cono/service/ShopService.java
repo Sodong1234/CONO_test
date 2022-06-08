@@ -265,8 +265,6 @@ public class ShopService {
 	// 상점 정보 수정
 	public void modifyMyshop(HttpServletRequest request, ShopDTO shop, MultipartFile[] upload, MemberDTO member) {
         
-		System.out.println(upload.toString());
-		
 		// 상점 원본 이미지 가져오기
 		HashMap<String, String> orgShopImg = mapper.selectMyShop(member.getMember_id());
 		
@@ -277,7 +275,15 @@ public class ShopService {
         if(!dir.exists()) {
             dir.mkdirs();
         }
+        
+        
 		MultipartFile f = upload[0];
+		String oriFileName = f.getOriginalFilename();	// 파일 실제 이름
+		String ext = oriFileName.substring(oriFileName.lastIndexOf("."));	// 파일 확장자
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String reName = shop.getShop_idx() + "_" + sdf.format(System.currentTimeMillis()) + ext;	// => 1_20200202.png
+		
 		// 전달 받은 파일이 없을 경우
 		if(f.isEmpty()) {
 			// 원본 이미지가 있을 경우
@@ -292,7 +298,7 @@ public class ShopService {
 			}
 		// 전달 받은 파일이 있을 경우
 		} else {
-			shop.setShop_img(f.getOriginalFilename());
+			shop.setShop_img(reName);
 			mapper.updateMyshop(shop);
 			
 			// 원본 이미지가 있을 경우
@@ -302,14 +308,14 @@ public class ShopService {
 	    			file.delete(); // 원본 이미지 파일 삭제
 	    		}
 	    		try {
-	    			f.transferTo(new File(saveDir + "/" + f.getOriginalFilename()));	// 전달 받은 이미지 파일 저장
+	    			f.transferTo(new File(reName));	// 전달 받은 이미지 파일 저장
 	    		}catch (IllegalStateException | IOException e) {
 	    			e.printStackTrace();
 	    		}
 	    	// 원본 이미지가 없을 경우
 			} else {
 				try {
-					f.transferTo(new File(saveDir + "/" + f.getOriginalFilename()));	// 전달 받은 이미지 저장
+					f.transferTo(new File(reName));	// 전달 받은 이미지 저장
 	    		}catch (IllegalStateException | IOException e) {
 	    			e.printStackTrace();
 	    		}
