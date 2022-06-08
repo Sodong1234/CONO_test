@@ -87,7 +87,7 @@ public class MypageController {
 
 	// 팔로잉 & 팔로워
 	@RequestMapping(value = "follow", method = RequestMethod.GET)
-	public String following(HttpSession session, Model model) {
+	public String follow(HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
 		// 팔로잉 팔로워 정보 
 		List<HashMap<String, String>> followingList = service.getfollowingList(sId);
@@ -100,6 +100,17 @@ public class MypageController {
 		model.addAttribute("followingCount", followingCount);
 		model.addAttribute("followerCount", followerCount);
 
+		return "mypage/list_follow";
+	}
+	
+	// 언팔
+	@RequestMapping(value = "deleteFollowing", method = RequestMethod.GET)
+	public String deleteFollowing (HttpSession session, Model model, String shop_idx) {
+		String sId = (String)session.getAttribute("sId");
+		
+		int deleteCount = service.deleteFollowing(sId, shop_idx);
+		System.out.println(deleteCount);
+		
 		return "mypage/list_follow";
 	}
  

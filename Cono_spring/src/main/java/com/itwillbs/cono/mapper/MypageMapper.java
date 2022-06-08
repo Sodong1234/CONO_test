@@ -54,6 +54,8 @@ public interface MypageMapper {
 	public int selectFollowingCount(String sId);
 	// 팔로워 수
 	public int selectFollowerCount(String sId);
+	// 팔로잉 삭제
+	public int deleteFollowing(String sId, String shop_idx);
 
 
 

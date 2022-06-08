@@ -146,4 +146,9 @@
 		FROM follow 
 		WHERE shop_idx = (SELECT s.shop_idx FROM shop s WHERE s.member_id = #{sId})
 	</select>
+<!-- 	팔로잉 삭제 -->
+	<delete id="deleteFollowing">
+		DELETE FROM follow
+		WHERE shop_idx = #{shop_idx} AND member_id = #{sId}
+	</delete>
 </mapper>

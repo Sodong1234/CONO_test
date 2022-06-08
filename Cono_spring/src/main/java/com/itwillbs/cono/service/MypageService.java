@@ -10,7 +10,6 @@ import com.itwillbs.cono.mapper.MypageMapper;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
-import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.PaymentDTO;
 
 @Service
@@ -110,6 +109,10 @@ public class MypageService {
 	// 팔로워 수
 	public int getFollowerCount(String sId) {
 		return mapper.selectFollowerCount(sId);
+	}
+
+	public int deleteFollowing(String sId, String shop_idx) {
+		return mapper.deleteFollowing(sId, shop_idx);
 	}
 
 	

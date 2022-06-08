@@ -7,8 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
-
+// 	$(document).ready(function(){
+// 		let 
+// 	})
+	$(function(){
+		$("#deleteFollowing").on("click", function(){
+			$.ajax({
+				type: "GET",
+				url : "deleteFollowing?shop_idx=" + document.getElementById("deleteFollowing").value,
+				dataType: "text"
+			});
+		});
+	});
 </script>
 </head>
 <body>
@@ -21,7 +33,7 @@
 	<h3>총 ${followingCount } 개의 상점</h3>
 <!-- 		s.shop_idx, s.shop_img, s.shop_name, s.shop_content -->
 	</section>
-	<section>
+	<section id="following">
 		<c:forEach var="following" items="${followingList }">
 			<table border="1">
 				<tr>
@@ -29,7 +41,7 @@
 					<td rowspan="2">${following.shop_img }</td>
 					<td rowspan="2">${following.shop_name }</td>
 					<td rowspan="2">${following.shop_content }</td>
-					<td rowspan="2"><button onclick="deleteFollowing()" id="deleteFollowing" value="">팔로잉</button></td>
+					<td rowspan="2"><button onclick="deleteFollowing()" id="deleteFollowing" value="${following.shop_idx }">팔로잉</button></td>
 				</tr>
 			</table>
 		</c:forEach>
