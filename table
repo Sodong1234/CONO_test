@@ -102,9 +102,10 @@ CREATE TABLE basket (
 CREATE TABLE ord (
 	item_idx varchar(20),
 	member_id varchar(20),
-	order_date varchar(14),
-	order_reqContent varchar(1000),
-	order_status varchar(2),
+	ord_date varchar(14),
+	ord_reqContent varchar(1000),
+	ord_quantity varchar(10),
+	ord_status varchar(2),
 	PRIMARY KEY (item_idx, member_id)
 );
 
