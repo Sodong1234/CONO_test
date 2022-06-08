@@ -14,7 +14,6 @@
 	<div id="wrap">
 		<jsp:include page="header_footer/top.jsp"/>
 	</div>
-		  <input type="text" placeholder="검색"><button>검색</button>
 		<div class="clear"></div>   
 		<hr> 
 		

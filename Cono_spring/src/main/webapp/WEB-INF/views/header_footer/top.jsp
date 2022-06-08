@@ -16,41 +16,13 @@ String sId = (String)session.getAttribute("sId");
 			location.href = "logout";
 		}
 	}
-</script>
-<!-- 			<nav > -->
-				
-<!-- 			</nav> -->
-<!-- 			<div class="intro_bg"> -->
-<!--                 <div class="header" id="link_header"> -->
-<!--                     <ul class="nav1"> -->
-<!--                         <li><a href="">CONO</a></li> -->
-<!--                         <li><a href="">홈</a></li> -->
-<!--                     </ul> -->
-<!--                     <div class="search_area"> -->
-<!--                         <form>  input 타입은 form 으로 감싸~ -->
-<!--                             <input type="search" placeholder="search"> -->
-<!--                             <span>검색</span> -->
-<!--                         </form> -->
-<!--                     </div> -->
-<!--                     <ul class="nav2"> -->
-<%-- 						<c:choose> --%>
-<%-- 							<c:when test="${sId == null}"> --%>
-<!-- 								 <li><a href="MemberHowJoin.func">회원가입</a></li> -->
-<!-- 		                         <li><a href="MemberLogin.func">로그인</a></li> -->
-<%-- 							</c:when> --%>
-<%-- 							<c:otherwise> --%>
-<%-- 		                     	 <li><a href="MypagePass.mypage"><c:out value="${sId }님"/></a></li> --%>
-<!-- 	 							 <li><a href="">알림</a></li> -->
-<!-- 	 							 <li><a href="">메시지</a></li> -->
-<!-- 	 							 <li><a href="">고객센터</a></li>   -->
-<%-- 	                    	</c:otherwise> --%>
-<%-- 						</c:choose> --%>
-<!--                     </ul> -->
-<!--                 </div> -->
-<!--             </div> -->
-            
-            
-            
+	
+	// 검색
+	function search() {
+		let searchText = document.getElementById("searchText").value
+		location.href="search_item?searchText=" + searchText;
+	}
+</script>    
 <header>
 	<span id="login">
 		<span id=""><a href = "home"> 홈 </a>-------</span>
@@ -73,7 +45,8 @@ String sId = (String)session.getAttribute("sId");
 			<a href="../only_member/user_chat_bot.jsp">문의하기</a>
 			<a href="../only_member/user_report_write.jsp">신고하기</a>
 		</span>
-		
+		<hr>
+		<input type="text" placeholder="검색" id="searchText"><button onclick="search()">검색</button>
 		
 		
 	</span>

@@ -1,5 +1,8 @@
 package com.itwillbs.cono.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,5 +83,14 @@ public class MainController {
 			model.addAttribute("msg","회원가입 실패!");
 			return "fail_msg";
 		}
+	}
+	
+	// 검색
+	@RequestMapping(value = "search_item", method = RequestMethod.GET)
+	public String search_item(String searchText, Model model) {
+		List<HashMap<String, String>>  cardList = service.getCardList("%" + searchText + "%");
+		model.addAttribute("searchText", searchText);
+		model.addAttribute("cardList", cardList);
+		return "search/search_item";
 	}
 }

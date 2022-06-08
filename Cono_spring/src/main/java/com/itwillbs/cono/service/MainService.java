@@ -1,5 +1,8 @@
 package com.itwillbs.cono.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,10 @@ public class MainService {
 
 	public void joinCoupon(String member_id) {
 		mapper.insertJoinCoupon(member_id);
+	}
+
+	public List<HashMap<String, String>> getCardList(String searchText) {
+		return mapper.selectCardList(searchText);
 	}
 
 }

@@ -20,5 +20,12 @@
 		INSERT INTO coupon
 		VALUES ('1', #{member_id}, '가입 축하 쿠폰', '5000');
 	</insert>
+	
+<!-- 	상품검색 -->
+	<select id="selectCardList" resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_region, it.item_price, it.item_date
+		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx
+		WHERE im.item_idx = it.item_idx AND im.img_idx = '1' AND it.item_title LIKE #{searchType}
+	</select>
 </mapper>
 

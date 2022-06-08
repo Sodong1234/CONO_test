@@ -47,7 +47,7 @@
 		FROM coin c
 		WHERE member_id = #{sId}
 		ORDER BY coin_idx DESC
-		LIMIT 1;
+		LIMIT 1
 	</select>
 	
 <!-- 	결제 데이터 삽입하기 -->
@@ -138,12 +138,12 @@
 	</select>
 <!-- 	팔로잉 수 -->
 	<select id="selectFollowingCount" resultType="java.lang.Integer">
-		SELECT COUNT(shop_idx) FROM follow WHERE member_id = #{sId};
+		SELECT COUNT(shop_idx) FROM follow WHERE member_id = #{sId}
 	</select>
 <!-- 	팔로워 수 -->
 	<select id="selectFollowerCount" resultType="java.lang.Integer">
 		SELECT COUNT(member_id) 
 		FROM follow 
-		WHERE shop_idx = (SELECT s.shop_idx FROM shop s WHERE s.member_id = #{sId});
+		WHERE shop_idx = (SELECT s.shop_idx FROM shop s WHERE s.member_id = #{sId})
 	</select>
 </mapper>
