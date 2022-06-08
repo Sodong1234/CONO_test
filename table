@@ -49,6 +49,7 @@ CREATE TABLE shop (
 CREATE TABLE item (
 	item_idx varchar(20),
 	shop_idx varchar(20),
+	member_id varchar(20),
 	item_title varchar(20),
 	item_content varchar(2000),
 	item_price varchar(20),
@@ -103,6 +104,7 @@ CREATE TABLE ord (
 	member_id varchar(20),
 	order_date varchar(14),
 	order_reqContent varchar(1000),
+	order_status varchar(2),
 	PRIMARY KEY (item_idx, member_id)
 );
 
