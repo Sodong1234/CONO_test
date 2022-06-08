@@ -105,7 +105,6 @@ CREATE TABLE ord (
 	ord_date varchar(14),
 	ord_reqContent varchar(1000),
 	ord_quantity varchar(10),
-	ord_status varchar(2),
 	PRIMARY KEY (item_idx, member_id)
 );
 
