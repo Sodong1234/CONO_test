@@ -41,6 +41,20 @@
 		<!-- 상단 부분 -->
 			<jsp:include page="../header_footer/top.jsp"/>
 	</div>
+	<!------ 상단 바 ------>
+	<nav>
+		<ul>
+			<li><a href="ProductMyshop.shop">내 상점</a></li>
+			<li><a href="ItemUploadForm.shop">상품 등록</a></li>
+			<li><a href="ItemMng.shop">상품 관리</a></li>
+			<li><a href="ItemReviewMng.shop">상품 후기 관리</a></li>
+			<li><a href="ItemOrdMng.shop">상품 주문 관리</a></li>
+			<li><a href="follow_shop.jsp">팔로우 상점</a></li>
+		</ul>
+	</nav>
+	
+	<hr>
+	
 	<form action="ProductMyshopModifyPro.shop" name="shopForm" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="shop_idx" value="${myShop.get('shop_idx') }">
 			<table>

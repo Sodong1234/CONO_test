@@ -57,7 +57,7 @@ String sell_status = request.getParameter("sell_status");
 			<li><a class="fw-bold text-white" style="text-decoration:none;" href="ItemUploadForm.shop">상품 등록</a></li>
 			<li><a class="fw-bold text-danger" style="text-decoration:none;" href="ItemMng.shop">상품 관리</a></li>
 			<li><a class="fw-bold text-white" style="text-decoration:none;" href="ItemReviewMng.shop">상품 후기 관리</a></li>
-			<li><a class="fw-bold text-white" style="text-decoration:none;" href="item_order_mng.jsp">상품 주문 관리</a></li>
+			<li><a class="fw-bold text-white" style="text-decoration:none;" href="ItemOrdMng.shop">상품 주문 관리</a></li>
 			<li><a class="fw-bold text-white" style="text-decoration:none;" href="follow_shop.jsp">팔로우 상점</a></li>
 		</ul>
 		<div class="float-end">

@@ -82,5 +82,8 @@ public interface ShopMapper {
 	// 클릭된 이미지 조회
 	String selectImg(String item_idx);
 
+	// 상품 주문 (진행중) 리스트 조회
+	List<HashMap<String, String>> selectOrdList(String member_id);
+
 
 }

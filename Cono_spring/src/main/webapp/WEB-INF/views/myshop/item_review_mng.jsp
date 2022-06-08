@@ -9,7 +9,7 @@
 <title>myshop/item_review_mng.jsp</title>
 <style type="text/css">
 img {
-	width: 200px;
+	width: 100px;
 }
 </style>
 </head>
@@ -25,7 +25,7 @@ img {
 			<li><a href="ItemUploadForm.shop">상품 등록</a></li>
 			<li><a href="ItemMng.shop">상품 관리</a></li>
 			<li><a href="ItemReviewMng.shop">상품 후기 관리</a></li>
-			<li><a href="item_order_mng.jsp">상품 주문 관리</a></li>
+			<li><a href="ItemOrdMng.shop">상품 주문 관리</a></li>
 			<li><a href="follow_shop.jsp">팔로우 상점</a></li>
 		</ul>
 	</nav>
@@ -90,12 +90,20 @@ img {
 	<div>
 		<!-- URL 파라미터로 구분(sort) -->
 		추천순&nbsp;최신순&nbsp;평점순
-		<table>
+		<table border="1">
 			<c:forEach items="${reviewList }" var="review">
 				<tr>
-					<td>${review.get('review_idx') }<br> ${review.get('review_content') }<br> ${review.get('item_score') }<br>
-						${review.get('member_id') } / ${review.get('review_date') }<br>
-					</td>
+					<td width="100px" rowspan="2">${review.get('review_idx') }</td>
+					<td width="100px">${review.get('item_score') }</td>
+					<td width="300px" rowspan="2">${review.get('review_content') }</td>
+					<td width="100px" rowspan="2">${review.get('review_date') }</td>
+					
+<%-- 					<td>${review.get('review_idx') }<br> ${review.get('review_content') }<br> ${review.get('item_score') }<br> --%>
+<%-- 						${review.get('member_id') } / ${review.get('review_date') }<br> --%>
+<!-- 					</td> -->
+				</tr>
+				<tr>
+					<td>${review.get('member_id') }</td>
 				</tr>
 			</c:forEach>
 		</table>

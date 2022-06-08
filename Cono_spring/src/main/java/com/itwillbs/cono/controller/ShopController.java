@@ -57,7 +57,13 @@ public class ShopController {
 	
 	// ---------------------- 상품 등록 페이지 이동 - 이소영  ------------------
 	@RequestMapping(value = "/ItemUploadForm.shop", method = RequestMethod.GET)
-	public String uploadItem() {
+	public String uploadItem(HttpSession session) {
+		
+		String member_id = session.getAttribute("sId").toString();
+		
+		if(member_id == null) {
+			return "redirect:/login";
+		}
 		
 		return "myshop/item_upload";
 	}
@@ -68,6 +74,10 @@ public class ShopController {
 	public String uploadItemPost(@ModelAttribute ItemDTO item, @ModelAttribute CategoryDTO category, MultipartFile[] upload, HttpServletRequest request, HttpSession session, Model model) {
         
 		String member_id = session.getAttribute("sId").toString();
+		
+		if(member_id == null) {
+			return "redirect:/login";
+		}
 		
         boolean isUploadSuccess = service.uploadItem(item, category, upload, request, member_id);
         
@@ -85,6 +95,10 @@ public class ShopController {
 	public String selectItemList(String keyword, String sell_status, HttpSession session, Model model) {
 		
 		String member_id = session.getAttribute("sId").toString();
+		
+		if(member_id == null) {
+			return "redirect:/login";
+		}
 		
 		List<HashMap<String, String>> itemList = service.selectItemList(member_id, keyword, sell_status);
 		model.addAttribute("itemList", itemList);
@@ -112,7 +126,13 @@ public class ShopController {
 		
 	// ----------------------- 상품 상세 정보 조회 - 이소영 --------------------
 	@RequestMapping(value = "/ItemDetail.shop", method = RequestMethod.GET)
-	public String selectItemDetail(String item_idx, Model model, HttpServletRequest request) {
+	public String selectItemDetail(String item_idx, Model model, HttpServletRequest request, HttpSession session) {
+		
+		String member_id = session.getAttribute("sId").toString();
+		
+		if(member_id == null) {
+			return "redirect:/login";
+		}
 		
 		// 상품 상세 정보 조회
 		HashMap<String, String> itemDetail = service.selectItemDetail(item_idx); 
@@ -246,4 +266,22 @@ public class ShopController {
 	}
 	// -------------------------------------------------------------------------
 	
+	// --------------- 상품 주문 관리 - 문현진 -------------------
+	@RequestMapping(value = "/ItemOrdMng.shop", method = RequestMethod.GET)
+	public String getOrdList(HttpSession session, Model model) {
+		
+		String member_id = session.getAttribute("sId").toString();
+		
+		if(member_id == null) {
+			return "redirect:/login";
+		}
+		
+		// 상점 정보 조회
+		List<HashMap<String, String>> ordList = service.getOrdList(member_id);
+		
+		model.addAttribute("ordList", ordList);
+		
+		return "myshop/item_order_mng";
+	}
+	// -------------------------------------------------------------------------
 }

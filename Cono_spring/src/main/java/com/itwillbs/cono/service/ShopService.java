@@ -347,9 +347,15 @@ public class ShopService {
 	public List<HashMap<String, String>> selectReviewList(String member_id, String item_idx) {
 		return mapper.selectReviewList(member_id, item_idx);
 	}
-
+	
+	// 클릭된 이미지 조회
 	public String selectImg(String item_idx) {
 		return mapper.selectImg(item_idx);
+	}
+
+	// 상품 주문 (진행중) 리스트 조회
+	public List<HashMap<String, String>> getOrdList(String member_id) {
+		return mapper.selectOrdList(member_id);
 	}
 
 }

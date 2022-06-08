@@ -33,7 +33,7 @@ if(session.getAttribute("sId") == null) {
 			<li><a href="ItemUploadForm.shop">상품 등록</a></li>
 			<li><a href="ItemMng.shop">상품 관리</a></li>
 			<li><a href="ItemReviewMng.shop">상품 후기 관리</a></li>
-			<li><a href="item_order_mng.jsp">상품 주문 관리</a></li>
+			<li><a href="ItemOrdMng.shop">상품 주문 관리</a></li>
 			<li><a href="follow_shop.jsp">팔로우 상점</a></li>
 		</ul>
 	</nav>
