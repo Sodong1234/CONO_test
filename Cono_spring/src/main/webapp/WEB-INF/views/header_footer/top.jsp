@@ -16,10 +16,18 @@ String sId = (String) session.getAttribute("sId");
 	// =========================양윤석==================================
 	function confirmLogout() {
 		if (confirm("로그아웃 하시겠습니까?")) {
-			location.href = "./MemberLogout.func";
+			location.href = "logout";
 		}
 	}
+	
 	// =========================양윤석==================================
+		//============== 가준 검색 ============
+	function search_item() {
+		let searchText = document.getElememtById("searchText").value
+		
+		location.href=("search_item?searchText=" + searchText);
+	}
+
 </script>
 <meta charset="UTF-8">
 <meta name="description" content="Ogani Template">
@@ -54,8 +62,8 @@ String sId = (String) session.getAttribute("sId");
 					<li class="test"><a href="#"><p>알림</p></a></li>
 					<li class="test"><a href="#"><p>메세지</p></a></li>
 					<li class="test"><a href="ProductMyshop.shop"><p>판매자 전용 마이페이지</p></a></li>
-					<li class="test"><a href="../admin_center/main.jsp"><p>관리자 전용 마이페이지</p></a></li>
-					<li class="test"><a href="MypagePass.mypage"><p><%=sId%>님</p></a></li>
+					<li class="test"><a href=""><p>관리자 전용 마이페이지</p></a></li>
+					<li class="test"><a href="mypage"><p><%=sId%>님</p></a></li>
 				<%}%>
 <!-- 				<span class="button"> -->
 <!-- 					<button id="userCenter" onclick="userCenterList()">고객센터</button> -->
@@ -71,13 +79,13 @@ String sId = (String) session.getAttribute("sId");
 	</div>
 		<div class="conocontainer">
 				<div class="header__logo">
-					<a href="main.func"><img src="${path}/resources/img/logo.png" alt=""></a>
+					<a href="main"><img src="${path}/resources/img/logo.png" alt=""></a>
 				</div>
 				      	
              <div class="wrap">
 			   <div class="search">
-			      <input type="text" class="searchTerm" placeholder="상품을 입력하세요">
-			      <button type="submit" class="searchButton">
+			      <input type="text" class="searchTerm" id="searchText" placeholder="상품을 입력하세요">
+			      <button type="submit" class="searchButton" onclick="search_item()">
 			        <i class="fa fa-search"></i>
 			     </button>
 		<div class="righttab">
