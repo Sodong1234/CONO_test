@@ -53,7 +53,7 @@ String sId = (String) session.getAttribute("sId");
 					<!-- ==============================양윤석============================= -->
 					<li class="test"><a href="#"><p>알림</p></a></li>
 					<li class="test"><a href="#"><p>메세지</p></a></li>
-					<li class="test"><a href="Myshop.shop"><p>판매자 전용 마이페이지</p></a></li>
+					<li class="test"><a href="ProductMyshop.shop"><p>판매자 전용 마이페이지</p></a></li>
 					<li class="test"><a href="../admin_center/main.jsp"><p>관리자 전용 마이페이지</p></a></li>
 					<li class="test"><a href="MypagePass.mypage"><p><%=sId%>님</p></a></li>
 				<%}%>
