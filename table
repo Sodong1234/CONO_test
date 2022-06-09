@@ -136,7 +136,6 @@ CREATE TABLE coupon (
 	member_id varchar(20),
 	coupon_title varchar(50),
 	coupon_content varchar(100),
-	coupon_condition varchar(10),
 	coupon_price varchar(50)
 );
 
