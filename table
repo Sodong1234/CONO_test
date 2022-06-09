@@ -27,22 +27,22 @@ CREATE TABLE admin (
 
 CREATE TABLE member (
 	member_id varchar(20) PRIMARY KEY,
-	member_pass varchar(20),
-	member_email varchar(50),
-	member_phone varchar(13),
-	member_nick varchar(20),
-	member_logo varchar(100),
-	member_birth varchar(14),
-	member_date varchar(14),
-	member_status varchar(20)
+	member_pass varchar(20) NOT NULL,
+	member_email varchar(50) NOT NULL UNIQUE,
+	member_phone varchar(13) NOT NULL,
+	member_nick varchar(20) NOT NULL,
+	member_logo varchar(100) NOT NULL,
+	member_birth varchar(14) NOT NULL,
+	member_date varchar(14) NOT NULL,
+	member_status varchar(20) NOT NULL
 );
 
 CREATE TABLE shop (
 	shop_idx varchar(20),
 	member_id varchar(20),
-	shop_name varchar(20),
+	shop_name varchar(20) NOT NULL,
 	shop_img varchar(100),
-	shop_content varchar(50),
+	shop_content varchar(50) NOT NULL,
 	PRIMARY KEY (shop_idx ,member_id)
 );
 
@@ -50,16 +50,16 @@ CREATE TABLE item (
 	item_idx varchar(20),
 	shop_idx varchar(20),
 	member_id varchar(20),
-	item_title varchar(20),
-	item_content varchar(2000),
-	item_price varchar(20),
-	item_date varchar(14),
+	item_title varchar(20) NOT NULL,
+	item_content varchar(2000) NOT NULL,
+	item_price varchar(20) NOT NULL,
+	item_date varchar(14) NOT NULL,
 	item_endDate varchar(14),
-	item_status varchar(3),
-	item_hide varchar(3),
-	item_readCnt varchar(20),
-	item_region varchar(40),
-	item_quantity varchar(10),
+	item_status varchar(3) NOT NULL,
+	item_hide varchar(3) NOT NULL,
+	item_readCnt varchar(20) NOT NULL,
+	item_region varchar(40) NOT NULL,
+	item_quantity varchar(10) NOT NULL,
 	PRIMARY KEY (item_idx ,shop_idx) 
 );
 
@@ -75,8 +75,8 @@ CREATE TABLE review (
 	review_idx varchar(20),
    	member_id varchar(20),
    	item_idx varchar(20),
-   	review_content varchar(1000),
-   	review_date varchar(14),
+   	review_content varchar(1000) NOT NULL,
+   	review_date varchar(14) NOT NULL,
    	PRIMARY KEY (review_idx, item_idx ,member_id)  
 );
 
@@ -102,9 +102,9 @@ CREATE TABLE basket (
 CREATE TABLE ord (
 	item_idx varchar(20),
 	member_id varchar(20),
-	ord_date varchar(14),
+	ord_date varchar(14) NOT NULL,
 	ord_reqContent varchar(1000),
-	ord_quantity varchar(10),
+	ord_quantity varchar(10) NOT NULL,
 	PRIMARY KEY (item_idx, member_id)
 );
 
@@ -132,11 +132,12 @@ CREATE TABLE category  (
 
 
 CREATE TABLE coupon (
-	coupon_idx varchar(20) PRIMARY KEY,
+	coupon_idx varchar(20),
 	member_id varchar(20),
-	coupon_title varchar(50),
-	coupon_content varchar(100),
-	coupon_price varchar(50)
+	coupon_title varchar(50) NOT NULL,
+	coupon_content varchar(100) NOT NULL,
+	coupon_price varchar(50) NOT NULL,
+	PRIMARY KEY (coupon_idx, member_id)
 );
 
 CREATE TABLE follow (
@@ -145,38 +146,14 @@ CREATE TABLE follow (
 	PRIMARY KEY (member_id, shop_idx)
 );
 
-CREATE TABLE alarm (
-	alarm_idx varchar(20) PRIMARY KEY,
-	shop_idx varchar(20),
-	alarm_title varchar(50),
-	alarm_content varchar(1000),
-	alarm_status varchar(5)
-);
-
-CREATE TABLE msgHeader (
-	member_id varchar(20),
-	shop_idx varchar(20),
-	msgList_last_content varchar(50),
-	msgList_time varchar(14),
-	msgList_status varchar(5),
-	PRIMARY KEY (member_id, shop_idx)
-);
-
-CREATE TABLE msgChat (
-	member_id varchar(20),
-	shop_idx varchar(20),
-	msgChat_content varchar(500),
-	msgChat_time varchar(14),
-	PRIMARY KEY (member_id, shop_idx)
-);
 
 CREATE TABLE coin (
     coin_idx VARCHAR(50),
     member_id VARCHAR(20),
-    coin_add VARCHAR(50),
-    coin_use VARCHAR(50),
-    coin_total VARCHAR(50),
-    coin_date VARCHAR(14),
+    coin_add VARCHAR(50) NOT NULL,
+    coin_use VARCHAR(50) NOT NULL,
+    coin_total VARCHAR(50) NOT NULL,
+    coin_date VARCHAR(14) NOT NULL,
     PRIMARY KEY(coin_idx, member_id)
 );
 
@@ -238,3 +215,30 @@ CREATE TABLE report (
 
 
 qna (1:1 문의) - 
+
+
+------------------------ 삭제 예정
+CREATE TABLE alarm (
+	alarm_idx varchar(20) PRIMARY KEY,
+	shop_idx varchar(20),
+	alarm_title varchar(50),
+	alarm_content varchar(1000),
+	alarm_status varchar(5)
+);
+
+CREATE TABLE msgHeader (
+	member_id varchar(20),
+	shop_idx varchar(20),
+	msgList_last_content varchar(50),
+	msgList_time varchar(14),
+	msgList_status varchar(5),
+	PRIMARY KEY (member_id, shop_idx)
+);
+
+CREATE TABLE msgChat (
+	member_id varchar(20),
+	shop_idx varchar(20),
+	msgChat_content varchar(500),
+	msgChat_time varchar(14),
+	PRIMARY KEY (member_id, shop_idx)
+);
