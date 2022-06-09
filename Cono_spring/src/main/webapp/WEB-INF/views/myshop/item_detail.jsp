@@ -8,7 +8,7 @@ if(session.getAttribute("sId") == null) {
 	response.sendRedirect("MemberLogin.func");
 }
 %>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
 <meta charset="UTF-8">

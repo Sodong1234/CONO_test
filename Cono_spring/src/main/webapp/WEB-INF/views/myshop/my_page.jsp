@@ -12,7 +12,7 @@ if(session.getAttribute("sId") == null) {
 String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 %> 
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <meta charset="UTF-8">
 <title>myShop/my_page.jsp</title>
