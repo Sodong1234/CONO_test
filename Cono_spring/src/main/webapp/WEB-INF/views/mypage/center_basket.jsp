@@ -25,8 +25,8 @@
 			<c:forEach var="basket" items="${basketList}">
 				<tr>
 					<td><input type="checkbox" name="select">선택</td>
-					<td>${basket.item_idx }</td>
-					<td>${basket.img_real_name }</td>
+					<td onclick="location.href='itemDetail?item_idx=${card.item_idx}'">${basket.item_idx }</td>
+					<td onclick="location.href='itemDetail?item_idx=${card.item_idx}'">${basket.img_real_name }</td>
 					<td>${basket.item_title }</td>
 					<td>${basket.item_price }</td>
 				</tr>

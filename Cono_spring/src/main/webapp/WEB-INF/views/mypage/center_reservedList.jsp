@@ -15,7 +15,7 @@
 	<h1>예약 중인 상품</h1>
 	
 	<c:forEach var="reserved" items="${reservedList}">
-		<table border="1" onclick="location.href='아이템디테일?idx'">
+		<table border="1" oonclick="location.href='itemDetail?item_idx=${card.item_idx}'">
 			<tr>
 				<td>${reserved.item_idx }</td>
 				<td>${reserved.img_real_name }</td>

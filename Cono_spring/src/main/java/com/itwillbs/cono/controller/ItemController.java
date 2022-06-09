@@ -21,7 +21,7 @@ public class ItemController {
 	ItemService service;
 	
 	// ------------------- 상품 상세 정보 조회 (구매자) - 이소영 ---------------
-	@RequestMapping(value = "/ItemDetail", method = RequestMethod.GET)
+	@RequestMapping(value = "itemDetail", method = RequestMethod.GET)
 	public String getItemDetail(String item_idx, Model model, HttpServletRequest request) {
 		
 		// 상품 상세 정보 조회
@@ -31,7 +31,7 @@ public class ItemController {
 		List<ImgDTO> imgList = service.selectImgList(item_idx);
 		model.addAttribute("itemDetail", itemDetail);
 		model.addAttribute("imgList", imgList);
-		
+
 		return "item/item_detail";
 	}
 	// -------------------------------------------------------------------------

@@ -27,7 +27,7 @@
 		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx
 		WHERE im.item_idx = it.item_idx AND im.img_idx = '1' AND it.item_title LIKE #{searchType}
 		ORDER BY it.item_idx DESC
-		LIMIT 1,20
+		LIMIT 0,20
 	</select>
 	
 <!-- 		카테고리 검색 -->

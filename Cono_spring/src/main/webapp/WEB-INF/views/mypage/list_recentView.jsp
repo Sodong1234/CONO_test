@@ -17,7 +17,7 @@
 	<h1>최근 본 상품</h1>
 	<hr>
 	<c:forEach var="recentView" items="${recentViewList }">
-		<table border="1">
+		<table border="1" onclick="location.href='itemDetail?item_idx=${card.item_idx}'">
 			<tr>
 				<td>${recentView.item_idx }</td>
 				<td>${recentView.img_real_name }</td>
