@@ -31,4 +31,8 @@ public class MainService {
 		return mapper.selectCardList(searchText);
 	}
 
+	public List<HashMap<String, String>> getCategoryCardList(String cgr) {
+		return mapper.selectCategoryCardList(cgr);
+	}
+
 }

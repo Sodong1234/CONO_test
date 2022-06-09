@@ -95,6 +95,14 @@ public class MainController {
 		model.addAttribute("cardList", cardList);
 		return "search/search_item";
 	}
+	
+	@RequestMapping(value = "search_category", method = RequestMethod.GET)
+	public String search_item_fashion(Model model, String cgr) {
+		List<HashMap<String, String>>  cardList = service.getCategoryCardList(cgr);
+		model.addAttribute("cardList", cardList);
+		return "search/search_item";
+	}
+	
 	// 무한 스크롤
 //	@RequestMapping(value="/infiniteScrollDown", method = RequestMethod.POST)
 //	public @ResponseBody List<HashMap<String, String>> infiniteScrollDownPOST(@RequestBody HashMap<String, String> card ) {

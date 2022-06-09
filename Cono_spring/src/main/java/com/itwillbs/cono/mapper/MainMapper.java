@@ -15,5 +15,7 @@ public interface MainMapper {
 
 	List<HashMap<String, String>> selectCardList(String searchText);
 
+	List<HashMap<String, String>> selectCategoryCardList(String cgr);
+
 
 }

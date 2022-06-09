@@ -16,11 +16,20 @@
 	</div>
 		<div class="clear"></div>   
 		<hr> 
-		
-		
 		<div>
-			<section></section>
-			<section></section>
+			<section>
+				<span><a href="search_category?cgr=1">패션</a></span>
+				<span><a href="search_category?cgr=2">디지털/가전</a></span>
+				<span><a href="search_category?cgr=3">스포츠/레저</a></span>
+				<span><a href="search_category?cgr=4">가구/인테리어</a></span>
+				
+			</section>
+			<section>
+				<span><a href="search_category?cgr=5">생활/가공식품</a></span>
+				<span><a href="search_category?cgr=6">도서/티켓/문구</a></span>
+				<span><a href="search_category?cgr=7">뷰티/미용</a></span>
+				<span><a href="search_category?cgr=8">반려</a></span>
+			</section>
 		</div>
 		  
 	<div class="clear">

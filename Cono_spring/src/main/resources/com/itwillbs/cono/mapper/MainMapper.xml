@@ -26,6 +26,16 @@
 		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_region, it.item_price, it.item_date
 		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx
 		WHERE im.item_idx = it.item_idx AND im.img_idx = '1' AND it.item_title LIKE #{searchType}
+		ORDER BY it.item_idx DESC
+		LIMIT 1,20
+	</select>
+	
+<!-- 		카테고리 검색 -->
+	<select id="selectCategoryCardList" resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_region, it.item_price, it.item_date
+		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx
+					 LEFT OUTER JOIN category cg ON cg.item_idx = it.item_idx
+		WHERE im.item_idx = it.item_idx AND im.img_idx = '1' AND cg.category_big = #{cgr}
 		ORDER BY it.item_date DESC
 		LIMIT 0,20;
 	</select>
