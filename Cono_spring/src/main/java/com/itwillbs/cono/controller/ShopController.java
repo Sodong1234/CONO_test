@@ -19,6 +19,7 @@ import com.itwillbs.cono.vo.CategoryDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.ShopDTO;
 
 @Controller
@@ -92,7 +93,7 @@ public class ShopController {
 	
 	// ------------------------- 상품 조회(리스트) - 이소영 --------------------
 	@RequestMapping(value = "/ItemMng.shop", method = RequestMethod.GET)
-	public String selectItemList(String keyword, String sell_status, HttpSession session, Model model) {
+	public String selectItemList(String keyword, String sell_status, HttpSession session, HttpServletRequest request, Model model) {
 		
 		String member_id = session.getAttribute("sId").toString();
 		
@@ -100,10 +101,50 @@ public class ShopController {
 			return "redirect:/login";
 		}
 		
+		int pageNum = 1;
+		
+		if(request.getParameter("pageNum") != null) {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		}
+		
+		int listCount = service.getItemLIstCount(member_id);
+		int listLimit = 10; // 한 페이지 당 표시할 목록 갯수
+		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
+		
+		// 페이징 처리를 위한 계산 작업
+		int maxPage = (int)Math.ceil((double)listCount / listLimit);
+		int startPage = ((int)((double)pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		int endPage = startPage + pageLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		// 조회 시작 게시물 번호(행 번호) 계산
+		int startRow = (pageNum - 1) * listLimit;
+		
+		// 페이징 처리 정보를 PageInfo 객체에 저장
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setPageNum(pageNum);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setListLimit(listLimit);
+		
+		System.out.println(pageNum);
+		System.out.println(maxPage);
+		System.out.println(startPage);
+		System.out.println(endPage);
+		System.out.println(listCount);
+		System.out.println(startRow);
+		System.out.println(listLimit);
+		
+		
 		List<HashMap<String, String>> itemList = service.selectItemList(member_id, keyword, sell_status);
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("sell_status", sell_status);
+		model.addAttribute("pageInfo", pageInfo);
 		return "myshop/item_mng";
 	}
 	// -------------------------------------------------------------------------

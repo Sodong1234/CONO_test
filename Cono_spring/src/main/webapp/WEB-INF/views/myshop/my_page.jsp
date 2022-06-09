@@ -43,7 +43,7 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 				<tr>
 					<td class="td_left"><label for="shop_idx">상점번호</label></td>
 					<td class="td_right">
-						<input type="text" name="shop_idx" value="${myShop.get('shop_idx') }">
+						${myShop.get('shop_idx') }
 					</td>
 				</tr>
 				<tr>

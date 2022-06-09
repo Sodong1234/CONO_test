@@ -362,5 +362,10 @@ public class ShopService {
 	public List<HashMap<String, String>> getFinishOrdList(String member_id) {
 		return mapper.selectFinishOrdList(member_id);
 	}
+	
+	// 상품 조회 (페이징 처리를 위한 ListCount 조회)
+	public Integer getItemLIstCount(String member_id) {
+		return mapper.selectItemListCount(member_id);
+	}
 
 }

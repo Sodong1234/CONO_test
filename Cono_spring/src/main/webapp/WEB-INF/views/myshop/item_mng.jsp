@@ -118,8 +118,36 @@ String sell_status = request.getParameter("sell_status");
 			</div>
 		</div>
 	</div>
+	<div>
+		<c:choose>
+			<c:when test="${pageNum > 1 }">
+				<input type="button" value="이전" onclick="location.href='ItemMng.shop?pageNum=${pageNum - 1 }'">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value="이전">
+			</c:otherwise>
+		</c:choose>
+
+		<c:forEach var="i" begin="${startPage }" end="${endPage }">
+			<c:choose>
+			<c:when test="${pageNum eq i }">
+				${i }
+			</c:when>
+			<c:otherwise>
+				<a href="ItemMng.shop?pageNum=${i }">${i }</a>
+			</c:otherwise>
+		</c:choose>
+		</c:forEach>
+		<c:choose>
+			<c:when test="${pageNum < maxPage }">
+				<input type="button" value="다음" onclick="location.href='ItemMng.shop?pageNum=${pageNum + 1 }'">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value="다음">
+			</c:otherwise>
+		</c:choose>
+	</div>
 	<div class="clearfix"></div>
-	
 	<div>
 		<!-- 하단 부분 -->
 		<jsp:include page="../header_footer/bottom.jsp"/>

@@ -11,8 +11,11 @@ if(session.getAttribute("sId") == null) {
 <meta charset="UTF-8">
 <title>myshop/upload_item.jsp</title>
 <script src="../js/jquery-3.6.0.js"></script>
-<!-- 파일 확장자 이미지 파일 아닐 경우 파일 선택 리셋 후 "등록가능한 파일이 아닙니다" 출력 -->
 <script type="text/javascript">
+	
+	
+	
+
 	$(function() {
 		$(".img").change(function() {
 			alert($(".img").val().split(".")[1]);
@@ -65,15 +68,22 @@ if(session.getAttribute("sId") == null) {
 					<th>카테고리</th>
 					<td>
 						<select name="category_big">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
+							<option value="1">패션</option>
+							<option value="2">디지털/가전</option>
+							<option value="3">스포츠/레저</option>
+							<option value="4">가구/인테리어</option>
+							<option value="5">생활/가공식품</option>
+							<option value="6">도서/티켓</option>
+							<option value="7">뷰티/미용</option>
+							<option value="8">반려</option>
 						</select>
-						<select name="category_small">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
+						<div id="category_area">
+							<select name="category_small">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+							</select>
+						</div>
 					</td>
 				</tr>
 				<tr>

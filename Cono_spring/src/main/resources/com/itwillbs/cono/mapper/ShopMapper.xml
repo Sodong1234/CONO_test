@@ -226,4 +226,14 @@
 		   AND s.member_id = #{member_id}
 		   AND i.item_status = '2'
 	</select>
+	
+	<!-- 상품 조회 (페이징 처리를 위한 ListCount 조회) -->
+	<select id="selectItemListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		  FROM item 
+		 WHERE shop_idx = (SELECT shop_idx
+		 				     FROM shop
+		 				    WHERE member_id=#{member_id})
+		  
+	</select>
 </mapper>

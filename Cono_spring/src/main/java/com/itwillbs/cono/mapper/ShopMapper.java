@@ -87,6 +87,9 @@ public interface ShopMapper {
 
 	// 상품 주문 (완료) 리스트 조회
 	List<HashMap<String, String>> selectFinishOrdList(String member_id);
+	
+	// 상품 조회 (페이징 처리를 위한 ListCount 조회)
+	Integer selectItemListCount(String member_id);
 
 
 }
