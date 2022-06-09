@@ -45,11 +45,11 @@ String sId = (String) session.getAttribute("sId");
 		<div class="wrapper">
 			<ul class="top-menu">
 				<%if (sId == null) {%>
-					<li class="test"><a href="MemberHowJoin.func"><p>회원가입</p></a></li>
-					<li class="test"><a href="MemberLogin.func"><p>로그인</p></a></li>
+					<li class="test"><a href="joinHow"><p>회원가입</p></a></li>
+					<li class="test"><a href="login"><p>로그인</p></a></li>
 				<%} else {%>
 					<!-- ==============================양윤석============================= -->
-					<li class="test"><a href="javascript:void(0)" onclick="confirmLogout()"><p>로그아웃</p></a></li>
+					<li class="test"><a href="logout" onclick="confirmLogout()"><p>로그아웃</p></a></li>
 					<!-- ==============================양윤석============================= -->
 					<li class="test"><a href="#"><p>알림</p></a></li>
 					<li class="test"><a href="#"><p>메세지</p></a></li>
