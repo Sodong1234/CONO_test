@@ -50,7 +50,7 @@
 	
 	<!-- category 테이블 insert -->
 	<insert id="insertCategory">
-		INSERT INTO category VALUES (#{category.category_big},#{category.category_small},#{item.item_idx},'0')
+		INSERT INTO category VALUES (#{category.category_big},#{category.category_small},#{item.item_idx})
 	</insert>
 	
 	<!-- img 테이블 img_idx 조회 -->
@@ -214,7 +214,7 @@
 		 WHERE i.shop_idx = s.shop_idx
 		   AND ord.item_idx = i.item_idx
 		   AND s.member_id = #{member_id}
-		   AND i.item_status = '1';
+		   AND i.item_status = '1'
 	</select>
 
 	<!-- 상품 주문 (완료) 리스트 조회 -->
@@ -224,6 +224,6 @@
 		 WHERE i.shop_idx = s.shop_idx
 		   AND ord.item_idx = i.item_idx
 		   AND s.member_id = #{member_id}
-		   AND i.item_status = '2';
+		   AND i.item_status = '2'
 	</select>
 </mapper>
