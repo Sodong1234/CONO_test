@@ -207,11 +207,33 @@ CREATE TABLE payment (
 
 notice (공지 사항) - 관리자가 공지사항 등록시 생성
 CREATE TABLE notice (
-	notice_idx varchar(20),
-	admin_id varchar(20),
-	notice_subject varchar(50),
-	notice_content varchar(500),
-	notice_date varchar(8)
+   notice_idx varchar(20) PRIMARY KEY,
+   admin_id varchar(20),
+   notice_subject varchar(50),
+   notice_content varchar(500),
+   notice_date varchar(8)
+);
+
+CREATE TABLE qna (
+   qna_idx varchar(20) PRIMARY KEY,
+   member_id varchar(20),
+   qna_type varchar(20),
+   qna_subject varchar(50),
+   qna_content varchar(500),
+   qna_re_ref INT,
+   qna_re_lev INT,
+   qna_re_seq INT,
+   qna_date varchar(8),
+   qna_status varchar(20)
+);
+
+CREATE TABLE report (
+   report_idx varchar(20) primary key,
+   member_id varchar(20),
+   report_type varchar(20),
+   report_subject varchar(50),
+   report_content varchar(500),
+   report_date varchar(8),
 );
 
 
