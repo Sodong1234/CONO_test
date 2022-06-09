@@ -76,8 +76,9 @@ public class MainController {
 	@RequestMapping(value = "joinPost", method = RequestMethod.POST)
 	public String joinPost(@ModelAttribute MemberDTO member, Model model) {
 		int insertCount = service.joinMember(member);
-
-		if(insertCount > 1) {
+		System.out.println(insertCount);
+		if(insertCount > 0) {
+			service.setShopInfo(member.getMember_id(), member.getMember_nick());  // 회원가입 시 상점 기본 정보 입력
 			service.joinCoupon(member.getMember_id());	// 회원가입 쿠폰 DB 입력
 			model.addAttribute("msg","회원가입을 축하합니다! 가입 축하 쿠폰이 지급되었습니다!");
 			return "member/success_msg";

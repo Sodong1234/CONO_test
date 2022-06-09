@@ -3,6 +3,8 @@ package com.itwillbs.cono.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwillbs.cono.vo.MemberDTO;
 
 public interface MainMapper {
@@ -16,6 +18,8 @@ public interface MainMapper {
 	List<HashMap<String, String>> selectCardList(String searchText);
 
 	List<HashMap<String, String>> selectCategoryCardList(String cgr);
+
+	void insertShopInfo(@Param("member_id") String member_id,@Param("member_nick") String member_nick);
 
 
 }

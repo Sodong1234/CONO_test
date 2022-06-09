@@ -18,7 +18,13 @@
 <!-- 	회원가입 축하 쿠폰 -->
 	<insert id="insertJoinCoupon">
 		INSERT INTO coupon
-		VALUES ('1', #{member_id}, '가입 축하 쿠폰', '5000');
+		VALUES ((SELECT COUNT(c.coupon_idx) FROM coupon c) + 1, #{member_id}, '가입 축하 쿠폰','가입을 축하합니다! 2만원 이상 구매시 이용 가능' ,'5000');
+	</insert>
+	
+<!-- 		회원가입시 샵 기본 정보 생성 -->
+	<insert id="insertShopInfo">
+		INSERT INTO shop
+		VALUES ((SELECT COUNT(s.shop_idx) FROM shop s) + 1,#{member_id},#{member_nick},null,'')
 	</insert>
 	
 <!-- 	상품검색 -->

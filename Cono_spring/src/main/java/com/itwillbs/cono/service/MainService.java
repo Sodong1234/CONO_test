@@ -35,4 +35,8 @@ public class MainService {
 		return mapper.selectCategoryCardList(cgr);
 	}
 
+	public void setShopInfo(String member_id, String member_nick) {
+		mapper.insertShopInfo(member_id, member_nick);
+	}
+
 }
