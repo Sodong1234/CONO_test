@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.cono.service.MainService;
 import com.itwillbs.cono.vo.MemberDTO;
@@ -93,4 +95,11 @@ public class MainController {
 		model.addAttribute("cardList", cardList);
 		return "search/search_item";
 	}
+	
+//	// 무한 스크롤
+//	@RequestMapping(value="/infiniteScrollDown", method = RequestMethod.POST)
+//	public @ResponseBody List<HashMap<String, String>> infiniteScrollDownPOST(@RequestBody HashMap<String, String> card ) {
+//		Integer item_idxTostart = card.getItem_idx() - 1;
+//		return service.infiniteScrollDown(bnoTostart);
+//	}
 }
