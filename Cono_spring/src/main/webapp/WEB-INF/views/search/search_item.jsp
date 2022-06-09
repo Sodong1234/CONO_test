@@ -13,11 +13,6 @@
 	$(window).scroll(function(){
 		var currentScrollTop = $(window).scrollTop();
 		
-		if(currentScrollTop - lastScrollTop > 0) {
-			lastScrollTop = currentScrollTop;
-		} else {
-			lastScrollTop = currentScrollTop;
-		}
 		// 2. 현재 스크롤의 위치가 화면의 보이는 위치보다 크면
 		if($(window.scrollTop() >= $(document).height() - $(window).height()){
 			// 3. ajax 로 서버에 게시물 데이터 요청
@@ -25,7 +20,7 @@
 			var lastitem_idx = $(".scrolling:last").attr("data-item_idx");
 			$.ajax({
 				type:'post',
-				url:'',
+				url:'/infiniteScrollDown',
 				dataType : 'json',
 				data : JSON.stringify({
 					item_idx : lastitem_idx

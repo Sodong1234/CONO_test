@@ -95,11 +95,11 @@ public class MainController {
 		model.addAttribute("cardList", cardList);
 		return "search/search_item";
 	}
-	
-//	// 무한 스크롤
+	// 무한 스크롤
 //	@RequestMapping(value="/infiniteScrollDown", method = RequestMethod.POST)
 //	public @ResponseBody List<HashMap<String, String>> infiniteScrollDownPOST(@RequestBody HashMap<String, String> card ) {
-//		Integer item_idxTostart = card.getItem_idx() - 1;
-//		return service.infiniteScrollDown(bnoTostart);
+//			card.keySet();
+//			Integer item_idxTostart = card.;
+//			return service.infiniteScrollDown(item_idxTostart);
 //	}
 }
