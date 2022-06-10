@@ -92,7 +92,7 @@ String sId = (String) session.getAttribute("sId");
 	</div>
 	<div class="conocontainer">
 		<div class="header__logo">
-			<a href="main"><img src="${path}/resources/img/logo.png" alt=""></a>
+			<a href="home"><img src="${path}/resources/img/logo.png" alt=""></a>
 		</div>
 
 		<div class="search">
@@ -102,10 +102,8 @@ String sId = (String) session.getAttribute("sId");
 				<i class="fa fa-search"></i>
 			</button>
 			<div class="righttab">
-				<a class=logintab href="MypagePass.mypage"><i
-					class="fa fa-user fa-2x"></i></a> <a class="cart"
-					href="Mypage_basket.mypage"><i
-					class="fa fa-cart-arrow-down fa-2x"></i></a>
+				<a class="myShop" href="#"><i class="fa fa-shop fa-2x"></i></a> 
+				<a class="wish" href="#"><i class="fa fa-heart fa-2x"></i></a>
 			</div>
 		</div>
 	</div>
