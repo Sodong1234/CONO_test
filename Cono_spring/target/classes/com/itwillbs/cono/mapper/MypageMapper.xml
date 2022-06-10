@@ -86,7 +86,7 @@
 	
 <!-- 	현재 보유 쿠폰 리스트 -->
 	<select id="couponList" resultType="com.itwillbs.cono.vo.CouponDTO">
-		SELECT coupon_idx, coupon_title, coupon_content, coupon_condition, coupon_price
+		SELECT coupon_idx, coupon_title, coupon_content, coupon_price
 		FROM coupon
 		WHERE member_id = #{sId}
 	</select>
