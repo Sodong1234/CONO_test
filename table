@@ -147,7 +147,6 @@ CREATE TABLE safe (
     item_idx VARCHAR(20),
     member_id VARCHAR(20),
     shop_idx VARCHAR(20),
-    safe_status VARCHAR(2),
     PRIMARY KEY(safe_idx, member_id)
 );
 
