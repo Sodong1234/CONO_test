@@ -1,9 +1,14 @@
 <%@page import="com.itwillbs.cono.vo.AdminNoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-AdminNoticeDTO notice = (AdminNoticeDTO) request.getAttribute("notice");
+AdminNoticeDTO noticeList = (AdminNoticeDTO) request.getAttribute("noticeList");
+
+//세션 객체에 저장된 세션 아이디("sId") 가져와서 변수에 저장
+String sId = (String)session.getAttribute("sId");	// String 형변환
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,23 +97,20 @@ a {
 	<div>
 		<jsp:include page="../header_footer/top.jsp" />
 	</div>
-	<!-- 헤더 -->
-   <div>
-      <jsp:include page="../admin_css/sidebar.jsp"/>
-   </div>
    
    
 	<div class ="body">
 	<div class="hh"><h1>Notice Modify Page</h1></div>
+	${param.pageNum } ttttttt
 	<div class="wrtie">
 		<form action="AdminNoticeModifyPro.admin" method="post">
-			<input type="hidden" name="notice_idx" value="<%=notice.getNotice_idx()%>"> 
-			<input type="hidden" name="page" value="<%=request.getParameter("page")%>">
+			<input type="hidden" name="notice_idx" value="<%=noticeList.getNotice_idx()%>"> 
+			<input type="hidden" name="pageNum" value="${param.pageNum }">
 
-				<div class = "admin_id"><input type="text" id="textBox" name="admin_id" value="<%=notice.getAdmin_id()%>" required="required"placeholder="관리자 이름을 수정해주세요. "></div>
-				<div class = "subject"><input type="text" id="textBox" name="notice_subject" value="<%=notice.getNotice_subject()%>" required="required"placeholder="공지사항 제목을 수정해주세요. "></div>
+				<div class = "admin_id"><input type="text" id="textBox" name="admin_id" value="<%=noticeList.getAdmin_id()%>" required="required"placeholder="관리자 이름을 수정해주세요. "></div>
+				<div class = "subject"><input type="text" id="textBox" name="notice_subject" value="<%=noticeList.getNotice_subject()%>" required="required"placeholder="공지사항 제목을 수정해주세요. "></div>
 				<div class = "content"><textarea rows="30" cols="100" id="notice_content" name="notice_content" required="required"placeholder="공지사항 내용을 수정해주세요. ">
-						<%=notice.getNotice_content()%>
+						<%=noticeList.getNotice_content()%>
 						</textarea></div>
 						
 			<div class = "buttonArea"><input type="submit" value="수정" class="btn"></div>

@@ -2,6 +2,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%
+// 세션 객체에 저장된 세션 아이디("sId") 가져와서 변수에 저장
+String sId = (String)session.getAttribute("sId");	// String 형변환
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,24 +127,20 @@ h1{
 	<div>
 		<jsp:include page="../header_footer/top.jsp" />
 	</div>
-	<!-- 헤더 -->
-   <div>
-      <jsp:include page="../admin_css/sidebar.jsp"/>
-   </div>
 	
 	
 	<div class="body">
 		<h1>NOTICE</h1>
 			<div class="board_list_wrap">
 			<div class="board_list_head">
-					<div class="title">제목 : ${notice.getNotice_subject() }</div>
-					<div class="writer">${notice.getAdmin_id() }</div>
+					<div class="title">제목 : ${noticeList.getNotice_subject() }</div>
+					<div class="writer">${sId }</div>
 					
-					<div class="date">${notice.getNotice_date() }</div>
+					<div class="date">${noticeList.getNotice_date() }</div>
 					
 			</div>		
 			<div class="board_list_body">
-		<div class= "content"> ${notice.getNotice_content()} 내용내용내용내용내용내용내용내용내용
+		<div class= "content"> ${noticeList.getNotice_content()} 내용내용내용내용내용내용내용내용내용
 		내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
 		내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
 		내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
@@ -149,9 +149,9 @@ h1{
 		</div>
 		
 		<div class="btnArea">
-		<input type="button" value="목록" id="btn"  onclick="location.href='AdminNoticeList.admin'"> 
-		<input type="button" value="수정" id="btn"  onclick="location.href='AdminNoticeModifyForm.admin?notice_idx=${notice.getNotice_idx() }'">
-		<input type="button" value="삭제" id="btn" onclick="location.href='AdminNoticeDeletePro.admin?notice_idx=${notice.getNotice_idx() }&page=${param.page }'">
+		<input type="button" value="목록" id="btn"  onclick="location.href='AdminNoticeList'"> 
+		<input type="button" value="수정" id="btn"  onclick="location.href='AdminNoticeModifyForm.admin?notice_idx=${noticeList.getNotice_idx() }&pageNum=${param.pageNum }'">
+		<input type="button" value="삭제" id="btn" onclick="location.href='AdminNoticeDeletePro.admin?notice_idx=${noticeList.getNotice_idx() }&pageNum=${param.pageNum }'">
 		</div>
 	</div>
 	</div>

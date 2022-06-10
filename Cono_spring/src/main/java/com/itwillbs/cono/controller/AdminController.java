@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -99,4 +100,74 @@ public class AdminController {
 
 		return "userCenter/admin_notice_list";
 	}
+
+	// -------------- 고객센터 공지사항 글쓰기 (관리자) - 김도은 -------------
+	// 글쓰기 폼 - GET
+	@RequestMapping(value = "AdminNoticeWrite.admin", method = RequestMethod.GET)
+	public String write() {
+		return "userCenter/admin_notice_write";
+	}
+
+	// 글쓰기 비즈니스 로직 - POST
+	@RequestMapping(value = "AdminNoticeWrite.admin", method = RequestMethod.POST)
+	public String writePost(@ModelAttribute AdminNoticeDTO noticeList, Model model) {
+		int insertCount = service.writeNotice(noticeList);
+
+		if (insertCount == 0) {
+			model.addAttribute("msg", "글 등록 실패!");
+			return "fail_back";
+		}
+		return "redirect:/AdminNoticeList";
+	}
+
+	// 글쓰기 상세페이지 - GET
+	@RequestMapping(value = "AdminNoticeView.admin", method = RequestMethod.GET)
+	public String adminNoticeView(@RequestParam String notice_idx, Model model) {
+		AdminNoticeDTO noticeList = service.getAdminNoticeView(notice_idx);
+
+		model.addAttribute("noticeList", noticeList);
+
+		return "userCenter/admin_notice_view";
+	}
+
+	// 글 삭제 비즈니스 로직 - POST
+	@RequestMapping(value = "AdminNoticeDeletePro.admin", method = RequestMethod.GET)
+	public String deleteNotice(@ModelAttribute AdminNoticeDTO noticeList, @RequestParam int pageNum, Model model) {
+		boolean isDeleteSuccess = service.removeNotice(noticeList, pageNum);
+
+		if (!isDeleteSuccess) {
+			model.addAttribute("msg", "삭제실패!");
+			return "fail_back";
+		}
+		model.addAttribute("pageNum", pageNum);
+
+		return "redirect:/AdminNoticeList";
+	}
+
+	// 글 수정 폼 - GET
+	@RequestMapping(value = "AdminNoticeModifyForm.admin", method = RequestMethod.GET)
+	public String modifyNotice(@RequestParam String notice_idx, Model model) {
+		AdminNoticeDTO noticeList = service.getAdminNoticeView(notice_idx);
+
+		model.addAttribute("noticeList", noticeList);
+
+		return "userCenter/admin_notice_modify";
+	}
+
+	// 글 수정 비즈니스 로직 - POST
+	@RequestMapping(value = "AdminNoticeModifyPro.admin", method = RequestMethod.POST)
+	public String modifyNotice(@ModelAttribute AdminNoticeDTO noticeList, @RequestParam int pageNum, Model model) {
+		boolean isUpdateSuccess = service.modifyNotice(noticeList);
+		System.out.println(noticeList);
+		if (!isUpdateSuccess) {
+			model.addAttribute("msg", "수정실패!");
+			return "fail_back";
+		}
+
+		model.addAttribute("notice_idx", noticeList.getNotice_idx());
+		model.addAttribute("pageNum", pageNum);
+
+		return "redirect:/AdminNoticeView.admin";
+	}
+
 }

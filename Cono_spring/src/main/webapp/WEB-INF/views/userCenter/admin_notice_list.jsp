@@ -2,6 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+// 세션 객체에 저장된 세션 아이디("sId") 가져와서 변수에 저장
+String sId = (String)session.getAttribute("sId");	// String 형변환
+%> 
 
 	<c:if test = "${param.search ne null}">
 	 	<c:set var ="searchType" value="${param.searchType }"/>
@@ -10,7 +14,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 <meta charset="UTF-8">
 <title>공지사항</title>
 
@@ -162,7 +166,7 @@ input[type=text] {
 }
 
 .btn{
- 	background-image: url(../images/2199097_edit_draw_pen_pencil_write_icon.png); 
+ 	background-image: url(./resources/img/2199097_edit_draw_pen_pencil_write_icon.png); 
 	background-size: cover;
 	float: right; 
 	width: 40px;  
@@ -195,11 +199,11 @@ input[type=text] {
 	<div class ="search">
 		<div class ="hh"><h1>NOTICE</h1></div>
 		<div class="ssearch">
-		<form action="AdminNoticeList" method="post">
+		<form action="AdminNoticeList.admin" method="post">
 		<input type = "hidden" name ="pageNum" value="${pageNum }">
 			<select name="searchType">
 				<option value="subject" <c:if test="${searchType ne null and searchType eq 'subject'}">selected</c:if>>제목</option>
-				<option value="name" <c:if test="${searchType ne null and searchType eq 'name'}">selected</c:if>>작성자</option>
+				<option value="content" <c:if test="${searchType ne null and searchType eq 'content'}">selected</c:if>>내용</option>
 			</select> 
 			<input type="text" name="search" value="<c:if test="${search ne null}">${search } </c:if>" placeholder="here"> 
 			<input type="submit" value="Search" id="search_btn" >
@@ -222,7 +226,7 @@ input[type=text] {
 						<div class="board_list_body">
 							<div class="item">
 								<div class="num">${notice.getNotice_idx() }</div>
-								<div class="title"><a href="AdminNoticeView.admin?notice_idx=${notice.getNotice_idx() }&page=${pageNum}">${notice.getNotice_subject() }
+								<div class="title"><a href="AdminNoticeView.admin?notice_idx=${notice.getNotice_idx() }&pageNum=${pageNum}">${notice.getNotice_subject() }
 								</a></div>
 								<div class="writer">${notice.getAdmin_id() }</div>
 								<div class="date">${notice.getNotice_date() }</div>
@@ -237,7 +241,7 @@ input[type=text] {
 	<div class ="paging">
 		<c:choose>
 			<c:when test="${pageNum > 1 }">
-				<input type="button"  value=" < " onclick="location.href='AdminNoticeList.admin?page=${pageNum - 1}'">
+				<input type="button"  value=" < " onclick="location.href='AdminNoticeList.admin?pageNum=${pageNum - 1}'">
 			</c:when>
 			<c:otherwise>
 
@@ -251,19 +255,21 @@ input[type=text] {
 				${i }
 			</c:when>
 				<c:otherwise>
-					<a href="AdminNoticeList.admin?page=${i }">${i }</a>
+					<a href="AdminNoticeList.admin?pageNum=${i }">${i }</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 	<c:choose>
 			<c:when test="${pageNum < maxPage}">
-				<input type="button"  value=" > "  onclick="location.href='AdminNoticeList.admin?page=${pageNum + 1}'">
+				<input type="button"  value=" > "  onclick="location.href='AdminNoticeList.admin?pageNum=${pageNum + 1}'">
 			</c:when>
 			<c:otherwise>
 				<input type="button"  value=" > " >&nbsp;
 			</c:otherwise>
 		</c:choose>
-		<input type="button" class="btn" onclick="location.href='AdminWriteForm.admin'" >
+		<%if(sId.equals("admin")){ %>
+		<input type="button" class="btn" onclick="location.href='AdminNoticeWrite.admin'" >
+		<%} %>
 		</div>
 		</div>  <!-- 리스트랩 디브 -->
 	
