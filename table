@@ -60,7 +60,7 @@ CREATE TABLE item (
 	item_readCnt varchar(20) NOT NULL,
 	item_region varchar(40) NOT NULL,
 	item_quantity varchar(10) NOT NULL,
-	PRIMARY KEY (item_idx ,shop_idx) 
+	PRIMARY KEY (item_idx ,shop_idx, member_id) 
 );
 
 CREATE TABLE img(
@@ -76,6 +76,7 @@ CREATE TABLE review (
    	member_id varchar(20),
    	item_idx varchar(20),
    	review_content varchar(1000) NOT NULL,
+	review_score varchar(10) NOT NULL,
    	review_date varchar(14) NOT NULL,
    	PRIMARY KEY (review_idx, item_idx ,member_id)  
 );
@@ -85,19 +86,6 @@ CREATE TABLE wish (
 	member_id varchar(20),
 	PRIMARY KEY (item_idx, member_id) 
 );
-
-CREATE TABLE star (
-	review_idx varchar(20) PRIMARY KEY,
-	item_idx varchar(20),
-	item_score varchar(3)
-);
-
-CREATE TABLE basket (
-	member_id varchar(20),
-	item_idx varchar(20),
-	PRIMARY KEY (member_id, item_idx)
-);
-
 
 CREATE TABLE ord (
 	item_idx varchar(20),
@@ -115,13 +103,10 @@ CREATE TABLE reserved (
 	PRIMARY KEY (item_idx, member_id)
 );
 
-
-
 CREATE TABLE mainCategory (
 	category_big varchar(20) PRIMARY KEY,
 	category_big_readCnt varchar(20)
 );
-
 
 CREATE TABLE category  (
 	category_big varchar(20),
@@ -162,7 +147,6 @@ CREATE TABLE safe (
     item_idx VARCHAR(20),
     member_id VARCHAR(20),
     shop_idx VARCHAR(20),
-    safe_status VARCHAR(2),
     PRIMARY KEY(safe_idx, member_id)
 );
 
@@ -241,4 +225,10 @@ CREATE TABLE msgChat (
 	msgChat_content varchar(500),
 	msgChat_time varchar(14),
 	PRIMARY KEY (member_id, shop_idx)
+);
+
+CREATE TABLE basket (
+	member_id varchar(20),
+	item_idx varchar(20),
+	PRIMARY KEY (member_id, item_idx)
 );
