@@ -13,7 +13,7 @@
 <body>
 	<div id="wrap">
 		<jsp:include page="../header_footer/top.jsp" />
-		<jsp:include page="./leftbar.jsp" />
+		<jsp:include page="./mypage_sidebar.jsp"/>
 	</div>
 
 	<!-- 	=============================== coupon start =============================== -->

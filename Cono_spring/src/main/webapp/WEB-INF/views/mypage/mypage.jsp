@@ -1,84 +1,95 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${path}/resources/css/style.css" rel="stylesheet" />
+<script src="${path}/resources/js/jquery-3.6.0.js"></script>
+
 </head>
 <body>
-
 	<div id="wrap">
-		<jsp:include page="../header_footer/top.jsp"/>
+		<jsp:include page="../header_footer/top.jsp" />
 	</div>
-	
-<nav>
-	<div class="mypage_profile">
-		<div class="mypage_profile_div_img">
-			<img src="" class="mypage_profile_img">img 들어감
-		</div>
-		<div class="mypage_profile_div_myIntro">
-			<span class="mypage_profile_nickname">닉네임</span>
-			<span class="mypage_profile_myIntro">자기소개글</span>
-		</div>
-	</div>
-	<div>
-		<table border="1">
-			<tr><th>나의 코노</th></tr>
-			<tr><td><a href="recentViewList">최근 본 상품</a></td></tr>
-			<tr><td><a href="follow">팔로잉&팔로워</a></td></tr>
-			<tr><td><a href="MypageList_myReview.jsp">나의 후기</a></td></tr>
-			
-			<tr><th>알림 및 메세지</th></tr>
-			<tr><td><a href="mypageList_alarm.jsp">알림</a></td></tr>
-			<tr><td><a href="message_list">메세지</a></td></tr>
-			
-			<tr><th>내 정보</th></tr>
-			<tr><td><a href="memberInfo_modify">회원 정보 수정</a></td></tr>
-			<tr><td><a href="accountInfo">계좌 정보 관리</a></td></tr>
-			<tr><td><a href="delete_id">회원 탈퇴</a></td></tr>
-		
-		</table>
-	</div>
-</nav>
 
-<br>
-
-<nav>
-	<section class="mypage_info">
+<div class="plus">
+	<div class="main1">
+<!-- 	=============================== main (내 정보 section) start =============================== -->
 		<table border="1">
-			<tr><th colspan="4">내 정보</th></tr>
 			<tr>
-				<td>
-					코인<hr>
-					<a href="coin" class="coin">${coin_total}P</a>
-				</td>
-				<td>
-					예약 중인 상품<hr>
-					<a href="reserved">${reservedCount}</a>
-				</td>
-				<td>
-					장바구니<hr>
-					<a href="basket">${basketCount}</a>
-				</td>
-				<td>
-					쿠폰<hr>
-					<a href="coupon">${couponCount}</a>
-				</td>
+				<th colspan="4" style="width: 850px; height: 60px;"><h4>내 정보</h4></th>
+			</tr>
+			<tr>
+				<td style="height: 140px;"><a href="coin"><h4>Cono Coin</h4></a><br>${coin_total}</td>
+				<td><a href="coupon"><h4>할인 쿠폰 수</h4></a><br>${couponCount}</td>
+				<td><a href="reserved"><h4>예약중인 상품</h4></a><br>${reservedCount}</td>
+				<td><a href="basket"><h4>장바구니</h4></a><br>${basketCount}</td>
 			</tr>
 		</table>
-		<br><hr><br>
-		구매완료<hr>
-	</section>
-	<section class="mypage_info_detail">
-		
-	</section>
-</nav>
-<div id="resultArea"></div>
+	</div>
+<!-- 	=============================== main (내 정보 section) end =============================== -->
+	
+	
+<!-- 	=============================== leftbar start =============================== -->
+	<div id="wrap">
+		<jsp:include page="./mypage_sidebar.jsp" />
+	</div>
+<!-- 	=============================== leftbar end =============================== -->	
+	
+<!-- 	=============================== main (주문 정보 section) start =============================== -->
 
+	<div class="tabmain">
+		<h4>최근 주문 내역</h4><br><br>
+	    <input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
+	    <label for="tab1">거래중</label>
+	
+	    <input id="tab2" type="radio" name="tabs">
+	    <label for="tab2">거래 완료</label>
+	
+	    <input id="tab3" type="radio" name="tabs">
+	    <label for="tab3">취소 / 환불</label>
+	
+	    <section id="content1">
+	        <p>배송중인 상품이 존재하지 않습니다.</p>
+	    </section>
+	
+	    <section id="content2">
+	        <p>배송 완료된 상품이 존재하지 않습니다.</p>
+	    </section>
+	
+	    <section id="content3">
+	        <p>취소 / 환불 된 상품이 존재하지 않습니다.</p>
+	    </section>
+	</div>
+	<br>
+<!-- 	=============================== main (주문 정보 section) end =============================== -->	
+<!-- 	=============================== main (팔로우&팔로워 section) start =============================== -->
+	<div class="tabmain2">
+		<h4>팔로잉 & 팔로워</h4><br><br>
+	    <input id="tab11" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
+	    <label for="tab11">팔로우중인 상점</label>
+	
+	    <input id="tab22" type="radio" name="tabs">
+	    <label for="tab22">팔로워</label>
+	
+	    <section id="content11">
+	        <p>x개의 상점을 팔로우 중입니다.</p>
+	        <p>팔로우중인 상점 정보 출력</p>
+	    </section>
+	
+	    <section id="content22">
+	        <p>x명이 나의 상점을 팔로우 중입니다.</p>
+	        <p>나를 팔로우하는 유저 정보 출력</p>
+	    </section>
+	</div>
+</div>
+<!-- 	=============================== main (팔로우&팔로워 section) end =============================== -->
 	<div class="clear">
- 		<jsp:include page="../header_footer/bottom.jsp" />
+		<jsp:include page="../header_footer/bottom.jsp" />
 	</div>
 
 </body>

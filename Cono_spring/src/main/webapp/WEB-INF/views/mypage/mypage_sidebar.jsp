@@ -40,21 +40,21 @@
 				</ul></li>
 			<li><i class="fa fa-circle fa-2x"></i>내 정보
 				<ul class="hidden">
-					<li><a href="Mypage_coin.mypage">코인</a></li>
-					<li><a href="Mypage_reservedItem.mypage">예약중인 상품</a></li>
-					<li><a href="Mypage_purchasedItem.mypage">구매완료</a></li>
-					<li><a href="Mypage_basket.mypage">장바구니</a></li>
-					<li><a href="Mypage_wishItem.mypage">찜한 상품</a></li>
-					<li><a href="Mypage_coupon.mypage">쿠폰</a></li>
+					<li><a href="coin">코인</a></li>
+					<li><a href="reserved">예약중인 상품</a></li>
+					<li><a href="perchased">구매완료</a></li>
+					<li><a href="basket">장바구니</a></li>
+					<li><a href="wish">찜한 상품</a></li>
+					<li><a href="coupon">쿠폰</a></li>
 				</ul></li>
 		</ul>
 		<ul class="main-buttons2">
 			<li><i class="fa fa-circle fa-1x"></i><a
-				href="mypageList_modifyId.jsp">회원 정보 수정</a></li>
+				href="memberInfo_modify">회원 정보 수정</a></li>
 			<li><i class="fa fa-circle fa-1x"></i><a
-				href="MypageList_account.mypage">계좌 정보 관리</a></li>
+				href="accountInfo">계좌 정보 관리</a></li>
 			<li><i class="fa fa-circle fa-1x"></i><a
-				href="mypageList_deleteId.jsp">회원 탈퇴</a></li>
+				href="delete_id">회원 탈퇴</a></li>
 		</ul>
 	</nav>
 </div>
