@@ -9,6 +9,7 @@ import com.itwillbs.cono.vo.CategoryDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.ShopDTO;
 
 public interface ShopMapper {
@@ -38,7 +39,7 @@ public interface ShopMapper {
 	void insertImgList(@Param("img") ImgDTO img, @Param("item") ItemDTO item);
 	
 	// 상품 관리 (상품 리스트 조회)
-	List<HashMap<String, String>> selectItemList(@Param("member_id") String member_id, @Param("keyword") String keyword, @Param("sell_status") String sell_status);
+	List<HashMap<String, String>> selectItemList(@Param("member_id") String member_id, @Param("keyword") String keyword, @Param("sell_status") String sell_status, @Param("pageInfo") PageInfo pageInfo);
 	
 	// 상품 숨김 기능
 	int updateItemHide(@Param("item_idx") String item_idx, @Param("item_hide") String item_hide);

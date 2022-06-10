@@ -86,6 +86,7 @@
 		</if>
 		GROUP BY i.item_idx
 		ORDER BY i.item_idx+0 ASC
+		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 	</select>
 	
 	<!-- 상품 숨김 기능 -->
@@ -155,7 +156,7 @@
 	</update>
 	
 	
-	<!-- 평균 평점과 후기 달린 아이템 개수 조회 -->
+	<!-- 평균 평점과 후기 달린 아이템 개수 조회 -->		<!-- star 테이블 삭제됨 => 구문 수정 필요 -->
 	<select id="selectItemAvg" resultType="java.util.HashMap">
 		SELECT SUM(st.item_score)/COUNT(i.item_idx) as avg, COUNT(i.item_idx) as item_idx
 	  	  FROM review r, item i, star st, shop s

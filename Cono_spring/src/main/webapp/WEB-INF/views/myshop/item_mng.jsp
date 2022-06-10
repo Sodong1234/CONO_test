@@ -120,17 +120,17 @@ String sell_status = request.getParameter("sell_status");
 	</div>
 	<div>
 		<c:choose>
-			<c:when test="${pageNum > 1 }">
-				<input type="button" value="이전" onclick="location.href='ItemMng.shop?pageNum=${pageNum - 1 }'">
+			<c:when test="${pageInfo.pageNum > 1 }">
+				<input type="button" value="이전" onclick="location.href='ItemMng.shop?pageNum=${pageInfo.pageNum - 1 }'">
 			</c:when>
 			<c:otherwise>
 				<input type="button" value="이전">
 			</c:otherwise>
 		</c:choose>
 
-		<c:forEach var="i" begin="${startPage }" end="${endPage }">
+		<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
 			<c:choose>
-			<c:when test="${pageNum eq i }">
+			<c:when test="${pageInfo.pageNum eq i }">
 				${i }
 			</c:when>
 			<c:otherwise>
@@ -139,8 +139,8 @@ String sell_status = request.getParameter("sell_status");
 		</c:choose>
 		</c:forEach>
 		<c:choose>
-			<c:when test="${pageNum < maxPage }">
-				<input type="button" value="다음" onclick="location.href='ItemMng.shop?pageNum=${pageNum + 1 }'">
+			<c:when test="${pageInfo.pageNum < pageInfo.maxPage }">
+				<input type="button" value="다음" onclick="location.href='ItemMng.shop?pageNum=${pageInfo.pageNum + 1 }'">
 			</c:when>
 			<c:otherwise>
 				<input type="button" value="다음">

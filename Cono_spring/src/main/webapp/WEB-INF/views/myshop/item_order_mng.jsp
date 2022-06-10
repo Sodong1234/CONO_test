@@ -31,10 +31,10 @@
 	<hr>
 	
 	<!-- 
-	판매 중('Y')
-	구매 진행 중 ('I') : ord 테이블 insert할 때
-	구매 완료 ('F') : ord 테이블 delete할 때
-	예약 중('R')
+	판매 중('0')
+	구매 진행 중 ('1') : ord 테이블 insert할 때
+	구매 완료 ('2') : ord 테이블 delete할 때
+	예약 중('3')
 	 -->
 
 	
@@ -44,7 +44,7 @@
 			<tr>
 				<th>주문일시</th>
 				<th>주문상품</th>
-<!-- 				<th>주문수량</th> -->
+				<th>주문수량</th>
 				<th>주문한 사람</th>
 				<th>가격</th>
 				<th>주문 요청사항</th>
@@ -53,7 +53,7 @@
 				<tr>
 					<td>${ord.get('ord_date') }</td>
 					<td>${ord.get('item_title') }</td>
-<%-- 					<td>${ord.get('ord_quantity') }</td> --%>
+					<td>${ord.get('ord_quantity') }</td>
 					<td>${ord.get('member_id') }</td>
 					<td>${ord.get('item_price') }</td>
 					<td>${ord.get('ord_reqContent') }</td>

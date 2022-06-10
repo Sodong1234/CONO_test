@@ -13,9 +13,72 @@
 	        ON i.item_idx = c.item_idx
 	     WHERE i.item_idx = #{item_idx}
 	</select>
+	
 	<!-- 상품 이미지 조회 -->
 	<select id="selectImgList" resultType="com.itwillbs.cono.vo.ImgDTO">
 		SELECT img_idx, img_real_name , img_name FROM img WHERE item_idx=#{item_idx}
 	</select>
-
+	
+	<!-- 구매하기 클릭 시 아이템 상태 변경 -->
+	<update id="updateItemStatus">
+		UPDATE item SET item_status='1' WHERE item_idx=#{item_idx}
+	</update>
+	
+	<!-- item 테이블 수량 변경 -->
+	<update id="updateItemQuantity">
+		UPDATE item 
+		   SET item_quantity=item_quantity - #{order_quantity}
+		 WHERE item_idx=#{item_idx}
+	</update>
+	
+	<!-- ord 테이블 insert -->
+	<insert id="insertOrd">
+		INSERT INTO ord
+		VALUES (
+			   #{item_idx}
+			   ,#{member_id}
+			   ,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+			   ,#{order_reqContent}
+			   ,#{order_quantity}
+			   )
+	</insert>
+	
+	<insert id="insertSafe">
+		INSERT INTO safe
+		VALUES (
+			   (SELECT (MAX(safe_idx),'0') FROM safe) AS safe_idx
+			   ,#{ord.item_idx}
+			   ,#{ord.member_id}
+			   ,(SELECT shop_idx FROM shop WHERE member_id=#{ord.member_id} 
+			   ,#{item_price}
+			   )
+	</insert>
+	
+	<!-- coin 테이블 insert (구매자) -->
+	<insert id="insertCoinBuyer">
+		INSERT INTO coin
+		VALUES (
+				(SELECT (MAX(coin_idx),'0') FROM coin) AS coin_idx
+				,#{ord.member_id}	
+				,'0'		<!-- add -->
+				,#{item_price} <!-- use -->
+				,(SELECT (coin_total-#{item_price}) FROM coin WHERE coin_idx=(select IFNULL(MAX(coin_idx),'1') from coin)) AS coin_total
+				,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+			   )
+		
+	</insert>
+	
+	<!-- coin 테이블 insert (판매자) -->
+	<!-- 판매자는 아직 나가면 안되는데?!! -->
+<!-- 	<insert id="insertCoinSeller"> -->
+<!-- 		INSERT INTO coin -->
+<!-- 		VALUES ( -->
+<!-- 				(SELECT (MAX(coin_idx),'0') FROM coin) AS coin_idx -->
+<!-- 				,#{ord.member_id}	 -->
+<!-- 				,#{item_price}	add -->
+<!-- 				,'0'	 use -->
+<!-- 				,(SELECT (coin_total+#{item_price}) FROM coin WHERE coin_idx=(select IFNULL(MAX(coin_idx),'1') from coin)) AS coin_total -->
+<!-- 				,DATE_FORMAT(now(), "%Y%m%d%H%i%s") -->
+<!-- 			   ) -->
+<!-- 	</insert> -->
 </mapper>

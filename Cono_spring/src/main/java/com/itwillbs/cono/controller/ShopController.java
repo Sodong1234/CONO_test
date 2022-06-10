@@ -131,16 +131,10 @@ public class ShopController {
 		pageInfo.setStartRow(startRow);
 		pageInfo.setListLimit(listLimit);
 		
-		System.out.println(pageNum);
-		System.out.println(maxPage);
-		System.out.println(startPage);
-		System.out.println(endPage);
-		System.out.println(listCount);
 		System.out.println(startRow);
 		System.out.println(listLimit);
 		
-		
-		List<HashMap<String, String>> itemList = service.selectItemList(member_id, keyword, sell_status);
+		List<HashMap<String, String>> itemList = service.selectItemList(member_id, keyword, sell_status, pageInfo);
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("sell_status", sell_status);

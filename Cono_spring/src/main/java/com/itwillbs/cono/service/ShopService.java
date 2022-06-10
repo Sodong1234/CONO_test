@@ -19,6 +19,7 @@ import com.itwillbs.cono.vo.CategoryDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.ShopDTO;
 
 @Service
@@ -110,14 +111,14 @@ public class ShopService {
 		return isUploadSuccess;
 	}
 	// 상품 관리 (상품 리스트 조회)
-	public List<HashMap<String, String>> selectItemList(String member_id, String keyword, String sell_status) {
+	public List<HashMap<String, String>> selectItemList(String member_id, String keyword, String sell_status, PageInfo pageInfo) {
 		
 		List<HashMap<String, String>> itemList = null;
 		
 		if(keyword != null) {
 			keyword = "%" + keyword + "%";
 		}
-		itemList = mapper.selectItemList(member_id, keyword, sell_status);
+		itemList = mapper.selectItemList(member_id, keyword, sell_status, pageInfo);
 		
 		
 		return itemList;
