@@ -9,8 +9,8 @@ import com.itwillbs.cono.vo.PageInfo;
 
 public interface AdminMapper {
 
-	int selectNoticeListCount(@Param("searchType") String searchType, @Param("search") String search);
+	public int selectNoticeListCount(@Param("searchType") String searchType, @Param("search") String search);
 
-	List<AdminNoticeDTO> selectNoticeList(@Param("searchType") String searchType,@Param("search") String search, PageInfo pageInfo);
+	public List<AdminNoticeDTO> selectNoticeList(@Param("searchType") String searchType,@Param("search") String search, @Param("pageInfo")PageInfo pageInfo);
 
 }

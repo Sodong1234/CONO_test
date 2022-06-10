@@ -2,12 +2,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+	<c:if test = "${param.search ne null}">
+	 	<c:set var ="searchType" value="${param.searchType }"/>
+	 	<c:set var ="search" value="${param.search }"/>
+ 	</c:if>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="UTF-8">
 <title>공지사항</title>
+
 <style type="text/css">
 * {
 	margin: 0;
@@ -175,38 +181,27 @@ input[type=text] {
 <div>
 	<jsp:include page="../header_footer/top.jsp" />
 </div>
-<!-- 헤더 -->
-   <div>
-      <jsp:include page="../admin_css/sidebar.jsp"/>
-   </div>
 
 <body>
-
+	
 	<c:set var="pageNum" value="${pageInfo.getPageNum() }" />
 	<c:set var="maxPage" value="${pageInfo.getMaxPage() }" />
 	<c:set var="startPage" value="${pageInfo.getStartPage() }" />
 	<c:set var="endPage" value="${pageInfo.getEndPage() }" />
 	<c:set var="listCount" value="${pageInfo.getListCount() }" />
-<!-- 	<nav id="left_menu"> -->
-<!-- 		<ul> -->
-<!-- 			<li><a href="AdminNoticeList.admin">Notice</a></li> -->
-<!-- 			<li><a href="admin_product.jsp">product</a></li> -->
-<!-- 			<li><a href="admin_member.jsp">member</a></li> -->
-<!-- 			<li><a href="AdminQNAList.admin">qna</a></li> -->
-<!-- 			<li><a href="AdminReportList.admin">report</a></li> -->
-<!-- 		</ul> -->
-<!-- 	</nav> -->
+
 	<hr>
 	<div class ="body">
 	<div class ="search">
 		<div class ="hh"><h1>NOTICE</h1></div>
 		<div class="ssearch">
-		<form action="AdminNoticeSearch.admin" method="get">
+		<form action="AdminNoticeList" method="post">
+		<input type = "hidden" name ="pageNum" value="${pageNum }">
 			<select name="searchType">
-				<option value="subject">제목</option>
-				<option value="name">작성자</option>
+				<option value="subject" <c:if test="${searchType ne null and searchType eq 'subject'}">selected</c:if>>제목</option>
+				<option value="name" <c:if test="${searchType ne null and searchType eq 'name'}">selected</c:if>>작성자</option>
 			</select> 
-			<input type="text" name="search" placeholder="here" > 
+			<input type="text" name="search" value="<c:if test="${search ne null}">${search } </c:if>" placeholder="here"> 
 			<input type="submit" value="Search" id="search_btn" >
 		</form></div>
 	</div>

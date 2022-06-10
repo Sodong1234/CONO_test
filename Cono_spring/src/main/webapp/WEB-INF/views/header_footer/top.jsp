@@ -69,7 +69,7 @@ String sId = (String) session.getAttribute("sId");
 				<li class="test"><a href="#"><p>메세지</p></a></li>
 				<li class="test"><a href="ProductMyshop.shop"><p>판매자 전용
 							마이페이지</p></a></li>
-				<li class="test"><a href=""><p>관리자 전용 마이페이지</p></a></li>
+				<li class="test"><a href="admin_center_main"><p>관리자 전용 마이페이지</p></a></li>
 				<li class="test"><a href="mypage"><p><%=sId%>님
 						</p></a></li>
 				<%
@@ -82,10 +82,10 @@ String sId = (String) session.getAttribute("sId");
 					onclick="userCenterList()"><p>고객센터</p></a></li>
 				<ul id="userCenterList" style="visibility: hidden">
 					<li class="test2"><a
-						href="../only_member/user_notice_list.jsp"><p>공지사항</p></a></li>
-					<li class="test2"><a href="../only_member/user_chat_bot.jsp"><p>문의하기</p></a></li>
+						href="AdminNoticeList"><p>공지사항</p></a></li>
+					<li class="test2"><a href="AdminQNAList"><p>문의하기</p></a></li>
 					<li class="test2"><a
-						href="../only_member/user_report_write.jsp"><p>신고하기</p></a></li>
+						href="AdminReportList"><p>신고하기</p></a></li>
 				</ul>
 			</ul>
 		</div>

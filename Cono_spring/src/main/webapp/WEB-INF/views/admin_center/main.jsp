@@ -7,12 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<jsp:include page="../header_footer/top.jsp"/>
-	</div>
+	<!-- 헤더 -->
+   <div>
+      <jsp:include page="../admin_css/sidebar.jsp"/>
+   </div>
   		<a href="../admin/admin_product.jsp">상품관리</a><br>
   		<a href="./AdminMemberList.admin">회원관리</a><br>
-  		<a href="../admin/AdminNoticeList.admin">공지사항 관리</a> <br>
+  		<a href="/userCenter/AdminNoticeList">공지사항 관리</a> <br>
   		<a href="../admin/AdminQNAList.admin">1:1 문의 관리</a> <br>
   		<a href="../admin/AdminReportList.admin">신고 관리</a><br>
   		
