@@ -19,7 +19,7 @@ String sId = (String) session.getAttribute("sId");
 			location.href = "logout";
 		}
 	}
-
+	
 	// =========================양윤석==================================
 	//============== 가준 검색 ============
 	function search_item() {
