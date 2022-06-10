@@ -27,7 +27,7 @@ CREATE TABLE admin (
 
 CREATE TABLE member (
 	member_id varchar(20) PRIMARY KEY,
-	member_pass varchar(20) NOT NULL,
+	member_pass varchar(100) NOT NULL,
 	member_email varchar(50) NOT NULL UNIQUE,
 	member_phone varchar(13) NOT NULL,
 	member_nick varchar(20) NOT NULL,
