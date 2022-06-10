@@ -23,7 +23,7 @@ String sId = (String) session.getAttribute("sId");
 	// =========================양윤석==================================
 	//============== 가준 검색 ============
 	function search_item() {
-		let searchText = document.getElememtById("searchText").value
+		let searchText = document.getElementById("searchText").value
 
 		location.href = ("search_item?searchText=" + searchText);
 	}
