@@ -60,7 +60,7 @@ CREATE TABLE item (
 	item_readCnt varchar(20) NOT NULL,
 	item_region varchar(40) NOT NULL,
 	item_quantity varchar(10) NOT NULL,
-	PRIMARY KEY (item_idx ,shop_idx, member_id) 
+	PRIMARY KEY (item_idx ,shop_idx) 
 );
 
 CREATE TABLE img(
