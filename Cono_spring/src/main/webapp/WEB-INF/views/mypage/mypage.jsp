@@ -16,6 +16,9 @@
 		<jsp:include page="../header_footer/top.jsp" />
 	</div>
 
+<img alt="" src="${path }/resources/upload/test.jpg">
+<img alt="" src="${path }/resources/upload/file/${card.img_name }'/>">
+<img alt="" src="${path }/resources/upload/file/${card.img_name }'/>">
 <div class="plus">
 	<div class="main1">
 <!-- 	=============================== main (내 정보 section) start =============================== -->
@@ -25,9 +28,9 @@
 			</tr>
 			<tr>
 				<td style="height: 140px;"><a href="coin"><h4>Cono Coin</h4></a><br>${coin_total}</td>
-				<td><a href="coupon"><h4>할인 쿠폰 수</h4></a><br>${couponCount}</td>
-				<td><a href="reserved"><h4>예약중인 상품</h4></a><br>${reservedCount}</td>
-				<td><a href="basket"><h4>장바구니</h4></a><br>${basketCount}</td>
+				<td><a href="coupon"><h4>예약 상품 수</h4></a><br>${reservedCount}</td>
+				<td><a href="reserved"><h4>쿠폰 수</h4></a><br>${couponCount}</td>
+				<td><a href="basket"><h4>장바구니 상품 수</h4></a><br>${basketCount}</td>
 			</tr>
 		</table>
 	</div>

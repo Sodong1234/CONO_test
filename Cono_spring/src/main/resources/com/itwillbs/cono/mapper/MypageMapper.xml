@@ -151,4 +151,5 @@
 		DELETE FROM follow
 		WHERE shop_idx = #{shop_idx} AND member_id = #{sId}
 	</delete>
+	
 </mapper>

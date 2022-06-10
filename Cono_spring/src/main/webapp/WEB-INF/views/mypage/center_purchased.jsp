@@ -21,6 +21,33 @@
 <!-- 			</select> -->
 		</span>
 	</section>
+	
+	<div class="purchasedList">
+	
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<section>
 		<table border="1">
 			<tr>

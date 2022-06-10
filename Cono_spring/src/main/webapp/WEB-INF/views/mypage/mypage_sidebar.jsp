@@ -23,30 +23,26 @@
 	</nav>
 	<nav class="sidenav">
 		<ul class="main-buttons">
-			<li><i class="fa fa-circle fa-2x"></i> 나의 코노
+			<li>나의 코노
 				<ul class="hidden">
 					<li>최근 본 상품</li>
 					<li>나의 후기</li>
 				</ul></li>
-			<li><i class="fa fa-circle fa-2x"></i> 팔로잉 & 팔로워
-				<ul class="hidden">
-					<li>팔로잉</li>
-					<li>팔로워</li>
-				</ul></li>
-			<li><i class="fa fa-circle fa-2x"></i> 알림 및 메세지
+			<li>알림 및 메세지
 				<ul class="hidden">
 					<li>알림</li>
 					<li>메시지</li>
 				</ul></li>
-			<li><i class="fa fa-circle fa-2x"></i>내 정보
+			<li>내 정보
 				<ul class="hidden">
 					<li><a href="coin">코인</a></li>
 					<li><a href="reserved">예약중인 상품</a></li>
-					<li><a href="perchased">구매완료</a></li>
+					<li><a href="purchased">구매완료</a></li>
 					<li><a href="basket">장바구니</a></li>
 					<li><a href="wish">찜한 상품</a></li>
 					<li><a href="coupon">쿠폰</a></li>
 				</ul></li>
+			<li><a href="follow">팔로잉 & 팔로워</a>
 		</ul>
 		<ul class="main-buttons2">
 			<li><i class="fa fa-circle fa-1x"></i><a

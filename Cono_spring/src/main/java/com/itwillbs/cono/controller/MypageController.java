@@ -252,11 +252,21 @@ public class MypageController {
 	}
 
 	// 구매완료
-	@RequestMapping(value = "perchased", method = RequestMethod.GET)
-	public String perchased(HttpSession session, Model model) {
+	@RequestMapping(value = "purchased", method = RequestMethod.GET)
+	public String purchased(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
 
-		List<HashMap<String, String>> perchasedList = service.getPerchasedList(sId);
-		return "mypage/center_perchased";
+		List<HashMap<String, String>> purchasedList = service.getPurchasedList(sId);
+		return "mypage/center_purchased";
+	}
+	
+	// 위시 리스트 (양윤석)
+	@RequestMapping(value = "wish", method = RequestMethod.GET)
+	public String wish(HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+
+		List<HashMap<String, String>> wishList = service.getwishList(sId);
+		model.addAttribute("wishList", wishList);
+		return "mypage/list_wish";
 	}
 }

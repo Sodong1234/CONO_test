@@ -32,6 +32,7 @@
 			</section>
 		</div>
 		  
+		  <img alt="" src="${path }/resources/upload/test.jsp">
 	<div class="clear">
  			<jsp:include page="header_footer/bottom.jsp" />
 	</div>

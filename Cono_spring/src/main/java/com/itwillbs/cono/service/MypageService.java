@@ -83,8 +83,8 @@ public class MypageService {
 	//===================== 장바구니 finish =========================	
 
 	// 구매완료 리스트
-	public List<HashMap<String, String>> getPerchasedList(String sId) {
-		return mapper.selectPerchasedList(sId);
+	public List<HashMap<String, String>> getPurchasedList(String sId) {
+		return mapper.selectPurchasedList(sId);
 	}
 	// 예약 중인 상품 COUNT 
 	public int getReservedCount(String sId) {
@@ -110,9 +110,13 @@ public class MypageService {
 	public int getFollowerCount(String sId) {
 		return mapper.selectFollowerCount(sId);
 	}
-
+	// 팔로잉 삭제
 	public int deleteFollowing(String sId, String shop_idx) {
 		return mapper.deleteFollowing(sId, shop_idx);
+	}
+	// 위시 리스트 (양윤석)
+	public List<HashMap<String, String>> getwishList(String sId) {
+		return mapper.selectWishList(sId);
 	}
 
 	

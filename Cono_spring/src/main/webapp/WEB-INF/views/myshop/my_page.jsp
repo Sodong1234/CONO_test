@@ -35,6 +35,7 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 		</ul>
 	</nav>
 	
+	
 	<hr>
 	<div id="shopInfo">
 		<form action="ProductMyshopModifyForm.shop" name="shopForm" method="post" enctype="multipart/form-data">

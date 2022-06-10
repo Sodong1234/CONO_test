@@ -41,7 +41,7 @@ public interface MypageMapper {
 	// 장바구니 - 장바구니 아이템 리스트
 	public List<HashMap<String, String>> selectBasketList(String sId);
 	// 구매완료 - 구매완료 아이템 리스트
-	public List<HashMap<String, String>> selectPerchasedList(String sId);
+	public List<HashMap<String, String>> selectPurchasedList(String sId);
 	// 예약 중인 아이템 수
 	public int selectReservedCount(String sId);
 	// 예약 중 - 예약 진행 중인 상품 리스트
@@ -56,6 +56,8 @@ public interface MypageMapper {
 	public int selectFollowerCount(String sId);
 	// 팔로잉 삭제
 	public int deleteFollowing(String sId, String shop_idx);
+	// 위시 리스트
+	public List<HashMap<String, String>> selectWishList(String sId);
 
 
 
