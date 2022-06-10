@@ -21,6 +21,7 @@ public class MemberDTO {
 	private String member_birth;
 	private String member_date;
 	private String member_status;
+	
 	public String getMember_id() {
 		return member_id;
 	}
