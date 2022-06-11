@@ -11,17 +11,42 @@ if(session.getAttribute("sId") == null) {
 <meta charset="UTF-8">
 <title>myshop/upload_item.jsp</title>
 <script src="../js/jquery-3.6.0.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-	
-	
-	
+// 	$(function() {
+// 		$(".img").change(function() {
+// 			alert($(".img").val().split(".")[1]);
+// 			/* 나중에 하자 */
+// 		});
+// 	});
+	function getAddressInfo(){
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	        	      	
+	            var value = "";
+	            var jusoSangsae = "";
+	            var str = data.jibunAddress;   // 풀주소 저장
+//	             str = str.split(" ");          // 공백으로 짤라준다
 
-	$(function() {
-		$(".img").change(function() {
-			alert($(".img").val().split(".")[1]);
-			/* 나중에 하자 */
-		});
-	});
+	            // -> 공백으로 짜르는 이유는 해당 API에서 (서울특별시 강남동 강남구99-9) 이런식으로 띄어쓰기로 시 군 구 를 반환해주기 때문.
+	            // -> 서울특별시 강남동 강남구99-9를 띄어쓰기로 파싱하면 {"서울특별시","강남동","강남구","99-9"} 이런으로 파싱된다                
+	            if(data.userSelectedType == "J"){   // 사용자가 지번을 클릭했다면
+//	             	value = data.address;
+	            	value = data.jibunAddress; // 지번 주소 
+	            	
+	            	str = value.split(" ");
+	            	value = str[2];	// 동 / 구 입력 
+	            }else{ // 사용자가 도로명을 클릭했다면
+	            	value = data.jibunAddress;	
+	            	str = value.split(" ");
+	            	value = str[2];
+	            }
+	            alert(value);
+	            document.getElementById("item_region").value = value;
+	        }
+	    }).open();
+	}
+
 </script>
 </head>
 <body>
@@ -88,7 +113,7 @@ if(session.getAttribute("sId") == null) {
 				</tr>
 				<tr>
 					<th>거래지역</th>
-					<td><input type="text" name="item_region" placeholder="주소 입력(임시 ,API 쓸 예정)"></td>
+					<td><input type="text" name="item_region" id="item_region" readonly="readonly"><input type="button" value="지역선택" onclick="getAddressInfo()"></td>
 				</tr>
 				<tr>
 					<th>가격</th>
@@ -100,7 +125,7 @@ if(session.getAttribute("sId") == null) {
 				</tr>
 				<tr>
 					<th>상품 수량</th>
-					<td><input type="text" name="item_quantity" placeholder="상품 개수를 입력하세요.">개</td>
+					<td><input type="text" name="item_quantity" id="item_quantity" placeholder="상품 개수를 입력하세요.">개</td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="등록하기"></td>
