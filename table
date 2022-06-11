@@ -148,6 +148,7 @@ CREATE TABLE safe (
     member_id VARCHAR(20),
     shop_idx VARCHAR(20),
     safe_coin VARCHAR(50),
+    safe_status VARCHAR(3),
     PRIMARY KEY(safe_idx, member_id)
 );
 
@@ -165,7 +166,6 @@ CREATE TABLE payment (
 	payment_amount  VARCHAR(20)
 );
 
-ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ관리자ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 notice (공지 사항) - 관리자가 공지사항 등록시 생성
 CREATE TABLE notice (
