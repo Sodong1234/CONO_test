@@ -195,22 +195,23 @@ CREATE TABLE report (
    primary key(report_idx, member_id, item_idx)
 );
 
-
-CREATE TABLE msgHeader (
+CREATE TABLE msgList (
+	msgList_room varchar(20),
 	member_id varchar(20),
 	shop_idx varchar(20),
-	msgList_last_content varchar(50),
-	msgList_time varchar(14),
+  	item_idx varchar(20),
 	msgList_status varchar(5),
-	PRIMARY KEY (member_id, shop_idx)
+	PRIMARY KEY (msgList_room, member_id)
 );
 
 CREATE TABLE msgChat (
+	msgChat_idx varchar(20),
 	member_id varchar(20),
 	shop_idx varchar(20),
+    	item_idx varchar(20),
 	msgChat_content varchar(500),
 	msgChat_time varchar(14),
-	PRIMARY KEY (member_id, shop_idx)
+	PRIMARY KEY (msgChat_idx, member_id)
 );
 
 
