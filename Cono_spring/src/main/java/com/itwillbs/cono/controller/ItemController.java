@@ -42,8 +42,8 @@ public class ItemController {
 	@RequestMapping(value = "PurchaseItem", method = RequestMethod.POST)
 	public String purchaseItem(String item_idx, String order_quantity, String img_name, Model model) {
 		
-		// item_status 상태 변경
-		service.modifyItemStatus(item_idx);
+//		// item_status 상태 변경
+//		service.modifyItemStatus(item_idx);
 		
 		// 상품 정보 가져오기
 		HashMap<String, String> itemDetail = service.selectItemDetail(item_idx);
@@ -58,9 +58,9 @@ public class ItemController {
 	}
 	// -------------------------------------------------------------------------
 	
-	// ------------------------ 상품 결제 진행 ----------------------
+	// ----------------------------- 상품 결제 진행 ----------------------------
 	@RequestMapping(value = "PayItem", method = RequestMethod.POST)
-	public String payItem(HttpSession session, String item_price, OrdDTO ord) {
+	public String payItem(HttpSession session, String item_price, OrdDTO ord, Model model) {
 		
 		String member_id = session.getAttribute("sId").toString();
 		
@@ -69,23 +69,35 @@ public class ItemController {
 		}
 		ord.setMember_id(member_id);
 		
+		// 상품 구매 가능 여부 확인(coin)
+		boolean checkCoin = service.checkCoinTotal(ord, item_price);
+		
+		if(!checkCoin) {
+			model.addAttribute("msg", "코인이 부족합니다");
+			return "myshop/fail_back";
+		}
+		
 		// item 테이블 수량 변경
 		service.modifyItemQuantity(ord);
+		
+		// item 수량이 0일 경우 판매 완료로 변경
+		if(service.checkItemQuantity(ord).equals("0")) {
+			service.modifyItemStatus(ord);
+		}
 		
 		// ord 테이블 insert
 		service.insertOrd(ord);
 		
 		// safe 테이블 insert
-		service.insertSafe(ord, item_price);
-		
+		service.insertSafe(ord, ord.getOrder_quantity(), item_price);
 		// coin 테이블 insert (구매자)
-		service.insertCoinBuyer(ord, item_price);
+		service.insertCoin(ord.getMember_id(), ord.getOrder_quantity(), item_price);
 		
 		// coin 테이블 insert (판매자)	==> 아니 판매자는 아직 돈 들어가면 안된다... 바보양..
 //		service.insertCoinSeller(ord, item_price);
 		
 		
-		return "item/item_purchase";
+		return "redirect:/";
 	}
 	// -------------------------------------------------------------------------
 }

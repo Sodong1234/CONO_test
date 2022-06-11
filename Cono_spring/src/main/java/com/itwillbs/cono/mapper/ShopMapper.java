@@ -53,6 +53,12 @@ public interface ShopMapper {
 	// 상품 이미지 변경
 	int updateImg(@Param("item") ItemDTO item, @Param("img") ImgDTO img, @Param("img_idx") String img_idx);
 	
+	// 상품 정보 변경
+	void updateItem(ItemDTO item);
+	
+	// 카테고리 정보 변경
+	void updateCategory(@Param("category") CategoryDTO category, @Param("item") ItemDTO item);
+	
 	// 상품 삭제 (item)
 	int deleteItem(@Param("member") MemberDTO member, @Param("item_idx") String item_idx);
 	
@@ -91,6 +97,9 @@ public interface ShopMapper {
 	
 	// 상품 조회 (페이징 처리를 위한 ListCount 조회)
 	Integer selectItemListCount(String member_id);
+
+	
+
 
 
 }

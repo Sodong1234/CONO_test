@@ -16,13 +16,17 @@
 	
 	<!-- 상품 이미지 조회 -->
 	<select id="selectImgList" resultType="com.itwillbs.cono.vo.ImgDTO">
-		SELECT img_idx, img_real_name , img_name FROM img WHERE item_idx=#{item_idx}
+		SELECT img_idx, img_real_name , img_name 
+		  FROM img 
+		 WHERE item_idx=#{item_idx}
 	</select>
 	
 	<!-- 구매하기 클릭 시 아이템 상태 변경 -->
-	<update id="updateItemStatus">
-		UPDATE item SET item_status='1' WHERE item_idx=#{item_idx}
-	</update>
+<!-- 	<update id="updateItemStatus"> -->
+<!-- 		UPDATE item  -->
+<!-- 		   SET item_status='1'  -->
+<!-- 		 WHERE item_idx=#{item_idx} -->
+<!-- 	</update> -->
 	
 	<!-- item 테이블 수량 변경 -->
 	<update id="updateItemQuantity">
@@ -30,6 +34,13 @@
 		   SET item_quantity=item_quantity - #{order_quantity}
 		 WHERE item_idx=#{item_idx}
 	</update>
+	
+	<!-- item 수량 체크 -->
+	<select id="selectItemQuantity" resultType="java.lang.String">
+		SELECT item_quantity
+		  FROM item
+		 WHERE item_idx=#{item_idx}
+	</select>
 	
 	<!-- ord 테이블 insert -->
 	<insert id="insertOrd">
@@ -39,35 +50,66 @@
 			   ,#{member_id}
 			   ,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
 			   ,#{order_reqContent}
-			   ,#{order_quantity}
+			   ,'Y'
 			   )
 	</insert>
 	
+	<!-- safe 테이블 insert -->
 	<insert id="insertSafe">
 		INSERT INTO safe
 		VALUES (
-			   (SELECT (MAX(safe_idx),'0') FROM safe) AS safe_idx
+			   (SELECT *
+			      FROM (SELECT IFNULL(MAX(safe_idx)+1,'1') 
+			      		  FROM safe) temp)
 			   ,#{ord.item_idx}
 			   ,#{ord.member_id}
-			   ,(SELECT shop_idx FROM shop WHERE member_id=#{ord.member_id} 
-			   ,#{item_price}
+			   ,(SELECT s.shop_idx 
+			       FROM shop s, item i
+			      WHERE s.shop_idx=i.shop_idx
+			        AND i.item_idx=#{ord.item_idx})
+			   ,#{item_price}*#{order_quantity}
+			   ,'Y'
 			   )
 	</insert>
 	
 	<!-- coin 테이블 insert (구매자) -->
-	<insert id="insertCoinBuyer">
+	<insert id="insertCoin">
 		INSERT INTO coin
 		VALUES (
-				(SELECT (MAX(coin_idx),'0') FROM coin) AS coin_idx
-				,#{ord.member_id}	
-				,'0'		<!-- add -->
-				,#{item_price} <!-- use -->
-				,(SELECT (coin_total-#{item_price}) FROM coin WHERE coin_idx=(select IFNULL(MAX(coin_idx),'1') from coin)) AS coin_total
+			   (SELECT *
+			      FROM (SELECT IFNULL(MAX(coin_idx)+1,'1')
+			      		  FROM coin) temp)
+				,#{member_id}	
+				,'0'	
+				,#{item_price} * #{order_quantity} 
+				,#{coin_total}-#{item_price} * #{order_quantity}
 				,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
 			   )
-		
 	</insert>
 	
+	<!-- 상품 수량 0일 경우 상품 상태  -->
+	<update id="updateItemStatus">
+		UPDATE item 
+		   SET item_status='N' 
+		 WHERE item_idx=#{item_idx}
+	</update>
+	
+	<!-- 상품 구매 가능 여부 확인 (coin) -->
+	<select id="selectCoinTotalValue" resultType="java.lang.Integer">
+		SELECT IFNULL(
+					  (SELECT IFNULL((coin_total-#{item_price}*#{ord.order_quantity}), -1)
+					     FROM coin
+					    WHERE member_id=#{ord.member_id})
+           			   , -1) 
+	</select> 
+	
+	<select id="selectCoinTotal" resultType="java.lang.String">
+		SELECT coin_total
+		  FROM coin
+		 WHERE coin_idx = (SELECT * 
+		 			         FROM (SELECT max(coin_idx) FROM coin WHERE member_id=#{member_id}) AS a) 
+		 
+	</select>
 	<!-- coin 테이블 insert (판매자) -->
 	<!-- 판매자는 아직 나가면 안되는데?!! -->
 <!-- 	<insert id="insertCoinSeller"> -->

@@ -154,6 +154,12 @@ public class ShopService {
 		
 		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/file");
 		
+		// item 수정
+		mapper.updateItem(item);
+		
+		// category 수정
+		mapper.updateCategory(category, item);
+		
 		// 원본 이미지리스트 조회
 		List<ImgDTO> orgImgList = mapper.selectImgList(item.getItem_idx());
 		for(int i = 0; i < imgStatusArr.length; i++) {
