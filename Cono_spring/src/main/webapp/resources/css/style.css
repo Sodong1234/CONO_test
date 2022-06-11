@@ -70,15 +70,6 @@ ul, ol {
 	margin: 0;
 }
 
-title-style {
-	vertical-align: bottom;
-    padding-bottom: 4px;
-    margin-bottom: 32px;
-    position: relative;
-    padding-top: 40px;
-    vertical-align: middle;
-}
-
 /*---------------------
   Helper CSS
 -----------------------*/
@@ -484,7 +475,8 @@ title-style {
 /* ===================================================================================== */
 .plus {
 	position: relative;
-	top: 40px;
+	width: 0;
+	z-index: 2;
 }
 
 .top {
@@ -609,24 +601,37 @@ body {
 	font-size: 18px;
 }
 
-/* .wrap { */
-/* 	width: 30%; */
-/* 	position: absolute; */
-/* 	top: 50%; */
-/* 	left: 50%; */
-/* 	transform: translate(-50%, -50%); */
-/* } */
-/* main (내 정보 section) start */
-.main1 {
-	border: 1px solid #ffebb5;
-	background-color: #ffebb5;
-	box-shadow: inset 0 0 8px #deb13a;
-	width: 850px;
-	height: 200px;
-	margin-left: 580px;
+.wrap {
+	width: 30%;
 	position: absolute;
-	right: 600px;
-	bottom: 1770px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+/* main (내 정보 section) start */
+.main__content {
+	padding-bottom: 64px;
+    background: #fff;
+}
+
+.main__content-inner {
+	padding-top: 36px;
+    position: relative;
+    width: 1056px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.main1 {
+    display: block;
+    box-sizing: border-box;
+}
+
+.title-style-bar {
+	background: #f5f5f5;
+    color: #333;
+    padding: 22px 24px;
+    vertical-align: middle;
 }
 
 .table {
@@ -664,10 +669,9 @@ body {
 	margin: 0 auto;
 	background: #ffffff;
 	position: relative;
-	bottom: 610px;
 	height: 550px;
 	border: 1px solid #ddd;
-	right: 75px;
+	bottom: 750px;
 }
 
 .tabmain section {
@@ -710,57 +714,6 @@ body {
 }
 
 /* main (주문 정보 section) end */
-/* main (팔로우 & 팔로워 section) start */
-.tabmain2 {
-	width: 850px;
-	padding: 50px;
-	margin: 0 auto;
-	background: #ffffff;
-	position: relative;
-	bottom: 610px;
-	height: 550px;
-	border: 1px solid #ddd;
-	right: 75px;
-}
-
-.tabmain2 section {
-	display: none;
-	padding: 20px 0 0;
-	border-top: 1px solid #ddd;
-}
-
-/*라디오버튼 숨김*/
-.tabmain2 input {
-	display: none;
-}
-
-.tabmain2 label {
-	display: inline-block;
-	margin: 0 0 -1px;
-	padding: 15px 25px;
-	font-weight: 600;
-	text-align: center;
-	color: #bbb;
-	border: 1px solid transparent;
-}
-
-.tabmain2 label:hover {
-	color: #2e9cdf;
-	cursor: pointer;
-}
-
-/*input 클릭시, label 스타일*/
-.tabmain2 input:checked+label {
-	color: #555;
-	border: 1px solid #ddd;
-	border-top: 2px solid #2e9cdf;
-	border-bottom: 1px solid #ffffff;
-}
-
-#tab11:checked ~ #content11, #tab22:checked ~ #content22 {
-	display: block;
-}
-/* main (팔로우 & 팔로워 section) end */
 
 /* mypage sidebar start */
 .menu {
@@ -1336,5 +1289,163 @@ body {
 }
 /* 팔로우 & 팔로워 end */
 
+/* 회원탈퇴 start */
 
+.deleteMember__container {
+	min-height: 900px;
+    padding: 50px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.deleteMember__head {
+	margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.deleteMember__box {
+	border: 1px solid #a8a8a8;
+    background-color: #fdfdfd;
+}
+
+.deleteMember__box__notice ul {
+	list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.deleteMember__box__notice li {
+	position: relative;
+    padding-left: 1em;
+}
+
+.deleteMember__box__comfirm {
+	padding: 10px 20px;
+    border-top: 1px solid #a8a8a8;
+    background-color: #f5f5f5;
+    color: #005bdb;
+}
+
+.deleteMember__check-user {
+	margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #dae5eb;
+    background-color: #e9f4fa;
+}
+
+.deleteMember__check-user-name,
+.deleteMember__check-user-email,
+.deleteMember__check-user-password {
+	width: 120px;
+}
+
+.deleteMember__check-user-submit {
+	border-color: #0185da;
+    color: #fff;
+    background-color: #0e9ae9;
+    background-image: linear-gradient(#20b3f8,#0185d8);
+}
+/* 회원탈퇴 end */
+
+/* 회원정보수정 start */
+.title-style {
+	margin-top: 0;
+	vertical-align: bottom;
+    padding-bottom: 4px;
+    margin-bottom: 32px;
+    position: relative;
+    padding-top: 40px;
+    vertical-align: middle;
+}
+
+.txt {
+	font-size: 24px;
+    font-weight: bold;
+    vertical-align: middle;
+    color: #333;
+    display: block;
+    float: left;
+}
+
+.main__content-list {
+	list-style: none;
+}
+
+.main__content-list li {
+	float: left;
+    width: 25%;
+    padding: 24px;
+    border-left: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.main__content-list .label {
+	font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    vertical-align: top;
+}
+
+.main__content-list .value {
+	font-size: 24px;
+    color: #ff7b30;
+    display: block;
+} 
+
+.table-style {
+	border-top: 1px solid #d9d9d9;
+	table-layout: fixed;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.table-style th {
+	background: #f5f5f5;
+    font-weight: normal;
+    width: 120px;
+    text-align: left;
+    color: #666;
+    padding: 12px 10px;
+    border-bottom: 1px solid #d9d9d9;
+    height: 48px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+tbody {
+	color: inherit;
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.table-style__phone,
+.table-style__phone-check {
+	font-size: 16px;
+    border-color: #0185da;
+    color: #fff;
+    background-color: #0e9ae9;
+    background-image: linear-gradient(#20b3f8,#0185d8);
+}
+
+.modifySubmit {
+	width: 140px;
+	color: #fff;
+    background: #ff7b30;
+    border: 1px solid #ff7b30;
+    height: 32px;
+    padding: 15px 0;
+    padding: 8px 15px;
+    font-size: 12px;
+    line-height: 14px;
+}
+/* 회원정보수정 end */
 /* ====================================================================== */

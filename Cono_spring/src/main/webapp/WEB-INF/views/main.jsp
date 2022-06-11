@@ -165,8 +165,8 @@ a{
 		</div>
 		  
 		  <img alt="" src="${path }/resources/upload/test.jsp">
-	<div class="clear">
+	<footer style="position: relative; bottom: auto;">
  			<jsp:include page="header_footer/bottom.jsp" />
-	</div>
+	</footer>
 </body>
 </html>

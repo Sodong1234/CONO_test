@@ -12,35 +12,48 @@
 
 </head>
 <body>
-	<div id="wrap">
 		<jsp:include page="../header_footer/top.jsp" />
-	</div>
 
 <img alt="" src="${path }/resources/upload/test.jpg">
 <img alt="" src="${path }/resources/upload/file/${card.img_name }'/>">
 <img alt="" src="${path }/resources/upload/file/${card.img_name }'/>">
-<div class="plus">
-	<div class="main1">
+
 <!-- 	=============================== main (내 정보 section) start =============================== -->
-		<table border="1">
-			<tr>
-				<th colspan="4" style="width: 850px; height: 60px;"><h4>내 정보</h4></th>
-			</tr>
-			<tr>
-				<td style="height: 140px;"><a href="coin"><h4>Cono Coin</h4></a><br>${coin_total}</td>
-				<td><a href="coupon"><h4>예약 상품 수</h4></a><br>${reservedCount}</td>
-				<td><a href="reserved"><h4>쿠폰 수</h4></a><br>${couponCount}</td>
-				<td><a href="basket"><h4>장바구니 상품 수</h4></a><br>${basketCount}</td>
-			</tr>
-		</table>
+	<div class="main__content">
+		<div class="main__content-inner">
+			<section class="main1">
+				<div class="title-style-bar">
+					<h1 class="txt">내 정보</h1>
+					<span class="subtxt" style="box-sizing: border-box;"></span>
+				</div>
+				<ul class="main__content-list">
+					<li>
+					<strong class="label">Cono Coin</strong>
+					<a href="coin" class="value">${coin_total}c</a>
+					</li>
+					<li>
+					<strong class="label">예약 상품 수</strong>
+					<a href="reserved" class="value">${reservedCount}</a>
+					</li>
+					<li>
+					<strong class="label">쿠폰 수</strong>
+					<a href="coupon" class="value">${couponCount}</a>
+					</li>
+					<li>
+					<strong class="label">장바구니 상품 수</strong>
+					<a href="basket" class="value">${basketCount}</a>
+					</li>	
+				</ul>
+			</section>
+		</div>
 	</div>
 <!-- 	=============================== main (내 정보 section) end =============================== -->
 	
 	
 <!-- 	=============================== leftbar start =============================== -->
-	<div id="wrap">
-		<jsp:include page="./mypage_sidebar.jsp" />
-	</div>
+		<div class="plus" style="bottom: 200px;">
+			<jsp:include page="./mypage_sidebar.jsp" />
+		</div>
 <!-- 	=============================== leftbar end =============================== -->	
 	
 <!-- 	=============================== main (주문 정보 section) start =============================== -->
@@ -68,32 +81,10 @@
 	        <p>취소 / 환불 된 상품이 존재하지 않습니다.</p>
 	    </section>
 	</div>
-	<br>
-<!-- 	=============================== main (주문 정보 section) end =============================== -->	
-<!-- 	=============================== main (팔로우&팔로워 section) start =============================== -->
-	<div class="tabmain2">
-		<h4>팔로잉 & 팔로워</h4><br><br>
-	    <input id="tab11" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
-	    <label for="tab11">팔로우중인 상점</label>
-	
-	    <input id="tab22" type="radio" name="tabs">
-	    <label for="tab22">팔로워</label>
-	
-	    <section id="content11">
-	        <p>x개의 상점을 팔로우 중입니다.</p>
-	        <p>팔로우중인 상점 정보 출력</p>
-	    </section>
-	
-	    <section id="content22">
-	        <p>x명이 나의 상점을 팔로우 중입니다.</p>
-	        <p>나를 팔로우하는 유저 정보 출력</p>
-	    </section>
-	</div>
-</div>
-<!-- 	=============================== main (팔로우&팔로워 section) end =============================== -->
-	<div class="clear">
+<!-- 	=============================== main (주문 정보 section) end =============================== -->
+	<footer style="position: relative; bottom: 600px;">	
 		<jsp:include page="../header_footer/bottom.jsp" />
-	</div>
+	</footer>
 
 </body>
 </html>
