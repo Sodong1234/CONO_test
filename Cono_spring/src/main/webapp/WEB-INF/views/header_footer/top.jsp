@@ -66,7 +66,7 @@ String sId = (String) session.getAttribute("sId");
 				<li class="test"><a href="logout" onclick="confirmLogout()"><p>로그아웃</p></a></li>
 				<!-- ==============================양윤석============================= -->
 				<li class="test"><a href="#"><p>알림</p></a></li>
-				<li class="test"><a href="message"><p>메세지</p></a></li>
+				<li class="test"><a href="message_list"><p>메세지</p></a></li>
 				<li class="test"><a href="ProductMyshop.shop"><p>판매자 전용
 							마이페이지</p></a></li>
 				<li class="test"><a href="admin_center_main"><p>관리자 전용 마이페이지</p></a></li>
