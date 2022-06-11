@@ -2,33 +2,81 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.itwillbs.cono.mapper.AdminMapper2">
 	
-<!-- 	회원 수 조회 -->
+	<!-- 회원 수 조회 -->
 	<select id="selectMemberListCount" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM member
+<!-- 		LEFT OUTER JOIN shop s -->
+<!-- 			ON m.member_id = s.member_id -->
+<!-- 		LEFT OUTER JOIN coin c -->
+<!-- 			ON s.member_id = c.member_id -->
+<!-- 		<choose> -->
+<!-- 			<when test="!search.equals('') and searchType.equals('id')">	 -->
+<!-- 				WHERE m.member_id LIKE #{search} -->
+<!-- 			</when> -->
+<!-- 			<when test="!search.equals('') and searchType.equals('nick')">	 -->
+<!-- 				WHERE m.member_nick LIKE #{search} -->
+<!-- 			</when> -->
+<!-- 			<when test="!search.equals('') and searchType.equals('shop')">	 -->
+<!-- 				WHERE s.shop_idx LIKE #{search} -->
+<!-- 			</when> -->
+<!-- 		</choose> -->
 	</select>
 	
-	<select id="selectAllMember">
+	<!-- 회원 리스트 조회(검색 기능 추가) -->
+	<select id="selectAllMember" resultType="java.util.HashMap">
+		SELECT m.member_id, m.member_nick, s.shop_idx, c.coin_total, m.member_email, m.member_phone, m.member_birth, m.member_date, m.member_status
+		FROM member m
+		LEFT OUTER JOIN shop s
+			ON m.member_id = s.member_id
+		LEFT OUTER JOIN coin c
+			ON s.member_id = c.member_id
 		<choose>
-			<when test="search.equals('') and searchType.equals('')">
-				SELECT m.member_id, s.shop_idx, c.coin_total,  m.member_nick, m.member_email, m.member_phone, m.member_birth, m.member_date, m.member_status 
-				FROM member m LEFT OUTER JOIN shop s
-				LEFT OUTER JOIN coin c
-				ON s.member_id = c.member_id
-				ORDER BY m.member_date DESC
-				LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
+			<when test="!search.equals('') and searchType.equals('id')">	
+				WHERE m.member_id LIKE #{search}
 			</when>
-			<when test="search.equals('') and searchType.equals('')">
-				SELECT m.member_id, s.shop_idx, c.coin_total,  m.member_nick, m.member_email, m.member_phone, m.member_birth, m.member_date, m.member_status
-				FROM member m left outer JOIN shop s
-				ON m.member_id = s.member_id
-				left outer JOIN coin c
-				ON s.member_id = c.member_id
-				WHERE + searchType +  LIKE #{search}
-				ORDER BY m.member_date DESC
-				LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
+			<when test="!search.equals('') and searchType.equals('nick')">	
+				WHERE m.member_nick LIKE #{search}
+			</when>
+			<when test="!search.equals('') and searchType.equals('shop')">	
+				WHERE s.shop_idx LIKE #{search}
 			</when>
 		</choose>
+		ORDER BY m.member_date DESC
+		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 	</select>
+	
+	<!-- 현재 진행 거래수 -->
+	<select id="selectDealListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM ord
+	</select>
+	
+	<!-- 현재 진행 거래 리스트 -->
+	<select id="selectAllDeal" resultType="java.util.HashMap">
+		SELECT i.item_title, o.item_idx, i.member_id, o.member_id, s.safe_coin, o.ord_date, i.item_status
+		FROM item i 
+		LEFT OUTER JOIN ord o
+			ON i.item_idx = o.item_idx
+		LEFT OUTER JOIN safe s
+			ON i.item_idx = s.item_idx
+		WHERE item_status = '판매중';
+<!-- 	ORDER BY -->
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </mapper>

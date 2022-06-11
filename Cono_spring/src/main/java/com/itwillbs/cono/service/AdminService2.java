@@ -1,12 +1,12 @@
 package com.itwillbs.cono.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.cono.mapper.AdminMapper2;
-import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PageInfo;
 
 @Service
@@ -22,9 +22,21 @@ public class AdminService2 {
 	}
 	
 	// ------ 회원 리스트 - 김혜은 ------
-	public List<MemberDTO> getMemberList(String searchType, String search, PageInfo pageInfo) {
+	public List<HashMap<String, Object>> getMemberList(String searchType, String search, PageInfo pageInfo) {
 		
 		return mapper.selectAllMember(searchType, search, pageInfo);
+	}
+
+	// ------ 현재 진행 거래 수 (관리자) - 김혜은 ------
+	public int getAdminDealListCount() {
+		
+		return mapper.selectDealListCount();
+	}
+
+	// ------ 현재 진행 거래 리스트 - 김혜은 ------
+	public List<HashMap<String, Object>> getAdminDealList(int pageNum, int listLimit) {
+
+		return mapper.selectAllDeal(pageNum, listLimit);
 	}
 
 }

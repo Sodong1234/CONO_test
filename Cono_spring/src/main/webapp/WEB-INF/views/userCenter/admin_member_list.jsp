@@ -5,20 +5,15 @@
 <html>
 <head>
 <title>회원 관리</title>
-<link rel="stylesheet" href="selectbox.css" />
-<link rel="stylesheet" href="search.css" />
-<link rel="stylesheet" href="table.css" />
-
+<link rel="stylesheet" href="resources/css/admin_table.css" />
 <script type="text/javascript">
-
-
 
 	// 회원 탈퇴
 	function confirmExit(member_id, page){
 		var exitConfirm = confirm("탈퇴를 진행하시겠습니까?" + '\n' + "탈퇴한 아이디는 복원하실 수 없습니다.");
 		
 		if(exitConfirm){
-			location.href="AdminMemberExit.admin?member_id=" + member_id + "&page=" + page;
+			location.href="./AdminMemberExit?member_id=" + member_id + "&page=" + page;
 		} 
 	}
 
@@ -40,18 +35,16 @@
 	
 	<div class="body">
 		<h2>가입 회원</h2>
-			
+		
+		회원 수 : ${listCount }
 	<!-- 검색 기능 -->
 		<div id="member_search">
 			<form>
 				<select name="searchType" class="ssearch">
-					<option value="id_nick_">전체</option>
-<!-- 					<option value="id" >아이디</option> -->
-<!-- 					<option value="nick">닉네임</option> -->
-<!-- 					<option value="s.shop_idx">Cono 온도</option> -->
-					<option value="m.member_id" >아이디</option>
-					<option value="m.member_nick">닉네임</option>
-					<option value="s.shop_idx">Cono 온도</option>
+					<option value="">전체</option>
+					<option value="id" >아이디</option>
+					<option value="nick">닉네임</option>
+					<option value="shop">판매여부</option>
 				</select>
 				<input type="text" name="search" value="${search }" placeholder="검색어를 입력하세요">
 				<input type="submit" id="search_btn" value="검색">
@@ -64,7 +57,7 @@
 				<th width="50">All<input type="checkbox" name="check_all" id="check_all" onclick="checkAll()"></th>
 				<th width="100" >아이디</th>
 				<th width="100" >닉네임</th>
-				<th width="100" >Cono 온도</th>
+				<th width="100" >판매여부</th>
 				<th width="150" >Coin Total</th>
 				<th width="200" >Phone</th>	
 				<th width="200" >E-Mail</th>
@@ -76,16 +69,16 @@
 					<c:forEach var="member" items="${memberList }">
 						<tr> 
 							<td><input type="checkbox" name="chk"></td> 
-							<td>${member[0] }</td>
-							<td>${member[1] }</td>
-							<td>${member[2] }</td>
-							<td>${member[3] }</td>
-							<td>${member[4] }</td>
-		 					<td>${member[5] }</td>
-							<td>${member[6] }</td>
-							<td>${member[7] }</td>
+							<td>${member.member_id }</td>
+							<td>${member.member_nick }</td>
+							<td>${member.shop_idx }</td>
+							<td>${member.coin_total }</td>
+							<td>${member.member_phone }</td>
+		 					<td>${member.member_email }</td>
+							<td>${member.member_date }</td>
+							<td>${member.member_status }</td>
 							<td>
-								<input type="button" class="search_btn" value="탈퇴" onclick="confirmExit('${member[0] }', '${pageInfo.getPageNum() }' )">
+								<input type="button" id="search_btn" value="탈퇴" onclick="confirmExit('${member.member_id }', '${pageInfo.getPageNum() }' )">
 							</td> 
 						</tr> 
 					</c:forEach>
@@ -93,20 +86,20 @@
 		</table>
 
 
-	<section>
-		<!-- 페이징 처리 -->
+<!-- 페이징 처리 -->
+	<section class="paging">
+		<!-- [이전] 링크 동작 -->
 		<c:choose>
 			<c:when test="${pageNum > 1}">
-				<input type="button" id="search_btn2" value="이전" onclick="location.href='AdminMemberList?page=${pageNum - 1}'">
+				<input type="button"  value=" < " onclick="location.href='AdminMemberList?page=${pageNum - 1}'">
 			</c:when>
 			<c:otherwise>
-				<input type="button" id="search_btn2" value="이전">
+				<input type="button"  value=" < " disabled="disabled">
 			</c:otherwise>
 		</c:choose>
 			
-		<!-- 페이지 번호 목록은 시작 페이지(startPage)부터 끝 페이지(endPage) 까지 표시 --> 
+		<!-- 페이지 번호 --> 
 		<c:forEach var="i" begin="${startPage }" end="${endPage }">
-			<!-- 단, 현재 페이지 번호는 링크 없이 표시 -->
 			<c:choose>
 				<c:when test="${pageNum eq i}">
 					${i }
@@ -120,13 +113,14 @@
 		<!-- [다음] 링크 동작 -->
 		<c:choose>
 			<c:when test="${pageNum < maxPage}">
-				<input type="button" id="search_btn2" value="다음" onclick="location.href='AdminMemberList?page=${pageNum + 1}'">
+				<input type="button" value=" > " onclick="location.href='AdminMemberList?page=${pageNum + 1}'">
 			</c:when>
 			<c:otherwise>
-				<input type="button" id="search_btn2" value="다음">
+				<input type="button" value=" > " disabled="disabled">
 			</c:otherwise>
 		</c:choose>
 	</section>
+	
 	
 	
 </div>	<!-- .body -->

@@ -1,0 +1,111 @@
+/* 검색 창 */
+
+.ssearch {
+    position:relative; 
+    margin-top: 4px; 
+}
+
+.hh{
+   position:relative; 
+    margin-left: 90px; 
+    margin-top: 4px;
+
+    
+}
+select {
+   width:65px;
+   height :30px;
+   font-size: 13px;
+   color:#999;
+   border:1px solid #bbb;
+   border-radius:3px; 
+}
+
+
+input[type=text] { 
+    width:180px; 
+    border:1px solid #bbb; 
+    border-radius: 3px; 
+    padding: 8px 6px;     
+    font-size: 14px; 
+ } 
+#search_btn{
+   font-size: 13px;
+   padding: 6px 7px; 
+   background-color: black;
+   color: white;
+   border : 2px solid black;
+   border-radius: 16px; 
+   text-transform: uppercase; 
+   letter-spacing:1px;
+   font-family: sans-serif;  
+   transition : all 0.4s;
+}
+
+#search_btn:focus{
+   outline: none;
+}
+
+#search_btn:hover{
+   background-color: white;
+   color:black;
+}
+
+
+/* table */
+
+table.type04 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: center;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  margin : 20px 10px;
+}
+table.type04 th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+table.type04 td {
+  width: 350px;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+/*  paging  */
+
+  .paging  {  
+  	margin-top: 30px;  
+   	text-align: center;   
+  	margin-left: 10px;
+  }  
+
+
+  .paging input:not(.btn){ 
+    width: 30px;  
+   	height: 30px;   
+   	background-repeat:no-repeat; 
+   	border-radius:100px;  
+   	border-style: none;  
+    overflow: hidden;   
+    font-size: 13px;
+    font-weight: bold;
+  } 
+  
+  .paging input:not(.btn):hover{
+  	background-color: #999;
+  } 
+  
+  .paging a:hover{
+  	text-decoration: underline;
+  }
+  
+  /*   title */
+
+.title a:hover {
+	text-decoration: underline;
+}

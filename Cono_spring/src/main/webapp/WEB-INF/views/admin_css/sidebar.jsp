@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+// 세션 아이디 저장
+String sId = (String)session.getAttribute("sId");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="selectbox.css" />
-<link rel="stylesheet" href="search.css" />
-<link rel="stylesheet" href="table.css" />
+<!-- <link rel="stylesheet" href="selectbox.css" /> -->
+<!-- <link rel="stylesheet" href="search.css" /> -->
+<!-- <link rel="stylesheet" href="table.css" /> -->
 
 <style type="text/css">
 
@@ -74,14 +78,25 @@ body{
 
 	
 </style>
+
+<script type="text/javascript">
+	
+	//로그아웃
+	function confirmLogout() {
+		if(confirm("로그아웃 하시겠습니까?")){
+			location.href = "logout";
+		}
+	}
+
+</script>
 </head>
 <body>
 <!-- 사이드바 -->
 	<div class="sidebar">
 	   <h1>Cono</h1>
-	   <a href="../admin_center/main.jsp">대시보드</a>
-	   <a href="AdminDealList.admin">거래관리</a>
-	   <a href="AdminMemberList.admin">회원관리</a>
+	   <a href="">대시보드</a>
+	   <a href="./AdminDealList">거래관리</a>
+	   <a href="./AdminMemberList">회원관리</a>
 	   <a href="AdminQNAList.admin">1:1 문의</a>
 	   <a href="AdminNoticeList.admin">공지관리</a>
 	   <a href="AdminReportList.admin">신고관리</a>
@@ -90,8 +105,11 @@ body{
 <!-- 네비게이션	 -->
 	<section id="nav">
 		<div class="nav" align="right">
-			<h5><a href="">관리자님 </a> &nbsp;
-			<a href="">로그아웃</a></h5>
+			<h5>
+			<%if(sId.equals("admin")) { %>
+				<a href="">관리자님 </a>
+			<%} %>
+			<a onclick="confirmLogout()">로그아웃</a></h5>
 		</div>
 	</section>
 	
