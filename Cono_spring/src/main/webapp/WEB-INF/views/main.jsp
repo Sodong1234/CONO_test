@@ -12,6 +12,7 @@
 <style type="text/css">
 a{
 	text-decoration: none;
+	color: black;
 }
 .list_category{
 	list-style: none;
@@ -32,6 +33,7 @@ a{
 	margin: auto;
 }
 .inner_home_theme{
+	background-color: #eaedf2;
     width: 1280px;
     height: 460px;
     position: relative;
@@ -78,6 +80,7 @@ a{
 	
 }
 .cgr_text{
+	text-decoration: none;
 }
 </style>
 </head>
