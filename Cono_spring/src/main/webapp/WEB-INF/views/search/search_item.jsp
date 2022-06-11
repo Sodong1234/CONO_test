@@ -223,11 +223,10 @@ p {
 	<!-- 	<div class="navbar"></div> -->
 	<hr>
 	<!-- 필터 추가 -->
-	</div>
 	<h1>'${searchText }' 검색 내용입니다.</h1>
 	<c:forEach var="card" items="${cardList }">
 		<div class="products">
-			<a href="location.href='itemDetail?item_idx=${card.item_idx}'"> <img alt=""
+			<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""
 				src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
 				<p class="name">${card.item_title }</p>
 				<p class="region">${card.item_region }</p>
@@ -236,9 +235,9 @@ p {
 		</div>
 	</c:forEach>
 
-	<!-- 	<div> -->
-<%-- 		<jsp:include page="../header_footer/bottom.jsp"/> --%>
-<!-- 	</div> -->
+	<div>
+		<jsp:include page="../header_footer/bottom.jsp"/>
+	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
 crossorigin="anonymous"></script>
