@@ -1297,6 +1297,43 @@ body {
     border-radius: 4px;
 }
 
+.navstyle {
+	font-size: 14px;
+    color: #acacac;
+    display: table;
+    width: 100%;
+    margin: 24px 0 0;
+    padding-bottom: 14px;
+	
+}
+
+.activefollow {
+	border-width: 2px;
+    border-color: #666;
+    border-bottom-color: transparent;
+    color: #333;
+    font-weight: bold;
+    display: table-cell;
+    width: 50%;
+    text-align: center;
+    padding: 16px 0;
+    border: 1px solid #acacac;
+    border-bottom: 2px solid #666;
+}
+
+.activefollower {
+	border-width: 2px;
+    border-color: #666;
+    border-bottom-color: transparent;
+    color: #333;
+    font-weight: bold;
+    display: table-cell;
+    width: 50%;
+    text-align: center;
+    padding: 16px 0;
+    border: 1px solid #acacac;
+    border-bottom: 2px solid #666;
+}
 /* 팔로우 & 팔로워 end */
 
 
