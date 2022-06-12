@@ -197,7 +197,7 @@ public class MypageController {
 //			
 		model.addAttribute("coin_total", coin_total);
 		model.addAttribute("coin", coin);
-
+		System.out.println(coin.isEmpty());
 		return "mypage/center_coin";
 	}
 
@@ -257,6 +257,7 @@ public class MypageController {
 		String sId = (String) session.getAttribute("sId");
 
 		List<HashMap<String, String>> purchasedList = service.getPurchasedList(sId);
+		model.addAttribute("purchasedList",purchasedList);
 		return "mypage/center_purchased";
 	}
 	
