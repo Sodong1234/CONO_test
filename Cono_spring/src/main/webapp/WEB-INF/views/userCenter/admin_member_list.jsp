@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${param.search ne null}">
+	<c:set var="search" value="${param.search}"/>
+	<c:set var="searchType" value="${param.searchType}"/>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,19 +38,21 @@
 	</div>
 	
 	<div class="body">
-		<h2>가입 회원</h2>
+		<h2>MEMBER</h2>
 		
-		회원 수 : ${listCount }
+		현재 회원 수 : ${listCount }
+		<hr>
 	<!-- 검색 기능 -->
 		<div id="member_search">
 			<form>
+				<input type="hidden" name="pageNum" value="${pageNum}">
 				<select name="searchType" class="ssearch">
 					<option value="">전체</option>
-					<option value="id" >아이디</option>
-					<option value="nick">닉네임</option>
-					<option value="shop">판매여부</option>
+					<option value="id" <c:if test="${searchType ne null and searchType eq 'id'}">selected</c:if>>아이디</option>
+					<option value="nick" <c:if test="${searchType ne null and searchType eq 'nick'}">selected</c:if>>닉네임</option>
+					<option value="shop" <c:if test="${searchType ne null and searchType eq 'shop'}">selected</c:if>>판매여부</option>
 				</select>
-				<input type="text" name="search" value="${search }" placeholder="검색어를 입력하세요">
+				<input type="text" name="search" value="<c:if test="${search ne null}">${search }</c:if>" placeholder="검색어를 입력하세요">
 				<input type="submit" id="search_btn" value="검색">
 			</form>
 		</div>
@@ -54,7 +60,6 @@
 		<!-- 회원리스트 테이블 -->
 		<table class="type04">
 			<tr>
-				<th width="50">All<input type="checkbox" name="check_all" id="check_all" onclick="checkAll()"></th>
 				<th width="100" >아이디</th>
 				<th width="100" >닉네임</th>
 				<th width="100" >판매여부</th>
@@ -68,7 +73,6 @@
 			<c:if test="${not empty memberList and pageInfo.getListCount() > 0}">
 					<c:forEach var="member" items="${memberList }">
 						<tr> 
-							<td><input type="checkbox" name="chk"></td> 
 							<td>${member.member_id }</td>
 							<td>${member.member_nick }</td>
 							<td>${member.shop_idx }</td>
@@ -78,7 +82,7 @@
 							<td>${member.member_date }</td>
 							<td>${member.member_status }</td>
 							<td>
-								<input type="button" id="search_btn" value="탈퇴" onclick="confirmExit('${member.member_id }', '${pageInfo.getPageNum() }' )">
+								<input type="button" id="search_btn" value="탈퇴" onclick="confirmExit('${member.member_id }', '${pageInfo.pageNum }' )">
 							</td> 
 						</tr> 
 					</c:forEach>
@@ -91,7 +95,7 @@
 		<!-- [이전] 링크 동작 -->
 		<c:choose>
 			<c:when test="${pageNum > 1}">
-				<input type="button"  value=" < " onclick="location.href='AdminMemberList?page=${pageNum - 1}'">
+				<input type="button"  value=" < " onclick="location.href='AdminMemberList?page=${pageNum - 1}<c:if test="${search ne null }">&search=${search }&searchType=${searchType }</c:if>'">
 			</c:when>
 			<c:otherwise>
 				<input type="button"  value=" < " disabled="disabled">
@@ -105,7 +109,7 @@
 					${i }
 				</c:when>
 				<c:otherwise>
-					<a href="AdminMemberList?page=${i }">${i }</a>
+					<a href="AdminMemberList?page=${i }<c:if test="${search ne null }">&search=${search }&searchType=${searchType }</c:if>">${i }</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -113,7 +117,7 @@
 		<!-- [다음] 링크 동작 -->
 		<c:choose>
 			<c:when test="${pageNum < maxPage}">
-				<input type="button" value=" > " onclick="location.href='AdminMemberList?page=${pageNum + 1}'">
+				<input type="button" value=" > " onclick="location.href='AdminMemberList?page=${pageNum + 1}<c:if test="${search ne null }">&search=${search }&searchType=${searchType }</c:if>'">
 			</c:when>
 			<c:otherwise>
 				<input type="button" value=" > " disabled="disabled">

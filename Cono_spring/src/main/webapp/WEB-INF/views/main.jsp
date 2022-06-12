@@ -82,12 +82,123 @@ a{
 .cgr_text{
 	text-decoration: none;
 }
+
+</style>
+
+<!-- 실시간 인기순위 -->
+<style type="text/css">
+
+.relative {
+    position: relative;
+}
+
+.center-align {
+    margin: 0 auto;
+    width: 1080px;
+}
+
+#rank-hot {
+    height: 200px;
+    border-top: 1px solid #f1f3f6;
+    border-bottom: 1px solid #d1d8e4;
+}
+
+#rank-hot ul {
+    display: inline-block;
+    margin: 0;
+    padding: 16px 0 0 4px;
+    list-style: none;
+}
+
+.view{
+	display:none;
+	position:absolute;
+	left:10px;
+	top:10px;
+	z-index:99;
+	font-size:10px;
+	font-weight:bold
+	}
+
+#search-ranking {
+    position: relative;
+    left: 0;
+    width: 200px;
+    height: 25px;
+}
+
+#search-ranking ul {
+    display: none;
+    list-style: none;
+    padding: 17px;
+    margin: 0;
+    width: 332px;
+    height: 334px;
+    border: 1px solid #aaa;
+    background: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+}
+
+#search-ranking:hover ul {
+    display: inline-block;
+}
+
+#rank-number {
+    margin-top: -9px;
+    color: #00ab33;
+    font-size: 16px;
+}
+
+#rank-title {
+	right
+    letter-spacing: -1px;
+    font-size: 14px;
+}
+
 </style>
 </head>
 <body>
 	<div id="wrap">
 		<jsp:include page="header_footer/top.jsp"/>
 	</div>
+	
+	<!-- 실시간 인기순위 -->
+	<nav class="rank-hot">
+	  <div class="center-align relative">
+	    <div id="search-ranking">
+	      <div>
+	        <span id="rank-number">1</span>
+	        <span id="rank-title">신발</span>
+	      </div>
+	      <ul>
+		      <h5 id="view">실시간 인기순위</h5>
+	        <li>
+	          <span class="rank-number">1.</span>
+	          <span class="rank-title">신발</span>
+	        </li>
+	        <li>
+	          <span class="rank-number">2.</span>
+	          <span class="rank-title">신발</span>
+	        </li>
+	        <li>
+	          <span class="rank-number">3.</span>
+	          <span class="rank-title">신발</span>
+	        </li>
+	        <li>
+	          <span class="rank-number">4.</span>
+	          <span class="rank-title">신발</span>
+	        </li>
+	        <li>
+	          <span class="rank-number">5.</span>
+	          <span class="rank-title">신발</span>
+	        </li>
+	      </ul>
+	    </div>
+	</nav>
+	
  		<div class="intro_bg">
  			<div class="main_text">
  				<span>오늘은 어떤게 필요하신가요?</span>
@@ -165,6 +276,8 @@ a{
 		</div>
 		  
 		  <img alt="" src="${path }/resources/upload/test.jsp">
+		  
+		  
 	<footer style="position: relative; bottom: auto;">
  			<jsp:include page="header_footer/bottom.jsp" />
 	</footer>

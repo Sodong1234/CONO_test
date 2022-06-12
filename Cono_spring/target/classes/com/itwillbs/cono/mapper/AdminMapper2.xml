@@ -2,24 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.itwillbs.cono.mapper.AdminMapper2">
 	
-	<!-- 회원 수 조회 -->
+	<!-- 회원 수 조회(검색 기능 추가) -->
 	<select id="selectMemberListCount" resultType="java.lang.Integer">
-		SELECT COUNT(*) FROM member
-<!-- 		LEFT OUTER JOIN shop s -->
-<!-- 			ON m.member_id = s.member_id -->
-<!-- 		LEFT OUTER JOIN coin c -->
-<!-- 			ON s.member_id = c.member_id -->
-<!-- 		<choose> -->
-<!-- 			<when test="!search.equals('') and searchType.equals('id')">	 -->
-<!-- 				WHERE m.member_id LIKE #{search} -->
-<!-- 			</when> -->
-<!-- 			<when test="!search.equals('') and searchType.equals('nick')">	 -->
-<!-- 				WHERE m.member_nick LIKE #{search} -->
-<!-- 			</when> -->
-<!-- 			<when test="!search.equals('') and searchType.equals('shop')">	 -->
-<!-- 				WHERE s.shop_idx LIKE #{search} -->
-<!-- 			</when> -->
-<!-- 		</choose> -->
+		SELECT COUNT(*)
+		FROM member m
+		LEFT OUTER JOIN shop s
+			ON m.member_id = s.member_id
+		LEFT OUTER JOIN coin c
+			ON s.member_id = c.member_id
+		<choose>
+			<when test="!search.equals('') and searchType.equals('id')">	
+				WHERE m.member_id LIKE #{search}
+			</when>
+			<when test="!search.equals('') and searchType.equals('nick')">	
+				WHERE m.member_nick LIKE #{search}
+			</when>
+			<when test="!search.equals('') and searchType.equals('shop')">	
+				WHERE s.shop_idx LIKE #{search}
+			</when>
+		</choose>
 	</select>
 	
 	<!-- 회원 리스트 조회(검색 기능 추가) -->
@@ -45,6 +46,13 @@
 		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 	</select>
 	
+	<!-- 회원 탈퇴 -->
+	<update id="updateExitMember">
+		UPDATE member
+		SET member_status='N'
+		WHERE member_id = #{member_id}
+	</update>
+	
 	<!-- 현재 진행 거래수 -->
 	<select id="selectDealListCount" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM ord
@@ -62,7 +70,12 @@
 <!-- 	ORDER BY -->
 	</select>
 
-
+	<!-- '거래취소' 시 거래상태 수정('거래중'N' / '거래완료'Y / '거래취소' C) -->
+	<update id="updateDealCancel">
+		UPDATE safe
+		SET safe_status = 'C'
+		WHERE item_idx = #{item_idx}
+	</update>
 
 
 

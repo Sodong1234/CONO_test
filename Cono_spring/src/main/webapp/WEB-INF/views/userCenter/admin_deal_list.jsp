@@ -13,7 +13,7 @@
 		var dealConfirm = confirm("거래 취소 하시겠습니까?" + '\n' + "거래를 되돌릴 수 없습니다.");
 		
 		if(dealConfirm){
-			location.href="AdminDealCancel?item_idx=" + item_idx + "&safe_coin=" + safe_coin + "&safe_status=" + safe_status+ "&page=" + page;
+			location.href="./AdminDealCancel?item_idx=" + item_idx + "&safe_coin=" + safe_coin + "&safe_status=" + safe_status + "&page=" + page;
 		}
 	}
 
@@ -39,7 +39,6 @@
 	현재 거래 현황 : ${listCount }
 	<table class="type04">
 		<tr>
-			<th>All<input type="checkbox" name="check_all" value="1"></th>
 			<th>상품명</th>
 			<th>상품번호</th>
 			<th>판매자</th>
@@ -53,7 +52,6 @@
 		<c:if test="${not empty dealList and pageInfo.listCount > 0 }">
 			<c:forEach var="product" items="${dealList}">
 				<tr>
-					<td><input type="checkbox" name="chk"></td>
 					<td><a href="" class="title">${product.item_title }</a></td>
 					<td>${product.item_idx }</td>
 					<td>${product.member_id }</td>
@@ -61,7 +59,7 @@
 					<td>${product.safe_coin }</td>
 					<td>${product.ord_date }</td>
 					<td>${product.item_status }</td>
-					<td><input type="button" id="search_btn" value="거래취소" onclick="dealCancel('${product.item_idx }', '${product.safe_coin }', '${product.item_status }','${pageInfo.getPageNum() }')"></td>
+					<td><input type="button" id="search_btn" value="거래취소" onclick="dealCancel('${product.item_idx }', '${product.safe_coin }', '${product.item_status }','${pageInfo.pageNum }')"></td>
 				</tr>
 			</c:forEach>
 		</c:if>
