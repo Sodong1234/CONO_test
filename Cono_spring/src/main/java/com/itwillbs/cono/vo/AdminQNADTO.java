@@ -29,6 +29,8 @@ public class AdminQNADTO {
 	private int qna_re_seq;
 	private String qna_date;
 	private String qna_status;
+	private int num;
+	
 	public String getQna_idx() {
 		return qna_idx;
 	}
@@ -95,6 +97,12 @@ public class AdminQNADTO {
 				+ ", qna_subject=" + qna_subject + ", qna_content=" + qna_content + ", qna_re_ref=" + qna_re_ref
 				+ ", qna_re_lev=" + qna_re_lev + ", qna_re_seq=" + qna_re_seq + ", qna_date=" + qna_date
 				+ ", qna_status=" + qna_status + "]";
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
 	}
 	
 	

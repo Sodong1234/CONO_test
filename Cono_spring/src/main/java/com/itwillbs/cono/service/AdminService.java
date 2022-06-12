@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.cono.mapper.AdminMapper;
 import com.itwillbs.cono.vo.AdminNoticeDTO;
+import com.itwillbs.cono.vo.AdminQNADTO;
 import com.itwillbs.cono.vo.PageInfo;
 
 @Service
@@ -45,5 +46,45 @@ public class AdminService {
 	public boolean modifyNotice(AdminNoticeDTO noticeList) {
 		return mapper.updateNotice(noticeList);
 	}
+
+	//------------------------------qna-------------------------------------------------------------
+	// qna 총게시물수 카운트
+	public int getQNAListCount() {
+		
+		return mapper.selectQNAListCount();
+	}
+
+	// qna 목록+검색
+	public List<AdminQNADTO> getQNAList(PageInfo pageInfo) {
+		System.out.println("pageInfo : " +pageInfo);
+		return mapper.selectQNAList(pageInfo);
+	}
+
+	// qna 글쓰기
+	public int selectQNANumDate() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	public int writeQNA(AdminQNADTO qnaList, int num) {
+		int insertCount = mapper.insertQNA(qnaList);
+		return insertCount;
+	}
+//
+//	// qna 상세페이지 조회
+//	public AdminQNADTO getAdminQNAView(String qna_idx) {
+//		return mapper.selectQNAView(qna_idx);
+//	}
+//
+//	// qna 글삭제
+//	public boolean removeQNA(AdminQNADTO qnaList, int pageNum) {
+//		return mapper.deleteQNAList(qnaList);
+//	}
+//
+//	// qna 글수정
+//	public boolean modifyQNA(AdminQNADTO qnaList) {
+//		return mapper.updateQNA(qnaList);
+//	}
+
 
 }

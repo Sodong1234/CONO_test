@@ -199,7 +199,7 @@ input[type=text] {
 	<div class ="search">
 		<div class ="hh"><h1>NOTICE</h1></div>
 		<div class="ssearch">
-		<form action="AdminNoticeList.admin" method="post">
+		<form action="AdminNoticeList" method="post">
 		<input type = "hidden" name ="pageNum" value="${pageNum }">
 			<select name="searchType">
 				<option value="subject" <c:if test="${searchType ne null and searchType eq 'subject'}">selected</c:if>>제목</option>

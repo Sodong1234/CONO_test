@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.cono.service.AdminService;
 import com.itwillbs.cono.vo.AdminNoticeDTO;
+import com.itwillbs.cono.vo.AdminQNADTO;
 import com.itwillbs.cono.vo.PageInfo;
 
 @Controller
@@ -27,7 +28,6 @@ public class AdminController {
 	}
 	// -------------- 고객센터 공지사항 리스트, 검색기능 (관리자) - 김도은 -------------
 
-	// => 파라미터로 전달되는 pageNum 파라미터가 없을 경우를 대비하여 기본값 0 으로 지정
 	@RequestMapping(value = "AdminNoticeList", method = RequestMethod.GET)
 	public String list(@RequestParam(defaultValue = "") String searchType,
 			@RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "1") int pageNum,
@@ -169,5 +169,146 @@ public class AdminController {
 
 		return "redirect:/AdminNoticeView.admin";
 	}
+	
+	// -------------- 고객센터 qna 리스트 (관리자) - 김도은 -------------
+	
+	@RequestMapping(value = "AdminQNAList", method = RequestMethod.GET)
+	public String qnaListGet(@RequestParam(defaultValue = "1") int pageNum,Model model) {
+		
+		int listCount = service.getQNAListCount(); 
+		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
+		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
+		System.out.println(listCount);
+		// 페이징 처리를 위한 계산 작업
+		int maxPage = (int) Math.ceil((double) listCount / listLimit);
+		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		int endPage = startPage + pageLimit - 1;
+		if (endPage > maxPage) {
+			endPage = maxPage;
+		}
+
+		int startRow = (pageNum - 1) * listLimit;
+
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setPageNum(pageNum);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setListLimit(listLimit);
+
+		List<AdminQNADTO> qnaList = service.getQNAList(pageInfo);
+		System.out.println(qnaList.isEmpty());
+		model.addAttribute("qnaList", qnaList);
+		model.addAttribute("pageInfo", pageInfo);
+
+		return "userCenter/admin_qna_list";
+	}
+	// 고객센터 공지사항 리스트 - POST
+//		@RequestMapping(value = "AdminNoticeList", method = RequestMethod.POST)
+//		public String qnaListPost(@RequestParam(defaultValue = "1") int pageNum, Model model) {
+//
+//			int listCount = service.getQNAListCount(); 
+//
+//			int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
+//			int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
+//
+//			int maxPage = (int) Math.ceil((double) listCount / listLimit);
+//			int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+//			int endPage = startPage + pageLimit - 1;
+//			if (endPage > maxPage) {
+//				endPage = maxPage;
+//			}
+//
+//			int startRow = (pageNum - 1) * listLimit;
+//
+//			PageInfo pageInfo = new PageInfo();
+//			pageInfo.setPageNum(pageNum);
+//			pageInfo.setMaxPage(maxPage);
+//			pageInfo.setStartPage(startPage);
+//			pageInfo.setEndPage(endPage);
+//			pageInfo.setListCount(listCount);
+//			pageInfo.setStartRow(startRow);
+//			pageInfo.setListLimit(listLimit);
+//			List<AdminQNADTO> qnaList = service.getQNAList(pageInfo);
+//
+//			model.addAttribute("qnaList", qnaList);
+//			model.addAttribute("pageInfo", pageInfo);
+//
+//			return "userCenter/admin_qna_list";
+//		}
+
+	
+	// -------------- 고객센터 qna 사용자 위한 글쓰기 (관리자) - 김도은 -------------
+	// 글쓰기 폼 - GET
+	@RequestMapping(value = "AdminQNAWriteForm.admin", method = RequestMethod.GET)
+	public String qnaWrite() {
+		return "userCenter/admin_qna_write";
+	}
+
+	// 글쓰기 비즈니스 로직 - POST
+	@RequestMapping(value = "AdminQNAWriteForm.admin", method = RequestMethod.POST)
+	public String qnaWritePost(@ModelAttribute AdminQNADTO qnaList, Model model) {
+		
+		int num = service.selectQNANumDate();
+		int insertCount = service.writeQNA(qnaList,num);
+
+		if (insertCount == 0) {
+			model.addAttribute("msg", "글 등록 실패!");
+			return "fail_back";
+		}
+		return "redirect:/AdminQNAList";
+	}
+
+//	// 글쓰기 상세페이지 - GET
+//	@RequestMapping(value = "adminQNAView.admin", method = RequestMethod.GET)
+//	public String adminQNAView(@RequestParam String qna_idx, Model model) {
+//		AdminQNADTO qnaList = service.getAdminQNAView(qna_idx);
+//
+//		model.addAttribute("qnaList", qnaList);
+//
+//		return "userCenter/admin_qna_view";
+//	}
+//
+//	// 글 삭제 비즈니스 로직 - POST
+//	@RequestMapping(value = "AdminQNADeletePro.admin", method = RequestMethod.GET)
+//	public String deleteQNA(@ModelAttribute AdminQNADTO qnaList, @RequestParam int pageNum, Model model) {
+//		boolean isDeleteSuccess = service.removeQNA(qnaList, pageNum);
+//
+//		if (!isDeleteSuccess) {
+//			model.addAttribute("msg", "삭제실패!");
+//			return "fail_back";
+//		}
+//		model.addAttribute("pageNum", pageNum);
+//
+//		return "redirect:/AdminQNAList";
+//	}
+//
+//	// 글 수정 폼 - GET
+//	@RequestMapping(value = "AdminQNAModifyForm.admin", method = RequestMethod.GET)
+//	public String modifyQNA(@RequestParam String qna_idx, Model model) {
+//		AdminQNADTO qnaList = service.getAdminQNAView(qna_idx);
+//
+//		model.addAttribute("qnaList", qnaList);
+//
+//		return "userCenter/admin_qna_modify";
+//	}
+//
+//	// 글 수정 비즈니스 로직 - POST
+//	@RequestMapping(value = "AdminQNAModifyPro.admin", method = RequestMethod.POST)
+//	public String modifyQNA(@ModelAttribute AdminQNADTO qnaList, @RequestParam int pageNum, Model model) {
+//		boolean isUpdateSuccess = service.modifyQNA(qnaList);
+//		System.out.println(qnaList);
+//		if (!isUpdateSuccess) {
+//			model.addAttribute("msg", "수정실패!");
+//			return "fail_back";
+//		}
+//
+//		model.addAttribute("qna_idx", qnaList.getQna_idx());
+//		model.addAttribute("pageNum", pageNum);
+//
+//		return "redirect:/AdminNoticeView.admin";
+//	}
 
 }
