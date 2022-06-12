@@ -1,5 +1,6 @@
 package com.itwillbs.cono.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -36,7 +37,8 @@ public interface AdminMapper {
 	public List<AdminQNADTO> selectQNAList(@Param("pageInfo")PageInfo pageInfo);
 
 	// qna 글쓰기
-	public int insertQNA(AdminQNADTO qnaList);
+	public List<HashMap<String , String>> selectQNANumDate();
+	public int insertQNA(AdminQNADTO qnaList,List<HashMap<String, String>> qnaNumDate,String sId);
 //
 //	// qna 상세페이지
 //	public AdminQNADTO selectQNAView(String qna_idx);
@@ -46,4 +48,6 @@ public interface AdminMapper {
 //
 //	// qna 수정
 //	public boolean updateQNA(AdminQNADTO qnaList);
+
+	
 }

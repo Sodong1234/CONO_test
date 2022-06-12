@@ -1,6 +1,9 @@
 package com.itwillbs.cono.controller;
 
+import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwillbs.cono.service.AdminService;
 import com.itwillbs.cono.vo.AdminNoticeDTO;
 import com.itwillbs.cono.vo.AdminQNADTO;
+import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PageInfo;
 
 @Controller
@@ -248,11 +252,11 @@ public class AdminController {
 	}
 
 	// 글쓰기 비즈니스 로직 - POST
-	@RequestMapping(value = "AdminQNAWriteForm.admin", method = RequestMethod.POST)
-	public String qnaWritePost(@ModelAttribute AdminQNADTO qnaList, Model model) {
-		
-		int num = service.selectQNANumDate();
-		int insertCount = service.writeQNA(qnaList,num);
+	@RequestMapping(value = "AdminQNAWritePro.admin", method = RequestMethod.POST)
+	public String qnaWritePost(@ModelAttribute AdminQNADTO qnaList, Model model, HttpSession session) {
+		String sId = (String)session.getAttribute("sId");
+		List<HashMap<String , String>> qnaNumDate = service.selectQNANumDate();
+		int insertCount = service.writeQNA(qnaList,qnaNumDate,sId); 
 
 		if (insertCount == 0) {
 			model.addAttribute("msg", "글 등록 실패!");

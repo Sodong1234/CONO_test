@@ -1,5 +1,6 @@
 package com.itwillbs.cono.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,15 +62,17 @@ public class AdminService {
 	}
 
 	// qna 글쓰기
-	public int selectQNANumDate() {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<HashMap<String , String>> selectQNANumDate() {
+		return mapper.selectQNANumDate();
 	}
-	
-	public int writeQNA(AdminQNADTO qnaList, int num) {
-		int insertCount = mapper.insertQNA(qnaList);
+	 
+	public int writeQNA(AdminQNADTO qnaList, List<HashMap<String, String>> qnaNumDate,String sId) {
+		int insertCount = mapper.insertQNA(qnaList,qnaNumDate,sId);
 		return insertCount;
 	}
+}
+
+
 //
 //	// qna 상세페이지 조회
 //	public AdminQNADTO getAdminQNAView(String qna_idx) {
@@ -87,4 +90,5 @@ public class AdminService {
 //	}
 
 
-}
+
+
