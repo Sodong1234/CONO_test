@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <%
 if(session.getAttribute("sId") == null) {
 	response.sendRedirect("MemberLogin.func");
@@ -10,15 +12,46 @@ if(session.getAttribute("sId") == null) {
 <head>
 <meta charset="UTF-8">
 <title>myshop/upload_item.jsp</title>
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 // 	$(function() {
 // 		$(".img").change(function() {
 // 			alert($(".img").val().split(".")[1]);
-// 			/* 나중에 하자 */
+// 			/* 나중에 하자                       이게 뭐더라 */
 // 		});
 // 	});
+	
+	$(function() {
+		$("#big").on("change", function() {
+			let big = $("#big").val();
+			$.ajax({
+				type:"GET",
+				url:"${path}/resources/category.txt",
+				dataType: "json"
+			})
+			.done(function(data) {
+				$("#category_area").html("<select name='category_small'></select>");
+// 				alert(data[1]["11"]);
+// 				alert(Object.keys(data).length);
+				for(let i = 1; i < Object.keys(data).length; i++) {
+					alert(Object.keys(data)[1].length);
+// 					for(let j = 1; j < Object.keys(data)[0]) // dfksjd;flsjf;lksajf;lksjfsdlkfjs;adlfjs;aldfjs;lkfjslk;
+					$("#category_area > select").append("<option value=>" +  + "</option>");
+				}
+
+// 				$("#category_area > select").append(
+						
+// 						"<option value=>" + + "</option>" 
+// 											      + "");
+			})
+			.fail(function() {
+				$("#category_area").html("요청 실패");
+			});
+		});
+	});
+	
+// ------------------------------------------ 주소 API -----------------------------------------------
 	function getAddressInfo(){
 	    new daum.Postcode({
 	        oncomplete: function(data) {
@@ -46,7 +79,7 @@ if(session.getAttribute("sId") == null) {
 	        }
 	    }).open();
 	}
-
+// ---------------------------------------------------------------------------------------------------
 </script>
 </head>
 <body>
@@ -92,7 +125,7 @@ if(session.getAttribute("sId") == null) {
 				<tr>
 					<th>카테고리</th>
 					<td>
-						<select name="category_big">
+						<select name="category_big" id="big">
 							<option value="1">패션</option>
 							<option value="2">디지털/가전</option>
 							<option value="3">스포츠/레저</option>
@@ -104,9 +137,7 @@ if(session.getAttribute("sId") == null) {
 						</select>
 						<div id="category_area">
 							<select name="category_small">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
+								<option></option>
 							</select>
 						</div>
 					</td>

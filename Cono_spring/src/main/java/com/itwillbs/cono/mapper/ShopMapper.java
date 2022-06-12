@@ -34,7 +34,7 @@ public interface ShopMapper {
 	int insertCategory(@Param("category") CategoryDTO category, @Param("item") ItemDTO item);
 	
 	// img 테이블 img_idx 조회
-	Integer selectImgIdx(ItemDTO item);
+//	Integer selectImgIdx(ItemDTO item);
 	
 	// img 테이블 insert
 	void insertImgList(@Param("img") ImgDTO img, @Param("item") ItemDTO item);
