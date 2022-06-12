@@ -9,6 +9,7 @@ import com.itwillbs.cono.vo.CategoryDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.OrdDTO;
 import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.ShopDTO;
 
@@ -97,6 +98,9 @@ public interface ShopMapper {
 	
 	// 상품 조회 (페이징 처리를 위한 ListCount 조회)
 	Integer selectItemListCount(String member_id);
+	
+	// 상품이 ord 테이블이 등록된 경우 삭제 방지
+	Integer selectItemOrd(String item_idx);
 
 	
 

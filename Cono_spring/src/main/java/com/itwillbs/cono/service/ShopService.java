@@ -19,6 +19,7 @@ import com.itwillbs.cono.vo.CategoryDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.OrdDTO;
 import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.ShopDTO;
 
@@ -235,6 +236,11 @@ public class ShopService {
 		boolean isDeleteSuccess = false;
 		
 		int[] deleteCount = new int[3];
+		
+		// 상품이 ord 테이블에 등록된 경우 삭제 방지
+		if(mapper.selectItemOrd(item_idx) > 0) {
+			return false;
+		}
 		
 		List<ImgDTO> imgList = mapper.selectImgList(item_idx);
 		

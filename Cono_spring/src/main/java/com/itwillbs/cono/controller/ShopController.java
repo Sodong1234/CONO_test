@@ -228,7 +228,7 @@ public class ShopController {
 		
 		if(!isDeleteSuccess) {
 			model.addAttribute("msg", "상품 삭제 실패");
-        	return "redirect:/fail_back";
+        	return "myshop/fail_back";
 		}
 		return "redirect:/ItemMng.shop";
 	}

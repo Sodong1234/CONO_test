@@ -250,4 +250,11 @@
 		 				    WHERE member_id=#{member_id})
 		  
 	</select>
+	
+	<select id="selectItemOrd" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM ord 
+		 WHERE item_idx=#{item_idx}
+		   AND ord_status='Y'
+	</select>
 </mapper>
