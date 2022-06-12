@@ -66,8 +66,8 @@ String sell_status = request.getParameter("sell_status");
 					<input type="text" class="form-control" name="keyword" id="keyword" placeholder="상품명 입력" <%if(keyword != null) { %> value="<%=keyword%>" <%} %>>
 					<select class="form-select"  name="sell_status">
 						<option value="" <%if(sell_status != null && sell_status.equals("")) { %> selected="selected" <%} %>>전체</option>
-						<option value="N" <%if(sell_status != null && sell_status.equals("N")) { %> selected="selected" <%} %>>판매 중</option>
-						<option value="Y" <%if(sell_status != null && sell_status.equals("Y")) { %> selected="selected" <%} %>>판매 완료</option>
+						<option value="0" <%if(sell_status != null && sell_status.equals("0")) { %> selected="selected" <%} %>>판매 중</option>
+						<option value="1" <%if(sell_status != null && sell_status.equals("1")) { %> selected="selected" <%} %>>판매 완료</option>
 					</select>
 						<button type="submit" class="btn btn-outline-primary">
 							<i class="bi bi-search"></i>

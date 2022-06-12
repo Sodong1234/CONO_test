@@ -50,7 +50,7 @@
 			   ,#{member_id}
 			   ,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
 			   ,#{order_reqContent}
-			   ,'Y'
+			   ,'N'
 			   )
 	</insert>
 	
@@ -68,7 +68,7 @@
 			      WHERE s.shop_idx=i.shop_idx
 			        AND i.item_idx=#{ord.item_idx})
 			   ,#{item_price}*#{order_quantity}
-			   ,'Y'
+			   ,'N'
 			   )
 	</insert>
 	
@@ -90,7 +90,7 @@
 	<!-- 상품 수량 0일 경우 상품 상태  -->
 	<update id="updateItemStatus">
 		UPDATE item 
-		   SET item_status='N' 
+		   SET item_status='1' 
 		 WHERE item_idx=#{item_idx}
 	</update>
 	

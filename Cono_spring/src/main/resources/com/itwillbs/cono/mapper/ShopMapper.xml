@@ -46,7 +46,7 @@
 			   , #{item.item_quantity}
 			   )
 	</insert>
-	
+	 
 	<!-- category 테이블 insert -->
 	<insert id="insertCategory">
 		INSERT INTO category VALUES (#{category.category_big},#{category.category_small},#{item.item_idx})
@@ -145,7 +145,7 @@
 		      WHERE item_idx=#{item_idx}
 	</delete>
 	
-	<!-- 상품 삭제 (img) -->
+	<!-- 상품 삭제 (category) -->
 	<delete id="deleteCategory">
 		DELETE FROM category
 		      WHERE item_idx=#{item_idx}
@@ -169,24 +169,26 @@
 	</update>
 	
 	
-	<!-- 평균 평점과 후기 달린 아이템 개수 조회 -->		<!-- star 테이블 삭제됨 => 구문 수정 필요 -->
+	<!-- 평균 평점과 후기 달린 아이템 개수 조회 -->		
 	<select id="selectItemAvg" resultType="java.util.HashMap">
-		SELECT SUM(st.item_score)/COUNT(i.item_idx) as avg, COUNT(i.item_idx) as item_idx
-	  	  FROM review r, item i, star st, shop s
-		 WHERE r.review_idx = st.review_idx
-		   AND st.item_idx = i.item_idx
+		SELECT SUM(r.review_score)/COUNT(i.item_idx) as avg, COUNT(i.item_idx) as item_idx
+		  FROM review r, item i, shop s
+		 WHERE 1=1
+		   AND r.item_idx = i.item_idx
+		   AND i.item_status='1'
 		   AND i.shop_idx = s.shop_idx
-		   AND s.member_id = #{member_id}
+		   AND s.member_id = #{member_id};
 	</select>
 	
 	<!-- 각 점수 별 상품 개수 조회 -->
 	<select id="selectItemScore" resultType="java.lang.String">
 		SELECT COUNT(i.item_idx)
-		FROM shop s, item i, star st
-		WHERE st.item_idx = i.item_idx
+		FROM shop s, item i, review r
+		WHERE r.item_idx = i.item_idx
 		AND i.shop_idx = s.shop_idx
 		AND s.member_id = #{member_id}
-		AND st.item_score = #{i}
+		AND i.item_status = '1'
+		AND r.review_score = #{i};
 	</select>
 	
 	<!-- 상품 고를 때 클릭할 이미지 조회 -->
@@ -197,14 +199,15 @@
 		AND g.item_idx = i.item_idx
 		AND g.img_idx = '1'
 		AND s.member_id = #{member_id}
+		AND i.item_status='1'
 		ORDER BY i.item_idx*1
 	</select>
 	
 	<!-- 후기 리스트 조회 -->
 	<select id="selectReviewList" resultType="java.util.HashMap">
-		SELECT r.review_idx, r.review_content, r.review_date, r.member_id, st.item_score 
-		FROM review r, star st, item i, shop s
-		WHERE r.review_idx = st.review_idx 
+		SELECT r.review_idx, r.review_content, r.review_date, r.member_id, r.review_score
+		FROM review r, item i, shop s
+		WHERE 1=1
 		AND i.item_idx = r.item_idx 
 		AND i.shop_idx = s.shop_idx
 		AND s.member_id = #{member_id}

@@ -203,7 +203,6 @@ public class ShopController {
 	public String modifyItemPost(String item_idx, String imgStatus, ItemDTO item, CategoryDTO category, MultipartFile[] upload, HttpServletRequest request, Model model) {
 		
 		item.setItem_idx(item_idx);
-		System.out.println(item);
 		service.modifyItem(imgStatus, item, category, upload, request);
 		
 		model.addAttribute("item_idx", item_idx);
