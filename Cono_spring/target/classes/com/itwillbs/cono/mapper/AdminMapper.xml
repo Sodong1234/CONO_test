@@ -85,12 +85,12 @@
 	</select>
 
 	<!-- qna 글쓰기 -->
-	<select id="selectQNANumDate" resultType="java.util.HashMap">
-		SELECT IFNULL(MAX(CAST(qna_idx as unsigned)), 0) + 1 AS num, LEFT(REPLACE(NOW(), '-', ''), 8) AS qna_date FROM qna
+	<select id="selectQNANumDate" resultType="java.lang.String">
+		SELECT IFNULL(MAX(CAST(qna_idx as unsigned)), 0) + 1 AS num FROM qna
 	</select>
 
 	<insert id="insertQNA">
-		INSERT INTO qna VALUES (#{num},#{sId},#{qna_type},#{qna_subject},#{qna_content},#{num},'0','0',#{qna_date},'답변대기')
+		INSERT INTO qna VALUES (#{num},#{sId},#{qna_type},#{qna_subject},#{qna_content},#{num},'0','0',DATE_FORMAT(now(), "%Y%m%d"),'답변대기')
 	</insert>
 
 	<!-- qna 상세페이지 -->

@@ -37,8 +37,8 @@ public interface AdminMapper {
 	public List<AdminQNADTO> selectQNAList(@Param("pageInfo")PageInfo pageInfo);
 
 	// qna 글쓰기
-	public List<HashMap<String , String>> selectQNANumDate();
-	public int insertQNA(AdminQNADTO qnaList,List<HashMap<String, String>> qnaNumDate,String sId);
+	public String selectQNANumDate();
+	public int insertQNA(AdminQNADTO qnaList,String num,String sId);
 //
 //	// qna 상세페이지
 //	public AdminQNADTO selectQNAView(String qna_idx);

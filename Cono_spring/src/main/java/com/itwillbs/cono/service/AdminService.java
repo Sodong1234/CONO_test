@@ -57,17 +57,16 @@ public class AdminService {
 
 	// qna 목록+검색
 	public List<AdminQNADTO> getQNAList(PageInfo pageInfo) {
-		System.out.println("pageInfo : " +pageInfo);
 		return mapper.selectQNAList(pageInfo);
 	}
 
 	// qna 글쓰기
-	public List<HashMap<String , String>> selectQNANumDate() {
+	public String selectQNANumDate() {
 		return mapper.selectQNANumDate();
 	}
 	 
-	public int writeQNA(AdminQNADTO qnaList, List<HashMap<String, String>> qnaNumDate,String sId) {
-		int insertCount = mapper.insertQNA(qnaList,qnaNumDate,sId);
+	public int writeQNA(AdminQNADTO qnaList,String num,String sId) {
+		int insertCount = mapper.insertQNA(qnaList,num,sId);
 		return insertCount;
 	}
 }

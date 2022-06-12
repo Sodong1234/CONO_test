@@ -209,40 +209,7 @@ public class AdminController {
 
 		return "userCenter/admin_qna_list";
 	}
-	// 고객센터 공지사항 리스트 - POST
-//		@RequestMapping(value = "AdminNoticeList", method = RequestMethod.POST)
-//		public String qnaListPost(@RequestParam(defaultValue = "1") int pageNum, Model model) {
-//
-//			int listCount = service.getQNAListCount(); 
-//
-//			int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
-//			int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
-//
-//			int maxPage = (int) Math.ceil((double) listCount / listLimit);
-//			int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
-//			int endPage = startPage + pageLimit - 1;
-//			if (endPage > maxPage) {
-//				endPage = maxPage;
-//			}
-//
-//			int startRow = (pageNum - 1) * listLimit;
-//
-//			PageInfo pageInfo = new PageInfo();
-//			pageInfo.setPageNum(pageNum);
-//			pageInfo.setMaxPage(maxPage);
-//			pageInfo.setStartPage(startPage);
-//			pageInfo.setEndPage(endPage);
-//			pageInfo.setListCount(listCount);
-//			pageInfo.setStartRow(startRow);
-//			pageInfo.setListLimit(listLimit);
-//			List<AdminQNADTO> qnaList = service.getQNAList(pageInfo);
-//
-//			model.addAttribute("qnaList", qnaList);
-//			model.addAttribute("pageInfo", pageInfo);
-//
-//			return "userCenter/admin_qna_list";
-//		}
-
+	
 	
 	// -------------- 고객센터 qna 사용자 위한 글쓰기 (관리자) - 김도은 -------------
 	// 글쓰기 폼 - GET
@@ -255,8 +222,8 @@ public class AdminController {
 	@RequestMapping(value = "AdminQNAWritePro.admin", method = RequestMethod.POST)
 	public String qnaWritePost(@ModelAttribute AdminQNADTO qnaList, Model model, HttpSession session) {
 		String sId = (String)session.getAttribute("sId");
-		List<HashMap<String , String>> qnaNumDate = service.selectQNANumDate();
-		int insertCount = service.writeQNA(qnaList,qnaNumDate,sId); 
+		String num = service.selectQNANumDate();
+		int insertCount = service.writeQNA(qnaList,num,sId); 
 
 		if (insertCount == 0) {
 			model.addAttribute("msg", "글 등록 실패!");
