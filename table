@@ -206,12 +206,12 @@ CREATE TABLE msgList (
 
 CREATE TABLE msgChat (
 	msgChat_idx varchar(20),
-	member_id varchar(20),
-	shop_idx varchar(20),
-    	item_idx varchar(20),
+	msgList_room varchar(20),
+	msgChat_send varchar(20),
+	msgChat_recv varchar(20),
 	msgChat_content varchar(500),
-	msgChat_time varchar(14),
-	PRIMARY KEY (msgChat_idx, member_id)
+	msgChat_time varchar(20),
+	PRIMARY KEY (msgChat_idx)
 );
 
 
@@ -225,7 +225,7 @@ CREATE TABLE alarm (
 	alarm_status varchar(5)
 );
 
-CREATE TABLE msgHeader (
+CREATE TABLE msgList (
 	member_id varchar(20),
 	shop_idx varchar(20),
 	msgList_last_content varchar(50),
