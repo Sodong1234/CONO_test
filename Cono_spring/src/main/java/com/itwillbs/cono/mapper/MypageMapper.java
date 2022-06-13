@@ -62,6 +62,8 @@ public interface MypageMapper {
 	public int selectWishCount(String sId);
 	// 취소리스트
 	public List<HashMap<String, String>> selectCancelList(String sId);
+	// 구매 중 수
+	public int selectWaitingCount(String sId);
 
 
 

@@ -33,7 +33,7 @@
 					</li>
 					<li>
 					<strong class="label">구매 중</strong>
-					<a href="reserved" class="value"></a>
+					<a href="waiting" class="value">${waitingCount }</a>
 					</li>
 					<li>
 					<strong class="label">쿠폰</strong>
@@ -77,10 +77,10 @@
 
 		        			<li class="my-review__writable__list">
 		        				<div class="my-review__writable__image-wrap" style="display: inline-block;">
-		        					<img class="my-review__writable__image" src="$resources/upload/file/${item.img_name}" title="test" alt="test">
+		        					<img class="my-review__writable__image" src="resources/upload/file/${item.img_name}" title="test" alt="test">
 		        				</div>
 									<div class="my-review__writable__content-wrap">
-										<input type="hidden" value="${item.item_idx }">
+										<input type="button" value="상세정보" onclick="itemDetail?item_idx=${item.item_idx}">
 										<div class="my-review__writable__content">판매자 : ${item.shop_name }</div>
 			        					<div class="my-review__writable__content-title">제목 : ${item.item_title }</div>
 			        					<div class="my-review__writable__content">내용 : ${item.item_content }</div>
@@ -126,6 +126,7 @@
 	    								<img class="my-review__writable__image" src="resources/upload/file/${item.img_name}" title="test" alt="test">
 	    								<div class="cancel__list-title">${item.item_title }</div>
 	    								<div class="cancel__list-subContent">${item.item_content }</div>
+	    								<input type="button" value="상세정보" onclick="itemDetail?item_idx=${item.item_idx}">
 	    							</div>
 	    							<div class="cancel__list-price">
 	    								<div class="cancel__list-quantity">${item.ord_quantity }개</div>

@@ -36,7 +36,9 @@ public class MypageController {
 		// 예약 상품 수
 //		int reservedCount = service.getReservedCount(sId);
 //		model.addAttribute("reservedCount",reservedCount);
-		
+		// 구매 중 상품 수
+		int waitingCount = service.getWaitingCount(sId);
+		model.addAttribute("waitingCount", waitingCount);
 		// 쿠폰 수
 		int couponCount = service.getCouponCount(sId);
 		model.addAttribute("couponCount", couponCount);
@@ -56,7 +58,6 @@ public class MypageController {
 		List<HashMap<String, String>> canceledList = service.getCanceledList(sId);
 		model.addAttribute("canceledList",canceledList);
 		
-		System.out.println(canceledList.get(0).get("img_name"));
 		return "mypage/mypage";
 	}
 
@@ -239,6 +240,12 @@ public class MypageController {
 		List<CouponDTO> couponList = service.getCouponList(sId);
 		model.addAttribute("couponList", couponList);
 		return "mypage/center_coupon";
+	}
+	// 구매 중
+	@RequestMapping(value = "waiting", method = RequestMethod.GET)
+	public String waiting(HttpSession session, Model model) {
+		
+		return "mypage/center_waiting";
 	}
 	// 예약중인 상품 조회
 //	@RequestMapping(value = "reserved", method = RequestMethod.GET)

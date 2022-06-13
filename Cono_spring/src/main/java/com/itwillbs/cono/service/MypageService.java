@@ -126,6 +126,10 @@ public class MypageService {
 	public List<HashMap<String, String>> getCanceledList(String sId) {
 		return mapper.selectCancelList(sId);
 	}
+
+	public int getWaitingCount(String sId) {
+		return mapper.selectWaitingCount(sId);
+	}
 	
 
 	
