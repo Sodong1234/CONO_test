@@ -86,13 +86,13 @@ CREATE TABLE wish (
 	PRIMARY KEY (item_idx, member_id) 
 );
 
-CREATE TABLE ord (
+CREATE TABLE order (
 	item_idx varchar(20),
 	member_id varchar(20),
-	ord_date varchar(14) NOT NULL,
-	ord_reqContent varchar(1000),
-	ord_quantity varchar(10) NOT NULL,
-	ord_status varchar(5) NOT NULL,
+	order_date varchar(14) NOT NULL,
+	order_reqContent varchar(1000),
+	order_quantity varchar(10) NOT NULL,
+	order_status varchar(5) NOT NULL,
 	PRIMARY KEY (item_idx, member_id)
 );
 
