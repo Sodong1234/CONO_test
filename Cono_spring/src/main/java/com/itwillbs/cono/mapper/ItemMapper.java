@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.cono.vo.ImgDTO;
-import com.itwillbs.cono.vo.OrdDTO;
+import com.itwillbs.cono.vo.OrderDTO;
 
 public interface ItemMapper {
 	
@@ -20,25 +20,25 @@ public interface ItemMapper {
 //	void updateItemStatus(String item_idx);
 
 	// item 테이블 수량 변경
-	void updateItemQuantity(OrdDTO ord);
+	void updateItemQuantity(OrderDTO ord);
 	
 	// ord 테이블 insert
-	void insertOrd(OrdDTO ord);
+	void insertOrd(OrderDTO ord);
 	
 	// safe 테이블 insert
-	void insertSafe(@Param("ord") OrdDTO ord, @Param("order_quantity") String order_quantity, @Param("item_price") String item_price);
+	void insertSafe(@Param("ord") OrderDTO ord, @Param("order_quantity") String order_quantity, @Param("item_price") String item_price);
 
 	// coin 테이블 insert (구매자)
 	void insertCoin(@Param("member_id") String member_id, @Param("order_quantity") String order_quantity, @Param("item_price") String item_price, @Param("coin_total") String coin_total);
 	
 	// 상품 수량 체크
-	String selectItemQuantity(OrdDTO ord);
+	String selectItemQuantity(OrderDTO ord);
 	
 	// 상품 수량 0일 경우 상품 상태 
-	void updateItemStatus(OrdDTO ord);
+	void updateItemStatus(OrderDTO ord);
 	
 	// 상품 구매 가능 여부 확인 (coin)
-	Integer selectCoinTotalValue(@Param("ord") OrdDTO ord, @Param("item_price") String item_price);
+	Integer selectCoinTotalValue(@Param("ord") OrderDTO ord, @Param("item_price") String item_price);
 	
 	// coin_total 값 가져오기
 	String selectCoinTotal(String member_id);

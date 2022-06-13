@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.cono.service.ItemService;
 import com.itwillbs.cono.vo.ImgDTO;
-import com.itwillbs.cono.vo.OrdDTO;
+import com.itwillbs.cono.vo.OrderDTO;
 
 @Controller
 public class ItemController {
@@ -60,7 +60,7 @@ public class ItemController {
 	
 	// ----------------------------- 상품 결제 진행 ----------------------------
 	@RequestMapping(value = "PayItem", method = RequestMethod.POST)
-	public String payItem(HttpSession session, String item_price, OrdDTO ord, Model model) {
+	public String payItem(HttpSession session, String item_price, OrderDTO ord, Model model) {
 		
 		String member_id = session.getAttribute("sId").toString();
 		

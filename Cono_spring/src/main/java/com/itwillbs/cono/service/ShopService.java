@@ -19,7 +19,7 @@ import com.itwillbs.cono.vo.CategoryDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
-import com.itwillbs.cono.vo.OrdDTO;
+import com.itwillbs.cono.vo.OrderDTO;
 import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.ShopDTO;
 

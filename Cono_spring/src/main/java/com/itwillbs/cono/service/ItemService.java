@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.itwillbs.cono.mapper.ItemMapper;
 import com.itwillbs.cono.vo.ImgDTO;
-import com.itwillbs.cono.vo.OrdDTO;
+import com.itwillbs.cono.vo.OrderDTO;
 
 @Service
 public class ItemService {
@@ -32,17 +32,17 @@ public class ItemService {
 //	}
 	
 	// item 테이블 수량 변경
-	public void modifyItemQuantity(OrdDTO ord) {
+	public void modifyItemQuantity(OrderDTO ord) {
 		mapper.updateItemQuantity(ord);
 	}
 	
 	// ord 테이블 insert
-	public void insertOrd(OrdDTO ord) {
+	public void insertOrd(OrderDTO ord) {
 		mapper.insertOrd(ord);
 	}
 	
 	// safe 테이블 insert
-	public void insertSafe(OrdDTO ord, String order_quantity, String item_price) {
+	public void insertSafe(OrderDTO ord, String order_quantity, String item_price) {
 		mapper.insertSafe(ord, order_quantity, item_price);
 	}
 	
@@ -54,17 +54,17 @@ public class ItemService {
 	}
 
 	// 상품 수량 체크
-	public String checkItemQuantity(OrdDTO ord) {
+	public String checkItemQuantity(OrderDTO ord) {
 		return mapper.selectItemQuantity(ord);
 	}
 	
 	// 상품 수량 0일 경우 상품 상태 판매완료로 변경
-	public void modifyItemStatus(OrdDTO ord) {
+	public void modifyItemStatus(OrderDTO ord) {
 		mapper.updateItemStatus(ord);
 	}
 	
 	// 상품 구매 가능 여부 확인(coin)
-	public boolean checkCoinTotal(OrdDTO ord, String item_price) {
+	public boolean checkCoinTotal(OrderDTO ord, String item_price) {
 		
 		Integer checkCoin = mapper.selectCoinTotalValue(ord, item_price);
 		if(checkCoin < 0 || checkCoin == null) {

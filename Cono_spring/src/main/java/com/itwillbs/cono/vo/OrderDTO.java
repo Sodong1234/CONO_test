@@ -1,6 +1,6 @@
 package com.itwillbs.cono.vo;
 
-public class OrdDTO {
+public class OrderDTO {
 	
 	private String item_idx;
 	private String member_id;
