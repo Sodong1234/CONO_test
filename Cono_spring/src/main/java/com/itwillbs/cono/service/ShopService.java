@@ -49,7 +49,7 @@ public class ShopService {
 		
 		// 등록된 상품 개수 조회
 		int item_idx = 1;
-		if(mapper.selectItemIdx() != 0) {
+		if(mapper.selectItemIdx() != null) {
 			item_idx = mapper.selectItemIdx() + 1;
 		}
 		item.setItem_idx(item_idx + "");
