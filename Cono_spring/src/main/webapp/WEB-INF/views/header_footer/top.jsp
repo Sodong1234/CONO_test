@@ -102,7 +102,7 @@ String sId = (String) session.getAttribute("sId");
 				<i class="fa fa-search"></i>
 			</button>
 			<div class="righttab">
-				<a class="myShop" href="#"><i class="fa fa-shop fa-2x"></i></a> 
+				<a class="myShop" href="./ProductMyshop.shop"><i class="fa fa-shop fa-2x"></i></a> 
 				<a class="wish" href="#"><i class="fa fa-heart fa-2x"></i></a>
 			</div>
 		</div>

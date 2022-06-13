@@ -40,35 +40,35 @@
 					</table>
 				</div>
 			</div>
-			<div class="deliveryAddress">
-				<h2 class="delivery-address__caption-header">받는사람정보</h2>
-				<table class="delivery-address">
-					<tbody>
-						<tr>
-							<th class="delivery-address__th">이름</th>
-							<td
-								class="delivery-address__td delivery-address__td--name delivery-address__td-rocket-fresh-mvp2">
-								<span class="delivery-address__name">이름받아오기</span>
-							</td>
-						</tr>
-						<tr>
-							<th class="delivery-address__th">배송주소</th>
-							<td class="delivery-address__td">주소받아오기</td>
-						</tr>
-						<tr>
-							<th class="delivery-address__th delivery-address__th--no-line">연락처</th>
-							<td class="delivery-address__td delivery-address__td--no-line">연락처받아오기</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+<!-- 			<div class="deliveryAddress"> -->
+<!-- 				<h2 class="delivery-address__caption-header">받는사람정보</h2> -->
+<!-- 				<table class="delivery-address"> -->
+<!-- 					<tbody> -->
+<!-- 						<tr> -->
+<!-- 							<th class="delivery-address__th">이름</th> -->
+<!-- 							<td -->
+<!-- 								class="delivery-address__td delivery-address__td--name delivery-address__td-rocket-fresh-mvp2"> -->
+<!-- 								<span class="delivery-address__name">이름받아오기</span> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th class="delivery-address__th">배송주소</th> -->
+<!-- 							<td class="delivery-address__td">주소받아오기</td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th class="delivery-address__th delivery-address__th--no-line">연락처</th> -->
+<!-- 							<td class="delivery-address__td delivery-address__td--no-line">연락처받아오기</td> -->
+<!-- 						</tr> -->
+<!-- 					</tbody> -->
+<!-- 				</table> -->
+<!-- 			</div> -->
 			<div class="item" style="position: relative;">
 				<div class="item-info__retail" style="margin-top: 8px;">
-					<div class="retailGroupTitle">배송 1건 중 1</div>
+					<div class="retailGroupTitle">상품정보	</div>
 					<div class="GroupBox">
 						<div class="whenDelivery">
-							<span class="whenDelivery-info"> <span
-								class="delivery-date"><strong>배송날짜받아오기</strong></span>
+							<span class="whenDelivery-info"> 
+								<span class="delivery-date"><strong>상점 이름 받아오기</strong></span>
 							</span>
 						</div>
 						<div class="item-list">
@@ -112,8 +112,8 @@
 							<td>
 								<div class="payCoupon">
 									<div class="price" style="display: inline-block;">
-										<strong> <span
-											class="value use-calculation-for-totalprice">쿠폰가격받아오기</span>
+										<strong> 
+											<span class="value use-calculation-for-totalprice">쿠폰가격받아오기</span>
 											<span class="unit">원</span>
 										</strong>
 									</div>
@@ -131,21 +131,22 @@
 							</td>
 						</tr>
 						<tr>
-							<th class="wrap-title" scope="row">배송비</th>
-							<td class="delivery-total-price">
-								<div class="payDelivery">
-									<strong class="price"> <span
-										class="delivery-total-price-value use-calculation-for-totalprice">배송비
-											받아오기</span> <span class="unit">원</span>
-									</strong>
-								</div>
-							</td>
+<!-- 							<th class="wrap-title" scope="row">배송비</th> -->
+<!-- 							<td class="delivery-total-price"> -->
+<!-- 								<div class="payDelivery"> -->
+<!-- 									<strong class="price"> <span -->
+<!-- 										class="delivery-total-price-value use-calculation-for-totalprice">배송비 -->
+<!-- 											받아오기</span> <span class="unit">원</span> -->
+<!-- 									</strong> -->
+<!-- 								</div> -->
+<!-- 							</td> -->
 						</tr>
 						<tr>
 							<th class="wrap-title">총결제금액</th>
 							<td>
 								<div class="payPrice">
-									<strong class="price"> <span> 총액+배송비금액 받아오기 </span>
+									<strong class="price"> <span> 총액+쿠폰할인금액 받아오기 </span>
+									<span class="unit">원</span>
 									</strong>
 								</div>
 							</td>

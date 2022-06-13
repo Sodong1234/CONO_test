@@ -453,7 +453,6 @@ ul, ol {
 	padding-bottom: 0;
 }
 
-
 .footer__copyright {
 	border-top: 1px solid #ebebeb;
 	padding: 15px 0;
@@ -611,27 +610,27 @@ body {
 /* main (내 정보 section) start */
 .main__content {
 	padding-bottom: 64px;
-    background: #fff;
+	background: #fff;
 }
 
 .main__content-inner {
 	padding-top: 36px;
-    position: relative;
-    width: 1056px;
-    margin: 0 auto;
-    position: relative;
+	position: relative;
+	width: 1056px;
+	margin: 0 auto;
+	position: relative;
 }
 
 .main1 {
-    display: block;
-    box-sizing: border-box;
+	display: block;
+	box-sizing: border-box;
 }
 
 .title-style-bar {
 	background: #f5f5f5;
-    color: #333;
-    padding: 22px 24px;
-    vertical-align: middle;
+	color: #333;
+	padding: 22px 24px;
+	vertical-align: middle;
 }
 
 .table {
@@ -713,191 +712,187 @@ body {
 }
 
 .my-review__writable js_reviewWritableListContainer {
-    margin: 0;
-    padding: 0;
-    font-size: 100%;
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
 }
 
 .my-review__writable__list-container {
 	margin: 0;
-    padding: 0;
-    font-size: 100%;
+	padding: 0;
+	font-size: 100%;
 }
 
 .my-review__writable__list {
 	padding: 20px 20px 20px 30px;
-    border-bottom: 1px solid #ddd;
-    list-style: none;    
+	border-bottom: 1px solid #ddd;
+	list-style: none;
 }
 
 .my-review__writable__image {
-    width: 100px;
-    height: 100px;
-    vertical-align: top;
-    border: 0;
-    padding: 0;    	
+	width: 100px;
+	height: 100px;
+	vertical-align: top;
+	border: 0;
+	padding: 0;
 }
 
 .my-review__writable__content-wrap {
-    display: inline-block;
-    width: 430px;
-    margin: 5px 20px 0px;
-    vertical-align: top;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    font-size: 100%;
+	display: inline-block;
+	width: 430px;
+	margin: 5px 20px 0px;
+	vertical-align: top;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
 }
 
 .my-review__writable__content-title {
-    font-size: 14px;
-    color: #111111;
-    overflow: hidden;
-    font-weight: bold;
-    line-height: 17px;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    	
+	font-size: 14px;
+	color: #111111;
+	overflow: hidden;
+	font-weight: bold;
+	line-height: 17px;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 }
 
 .my-review__writable__content {
-    margin-top: 5px;
-    font-size: 12px;
-    line-height: 15px;
-    font-weight: normal;
-    color: #111;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;	
+	margin-top: 5px;
+	font-size: 12px;
+	line-height: 15px;
+	font-weight: normal;
+	color: #111;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 .my-review__writable__date {
-    margin-top: 32px;
-    font-size: 12px;
-    font-weight: normal;
-    color: #888;
-    line-height: 15px;
-    letter-spacing: 0px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;	
+	margin-top: 32px;
+	font-size: 12px;
+	font-weight: normal;
+	color: #888;
+	line-height: 15px;
+	letter-spacing: 0px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 .my-review__writable__btn-wrap {
-    text-align: center;
-    display: inline-block;
-    margin-top: 16px;
-    float: right;
-    margin: 0;
-    padding: 0;
-    font-size: 100%;    	
+	text-align: center;
+	display: inline-block;
+	margin-top: 16px;
+	float: right;
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
 }
 
 .my-review__writable__write-btn js_reviewWritableWriteBtn {
-    width: 100px;
-    height: 36px;
-    vertical-align: middle;
-    padding: 0;
-    background-color: #FBFBFB;
-    border: 1px solid #346aff;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: -1px;
-    color: #346aff;
-    outline: none;
-    cursor: pointer;	
+	width: 100px;
+	height: 36px;
+	vertical-align: middle;
+	padding: 0;
+	background-color: #FBFBFB;
+	border: 1px solid #346aff;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	color: #346aff;
+	outline: none;
+	cursor: pointer;
 }
 
 .my-review__writable__write-btn-text {
-    display: inline-block;
-    width: 100px;
-    height: 36px;
-    vertical-align: middle;
-    padding: 0;
-    background-color: #FBFBFB;
-    border: 1px solid #346aff;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: -1px;
-    color: #346aff;
-    outline: none;
-    cursor: pointer;    	
+	display: inline-block;
+	width: 100px;
+	height: 36px;
+	vertical-align: middle;
+	padding: 0;
+	background-color: #FBFBFB;
+	border: 1px solid #346aff;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	color: #346aff;
+	outline: none;
+	cursor: pointer;
 }
 
 .my-review__writable__cancel-text {
-    width: 100px;
-    height: 100px;
-    vertical-align: middle;
-    padding: 0;
-    background-color: #FBFBFB;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: -1px;
-    color: #346aff;
+	width: 100px;
+	height: 100px;
+	vertical-align: middle;
+	padding: 0;
+	background-color: #FBFBFB;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	color: #346aff;
 }
-
-
-
 
 /* main (주문 정보 section) end */
 
 /* main (환불/취소 section) start */
 .cancel {
-    margin: 0px 0px 24px;
-    box-sizing: border-box;    	
+	margin: 0px 0px 24px;
+	box-sizing: border-box;
 }
 
 .cancel__list {
 	margin-bottom: 15px;
-    box-sizing: border-box;	    
+	box-sizing: border-box;
 }
 
 .cancel__list-date {
-    padding: 10px 10px 8px;
-    line-height: 27px;
-    background-color: rgb(245, 245, 245);
-    border-width: 1px 1px 0px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-left-style: solid;
-    border-top-color: rgb(204, 204, 204);
-    border-right-color: rgb(204, 204, 204);
-    border-left-color: rgb(204, 204, 204);
-    border-image: initial;
-    border-bottom-style: initial;
-    border-bottom-color: initial;	
+	padding: 10px 10px 8px;
+	line-height: 27px;
+	background-color: rgb(245, 245, 245);
+	border-width: 1px 1px 0px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-color: rgb(204, 204, 204);
+	border-right-color: rgb(204, 204, 204);
+	border-left-color: rgb(204, 204, 204);
+	border-image: initial;
+	border-bottom-style: initial;
+	border-bottom-color: initial;
 }
 
 .cancel__list-cancelDate1, .calcel__list-orderDate1 {
-    display: inline-block;
-    position: relative;
-    padding: 0px 6px;	
+	display: inline-block;
+	position: relative;
+	padding: 0px 6px;
 }
 
 .cancel__list-cancelDate2, .cancel__list-orderDate2 {
-    display: inline-block;
-    font-weight: bold;
-    padding-right: 6px;	
+	display: inline-block;
+	font-weight: bold;
+	padding-right: 6px;
 }
 
 .and {
-    display: inline-block;
-    color: rgb(204, 204, 204);
-    margin: 0px 4px;
-    font-weight: normal;
-    font-size: 100%;
-    box-sizing: border-box;        	
+	display: inline-block;
+	color: rgb(204, 204, 204);
+	margin: 0px 4px;
+	font-weight: normal;
+	font-size: 100%;
+	box-sizing: border-box;
 }
 
 .cancel__list-content {
-    border: 1px solid rgb(221, 221, 221);	
+	border: 1px solid rgb(221, 221, 221);
 }
 
 .cancel__list-contentCheck {
-    display: table;
-    vertical-align: middle;	
+	display: table;
+	vertical-align: middle;
 }
 
 .cancel__list-contentTitle {
@@ -905,30 +900,30 @@ body {
 }
 
 .cancel__list-contentTitle3 {
-    display: table-cell;
-    width: 487px;
-    padding: 33px 20px;
-    border-right: 1px solid rgb(221, 221, 221);
-    vertical-align: middle;	
+	display: table-cell;
+	width: 487px;
+	padding: 33px 20px;
+	border-right: 1px solid rgb(221, 221, 221);
+	vertical-align: middle;
 }
 
 .cancel__list-title {
-    padding: 5px 0px;
-    color: rgb(51, 51, 51);
-    font-size: 14px;
-    font-weight: bold;	
+	padding: 5px 0px;
+	color: rgb(51, 51, 51);
+	font-size: 14px;
+	font-weight: bold;
 }
 
 .cancel__list-subContent {
-    color: rgb(136, 136, 136);
-    font-size: 12px;	
+	color: rgb(136, 136, 136);
+	font-size: 12px;
 }
 
 .cancel__list-price {
-    display: table-cell;
-    width: 120px;
-    text-align: center;
-    vertical-align: middle;	
+	display: table-cell;
+	width: 120px;
+	text-align: center;
+	vertical-align: middle;
 }
 
 .cancel__list-quantity {
@@ -936,32 +931,32 @@ body {
 }
 
 .cancel__list-priceCheck {
-    font-weight: bold;
-    box-sizing: border-box;
+	font-weight: bold;
+	box-sizing: border-box;
 }
 
 .cancel__list-status {
-    display: table-cell;
-    position: relative;
-    width: 210px;
-    border-left: 1px solid rgb(221, 221, 221);
-    text-align: center;
-    vertical-align: middle;	
+	display: table-cell;
+	position: relative;
+	width: 210px;
+	border-left: 1px solid rgb(221, 221, 221);
+	text-align: center;
+	vertical-align: middle;
 }
 
 .cancel__list-status-cancel {
-    display: inline-block;
-    user-select: none;
-    position: relative;
-    width: 80px;
-    vertical-align: middle;
-    font-size: 15px;	
+	display: inline-block;
+	user-select: none;
+	position: relative;
+	width: 80px;
+	vertical-align: middle;
+	font-size: 15px;
 }
 
 .cancel__list-status-when {
-    width: 104px;
-    line-height: 1.125rem;
-    font-size: 0.75rem;    	
+	width: 104px;
+	line-height: 1.125rem;
+	font-size: 0.75rem;
 }
 /* main (환불/취소 section) end */
 
@@ -1008,11 +1003,11 @@ body {
 
 .sidenav .main-buttons li a {
 	padding-left: 16px;
-    color: #666;
-    display: block;
-    margin-top: 8px;
-    -webkit-tap-highlight-color: transparent;
-    text-decoration: none;
+	color: #666;
+	display: block;
+	margin-top: 8px;
+	-webkit-tap-highlight-color: transparent;
+	text-decoration: none;
 }
 
 .sidenav .main-buttons>li {
@@ -1081,17 +1076,18 @@ body {
 
 .sidenav b {
 	border: 0 none;
-    margin-top: 0;
-    display: block;
-    width: 100%;
-    padding: 11px 16px 3px 16px;
-    margin-top: 8px;
-    border-top: 1px solid #efe8e6;
-    color: #333;
-    font-weight: bold;
-    font-size: 13px;
-    display: inline-block;
+	margin-top: 0;
+	display: block;
+	width: 100%;
+	padding: 11px 16px 3px 16px;
+	margin-top: 8px;
+	border-top: 1px solid #efe8e6;
+	color: #333;
+	font-weight: bold;
+	font-size: 13px;
+	display: inline-block;
 }
+
 .hidden {
 	width: 0;
 	height: 100%;
@@ -1122,71 +1118,71 @@ body {
 
 .plus2 {
 	padding-bottom: 64px;
-    background: #fff;
+	background: #fff;
 }
 
 .inner-w layout-split {
 	padding-top: 36px;
-    position: relative;
-    width: 1056px;
-    margin: 0 auto;
-    position: relative;
+	position: relative;
+	width: 1056px;
+	margin: 0 auto;
+	position: relative;
 }
 
 .my-info {
 	margin-left: 0;
-    width: 230px;
+	width: 230px;
 }
 
 .profile-area {
 	padding: 25px 0 28px;
-    width: 100%;
-    border: 1px solid #ff7b30;
-    margin-top : 130px;
+	width: 100%;
+	border: 1px solid #ff7b30;
+	margin-top: 130px;
 }
 
 .outline {
 	width: 90px;
-    height: 90px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    background: #fff;
-    padding: 5px;
-    margin: 0 auto;
+	height: 90px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background: #fff;
+	padding: 5px;
+	margin: 0 auto;
 }
 
 .img-bg profile-img {
-	    margin: 0;
-    display: block;
-        display: block;
-    width: 80px;
-    height: 80px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
-    margin: 4px;
-        -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+	margin: 0;
+	display: block;
+	display: block;
+	width: 80px;
+	height: 80px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	position: relative;
+	overflow: hidden;
+	margin: 4px;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .profile-image-input {
-    display: none;
-    background: #fff;
-    -webkit-tap-highlight-color: transparent;
+	display: none;
+	background: #fff;
+	-webkit-tap-highlight-color: transparent;
 	font-family: inherit;
-    font-size: inherit;
-    color: inherit;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    line-height: inherit;
+	font-size: inherit;
+	color: inherit;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	line-height: inherit;
 }
 
 .profile-modal-open {
@@ -1201,58 +1197,61 @@ body {
 
 .area-txt a {
 	margin-bottom: 10px;
-    font-size: 12px;
-    display: block;
-    text-align: center;
+	font-size: 12px;
+	display: block;
+	text-align: center;
 }
+
 .area-txt strong {
 	font-size: 14px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-    display: block;
-    text-align: center;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 10px;
+	display: block;
+	text-align: center;
 }
 
 .my-menu {
 	margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 	display: block;
-}
-.my-menu em{
-	display: block;
-    background: #ff7b30;
-    padding: 9px 16px;
-    color: #fff;
-    font-size: 13px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
 }
 
-.my-info .profile-area .outline .img-bg input, .my-info .profile-area .outline .artist_card__img input {
+.my-menu em {
+	display: block;
+	background: #ff7b30;
+	padding: 9px 16px;
+	color: #fff;
+	font-size: 13px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.my-info .profile-area .outline .img-bg input, .my-info .profile-area .outline .artist_card__img input
+	{
 	display: none;
 }
 
 .link-style {
 	position: absolute;
-    bottom: -16px;
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    height: 16px;
-    line-height: 16px;
-    background: #000000b3;
-    font-size: 10px;
-    color: #fff;
-    padding: 0;
+	bottom: -16px;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	height: 16px;
+	line-height: 16px;
+	background: #000000b3;
+	font-size: 10px;
+	color: #fff;
+	padding: 0;
 }
 
 /* mypage sidebar end */
@@ -1260,152 +1259,195 @@ body {
 /* ====================================================================== */
 
 /* mypage_coupon start */
-.couponnumbercheck {
-	border: 1px solid #dddddd;
-	padding: 30px;
-	width: 1200px;
-}
-
-.couponnotice {
-	border: 1px solid #dddddd;
-	font-size: 14px;
-	color: #1c1c1c;
-	display: inline-block;
+.couponSection {
+	margin-left: 24px;
+	width: 852px;
+	float: left;
 	position: relative;
+	left: 400px;
+	bottom: 950px;
 }
 
-.couponnotice .c-point {
-	color: #ff7b30;
+.title-style no-mt clf {
+	margin-top: 0;
+	padding-top: 0;
 }
 
-.coupon {
-	width: 1280px;
-	margin: auto;
-	max-width: none !important;
-	position: relative;
-	left: 80px;
-	bottom: 1150px;
+.txt fl {
+	font-size: 24px;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #333;
+	display: block;
+	float: left;
 }
 
-.havecoupon {
-	width: 600px;
-	padding: 50px;
-	background: #ffffff;
-	position: relative;
-	top: 50px;
-	height: 350px;
-	border: 1px solid #ddd;
+.segment {
+	padding: 32px 0;
+	margin-bottom: 32px;
+	margin-top: 0;
+	display: table;
+	width: 100%;
+	vertical-align: middle;
+	box-shadow: 3px 3px 4px 0 #eaeaea80;
+	border: solid 1px #ebebeb;
 }
 
-.couponContainer {
+.segment__title {
+	vertical-align: middle;
+	padding-bottom: 0;
+	text-align: right;
+	font-size: 16px;
+	padding-right: 24px;
+	display: table-cell;
+}
+
+.insertCoupon {
+	display: table-cell;
+	width: 60%;
+	vertical-align: middle;
 	margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.ui_btn--red {
+	width: 62px;
+	background: #ff6d23;
+	font-size: 12px;
+	padding: 0 16px;
+	line-height: 30px;
+	border-color: transparent;
+	background: #ff7b30;
+	box-shadow: 0 1px 3px 0 hsl(0deg 0% 86%/ 30%);
+	font-weight: 400;
+	box-sizing: border-box;
+	display: inline-block;
+	border-radius: 2px;
+	background: #fff;
+	border: 1px solid #d9d9d9;
+	vertical-align: middle;
+	transition: border-color .2s cubic-bezier(.075, .82, .165, 1);
+	margin: 0;
+	text-align: center;
+	text-decoration: none;
+}
+
+.blank {
+	padding: 11px 80px;
+	margin: 0 auto 25px auto;
+	border: none;
+	justify-content: center;
 }
 
 .coupon-list {
 	display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0 14px;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 0 14px;
 }
 
-.couponList {
+.coupon {
 	margin-bottom: 24px;
 	border: 2px solid #ffbd97;
-    border-radius: 0;
-    position: relative;
-    width: 400px;
-    height: 240px;
-    margin: 0;
-    display: inline-block;
-    width: 400px;
-    height: 181px;
-    margin: 0 0 8px 40px;
-    background: #fff;
-    border: 1px solid #acacac;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    position: relative;
+	border-radius: 0;
+	position: relative;
+	width: 400px;
+	height: 180px;
 }
 
 .coupon__dotted-line top {
 	top: -2px;
 	position: absolute;
-    left: 45px;
-    width: 17px;
-    height: 2px;
-    background: #ffffff;
+	left: 45px;
+	width: 17px;
+	height: 2px;
+	background: #ffffff;
 }
 
 .coupon__dotted-line bottom {
-	top: -2px;
+	bottom: -2px;
+	transform: scaleY(-1);
 	position: absolute;
-    left: 45px;
-    width: 17px;
-    height: 2px;
-    background: #ffffff;
-}
-
-.coupon-contents {
-	padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100%;
+	left: 45px;
+	width: 17px;
+	height: 2px;
+	background: #ffffff;
 }
 
 .coupon-contents__header {
 	display: flex;
-    align-items: center;
-}
-
-.coupon-contents__thumbnail-img {
-	width: 32px;
-    height: 32px;
-    border: none;
-    border-radius: 50%;
+	align-items: center;
 }
 
 .coupon-contents__title {
 	max-height: 36px;
-    font-size: 14px;
-    color: #333333;
-    line-height: 1.29;
-    margin-left: 8px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+	font-size: 14px;
+	color: #333333;
+	line-height: 1.29;
+	margin-left: 8px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
 }
 
+.coupon-contents__thumbnail-img {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;	
+}
 .coupon-contents__body {
 	padding-left: 40px;
-    margin-top: 8px;
-    line-height: 1;
+	margin-top: 8px;
+	line-height: 1;
 }
 
 .coupon-contents__discount-value {
 	font-size: 32px;
-    font-weight: bold;
-    color: #333333;
-    display: flex;
-    align-items: center;
+	font-weight: bold;
+	color: #333333;
+	display: flex;
+	align-items: center;
 }
 
 .coupon-contents__discount-condition {
 	font-size: 12px;
-    color: #999999;
-    margin-top: 6px;
+	color: #999999;
+	margin-top: 6px;
+}
+
+.title2-style {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+	color: #333;
+	margin-bottom: 10px;
+}
+
+.content-box {
+	background: #f5f5f5;
+	border: 1px solid #d9d9d9;
+	padding: 10px 20px;
+	margin-top: 10px;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #333;
+}
+
+.content-box p {
+	margin-top: 3px;
+}
+
+.c-point {
+	color: #ff7b30;
 }
 /* mypage_coupon end */
-
 
 /* ====================================================================== */
 
@@ -1678,173 +1720,169 @@ body {
 
 .following-shop-container {
 	border-radius: 4px;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
-    background-color: #ffffff;
-    list-style: none;
-    display: flex;
-    align-items: center;
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+	background-color: #ffffff;
+	list-style: none;
+	display: flex;
+	align-items: center;
 }
 
 .shop-profile-area {
 	display: flex;
-    align-items: center;
-    padding: 28px 36px 28px 31px;
-	
+	align-items: center;
+	padding: 28px 36px 28px 31px;
 }
 
 .shop-thumbnail {
 	min-width: 100px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: solid 1px rgba(217, 217, 217, 0.5);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    margin-right: 32px;
-    cursor: pointer;
-    position: relative;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: solid 1px rgba(217, 217, 217, 0.5);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	margin-right: 32px;
+	cursor: pointer;
+	position: relative;
 }
 
 .shop-profile {
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 }
 
 .shop-name {
 	font-size: 16px;
-    font-weight: bold;
-    line-height: 1.5;
-    color: #333333;
-    margin-bottom: 8px;
-    cursor: pointer;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	font-weight: bold;
+	line-height: 1.5;
+	color: #333333;
+	margin-bottom: 8px;
+	cursor: pointer;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .shop-introduce {
 	width: 184px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: #999999;
-    height: 54px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: pre-line;
-    margin-bottom: 24px;
+	font-size: 12px;
+	line-height: 1.5;
+	color: #999999;
+	height: 54px;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: pre-line;
+	margin-bottom: 24px;
 }
 
 .cancleFollowing {
 	background-color: rgb(255, 255, 255);
-    min-width: 96px;
-    width: 96px;
-    height: 32px;
-    font-size: 12px;
-    color: rgb(51, 51, 51);
-    border: 1px solid rgb(217, 217, 217);
-    border-radius: 4px;
+	min-width: 96px;
+	width: 96px;
+	height: 32px;
+	font-size: 12px;
+	color: rgb(51, 51, 51);
+	border: 1px solid rgb(217, 217, 217);
+	border-radius: 4px;
 }
 
 .navstyle {
 	font-size: 14px;
-    color: #acacac;
-    display: table;
-    width: 100%;
-    margin: 24px 0 0;
-    padding-bottom: 14px;
-	
+	color: #acacac;
+	display: table;
+	width: 100%;
+	margin: 24px 0 0;
+	padding-bottom: 14px;
 }
 
 .activefollow {
 	border-width: 2px;
-    border-color: #666;
-    border-bottom-color: transparent;
-    color: #333;
-    font-weight: bold;
-    display: table-cell;
-    width: 50%;
-    text-align: center;
-    padding: 16px 0;
-    border: 1px solid #acacac;
-    border-bottom: 2px solid #666;
+	border-color: #666;
+	border-bottom-color: transparent;
+	color: #333;
+	font-weight: bold;
+	display: table-cell;
+	width: 50%;
+	text-align: center;
+	padding: 16px 0;
+	border: 1px solid #acacac;
+	border-bottom: 2px solid #666;
 }
 
 .activefollower {
 	border-width: 2px;
-    border-color: #666;
-    border-bottom-color: transparent;
-    color: #333;
-    font-weight: bold;
-    display: table-cell;
-    width: 50%;
-    text-align: center;
-    padding: 16px 0;
-    border: 1px solid #acacac;
-    border-bottom: 2px solid #666;
+	border-color: #666;
+	border-bottom-color: transparent;
+	color: #333;
+	font-weight: bold;
+	display: table-cell;
+	width: 50%;
+	text-align: center;
+	padding: 16px 0;
+	border: 1px solid #acacac;
+	border-bottom: 2px solid #666;
 }
 /* 팔로우 & 팔로워 end */
 
 /* 회원탈퇴 start */
-
 .deleteMember__container {
 	min-height: 900px;
-    padding: 50px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+	padding: 50px;
+	background-color: #fff;
+	border: 1px solid #ccc;
 }
 
 .deleteMember__head {
 	margin-top: 20px;
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .deleteMember__box {
 	border: 1px solid #a8a8a8;
-    background-color: #fdfdfd;
+	background-color: #fdfdfd;
 }
 
 .deleteMember__box__notice ul {
 	list-style: none;
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 .deleteMember__box__notice li {
 	position: relative;
-    padding-left: 1em;
+	padding-left: 1em;
 }
 
 .deleteMember__box__comfirm {
 	padding: 10px 20px;
-    border-top: 1px solid #a8a8a8;
-    background-color: #f5f5f5;
-    color: #005bdb;
+	border-top: 1px solid #a8a8a8;
+	background-color: #f5f5f5;
+	color: #005bdb;
 }
 
 .deleteMember__check-user {
 	margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #dae5eb;
-    background-color: #e9f4fa;
+	padding: 20px;
+	border: 1px solid #dae5eb;
+	background-color: #e9f4fa;
 }
 
-.deleteMember__check-user-name,
-.deleteMember__check-user-email,
-.deleteMember__check-user-password {
+.deleteMember__check-user-name, .deleteMember__check-user-email,
+	.deleteMember__check-user-password {
 	width: 120px;
 }
 
 .deleteMember__check-user-submit {
 	border-color: #0185da;
-    color: #fff;
-    background-color: #0e9ae9;
-    background-image: linear-gradient(#20b3f8,#0185d8);
+	color: #fff;
+	background-color: #0e9ae9;
+	background-image: linear-gradient(#20b3f8, #0185d8);
 }
 /* 회원탈퇴 end */
 
@@ -1852,26 +1890,26 @@ body {
 .title-style {
 	margin-top: 0;
 	vertical-align: bottom;
-    padding-bottom: 4px;
-    margin-bottom: 32px;
-    position: relative;
-    padding-top: 40px;
-    vertical-align: middle;
+	padding-bottom: 4px;
+	margin-bottom: 32px;
+	position: relative;
+	padding-top: 40px;
+	vertical-align: middle;
 }
 
 .txt {
 	font-size: 24px;
-    font-weight: bold;
-    vertical-align: middle;
-    color: #333;
-    display: block;
-    float: left;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #333;
+	display: block;
+	float: left;
 }
 
 .subtxt {
 	display: inline-block;
-    font-size: 16px;
-    font-weight: lighter;
+	font-size: 16px;
+	font-weight: lighter;
 }
 
 .main__content-list {
@@ -1880,147 +1918,145 @@ body {
 
 .main__content-list li {
 	float: left;
-    width: 25%;
-    padding: 24px;
-    border-left: 1px solid #d9d9d9;
-    border-bottom: 1px solid #d9d9d9;
+	width: 25%;
+	padding: 24px;
+	border-left: 1px solid #d9d9d9;
+	border-bottom: 1px solid #d9d9d9;
 }
 
 .main__content-list .label {
 	font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    vertical-align: top;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+	font-weight: bold;
+	color: #333;
+	vertical-align: top;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
 .main__content-list .value {
 	font-size: 24px;
-    color: #ff7b30;
-    display: block;
-    -webkit-tap-highlight-color: transparent;
-    text-decoration: none;
-} 
+	color: #ff7b30;
+	display: block;
+	-webkit-tap-highlight-color: transparent;
+	text-decoration: none;
+}
 
 .table-style {
 	border-top: 1px solid #d9d9d9;
 	table-layout: fixed;
-    width: 100%;
-    box-sizing: border-box;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .table-style th {
 	background: #f5f5f5;
-    font-weight: normal;
-    width: 120px;
-    text-align: left;
-    color: #666;
-    padding: 12px 10px;
-    border-bottom: 1px solid #d9d9d9;
-    height: 48px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+	font-weight: normal;
+	width: 120px;
+	text-align: left;
+	color: #666;
+	padding: 12px 10px;
+	border-bottom: 1px solid #d9d9d9;
+	height: 48px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
 tbody {
 	color: inherit;
-    font-size: inherit;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+	font-size: inherit;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
-.table-style__phone,
-.table-style__phone-check {
+.table-style__phone, .table-style__phone-check {
 	font-size: 16px;
-    border-color: #0185da;
-    color: #fff;
-    background-color: #0e9ae9;
-    background-image: linear-gradient(#20b3f8,#0185d8);
+	border-color: #0185da;
+	color: #fff;
+	background-color: #0e9ae9;
+	background-image: linear-gradient(#20b3f8, #0185d8);
 }
 
 .modifySubmit {
 	width: 140px;
 	color: #fff;
-    background: #ff7b30;
-    border: 1px solid #ff7b30;
-    height: 32px;
-    padding: 15px 0;
-    padding: 8px 15px;
-    font-size: 12px;
-    line-height: 14px;
+	background: #ff7b30;
+	border: 1px solid #ff7b30;
+	height: 32px;
+	padding: 15px 0;
+	padding: 8px 15px;
+	font-size: 12px;
+	line-height: 14px;
 }
 /* 회원정보수정 end */
 
 /* 환불계좌 start */
 .accountInfo {
 	position: absolute;
-    width: 1200px;
-    height: auto;
-    margin: 0px auto;
-    top: 50%;
-    left: 0px;
-    right: 0px;
-    transform: translateY(-50%);
-    box-sizing: border-box;
+	width: 1200px;
+	height: auto;
+	margin: 0px auto;
+	top: 50%;
+	left: 0px;
+	right: 0px;
+	transform: translateY(-50%);
+	box-sizing: border-box;
 }
 
 .accountInfoBox {
 	display: table;
-    width: 100%;
-    height: auto;
-    opacity: 1;
-    background-color: rgb(255, 255, 255);
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-size: 100%;
+	width: 100%;
+	height: auto;
+	opacity: 1;
+	background-color: rgb(255, 255, 255);
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
 }
 
 .accountInfoBoxInside {
 	font-size: 13px;
-    padding: 0px;
-    color: rgb(85, 85, 85);
-    box-sizing: border-box;
+	padding: 0px;
+	color: rgb(85, 85, 85);
+	box-sizing: border-box;
 }
 
 .userInfo {
 	line-height: 1.6;
-    font-size: 12px;
-    color: rgb(51, 51, 51);
-    padding-bottom: 30px;
-    box-sizing: border-box;
-    list-style: none;
-}
-
-.userInfo__title {
-	list-style: none;
-    padding: 25px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: rgb(238, 238, 238);
-    color: rgb(17, 17, 17);
-    box-sizing: border-box;
-}
-
-.userInfo__inside{
-	padding: 30px 30px 0px;
+	font-size: 12px;
+	color: rgb(51, 51, 51);
+	padding-bottom: 30px;
 	box-sizing: border-box;
 	list-style: none;
 }
 
+.userInfo__title {
+	list-style: none;
+	padding: 25px 20px;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: rgb(238, 238, 238);
+	color: rgb(17, 17, 17);
+	box-sizing: border-box;
+}
+
+.userInfo__inside {
+	padding: 30px 30px 0px;
+	box-sizing: border-box;
+	list-style: none;
+}
 
 .userInfo__msg {
 	font-size: 11px;
@@ -2030,678 +2066,677 @@ tbody {
 
 .useInfo__plzmsg {
 	margin-left: 6px;
-    vertical-align: top;
-    font-size: 11px;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+	vertical-align: top;
+	font-size: 11px;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 .userinfo__value {
 	margin-top: 5px;
-    border-top: 2px solid rgb(17, 17, 17);
-    box-sizing: border-box;
-    list-style: none;
+	border-top: 2px solid rgb(17, 17, 17);
+	box-sizing: border-box;
+	list-style: none;
 }
-	
+
 .userInfo__setname {
 	display: block;
-    vertical-align: middle;
-    border-bottom: 1px solid rgb(221, 221, 221);
-    box-sizing: border-box;    
-}	
+	vertical-align: middle;
+	border-bottom: 1px solid rgb(221, 221, 221);
+	box-sizing: border-box;
+}
 
 .userInfo__name1 {
-    display: inline-block;
-    padding: 10px;
-    user-select: none;
-    position: relative;
-    background-color: rgb(250, 250, 250);
-    width: 95px;
-    vertical-align: middle;
-    font-size: 14px;
-    font-weight: bold;
-    box-sizing: border-box;
+	display: inline-block;
+	padding: 10px;
+	user-select: none;
+	position: relative;
+	background-color: rgb(250, 250, 250);
+	width: 95px;
+	vertical-align: middle;
+	font-size: 14px;
+	font-weight: bold;
+	box-sizing: border-box;
 }
 
 .userInfo__name2 {
-    display: inline-block;
-    padding: 10px;
-    user-select: none;
-    position: relative;
-    vertical-align: middle;
-    box-sizing: border-box;    	
+	display: inline-block;
+	padding: 10px;
+	user-select: none;
+	position: relative;
+	vertical-align: middle;
+	box-sizing: border-box;
 }
 
 .userInfo__setBank {
-    display: block;
-    vertical-align: middle;
-    border-bottom: 1px solid rgb(221, 221, 221);
-    box-sizing: border-box;	
+	display: block;
+	vertical-align: middle;
+	border-bottom: 1px solid rgb(221, 221, 221);
+	box-sizing: border-box;
 }
 
 .userInfo__bank1 {
-    display: inline-block;
-    padding: 10px;
-    user-select: none;
-    position: relative;
-    background-color: rgb(250, 250, 250);
-    width: 95px;
-    vertical-align: middle;
-    font-size: 14px;
-    font-weight: bold;
-    box-sizing: border-box;    	
+	display: inline-block;
+	padding: 10px;
+	user-select: none;
+	position: relative;
+	background-color: rgb(250, 250, 250);
+	width: 95px;
+	vertical-align: middle;
+	font-size: 14px;
+	font-weight: bold;
+	box-sizing: border-box;
 }
 
 .userInfo__selectBank {
 	position: relative;
-    display: inline-block;
-    box-sizing: border-box;    
+	display: inline-block;
+	box-sizing: border-box;
 }
 
 .userInfo__selectBankList {
-	font-family: "맑은 고딕", malgun gothic, apple sd gothic neo, "나눔고딕", nanumgothic, "돋움", dotum, sans-serif;
-    display: flex;
-    width: 100%;
-    -webkit-box-align: center;
-    align-items: center;
-    min-height: 2.25rem;
-    font-size: 0.875rem;
-    padding: 8px 36px 8px 8px;
-    appearance: none;
-    outline: none;
-    color: rgb(17, 17, 17);
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(221, 221, 221);	    
+	font-family: "맑은 고딕", malgun gothic, apple sd gothic neo, "나눔고딕",
+		nanumgothic, "돋움", dotum, sans-serif;
+	display: flex;
+	width: 100%;
+	-webkit-box-align: center;
+	align-items: center;
+	min-height: 2.25rem;
+	font-size: 0.875rem;
+	padding: 8px 36px 8px 8px;
+	appearance: none;
+	outline: none;
+	color: rgb(17, 17, 17);
+	background-color: rgb(255, 255, 255);
+	border: 1px solid rgb(221, 221, 221);
 }
 
 .userInfo__selectBankList option {
 	font-weight: normal;
-    display: block;
-    white-space: nowrap;
-    min-height: 1.2em;
-    padding: 0px 2px 1px;
+	display: block;
+	white-space: nowrap;
+	min-height: 1.2em;
+	padding: 0px 2px 1px;
 }
 
 .userInfo__setAccount {
-    display: block;
-    vertical-align: middle;
-    border-bottom: 1px solid rgb(221, 221, 221);
-    box-sizing: border-box;    	
+	display: block;
+	vertical-align: middle;
+	border-bottom: 1px solid rgb(221, 221, 221);
+	box-sizing: border-box;
 }
 
 .userInfo__account1 {
-    display: inline-block;
-    padding: 10px;
-    user-select: none;
-    position: relative;
-    background-color: rgb(250, 250, 250);
-    width: 95px;
-    vertical-align: middle;
-    font-size: 14px;
-    font-weight: bold;	
+	display: inline-block;
+	padding: 10px;
+	user-select: none;
+	position: relative;
+	background-color: rgb(250, 250, 250);
+	width: 95px;
+	vertical-align: middle;
+	font-size: 14px;
+	font-weight: bold;
 }
 
 .userInfo__account2 {
-	font-family: "맑은 고딕", malgun gothic, apple sd gothic neo, "나눔고딕", nanumgothic, "돋움", dotum, sans-serif;
-    width: 200px;
-    flex: 1 1 0%;
-    padding: 10px;
-    font-size: 0.6875rem;
-    font-weight: normal;
-    color: rgb(17, 17, 17);
-    border: none;
-    background-color: inherit;
-    cursor: text;	
+	font-family: "맑은 고딕", malgun gothic, apple sd gothic neo, "나눔고딕",
+		nanumgothic, "돋움", dotum, sans-serif;
+	width: 200px;
+	flex: 1 1 0%;
+	padding: 10px;
+	font-size: 0.6875rem;
+	font-weight: normal;
+	color: rgb(17, 17, 17);
+	border: none;
+	background-color: inherit;
+	cursor: text;
 }
 
 .userInfo__accountCheck {
-    min-width: 60px;
-    height: 30px;
-    padding: 0px 10px;
-    vertical-align: middle;
-    box-sizing: border-box;
-    border: 1px solid rgb(52, 106, 255);
-    background-color: rgb(255, 255, 255);
-    overflow: visible;	
+	min-width: 60px;
+	height: 30px;
+	padding: 0px 10px;
+	vertical-align: middle;
+	box-sizing: border-box;
+	border: 1px solid rgb(52, 106, 255);
+	background-color: rgb(255, 255, 255);
+	overflow: visible;
 }
 
 .userInfo__check {
-    display: flex;
-    flex-direction: row;
-    margin: 8px 0px 10px;
-    box-sizing: border-box;    
+	display: flex;
+	flex-direction: row;
+	margin: 8px 0px 10px;
+	box-sizing: border-box;
 }
 
 .userInfo__checkBox {
-    flex: 0 0 16px;
-    width: 16px;
-    height: 16px;
-    border-radius: 2px;
-    padding: 4px;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(170, 170, 170);	
+	flex: 0 0 16px;
+	width: 16px;
+	height: 16px;
+	border-radius: 2px;
+	padding: 4px;
+	background-color: rgb(255, 255, 255);
+	border: 1px solid rgb(170, 170, 170);
 }
 
 .userInfo__checkMsg {
-    flex: 0 0 16px;
-    width: 16px;
-    height: 16px;
-    border-radius: 2px;
-    padding: 4px;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(170, 170, 170);	
+	flex: 0 0 16px;
+	width: 16px;
+	height: 16px;
+	border-radius: 2px;
+	padding: 4px;
+	background-color: rgb(255, 255, 255);
+	border: 1px solid rgb(170, 170, 170);
 }
 
 .userInfo__caution {
 	list-style: none;
-    background-color: rgb(250, 250, 250);
+	background-color: rgb(250, 250, 250);
 }
 
-.caution1,.caution2, .caution3 {
-    padding-top: 10px;
-    list-style: none;
-    margin-top: 0px;
-    padding-left: 10px;
-    padding-right: 45px;    
-    	
+.caution1, .caution2, .caution3 {
+	padding-top: 10px;
+	list-style: none;
+	margin-top: 0px;
+	padding-left: 10px;
+	padding-right: 45px;
 }
 
 .caution11, .caution22, .caution33 {
-    display: inline-block;
-    margin-right: 4px;
-    width: 3px;
-    height: 3px;
-    background: rgb(85, 85, 85);
-    vertical-align: 3px;
-    zoom: 1;
-    line-height: 1.6;	
+	display: inline-block;
+	margin-right: 4px;
+	width: 3px;
+	height: 3px;
+	background: rgb(85, 85, 85);
+	vertical-align: 3px;
+	zoom: 1;
+	line-height: 1.6;
 }
 
 .userInfo__button {
 	margin-top: 20px;
-    text-align: center;
-    box-sizing: border-box;    
+	text-align: center;
+	box-sizing: border-box;
 }
 
 .userInfo__button-cancle {
-    font-family: "맑은 고딕", malgun gothic, apple sd gothic neo, "나눔고딕", nanumgothic, "돋움", dotum, sans-serif;
-    display: inline-block;
-    box-sizing: content-box;
-    min-width: 63px;
-    line-height: 26px;
-    min-height: 1em;
-    padding: 0px 5px;
-    margin: -2px 10px 0px 0px;
-    text-align: center;
-    vertical-align: middle;
-    border-radius: 2px;
-    white-space: nowrap;
-    appearance: none;
-    font-size: 12px;
-    font-weight: normal;
-    border: 1px solid rgb(204, 204, 204);
-    color: rgb(61, 130, 247);
-    background-color: rgb(255, 255, 255);
-    cursor: pointer;
-    user-select: none;    
+	font-family: "맑은 고딕", malgun gothic, apple sd gothic neo, "나눔고딕",
+		nanumgothic, "돋움", dotum, sans-serif;
+	display: inline-block;
+	box-sizing: content-box;
+	min-width: 63px;
+	line-height: 26px;
+	min-height: 1em;
+	padding: 0px 5px;
+	margin: -2px 10px 0px 0px;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 2px;
+	white-space: nowrap;
+	appearance: none;
+	font-size: 12px;
+	font-weight: normal;
+	border: 1px solid rgb(204, 204, 204);
+	color: rgb(61, 130, 247);
+	background-color: rgb(255, 255, 255);
+	cursor: pointer;
+	user-select: none;
 }
 
 .userInfo__button-ok {
-    font-family: "맑은 고딕", malgun gothic, apple sd gothic neo, "나눔고딕", nanumgothic, "돋움", dotum, sans-serif;
-    display: inline-block;
-    box-sizing: content-box;
-    min-width: 63px;
-    line-height: 26px;
-    min-height: 1em;
-    padding: 0px 5px;
-    margin: -2px 0px 0px;
-    text-align: center;
-    vertical-align: middle;
-    border-radius: 2px;
-    white-space: nowrap;
-    appearance: none;
-    font-size: 12px;
-    font-weight: normal;
-    border: 1px solid rgb(0, 112, 204);
-    color: rgb(255, 255, 255);
-    background-color: rgb(61, 130, 247);
-    cursor: pointer;
-    user-select: none;    	
+	font-family: "맑은 고딕", malgun gothic, apple sd gothic neo, "나눔고딕",
+		nanumgothic, "돋움", dotum, sans-serif;
+	display: inline-block;
+	box-sizing: content-box;
+	min-width: 63px;
+	line-height: 26px;
+	min-height: 1em;
+	padding: 0px 5px;
+	margin: -2px 0px 0px;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 2px;
+	white-space: nowrap;
+	appearance: none;
+	font-size: 12px;
+	font-weight: normal;
+	border: 1px solid rgb(0, 112, 204);
+	color: rgb(255, 255, 255);
+	background-color: rgb(61, 130, 247);
+	cursor: pointer;
+	user-select: none;
 }
 
 /* 환불계좌 end */
 
 /* 결제창 start */
 .paymentBody {
-	width: 1020px; 
+	width: 1020px;
 	margin: 0 auto 20px;
-    position: relative;
-    clear: both;
-    font-size: 12px;
-    z-index: 20;	
+	position: relative;
+	clear: both;
+	font-size: 12px;
+	z-index: 20;
 }
 
 .middle {
 	clear: both;
-    padding: 0 0 40px;
-    background: #fff;
+	padding: 0 0 40px;
+	background: #fff;
 }
 
 .ordTitle {
-    height: 70px;
-    overflow: hidden;
-    border-bottom: 3px solid #777;	
+	height: 70px;
+	overflow: hidden;
+	border-bottom: 3px solid #777;
 }
 
 .ordTitle .title {
-    float: left;
-    margin-top: 5px;
-    padding-left: 0;
-    line-height: 70px;
-    font-size: 30px;
-    color: #111;	
+	float: left;
+	margin-top: 5px;
+	padding-left: 0;
+	line-height: 70px;
+	font-size: 30px;
+	color: #111;
 }
 
 .customer__h2 {
-    padding-left: 2px;
-    margin-bottom: 8px;
-    font-size: 20px;
-    font-weight: 700;
-    color: #333;	
+	padding-left: 2px;
+	margin-bottom: 8px;
+	font-size: 20px;
+	font-weight: 700;
+	color: #333;
 }
 
 .customer__table {
-    width: 100%;
-    border-top: 2px solid #cecece;
-    border-collapse: collapse;
-    border-spacing: 0;
-    font-family: sans-serif;
-    font-size: 100%;        	
+	width: 100%;
+	border-top: 2px solid #cecece;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-family: sans-serif;
+	font-size: 100%;
 }
 
 .customer__col customer__col--1 {
-    width: 104px;
-    border: solid #e4e4e4;
-    border-width: 0 1px 1px 0;
-    padding: 7px 10px 7px 15px;
-    font-weight: 700;
-    text-align: right;
-    background: #f4f4f4;
-    display: table-cell;
-    vertical-align: inherit;
-    border-collapse: collapse;
-    border-spacing: 0;        	
+	width: 104px;
+	border: solid #e4e4e4;
+	border-width: 0 1px 1px 0;
+	padding: 7px 10px 7px 15px;
+	font-weight: 700;
+	text-align: right;
+	background: #f4f4f4;
+	display: table-cell;
+	vertical-align: inherit;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 .customer__col customer__col--2 {
-    border-bottom: 1px solid #e4e4e4;
-    padding: 10px 16px;
-    display: table-cell;
-    vertical-align: inherit;
-    border-collapse: collapse;
-    border-spacing: 0;        	
+	border-bottom: 1px solid #e4e4e4;
+	padding: 10px 16px;
+	display: table-cell;
+	vertical-align: inherit;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 .delivery-address__caption-header {
-    padding-left: 2px;
-    margin: 30px 0 8px;
-    text-align: left;
-    font-size: 20px;
-    font-weight: 700;	
+	padding-left: 2px;
+	margin: 30px 0 8px;
+	text-align: left;
+	font-size: 20px;
+	font-weight: 700;
 }
 
 .delivery-address {
-    border-top: 2px solid #cecece;
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    font-family: sans-serif;
-    font-size: 100%;        	
+	border-top: 2px solid #cecece;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-family: sans-serif;
+	font-size: 100%;
 }
 
 .delivery-address__th {
-    border-right: 1px solid #e4e4e4;
-    border-bottom: 1px solid #e4e4e4;
-    padding: 10px 10px 7px 15px;
-    width: 104px;
-    background-color: #f4f4f4;
-    text-align: right;
-    display: table-cell;
-    vertical-align: inherit;
-    font-weight: bold;
-    text-align: -internal-center;    	
+	border-right: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
+	padding: 10px 10px 7px 15px;
+	width: 104px;
+	background-color: #f4f4f4;
+	text-align: right;
+	display: table-cell;
+	vertical-align: inherit;
+	font-weight: bold;
+	text-align: -internal-center;
 }
 
-.delivery-address__td delivery-address__td--name delivery-address__td-rocket-fresh-mvp2 {
-    padding-top: 12.5px;
-    padding-bottom: 12.5px;
-    border-bottom: 1px solid #e4e4e4;
-    padding: 10px 0 10px 16px;    	
+.delivery-address__td delivery-address__td--name delivery-address__td-rocket-fresh-mvp2
+	{
+	padding-top: 12.5px;
+	padding-bottom: 12.5px;
+	border-bottom: 1px solid #e4e4e4;
+	padding: 10px 0 10px 16px;
 }
 
 .delivery-address__name {
-    color: #555;
-    border-color: #555;
-    display: inline-block;
-    height: 13px;
-    margin-left: 2px;
-    padding: 2px 2px 0;
-    font-size: 11px;
-    font-family: dotum,sans-serif;
-    line-height: 12px;
-    vertical-align: middle; 
-   	border: 1px solid #00891a;
-    border-radius: 8px;
-    color: #00891a;
+	color: #555;
+	border-color: #555;
+	display: inline-block;
+	height: 13px;
+	margin-left: 2px;
+	padding: 2px 2px 0;
+	font-size: 11px;
+	font-family: dotum, sans-serif;
+	line-height: 12px;
+	vertical-align: middle;
+	border: 1px solid #00891a;
+	border-radius: 8px;
+	color: #00891a;
 }
 
 .delivery-address__th {
-    border-right: 1px solid #e4e4e4;
-    border-bottom: 1px solid #e4e4e4;
-    padding: 10px 10px 7px 15px;
-    width: 104px;
-    background-color: #f4f4f4;
-    text-align: right;
-    display: table-cell;
-    vertical-align: inherit;
-    font-weight: bold;
-    text-align: -internal-center;    	
+	border-right: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
+	padding: 10px 10px 7px 15px;
+	width: 104px;
+	background-color: #f4f4f4;
+	text-align: right;
+	display: table-cell;
+	vertical-align: inherit;
+	font-weight: bold;
+	text-align: -internal-center;
 }
 
 .delivery-address__td {
-    border-bottom: 1px solid #e4e4e4;
-    padding: 10px 0 10px 16px;
+	border-bottom: 1px solid #e4e4e4;
+	padding: 10px 0 10px 16px;
 }
 
 .delivery-address__th delivery-address__th--no-line {
-    border-bottom: 0;
-    border-right: 1px solid #e4e4e4;
-    border-bottom: 1px solid #e4e4e4;
-    padding: 10px 10px 7px 15px;
-    width: 104px;
-    background-color: #f4f4f4;
-    text-align: right;    	
+	border-bottom: 0;
+	border-right: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
+	padding: 10px 10px 7px 15px;
+	width: 104px;
+	background-color: #f4f4f4;
+	text-align: right;
 }
 
 .retailGroupTitle {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 9px;
-    margin-top: 20px;
-    line-height: 21px;    
-    	
+	margin-top: 20px;
+	font-size: 18px;
+	font-weight: 700;
+	margin-bottom: 9px;
+	margin-top: 20px;
+	line-height: 21px;
 }
 
 .GroupBox {
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    	
+	border: 1px solid #ccc;
+	border-radius: 3px;
 }
 
 .whenDelivery {
-    padding: 10px 15px 10px 20px!important;
-    line-height: 26px!important;
-    padding: 12px 16px 10px;
-    background-color: #eee;
-    line-height: 20px;    	
+	padding: 10px 15px 10px 20px !important;
+	line-height: 26px !important;
+	padding: 12px 16px 10px;
+	background-color: #eee;
+	line-height: 20px;
 }
 
 .whenDelivery-info {
-    float: left;
-    line-height: 26px;
-    font-size: 12px;	
+	float: left;
+	line-height: 26px;
+	font-size: 12px;
 }
 
 .delivery-date {
-    font-size: 16px!important;	
+	font-size: 16px !important;
 }
 
 .item-list {
-    overflow: hidden;
-    zoom: 1;
-    margin-left: 0!important;
-    margin-right: 0!important;
-    padding: 0 15px 0 20px;	
+	overflow: hidden;
+	zoom: 1;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	padding: 0 15px 0 20px;
 }
 
 .item-box {
-    border-bottom: 0;
-    border-bottom: 1px solid #f6f6f6;
-    padding-top: 10px!important;
-    padding-bottom: 10px!important;
-    position: relative;
-    zoom: 1;
-    overflow: hidden;
-    padding-top: 8px;
-    margin-bottom: 5px;
-    color: #333;
-    border-bottom: 1px solid #f6f6f6;        	
+	border-bottom: 0;
+	border-bottom: 1px solid #f6f6f6;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	position: relative;
+	zoom: 1;
+	overflow: hidden;
+	padding-top: 8px;
+	margin-bottom: 5px;
+	color: #333;
+	border-bottom: 1px solid #f6f6f6;
 }
 
 .item-title {
 	border-bottom: 0;
-    border-bottom: 1px solid #f6f6f6;
-    padding-top: 10px!important;
-    padding-bottom: 10px!important;
-    position: relative;
-    zoom: 1;
-    overflow: hidden;
-    padding-top: 8px;
-    margin-bottom: 5px;
-    color: #333;
-    border-bottom: 1px solid #f6f6f6;    	
+	border-bottom: 1px solid #f6f6f6;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	position: relative;
+	zoom: 1;
+	overflow: hidden;
+	padding-top: 8px;
+	margin-bottom: 5px;
+	color: #333;
+	border-bottom: 1px solid #f6f6f6;
 }
 
 .item-condition {
-    display: inline;
-    color: #203f99;
-    font-weight: 700;
-    font-size: 16px;
-    color: #111;    	
+	display: inline;
+	color: #203f99;
+	font-weight: 700;
+	font-size: 16px;
+	color: #111;
 }
 
 .item-description {
-    position: absolute;
-    left: 64%;
-    width: 34%;
-    padding: 0;
-    border: 0;
-    font-size: 12px;
+	position: absolute;
+	left: 64%;
+	width: 34%;
+	padding: 0;
+	border: 0;
+	font-size: 12px;
 	clear: both;
-	float: left;    	
+	float: left;
 }
 
 .order-section orderBox mb10 multiple-coupon {
-    margin-bottom: 10px;
-    margin-top: 30px;
+	margin-bottom: 10px;
+	margin-top: 30px;
 }
 
 .checkout__h2 {
-    padding-left: 2px;
-    margin-bottom: 8px;
-    font-size: 20px;
-    font-weight: 700;
-    color: #333;	
+	padding-left: 2px;
+	margin-bottom: 8px;
+	font-size: 20px;
+	font-weight: 700;
+	color: #333;
 }
 
 .pay-price {
 	width: 100%;
-    border-top: 2px solid #cecece;
-    border-collapse: collapse;
-    border-spacing: 0;
-    font-family: sans-serif;
-    font-size: 100%;        	
+	border-top: 2px solid #cecece;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-family: sans-serif;
+	font-size: 100%;
 }
 
 colgroup {
-    margin: 0;
-    padding: 0;
-    display: table-column-group;
+	margin: 0;
+	padding: 0;
+	display: table-column-group;
 }
 
 .pay-price tbody {
-    margin: 0;
-    padding: 0;
-    display: table-row-group;
-    vertical-align: middle;
-    border-color: inherit;    	
+	margin: 0;
+	padding: 0;
+	display: table-row-group;
+	vertical-align: middle;
+	border-color: inherit;
 }
 
 .wrap-title {
-    vertical-align: top;
-    text-align: right;
-    border-right: 1px solid #e4e4e4;
-    background: #f4f4f4;
-    padding: 10px 15px 0 0;
-    border-bottom: 1px solid #e4e4e4;    	
+	vertical-align: top;
+	text-align: right;
+	border-right: 1px solid #e4e4e4;
+	background: #f4f4f4;
+	padding: 10px 15px 0 0;
+	border-bottom: 1px solid #e4e4e4;
 }
 
 .price {
 	display: inline-block;
-    width: 100px;
-    padding-left: 15px;
-    padding-bottom: 10px;
+	width: 100px;
+	padding-left: 15px;
+	padding-bottom: 10px;
 }
 
 .unit {
-    color: #111;
-    font-size: 12px;
-    font-weight: 400;	
+	color: #111;
+	font-size: 12px;
+	font-weight: 400;
 }
 
 .payCoupon .price {
-    display: inline-block;
-    font-size: 12px;
-    color: #ff0025;
-    display: inline-block;
-    width: 100px;
-    padding-left: 15px;
-    padding-bottom: 10px;        	
+	display: inline-block;
+	font-size: 12px;
+	color: #ff0025;
+	display: inline-block;
+	width: 100px;
+	padding-left: 15px;
+	padding-bottom: 10px;
 }
 
 .value use-calculation-for-totalprice {
-    text-indent: -9999px;
-    line-height: 0;
-    display: inline-block;	
+	text-indent: -9999px;
+	line-height: 0;
+	display: inline-block;
 }
 
 .selected-coupon {
-    display: inline-block;	
+	display: inline-block;
 }
 
 .coupon-selector coupon-selecter {
-    display: none;
-    padding: 10px 0 10px 115px;
-    border-top: 1px solid #eee;
-    background-color: #f8f8f8;	
+	display: none;
+	padding: 10px 0 10px 115px;
+	border-top: 1px solid #eee;
+	background-color: #f8f8f8;
 }
 
 .delivery-total-price-value use-calculation-for-totalprice {
 	text-indent: -9999px;
-    line-height: 0;
-    display: inline-block;
+	line-height: 0;
+	display: inline-block;
 }
 
 .payPrice {
-    color: #333;
-    font-size: 14px;	
+	color: #333;
+	font-size: 14px;
 }
 
 .payPrice .price {
-    display: inline-block;
-    width: 100px;
-    padding-left: 15px;
-    padding-bottom: 10px;	
+	display: inline-block;
+	width: 100px;
+	padding-left: 15px;
+	padding-bottom: 10px;
 }
 
 .payType-wrap {
-    display: table-row;
-    vertical-align: inherit;
-    border-color: inherit;	
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
 }
 
 .type-selector-list-wrapper {
-    width: 845px;	
+	width: 845px;
 }
 
 .type-selector-list {
 	width: 845px;
-    position: relative;
-    padding-top: 4px;
-    list-style: none;
+	position: relative;
+	padding-top: 4px;
+	list-style: none;
 }
 
 .type-selector-li {
-    display: block;
-    float: left;
-    margin-right: 9px;
-    padding: 0 0 0 2px;
-    font-size: 12px;
-    line-height: 39px;
-    letter-spacing: -1px;
-    list-style: none;	
+	display: block;
+	float: left;
+	margin-right: 9px;
+	padding: 0 0 0 2px;
+	font-size: 12px;
+	line-height: 39px;
+	letter-spacing: -1px;
+	list-style: none;
 }
 
 .type-selector-radio {
-    margin-right: 1px;
-    vertical-align: -1px;	
+	margin-right: 1px;
+	vertical-align: -1px;
 }
 
 .CONOCOIN {
-    font-weight: normal;
-    position: relative;
-    cursor: pointer;        	
+	font-weight: normal;
+	position: relative;
+	cursor: pointer;
 }
 
 .type-selector-label__text {
-    display: inline-block;
-    line-height: 39px;
-    vertical-align: middle;	
+	display: inline-block;
+	line-height: 39px;
+	vertical-align: middle;
 }
 
 .CONOCOIN_content {
-    margin-top: -2px;
-    padding: 10px;
-    border: 2px solid #c5c7cd;
-    background-color: #f4f6fa;	
+	margin-top: -2px;
+	padding: 10px;
+	border: 2px solid #c5c7cd;
+	background-color: #f4f6fa;
 }
 
 .pay-type-sections {
-    list-style: none;	
+	list-style: none;
 }
 
 .pay-type-section {
-    padding-top: 0;
-    border-top: 0;
-    padding: 10px 0;
-    margin: 0;
-    line-height: 21px;
-    border-top: 1px solid #e4e4e4;        	
-    list-style: none;    
+	padding-top: 0;
+	border-top: 0;
+	padding: 10px 0;
+	margin: 0;
+	line-height: 21px;
+	border-top: 1px solid #e4e4e4;
+	list-style: none;
 }
 
 .line-title {
-    letter-spacing: -1px;
-    display: inline-block;
-    width: 90px;
-    font-size: 12px;
-    font-weight: 700;
-    margin: 0;
-    vertical-align: middle;    	
+	letter-spacing: -1px;
+	display: inline-block;
+	width: 90px;
+	font-size: 12px;
+	font-weight: 700;
+	margin: 0;
+	vertical-align: middle;
 }
 
 .orderBox wrap-order-agree {
-    margin-top: 20px;	
+	margin-top: 20px;
 }
 
 .agreeBtn {
-    text-align: center;	
+	text-align: center;
 }
 /* 결제창 end */
 
-
 /* ====================================================================== */
-
-

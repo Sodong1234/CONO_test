@@ -41,6 +41,7 @@
 								<li><a href="memberInfo_modify">회원 정보 수정</a></li>
 								<li><a href="accountInfo">계좌 정보 관리</a></li>
 								<li><a href="delete_id">회원 탈퇴</a></li>
+								<li><a href="PayItem">결제(임시)</a></li>
 							</ul>
 						</nav>
 					</div>
