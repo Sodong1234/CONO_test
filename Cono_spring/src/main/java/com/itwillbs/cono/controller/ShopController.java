@@ -135,6 +135,7 @@ public class ShopController {
 		System.out.println(listLimit);
 		
 		List<HashMap<String, String>> itemList = service.selectItemList(member_id, keyword, sell_status, pageInfo);
+		System.out.println(itemList);
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("sell_status", sell_status);

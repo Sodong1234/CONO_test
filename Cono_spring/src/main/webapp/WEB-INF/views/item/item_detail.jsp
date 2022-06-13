@@ -9,7 +9,7 @@
 <script src="resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#purchase_item_quantity").html("<select name='order_quantity'></select>");
+		$("#purchase_item_quantity").html("<select name='ord_quantity'></select>");
 		for(let i = 1; i <= ${itemDetail.get('item_quantity')}; i++) {
 			$("#purchase_item_quantity > select").append("<option value=" + i + ">" + i + "</option>");
 		}

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.OrdDTO;
 
@@ -28,10 +29,10 @@ public interface ItemMapper {
 	void insertOrd(OrdDTO ord);
 	
 	// safe 테이블 insert
-	void insertSafe(@Param("ord") OrdDTO ord, @Param("order_quantity") String order_quantity, @Param("item_price") String item_price);
+	void insertSafe(@Param("ord") OrdDTO ord, @Param("item_price") String item_price);
 
 	// coin 테이블 insert (구매자)
-	void insertCoin(@Param("member_id") String member_id, @Param("order_quantity") String order_quantity, @Param("item_price") String item_price, @Param("coin_total") String coin_total, @Param("coupon_price") String coupon_price);
+	void insertCoin(@Param("ord") OrdDTO ord, @Param("item_price") String item_price, @Param("coin_total") String coin_total, @Param("coupon_price") String coupon_price);
 	
 	// 상품 수량 체크
 	String selectItemQuantity(OrdDTO ord);
@@ -53,6 +54,12 @@ public interface ItemMapper {
 	
 	// 코인 잔액 조회
 	int selectBalanceCoin(String buyer_id);
+	
+	// 쿠폰 업데이트
+	void updateCoupon(@Param("coupon_idx") String coupon_idx, @Param("item_idx") String item_idx);
+	
+	// 쿠폰 가격 조회
+	String selectCouponPrice(String coupon_idx);
 
 	// coin 테이블 insert (판매자)
 //	void insertCoinSeller(@Param("ord") OrdDTO ord, @Param("item_price") String item_price);

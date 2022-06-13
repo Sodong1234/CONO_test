@@ -20,7 +20,7 @@
 				<h3 class="title">주문/결제</h3>
 			</div>
 			<form action="PayItem" method="post">
-				<input type="hidden" name="order_quantity" value="${order_quantity }">
+				<input type="hidden" name="ord_quantity" value="${param.ord_quantity }">
 				<input type="hidden" name="item_price" value="${itemDetail.item_price }">
 				<input type="hidden" name="item_idx" value="${itemDetail.item_idx }">
 				<div class="customer">
@@ -86,7 +86,7 @@
 							</div>
 							<div>
 								주문 요청 사항
-								<textarea name="order_reqContent" rows="" cols="">요구사항 적으세여</textarea>
+								<textarea name="ord_reqContent" rows="" cols="">요구사항 적으세여</textarea>
 							</div> 
 						</div>
 					</div>
@@ -106,7 +106,7 @@
 								<td>
 									<div class="payOrder">
 										<strong class="price"> <span id="totalPriceDisp"
-											class="use-calculation-for-totalprice"> ${itemDetail.item_price * order_quantity } </span> <span
+											class="use-calculation-for-totalprice"> ${itemDetail.item_price * param.ord_quantity  } </span> <span
 											class="unit">원</span>
 										</strong>
 									</div>
@@ -118,10 +118,10 @@
 									<div class="payCoupon">
 										<div class="price" style="display: inline-block;">
 											<strong> 
-												<select name="coupon_price" >
+												<select name="coupon_idx" >
 													<option value="0"></option>
 													<c:forEach items="${coupons }" var="coupon">
-														<option value="${coupon.coupon_price }">${coupon.coupon_title } / ${coupon.coupon_price }</option>
+														<option value="${coupon.coupon_idx }">${coupon.coupon_title } / ${coupon.coupon_price }</option>
 													</c:forEach>
 												</select>
 	<!-- 											<SPAN CLASS="VALUE USE-CALCULATION-FOR-TOTALPRICE">쿠폰가격받아오기</SPAN> -->
@@ -157,7 +157,7 @@
 								<td>
 									<div class="payPrice">
 										<strong class="price">
-										<span class="unit">${itemDetail.item_price * order_quantity }원 - ${coupon.coupon_price }원 = ${itemDetail.item_price - coupon.coupon_price }원</span>
+										<span class="unit">${itemDetail.item_price * param.ord_quantity  }원 - ${coupon.coupon_price }원 = ${itemDetail.item_price * param.ord_quantity - coupon.coupon_price }원</span>
 										</strong>
 									</div>
 								</td>

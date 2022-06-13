@@ -9,10 +9,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.cono.service.ItemService;
+import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.OrdDTO;
 
@@ -69,9 +72,7 @@ public class ItemController {
 	
 	// ----------------------------- 상품 결제 진행 ----------------------------
 	@RequestMapping(value = "PayItem", method = RequestMethod.POST)
-	public String payItem(HttpSession session, String coupon_price, String item_idx, String item_price, OrdDTO ord, Model model) {
-		
-		System.out.println(coupon_price);
+	public String payItem(HttpSession session, @ModelAttribute CouponDTO coupon, @RequestParam String item_idx, @RequestParam String item_price, OrdDTO ord, Model model) {
 		
 		String member_id = session.getAttribute("sId").toString();
 		
@@ -81,8 +82,7 @@ public class ItemController {
 		ord.setMember_id(member_id);
 		
 		// 상품 구매 가능 여부 확인(coin)
-//		boolean checkCoin = service.checkCoinTotal(ord, item_price);
-		boolean checkCoin = false;
+		boolean checkCoin = service.checkCoinTotal(ord, item_price);
 		if(!checkCoin) {
 			model.addAttribute("msg", "코인이 부족합니다");
 			return "myshop/fail_back";
@@ -95,14 +95,20 @@ public class ItemController {
 		if(service.checkItemQuantity(ord).equals("0")) {
 			service.modifyItemStatus(ord);
 		}
-		// dfsafasfd
+		// coupon 테이블 update
+		// 가져온 coupon_idx 가 0이면 쿠폰 선택을 안함
+		if(coupon.getCoupon_idx().equals("0")) {
+			coupon.setCoupon_price("0");
+		} else {
+			service.updateCoupon(coupon.getCoupon_idx(), item_idx);
+		}
 		// ord 테이블 insert	
 		service.insertOrd(ord);
 		
 		// safe 테이블 insert
-		service.insertSafe(ord, ord.getOrd_quantity(), item_price);
+		service.insertSafe(ord, item_price);
 		// coin 테이블 insert (구매자)
-		service.insertCoin(ord.getMember_id(), ord.getOrd_quantity(), item_price, coupon_price);
+		service.insertCoin(ord, item_price, coupon.getCoupon_idx());
 		
 		// coin 테이블 insert (판매자)	==> 아니 판매자는 아직 돈 들어가면 안된다... 바보양..
 //		service.insertCoinSeller(ord, item_price);

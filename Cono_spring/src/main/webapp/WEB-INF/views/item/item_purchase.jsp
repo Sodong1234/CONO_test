@@ -13,7 +13,7 @@
 		<jsp:include page="../header_footer/top.jsp" />
 	</div>
 	<form action="PayItem" method="post">
-		<input type="hidden" name="order_quantity" value="${order_quantity }">
+		<input type="hidden" name="ord_quantity" value="${ord_quantity }">
 		<input type="hidden" name="item_price"
 			value="${itemDetail.item_price }"> <input type="hidden"
 			name="item_idx" value="${itemDetail.item_idx }">
@@ -37,8 +37,8 @@
 				</td>
 				<td
 					onclick="location.href='itemDetail?item_idx=${itemDetail.item_idx}'">${itemDetail.item_title }</td>
-				<td><textarea name="order_reqContent" rows="" cols="">요구사항 적으세여</textarea></td>
-				<td>${order_quantity }</td>
+				<td><textarea name="ord_reqContent" rows="" cols="">요구사항 적으세여</textarea></td>
+				<td>${ord_quantity }</td>
 				<td>${itemDetail.item_price }</td>
 			</tr>
 

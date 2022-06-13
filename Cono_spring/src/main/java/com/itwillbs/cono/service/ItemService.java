@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.itwillbs.cono.mapper.ItemMapper;
+import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.OrdDTO;
 
@@ -44,15 +45,16 @@ public class ItemService {
 	}
 	
 	// safe 테이블 insert
-	public void insertSafe(OrdDTO ord, String order_quantity, String item_price) {
-		mapper.insertSafe(ord, order_quantity, item_price);
+	public void insertSafe(OrdDTO ord, String item_price) {
+		mapper.insertSafe(ord, item_price);
 	}
 	
 	// coin 테이블 insert (구매자)
-	public void insertCoin(String member_id, String order_quantity, String item_price, String coupon_price) {
-		String coin_total = mapper.selectCoinTotal(member_id);
-		System.out.println("coin_total : " + coin_total);
-		mapper.insertCoin(member_id, order_quantity, item_price, coin_total, coupon_price);
+	public void insertCoin(OrdDTO ord, String item_price, String coupon_idx) {
+		String coin_total = mapper.selectCoinTotal(ord.getMember_id());
+		String coupon_price = mapper.selectCouponPrice(coupon_idx);
+		coin_total = (Integer.parseInt(coin_total) - Integer.parseInt(item_price)*Integer.parseInt(ord.getOrd_quantity()) + Integer.parseInt(coupon_price)) + "";
+		mapper.insertCoin(ord, item_price, coin_total, coupon_price);
 	}
 
 	// 상품 수량 체크
@@ -89,6 +91,11 @@ public class ItemService {
 	// 코인 잔액 조회
 	public int getBalanceCoin(String buyer_id) {
 		return mapper.selectBalanceCoin(buyer_id);
+	}
+	
+	// 쿠폰 상태 업데이트
+	public void updateCoupon(String coupon_idx, String item_idx) {
+		mapper.updateCoupon(coupon_idx, item_idx);
 	}
 
 	
