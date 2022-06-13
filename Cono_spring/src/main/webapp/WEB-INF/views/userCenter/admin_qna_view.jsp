@@ -132,10 +132,6 @@ h1 {
 	<div>
 		<jsp:include page="../header_footer/top.jsp" />
 	</div>
-	<!-- 헤더 -->
-	<div>
-		<jsp:include page="../admin_css/sidebar.jsp" />
-	</div>
 
 
 	<div class="body">
@@ -144,13 +140,13 @@ h1 {
 			<div class="board_list_head">
 				<%-- 						<td>${qna.getQna_idx() }</td> --%>
 
-				<div class="qna_type">${qna.qna_type }</div>
-				<div class="title">${qna.getQna_subject() }</div>
+				<div class="qna_type">${qnaList.qna_type }</div>
+				<div class="title">${qnaList.getQna_subject() }</div>
 				<div class="writer">${sId }</div>
-				<div class="date">${qna.getQna_date() }</div>
+				<div class="date">${qnaList.getQna_date() }</div>
 			</div>
 			<div class="board_list_body">
-				<div class="content">${qna.getQna_content()} 내용내용내용내용내용내용내용내용내용
+				<div class="content">${qnaList.getQna_content()} 내용내용내용내용내용내용내용내용내용
 		내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
 		내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
 		내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
@@ -159,9 +155,9 @@ h1 {
 			</div>
 			<div class="btnArea">
 				<input type="button" value="목록" id="btn" onclick="location.href='AdminQNAList'"> 
-				<input type="button" value="수정" id="btn" onclick="location.href='AdminQNAModifyForm.admin?qna_idx=${qna.getQna_idx() }&pageNum=${param.pageNum }'">
-				<input type="button" value="삭제" id="btn" onclick="location.href='AdminQNADeletePro.admin?qna_idx=${qna.getQna_idx() }&pageNum=${param.pageNum }'">
-				<input type="button" value="답변" id="btn" onclick="location.href='AdminQNAReplyForm.admin?qna_idx=${qna.getQna_idx() }&pageNum=${param.pageNum }'">
+				<input type="button" value="수정" id="btn" onclick="location.href='AdminQNAModifyForm.admin?qna_idx=${qnaList.getQna_idx() }&pageNum=${param.pageNum }'">
+				<input type="button" value="삭제" id="btn" onclick="location.href='AdminQNADeletePro.admin?qna_idx=${qnaList.getQna_idx() }&pageNum=${param.pageNum }'">
+				<input type="button" value="답변" id="btn" onclick="location.href='AdminQNAReplyForm.admin?qna_idx=${qnaList.getQna_idx() }&pageNum=${param.pageNum }'">
 			</div>
 		</div>
 	</div>

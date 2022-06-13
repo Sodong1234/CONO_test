@@ -108,16 +108,13 @@ select {
 <div>
 		<jsp:include page="../header_footer/top.jsp" />
 	</div>
-	<!-- 헤더 -->
-   <div>
-      <jsp:include page="../admin_css/sidebar.jsp"/>
-   </div>
    
    
 	<div class ="body">
 			<div class="hh"><h1>Qna Modify </h1></div>
 			<form action="AdminQNAModifyPro.admin" method="post">
 			<input type ="hidden" name ="qna_idx" value="<%=request.getParameter("qna_idx") %>">
+			<input type ="hidden" name ="pageNum" value="<%=request.getParameter("pageNum") %>">
 					<div class = "qna_type">
 				<select name="qna_type">
 						<option value="선택">선택</option>

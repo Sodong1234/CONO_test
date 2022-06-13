@@ -1,9 +1,7 @@
 <%@page import="com.itwillbs.cono.vo.AdminQNADTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-AdminQNADTO qna = (AdminQNADTO)request.getAttribute("qna");
-%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,30 +91,26 @@ a {
 	<div>
 		<jsp:include page="../header_footer/top.jsp" />
 	</div>
-	<!-- 헤더 -->
-   <div>
-      <jsp:include page="../admin_css/sidebar.jsp"/>
-   </div>
    
    
 	<div class ="body">
 			<div class="hh"><h1>Qna Reply </h1></div>
 		<form action="AdminQNAReplyPro.admin" name="qnaReplyForm" method = "post" >
 		
-		<input type ="hidden" name="qna_idx" value="<%=qna.getQna_idx()%>">
-		<input type ="hidden" name="page" value="<%=request.getParameter("page")%>">
-		<input type ="hidden" name="qna_re_ref" value="<%=qna.getQna_re_ref()%>">
-		<input type ="hidden" name="qna_re_lev" value="<%=qna.getQna_re_lev()%>">
-		<input type ="hidden" name="qna_re_seq" value="<%=qna.getQna_re_seq()%>">
+		<input type ="hidden" name="qna_idx" value="${qnaList.qna_idx }">
+		<input type ="hidden" name="pageNum" value="${param.pageNum }">
+		<input type ="hidden" name="qna_re_ref" value="${qnaList.qna_re_ref }">
+		<input type ="hidden" name="qna_re_lev" value="${qnaList.qna_re_lev }">
+		<input type ="hidden" name="qna_re_seq" value="${qnaList.qna_re_seq }">
 		
 		
 		
 			<div class = "admin_id"><input type="text" id="textBox"  name="member_id"  required="required" placeholder="관리자 이름을 입력해주세요." /></div>
-			<div class = "subject"><input type="text" id="textBox"  name="qna_subject" value="Re:<%=qna.getQna_subject() %>"required="required" /></div>
+			<div class = "subject"><input type="text" id="textBox"  name="qna_subject" value="Re:${qnaList.qna_subject }"required="required" /></div>
 			<div class = "content"><textarea rows="30" cols="100"  id="qna_content" required="required">
 			
 						----- 원본 글 내용 ------
-						<%=qna.getQna_content() %>
+						${qnaList.qna_content }
 						</textarea></div>
 			<div class = "buttonArea">
 				<input type="submit" value="답글등록" id ="btn">&nbsp;&nbsp;

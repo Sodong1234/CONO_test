@@ -61,32 +61,61 @@ public class AdminService {
 	}
 
 	// qna 글쓰기
-	public String selectQNANumDate() {
-		return mapper.selectQNANumDate();
+	public int selectQNANum() {
+		return mapper.selectQNANum();
 	}
 	 
-	public int writeQNA(AdminQNADTO qnaList,String num,String sId) {
-		int insertCount = mapper.insertQNA(qnaList,num,sId);
+	public int writeQNA(AdminQNADTO qnaList,int num,String sId) {
+		qnaList.setNum(num);
+		int insertCount = mapper.insertQNA(qnaList);
+		return insertCount;
+	}
+
+	// qna 상세페이지 조회
+	public AdminQNADTO getAdminQNAView(String qna_idx) {
+		return mapper.selectQNAView(qna_idx);
+	}
+	
+	// qna 글삭제
+	public boolean removeQNA(AdminQNADTO qnaList, int pageNum) {
+		return mapper.deleteQNAList(qnaList);
+	}
+
+	// qna 글수정
+	public boolean modifyQNA(AdminQNADTO qnaList) {
+		return mapper.updateQNA(qnaList);
+	}
+
+	// qna 답글
+//	public int writeReplyBoard(AdminQNADTO qnaList) {
+//		mapper.updateQNAReSeq(qnaList);
+
+//		 = mapper.selectQNANum();
+		
+//		qnaList.setNum(num); // Integer + int = int + int
+//		qnaList.setQna_re_ref(qnaList.getQna_re_ref());
+//		qnaList.setQna_re_lev(qnaList.getQna_re_lev() + 1);
+//		qnaList.setQna_re_seq(qnaList.getQna_re_seq() + 1);
+
+//		return mapper.insertQNA(qnaList);
+//	}
+
+	public HashMap<String, Integer> selectNumSeq(HashMap<String, Integer> param) {
+		qnaList.setNum(num);
+		qnaList.setQna_re_seq(num_seq);
+		return mapper.selectNumSeq(param);
+	}
+
+	public int writeQNAReply(AdminQNADTO qnaList, int num, String sId, HashMap<String, Integer> num_seq) {
+		
+		int insertCount = mapper.writeQNAReply(qnaList,num,sId,num_seq);
 		return insertCount;
 	}
 }
 
 
-//
-//	// qna 상세페이지 조회
-//	public AdminQNADTO getAdminQNAView(String qna_idx) {
-//		return mapper.selectQNAView(qna_idx);
-//	}
-//
-//	// qna 글삭제
-//	public boolean removeQNA(AdminQNADTO qnaList, int pageNum) {
-//		return mapper.deleteQNAList(qnaList);
-//	}
-//
-//	// qna 글수정
-//	public boolean modifyQNA(AdminQNADTO qnaList) {
-//		return mapper.updateQNA(qnaList);
-//	}
+
+
 
 
 

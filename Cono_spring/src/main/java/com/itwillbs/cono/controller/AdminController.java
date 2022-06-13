@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwillbs.cono.service.AdminService;
 import com.itwillbs.cono.vo.AdminNoticeDTO;
 import com.itwillbs.cono.vo.AdminQNADTO;
-import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PageInfo;
 
 @Controller
@@ -173,13 +172,13 @@ public class AdminController {
 
 		return "redirect:/AdminNoticeView.admin";
 	}
-	
+
 	// -------------- 고객센터 qna 리스트 (관리자) - 김도은 -------------
-	
+
 	@RequestMapping(value = "AdminQNAList", method = RequestMethod.GET)
-	public String qnaListGet(@RequestParam(defaultValue = "1") int pageNum,Model model) {
-		
-		int listCount = service.getQNAListCount(); 
+	public String qnaListGet(@RequestParam(defaultValue = "1") int pageNum, Model model) {
+
+		int listCount = service.getQNAListCount();
 		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
 		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
 		System.out.println(listCount);
@@ -209,8 +208,7 @@ public class AdminController {
 
 		return "userCenter/admin_qna_list";
 	}
-	
-	
+
 	// -------------- 고객센터 qna 사용자 위한 글쓰기 (관리자) - 김도은 -------------
 	// 글쓰기 폼 - GET
 	@RequestMapping(value = "AdminQNAWriteForm.admin", method = RequestMethod.GET)
@@ -221,9 +219,9 @@ public class AdminController {
 	// 글쓰기 비즈니스 로직 - POST
 	@RequestMapping(value = "AdminQNAWritePro.admin", method = RequestMethod.POST)
 	public String qnaWritePost(@ModelAttribute AdminQNADTO qnaList, Model model, HttpSession session) {
-		String sId = (String)session.getAttribute("sId");
-		String num = service.selectQNANumDate();
-		int insertCount = service.writeQNA(qnaList,num,sId); 
+		String sId = (String) session.getAttribute("sId");
+		int num = service.selectQNANum();
+		int insertCount = service.writeQNA(qnaList, num, sId);
 
 		if (insertCount == 0) {
 			model.addAttribute("msg", "글 등록 실패!");
@@ -232,54 +230,83 @@ public class AdminController {
 		return "redirect:/AdminQNAList";
 	}
 
-//	// 글쓰기 상세페이지 - GET
-//	@RequestMapping(value = "adminQNAView.admin", method = RequestMethod.GET)
-//	public String adminQNAView(@RequestParam String qna_idx, Model model) {
-//		AdminQNADTO qnaList = service.getAdminQNAView(qna_idx);
-//
-//		model.addAttribute("qnaList", qnaList);
-//
-//		return "userCenter/admin_qna_view";
-//	}
-//
-//	// 글 삭제 비즈니스 로직 - POST
-//	@RequestMapping(value = "AdminQNADeletePro.admin", method = RequestMethod.GET)
-//	public String deleteQNA(@ModelAttribute AdminQNADTO qnaList, @RequestParam int pageNum, Model model) {
-//		boolean isDeleteSuccess = service.removeQNA(qnaList, pageNum);
-//
-//		if (!isDeleteSuccess) {
-//			model.addAttribute("msg", "삭제실패!");
-//			return "fail_back";
-//		}
-//		model.addAttribute("pageNum", pageNum);
-//
-//		return "redirect:/AdminQNAList";
-//	}
-//
-//	// 글 수정 폼 - GET
-//	@RequestMapping(value = "AdminQNAModifyForm.admin", method = RequestMethod.GET)
-//	public String modifyQNA(@RequestParam String qna_idx, Model model) {
-//		AdminQNADTO qnaList = service.getAdminQNAView(qna_idx);
-//
-//		model.addAttribute("qnaList", qnaList);
-//
-//		return "userCenter/admin_qna_modify";
-//	}
-//
-//	// 글 수정 비즈니스 로직 - POST
-//	@RequestMapping(value = "AdminQNAModifyPro.admin", method = RequestMethod.POST)
-//	public String modifyQNA(@ModelAttribute AdminQNADTO qnaList, @RequestParam int pageNum, Model model) {
-//		boolean isUpdateSuccess = service.modifyQNA(qnaList);
-//		System.out.println(qnaList);
-//		if (!isUpdateSuccess) {
-//			model.addAttribute("msg", "수정실패!");
-//			return "fail_back";
-//		}
-//
-//		model.addAttribute("qna_idx", qnaList.getQna_idx());
-//		model.addAttribute("pageNum", pageNum);
-//
-//		return "redirect:/AdminNoticeView.admin";
-//	}
+	// qna 상세페이지 - GET
+	@RequestMapping(value = "AdminQNAView.admin", method = RequestMethod.GET)
+	public String adminQNAView(@RequestParam String qna_idx, Model model) {
+		AdminQNADTO qnaList = service.getAdminQNAView(qna_idx);
 
+		model.addAttribute("qnaList", qnaList);
+
+		return "userCenter/admin_qna_view";
+	}
+
+	// 글 삭제 비즈니스 로직 - POST
+	@RequestMapping(value = "AdminQNADeletePro.admin", method = RequestMethod.GET)
+	public String deleteQNA(@ModelAttribute AdminQNADTO qnaList, @RequestParam int pageNum, Model model) {
+		boolean isDeleteSuccess = service.removeQNA(qnaList, pageNum);
+
+		if (!isDeleteSuccess) {
+			model.addAttribute("msg", "삭제실패!");
+			return "fail_back";
+		}
+		model.addAttribute("pageNum", pageNum);
+
+		return "redirect:/AdminQNAList";
+	}
+
+	// 글 수정 폼 - GET
+	@RequestMapping(value = "AdminQNAModifyForm.admin", method = RequestMethod.GET)
+	public String modifyQNA(@RequestParam String qna_idx, Model model) {
+		AdminQNADTO qnaList = service.getAdminQNAView(qna_idx);
+
+		model.addAttribute("qnaList", qnaList);
+
+		return "userCenter/admin_qna_modify";
+	}
+
+	// 글 수정 비즈니스 로직 - POST
+	@RequestMapping(value = "AdminQNAModifyPro.admin", method = RequestMethod.POST)
+	public String modifyQNA(@ModelAttribute AdminQNADTO qnaList, @RequestParam int pageNum, Model model) {
+		boolean isUpdateSuccess = service.modifyQNA(qnaList);
+		System.out.println(qnaList);
+		if (!isUpdateSuccess) {
+			model.addAttribute("msg", "수정실패!");
+			return "fail_back";
+		}
+		model.addAttribute("qna_idx", qnaList.getQna_idx());
+		model.addAttribute("pageNum", pageNum);
+
+		return "redirect:/AdminQNAView.admin";
+	}
+
+	// -------------- 고객센터 qna 관리자 위한 답변쓰기 (관리자) - 김도은 -------------
+	// 답글 작성 폼 - GET
+	@RequestMapping(value = "AdminQNAReplyForm.admin", method = RequestMethod.GET)
+	public String reply(@RequestParam String qna_idx, Model model) {
+		AdminQNADTO qnaList = service.getAdminQNAView(qna_idx);
+		model.addAttribute("qnaList", qnaList);
+		return "userCenter/admin_qna_reply";
+	}
+
+	// 답글 작성 비즈니스 로직 - POST
+	@RequestMapping(value = "AdminQNAReplyPro.admin", method = RequestMethod.POST)
+	public String replyPost(@ModelAttribute AdminQNADTO qnaList, @RequestParam int pageNum, Model model, HttpSession session) {
+		
+		String sId = (String) session.getAttribute("sId");
+		int num = service.selectQNANum();
+		HashMap<String, Integer> param = new HashMap<String, Integer>();
+		param.put("qna_re_ref", num);
+		param.put("qna_re_lev", qnaList.getQna_re_lev());
+		
+		HashMap<String,Integer> num_seq = service.selectNumSeq(param);
+		int insertCount = service.writeQNAReply(qnaList, num, sId, num_seq);
+
+		
+		if (insertCount == 0) {
+			model.addAttribute("msg", "답글 등록 실패!");
+			return "fail_back";
+		}
+		model.addAttribute("pageNum", pageNum);
+		return "redirect:/AdminQNAList";
+	}
 }

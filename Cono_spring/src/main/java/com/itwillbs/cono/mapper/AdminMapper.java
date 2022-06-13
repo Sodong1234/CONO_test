@@ -37,17 +37,24 @@ public interface AdminMapper {
 	public List<AdminQNADTO> selectQNAList(@Param("pageInfo")PageInfo pageInfo);
 
 	// qna 글쓰기
-	public String selectQNANumDate();
-	public int insertQNA(AdminQNADTO qnaList,String num,String sId);
-//
-//	// qna 상세페이지
-//	public AdminQNADTO selectQNAView(String qna_idx);
-//
-//	// qna 삭제
-//	public boolean deleteQNAList(AdminQNADTO qnaList);
-//
-//	// qna 수정
-//	public boolean updateQNA(AdminQNADTO qnaList);
+	public int selectQNANum();
+	public int insertQNA(AdminQNADTO qnaList);
+
+	// qna 상세페이지
+	public AdminQNADTO selectQNAView(String qna_idx);
+
+	// qna 삭제
+	public boolean deleteQNAList(AdminQNADTO qnaList);
+
+	// qna 수정
+	public boolean updateQNA(AdminQNADTO qnaList);
+
+	// qna 답글
+	public HashMap<String, Integer> selectNumSeq(HashMap<String, Integer> param);
+
+	public int writeQNAReply(AdminQNADTO qnaList, int num, String sId, HashMap<String, Integer> num_seq);
+
+	
 
 	
 }

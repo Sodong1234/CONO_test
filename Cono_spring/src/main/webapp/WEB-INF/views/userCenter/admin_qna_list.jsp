@@ -223,7 +223,7 @@ input[type=text] {
 							<div class="item">
 						<div class = "num">${qna.num }</div>
 								<div class="qna_type">${qna.qna_type }</div>
-						<div class="title"><a href="AdminQNAView.admin?qna_idx=${qna.qna_idx }&page=${pageNum}">${qna.qna_subject }</a></div>
+						<div class="title"><a href="AdminQNAView.admin?qna_idx=${qna.qna_idx }&pageNum=${pageInfo.pageNum}">${qna.qna_subject }</a></div>
 
 						<div class="write">${qna.member_id }</div>
 

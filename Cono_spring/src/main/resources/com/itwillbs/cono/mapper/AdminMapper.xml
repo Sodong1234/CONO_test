@@ -85,32 +85,46 @@
 	</select>
 
 	<!-- qna 글쓰기 -->
-	<select id="selectQNANumDate" resultType="java.lang.String">
+	<select id="selectQNANum" resultType="java.lang.Integer">
 		SELECT IFNULL(MAX(CAST(qna_idx as unsigned)), 0) + 1 AS num FROM qna
 	</select>
 
 	<insert id="insertQNA">
-		INSERT INTO qna VALUES (#{num},#{sId},#{qna_type},#{qna_subject},#{qna_content},#{num},'0','0',DATE_FORMAT(now(), "%Y%m%d"),'답변대기')
+		INSERT INTO qna VALUES (#{num},#{member_id},#{qna_type},#{qna_subject},#{qna_content},#{num},'0','0',DATE_FORMAT(now(), "%Y%m%d"),'답변대기')
 	</insert>
 
 	<!-- qna 상세페이지 -->
-<!-- 	<select id="selectQNAView" -->
-<!-- 		resultType="com.itwillbs.cono.vo.AdminQNADTO"> -->
-<!-- 		SELECT * FROM qna WHERE qna_idx=#{qna_idx} -->
-<!-- 	</select> -->
+	<select id="selectQNAView"
+		resultType="com.itwillbs.cono.vo.AdminQNADTO">
+		SELECT * FROM qna WHERE qna_idx=#{qna_idx}
+	</select>
 
-<!-- 	 qna 삭제 --> 
-<!-- 	<delete id="deleteQNAList"> -->
-<!-- 		DELETE FROM qna WHERE qna_idx=#{qna_idx} -->
-<!-- 	</delete> -->
+<!-- 	 qna 삭제  -->
+	<delete id="deleteQNAList">
+		DELETE FROM qna WHERE qna_idx=#{qna_idx}
+	</delete>
 
 <!-- 	 qna 수정 -->
-<!-- 	<update id="updateQNA"> -->
-<!-- 		UPDATE qna SET admin_id=#{admin_id},notice_subject=#{notice_subject},notice_content=#{notice_content}  -->
-<!-- 		WHERE notice_idx=#{notice_idx} -->
-<!-- 	</update> -->
+	<update id="updateQNA">
+		UPDATE qna SET member_id=#{member_id},qna_subject=#{qna_subject},qna_content=#{qna_content} 
+		WHERE qna_idx=#{qna_idx}
+	</update>
 	
+	<!--- 답글 순서번호 조정 -->
+<!-- <update id="updateQNAReSeq"> -->
+<!-- 	UPDATE qna SET qna_re_seq=qna_re_seq+1   -->
+<!-- 	WHERE qna_re_ref=#{qna_re_ref} AND qna_re_seq>#{qna_re_seq} -->
+<!-- </update> -->
+
+	<select id="selectNumSeq" resultType="java.util.HashMap">
+		SELECT IFNULL(MAX(qna_re_seq), 0) + 1 AS seq_num
+		  FROM qna
+		 WHERE qna_re_ref = #{qna_re_ref}
+		   AND qna_re_lev = #{qna_re_lev}
+	</select>
 	
-	
+	<insert id="writeQNAReply">
+		INSERT INTO qna VALUES (#{num},#{member_id},#{""},#{qna_subject},#{qna_content},#{num},'#{qna_re_lev}+1',#{num_seq},DATE_FORMAT(now(), "%Y%m%d"),#{""})
+	</insert>
 	
 </mapper>

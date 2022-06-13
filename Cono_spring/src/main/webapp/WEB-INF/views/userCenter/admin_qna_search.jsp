@@ -115,10 +115,6 @@ a {
 	<div>
 		<jsp:include page="../header_footer/top.jsp" />
 	</div>
-	<!-- 헤더 -->
-   <div>
-      <jsp:include page="../admin_css/sidebar.jsp"/>
-   </div>
 <body>
 	
 	<div class ="body">
