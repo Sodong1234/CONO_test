@@ -9,7 +9,7 @@
 8. star (별점) - 후기 등록시 생성
 9. basket (장바구니) - 장바구니 담기 클릭시 생성
 예외 : 같은 아이템을 장바구니에 담을시 -> '이미 장바구니에 있습니다' 알림띄우기
-10. order (주문) - 상품 상세정보, 장바구니에서 구매하기 클릭 후 결제 완료시 생성 
+10. ord (주문) - 상품 상세정보, 장바구니에서 구매하기 클릭 후 결제 완료시 생성 
 11. reserved (예약) - 판매자가 구매자와 1:1 문의 중 예약걸기 버튼 클릭시 생성 + 아이템 락
 12. mainCategory (메인 카테고리) - 큰거 10개 
 13. category (소분류) -  
@@ -86,13 +86,13 @@ CREATE TABLE wish (
 	PRIMARY KEY (item_idx, member_id) 
 );
 
-CREATE TABLE order (
+CREATE TABLE ord (
 	item_idx varchar(20),
 	member_id varchar(20),
-	order_date varchar(14) NOT NULL,
-	order_reqContent varchar(1000),
-	order_quantity varchar(10) NOT NULL,
-	order_status varchar(5) NOT NULL,
+	ord_date varchar(14) NOT NULL,
+	ord_reqContent varchar(1000),
+	ord_quantity varchar(10) NOT NULL,
+	ord_status varchar(5) NOT NULL,
 	PRIMARY KEY (item_idx, member_id)
 );
 
