@@ -12,6 +12,7 @@
 <script type="text/javascript">
 
 	function sendMsg() {
+		// 방번호 샵네임 저장
 		var msgList_room = document.getElementById("rNum").value;
 		var shop_name = document.getElementById("sName").value;
 		sendMessage(msgList_room, shop_name);
@@ -19,8 +20,9 @@
 //  Msg DB 저장 함수
 	const sendMessage = function(msgList_room, shop_name) {
 		let content = $('#msgText').val();
-		alert("content: " + content);
+		alert("content: " + content + "msgList_room: " + msgList_room + "shop_name:" + shop_name);
 		
+		// 양쪽 공백 제거
 		content = content.trim();
 		
 		if(content == "") {

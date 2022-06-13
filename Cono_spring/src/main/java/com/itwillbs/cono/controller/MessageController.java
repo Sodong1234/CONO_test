@@ -45,6 +45,7 @@ public class MessageController {
 		
 		System.out.println("rNum : " + msgList_room);
 		System.out.println("sName : " + shop_idx);
+		System.out.println("content : " + content);
 		
 		MsgChatDTO dto = new MsgChatDTO();
 		dto.setMsgList_room(msgList_room);
