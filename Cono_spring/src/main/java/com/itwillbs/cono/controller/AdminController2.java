@@ -53,6 +53,7 @@ public class AdminController2 {
 		
 		// 회원 리스트
 		List<HashMap<String, Object>> memberList = service.getMemberList(searchType, "%" + search + "%", pageInfo);
+		System.out.println(memberList);
 		
 		// Model 객체에 저장
 		model.addAttribute("memberList", memberList);

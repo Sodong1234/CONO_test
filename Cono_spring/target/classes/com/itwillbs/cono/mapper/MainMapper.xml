@@ -45,5 +45,14 @@
 		ORDER BY it.item_date DESC
 		LIMIT 0,20;
 	</select>
+	
+<!-- 실시간 인기상품 - 김혜은 -->
+	<select id="selectHotItemList" resultType="com.itwillbs.cono.vo.ItemDTO">
+		SELECT CAST(@rownum:=@rownum+1  AS UNSIGNED) AS num, item_title, item_readCnt
+		FROM item, (SELECT @rownum:=0) TMP
+		ORDER BY LENGTH(item_readCnt) DESC, item_readCnt DESC
+		LIMIT 1, 10
+	</select>
+	
 </mapper>
 

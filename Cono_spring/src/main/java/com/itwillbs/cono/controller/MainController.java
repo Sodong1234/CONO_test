@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.cono.service.MainService;
+import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 
 
@@ -148,4 +149,23 @@ public class MainController {
 //			Integer item_idxTostart = card.;
 //			return service.infiniteScrollDown(item_idxTostart);
 //	}
+	
+	
+	// 실시간 인기순위 - 김혜은
+	@RequestMapping(value = "/hotItem", method = RequestMethod.GET)
+	public String HotItem(HttpSession session) {
+		
+		List<ItemDTO> hotList = service.getHotItemList();
+		System.out.println(hotList);
+		
+		session.setAttribute("hotList", hotList);
+		return "redirect:/";
+	}
+	
+	
+	
+	
+	
+	
+	
 }

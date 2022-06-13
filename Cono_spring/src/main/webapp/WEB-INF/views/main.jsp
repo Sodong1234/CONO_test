@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,14 +111,16 @@ a{
     list-style: none;
 }
 
-.view{
+#view{
 	display:none;
 	position:absolute;
 	left:10px;
 	top:10px;
 	z-index:99;
 	font-size:10px;
-	font-weight:bold
+	font-weight:bold;
+	border: 1px solid #d9d9d9;
+	border-radius: 4px;
 	}
 
 #search-ranking {
@@ -132,14 +135,16 @@ a{
     list-style: none;
     padding: 17px;
     margin: 0;
-    width: 332px;
-    height: 334px;
-    border: 1px solid #aaa;
+    width: 300px;
+    height: 330px;
+    border: 1px solid #d9d9d9;
     background: white;
+    border-radius:5px;
     position: absolute;
     top: 0;
     right: 0;
     z-index: 100;
+    box-shadow: 4px #d9d9d9;
 }
 
 #search-ranking:hover ul {
@@ -153,7 +158,6 @@ a{
 }
 
 #rank-title {
-	right
     letter-spacing: -1px;
     font-size: 14px;
 }
@@ -164,40 +168,31 @@ a{
 	<div id="wrap">
 		<jsp:include page="header_footer/top.jsp"/>
 	</div>
-	
-	<!-- 실시간 인기순위 -->
+
+
+<!-- 실시간 인기순위 -->
 	<nav class="rank-hot">
-	  <div class="center-align relative">
+	  <div class="center-align">
 	    <div id="search-ranking">
 	      <div>
-	        <span id="rank-number">1</span>
-	        <span id="rank-title">신발</span>
+	        <span id="rank-number">실시간 인기!</span>
 	      </div>
 	      <ul>
-		      <h5 id="view">실시간 인기순위</h5>
-	        <li>
-	          <span class="rank-number">1.</span>
-	          <span class="rank-title">신발</span>
-	        </li>
-	        <li>
-	          <span class="rank-number">2.</span>
-	          <span class="rank-title">신발</span>
-	        </li>
-	        <li>
-	          <span class="rank-number">3.</span>
-	          <span class="rank-title">신발</span>
-	        </li>
-	        <li>
-	          <span class="rank-number">4.</span>
-	          <span class="rank-title">신발</span>
-	        </li>
-	        <li>
-	          <span class="rank-number">5.</span>
-	          <span class="rank-title">신발</span>
-	        </li>
+		    <p class="view">실시간 인기순위 &nbsp;</p>
+		    	<c:if test="${sessionScope.hotList eq null }">
+		    		<input type="button" value="Click!" onclick="location.href='./hotItem'">
+		    	</c:if>
+			<c:forEach var="hot" items="${sessionScope.hotList }">
+		        <li>
+		          <span class="rank-number">${hot.num}.</span>
+		          <span class="rank-title"><a href="">${hot.item_title}</a></span>&nbsp;<span>${hot.item_readCnt}</span>
+		        </li>
+			</c:forEach>
 	      </ul>
 	    </div>
+	   </div>
 	</nav>
+
 	
  		<div class="intro_bg">
  			<div class="main_text">

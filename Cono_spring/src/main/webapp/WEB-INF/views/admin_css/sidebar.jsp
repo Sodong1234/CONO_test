@@ -106,6 +106,7 @@ body{
 	<section id="nav">
 		<div class="nav" align="right">
 			<h5>
+			<a href="../main.jsp">홈 </a>
 			<%if(sId.equals("admin")) { %>
 				<a href="">관리자님 </a>
 			<%} %>

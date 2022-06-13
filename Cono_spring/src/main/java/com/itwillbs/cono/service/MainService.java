@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.cono.mapper.MainMapper;
+import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 
 @Service
@@ -37,6 +38,12 @@ public class MainService {
 
 	public void setShopInfo(String member_id, String member_nick) {
 		mapper.insertShopInfo(member_id, member_nick);
+	}
+
+	// 실시간 인기상품 - 김혜은
+	public List<ItemDTO> getHotItemList() {
+		
+		return mapper.selectHotItemList();
 	}
 
 }

@@ -30,6 +30,7 @@ public class ItemDTO {
 	private String item_readCnt;
 	private String item_region;
 	private String item_quantity;
+	private String num;
 	
 	
 	
@@ -110,6 +111,13 @@ public class ItemDTO {
 	}
 	public void setItem_quantity(String item_quantity) {
 		this.item_quantity = item_quantity;
+	}
+	
+	public String getNum() {
+		return num;
+	}
+	public void setNum(String num) {
+		this.num = num;
 	}
 	
 	@Override

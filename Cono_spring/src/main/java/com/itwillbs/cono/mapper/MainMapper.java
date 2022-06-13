@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 
 public interface MainMapper {
@@ -20,6 +21,9 @@ public interface MainMapper {
 	List<HashMap<String, String>> selectCategoryCardList(String cgr);
 
 	void insertShopInfo(@Param("member_id") String member_id,@Param("member_nick") String member_nick);
+
+	// 실시간 인기상품
+	public List<ItemDTO> selectHotItemList();
 
 
 }
