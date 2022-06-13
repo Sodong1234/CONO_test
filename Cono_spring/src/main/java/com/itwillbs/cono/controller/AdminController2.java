@@ -19,6 +19,15 @@ public class AdminController2 {
 	@Autowired
 	AdminService2 service;
 	
+	
+	// ------ 메인페이지로 이동!
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String home() {
+		
+		return "redirect:/";
+	}
+	
+	
 	// ------ 회원 관리 리스트 (관리자) - 김혜은
 	@RequestMapping(value = "/AdminMemberList", method = RequestMethod.GET)
 	public String MemberList(@RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String search,
@@ -104,9 +113,18 @@ public class AdminController2 {
 		return "userCenter/admin_member_list";
 	}
 	
-	// ------ 회원 탈퇴  (관리자) - 김혜은
+	// ------ 회원 탈퇴 (관리자) - 김혜은
 	@RequestMapping(value = "/AdminMemberExit", method = RequestMethod.GET)
-	public String adminMemberExit(@RequestParam String member_id, @RequestParam(defaultValue = "1")int pageNum) {
+	public String adminMemberExit(@RequestParam String member_id, @RequestParam(defaultValue = "1")int pageNum, Model model) {
+		
+		int exitCount = service.exitMember(member_id);
+		
+		if(exitCount == 0) {
+			model.addAttribute("msg", "회원 탈퇴 실패!");
+			return "fail_back";
+		}
+		
+		model.addAttribute("pageNum", pageNum);
 		
 		return "userCenter/admin_member_list";
 	}
@@ -169,8 +187,8 @@ public class AdminController2 {
 	}
 	
 	
-	// ------ 거래 취소 로직 (관리자)
-	@RequestMapping(value = "/AdminDealCancel", method = RequestMethod.POST)
+	// ------ 거래 취소 (관리자)
+	@RequestMapping(value = "/AdminDealCancel", method = RequestMethod.GET)
 	public String dealCancel(@RequestParam String item_idx, @RequestParam String safe_coin,
 								@RequestParam String safe_status, @RequestParam(defaultValue = "1")int pageNum, Model model) {
 		// 취소 작업 요청
@@ -186,6 +204,24 @@ public class AdminController2 {
 		
 		return "redirect:/userCenter/admin_deal_list";
 	}
+	
+	// ------ 거래 취소 로직 (관리자)
+		@RequestMapping(value = "/AdminDealCancel", method = RequestMethod.POST)
+		public String dealCancelPost(@RequestParam String item_idx, @RequestParam String safe_coin,
+									@RequestParam String safe_status, @RequestParam(defaultValue = "1")int pageNum, Model model) {
+			// 취소 작업 요청
+			int dealCancel = service.dealCancel(item_idx, safe_status);
+			
+			// 실패 시
+			if(dealCancel == 0) {
+				model.addAttribute("msg", "거래취소 실패!");
+				return "fail_back";
+			}
+			
+			model.addAttribute("pageNum", pageNum);
+			
+			return "redirect:/userCenter/admin_deal_list";
+		}
 	
 	
 }
