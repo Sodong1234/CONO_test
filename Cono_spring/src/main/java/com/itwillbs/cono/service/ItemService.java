@@ -16,6 +16,8 @@ public class ItemService {
 	@Autowired
 	ItemMapper mapper;
 	
+	// dsfsadf
+	
 	// 상품 상세 정보 조회
 	public HashMap<String, String> getItemDetail(String item_idx) {
 		return mapper.selectItemDetail(item_idx);

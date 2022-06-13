@@ -10,6 +10,8 @@ import com.itwillbs.cono.vo.OrdDTO;
 
 public interface ItemMapper {
 	
+	//tfsf
+	
 	// 상품 상세 정보 조회
 	HashMap<String, String> selectItemDetail(String item_idx);
 	
