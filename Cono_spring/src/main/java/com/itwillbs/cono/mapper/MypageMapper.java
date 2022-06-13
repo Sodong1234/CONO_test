@@ -60,6 +60,8 @@ public interface MypageMapper {
 	public List<HashMap<String, String>> selectWishList(String sId);
 	// 위시 상품 수
 	public int selectWishCount(String sId);
+	// 취소리스트
+	public List<HashMap<String, String>> selectCancelList(String sId);
 
 
 

@@ -85,7 +85,7 @@
 			        					<div class="my-review__writable__content-title">제목 : ${item.item_title }</div>
 			        					<div class="my-review__writable__content">내용 : ${item.item_content }</div>
 			        					<div class="my-review__writable__date">구매날짜 : ${item.ord_date }</div>
-			        					<div class="my-review__writable__date">가격 : ${item.ord_quantity * item.item_price }</div>
+			        					<div class="my-review__writable__date">가격 : ${item.ord_quantity * item.item_price }코인</div>
 			        					<div class="my-review__writable__date">수량 : ${item.ord_quantity }개</div>
 			        				</div>
 			        				<div class="my-review__writable__btn-wrap">
@@ -102,7 +102,8 @@
 	    
 	</c:forEach>
 <!-- 	        				구매완료 내용 끝 -->
-
+<!-- 							취소 시작  -->
+	<c:forEach var="item" items="canceledList" >
 	    <section id="content2">	
 	    	<div class="cancel">
 	    		<div class="cancel__list">
@@ -110,32 +111,32 @@
 	    				<div class="cancel__list-cancelDate1">
 	    					취소접수일 : 
 	    				</div>
-	    				<div class="cancel__list-cancelDate2">2021/6/12</div>
+	    				<div class="cancel__list-cancelDate2">${item.ord_date }</div>
 	    				<span class="and">|</span>
-	    				<div class="calcel__list-orderDate1">
-	    					주문일 : 
-	    				</div>
-	    				<div class="cancel__list-orderDate2">2021/6/12</div>
+<!-- 	    				<div class="calcel__list-orderDate1"> -->
+<!-- 	    					주문일 :  -->
+<!-- 	    				</div> -->
+<%-- 	    				<div class="cancel__list-orderDate2">${item.ord_date }</div> --%>
 	    			</div>
 	    			<div class="cancel__list-content">
 	    				<div class="cancel__list-contentCheck">
 	    					<div class="cancel__list-contentTitle">
 	    						<div class="cancel__list-contentTitle2" style="display: table-cell;">
 	    							<div class="cancel__list-contentTitle3">
-	    								<div class="cancel__list-title">취소상품제목테스트1</div>
-	    								<div class="cancel__list-subContent">취소상품내용테스트1</div>
+	    								<div class="cancel__list-title">${item.item_title }</div>
+	    								<div class="cancel__list-subContent">${item.item_content }</div>
 	    							</div>
 	    							<div class="cancel__list-price">
-	    								<div class="cancel__list-quantity">1개</div>
-	    								<div class="cancel__list-priceCheck">6,500 원</div>
+	    								<div class="cancel__list-quantity">${item.ord_quantity }개</div>
+	    								<div class="cancel__list-priceCheck">${item.ord_quantity * item.item_price } 코인</div>
 	    							</div>
 	    						</div>
 	    					</div>
 	    					<div class="cancel__list-status">
 	    						<div class="cancel__list-status-cancel">
 	    							<strong>취소완료</strong>
-	    							<span class="cancel__list-status-when"><br>6/16 이내<br>
-	    								<span class="cancel__list-status-how">카드사<br>환불 완료 예정</span>
+	    							<span class="cancel__list-status-when"><br>환불금액<br>
+	    								<span class="cancel__list-status-how"><br>>${item.ord_quantity * item.item_price } 코인</span>
 	    							</span>
 	    						</div>
 	    					</div>
@@ -143,9 +144,10 @@
 	    			</div>
 	    		</div>
 	    	</div>
-	    
 	    </section>
-	
+	    
+	</c:forEach>
+<!-- 							취소 끝 -->
 	</div>
 <!-- 	=============================== main (주문 정보 section) end =============================== -->
 	<footer style="position: relative; bottom: 600px;">	

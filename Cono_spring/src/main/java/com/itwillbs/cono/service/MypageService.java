@@ -122,6 +122,10 @@ public class MypageService {
 	public List<HashMap<String, String>> getwishList(String sId) {
 		return mapper.selectWishList(sId);
 	}
+	// 취소 리스트
+	public List<HashMap<String, String>> getCanceledList(String sId) {
+		return mapper.selectCancelList(sId);
+	}
 	
 
 	

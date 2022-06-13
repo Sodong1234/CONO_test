@@ -52,6 +52,9 @@ public class MypageController {
 		List<HashMap<String, String>> purchasedList = service.getPurchasedList(sId);
 		model.addAttribute("purchasedList",purchasedList);
 		
+		// 취소 상품
+		List<HashMap<String, String>> canceledList = service.getCanceledList(sId);
+		model.addAttribute("canceledList",canceledList);
 		return "mypage/mypage";
 	}
 
