@@ -49,7 +49,6 @@ CREATE TABLE shop (
 CREATE TABLE item (
 	item_idx varchar(20),
 	shop_idx varchar(20),
-	member_id varchar(20),
 	item_title varchar(20) NOT NULL,
 	item_content varchar(2000) NOT NULL,
 	item_price varchar(20) NOT NULL,
