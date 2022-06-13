@@ -221,6 +221,7 @@ p {
 		<jsp:include page="../header_footer/top.jsp" />
 	</div>
 	<!-- 	<div class="navbar"></div> -->
+	<jsp:include page="../search/recentView.jsp" />
 	<hr>
 	<!-- 필터 추가 -->
 	<h1>'${searchText }' 검색 내용입니다.</h1>
