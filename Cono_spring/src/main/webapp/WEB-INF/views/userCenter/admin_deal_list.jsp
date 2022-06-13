@@ -34,6 +34,7 @@
 	
 <div class="body">
 
+
 	<h2>거래 현황 리스트</h2>
 
 	현재 거래 현황 : ${listCount }
@@ -41,7 +42,6 @@
 		<tr>
 			<th>상품명</th>
 			<th>상품번호</th>
-			<th>판매자</th>
 			<th>구매자</th>
 			<th>보관중 코인</th>
 			<th>거래 날짜</th>
@@ -54,7 +54,6 @@
 				<tr>
 					<td><a href="" class="title">${product.item_title }</a></td>
 					<td>${product.item_idx }</td>
-					<td>${product.member_id }</td>
 					<td>${product.member_id }</td>
 					<td>${product.safe_coin }</td>
 					<td>${product.ord_date }</td>
