@@ -77,7 +77,7 @@
 
 		        			<li class="my-review__writable__list">
 		        				<div class="my-review__writable__image-wrap" style="display: inline-block;">
-		        					<img class="my-review__writable__image" src="${path }/resources/img/${item.img_real_name }.jpg" title="test" alt="test">
+		        					<img class="my-review__writable__image" src="$resources/upload/file/${item.img_name}" title="test" alt="test">
 		        				</div>
 									<div class="my-review__writable__content-wrap">
 										<input type="hidden" value="${item.item_idx }">
@@ -103,7 +103,7 @@
 	</c:forEach>
 <!-- 	        				구매완료 내용 끝 -->
 <!-- 							취소 시작  -->
-	<c:forEach var="item" items="canceledList" >
+	<c:forEach var="item" items="${canceledList}" >
 	    <section id="content2">	
 	    	<div class="cancel">
 	    		<div class="cancel__list">
@@ -123,6 +123,7 @@
 	    					<div class="cancel__list-contentTitle">
 	    						<div class="cancel__list-contentTitle2" style="display: table-cell;">
 	    							<div class="cancel__list-contentTitle3">
+	    								<img class="my-review__writable__image" src="resources/upload/file/${item.img_name}" title="test" alt="test">
 	    								<div class="cancel__list-title">${item.item_title }</div>
 	    								<div class="cancel__list-subContent">${item.item_content }</div>
 	    							</div>

@@ -56,7 +56,7 @@ public class MypageController {
 		List<HashMap<String, String>> canceledList = service.getCanceledList(sId);
 		model.addAttribute("canceledList",canceledList);
 		
-		System.out.println(canceledList.isEmpty());
+		System.out.println(canceledList.get(0).get("img_name"));
 		return "mypage/mypage";
 	}
 

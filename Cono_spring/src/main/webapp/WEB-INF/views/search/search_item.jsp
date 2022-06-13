@@ -227,8 +227,9 @@ p {
 	<h1 class="search_h1">'${searchText }' 검색 내용입니다. <jsp:include page="../search/recentView.jsp" /></h1>
 	<c:forEach var="card" items="${cardList }">
 		<div class="products">
-			<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""
-				src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
+			<a href="itemDetail?item_idx=${card.item_idx}"> 
+<%-- 			<img alt=""	src="<spring:url value='/resources/upload/file/${card.img_name }'/>"> --%>
+				<img alt=""	src="resources/upload/file/${card.img_name}">
 				<p class="name">${card.item_title }</p>
 				<p class="region">${card.item_region }</p>
 				<p class="price">${card.item_price }원</p>
