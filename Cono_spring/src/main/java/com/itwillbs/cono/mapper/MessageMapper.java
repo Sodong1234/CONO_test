@@ -1,28 +1,23 @@
 package com.itwillbs.cono.mapper;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import com.itwillbs.cono.vo.MessageDTO;
+import org.apache.ibatis.annotations.Param;
+
+import com.itwillbs.cono.vo.MsgChatDTO;
 
 public interface MessageMapper {
-	public List<MessageDTO> selectMessageList(String sId);
+	// 메시지 리스트 등록
+	public int insertMsgList(@Param("sId") String sId, @Param("shop_idx") String shop_idx, @Param("item_idx") String item_idx);
+	// 메시지 리스트 목록 뽑기
+	public List<HashMap<String, String>> selectMsgList(@Param("sId") String sId);
+	// 메시지 내용 입력
+	public int insertMsgContent(MsgChatDTO dto);
+	// 메시지 내용 출력
+	public List<HashMap<String, String>> selectAllMsg(String msgList_room);
+	// 메시지 삭제
+	public int deleteMsg(String msgList_room);
 
-	public ArrayList<MessageDTO> selectList(MessageDTO dto);
 
-	public int count_unread(MessageDTO mdto);
-
-	public String get_other_profile(MessageDTO mdto);
-
-	public ArrayList<MessageDTO> room_content_list(int room, String sId);
-
-	public void message_read_chk(String sId);
-
-	public int exist_chat(MessageDTO dto);
-
-	public int max_room(MessageDTO dto);
-
-	public String select_room(MessageDTO dto);
-
-	public int messageSendInlist(MessageDTO dto);
 }

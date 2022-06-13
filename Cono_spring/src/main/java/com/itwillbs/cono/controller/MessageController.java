@@ -1,6 +1,7 @@
 package com.itwillbs.cono.controller;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,65 +11,69 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.cono.service.MessageService;
-import com.itwillbs.cono.vo.MessageDTO;
+import com.itwillbs.cono.vo.MsgChatDTO;
 
 @Controller
 public class MessageController {
-	@Autowired
-	private MessageService service;
-	
-	// 메시지 목록
-	@RequestMapping(value = "message_list", method = RequestMethod.GET)
-	public String message_list(HttpSession session, Model model) {
-		String sId = (String)session.getAttribute("sId");
 
-		// 메시지 리스트
-		ArrayList<MessageDTO> list = service.messageList(sId);
-		model.addAttribute(list);
+	@Autowired
+	MessageService service;
+
+	// 문의하기 버튼 클릭시 room 생성
+	@RequestMapping(value = "addMessageList", method = RequestMethod.GET)
+	public String insert_message_list(Model model, HttpSession session, String shop_idx, String item_idx) {
+		String sId = (String)session.getAttribute("sId");
 		
+		service.setMessageList(sId, shop_idx, item_idx);
 		return "message/message_list";
 	}
-	// 메시지 목록
-	@RequestMapping(value = "message_ajax_list", method = RequestMethod.GET)
-	public String message_ajax_list(HttpSession session, Model model) {
+	// room 목록
+	@RequestMapping(value = "message_list", method = RequestMethod.GET)
+	public String message_list(Model model, HttpSession session) {
 		String sId = (String)session.getAttribute("sId");
 		
-		// 메시지 리스트
-		ArrayList<MessageDTO> list = service.messageList(sId);
-		model.addAttribute("list",list);
-		
-		return "message/message_ajax_list";
+		List<HashMap<String,String>> msgList = service.getMsgList(sId);
+		model.addAttribute("msgList",msgList);
+		return "message/message_list";
 	}
-	
-	// 메시지 내용 가져오기
-	@RequestMapping(value = "/message_content_list", method = RequestMethod.GET)
-	public String message_content_list(int room, HttpSession session, Model model) {
+	// content 입력
+	@RequestMapping(value = "setSendMsg", method = RequestMethod.GET)
+	public int insertMsgContent(@RequestParam String msgList_room,@RequestParam String shop_idx,@RequestParam String content , HttpSession session) {
 		String sId = (String)session.getAttribute("sId");
 		
-		ArrayList<MessageDTO> clist = service.roomContentList(room, sId);
-		model.addAttribute("clist",clist);
+		System.out.println("rNum : " + msgList_room);
+		System.out.println("sName : " + shop_idx);
+		
+		MsgChatDTO dto = new MsgChatDTO();
+		dto.setMsgList_room(msgList_room);
+		dto.setMsgChat_send(sId);
+		dto.setMsgChat_recv(shop_idx);
+		dto.setMsgChat_content(content);
+		
+		int insertCount = service.setMsgContent(dto);
+		
+		return insertCount; 
+	}
+	// content 불러오기
+	@RequestMapping(value = "getAllMsg", method = RequestMethod.GET)
+	public String getAllMsg(@RequestParam String msgList_room, Model model) {
+		System.out.println("msgList_room : " + msgList_room);
+		List<HashMap<String,String>> Allmsg = service.getAllMsg(msgList_room);
+		model.addAttribute("Allmsg",Allmsg);
+		
 		return "message/message_content_list";
 	}
-	
-//	 메시지 리스트 메시지 전송
-	@ResponseBody
-	@RequestMapping(value = "/message_send_inlist")
-	public int message_send_inlist(@RequestParam int room, @RequestParam String shop_idx,
-			@RequestParam String content, HttpSession session) {
-		String sId = (String)session.getAttribute("sId");
-		
-		MessageDTO dto = new MessageDTO();
-		dto.setRoom(room);
-		dto.setSend_nick(sId);
-		dto.setRecv_nick(shop_idx);
-		dto.setContent(content);
-		int flag = service.messageSendInlist(dto);
-		return flag;
+
+	// Message DELETE 
+	@RequestMapping(value = "msgDelete", method = RequestMethod.GET)
+	public String deleteMsg(@RequestParam String msgList_room, HttpSession session) {
+		int deleteCount = service.deleteMsg(msgList_room);
+		System.out.println(deleteCount);
+		return "message_list";
 	}
-	
-	
+
+
 	
 }

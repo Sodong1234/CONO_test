@@ -1,41 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="resources/js/jquery-3.6.0.js"></script>
+<link href="resources/css/msg.css" rel="stylesheet" />
 </head>
 <body>
-	<c:forEach var="tmp" items="${clist }">
-		
+	<c:forEach var="msg" items="${Allmsg}" >
 		<c:choose>
-			<c:when test="${sessionScope.nick ne tmp.send_nick }">
-			<!-- 받은 메세지 -->
-			<div class="incoming_msg">
-				<div class="incoming_msg_img">
-					<a href="other_profile.do?other_nick=${tmp.send_nick }">
-						<img src="./upload/profile/${tmp.profile }" alt="보낸사람 프로필">
-					</a>
+			<c:when test="${msg.msgChat_send eq sessionScope.sId}">
+				<div class="sendBox">
+					<span class="sendMsg">${msg.msgChat_content } </span><span class="stime">${msg.msgChat_time}</span>
 				</div>
-				<div class="received_msg">
-					<div class="received_withd_msg">
-						<p>${tmp.content }</p>
-						<span class="time_date"> ${tmp.send_time }</span>
-					</div>
-				</div>
-			</div>
 			</c:when>
-			
 			<c:otherwise>
-			<!-- 보낸 메세지 -->
-			<div class="outgoing_msg">
-				<div class="sent_msg">
-					<p>${tmp.content }</p>
-					<span class="time_date"> ${tmp.send_time }</span>
+				<div></div>
+				<div class="recvBox">
+					<span class="recvMsg">${msg.msgChat_content }</span><span class="rtime">${msg.msgChat_time}</span>
 				</div>
-			</div>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
