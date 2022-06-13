@@ -7,7 +7,15 @@ public class OrdDTO {
 	private String order_date;
 	private String order_reqContent;
 	private String order_quantity;
+	private String order_status;
+
 	
+	public String getOrder_status() {
+		return order_status;
+	}
+	public void setOrder_status(String order_status) {
+		this.order_status = order_status;
+	}
 	public String getItem_idx() {
 		return item_idx;
 	}

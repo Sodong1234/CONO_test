@@ -55,6 +55,8 @@ public class MypageController {
 		// 취소 상품
 		List<HashMap<String, String>> canceledList = service.getCanceledList(sId);
 		model.addAttribute("canceledList",canceledList);
+		
+		System.out.println(canceledList.isEmpty());
 		return "mypage/mypage";
 	}
 
