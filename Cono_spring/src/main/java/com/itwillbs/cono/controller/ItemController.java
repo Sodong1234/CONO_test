@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.cono.service.ItemService;
 import com.itwillbs.cono.vo.ImgDTO;
-import com.itwillbs.cono.vo.OrderDTO;
+import com.itwillbs.cono.vo.OrdDTO;
 
 @Controller
 public class ItemController {
@@ -27,7 +27,7 @@ public class ItemController {
 	public String getItemDetail(String item_idx, Model model, HttpServletRequest request) {
 		
 		// 상품 상세 정보 조회
-		HashMap<String, String> itemDetail = service.selectItemDetail(item_idx); 
+		HashMap<String, String> itemDetail = service.getItemDetail(item_idx); 
 		
 		// 상품 이미지 조회
 		List<ImgDTO> imgList = service.selectImgList(item_idx);
@@ -40,27 +40,38 @@ public class ItemController {
 	
 	// ------------------------ 상품 구매 시 결제 창 이동 ----------------------
 	@RequestMapping(value = "PurchaseItem", method = RequestMethod.POST)
-	public String purchaseItem(String item_idx, String order_quantity, String img_name, Model model) {
+	public String purchaseItem(String item_idx, String order_quantity, String img_name, HttpSession session, Model model) {
 		
-//		// item_status 상태 변경
-//		service.modifyItemStatus(item_idx);
+		String buyer_id = session.getAttribute("sId").toString(); 
 		
+		// 구매자 정보 가져오기
+		HashMap<String, String> buyerInfo = service.getBuyerInfo(buyer_id);
+			
 		// 상품 정보 가져오기
-		HashMap<String, String> itemDetail = service.selectItemDetail(item_idx);
+		HashMap<String, String> itemDetail = service.getItemDetail(item_idx);
 		
+		// 사용 가능한 할인 쿠폰 조회 
+		List<HashMap<String, String>> coupons = service.getUsableCoupon(buyer_id);
 		
+		// 코인 잔액 조회
+		int balanceCoin = service.getBalanceCoin(buyer_id);
 		
 		model.addAttribute("itemDetail", itemDetail);
+		model.addAttribute("buyerInfo", buyerInfo);
+		model.addAttribute("coupons", coupons);
+		model.addAttribute("balanceCoin", balanceCoin);
 		model.addAttribute("order_quantity", order_quantity);
 		model.addAttribute("img_name", img_name);
 		
-		return "item/item_purchase";
+		return "item/payment";
 	}
 	// -------------------------------------------------------------------------
 	
 	// ----------------------------- 상품 결제 진행 ----------------------------
 	@RequestMapping(value = "PayItem", method = RequestMethod.POST)
-	public String payItem(HttpSession session, String item_price, OrderDTO ord, Model model) {
+	public String payItem(HttpSession session, String coupon_price, String item_idx, String item_price, OrdDTO ord, Model model) {
+		
+		System.out.println(coupon_price);
 		
 		String member_id = session.getAttribute("sId").toString();
 		
@@ -70,8 +81,8 @@ public class ItemController {
 		ord.setMember_id(member_id);
 		
 		// 상품 구매 가능 여부 확인(coin)
-		boolean checkCoin = service.checkCoinTotal(ord, item_price);
-		
+//		boolean checkCoin = service.checkCoinTotal(ord, item_price);
+		boolean checkCoin = false;
 		if(!checkCoin) {
 			model.addAttribute("msg", "코인이 부족합니다");
 			return "myshop/fail_back";
@@ -85,13 +96,13 @@ public class ItemController {
 			service.modifyItemStatus(ord);
 		}
 		
-		// ord 테이블 insert
+		// ord 테이블 insert	
 		service.insertOrd(ord);
 		
 		// safe 테이블 insert
-		service.insertSafe(ord, ord.getOrder_quantity(), item_price);
+		service.insertSafe(ord, ord.getOrd_quantity(), item_price);
 		// coin 테이블 insert (구매자)
-		service.insertCoin(ord.getMember_id(), ord.getOrder_quantity(), item_price);
+		service.insertCoin(ord.getMember_id(), ord.getOrd_quantity(), item_price, coupon_price);
 		
 		// coin 테이블 insert (판매자)	==> 아니 판매자는 아직 돈 들어가면 안된다... 바보양..
 //		service.insertCoinSeller(ord, item_price);

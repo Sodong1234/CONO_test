@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.itwillbs.cono.mapper.ItemMapper;
 import com.itwillbs.cono.vo.ImgDTO;
-import com.itwillbs.cono.vo.OrderDTO;
+import com.itwillbs.cono.vo.OrdDTO;
 
 @Service
 public class ItemService {
@@ -17,7 +17,7 @@ public class ItemService {
 	ItemMapper mapper;
 	
 	// 상품 상세 정보 조회
-	public HashMap<String, String> selectItemDetail(String item_idx) {
+	public HashMap<String, String> getItemDetail(String item_idx) {
 		return mapper.selectItemDetail(item_idx);
 	}
 	
@@ -32,39 +32,39 @@ public class ItemService {
 //	}
 	
 	// item 테이블 수량 변경
-	public void modifyItemQuantity(OrderDTO ord) {
+	public void modifyItemQuantity(OrdDTO ord) {
 		mapper.updateItemQuantity(ord);
 	}
 	
 	// ord 테이블 insert
-	public void insertOrd(OrderDTO ord) {
+	public void insertOrd(OrdDTO ord) {
 		mapper.insertOrd(ord);
 	}
 	
 	// safe 테이블 insert
-	public void insertSafe(OrderDTO ord, String order_quantity, String item_price) {
+	public void insertSafe(OrdDTO ord, String order_quantity, String item_price) {
 		mapper.insertSafe(ord, order_quantity, item_price);
 	}
 	
 	// coin 테이블 insert (구매자)
-	public void insertCoin(String member_id, String order_quantity, String item_price) {
+	public void insertCoin(String member_id, String order_quantity, String item_price, String coupon_price) {
 		String coin_total = mapper.selectCoinTotal(member_id);
 		System.out.println("coin_total : " + coin_total);
-		mapper.insertCoin(member_id, order_quantity, item_price, coin_total);
+		mapper.insertCoin(member_id, order_quantity, item_price, coin_total, coupon_price);
 	}
 
 	// 상품 수량 체크
-	public String checkItemQuantity(OrderDTO ord) {
+	public String checkItemQuantity(OrdDTO ord) {
 		return mapper.selectItemQuantity(ord);
 	}
 	
 	// 상품 수량 0일 경우 상품 상태 판매완료로 변경
-	public void modifyItemStatus(OrderDTO ord) {
+	public void modifyItemStatus(OrdDTO ord) {
 		mapper.updateItemStatus(ord);
 	}
 	
 	// 상품 구매 가능 여부 확인(coin)
-	public boolean checkCoinTotal(OrderDTO ord, String item_price) {
+	public boolean checkCoinTotal(OrdDTO ord, String item_price) {
 		
 		Integer checkCoin = mapper.selectCoinTotalValue(ord, item_price);
 		if(checkCoin < 0 || checkCoin == null) {
@@ -72,6 +72,21 @@ public class ItemService {
 		} else {
 			return true;
 		}
+	}
+	
+	// 구매자 정보 가져오기
+	public HashMap<String, String> getBuyerInfo(String buyer_id) {
+		return mapper.selectBuyerInfo(buyer_id);
+	}
+	
+	// 사용 가능한 할인 쿠폰 가져오기
+	public List<HashMap<String, String>> getUsableCoupon(String buyer_id) {
+		return mapper.selectUsableCoupon(buyer_id);
+	}
+	
+	// 코인 잔액 조회
+	public int getBalanceCoin(String buyer_id) {
+		return mapper.selectBalanceCoin(buyer_id);
 	}
 
 	

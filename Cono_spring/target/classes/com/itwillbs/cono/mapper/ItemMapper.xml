@@ -4,13 +4,15 @@
 
 	<!-- 상품 상세 정보 조회 -->
 	<select id="selectItemDetail" resultType="java.util.HashMap">
-		SELECT i.item_idx, i.item_title, i.item_content, i.item_price, i.item_date, i.item_status, COUNT(w.member_id), i.item_readCnt
+		SELECT s.shop_name, i.item_idx, i.item_title, i.item_content, i.item_price, i.item_date, i.item_status, COUNT(w.member_id), i.item_readCnt
 			   , c.category_big, c.category_small, i.item_region, i.item_hide, i.item_quantity
 	      FROM item AS i
 	      LEFT JOIN wish AS w
 	        ON i.item_idx = w.item_idx
 	      JOIN category AS c
 	        ON i.item_idx = c.item_idx
+	      JOIN shop s
+	        ON i.shop_idx = s.shop_idx
 	     WHERE i.item_idx = #{item_idx}
 	</select>
 	
@@ -80,9 +82,9 @@
 			      FROM (SELECT IFNULL(MAX(coin_idx)+1,'1')
 			      		  FROM coin) temp)
 				,#{member_id}	
-				,'0'	
-				,#{item_price} * #{order_quantity} 
-				,#{coin_total}-#{item_price} * #{order_quantity}
+				,'0'	<!-- add -->	
+				,#{item_price} * #{order_quantity}		<!-- use --> 
+				,#{coin_total}-#{item_price} * #{order_quantity} + #{coupon_price}
 				,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
 			   )
 	</insert>
@@ -113,8 +115,25 @@
 		  FROM coin
 		 WHERE coin_idx = (SELECT * 
 		 			         FROM (SELECT max(coin_idx) FROM coin WHERE member_id=#{member_id}) AS a) 
-		 
 	</select>
+	
+	<!-- 구매자 정보 가져오기 -->
+	<select id="selectBuyerInfo" resultType="java.util.HashMap">
+		SELECT member_id, member_email, member_phone 
+		  FROM member
+		 WHERE member_id=#{buyer_id}
+	</select>
+	
+	<!-- 사용 가능한 할인 쿠폰 가져오기 -->
+	<select id="selectUsableCoupon" resultType="java.util.HashMap">
+		SELECT coupon_title, coupon_price FROM coupon WHERE member_id=#{buyer_id}
+	</select>
+	
+	<!-- 코인 잔액 조회 -->
+	<select id="selectBalanceCoin" resultType="int">
+		select coin_total, max(coin_date) from coin where member_id=#{buyer_id}
+	</select>
+	
 	<!-- coin 테이블 insert (판매자) -->
 	<!-- 판매자는 아직 나가면 안되는데?!! -->
 <!-- 	<insert id="insertCoinSeller"> -->
