@@ -224,7 +224,7 @@ p {
 	<jsp:include page="../search/recentView.jsp" />
 	<hr>
 	<!-- 필터 추가 -->
-	<h1>'${searchText }' 검색 내용입니다.</h1>
+	<h1 class="search_h1">'${searchText }' 검색 내용입니다. <jsp:include page="../search/recentView.jsp" /></h1>
 	<c:forEach var="card" items="${cardList }">
 		<div class="products">
 			<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""

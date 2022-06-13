@@ -13,34 +13,38 @@
 	list-style: none;
 }
 .recent_Box {
+	float:
     text-decoration: none;
     background-color: #1E2027;
     position: fixed;
-	top: 100px;
+	top: 200px;
     height: auto;
-    padding: 10px;
-    right: 20px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+    right: 40px;
     width: 134px;
     border-radius: 10px;
+    
 }
 .recent_title_box {
-	position: relative;
+/* 	position: relative; */
 	color: #DDFFFF;
 	background-color: #292C35;
 	margin: auto;
-	width: 140px;
+	width: 130px;
 	height: 25px;
 	border-radius: 5px; 
 	text-align: center;
+	font-size: 20px;
 }
 .recent_ul {
  	margin: auto;
- 	position: relative;
+/*  	position: relative; */
  	padding-left: 0px;
 }
 .recent_li {
 	background-color: #292C35;
-	position: relative;
+/* 	position: relative; */
 	width: 130px;
 	height: 150px;
 	border-radius: 5px;
@@ -61,34 +65,34 @@
 }
 
 .recent_item_title {
-	line-height: -10px;
+	position: relative;
+	top: 5px;
+	width:120px;
+	margin: auto;
 	color: #DDFFFF;
 	overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+    text-align: center;
 }
 
 </style>
 <script type="text/javascript">
 	function btnView() {
 		var r_ul = document.getElementById("recent_ul");
-		var r_btn = document.getElementById("r_btn");
 		
        if(r_ul.style.display == "" || r_ul.style.display == "none") {
     	   r_ul.style.display = "block";
-    	   r_btn.innerHtml="펼치기";
        } else {
     	   r_ul.style.display = "none";
-    	   r_btn.innerHtml="접기";
        }
 	}
 </script>
 </head>
 <body>
 	<div class="recent_Box">
-		<div class="recent_title_box">
+		<div class="recent_title_box" onclick="btnView()">
 			<span>최근 조회</span>
-			<input type="button" value="펼치기" id="r_btn" onclick="btnView()">
 		</div>
 			<ul class="recent_ul" id="recent_ul" style="display: none;">
 <!-- 				<c:forEach var="img" items=""> -->
