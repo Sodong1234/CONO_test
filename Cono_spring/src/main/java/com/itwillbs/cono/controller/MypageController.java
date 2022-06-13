@@ -48,6 +48,10 @@ public class MypageController {
 //		int basketCount = service.getBasketCount(sId);
 //		model.addAttribute("basketCount", basketCount);
 		
+		// 구매완료 상품
+		List<HashMap<String, String>> purchasedList = service.getPurchasedList(sId);
+		model.addAttribute("purchasedList",purchasedList);
+		
 		return "mypage/mypage";
 	}
 
@@ -261,14 +265,14 @@ public class MypageController {
 //	}
 
 	// 구매완료
-	@RequestMapping(value = "purchased", method = RequestMethod.GET)
-	public String purchased(HttpSession session, Model model) {
-		String sId = (String) session.getAttribute("sId");
-
-		List<HashMap<String, String>> purchasedList = service.getPurchasedList(sId);
-		model.addAttribute("purchasedList",purchasedList);
-		return "mypage/center_purchased";
-	}
+//	@RequestMapping(value = "purchased", method = RequestMethod.GET)
+//	public String purchased(HttpSession session, Model model) {
+//		String sId = (String) session.getAttribute("sId");
+//
+//		List<HashMap<String, String>> purchasedList = service.getPurchasedList(sId);
+//		model.addAttribute("purchasedList",purchasedList);
+//		return "redirect:/mypage";
+//	}
 	
 
 }

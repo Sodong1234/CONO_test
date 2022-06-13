@@ -134,6 +134,13 @@
 <!-- 		AND im.img_idx = #{sId} -->
 <!-- 		AND im.item_idx = it.item_idx -->
 <!-- 	</select> -->
+
+<!-- 		구매완료된 상품 리스트 -->
+	<select id="selectPurchasedList"  resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_content ,it.item_price, o.ord_quantity ,it.item_date
+		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, ord o
+		WHERE o.ord_status = 'Y' AND o.member_id = #{sId} AND it.item_idx = o.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1';
+	</select>
 <!-- 	================================================ Center =================================================== -->
 <!-- 	================================================ List =================================================== -->
 <!-- 	팔로잉 -->

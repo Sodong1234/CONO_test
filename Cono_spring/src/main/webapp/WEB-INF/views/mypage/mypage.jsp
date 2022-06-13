@@ -75,16 +75,21 @@
 	        				<div class="my-review__writable__image-wrap" style="display: inline-block;">
 	        					<img class="my-review__writable__image" src="${path }/resources/img/test.jpg" title="test" alt="test">
 	        				</div>
-	        				<div class="my-review__writable__content-wrap">
-	        					<div class="my-review__writable__content-title">타이틀 test</div>
-	        					<div class="my-review__writable__content">내용 test</div>
-	        					<div class="my-review__writable__date">구매날짜? test</div>
-	        				</div>
-	        				<div class="my-review__writable__btn-wrap">
-	        					<button class="my-review__writable__write-btn js_reviewWritableWriteBtn" type="button" onclick="list_reviewWrite_form.jsp">
-	        					<span class="my-review__writable__write-btn-text">리뷰 작성하기</span>
-	        					</button>
-	        				</div>
+	        				
+<!-- 	        				구매완료 내용 시작 -->
+							<c:forEach var="item" items="${purchasedList }">
+								<div class="my-review__writable__content-wrap">
+		        					<div class="my-review__writable__content-title">타이틀 test</div>
+		        					<div class="my-review__writable__content">내용 test</div>
+		        					<div class="my-review__writable__date">구매날짜? test</div>
+		        				</div>
+		        				<div class="my-review__writable__btn-wrap">
+		        					<button class="my-review__writable__write-btn js_reviewWritableWriteBtn" type="button" onclick="list_reviewWrite_form.jsp">
+		        					<span class="my-review__writable__write-btn-text">리뷰 작성하기</span>
+		        					</button>
+		        				</div>
+							</c:forEach>
+<!-- 	        				구매완료 내용 끝 -->
 	        			</li>
 	        		</ul>
 	        	</div>

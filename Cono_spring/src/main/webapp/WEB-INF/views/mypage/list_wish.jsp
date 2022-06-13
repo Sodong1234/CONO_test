@@ -26,7 +26,7 @@
 						<div class="base-card card--vertical product">
 							<a href="#" style="text-decoration: none;">
 								<div class="card-thumb-cover">
-									<div class="product-thumb-img" style="background-image: ${wish.img_real_name}"></div>
+									<img class="product-thumb-img" src="/resources/upload/file/${wish.img_real_name}">
 								</div>
 								<div class="product-info__name">${wish.item_title}</div>
 								<div class="product-info__price">
