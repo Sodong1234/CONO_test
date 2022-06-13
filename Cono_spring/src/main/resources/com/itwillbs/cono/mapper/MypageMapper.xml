@@ -92,36 +92,48 @@
 	</select>
 	
 <!-- 	예약 중인 상품 수 -->
-	<select id="selectReservedCount" resultType="java.lang.Integer">
-		SELECT COUNT(item_idx) 
-		FROM reserved
-		WHERE member_id = #{sId}
-	</select>
+<!-- 	<select id="selectReservedCount" resultType="java.lang.Integer"> -->
+<!-- 		SELECT COUNT(item_idx)  -->
+<!-- 		FROM reserved -->
+<!-- 		WHERE member_id = #{sId} -->
+<!-- 	</select> -->
 	
 <!-- 	예약 중인 상품 카드 정보 -->
-	<select id="selectReservedList" resultType="java.util.HashMap">
+<!-- 	<select id="selectReservedList" resultType="java.util.HashMap"> -->
+<!-- 		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_region, it.item_price, it.item_date -->
+<!-- 		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, reserved re -->
+<!-- 		WHERE re.member_id = #{sId} AND it.item_status = 'R' AND it.item_idx = re.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1' -->
+<!-- 	</select> -->
+
+<!-- 	찜 상품 수 -->
+	<select id="selectWishCount" resultType="java.lang.Integer">
+		SELECT COUNT(w.item_idx) FROM wish w WHERE w.member_id = #{sId}
+	</select>
+<!-- 		찜 상품 내용 -->
+	<select id="selectWishList" resultType="java.util.HashMap">
 		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_region, it.item_price, it.item_date
-		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, reserved re
-		WHERE re.member_id = #{sId} AND it.item_status = 'R' AND it.item_idx = re.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1'
+		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx,
+			wish w
+		WHERE w.member_id = #{sId} AND it.item_idx = w.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1'
 	</select>
-	
+
 <!-- 	장바구니 아이템 수 -->
-	<select id="selectBasketCount" resultType="java.lang.Integer">
-		SELECT COUNT(item_idx)
-		FROM basket
-		WHERE member_id = #{sId}
-	</select>
+<!-- 	<select id="selectBasketCount" resultType="java.lang.Integer"> -->
+<!-- 		SELECT COUNT(item_idx) -->
+<!-- 		FROM basket -->
+<!-- 		WHERE member_id = #{sId} -->
+<!-- 	</select> -->
 	
 <!-- 	장바구니 아이템 리스트 -->
-	<select id="selectBasketList" resultType="java.util.HashMap">
-		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_price
-		FROM item it, img im
-		WHERE it.item_idx IN (SELECT item_idx 
-							   FROM basket
-							   WHERE member_id = #{sId}) 
-		AND im.img_idx = #{sId}
-		AND im.item_idx = it.item_idx
-	</select>
+<!-- 	<select id="selectBasketList" resultType="java.util.HashMap"> -->
+<!-- 		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_price -->
+<!-- 		FROM item it, img im -->
+<!-- 		WHERE it.item_idx IN (SELECT item_idx  -->
+<!-- 							   FROM basket -->
+<!-- 							   WHERE member_id = #{sId})  -->
+<!-- 		AND im.img_idx = #{sId} -->
+<!-- 		AND im.item_idx = it.item_idx -->
+<!-- 	</select> -->
 <!-- 	================================================ Center =================================================== -->
 <!-- 	================================================ List =================================================== -->
 <!-- 	팔로잉 -->

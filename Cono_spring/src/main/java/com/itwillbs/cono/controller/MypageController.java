@@ -34,16 +34,19 @@ public class MypageController {
 		model.addAttribute("coin_total", coin_total);
 		
 		// 예약 상품 수
-		int reservedCount = service.getReservedCount(sId);
-		model.addAttribute("reservedCount",reservedCount);
+//		int reservedCount = service.getReservedCount(sId);
+//		model.addAttribute("reservedCount",reservedCount);
 		
 		// 쿠폰 수
 		int couponCount = service.getCouponCount(sId);
 		model.addAttribute("couponCount", couponCount);
 		
+		// 찜 상품 수
+		int wishCount = service.getWishItemCount(sId);
+		model.addAttribute("wishCount", wishCount);
 		// 장바구니 상품 수
-		int basketCount = service.getBasketCount(sId);
-		model.addAttribute("basketCount", basketCount);
+//		int basketCount = service.getBasketCount(sId);
+//		model.addAttribute("basketCount", basketCount);
 		
 		return "mypage/mypage";
 	}
@@ -117,8 +120,6 @@ public class MypageController {
 	// 나의 후기 ( 구매 후기 작성 / 내가 쓴 후기 확인)
 
 	// 알림
-
-	// 1:1 메시지
 
 	// 회원 정보 수정페이지 이동
 	@RequestMapping(value = "memberInfo_modify", method = RequestMethod.GET)
@@ -231,25 +232,33 @@ public class MypageController {
 		return "mypage/center_coupon";
 	}
 	// 예약중인 상품 조회
-	@RequestMapping(value = "reserved", method = RequestMethod.GET)
-	public String reserved(HttpSession session, Model model) {
+//	@RequestMapping(value = "reserved", method = RequestMethod.GET)
+//	public String reserved(HttpSession session, Model model) {
+//		String sId = (String) session.getAttribute("sId");
+//
+//		List<HashMap<String, String>> reservedList = service.getReservedList(sId);
+//		model.addAttribute("reservedList",reservedList);
+//		return "mypage/center_reservedList";
+//	}
+	// 위시 리스트 (양윤석)
+	@RequestMapping(value = "wish", method = RequestMethod.GET)
+	public String wish(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
-
-		List<HashMap<String, String>> reservedList = service.getReservedList(sId);
-		model.addAttribute("reservedList",reservedList);
-		return "mypage/center_reservedList";
+		// 위시 리스트 상품
+		List<HashMap<String, String>> wishList = service.getwishList(sId);
+		model.addAttribute("wishList", wishList);
+		return "mypage/list_wish";
 	}
-
 	// 장바구니
-	@RequestMapping(value = "basket", method = RequestMethod.GET)
-	public String basket(HttpSession session, Model model) {
-		String sId = (String) session.getAttribute("sId");
-
-		List<HashMap<String, String>> basketList = service.getBasketList(sId);
-		model.addAttribute("basketList",basketList);
-
-		return "mypage/center_basket";
-	}
+//	@RequestMapping(value = "basket", method = RequestMethod.GET)
+//	public String basket(HttpSession session, Model model) {
+//		String sId = (String) session.getAttribute("sId");
+//
+//		List<HashMap<String, String>> basketList = service.getBasketList(sId);
+//		model.addAttribute("basketList",basketList);
+//
+//		return "mypage/center_basket";
+//	}
 
 	// 구매완료
 	@RequestMapping(value = "purchased", method = RequestMethod.GET)
@@ -261,13 +270,5 @@ public class MypageController {
 		return "mypage/center_purchased";
 	}
 	
-	// 위시 리스트 (양윤석)
-	@RequestMapping(value = "wish", method = RequestMethod.GET)
-	public String wish(HttpSession session, Model model) {
-		String sId = (String) session.getAttribute("sId");
 
-		List<HashMap<String, String>> wishList = service.getwishList(sId);
-		model.addAttribute("wishList", wishList);
-		return "mypage/list_wish";
-	}
 }

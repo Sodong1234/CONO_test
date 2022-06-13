@@ -28,20 +28,21 @@
 				</div>
 				<ul class="main__content-list">
 					<li>
-					<strong class="label">Cono Coin</strong>
+					<strong class="label">Coin</strong>
 					<a href="coin" class="value">${coin_total}c</a>
 					</li>
 					<li>
-					<strong class="label">예약 상품 수</strong>
-					<a href="reserved" class="value">${reservedCount}</a>
+					<strong class="label">구매 중</strong>
+					<a href="reserved" class="value"></a>
 					</li>
 					<li>
-					<strong class="label">쿠폰 수</strong>
+					<strong class="label">쿠폰</strong>
 					<a href="coupon" class="value">${couponCount}</a>
 					</li>
 					<li>
-					<strong class="label">장바구니 상품 수</strong>
-					<a href="basket" class="value">${basketCount}</a>
+					<strong class="label">찜 상품</strong>
+<%-- 					<a href="basket" class="value">${basketCount}</a> --%>
+					<a href="wish" class="value">${wishCount }</a>
 					</li>	
 				</ul>
 			</section>

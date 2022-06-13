@@ -37,15 +37,15 @@ public interface MypageMapper {
 	// 쿠폰함 - 보유 쿠폰
 	public List<CouponDTO> couponList(String sId);
 	// 장바구니 아이템 수
-	public int selectBasketCount(String sId);
+//	public int selectBasketCount(String sId);
 	// 장바구니 - 장바구니 아이템 리스트
-	public List<HashMap<String, String>> selectBasketList(String sId);
+//	public List<HashMap<String, String>> selectBasketList(String sId);
 	// 구매완료 - 구매완료 아이템 리스트
 	public List<HashMap<String, String>> selectPurchasedList(String sId);
 	// 예약 중인 아이템 수
-	public int selectReservedCount(String sId);
+//	public int selectReservedCount(String sId);
 	// 예약 중 - 예약 진행 중인 상품 리스트
-	public List<HashMap<String, String>> selectReservedList(String sId);
+//	public List<HashMap<String, String>> selectReservedList(String sId);
 	// 팔로잉
 	public List<HashMap<String, String>> selectFollowingList(String sId);
 	// 팔로워
@@ -58,6 +58,8 @@ public interface MypageMapper {
 	public int deleteFollowing(String sId, String shop_idx);
 	// 위시 리스트
 	public List<HashMap<String, String>> selectWishList(String sId);
+	// 위시 상품 수
+	public int selectWishCount(String sId);
 
 
 

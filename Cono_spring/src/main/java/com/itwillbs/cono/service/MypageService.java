@@ -73,27 +73,31 @@ public class MypageService {
 	//===================== 쿠폰 finish =========================	
 	//===================== 장바구니 start =========================	
 	// 장바구니 아이템 수
-	public int getBasketCount(String sId) {
-		return mapper.selectBasketCount(sId);
-	}
+//	public int getBasketCount(String sId) {
+//		return mapper.selectBasketCount(sId);
+//	}
 	// 장바구니 리스트
-	public List<HashMap<String, String>> getBasketList(String sId) {
-		return mapper.selectBasketList(sId);
-	}
+//	public List<HashMap<String, String>> getBasketList(String sId) {
+//		return mapper.selectBasketList(sId);
+//	}
 	//===================== 장바구니 finish =========================	
-
+	// 찜 상품 수
+		public int getWishItemCount(String sId) {
+			return mapper.selectWishCount(sId);
+		}
+	
 	// 구매완료 리스트
 	public List<HashMap<String, String>> getPurchasedList(String sId) {
 		return mapper.selectPurchasedList(sId);
 	}
 	// 예약 중인 상품 COUNT 
-	public int getReservedCount(String sId) {
-		return mapper.selectReservedCount(sId);
-	}
+//	public int getReservedCount(String sId) {
+//		return mapper.selectReservedCount(sId);
+//	}
 	// 예약 중인 상품 리스트
-	public List<HashMap<String, String>> getReservedList(String sId) {
-		return mapper.selectReservedList(sId);
-	}
+//	public List<HashMap<String, String>> getReservedList(String sId) {
+//		return mapper.selectReservedList(sId);
+//	}
 	// 팔로잉 리스트
 	public List<HashMap<String, String>> getfollowingList(String sId) {
 		return mapper.selectFollowingList(sId);
@@ -118,6 +122,7 @@ public class MypageService {
 	public List<HashMap<String, String>> getwishList(String sId) {
 		return mapper.selectWishList(sId);
 	}
+	
 
 	
 	
