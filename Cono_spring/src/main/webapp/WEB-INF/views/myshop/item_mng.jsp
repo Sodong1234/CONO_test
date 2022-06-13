@@ -6,8 +6,10 @@
 if(session.getAttribute("sId") == null) {
 	response.sendRedirect("MemberLogin.func");
 }
+
 String keyword = request.getParameter("keyword");
 String sell_status = request.getParameter("sell_status");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -15,52 +17,34 @@ String sell_status = request.getParameter("sell_status");
 <meta charset="UTF-8">
 <title>myshop/item_mng.jsp</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<style type="text/css">
-.container{
-	width:1280px; max-width:none!important;
-}
-.align-middle img {
-	width: 200px;
-}
-#sidebar {
-	width: 200px;
-	height: 500px;
-/* 	margin: 0 30px 0 0; */
-	padding: 0; 
-	list-style: none;
-}
-#sidebar li {
-	text-indent: 1.5em;
-	line-height: 2.8em;
-}
-#sidebar li a {
-	display: block;
-	text-decoration: none;
-	color: #999;
-}
-#list_row {
-	width: 1050px;
-}
-</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<script src="js/jquery-3.6.0.js"></script>
+<link rel="styleSheet" href="${pageContext.request.contextPath}/resources/css/item_mng.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 </head>
+
 <body>
 	<div>
 		<!-- 상단 부분 -->
 			<jsp:include page="../header_footer/top.jsp"/>
 	</div>
-	<!-- style="height:50px;line-height:50px;" -->
-	<div class="container">
-		<ul class="sidebar-nav float-start bg-primary text-center" id="sidebar">
-			<li><a class="fw-bold text-white" style="text-decoration:none;" href="ProductMyshop.shop">내 상점</a></li>
-			<li><a class="fw-bold text-white" style="text-decoration:none;" href="ItemUploadForm.shop">상품 등록</a></li>
-			<li><a class="fw-bold text-danger" style="text-decoration:none;" href="ItemMng.shop">상품 관리</a></li>
-			<li><a class="fw-bold text-white" style="text-decoration:none;" href="ItemReviewMng.shop">상품 후기 관리</a></li>
-			<li><a class="fw-bold text-white" style="text-decoration:none;" href="ItemOrdMng.shop">상품 주문 관리</a></li>
-			<li><a class="fw-bold text-white" style="text-decoration:none;" href="follow_shop.jsp">팔로우 상점</a></li>
-		</ul>
-		<div class="float-end">
+	
+	
+	<aside class="side">
+				<ul class="side-list">
+					<li>
+				  <a class="nav-link active" aria-current="page" href="ProductMyshop.shop">내 상점</a>
+				  <a class="nav-link" href="ItemUploadForm.shop">상품 등록</a>
+				  <a class="nav-link" href="ItemMng.shop">상품 관리</a>
+				  <a class="nav-link" href="ItemReviewMng.shop">상품 후기 관리</a>
+				  <a class="nav-link" href="ItemOrdMng.shop">상품 주문 관리</a>
+				  <a class="nav-link" href="follow_shop.jsp">팔로우 상점</a>
+				  </li>
+			  </ul>
+			</aside>
+			
+	<div class="float-end">
 			<div class="row mb-4 float-end" style="width:500px;margin-top:5px;" id="search_row">
 				<form name="fr" action="ItemMng.shop" class="input-group">
 					<input type="text" class="form-control" name="keyword" id="keyword" placeholder="상품명 입력" <%if(keyword != null) { %> value="<%=keyword%>" <%} %>>
@@ -74,10 +58,35 @@ String sell_status = request.getParameter("sell_status");
 						</button>
 				</form>
 			</div>
-			
-			<div class="clearfix"></div>
-			<div class="row mb-4" id="list_row">
-				<table class="table table-hover lh-lg text-center" >
+	<!-- 		<form action="ItemMng.shop" class="input-group"> -->
+	<!-- 			<div class="col"> -->
+	<%-- 				<input type="text" class="form-control" name="keyword" id="keyword" placeholder="상품명 입력" <%if(keyword != null) { %> value="<%=keyword%>" <%} %>> --%>
+	<!-- 			</div> -->
+	<!-- 			<div class="col"> -->
+	<!-- 				<select class="form-select" name="sell_status"> -->
+	<%-- 					<option value="0" <%if(sell_status != null && sell_status.equals("0")) { %> selected="selected" <%} %>>전체</option> --%>
+	<%-- 					<option value="1" <%if(sell_status != null && sell_status.equals("1")) { %> selected="selected" <%} %>>판매 중</option> --%>
+	<%-- 					<option value="2" <%if(sell_status != null && sell_status.equals("2")) { %> selected="selected" <%} %>>판매 완료</option> --%>
+	<!-- 				</select> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="col"> -->
+	<!-- 				<input type="submit" class="btn btn-outline-secondary" id="search" value="검색"> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="col-6"></div> -->
+	<!-- 		</form> -->
+		</div>
+<!-- 		<form action="ItemMng.shop"> -->
+<%-- 			<input type="text" name="keyword" id="keyword" placeholder="상품명 입력" <%if(keyword != null) { %> value="<%=keyword%>" <%} %>> --%>
+<!-- 			<select name="sell_status"> -->
+<%-- 				<option value="0" <%if(sell_status != null && sell_status.equals("0")) { %> selected="selected" <%} %>>전체</option> --%>
+<%-- 				<option value="1" <%if(sell_status != null && sell_status.equals("1")) { %> selected="selected" <%} %>>판매 중</option> --%>
+<%-- 				<option value="2" <%if(sell_status != null && sell_status.equals("2")) { %> selected="selected" <%} %>>판매 완료</option> --%>
+<!-- 			</select> -->
+<!-- 			<input type="submit" id="search" value="검색"> -->
+<!-- 		</form> -->
+		<div class="clearfix"></div>
+			<div class="row mb-4" id="list_row" style="width: 1020px;">
+				<table class="table table-hover lh-lg text-center" style="border:1px 0;border-color:bg-primary"; >
 					<tr class="border-top border-bottom border-primary pe-none">
 						<th width="100px">상품번호</th>
 						<th width="200px">상품이미지</th>
@@ -116,8 +125,8 @@ String sell_status = request.getParameter("sell_status");
 					</c:forEach>
 				</table>
 			</div>
-		</div>
-	</div>
+<!-- 		</div> -->
+<!-- 	</div> -->
 	<div>
 		<c:choose>
 			<c:when test="${pageInfo.pageNum > 1 }">

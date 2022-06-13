@@ -1,0 +1,34 @@
+@charset "EUC-KR";
+/* ------------ img_mng.jsp -------------- */
+body{
+	margin: 0px;
+	padding: 0px;
+}
+.row {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#nav_row {
+/* 	border: 1px solid black; */
+	text-align: center;
+	height: 50px;
+	border-radius: 5px;
+}
+#nav_row a {
+	line-height: 50px;
+	text-decoration: none;
+	color: white;
+}
+#search_row {
+	width: 500px;
+	float: right;
+}
+#list_row {
+	margin: auto;
+	padding: 0px;
+	clear: both;
+}
+
+
+
+/* -------------------------------------- */

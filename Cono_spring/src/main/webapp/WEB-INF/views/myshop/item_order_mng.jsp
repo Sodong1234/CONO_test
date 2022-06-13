@@ -13,17 +13,18 @@
 			<jsp:include page="../header_footer/top.jsp"/>
 	</div>
 	
-	<nav>
-		<ul>
-			<li><a href="ProductMyshop.shop">내 상점</a></li>
-			<li><a href="ItemUploadForm.shop">상품 등록</a></li>
-			<li><a href="ItemMng.shop">상품 관리</a></li>
-			<li><a href="ItemReviewMng.shop">상품 후기 관리</a></li>
-			<li><a href="ItemOrdMng.shop">상품 주문 관리</a></li>
-			<li><a href="follow_shop.jsp">팔로우 상점</a></li>
-		</ul>
-	</nav>
-	
+	<aside class="side">
+				<ul class="side-list">
+					<li>
+				  <a class="nav-link active" aria-current="page" href="ProductMyshop.shop">내 상점</a>
+				  <a class="nav-link" href="ItemUploadForm.shop">상품 등록</a>
+				  <a class="nav-link" href="ItemMng.shop">상품 관리</a>
+				  <a class="nav-link" href="ItemReviewMng.shop">상품 후기 관리</a>
+				  <a class="nav-link" href="ItemOrdMng.shop">상품 주문 관리</a>
+				  <a class="nav-link" href="follow_shop.jsp">팔로우 상점</a>
+				  </li>
+			  </ul>
+			</aside>
 	<hr>
 
 	<h3>상품 주문 관리</h3>
