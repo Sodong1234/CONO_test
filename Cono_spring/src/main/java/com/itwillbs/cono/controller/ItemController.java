@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -116,5 +117,23 @@ public class ItemController {
 		
 		return "redirect:/";
 	}
+	// -------------------------------------------------------------------------
+	
+	// --------------------------- 위시 테이블 isert ---------------------------
+//	@RequestMapping(value = "InsertWish", method = RequestMethod.GET)
+
+//	void insertCoin(@Param("ord") OrdDTO ord, @Param("item_price") String item_price, @Param("coin_total") String coin_total, @Param("coupon_price") String coupon_price
+//	public String getItemDetail(String item_idx, Model model, HttpServletRequest request) {
+		
+//		// 상품 상세 정보 조회
+//		HashMap<String, String> itemDetail = service.getItemDetail(item_idx); 
+//		
+//		// 상품 이미지 조회
+//		List<ImgDTO> imgList = service.selectImgList(item_idx);
+//		model.addAttribute("itemDetail", itemDetail);
+//		model.addAttribute("imgList", imgList);
+//
+//		return "item/item_detail";
+//	}
 	// -------------------------------------------------------------------------
 }

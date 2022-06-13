@@ -87,6 +87,8 @@
 			</tr>
 		</table>
 		
+		<button onclick="location.href='InsertWish?${itemDetail.get('item_title')}'">♡</button>
+		
 		<hr>
 		
 		<form action="PurchaseItem" method="post">
