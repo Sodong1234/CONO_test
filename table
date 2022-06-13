@@ -92,6 +92,7 @@ CREATE TABLE ord (
 	ord_date varchar(14) NOT NULL,
 	ord_reqContent varchar(1000),
 	ord_quantity varchar(10) NOT NULL,
+	ord_status varchar(5) NOT NULL,
 	PRIMARY KEY (item_idx, member_id)
 );
 
@@ -161,7 +162,6 @@ CREATE TABLE payment (
 );
 
 
-notice (공지 사항) - 관리자가 공지사항 등록시 생성
 CREATE TABLE notice (
    notice_idx varchar(20) PRIMARY KEY,
    admin_id varchar(20),
