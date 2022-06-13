@@ -66,36 +66,43 @@
 	
 	    <input id="tab2" type="radio" name="tabs">
 	    <label for="tab2">취소 / 환불</label>
+	    
+     		<!-- 	        				구매완료 내용 시작 -->
+	<c:forEach var="item" items="${purchasedList }">
 	
 	    <section id="content1">
 	        <div class="my-review__writable js_reviewWritableListContainer">
 	        	<div class="my-review__writable__list-container">
 	        		<ul class="writable_reviews" style="list-style: none;">
-	        			<li class="my-review__writable__list">
-	        				<div class="my-review__writable__image-wrap" style="display: inline-block;">
-	        					<img class="my-review__writable__image" src="${path }/resources/img/test.jpg" title="test" alt="test">
-	        				</div>
-	        				
-<!-- 	        				구매완료 내용 시작 -->
-							<c:forEach var="item" items="${purchasedList }">
-								<div class="my-review__writable__content-wrap">
-		        					<div class="my-review__writable__content-title">타이틀 test</div>
-		        					<div class="my-review__writable__content">내용 test</div>
-		        					<div class="my-review__writable__date">구매날짜? test</div>
+
+		        			<li class="my-review__writable__list">
+		        				<div class="my-review__writable__image-wrap" style="display: inline-block;">
+		        					<img class="my-review__writable__image" src="${path }/resources/img/${item.img_real_name }.jpg" title="test" alt="test">
 		        				</div>
-		        				<div class="my-review__writable__btn-wrap">
-		        					<button class="my-review__writable__write-btn js_reviewWritableWriteBtn" type="button" onclick="list_reviewWrite_form.jsp">
-		        					<span class="my-review__writable__write-btn-text">리뷰 작성하기</span>
-		        					</button>
-		        				</div>
-							</c:forEach>
-<!-- 	        				구매완료 내용 끝 -->
-	        			</li>
+									<div class="my-review__writable__content-wrap">
+										<input type="hidden" value="${item.item_idx }">
+										<div class="my-review__writable__content">판매자 : ${item.shop_name }</div>
+			        					<div class="my-review__writable__content-title">제목 : ${item.item_title }</div>
+			        					<div class="my-review__writable__content">내용 : ${item.item_content }</div>
+			        					<div class="my-review__writable__date">구매날짜 : ${item.ord_date }</div>
+			        					<div class="my-review__writable__date">가격 : ${item.ord_quantity * item.item_price }</div>
+			        					<div class="my-review__writable__date">수량 : ${item.ord_quantity }개</div>
+			        				</div>
+			        				<div class="my-review__writable__btn-wrap">
+			        					<button class="my-review__writable__write-btn js_reviewWritableWriteBtn" type="button" onclick="list_reviewWrite_form.jsp">
+			        					<span class="my-review__writable__write-btn-text">리뷰 작성하기</span>
+			        					</button>
+			        				</div>
+		        			</li>
+
 	        		</ul>
 	        	</div>
 	        </div>
 	    </section>
-	
+	    
+	</c:forEach>
+<!-- 	        				구매완료 내용 끝 -->
+
 	    <section id="content2">	
 	    	<div class="cancel">
 	    		<div class="cancel__list">
