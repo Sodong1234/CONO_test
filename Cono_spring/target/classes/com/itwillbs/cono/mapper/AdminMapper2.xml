@@ -62,9 +62,9 @@
 	<select id="selectAllDeal" resultType="java.util.HashMap">
 		SELECT i.item_title, o.item_idx, o.member_id, s.safe_coin, o.ord_date, i.item_status
 		FROM item i 
-		LEFT OUTER JOIN ord o
+		RIGHT OUTER JOIN ord o
 			ON i.item_idx = o.item_idx
-		LEFT OUTER JOIN safe s
+		RIGHT OUTER JOIN safe s
 			ON i.item_idx = s.item_idx
 		WHERE item_status = '0'
 <!-- 	ORDER BY -->
