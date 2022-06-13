@@ -114,9 +114,11 @@ CREATE TABLE category  (
 CREATE TABLE coupon (
 	coupon_idx varchar(20),
 	member_id varchar(20),
+	item_idx varchar(20),
 	coupon_title varchar(50) NOT NULL,
 	coupon_content varchar(100) NOT NULL,
 	coupon_price varchar(50) NOT NULL,
+	coupon_status varchar(3),
 	PRIMARY KEY (coupon_idx, member_id)
 );
 
