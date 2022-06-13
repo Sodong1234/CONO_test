@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -10,37 +10,44 @@
 <link rel="stylesheet" href="resources/css/style.css" type="text/css">
 </head>
 <body>
-<div id="wrap">
-	<jsp:include page="../header_footer/top.jsp"/>
-</div>
-	<h1>관심상품</h1>
-	<hr>
-	<table border="1">
-		
-		<tr>
-			<td>item_idx</td>
-			<td>img_real_name</td>
-			<td>item_title</td>
-			<td>item_region</td>
-			<td>item_price</td>
-			<td>item_date</td>
-		</tr>
-		
-		<c:forEach var="wish" items="${wishList}" >
-			<tr>
-				<td>${wish.item_idx}</td>
-				<td>${wish.img_real_name}</td>
-				<td>${wish.item_title}</td>
-				<td>${wish.item_region}</td>
-				<td>${wish.item_price}</td>
-				<td>${wish.item_date}</td>
-			</tr>
-		</c:forEach>
-		
-	</table>
-	
-<div id="wrap">
-	<jsp:include page="../header_footer/bottom.jsp"/>
-</div>
+	<div id="wrap">
+		<jsp:include page="../header_footer/top.jsp" />
+	</div>
+
+
+	<section>
+		<div class="title-style watch-list-title--favorite">
+			<h2 class="txt">위시리스트</h2>
+		</div>
+		<div class="ui_grid mt10">
+			<div class="ui_grid__cols--4">
+				<c:forEach var="wish" items="${wishList}">
+					<div class="ui_grid__item">
+						<div class="base-card card--vertical product">
+							<a href="#" style="text-decoration: none;">
+								<div class="card-thumb-cover">
+									<div class="product-thumb-img" style="background-image: ${wish.img_real_name}"></div>
+								</div>
+								<div class="product-info__name">${wish.item_title}</div>
+								<div class="product-info__price">
+									<span class="price-origin"> ${wish.item_price} <span
+										style="font-size: 14px;">원</span>
+									</span>
+								</div>
+								<div class="product-info__badge-group">
+									<div class="badge badge-new">${wish.item_region}</div>
+								</div>
+							</a>
+						</div>
+				</c:forEach>
+			</div>
+		</div>
+		</div>
+	</section>
+
+
+	<div id="wrap">
+		<jsp:include page="../header_footer/bottom.jsp" />
+	</div>
 </body>
 </html>
