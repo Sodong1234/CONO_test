@@ -62,7 +62,7 @@ input:focus, select:focus, button:focus, textarea:focus {
 a:hover, a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #ffffff;
+	color: #000000;
 }
 
 ul, ol {
@@ -1397,11 +1397,12 @@ body {
 }
 
 .coupon-contents__thumbnail-img {
-    width: 32px;
-    height: 32px;
-    border: none;
-    border-radius: 50%;	
+	width: 32px;
+	height: 32px;
+	border: none;
+	border-radius: 50%;
 }
+
 .coupon-contents__body {
 	padding-left: 40px;
 	margin-top: 8px;
@@ -2740,101 +2741,127 @@ colgroup {
 /* 결제창 end */
 
 /* 위시리스트 start */
+
+.inner-w layout-split {
+    padding-top: 36px;
+    position: relative;
+    width: 1056px;
+    margin: 0 auto;
+}
 .title-style watch-list-title--favorite {
 	margin-bottom: 0;
 	margin-top: 0;
 	position: relative;
+vertical-align: middle;	
+	
 }
 
 .title-style watch-list-title--favorite .txt {
-    font-size: 0;
-    display: inline-block;
-    width: 100%;
-    color: #333;
-    background: #f5f5f5;	
+	font-size: 0;
+	display: inline-block;
+	width: 100%;
+	color: #333;
+	background: #f5f5f5;
+    display: inline-block;	
 }
 
 .ui_grid mt10 {
 	margin-top: 10px;
 	position: relative;
-    overflow: hidden;
+	overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;	
 }
 
 .ui_grid__cols--4 {
-    margin-left: -14px !important;
-    padding: 0 2px 0 0;	
+	margin-left: -14px !important;
+	padding: 0 2px 0 0;
+    margin-top: -16px;
+height: 100%;
+    overflow: hidden;    	
 }
 
 .ui_grid__item {
 	width: 25%;
-    position: relative;
-    float: left;
+	position: relative;
+	float: left;
 }
 
 .base-card card--vertical product {
-	    flex-direction: column;
-	        border-radius: 2px;
-    transition: all 0.3s;
-        display: block !important;
+	flex-direction: column;
+	border-radius: 2px;
+	transition: all 0.3s;
+	display: block !important;
+    margin-left: 16px;
+    margin-top: 16px;	
 }
 
 .card-thumb-cover {
-    position: relative;
-    overflow: hidden;
-    border-radius: 2px;	
+	position: relative;
+	overflow: hidden;
+	border-radius: 2px;
 }
 
 .product-thumb-img {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50%;
-    width: 100%;
-    height: auto;
-    display: block;
-    position: relative;	
-}
-
-.product-info {
-    padding: 12px 8px;
-    height: 204px;	
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50%;
+	width: 100%;
+	height: auto;
+	display: block;
+	position: relative;
 }
 
 .card-info product-info {
-    font-size: 12px;
-    color: #999999;
-    height: 15px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;	
+	padding: 12px 8px;
+	height: 204px;
 }
 
 .product-info__name {
-	    display: block;
-    display: -webkit-box;
-    max-height: 35.88px;
-    font-size: 13px;
-    line-height: 1.38;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    margin: 4px 0 8px 0;
-    color: #333333;
+	display: block;
+	display: -webkit-box;
+	max-height: 35.88px;
+	font-size: 13px;
+	line-height: 1.38;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	margin: 4px 0 8px 0;
+	color: #333333;
 }
 
 .product-info__price {
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 1;
-    color: #333333;	
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 1;
+	color: #333333;
 }
 
 .product-info__badge-group {
 	margin-top: 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;		
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.badge badge-new {
+    margin-right: 0;	
+    background-color: #fff4bb;
+    color: #f7a100;
+    padding: 5px 6px 4px;
+    height: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 2px;
+    line-height: 1;
+    background-color: #333333;
+    color: #ffffff;
+    margin-right: 4px;        
 }
 /* 위시리스트 end */
 /* ====================================================================== */

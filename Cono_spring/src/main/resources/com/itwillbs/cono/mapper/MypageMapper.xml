@@ -7,7 +7,7 @@
 	</select>  
 	
 	<select id="selectBoardList" resultType="java.util.HashMap">
-		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_price, it.item_region , it.item_date 
+		SELECT it.item_idx, im.img_name, it.item_title, it.item_price, it.item_region , it.item_date 
 		FROM item it, recentView re, img im
 		WHERE re.member_id = #{sId} AND it.item_idx IN (re.item_idx) AND it.item_idx = im.item_idx AND im.img_idx = '1'
 		ORDER BY re.viewTime DESC
@@ -88,7 +88,7 @@
 	<select id="couponList" resultType="com.itwillbs.cono.vo.CouponDTO">
 		SELECT coupon_idx, coupon_title, coupon_content, coupon_price
 		FROM coupon
-		WHERE member_id = #{sId}
+		WHERE member_id = #{sId} AND coupon_status ='N'
 	</select>
 	
 <!-- 	예약 중인 상품 수 -->
@@ -100,7 +100,7 @@
 	
 <!-- 	예약 중인 상품 카드 정보 -->
 <!-- 	<select id="selectReservedList" resultType="java.util.HashMap"> -->
-<!-- 		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_region, it.item_price, it.item_date -->
+<!-- 		SELECT it.item_idx, im.img_name, it.item_title, it.item_region, it.item_price, it.item_date -->
 <!-- 		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, reserved re -->
 <!-- 		WHERE re.member_id = #{sId} AND it.item_status = 'R' AND it.item_idx = re.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1' -->
 <!-- 	</select> -->
@@ -111,7 +111,7 @@
 	</select>
 <!-- 		찜 상품 내용 -->
 	<select id="selectWishList" resultType="java.util.HashMap">
-		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_region, it.item_price, it.item_date
+		SELECT it.item_idx, im.img_name, it.item_title, it.item_region, it.item_price, it.item_date
 		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx,
 			wish w
 		WHERE w.member_id = #{sId} AND it.item_idx = w.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1'
@@ -126,7 +126,7 @@
 	
 <!-- 	장바구니 아이템 리스트 -->
 <!-- 	<select id="selectBasketList" resultType="java.util.HashMap"> -->
-<!-- 		SELECT it.item_idx, im.img_real_name, it.item_title, it.item_price -->
+<!-- 		SELECT it.item_idx, im.img_name, it.item_title, it.item_price -->
 <!-- 		FROM item it, img im -->
 <!-- 		WHERE it.item_idx IN (SELECT item_idx  -->
 <!-- 							   FROM basket -->
@@ -134,20 +134,6 @@
 <!-- 		AND im.img_idx = #{sId} -->
 <!-- 		AND im.item_idx = it.item_idx -->
 <!-- 	</select> -->
-
-<!-- 		구매완료된 상품 리스트 -->
-	<select id="selectPurchasedList"  resultType="java.util.HashMap">
-		SELECT it.item_idx, im.img_real_name, s.shop_name ,it.item_title, it.item_content ,it.item_price, o.ord_quantity ,o.ord_date
-		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, ord o, shop s
-		WHERE o.ord_status = 'Y' AND o.member_id = #{sId} AND it.item_idx = o.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1' AND s.shop_idx = it.shop_idx
-	</select>
-	
-<!-- 		취소상품 리스트 -->
-	<select id="selectCancelList"  resultType="java.util.HashMap">
-		SELECT it.item_idx, im.img_real_name, s.shop_name ,it.item_title, it.item_content ,it.item_price, o.ord_quantity ,o.ord_date
-		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, ord o, shop s
-		WHERE o.ord_status = 'C' AND o.member_id = #{sId} AND it.item_idx = o.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1' AND s.shop_idx = it.shop_idx
-	</select>
 <!-- 	================================================ Center =================================================== -->
 <!-- 	================================================ List =================================================== -->
 <!-- 	팔로잉 -->

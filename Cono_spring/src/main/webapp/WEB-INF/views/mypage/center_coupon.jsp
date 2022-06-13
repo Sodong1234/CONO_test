@@ -39,7 +39,7 @@
 						<div class="coupon-contents">
 							<div class="coupon-contents__header">
 								<img src="${path }/resources/img/coupon.png" class="coupon-contents__thumbnail-img">
-								<div class="coupon-contents__title">${coupon.coupon_title }</div>
+								<img alt="" src="<spring:url value='/resources/upload/file/${coupon.coupon_title }'/>">
 							</div>
 							<div class="coupon-contents__body">
 								<div class="coupon-contents__discount-value">
