@@ -95,7 +95,7 @@ public class ItemController {
 		if(service.checkItemQuantity(ord).equals("0")) {
 			service.modifyItemStatus(ord);
 		}
-		
+		// dfsafasfd
 		// ord 테이블 insert	
 		service.insertOrd(ord);
 		
