@@ -101,6 +101,17 @@ public interface ShopMapper {
 	
 	// 상품이 ord 테이블이 등록된 경우 삭제 방지
 	Integer selectItemOrd(String item_idx);
+	
+	// 팔로잉
+	public List<HashMap<String, String>> selectFollowingList(String sId);
+	// 팔로워
+	public List<HashMap<String, String>> selectFollowerList(String sId);
+	// 팔로잉 수
+	public int selectFollowingCount(String sId);
+	// 팔로워 수
+	public int selectFollowerCount(String sId);
+	// 팔로잉 삭제
+	public int deleteFollowing(String sId, String shop_idx);
 
 	
 

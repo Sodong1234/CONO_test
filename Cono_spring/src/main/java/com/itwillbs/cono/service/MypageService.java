@@ -98,26 +98,7 @@ public class MypageService {
 //	public List<HashMap<String, String>> getReservedList(String sId) {
 //		return mapper.selectReservedList(sId);
 //	}
-	// 팔로잉 리스트
-	public List<HashMap<String, String>> getfollowingList(String sId) {
-		return mapper.selectFollowingList(sId);
-	}
-	// 팔로워 리스트
-	public List<HashMap<String, String>> getfollowerList(String sId) {
-		return mapper.selectFollowerList(sId);
-	}
-	// 팔로잉 수
-	public int getFollowingCount(String sId) {
-		return mapper.selectFollowingCount(sId);
-	}
-	// 팔로워 수
-	public int getFollowerCount(String sId) {
-		return mapper.selectFollowerCount(sId);
-	}
-	// 팔로잉 삭제
-	public int deleteFollowing(String sId, String shop_idx) {
-		return mapper.deleteFollowing(sId, shop_idx);
-	}
+
 	// 위시 리스트 (양윤석)
 	public List<HashMap<String, String>> getwishList(String sId) {
 		return mapper.selectWishList(sId);

@@ -19,17 +19,17 @@ if(session.getAttribute("sId") == null) {
 <div class="detail__div">
 
 	<aside class="side">
-				<ul class="side-list">
-					<li>
-				  <a class="nav-link active" aria-current="page" href="ProductMyshop.shop">내 상점</a>
-				  <a class="nav-link" href="ItemUploadForm.shop">상품 등록</a>
-				  <a class="nav-link" href="ItemMng.shop">상품 관리</a>
-				  <a class="nav-link" href="ItemReviewMng.shop">상품 후기 관리</a>
-				  <a class="nav-link" href="ItemOrdMng.shop">상품 주문 관리</a>
-				  <a class="nav-link" href="follow_shop.jsp">팔로우 상점</a>
-				  </li>
-			  </ul>
-			</aside>
+		<ul class="side-list">
+			<li>
+			  <a class="nav-link active" aria-current="page" href="ProductMyshop.shop">내 상점</a>
+			  <a class="nav-link" href="ItemUploadForm.shop">상품 등록</a>
+			  <a class="nav-link" href="ItemMng.shop">상품 관리</a>
+			  <a class="nav-link" href="ItemReviewMng.shop">상품 후기 관리</a>
+			  <a class="nav-link" href="ItemOrdMng.shop">상품 주문 관리</a>
+			  <a class="nav-link" href="follow">팔로우 상점</a>
+			  </li>
+		</ul>
+	</aside>
 			
 	<!-- ************************ 상단 상품정보 ************************ -->
 	<div class="detail-info__area">

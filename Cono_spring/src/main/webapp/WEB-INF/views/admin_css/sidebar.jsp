@@ -107,9 +107,7 @@ body{
 		<div class="nav" align="right">
 			<h5>
 			<a onclick="location.href='./main'">홈 </a>
-			<%if(sId.equals("admin")) { %>
-				<a href="">관리자님 </a>
-			<%} %>
+			<a href="">관리자님 </a>
 			<a onclick="confirmLogout()">로그아웃</a></h5>
 		</div>
 	</section>

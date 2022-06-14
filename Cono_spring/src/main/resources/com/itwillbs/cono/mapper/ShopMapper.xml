@@ -259,4 +259,45 @@
 		 WHERE item_idx=#{item_idx}
 		   AND ord_status='Y'
 	</select>
+	
+	
+<!-- 	================================================ Center =================================================== -->
+<!-- 	================================================ List =================================================== -->
+	<!-- 	팔로잉 -->
+	<select id="selectFollowingList" resultType="java.util.HashMap">
+		SELECT s.shop_idx, s.shop_img, s.shop_name, s.shop_content
+		FROM shop s, follow f
+		WHERE f.member_id = #{sId} AND s.shop_idx = f.shop_idx
+	</select>
+<!-- 	팔로워 -->
+	<select id="selectFollowerList" resultType="java.util.HashMap">
+		SELECT s.shop_idx, s.shop_img, s.shop_name, s.shop_content
+		FROM shop s, follow f
+		WHERE f.shop_idx = #{sId} AND f.member_id = s.member_id
+	</select>
+<!-- 	팔로잉 수 -->
+	<select id="selectFollowingCount" resultType="java.lang.Integer">
+		SELECT COUNT(shop_idx) FROM follow WHERE member_id = #{sId}
+	</select>
+<!-- 	팔로워 수 -->
+	<select id="selectFollowerCount" resultType="java.lang.Integer">
+		SELECT COUNT(member_id) 
+		FROM follow 
+		WHERE shop_idx = (SELECT s.shop_idx FROM shop s WHERE s.member_id = #{sId})
+	</select>
+<!-- 	팔로잉 삭제 -->
+	<delete id="deleteFollowing">
+		DELETE FROM follow
+		WHERE shop_idx = #{shop_idx} AND member_id = #{sId}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

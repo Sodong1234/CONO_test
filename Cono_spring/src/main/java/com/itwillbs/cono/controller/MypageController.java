@@ -98,35 +98,7 @@ public class MypageController {
 		return "mypage/list_recentView";
 	}
 
-	// 팔로잉 & 팔로워
-	@RequestMapping(value = "follow", method = RequestMethod.GET)
-	public String follow(HttpSession session, Model model) {
-		String sId = (String)session.getAttribute("sId");
-		// 팔로잉 팔로워 정보 
-		List<HashMap<String, String>> followingList = service.getfollowingList(sId);
-		List<HashMap<String, String>> followerList = service.getfollowerList(sId);
-		// 팔로잉 팔로워 수
-		int followingCount = service.getFollowingCount(sId);
-		int followerCount = service.getFollowerCount(sId);
-		model.addAttribute("followingList", followingList);
-		model.addAttribute("followerList", followerList);
-		model.addAttribute("followingCount", followingCount);
-		model.addAttribute("followerCount", followerCount);
 
-		return "mypage/list_follow";
-	}
-	
-	// 언팔
-	@RequestMapping(value = "deleteFollowing", method = RequestMethod.GET)
-	public String deleteFollowing (HttpSession session, Model model, String shop_idx) {
-		String sId = (String)session.getAttribute("sId");
-		
-		int deleteCount = service.deleteFollowing(sId, shop_idx);
-		System.out.println(deleteCount);
-		
-		return "mypage/list_follow";
-	}
- 
 	// 나의 후기 ( 구매 후기 작성 / 내가 쓴 후기 확인)
 
 	// 알림

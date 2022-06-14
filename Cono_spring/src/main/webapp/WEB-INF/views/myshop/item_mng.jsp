@@ -32,17 +32,17 @@ String sell_status = request.getParameter("sell_status");
 	
 	
 	<aside class="side">
-				<ul class="side-list">
-					<li>
-				  <a class="nav-link active" aria-current="page" href="ProductMyshop.shop">내 상점</a>
-				  <a class="nav-link" href="ItemUploadForm.shop">상품 등록</a>
-				  <a class="nav-link" href="ItemMng.shop">상품 관리</a>
-				  <a class="nav-link" href="ItemReviewMng.shop">상품 후기 관리</a>
-				  <a class="nav-link" href="ItemOrdMng.shop">상품 주문 관리</a>
-				  <a class="nav-link" href="follow_shop.jsp">팔로우 상점</a>
-				  </li>
-			  </ul>
-			</aside>
+		<ul class="side-list">
+			<li>
+			  <a class="nav-link active" aria-current="page" href="ProductMyshop.shop">내 상점</a>
+			  <a class="nav-link" href="ItemUploadForm.shop">상품 등록</a>
+			  <a class="nav-link" href="ItemMng.shop">상품 관리</a>
+			  <a class="nav-link" href="ItemReviewMng.shop">상품 후기 관리</a>
+			  <a class="nav-link" href="ItemOrdMng.shop">상품 주문 관리</a>
+			  <a class="nav-link" href="follow">팔로우 상점</a>
+			  </li>
+		</ul>
+	</aside>
 			
 	<div class="float-end">
 			<div class="row mb-4 float-end" style="width:500px;margin-top:5px;" id="search_row">
