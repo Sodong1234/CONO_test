@@ -102,11 +102,11 @@
 		SELECT * 
 		  FROM (SELECT IFNULL((coin_total-'10000'*'1'), -1)
 				  FROM coin
-				 WHERE member_id='seller2'
+				 WHERE member_id= #{ord.member_id}
                    AND coin_idx = (SELECT * 
 									 FROM (SELECT max(coin_idx) 
 									         FROM coin
-									        WHERE member_id='seller2') AS d
+									        WHERE member_id= #{ord.member_id}) AS d
 								  )
            		) AS A
 	</select> 

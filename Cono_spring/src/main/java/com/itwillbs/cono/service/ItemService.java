@@ -54,6 +54,7 @@ public class ItemService {
 	public void insertCoin(OrdDTO ord, String item_price, String coupon_idx) {
 		String coin_total = mapper.selectCoinTotal(ord.getMember_id());
 		String coupon_price = mapper.selectCouponPrice(coupon_idx);
+		
 		coin_total = (Integer.parseInt(coin_total) - Integer.parseInt(item_price)*Integer.parseInt(ord.getOrd_quantity()) + Integer.parseInt(coupon_price)) + "";
 		mapper.insertCoin(ord, item_price, coin_total, coupon_price);
 	}
