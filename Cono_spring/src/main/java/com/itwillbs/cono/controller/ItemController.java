@@ -44,7 +44,7 @@ public class ItemController {
 	
 	// ------------------------ 상품 구매 시 결제 창 이동 ----------------------
 	@RequestMapping(value = "PurchaseItem", method = RequestMethod.POST)
-	public String purchaseItem(String item_idx, String order_quantity, String img_name, HttpSession session, Model model) {
+	public String purchaseItem(String item_idx, String item_price, String ord_quantity, String img_name, HttpSession session, Model model) {
 		
 		String buyer_id = session.getAttribute("sId").toString(); 
 		
@@ -54,8 +54,8 @@ public class ItemController {
 		// 상품 정보 가져오기
 		HashMap<String, String> itemDetail = service.getItemDetail(item_idx);
 		
-		// 사용 가능한 할인 쿠폰 조회 
-		List<HashMap<String, String>> coupons = service.getUsableCoupon(buyer_id);
+		// 사용 가능한 할인 쿠폰 조회 (총 결제 금액보다 작은)
+		List<HashMap<String, String>> coupons = service.getUsableCoupon(buyer_id, item_price, ord_quantity);
 		
 		// 코인 잔액 조회
 		int balanceCoin = service.getBalanceCoin(buyer_id);
@@ -64,7 +64,7 @@ public class ItemController {
 		model.addAttribute("buyerInfo", buyerInfo);
 		model.addAttribute("coupons", coupons);
 		model.addAttribute("balanceCoin", balanceCoin);
-		model.addAttribute("order_quantity", order_quantity);
+		model.addAttribute("ord_quantity", ord_quantity);
 		model.addAttribute("img_name", img_name);
 		
 		return "item/payment";

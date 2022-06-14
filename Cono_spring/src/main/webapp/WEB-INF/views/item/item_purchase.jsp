@@ -14,9 +14,8 @@
 	</div>
 	<form action="PayItem" method="post">
 		<input type="hidden" name="ord_quantity" value="${ord_quantity }">
-		<input type="hidden" name="item_price"
-			value="${itemDetail.item_price }"> <input type="hidden"
-			name="item_idx" value="${itemDetail.item_idx }">
+		<input type="hidden" name="item_price" value="${itemDetail.item_price }">
+		<input type="hidden" name="item_idx" value="${itemDetail.item_idx }">
 		<table border="1">
 			<tr>
 				<td>상품 이미지</td>

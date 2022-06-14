@@ -84,8 +84,8 @@ public class ItemService {
 	}
 	
 	// 사용 가능한 할인 쿠폰 가져오기
-	public List<HashMap<String, String>> getUsableCoupon(String buyer_id) {
-		return mapper.selectUsableCoupon(buyer_id);
+	public List<HashMap<String, String>> getUsableCoupon(String buyer_id, String item_price, String ord_quantity) {
+		return mapper.selectUsableCoupon(buyer_id, item_price, ord_quantity);
 	}
 	
 	// 코인 잔액 조회

@@ -94,6 +94,7 @@
 		<form action="PurchaseItem" method="post">
 			<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}">	
 			<input type="hidden" name="img_name" value="${item.getImg_name() }">
+			<input type="hidden" name="item_price" value="${itemDetail.get('item_price')}">
 			<table>
 				<tr>
 					<th>구매수량</th>

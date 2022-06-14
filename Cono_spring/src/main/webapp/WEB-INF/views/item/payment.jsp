@@ -9,6 +9,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#coupon_idx").on("change", function() {
+			$("#coupon_select_result").html($("#coupon_idx option:selected").text()+"원");
+			let coupon_price = $("#coupon_idx option:selected").text().split("/")[1];
+			let total_price = ${itemDetail.item_price * param.ord_quantity } - coupon_price;
+			$("#totalPrice").html("${itemDetail.item_price * param.ord_quantity  }원 - " + coupon_price + "원 = " + total_price + "원")
+			
+			
+		});
+	});
+</script>
 <link rel="stylesheet"
 	href="${path}/resources/css/style.css"
 	type="text/css">
@@ -118,14 +130,15 @@
 									<div class="payCoupon">
 										<div class="price" style="display: inline-block;">
 											<strong> 
-												<select name="coupon_idx" >
+												<select name="coupon_idx" id="coupon_idx">
 													<option value="0"></option>
 													<c:forEach items="${coupons }" var="coupon">
 														<option value="${coupon.coupon_idx }">${coupon.coupon_title } / ${coupon.coupon_price }</option>
 													</c:forEach>
 												</select>
 	<!-- 											<SPAN CLASS="VALUE USE-CALCULATION-FOR-TOTALPRICE">쿠폰가격받아오기</SPAN> -->
-												<span class="unit">(select하면 여기에 쿠폰금액 찍힘)원</span>
+												선택된 쿠폰
+												<span class="unit" id="coupon_select_result"></span>
 											</strong>
 										</div>
 	<!-- 									<div class="selected-coupon"> -->
@@ -157,7 +170,7 @@
 								<td>
 									<div class="payPrice">
 										<strong class="price">
-										<span class="unit">${itemDetail.item_price * param.ord_quantity  }원 - ${coupon.coupon_price }원 = ${itemDetail.item_price * param.ord_quantity - coupon.coupon_price }원</span>
+										<span class="unit" id="totalPrice"></span>
 										</strong>
 									</div>
 								</td>

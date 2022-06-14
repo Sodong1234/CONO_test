@@ -127,7 +127,10 @@
 	
 	<!-- 사용 가능한 할인 쿠폰 가져오기 -->
 	<select id="selectUsableCoupon" resultType="java.util.HashMap">
-		SELECT coupon_idx, coupon_title, coupon_price FROM coupon WHERE member_id=#{buyer_id}
+		SELECT coupon_idx, coupon_title, coupon_price
+		  FROM coupon
+		 WHERE member_id=#{buyer_id} 
+		   AND #{item_price} * #{ord_quantity} >= coupon_price
 	</select>
 	
 	<!-- 코인 잔액 조회 -->

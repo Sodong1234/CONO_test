@@ -50,7 +50,7 @@ public interface ItemMapper {
 	HashMap<String, String> selectBuyerInfo(String buyer_id);
 	
 	// 사용 가능한 할인 쿠폰 가져오기
-	List<HashMap<String, String>> selectUsableCoupon(String buyer_id);
+	List<HashMap<String, String>> selectUsableCoupon(@Param("buyer_id") String buyer_id, @Param("item_price") String item_price, @Param("ord_quantity") String ord_quantity);
 	
 	// 코인 잔액 조회
 	int selectBalanceCoin(String buyer_id);
