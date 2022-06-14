@@ -205,7 +205,7 @@ input[type=text] {
 				<option value="subject" <c:if test="${searchType ne null and searchType eq 'subject'}">selected</c:if>>제목</option>
 				<option value="content" <c:if test="${searchType ne null and searchType eq 'content'}">selected</c:if>>내용</option>
 			</select> 
-			<input type="text" name="search" value="<c:if test="${search ne null}">${search } </c:if>" placeholder="here"> 
+			<input type="text" name="search" value="<c:if test="${search ne null}">${search}</c:if>" placeholder="here"> 
 			<input type="submit" value="Search" id="search_btn" >
 		</form></div>
 	</div>
@@ -241,7 +241,7 @@ input[type=text] {
 	<div class ="paging">
 		<c:choose>
 			<c:when test="${pageNum > 1 }">
-				<input type="button"  value=" < " onclick="location.href='AdminNoticeList.admin?pageNum=${pageNum - 1}'">
+				<input type="button"  value=" < " onclick="location.href='AdminNoticeList?pageNum=${pageNum - 1}'">
 			</c:when>
 			<c:otherwise>
 
@@ -255,13 +255,13 @@ input[type=text] {
 				${i }
 			</c:when>
 				<c:otherwise>
-					<a href="AdminNoticeList.admin?pageNum=${i }">${i }</a>
+					<a href="AdminNoticeList?pageNum=${i }">${i }</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 	<c:choose>
 			<c:when test="${pageNum < maxPage}">
-				<input type="button"  value=" > "  onclick="location.href='AdminNoticeList.admin?pageNum=${pageNum + 1}'">
+				<input type="button"  value=" > "  onclick="location.href='AdminNoticeList?pageNum=${pageNum + 1}'">
 			</c:when>
 			<c:otherwise>
 				<input type="button"  value=" > " >&nbsp;

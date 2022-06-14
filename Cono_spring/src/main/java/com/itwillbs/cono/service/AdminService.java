@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.cono.mapper.AdminMapper;
 import com.itwillbs.cono.vo.AdminNoticeDTO;
 import com.itwillbs.cono.vo.AdminQNADTO;
+import com.itwillbs.cono.vo.AdminReportDTO;
+import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.PageInfo;
 
 @Service
@@ -17,6 +19,7 @@ public class AdminService {
 	@Autowired
 	private AdminMapper mapper;
 	
+	//------------------------------notice-------------------------------------
 	// 공지사항 총게시물수 카운트
 	public int getNoticeListCount(String searchType, String search) {
 		return mapper.selectNoticeListCount(searchType,search);
@@ -51,7 +54,6 @@ public class AdminService {
 	//------------------------------qna-------------------------------------------------------------
 	// qna 총게시물수 카운트
 	public int getQNAListCount() {
-		
 		return mapper.selectQNAListCount();
 	}
 
@@ -87,30 +89,60 @@ public class AdminService {
 	}
 
 	// qna 답글
-//	public int writeReplyBoard(AdminQNADTO qnaList) {
-//		mapper.updateQNAReSeq(qnaList);
-
-//		 = mapper.selectQNANum();
-		
-//		qnaList.setNum(num); // Integer + int = int + int
-//		qnaList.setQna_re_ref(qnaList.getQna_re_ref());
-//		qnaList.setQna_re_lev(qnaList.getQna_re_lev() + 1);
-//		qnaList.setQna_re_seq(qnaList.getQna_re_seq() + 1);
-
-//		return mapper.insertQNA(qnaList);
-//	}
-
-	public HashMap<String, Integer> selectNumSeq(HashMap<String, Integer> param) {
-		qnaList.setNum(num);
-		qnaList.setQna_re_seq(num_seq);
+	public int selectNumSeq(HashMap<String, Integer> param) {
+		AdminQNADTO dto = new AdminQNADTO();
+		dto.setNum(param.get("qna_re_ref"));
+		dto.setQna_re_seq(param.get("qna_re_lev"));
 		return mapper.selectNumSeq(param);
 	}
 
-	public int writeQNAReply(AdminQNADTO qnaList, int num, String sId, HashMap<String, Integer> num_seq) {
-		
+	public int writeQNAReply(AdminQNADTO qnaList, int num, String sId, int num_seq) {
 		int insertCount = mapper.writeQNAReply(qnaList,num,sId,num_seq);
 		return insertCount;
 	}
+
+	public void updateQNAStatus(String qna_idx) {
+		 mapper.updateQNAStatus(qna_idx); 
+	}
+
+	//------------------------------------report-------------------------------------
+	// report 총게시물수 카운트
+	public int getReportListCount() {
+		return mapper.selectReportListCount();
+	}
+	
+	// report 목록
+	public List<AdminReportDTO> getReportList(PageInfo pageInfo) {
+		return mapper.selectReportList(pageInfo);
+	}
+	
+	// report 글쓰기
+	public int writeReport(AdminReportDTO reportList) {
+		int insertCount =mapper.writeReport(reportList);
+		return insertCount;
+	}
+
+	// report 상세페이지
+	public AdminReportDTO getAdminReportView(String report_idx) {
+		return mapper.selectReportView(report_idx);
+	}
+
+	// report 글수정
+	public boolean modifyReport(AdminReportDTO reportList) {
+		return mapper.updateReport(reportList); 
+	}
+
+	// report 글삭제
+	public boolean removeReport(AdminReportDTO reportList, int pageNum) {
+		return mapper.deleteReportList(reportList);
+	}
+
+	// report 관리자가 상품 글삭제
+	public boolean removeReportAdmin(ItemDTO itemList, int pageNum) {
+		return mapper.deleteReportListAdmin(itemList);
+	}
+
+
 }
 
 

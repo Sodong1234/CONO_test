@@ -157,7 +157,9 @@ h1 {
 				<input type="button" value="목록" id="btn" onclick="location.href='AdminQNAList'"> 
 				<input type="button" value="수정" id="btn" onclick="location.href='AdminQNAModifyForm.admin?qna_idx=${qnaList.getQna_idx() }&pageNum=${param.pageNum }'">
 				<input type="button" value="삭제" id="btn" onclick="location.href='AdminQNADeletePro.admin?qna_idx=${qnaList.getQna_idx() }&pageNum=${param.pageNum }'">
+				<%if(sId.equals("admin")){ %>
 				<input type="button" value="답변" id="btn" onclick="location.href='AdminQNAReplyForm.admin?qna_idx=${qnaList.getQna_idx() }&pageNum=${param.pageNum }'">
+				<%} %>
 			</div>
 		</div>
 	</div>

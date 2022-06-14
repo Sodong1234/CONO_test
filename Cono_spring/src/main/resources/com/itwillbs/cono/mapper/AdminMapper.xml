@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.itwillbs.cono.mapper.AdminMapper">
 
-
+<!--공 지 사 항 -->
 	<!-- 공지사항 총 게시물 수 조회(검색 기능 추가) -->
 	<select id="selectNoticeListCount"
 		resultType="java.lang.Integer">
@@ -39,7 +39,7 @@
 		INSERT INTO notice
 		VALUES (1+(SELECT
 		COUNT(n.notice_idx) FROM notice n ), #{admin_id}, #{notice_subject},
-		#{notice_content}, DATE_FORMAT(now(), "%Y%m%d") )
+		#{notice_content}, DATE_FORMAT(now(), "%Y-%m-%d") )
 	</insert>
 
 	<!-- 공지사항 상세페이지 -->
@@ -61,6 +61,7 @@
 	
 	
 	<!-- qna -->
+	<!-- qna 총 게시물 수 조회 -->
 	<select id="selectQNAListCount" resultType="java.lang.Integer">
 	SELECT COUNT(*) FROM qna
 	</select>
@@ -90,7 +91,7 @@
 	</select>
 
 	<insert id="insertQNA">
-		INSERT INTO qna VALUES (#{num},#{member_id},#{qna_type},#{qna_subject},#{qna_content},#{num},'0','0',DATE_FORMAT(now(), "%Y%m%d"),'답변대기')
+		INSERT INTO qna VALUES (#{num},#{member_id},#{qna_type},#{qna_subject},#{qna_content},#{num},'0','0',DATE_FORMAT(now(), "%Y-%m-%d"),'답변대기')
 	</insert>
 
 	<!-- qna 상세페이지 -->
@@ -111,12 +112,8 @@
 	</update>
 	
 	<!--- 답글 순서번호 조정 -->
-<!-- <update id="updateQNAReSeq"> -->
-<!-- 	UPDATE qna SET qna_re_seq=qna_re_seq+1   -->
-<!-- 	WHERE qna_re_ref=#{qna_re_ref} AND qna_re_seq>#{qna_re_seq} -->
-<!-- </update> -->
 
-	<select id="selectNumSeq" resultType="java.util.HashMap">
+	<select id="selectNumSeq" resultType="java.lang.Integer">
 		SELECT IFNULL(MAX(qna_re_seq), 0) + 1 AS seq_num
 		  FROM qna
 		 WHERE qna_re_ref = #{qna_re_ref}
@@ -124,7 +121,55 @@
 	</select>
 	
 	<insert id="writeQNAReply">
-		INSERT INTO qna VALUES (#{num},#{member_id},#{""},#{qna_subject},#{qna_content},#{num},'#{qna_re_lev}+1',#{num_seq},DATE_FORMAT(now(), "%Y%m%d"),#{""})
+		INSERT INTO qna VALUES (#{num},#{sId},"",#{qnaList.qna_subject},#{qnaList.qna_content},#{qnaList.qna_idx},#{qnaList.qna_re_lev}+1,#{num_seq},DATE_FORMAT(now(), "%Y-%m-%d"),"")
 	</insert>
 	
+	<update id="updateQNAStatus">
+		UPDATE qna SET qna_status='답변완료'
+		WHERE qna_idx=#{qna_idx} 
+	</update>
+	
+	<!-- 신고하기 -->
+	<!-- 신고하기 게시물 수 카운트 -->
+	<select id="selectReportListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM report
+	</select>
+	
+	<!-- 신고하기 목록 조회 -->
+	<select id="selectReportList"
+	resultType="com.itwillbs.cono.vo.AdminReportDTO">
+		SELECT * FROM report
+		ORDER BY report_idx+0 DESC
+		LIMIT #{pageInfo.startRow},
+		#{pageInfo.listLimit}
+	</select>
+	
+	<!-- 신고하기 글쓰기 -->
+	
+	<insert id="writeReport">
+		INSERT INTO report VALUES (
+				(SELECT COUNT(r.report_idx) FROM report r)+1
+				, #{member_id}, #{item_idx},#{report_type},#{report_subject},#{report_content},DATE_FORMAT(now(), "%Y-%m-%d") )
+	</insert>
+	
+	<!-- 신고하기 상세페이지 -->
+	<select id="selectReportView" resultType="com.itwillbs.cono.vo.AdminReportDTO">
+		SELECT * FROM report WHERE report_idx=#{report_idx}
+	</select>
+	
+	<!-- 신고하기 글수정 -->
+	<update id="updateReport">
+		UPDATE report SET member_id=#{member_id},report_subject=#{report_subject},report_content=#{report_content} 
+		WHERE report_idx=#{report_idx}
+	</update>
+	
+	<!-- 신고하기 글삭제 -->
+	<delete id="deleteReportList">
+		DELETE FROM report WHERE report_idx=#{report_idx}
+	</delete>
+	
+	<!-- 관리자가 신고당한 글 삭제 -->
+	<delete id="deleteReportListAdmin">
+		DELETE FROM item WHERE item_idx=#{item_idx}
+	</delete>
 </mapper>

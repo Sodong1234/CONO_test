@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwillbs.cono.service.AdminService;
 import com.itwillbs.cono.vo.AdminNoticeDTO;
 import com.itwillbs.cono.vo.AdminQNADTO;
+import com.itwillbs.cono.vo.AdminReportDTO;
+import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.PageInfo;
 
 @Controller
@@ -290,23 +292,144 @@ public class AdminController {
 
 	// 답글 작성 비즈니스 로직 - POST
 	@RequestMapping(value = "AdminQNAReplyPro.admin", method = RequestMethod.POST)
-	public String replyPost(@ModelAttribute AdminQNADTO qnaList, @RequestParam int pageNum, Model model, HttpSession session) {
-		
+	public String replyPost(@ModelAttribute AdminQNADTO qnaList, @RequestParam int pageNum, Model model,
+			HttpSession session) {
+
 		String sId = (String) session.getAttribute("sId");
 		int num = service.selectQNANum();
 		HashMap<String, Integer> param = new HashMap<String, Integer>();
 		param.put("qna_re_ref", num);
 		param.put("qna_re_lev", qnaList.getQna_re_lev());
-		
-		HashMap<String,Integer> num_seq = service.selectNumSeq(param);
+
+		int num_seq = service.selectNumSeq(param);
 		int insertCount = service.writeQNAReply(qnaList, num, sId, num_seq);
 
-		
+		service.updateQNAStatus(qnaList.getQna_idx());
+
 		if (insertCount == 0) {
 			model.addAttribute("msg", "답글 등록 실패!");
 			return "fail_back";
 		}
 		model.addAttribute("pageNum", pageNum);
 		return "redirect:/AdminQNAList";
+	}
+
+	// -------------- 고객센터 report 리스트 (관리자) - 김도은 -------------
+	// report 리스트 조회, 검색 x
+	@RequestMapping(value = "AdminReportList", method = RequestMethod.GET)
+	public String repListGet(@RequestParam(defaultValue = "1") int pageNum, Model model) {
+
+		int listCount = service.getReportListCount();
+		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
+		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
+		System.out.println(listCount);
+		// 페이징 처리를 위한 계산 작업
+		int maxPage = (int) Math.ceil((double) listCount / listLimit);
+		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		int endPage = startPage + pageLimit - 1;
+		if (endPage > maxPage) {
+			endPage = maxPage;
+		}
+
+		int startRow = (pageNum - 1) * listLimit;
+
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setPageNum(pageNum);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setListLimit(listLimit);
+
+		List<AdminReportDTO> reportList = service.getReportList(pageInfo);
+		model.addAttribute("reportList", reportList);
+		model.addAttribute("pageInfo", pageInfo);
+
+		return "userCenter/admin_report_list";
+	}
+
+	// -------신고하기 글쓰기-------------------------------
+	// 글쓰기 폼
+	@RequestMapping(value = "AdminReportWriteForm.admin", method = RequestMethod.GET)
+	public String reportWrite(String item_idx) {
+		return "userCenter/admin_report_write";
+	}
+
+	// 글쓰기 비즈니스 로직 - POST
+	@RequestMapping(value = "AdminReportWritePro.admin", method = RequestMethod.POST)
+	public String reportWritePost(@ModelAttribute AdminReportDTO reportList, Model model, String item_idx) {
+		reportList.setItem_idx(item_idx);
+
+		int insertCount = service.writeReport(reportList);
+
+		if (insertCount == 0) {
+			model.addAttribute("msg", "글 등록 실패!");
+			return "fail_back";
+		}
+		return "redirect:/AdminReportList";
+	}
+
+	// report 상세페이지 - GET
+	@RequestMapping(value = "AdminReportView.admin", method = RequestMethod.GET)
+	public String adminReportView(@RequestParam String report_idx, Model model) {
+		AdminReportDTO reportList = service.getAdminReportView(report_idx);
+
+		model.addAttribute("reportList", reportList);
+
+		return "userCenter/admin_report_view";
+	}
+
+	// 수정 폼
+	@RequestMapping(value = "AdminReportModifyForm.admin", method = RequestMethod.GET)
+	public String modifyReport(@RequestParam String report_idx, Model model) {
+		AdminReportDTO reportList = service.getAdminReportView(report_idx);
+
+		model.addAttribute("reportList", reportList);
+
+		return "userCenter/admin_report_modify";
+	}
+
+	// 글 수정 비즈니스 로직 - POST
+	@RequestMapping(value = "AdminReportModifyPro.admin", method = RequestMethod.POST)
+	public String modifyReport(@ModelAttribute AdminReportDTO reportList, @RequestParam int pageNum, Model model) {
+		boolean isUpdateSuccess = service.modifyReport(reportList);
+		if (!isUpdateSuccess) {
+			model.addAttribute("msg", "수정실패!");
+			return "fail_back";
+		}
+
+		model.addAttribute("reportList", reportList.getReport_idx());
+		model.addAttribute("pageNum", pageNum);
+
+		return "redirect:/AdminReportView.admin";
+	}
+
+	// report 글 삭제 비즈니스 로직 - POST
+	@RequestMapping(value = "AdminReportDeletePro.admin", method = RequestMethod.GET)
+	public String deleteReport(@ModelAttribute AdminReportDTO reportList, @RequestParam int pageNum, Model model) {
+		boolean isDeleteSuccess = service.removeReport(reportList, pageNum);
+
+		if (!isDeleteSuccess) {
+			model.addAttribute("msg", "삭제실패!");
+			return "fail_back";
+		}
+		model.addAttribute("pageNum", pageNum);
+
+		return "redirect:/AdminReportList";
+	}
+
+	// report 관리자가 신고당한 상품 삭제 비즈니스 로직 - POST
+	@RequestMapping(value = "ReportDeleteAdmin.admin", method = RequestMethod.GET)
+	public String deleteReportAdmin(@ModelAttribute ItemDTO itemList, @RequestParam int pageNum, Model model) {
+		boolean isDeleteSuccess = service.removeReportAdmin(itemList, pageNum);
+
+		if (!isDeleteSuccess) {
+			model.addAttribute("msg", "삭제실패!");
+			return "fail_back";
+		}
+		model.addAttribute("pageNum", pageNum);
+
+		return "redirect:/AdminReportList";
 	}
 }
