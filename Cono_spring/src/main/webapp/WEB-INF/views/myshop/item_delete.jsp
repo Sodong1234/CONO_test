@@ -38,7 +38,7 @@ div {
 		
 		<h3>상품 삭제</h3>
 		<hr>
-		<form action="ItemDeletePro.shop">
+		<form action="ItemDeletePro.shop" method="post">
 			<input type="hidden" name="item_idx" value="<%=request.getParameter("item_idx")%>">
 			
 			<div class="w3-panel w3-border w3-hover-border-blue">
