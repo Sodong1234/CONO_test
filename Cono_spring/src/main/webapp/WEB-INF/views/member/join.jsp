@@ -236,6 +236,10 @@ body {
 	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
 }
+
+#number {
+	height: 10px;
+}
 </style>
 <!-- Bootstrap core JavaScript-->
 <script src="resources/vendor/jquery/jquery.min.js"></script>
@@ -298,7 +302,10 @@ body {
 								<div class="mb-3">
 									<label for="phone">전화번호</label> <input type="text" class="form-control" name="member_phone" id="phone" placeholder="전화번호 입력" required>
 									<div class="invalid-feedback">전화번호를 입력해주세요.</div>
-									<input type="button" value="인증요청"><br> <input type="number" class="input-form col-md-12 mx-auto" name="number" id="" placeholder="인증번호"><input type="button" value="확인"><br>
+									<input type="button" value="인증요청"><br> 
+									<input type="text" class="input-form" 
+									name="number" id="number" placeholder="인증번호 입력"><br>
+									<input type="button" value="확인"><br>
 								</div>
 
 								<input type="checkbox" name="1" value="모두동의" checked="checked">모두동의 <br> <input type="checkbox" name="2" value="약관1" checked="checked">약관1 <br> <input type="checkbox" name="3" value="약관2" checked="checked">약관2 <br> <input type="checkbox" name="4" value="약관3" checked="checked">약관3 <br> <input type="submit" value="가입하기" class="submit">
