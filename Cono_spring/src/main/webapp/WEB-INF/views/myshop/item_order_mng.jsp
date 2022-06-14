@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css"> --%>
 <meta charset="UTF-8">
 <title>myshop/item_order_mng.jsp</title>
 </head>
@@ -39,7 +39,7 @@
 	예약 중('3')
 	 -->
 
-
+<h3>구매 진행중</h3>
 <table class="table table-hover">
     <tr>
       <th scope="col">주문일시</th>
@@ -50,9 +50,9 @@
       <th scope="col">주문 요청사항</th>
     </tr>
   <tbody>
+  <c:forEach items="${ordList }" var="ord">
 	 <tr class="table-primary">
-      <th scope="row">Primary</th>
-  <c:forEach items="${ordList }" var="ord"></c:forEach>
+<!--       <th scope="row">Primary</th> -->
       <td>${ord.get('ord_date') }</td>
       <td>${ord.get('item_title') }</td>
       <td>${ord.get('ord_quantity') }</td>
@@ -60,6 +60,7 @@
       <td>${ord.get('item_price') }</td>
       <td>${ord.get('ord_reqContent') }</td>
     </tr>
+    </c:forEach>
     </tbody>
     </table>
 
