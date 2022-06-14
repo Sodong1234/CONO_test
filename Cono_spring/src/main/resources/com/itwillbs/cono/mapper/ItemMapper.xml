@@ -138,7 +138,7 @@
 		select coin_total, max(coin_date) from coin where member_id=#{buyer_id}
 	</select>
 		
-	
+	<!-- 쿠폰 업데이트 -->
 	<update id="updateCoupon">
 		UPDATE coupon 
 		   SET item_idx=#{item_idx}
@@ -146,12 +146,33 @@
 		 WHERE coupon_idx=#{coupon_idx} 
 	</update>
 		
-		
+	<!-- 쿠폰 가격 조회 -->
 	<select id="selectCouponPrice" resultType="java.lang.String">
 		SELECT coupon_price
 		  FROM coupon
 		 WHERE coupon_idx=#{coupon_idx}
 	</select>
+	
+	<!-- 찜 버튼 활성화(증가) -->
+	<insert id="insertWish">
+		INSERT INTO wish
+		VALUES (#{item_idx}, #{member_id})
+	</insert>
+	
+	<!-- 찜 여부 조회 -->
+	<select id="selectWish" resultType="com.itwillbs.cono.vo.WishDTO">
+		SELECT item_idx, member_id
+		  FROM wish
+		 WHERE item_idx=#{item_idx}
+		   AND member_id=#{member_id}
+	</select>
+	
+	<!-- 찜 취소 -->
+	<delete id="deleteWish">
+		DELETE FROM wish
+		 WHERE item_idx=#{item_idx}
+		   AND member_id=#{member_id}
+	</delete>
 	<!-- coin 테이블 insert (판매자) -->
 	<!-- 판매자는 아직 나가면 안되는데?!! -->
 <!-- 	<insert id="insertCoinSeller"> -->

@@ -10,6 +10,7 @@ import com.itwillbs.cono.mapper.ItemMapper;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.OrdDTO;
+import com.itwillbs.cono.vo.WishDTO;
 
 @Service
 public class ItemService {
@@ -96,6 +97,21 @@ public class ItemService {
 	// 쿠폰 상태 업데이트
 	public void updateCoupon(String coupon_idx, String item_idx) {
 		mapper.updateCoupon(coupon_idx, item_idx);
+	}
+	
+	// 찜 버튼 활성화 (증가)
+	public int increaseWish(String item_idx, String member_id) {
+		return mapper.insertWish(item_idx, member_id);
+	}
+	
+	// 찜 여부 조회
+	public WishDTO selectWish(String item_idx, String member_id) {
+		return mapper.selectWish(item_idx, member_id);
+	}
+	
+	// 찜 취소
+	public void deleteWish(String item_idx, String member_id) {
+		mapper.deleteWish(item_idx, member_id);
 	}
 
 	

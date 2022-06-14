@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +18,7 @@ import com.itwillbs.cono.service.ItemService;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.OrdDTO;
+import com.itwillbs.cono.vo.WishDTO;
 
 @Controller
 public class ItemController {
@@ -28,15 +28,22 @@ public class ItemController {
 	
 	// ------------------- 상품 상세 정보 조회 (구매자) - 이소영 ---------------
 	@RequestMapping(value = "itemDetail", method = RequestMethod.GET)
-	public String getItemDetail(String item_idx, Model model, HttpServletRequest request) {
+	public String getItemDetail(HttpSession session, String item_idx, Model model, HttpServletRequest request) {
+		
+		String member_id = session.getAttribute("sId").toString(); 
 		
 		// 상품 상세 정보 조회
 		HashMap<String, String> itemDetail = service.getItemDetail(item_idx); 
 		
 		// 상품 이미지 조회
 		List<ImgDTO> imgList = service.selectImgList(item_idx);
+		
+		// 찜 여부 조회
+		WishDTO wish = service.selectWish(item_idx, member_id);
+		
 		model.addAttribute("itemDetail", itemDetail);
 		model.addAttribute("imgList", imgList);
+		model.addAttribute("wish", wish);
 
 		return "item/item_detail";
 	}
@@ -120,20 +127,26 @@ public class ItemController {
 	// -------------------------------------------------------------------------
 	
 	// --------------------------- 위시 테이블 isert ---------------------------
-//	@RequestMapping(value = "InsertWish", method = RequestMethod.GET)
-
-//	void insertCoin(@Param("ord") OrdDTO ord, @Param("item_price") String item_price, @Param("coin_total") String coin_total, @Param("coupon_price") String coupon_price
-//	public String getItemDetail(String item_idx, Model model, HttpServletRequest request) {
+	@RequestMapping(value = "increaseWish", method = RequestMethod.GET)
+	public String increaseWish(String item_idx, HttpSession session, Model model) {
 		
-//		// 상품 상세 정보 조회
-//		HashMap<String, String> itemDetail = service.getItemDetail(item_idx); 
-//		
-//		// 상품 이미지 조회
-//		List<ImgDTO> imgList = service.selectImgList(item_idx);
-//		model.addAttribute("itemDetail", itemDetail);
-//		model.addAttribute("imgList", imgList);
-//
-//		return "item/item_detail";
-//	}
+		String member_id = session.getAttribute("sId").toString();
+		
+		int increaseCount = service.increaseWish(item_idx, member_id);
+		
+		return "redirect:/itemDetail?item_idx=" + item_idx;
+	}
+	// -------------------------------------------------------------------------
+	
+	// --------------------------- 위시 테이블 delete --------------------------
+	@RequestMapping(value = "deleteWish", method = RequestMethod.GET)
+	public String deleteWish(String item_idx, HttpSession session, Model model) {
+		
+		String member_id = session.getAttribute("sId").toString();
+		
+		service.deleteWish(item_idx, member_id);
+		
+		return "redirect:/itemDetail?item_idx=" + item_idx;
+	}
 	// -------------------------------------------------------------------------
 }

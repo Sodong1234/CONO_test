@@ -87,7 +87,15 @@
 			</tr>
 		</table>
 		
-		<button onclick="location.href='InsertWish?${itemDetail.get('item_title')}'">♡</button>
+		<c:choose>
+			<c:when test="${wish eq null }">
+				<button onclick="location.href='increaseWish?item_idx=${itemDetail.get('item_idx')}'">찜 안했따</button>
+			</c:when>
+			<c:when test="${wish ne null }">
+				<button onclick="location.href='deleteWish?item_idx=${itemDetail.get('item_idx')}'">찜 했따</button>
+			</c:when>
+		</c:choose>
+		
 		
 		<hr>
 		

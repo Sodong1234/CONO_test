@@ -8,10 +8,9 @@ import org.apache.ibatis.annotations.Param;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.OrdDTO;
+import com.itwillbs.cono.vo.WishDTO;
 
 public interface ItemMapper {
-	
-	//tfsf
 	
 	// 상품 상세 정보 조회
 	HashMap<String, String> selectItemDetail(String item_idx);
@@ -60,6 +59,15 @@ public interface ItemMapper {
 	
 	// 쿠폰 가격 조회
 	String selectCouponPrice(String coupon_idx);
+	
+	// 찜 버튼 활성화(증가)
+	int insertWish(@Param("item_idx") String item_idx, @Param("member_id") String member_id);
+	
+	// 찜 여부 조회
+	WishDTO selectWish(@Param("item_idx") String item_idx, @Param("member_id") String member_id);
+	
+	// 찜 취소
+	void deleteWish(@Param("item_idx") String item_idx, @Param("member_id") String member_id);
 
 	// coin 테이블 insert (판매자)
 //	void insertCoinSeller(@Param("ord") OrdDTO ord, @Param("item_price") String item_price);
