@@ -11,6 +11,12 @@
 <link href="${path}/resources/css/msg.css" rel="stylesheet" />
 <script type="text/javascript">
 
+	function msgDelete() {
+		var room = document.getElementById("rNum").value;
+		location.href="msgDelete?room=" + room;
+	}
+	
+
 	function sendMsg() {
 		// 방번호 샵네임 저장
 		var msgList_room = document.getElementById("rNum").value;
@@ -20,7 +26,7 @@
 //  Msg DB 저장 함수
 	const sendMessage = function(msgList_room, shop_name) {
 		let content = $('#msgText').val();
-		alert("content: " + content + "msgList_room: " + msgList_room + "shop_name:" + shop_name);
+// 		alert("content: " + content + "msgList_room: " + msgList_room + "shop_name:" + shop_name);
 		
 		// 양쪽 공백 제거
 		content = content.trim();
@@ -33,11 +39,11 @@
 				method:"GET",
 				data:{
 					msgList_room : msgList_room,
-					shop_idx : shop_idx,
+					shop_name : shop_name,
 					content : content
 				},
 				success:function(data) {
-					console.log("메세지 전송 성공");
+// 					console.log("메세지 전송 성공");
 					// 메시지 입력칸 비우기
 					$('#msgText').val("");
 					// 메시지 내용 리로드
@@ -46,7 +52,9 @@
 // 					MessageList();
 				},
 				error : function() {
-					alert('실패');
+// 					alert('전송완료 후 실패');
+					MessageContentList(msgList_room, shop_name);
+					$('#msgText').val("");
 				}
 			});
 		}
@@ -129,7 +137,7 @@
 			</div>
 			<fieldset class="msgbtn" id="msgbtn" style="visibility: hidden">
 				<button class="follwing" onclick="location.href='following'">팔로우</button>
-				<button class="msg_out" onclick="location.href='msgDelete'">나가기</button>
+				<button class="msg_out" onclick="location.href='msgDelete()'">나가기</button>
 			</fieldset>
 		</div>
 <!-- 		메시지 내용 -->

@@ -33,6 +33,12 @@ public class MessageService {
 	public int deleteMsg(String msgList_room) {
 		return mapper.deleteMsg(msgList_room);
 	}
+//	public String selectShop_idx(String sId) {
+//		return mapper.selectShop_idx(sId);
+//	}
+//	public List<HashMap<String, String>> getMsgList_shop(String sId) {
+//		return null;
+//	}
 
 
 	}

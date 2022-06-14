@@ -20,11 +20,11 @@
 <!-- 	WHERE m.member_id = #{sId} AND m.shop_idx = s.shop_idx AND c.msgChat_time = (SELECT c.msgChat_time FROM msgChat c ORDER BY c.msgChat_time DESC LIMIT 1) -->
 <!-- 	group by c.msgList_room; -->
 	
-	SELECT s.shop_name, m.shop_idx, m.msgList_room, c.msgChat_content, c.msgChat_time
-	FROM (shop s, msgList m) LEFT OUTER JOIN msgChat c ON m.msgList_room = c.msgList_room 
-	WHERE m.member_id = #{sId} AND m.shop_idx = s.shop_idx
-	group by c.msgList_room
-	ORDER BY c.msgChat_time ASC
+		SELECT s.shop_name, m.shop_idx, m.msgList_room, c.msgChat_content, c.msgChat_time
+		FROM (shop s, msgList m) LEFT OUTER JOIN msgChat c ON m.msgList_room = c.msgList_room 
+		WHERE m.member_id = #{sId} AND m.shop_idx = s.shop_idx
+		group by c.msgList_room
+		ORDER BY c.msgChat_time DESC
 	</select>
 	
 <!-- 	MsgChat insert -->
@@ -34,7 +34,7 @@
 				,#{dto.msgList_room}, #{dto.msgChat_send},#{dto.msgChat_recv}, #{dto.msgChat_content}, date_format(now(), '%m-%d %H:%i:%S'))
 	</insert>
 	
-<!-- 	AllMsg select -->
+<!-- 	멤버 입장에서 AllMsg select -->
 	<select id="selectAllMsg" resultType="java.util.HashMap">
 		SELECT mc.msgChat_send, mc.msgChat_recv, mc.msgChat_content, mc.msgChat_time
 		FROM msgChat mc
@@ -48,4 +48,9 @@
 		WHERE c.msgList_room = #{msgList_room} 
 			OR l.msgList_room = #{msgList_room}
 	</delete>
+	
+	
+	<select id="selectShop_idx" resultType="string">
+<!-- 		SELECT shop_idx FROM shop WHERE member_id = #{sId} -->
+	</select>
 </mapper>

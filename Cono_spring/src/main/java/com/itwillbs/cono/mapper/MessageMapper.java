@@ -13,11 +13,13 @@ public interface MessageMapper {
 	// 메시지 리스트 목록 뽑기
 	public List<HashMap<String, String>> selectMsgList(@Param("sId") String sId);
 	// 메시지 내용 입력
-	public int insertMsgContent(MsgChatDTO dto);
+	public int insertMsgContent(@Param("dto") MsgChatDTO dto);
 	// 메시지 내용 출력
 	public List<HashMap<String, String>> selectAllMsg(String msgList_room);
 	// 메시지 삭제
 	public int deleteMsg(String msgList_room);
+	
+//	public String selectShop_idx(String sId);
 
 
 }

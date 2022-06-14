@@ -7,6 +7,7 @@ public class MsgChatDTO {
 	private String msgChat_recv;
 	private String msgChat_content;
 	private String msgChat_time;
+	
 	public String getMsgChat_idx() {
 		return msgChat_idx;
 	}
