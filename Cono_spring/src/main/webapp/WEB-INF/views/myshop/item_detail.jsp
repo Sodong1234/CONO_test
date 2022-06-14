@@ -27,7 +27,7 @@ if(session.getAttribute("sId") == null) {
 			  <a class="nav-link" href="ItemReviewMng.shop">상품 후기 관리</a>
 			  <a class="nav-link" href="ItemOrdMng.shop">상품 주문 관리</a>
 			  <a class="nav-link" href="follow">팔로우 상점</a>
-			  </li>
+			</li>
 		</ul>
 	</aside>
 			

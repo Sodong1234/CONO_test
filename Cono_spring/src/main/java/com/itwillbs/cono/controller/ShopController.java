@@ -324,22 +324,34 @@ public class ShopController {
 	}
 	// -------------------------------------------------------------------------
 	
-	// 팔로잉 & 팔로워
+	// 팔로워
 	@RequestMapping(value = "follow", method = RequestMethod.GET)
-	public String follow(HttpSession session, Model model) {
+	public String follower(HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
 		// 팔로잉 팔로워 정보 
-		List<HashMap<String, String>> followingList = service.getfollowingList(sId);
 		List<HashMap<String, String>> followerList = service.getfollowerList(sId);
 		// 팔로잉 팔로워 수
 		int followingCount = service.getFollowingCount(sId);
 		int followerCount = service.getFollowerCount(sId);
-		model.addAttribute("followingList", followingList);
 		model.addAttribute("followerList", followerList);
-		model.addAttribute("followingCount", followingCount);
 		model.addAttribute("followerCount", followerCount);
 
 		return "myshop/list_follower";
+	}
+	
+	// 팔로잉
+	@RequestMapping(value = "following", method = RequestMethod.GET)
+	public String following(HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		// 팔로잉 팔로워 정보 
+		List<HashMap<String, String>> followingList = service.getfollowingList(sId);
+		// 팔로잉 팔로워 수
+		int followingCount = service.getFollowingCount(sId);
+		int followerCount = service.getFollowerCount(sId);
+		model.addAttribute("followingList", followingList);
+		model.addAttribute("followingCount", followingCount);
+
+		return "myshop/list_following";
 	}
 	
 	// 언팔

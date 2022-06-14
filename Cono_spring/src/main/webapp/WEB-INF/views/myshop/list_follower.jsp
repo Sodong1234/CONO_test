@@ -45,8 +45,8 @@
 	
 	<section>
 		<nav class="navstyle">
-			<a class="activefollow">팔로우 상점</a>
-			<a href="list_follower.jsp" class="activefollower">팔로워 상점</a>
+			<a href="follow" class="activefollow">팔로우 상점</a>
+			<a href="following" class="activefollower">팔로워 상점</a>
 		</nav>
 <%-- 		<c:forEach var="follower" items="${followerList }"> --%>
 			<div class="follow">
