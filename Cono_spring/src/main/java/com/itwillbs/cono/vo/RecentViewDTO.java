@@ -4,6 +4,9 @@ public class RecentViewDTO {
 	private String member_id;
 	private String item_idx;
 	private String viewTime;
+	
+	
+	
 	public String getMember_id() {
 		return member_id;
 	}

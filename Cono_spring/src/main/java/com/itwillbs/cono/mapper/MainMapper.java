@@ -24,6 +24,8 @@ public interface MainMapper {
 
 	// 실시간 인기상품
 	public List<ItemDTO> selectHotItemList();
+	// 최근 상품 조회
+	public List<HashMap<String, String>> selectRecent(String sId);
 
 
 }

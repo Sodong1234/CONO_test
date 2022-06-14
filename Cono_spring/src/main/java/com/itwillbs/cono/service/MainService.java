@@ -45,5 +45,9 @@ public class MainService {
 		
 		return mapper.selectHotItemList();
 	}
+	// 최근게시물 조회
+	public List<HashMap<String, String>> getRecent(String sId) {
+		return mapper.selectRecent(sId);
+	}
 
 }

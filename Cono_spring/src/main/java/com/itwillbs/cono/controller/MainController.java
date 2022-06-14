@@ -128,17 +128,29 @@ public class MainController {
 	
 	// 검색
 	@RequestMapping(value = "search_item", method = RequestMethod.GET)
-	public String search_item(String searchText, Model model) {
+	public String search_item(String searchText, Model model, HttpSession session) {
+		String sId = (String)session.getAttribute("sId");
+		
 		List<HashMap<String, String>>  cardList = service.getCardList("%" + searchText + "%");
+		
+		// 최근 조회
+		List<HashMap<String, String>> getRecent = service.getRecent(sId);
+		
 		model.addAttribute("searchText", searchText);
 		model.addAttribute("cardList", cardList);
+		model.addAttribute("getRecent", getRecent);
 		return "search/search_item";
 	}
 	
 	@RequestMapping(value = "search_category", method = RequestMethod.GET)
-	public String search_item_fashion(Model model, String cgr) {
+	public String search_item_fashion(Model model, String cgr, HttpSession session) {
+		String sId = (String)session.getAttribute("sId");
 		List<HashMap<String, String>>  cardList = service.getCategoryCardList(cgr);
+		// 최근 조회
+		List<HashMap<String, String>> getRecent = service.getRecent(sId);
+		
 		model.addAttribute("cardList", cardList);
+		model.addAttribute("getRecent", getRecent);
 		return "search/search_item";
 	}
 	

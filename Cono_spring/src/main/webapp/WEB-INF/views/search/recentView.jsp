@@ -95,44 +95,14 @@
 			<span>최근 조회</span>
 		</div>
 			<ul class="recent_ul" id="recent_ul" style="display: none;">
-<!-- 				<c:forEach var="img" items=""> -->
-					
-<!-- 				</c:forEach> -->
-					<li class="recent_li" onclick="">
+				<c:forEach var="recent" items="${getRecent}">
+					<li class="recent_li" onclick="location.href='itemDetail?item_idx=${recent.item_idx}'">
 						<div class="recent_li_box">
-							<input type="hidden" value="">
-							<img class="recent_img" src="">
-							<div class="recent_item_title">치즈냥이 좋아</div>
+							<img class="recent_img" src="resources/upload/file/${recent.img_name}">
+							<div class="recent_item_title">${recent.item_title }</div>
 						</div>
 					</li>
-					<li class="recent_li" onclick="">
-						<div class="recent_li_box">
-							<input type="hidden" value="">
-							<img class="recent_img" src="">
-							<div class="recent_item_title">고양이귀여워</div>
-						</div>
-					</li>
-					<li class="recent_li" onclick="">
-						<div class="recent_li_box">
-							<input type="hidden" value="">
-							<img class="recent_img" src="">
-							<div class="recent_item_title">귀여운게 젤 좋아</div>
-						</div>
-					</li>
-					<li class="recent_li" onclick="">
-						<div class="recent_li_box">
-							<input type="hidden" value="">
-							<img class="recent_img" src="">
-							<div class="recent_item_title">공룡이 더 귀여워</div>
-						</div>
-					</li>
-					<li class="recent_li" onclick="">
-						<div class="recent_li_box">
-							<input type="hidden" value="">
-							<img class="recent_img" src="">
-							<div class="recent_item_title">뱃살</div>
-						</div>
-					</li>
+				</c:forEach>
 			</ul>
 		
 	</div>
