@@ -40,7 +40,7 @@ if(session.getAttribute("sId") == null) {
 				dataType: "json"
 			})
 			.done(function(data) {
-				alert(data.length);
+// 				alert(data.length);
 				$("#category_area").html("<select name='category_small'></select>");
 // 				for(let i = 0; i < data.length; i++) {
 // 					alert("d");
@@ -196,9 +196,12 @@ if(session.getAttribute("sId") == null) {
 									<option value="7">뷰티/미용</option>
 									<option value="8">반려</option>
 								</select>
-								<div id="category_area">
-								</div>
-								
+<!-- 								<div id="category_area"> -->
+									<select name="category_small">
+										<option>1</option>		
+									</select>
+<!-- 								</div> -->
+							</li>
 <!-- 								<div class="category_con"> -->
 <!-- 									<div class="contentArea"> -->
 <!-- 										<div class="categoryStep"> -->
