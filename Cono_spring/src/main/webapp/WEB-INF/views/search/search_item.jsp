@@ -221,15 +221,33 @@ p {
 		<jsp:include page="../header_footer/top.jsp" />
 	</div>
 	<!-- 	<div class="navbar"></div> -->
-	<jsp:include page="../search/recentView.jsp" />
 	<hr>
+	<div class="search_filter">
+		<div class="filter_button_wrap">
+			<button class="filter_button filter_active" id="filter_button_a">검색A</button>
+			<button class="filter_button" id="filter_button_b">검색B</button>
+		</div>
+		
+		<div class="filter_content filter_a">
+						<a>테스트용1</a>
+						<a>테스트용2</a>
+		</div>
+		<div class="filter_content filter_b">
+						<a>테스트용3</a>
+						<a>테스트용4</a>				
+		</div>		
+		<form id="filter_form" action="/search_item" method="get" >
+			<input type="hidden" name="keyword">
+			<input type="hidden" name="cateCode">
+			<input type="hidden" name="type">
+		</form>			
+	</div>
 	<!-- 필터 추가 -->
-	<h1 class="search_h1">'${searchText }' 검색 내용입니다. <jsp:include page="../search/recentView.jsp" /></h1>
+	<h1>'${searchText }' 검색 내용입니다.</h1>
 	<c:forEach var="card" items="${cardList }">
 		<div class="products">
-			<a href="itemDetail?item_idx=${card.item_idx}"> 
-<%-- 			<img alt=""	src="<spring:url value='/resources/upload/file/${card.img_name }'/>"> --%>
-				<img alt=""	src="resources/upload/file/${card.img_name}">
+			<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""
+				src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
 				<p class="name">${card.item_title }</p>
 				<p class="region">${card.item_region }</p>
 				<p class="price">${card.item_price }원</p>
@@ -237,9 +255,9 @@ p {
 		</div>
 	</c:forEach>
 
-<!-- 	<div> -->
-<%-- 		<jsp:include page="../header_footer/bottom.jsp"/> --%>
-<!-- 	</div> -->
+	<div>
+		<jsp:include page="../header_footer/bottom.jsp"/>
+	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
 crossorigin="anonymous"></script>
