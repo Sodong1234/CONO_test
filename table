@@ -212,7 +212,7 @@ CREATE TABLE msgChat (
 	msgChat_recv varchar(20),
 	msgChat_content varchar(500),
 	msgChat_time varchar(20),
-	PRIMARY KEY (msgChat_idx)
+	PRIMARY KEY (msgChat_idx, msgList_room)
 );
 
 
