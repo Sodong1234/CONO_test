@@ -221,6 +221,7 @@ p {
 		<jsp:include page="../header_footer/top.jsp" />
 	</div>
 	<!-- 	<div class="navbar"></div> -->
+	<jsp:include page="../search/recentView.jsp" />
 	<hr>
 	<div class="search_filter">
 		<div class="filter_button_wrap">
