@@ -156,7 +156,7 @@ h1 {
 			<div class="btnArea">
 		<input type="button" value="목록" id="btn" onclick="location.href='AdminReportList'"> 
 		<input type="button" value="수정" id="btn" class="btn" onclick="location.href='AdminReportModifyForm.admin?report_idx=${reportList.getReport_idx() }&pageNum=${param.pageNum }'"> 
-		<input type="button" id ="btn" onclick="location.href='AdminReportDeletePro.admin?report_idx=${report.getReport_idx() }&pageNum=${param.pageNum }'" value="삭제">
+		<input type="button" id ="btn" onclick="location.href='AdminReportDeletePro.admin?report_idx=${reportList.getReport_idx() }&pageNum=${param.pageNum }'" value="삭제">
 	</div>
 </div>
 </div>

@@ -150,8 +150,10 @@ h1{
 		
 		<div class="btnArea">
 		<input type="button" value="목록" id="btn"  onclick="location.href='AdminNoticeList'"> 
+		<%if(sId.equals("admin")){ %>
 		<input type="button" value="수정" id="btn"  onclick="location.href='AdminNoticeModifyForm.admin?notice_idx=${noticeList.getNotice_idx() }&pageNum=${param.pageNum }'">
 		<input type="button" value="삭제" id="btn" onclick="location.href='AdminNoticeDeletePro.admin?notice_idx=${noticeList.getNotice_idx() }&pageNum=${param.pageNum }'">
+		<%} %>
 		</div>
 	</div>
 	</div>

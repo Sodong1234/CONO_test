@@ -399,11 +399,13 @@ public class AdminController {
 			return "fail_back";
 		}
 
-		model.addAttribute("reportList", reportList.getReport_idx());
+		model.addAttribute("report_idx", reportList.getReport_idx());
 		model.addAttribute("pageNum", pageNum);
 
 		return "redirect:/AdminReportView.admin";
 	}
+	
+	
 
 	// report 글 삭제 비즈니스 로직 - POST
 	@RequestMapping(value = "AdminReportDeletePro.admin", method = RequestMethod.GET)

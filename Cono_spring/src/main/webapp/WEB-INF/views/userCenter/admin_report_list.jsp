@@ -260,7 +260,7 @@ input[type=text] {
 
 							<div class="report_delete">
 							
-								<%if(sId.equals("admin")){ %><input type="button" id ="btn" onclick="location.href='ReportDeleteAdmin.admin??item_idx=1'"
+								<%if(sId.equals("admin")){ %><input type="button" id ="btn" onclick="location.href='ReportDeleteAdmin.admin?item_idx=1'"
 									value="삭제"><%} %>
 							</div>
 						</div>

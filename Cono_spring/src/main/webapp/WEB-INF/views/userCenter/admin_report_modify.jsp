@@ -114,7 +114,7 @@ select {
 			<div class="hh"><h1>Report Modify </h1></div>
 			<form action="AdminReportModifyPro.admin" method="post">
 			<input type ="hidden" name ="report_idx" value="<%=request.getParameter("report_idx") %>">
-				
+				<input type ="hidden" name ="pageNum" value="<%=request.getParameter("pageNum") %>">
 				<div class = "report_type">
 					<select name="report_type">
 						<option value="선택">선택</option>
