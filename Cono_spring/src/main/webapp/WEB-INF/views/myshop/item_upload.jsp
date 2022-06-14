@@ -40,14 +40,12 @@ if(session.getAttribute("sId") == null) {
 				dataType: "json"
 			})
 			.done(function(data) {
+				alert(data.length);
 				$("#category_area").html("<select name='category_small'></select>");
-// 				alert(data[1]["11"]);
-// 				alert(Object.keys(data).length);
-				for(let i = 1; i < Object.keys(data).length; i++) {
-					alert(Object.keys(data)[1].length);
-// 					for(let j = 1; j < Object.keys(data)[0]) // dfksjd;flsjf;lksajf;lksjfsdlkfjs;adlfjs;aldfjs;lkfjslk;
-					$("#category_area > select").append("<option value=>" +  + "</option>");
-				}
+// 				for(let i = 0; i < data.length; i++) {
+// 					alert("d");
+// 					$("#category_area > select").append("<option>" + "dd" + "</option>");
+// 				}
 
 // 				$("#category_area > select").append(
 						
@@ -199,9 +197,6 @@ if(session.getAttribute("sId") == null) {
 									<option value="8">반려</option>
 								</select>
 								<div id="category_area">
-									<select name="category_small">
-										<option></option>
-									</select>
 								</div>
 								
 <!-- 								<div class="category_con"> -->
