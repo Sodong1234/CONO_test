@@ -82,8 +82,6 @@ public class ItemController {
 	@RequestMapping(value = "PayItem", method = RequestMethod.POST)
 	public String payItem(HttpSession session, @ModelAttribute CouponDTO coupon, @RequestParam String item_idx, @RequestParam String item_price, OrdDTO ord, Model model) {
 		
-		System.out.println(coupon.getCoupon_price());
-		
 		String member_id = session.getAttribute("sId").toString();
 		
 		if(member_id == null) {
