@@ -58,6 +58,7 @@ public interface MypageMapper {
 	public int selectWaitingCount(String sId);
 	// 내가 쓴 리뷰 확인
 	public List<ReviewDTO> selectReadReviewList(String sId);
+	public List<HashMap<String, String>> selectWaitingList(String sId);
 
 
 

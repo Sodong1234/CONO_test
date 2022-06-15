@@ -117,6 +117,10 @@ public class MypageService {
 	public List<ReviewDTO> getReadReviewList(String sId) {
 		return mapper.selectReadReviewList(sId);
 	}
+
+	public List<HashMap<String, String>> getWaitingList(String sId) {
+		return mapper.selectWaitingList(sId);
+	}
 	
 
 	

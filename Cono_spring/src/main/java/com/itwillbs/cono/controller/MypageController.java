@@ -204,6 +204,11 @@ public class MypageController {
 	// 구매 중
 	@RequestMapping(value = "waiting", method = RequestMethod.GET)
 	public String waiting(HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+
+		List<HashMap<String, String>> waitingList = service.getWaitingList(sId);
+		model.addAttribute("waitingList",waitingList);
+		
 		
 		return "mypage/center_waiting";
 	}
