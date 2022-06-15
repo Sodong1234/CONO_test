@@ -174,9 +174,8 @@
 		  FROM review r, item i, shop s
 		 WHERE 1=1
 		   AND r.item_idx = i.item_idx
-		   AND i.item_status='1'
 		   AND i.shop_idx = s.shop_idx
-		   AND s.member_id = #{member_id};
+		   AND s.member_id = #{member_id}
 	</select>
 	
 	<!-- 각 점수 별 상품 개수 조회 -->
@@ -186,7 +185,6 @@
 		WHERE r.item_idx = i.item_idx
 		AND i.shop_idx = s.shop_idx
 		AND s.member_id = #{member_id}
-		AND i.item_status = '1'
 		AND r.review_score = #{i}
 	</select>
 	
@@ -198,7 +196,6 @@
 		AND g.item_idx = i.item_idx
 		AND g.img_idx = '1'
 		AND s.member_id = #{member_id}
-		AND i.item_status='1'
 		ORDER BY i.item_idx*1
 	</select>
 	

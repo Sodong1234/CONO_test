@@ -246,7 +246,6 @@ public class ShopController {
 		
 		// 점수 별 상품 개수 조회
 		HashMap<String, String> itemScore = service.selectItemScore(member_id);
-		
 		// 상품 고를 때 클릭할 이미지(img_name) 조회
 		List<HashMap<String, String>> imgNameList = service.selectItemImgName(member_id);
 		
