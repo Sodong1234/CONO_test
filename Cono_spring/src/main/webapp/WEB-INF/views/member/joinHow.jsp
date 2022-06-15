@@ -39,6 +39,7 @@ body {
 				<button class="btn btn-primary" name="normal" 
 				onclick="location.href='join'">기본 가입</button>
 				<br>
+				<!--  -->
 			</div>
 		</fieldset>
 	</div>
