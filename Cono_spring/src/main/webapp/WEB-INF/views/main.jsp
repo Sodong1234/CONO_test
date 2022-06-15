@@ -23,7 +23,7 @@ a{
 .intro_bg{
     width: 100%;
     height: 350px;
-    background-color: rgb(234, 237, 242);
+    background-color:#CDF0EA;
 }
 .main_text{
 	width: 920px;
