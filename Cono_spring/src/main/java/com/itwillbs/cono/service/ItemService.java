@@ -117,6 +117,15 @@ public class ItemService {
 		mapper.deleteWish(item_idx, member_id);
 	}
 
+    // 최근 조회 존재 여부
+    public int existRecent(String member_id, String item_idx) {
+       return mapper.selectRecentExist(member_id,item_idx);
+    } 
+    // 최근 조회 insert
+    public int insertRecentView(String member_id, String item_idx, int existRecent) {
+       return mapper.insertRecentView(member_id, item_idx, existRecent);
+    }
+
 	
 	// coin 테이블 insert (판매자)
 //	public void insertCoinSeller(OrdDTO ord, String item_price) {

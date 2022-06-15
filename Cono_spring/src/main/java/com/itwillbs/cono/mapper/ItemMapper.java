@@ -69,6 +69,10 @@ public interface ItemMapper {
 	// 찜 취소
 	void deleteWish(@Param("item_idx") String item_idx, @Param("member_id") String member_id);
 
+	// 최근조회 존재여부
+	int selectRecentExist(@Param("member_id") String member_id, @Param("item_idx") String item_idx);
+	// 최근 조회 insert
+	int insertRecentView(@Param("member_id") String member_id, @Param("item_idx") String item_idx, @Param("existRecent") int existRecent);
 	// coin 테이블 insert (판매자)
 //	void insertCoinSeller(@Param("ord") OrdDTO ord, @Param("item_price") String item_price);
 	

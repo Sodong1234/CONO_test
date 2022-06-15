@@ -186,4 +186,25 @@
 <!-- 				,DATE_FORMAT(now(), "%Y%m%d%H%i%s") -->
 <!-- 			   ) -->
 <!-- 	</insert> -->
+
+<!--       최근 존재 -->
+   <select id="selectRecentExist" resultType="java.lang.Integer">
+      SELECT COUNT(item_idx) 
+        FROM recentView
+       WHERE member_id = #{member_id} 
+         AND item_idx = #{item_idx}
+   </select>
+<!--          최근 조회 insert -->
+   <insert id="insertRecentView">
+      <if test="existRecent == 0">
+         INSERT INTO recentView 
+             VALUES (#{member_id}, #{item_idx} ,DATE_FORMAT(now(), "%Y%m%d%H%i%s"))
+      </if>
+      <if test="existRecent != 0">
+         UPDATE recentView 
+            SET viewTime = DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+          WHERE member_id = #{member_id} AND item_idx = #{item_idx}
+      </if>
+   </insert>
+
 </mapper>

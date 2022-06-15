@@ -41,6 +41,12 @@ public class ItemController {
 		// 찜 여부 조회
 		WishDTO wish = service.selectWish(item_idx, member_id);
 		
+        // 최근 조회 존재여부
+        int existRecent = service.existRecent(member_id, item_idx);
+        System.out.println("최근 1: " + existRecent);
+        // 최근조회 insert
+        int insertCount = service.insertRecentView(member_id, item_idx, existRecent);
+	    System.out.println("최근 2: " + insertCount);
 		model.addAttribute("itemDetail", itemDetail);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("wish", wish);
