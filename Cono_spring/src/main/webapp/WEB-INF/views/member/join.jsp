@@ -218,10 +218,10 @@ body {
 	min-height: 100vh;
 	background: -webkit-gradient(linear, left bottom, right top, from(#92b5db),
 		to(#1d466c));
-	background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+	background: -webkit-linear-gradient(bottom left, #CFFFE5 0%, #6EB4B5 100%);
+	background: -moz-linear-gradient(bottom left, #CFFFE5 0%, #6EB4B5 100%);
+	background: -o-linear-gradient(bottom left, #CFFFE5 0%, #6EB4B5 100%);
+	background: linear-gradient(to top right, #CFFFE5 0%, #6EB4B5 100%);
 }
 
 .input-form {
@@ -307,7 +307,7 @@ body {
 									name="number" id="number" placeholder="인증번호 입력"><br>
 									<input type="button" value="확인"><br>
 								</div>
-
+<!--  -->
 								<input type="checkbox" name="1" value="모두동의" checked="checked">모두동의 <br> <input type="checkbox" name="2" value="약관1" checked="checked">약관1 <br> <input type="checkbox" name="3" value="약관2" checked="checked">약관2 <br> <input type="checkbox" name="4" value="약관3" checked="checked">약관3 <br> <input type="submit" value="가입하기" class="submit">
 							</form>
 						</div>

@@ -20,24 +20,12 @@ body {
 	min-height: 100vh;
 	background: -webkit-gradient(linear, left bottom, right top, from(#92b5db),
 		to(#1d466c));
-	background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+	background: -webkit-linear-gradient(bottom left, #CFFFE5 0%, #6EB4B5 100%);
+	background: -moz-linear-gradient(bottom left, #CFFFE5 0%, #6EB4B5 100%);
+	background: -o-linear-gradient(bottom left, #CFFFE5 0%, #6EB4B5 100%);
+	background: linear-gradient(to top right, #CFFFE5 0%, #6EB4B5 100%);
 }
 
-.input-form {
-	max-width: 680px;
-	margin-top: 80px;
-	padding: 32px;
-	background: #fff;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-}
 </style>
 <body>
 	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
@@ -51,6 +39,7 @@ body {
 				<button class="btn btn-primary" name="normal" 
 				onclick="location.href='join'">기본 가입</button>
 				<br>
+				<!--  -->
 			</div>
 		</fieldset>
 	</div>
