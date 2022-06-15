@@ -33,24 +33,19 @@ if(session.getAttribute("sId") == null) {
 
 	$(function() {
 		$("#big").on("change", function() {
-			let big = $("#big").val();
+			let big = $("#big").val()-1;	// 대분류 value값
 			$.ajax({
 				type:"GET",
 				url:"${path}/resources/category.txt",
 				dataType: "json"
 			})
 			.done(function(data) {
-// 				alert(data.length);
 				$("#category_area").html("<select name='category_small'></select>");
-// 				for(let i = 0; i < data.length; i++) {
-// 					alert("d");
-// 					$("#category_area > select").append("<option>" + "dd" + "</option>");
-// 				}
-
-// 				$("#category_area > select").append(
-						
-// 						"<option value=>" + + "</option>" 
-// 											      + "");
+				let keys = data[big];	// 대분류에 해당하는 소분류 배열
+				for(let j = 0; j < Object.keys(keys).length; j++) {
+					let value = Object.keys(keys)[j];	// 소분류 key값
+					$("#category_area > select").append("<option value='Object.keys(keys)[j]'>" + keys[value] + "</option>");
+				}
 			})
 			.fail(function() {
 				$("#category_area").html("요청 실패");
@@ -196,11 +191,12 @@ if(session.getAttribute("sId") == null) {
 									<option value="7">뷰티/미용</option>
 									<option value="8">반려</option>
 								</select>
-<!-- 								<div id="category_area"> -->
+								<div id="category_area">
 									<select name="category_small">
-										<option>1</option>		
+										<option value="11">여성패션</option>
+										<option value="12">남성패션</option>
 									</select>
-<!-- 								</div> -->
+								</div>
 							</li>
 <!-- 								<div class="category_con"> -->
 <!-- 									<div class="contentArea"> -->
