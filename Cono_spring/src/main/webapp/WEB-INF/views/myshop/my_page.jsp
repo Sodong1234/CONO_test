@@ -16,7 +16,6 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 <head>
 <meta charset="UTF-8">
 <title>myShop/my_page.jsp</title>
-	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/my_page.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -32,23 +31,16 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 			<jsp:include page="../header_footer/header.jsp"/>
 	</div>
 		
-		<!------ 상단 바 ------>
+	<!------ 사이드바 ------>
+	<div>
+		<jsp:include page="./myshop_sidebar.jsp"/>
+	</div>
 		
-		<!-- 사이드 바 -->
-		
-				
-	<aside class="side">
-		<ul class="side-list">
-			<li>
-			  <a class="nav-link active" aria-current="page" href="ProductMyshop.shop">내 상점</a>
-			  <a class="nav-link" href="ItemUploadForm.shop">상품 등록</a>
-			  <a class="nav-link" href="ItemMng.shop">상품 관리</a>
-			  <a class="nav-link" href="ItemReviewMng.shop">상품 후기 관리</a>
-			  <a class="nav-link" href="ItemOrdMng.shop">상품 주문 관리</a>
-			  <a class="nav-link" href="follow">팔로우 상점</a>
-			  </li>
-		</ul>
-	</aside>
+
+
+
+	
+	
 			
 		<!-- 사이드 바 -->
 		
