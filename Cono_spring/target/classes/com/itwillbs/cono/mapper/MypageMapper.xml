@@ -53,13 +53,18 @@
 <!-- 	결제 데이터 삽입하기 -->
 	<insert id="insertPayment">
 		INSERT INTO payment
-		VALUES (1+(SELECT COUNT(p.payment_idx) FROM payment p), #{sId}, (SELECT m.member_phone FROM member m WHERE m.member_id = #{sId}),
-			    #{payment_value},date_format(now(), '%Y%m%d%H%i%S'))
+		VALUES (
+				1+(SELECT COUNT(p.payment_idx) FROM payment p WHERE member_id = #{sId}), 
+				#{sId}, 
+				(SELECT m.member_phone FROM member m WHERE m.member_id = #{sId}),
+			    #{payment_value},
+			    date_format(now(), '%Y%m%d%H%i%S')
+			    )
 	</insert>
 	
 <!-- 	결제 데이터 받아오기 -->
 	<select id="selectPayment" resultType="com.itwillbs.cono.vo.PaymentDTO">
-		SELECT  payment_idx, member_id, member_phone, payment_value, payment_date
+		SELECT payment_idx, member_id, member_phone, payment_value, payment_date
 		FROM payment
 		WHERE member_id = #{sId}
 		ORDER BY payment_idx DESC
@@ -73,7 +78,7 @@
 				#{sId}, 
 				#{payment_value}, 
 				'0', 
-				#{payment_value} + #{balance}, 
+				(#{payment_value} + #{balance}), 
 				date_format(now(), '%Y%m%d%H%i%S'))
 	</insert>
 	

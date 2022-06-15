@@ -191,23 +191,19 @@ td {
    		<div class="cashListWrap" align="center">
 			<table class="cashTable" >
 			
-					<tr>
-						<th class="num">No.</th><th class="coin_add">적립내역</th><th class="coin_use">사용내역</th><th class="td_coin_total">보유 코인</th><th class="date">날짜</th>
-					<tr>
-						
-<%-- 						 <c:forEach var="coinVO" items="${coin }"> --%>
-<%-- 							<td class="num">${coinVO.coin_idx} 숫 자 </td> --%>
-<%-- 							<td class="coin_add">${coinVO.coin_add }  숫 자 </td> --%>
-<%-- 							<td class="coin_use">${coinVO.coin_use }  숫 자 </td> --%>
-<%-- 							<td class="td_coin_total">${coinVO.coin_total }  숫 자  </td> --%>
-<%-- 							<td class="date">${coinVO.coin_date }  숫 자  </td> --%>
-<%--       					</c:forEach> --%>
-<td class="num">${coinVO.coin_idx} 숫 자 </td>
-<td class="coin_add">${coinVO.coin_add }  숫 자 </td>
-<td class="coin_use">${coinVO.coin_use }  숫 자 </td>
-<td class="td_coin_total">${coinVO.coin_total }  숫 자  </td>
-<td class="date">${coinVO.coin_date }  숫 자  </td>
-      			</tr>
+				<tr>
+					<th class="num">No.</th><th class="coin_add">적립내역</th><th class="coin_use">사용내역</th><th class="td_coin_total">보유 코인</th><th class="date">날짜</th>
+				
+					 <c:forEach var="coinVO" items="${coin }">
+						<tr>
+							<td class="num">${coinVO.coin_idx}</td>
+							<td class="coin_add">${coinVO.coin_add }</td>
+							<td class="coin_use">${coinVO.coin_use }</td>
+							<td class="td_coin_total">${coinVO.coin_total }</td>
+							<td class="date">${coinVO.coin_date }</td>
+						</tr>
+   					</c:forEach>
+      			
 	   </table>
       	
       	</div> <!-- cashListWrap 디브 -->

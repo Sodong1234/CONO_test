@@ -33,7 +33,7 @@ public class MypageController {
 		// 코인 잔액
 		String coin_total = service.getCoinTotal(sId);
 		model.addAttribute("coin_total", coin_total);
-		
+		System.out.println("Coin_total : " + coin_total);
 		// 예약 상품 수
 //		int reservedCount = service.getReservedCount(sId);
 //		model.addAttribute("reservedCount",reservedCount);
@@ -159,37 +159,13 @@ public class MypageController {
 	public String coin(HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
 
-//			int listCount = service.getCoinListCount(sId);	// 전체 코인 내역 수
-//			int listLimit = 10; // 한 페이지 당 표시할 목록 갯수
-//			int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
-//			
-//			// 페이징 처리를 위한 계산 작업
-//			int maxPage = (int)Math.ceil((double)listCount / listLimit);
-//			int startPage = ((int)((double)pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
-//			int endPage = startPage + pageLimit - 1;
-//			if(endPage > maxPage) {
-//				endPage = maxPage;
-//			}
-//			// 조회 시작 게시물 번호(행 번호) 계산
-//			int startRow = (pageNum - 1) * listLimit;
-//			
-//			// 페이징 처리 정보를 PageInfo 객체에 저장
-//			PageInfo pageInfo = new PageInfo();
-//			pageInfo.setPageNum(pageNum);
-//			pageInfo.setMaxPage(maxPage);
-//			pageInfo.setStartPage(startPage);
-//			pageInfo.setEndPage(endPage);
-//			pageInfo.setListCount(listCount);
-//			pageInfo.setStartRow(startRow);
-//			pageInfo.setListLimit(listLimit);
-
 		String coin_total = service.getCoinTotal(sId);
 		List<CoinDTO> coin = service.getCoinInfoList(sId);
 //		System.out.println(coin.toString());
 //			
 		model.addAttribute("coin_total", coin_total);
 		model.addAttribute("coin", coin);
-		System.out.println(coin.isEmpty());
+		System.out.println(coin.toString());
 		return "mypage/center_coin";
 	}
 
@@ -208,6 +184,9 @@ public class MypageController {
 	public String coinAdd (HttpSession session, String payment_value) {
 		String sId = (String)session.getAttribute("sId");
 		String balance = service.getCoinTotal(sId);
+		if(balance == null) {
+			balance = "0";
+		}
 		service.setCoinAdd(sId, payment_value, balance);
 		
 		return "redirect:/mypage";
