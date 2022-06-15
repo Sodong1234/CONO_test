@@ -46,12 +46,26 @@ public class AdminService2 {
 
 		return mapper.selectAllDeal(pageNum, listLimit);
 	}
+	
+	// 거래 취소 요청 수
+	public int getAdminDealCancelListCount() {
+		
+		return mapper.selectDealCancelListCount();
+	}
+
+	// 거래취소요청 리스트
+	public List<HashMap<String, Object>> getAdminDealCancelList(int pageNum, int listLimit) {
+		
+		return mapper.selectAllDealCancel(pageNum, listLimit);
+	}
 
 	//  거래취소 (관리자)
 	public int dealCancel(String item_idx, String safe_status) {
 		
 		return mapper.updateDealCancel(item_idx, safe_status);
 	}
+
+
 
 
 }

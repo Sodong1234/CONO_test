@@ -35,19 +35,20 @@
 <div class="body">
 
 
-	<h2>거래 현황 리스트</h2>
+	<h2>거래 취소 요청</h2>
 
-	현재 거래 현황 : ${listCount }
+	거래 취소 요청 : ${listCount }
 	<hr>
 	<table class="type04">
 		<tr>
-			<th>No.</th>
+			<th width="50">No.</th>
 			<th>상품명</th>
 			<th>상품번호</th>
+			<th>취소요청일</th>
+			<th>사유</th>
 			<th>구매자</th>
+			<th>판매자</th>
 			<th>거래 코인</th>
-			<th>거래 날짜</th>
-			<th>거래상태</th>
 			<th>거래취소</th>
 		</tr>
 		
@@ -57,10 +58,11 @@
 					<th>No.</th>
 					<td><a href="" class="title">${product.item_title }</a></td>
 					<td>${product.item_idx }</td>
+					<th>요청날짜</th>
+					<td>사유</td>
 					<td>${product.member_id }</td>
+					<th>판매자</th>
 					<td>${product.safe_coin }</td>
-					<td>${product.ord_date }</td>
-					<td>${product.item_status }</td>
 					<td><input type="button" id="search_btn" value="거래취소" onclick="dealCancel('${product.item_idx }', '${product.safe_coin }', '${product.item_status }','${pageInfo.pageNum }')"></td>
 				</tr>
 			</c:forEach>

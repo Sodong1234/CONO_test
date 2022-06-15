@@ -29,9 +29,14 @@ public interface AdminMapper2 {
 	// 현재 진행 거래 리스트
 	public List<HashMap<String, Object>> selectAllDeal(int pageNum, int listLimit);
 
+	// 거래 취소 요청 수
+	public int selectDealCancelListCount();
+
+	// 거래취소 요청 리스트
+	public List<HashMap<String, Object>> selectAllDealCancel(int pageNum, int listLimit);
+
 	// 거래취소
 	public int updateDealCancel(@Param("item_idx")String item_idx, @Param("safe_status") String safe_status);
-
 	
 	
 

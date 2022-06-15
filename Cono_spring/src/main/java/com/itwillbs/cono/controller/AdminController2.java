@@ -145,7 +145,7 @@ public class AdminController2 {
 		return "userCenter/admin_member_list";
 	}
 	
-	
+	// --------------------------------------------------------------------------------------------------------
 	// ------ 거래 리스트 (관리자) - 김혜은
 	@RequestMapping(value = "/AdminDealList", method = RequestMethod.GET)
 	public String dealList(@RequestParam(defaultValue = "1")int pageNum, Model model) {
@@ -185,6 +185,47 @@ public class AdminController2 {
 		
 		return "userCenter/admin_deal_list";
 	}
+	
+	
+	// ------ 거래 취소 요청 리스트 (관리자) - 김혜은
+		@RequestMapping(value = "/AdminDealCancelList", method = RequestMethod.GET)
+		public String dealCancelList(@RequestParam(defaultValue = "1")int pageNum, Model model) {
+			
+			// 페이징 처리
+			int listLimit = 10;
+			int pageLimit = 5;
+			
+			// 현재 거래 수 조회
+			int listCount = service.getAdminDealCancelListCount();
+			
+			// 거래 목록 조회
+			List<HashMap<String, Object>> dealList = service.getAdminDealCancelList(pageNum, listLimit);
+			
+			// 페이징 처리를 위한 계산 작업
+			int maxPage = (int) Math.ceil((double) listCount / listLimit);
+			int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+			int endPage = startPage + pageLimit - 1;
+			if (endPage > maxPage) {
+				endPage = maxPage;
+			}
+			
+			int startRow = (pageNum - 1) * listLimit;
+			
+			// 페이징 처리 정보 저장
+			PageInfo pageInfo = new PageInfo();
+			pageInfo.setPageNum(pageNum);
+			pageInfo.setMaxPage(maxPage);
+			pageInfo.setStartPage(startPage);
+			pageInfo.setEndPage(endPage);
+			pageInfo.setListCount(listCount);
+			pageInfo.setStartRow(startRow);
+			pageInfo.setListLimit(listLimit);
+			
+			model.addAttribute("dealList", dealList);
+			model.addAttribute("pageInfo", pageInfo);
+			
+			return "userCenter/admin_deal_Cancel";
+		}
 	
 	
 	// ------ 거래 취소 (관리자)
