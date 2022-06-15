@@ -30,6 +30,7 @@ public class AdminController {
 	@RequestMapping(value = "admin_center_main", method = RequestMethod.GET)
 	public String adminCenter() {
 		return "/admin_center/main";
+		
 	}
 	// -------------- 고객센터 공지사항 리스트, 검색기능 (관리자) - 김도은 -------------
 
