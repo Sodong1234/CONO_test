@@ -202,6 +202,13 @@
 		ORDER BY i.item_idx*1
 	</select>
 	
+	<!-- 후기 리스트 개수 -->
+	<select id="selectReviewListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM review
+		WHERE member_id = #{member_id}
+	</select>
+	
 	<!-- 후기 리스트 조회 -->
 	<select id="selectReviewList" resultType="java.util.HashMap">
 		SELECT r.review_idx, r.review_content, r.review_date, r.member_id, r.review_score
@@ -213,6 +220,7 @@
 		<if test="item_idx != null">
 			AND i.item_idx = #{item_idx}
 		</if>
+		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 	</select>
 	
 	<!-- 클릭된 이미지 조회 -->

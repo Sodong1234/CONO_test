@@ -356,9 +356,14 @@ public class ShopService {
 		return mapper.selectItemImgName(member_id);
 	}
 
+	// 후기 개수 조회
+	public int selectReviewListCount(String member_id) {
+		return mapper.selectReviewListCount(member_id);
+	}
+	
 	// 후기 리스트 조회
-	public List<HashMap<String, String>> selectReviewList(String member_id, String item_idx) {
-		return mapper.selectReviewList(member_id, item_idx);
+	public List<HashMap<String, String>> selectReviewList(String member_id, String item_idx, PageInfo pageInfo) {
+		return mapper.selectReviewList(member_id, item_idx, pageInfo);
 	}
 	
 	// 클릭된 이미지 조회
@@ -401,5 +406,7 @@ public class ShopService {
 	public int deleteFollowing(String sId, String shop_idx) {
 		return mapper.deleteFollowing(sId, shop_idx);
 	}
+	
+	
 
 }

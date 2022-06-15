@@ -54,6 +54,12 @@ img {
 		<jsp:include page="../header_footer/top.jsp" />
 	</div>
 
+	<!-- PageInfo 객체 값 변수에 저장 -->
+	<c:set var="pageNum" value="${pageInfo.getPageNum() }" />
+	<c:set var="maxPage" value="${pageInfo.getMaxPage() }" />
+	<c:set var="startPage" value="${pageInfo.getStartPage() }" />
+	<c:set var="endPage" value="${pageInfo.getEndPage() }" />
+	<c:set var="listCount" value="${pageInfo.getListCount() }" />
 
 		<aside class="side">
 		<ul class="side-list">
@@ -203,8 +209,8 @@ img {
 	<!-- 	<div> -->
 	<!-- URL 파라미터로 구분(sort) -->
 	<ul class="nav nav-tabs">
-		<li class="nav-item"><a class="nav-link active"
-			data-bs-toggle="tab" href="#home">추천순</a></li>
+<!-- 		<li class="nav-item"><a class="nav-link active" -->
+<!-- 			data-bs-toggle="tab" href="#home">추천순</a></li> -->
 		<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
 			href="#profile">최신순</a></li>
 		<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
@@ -227,7 +233,6 @@ img {
 	<h2>후기 내용</h2>
 
 	<table class="table table-hover" style="width: 1064px;">
-
 		<tr class="table-primary">
 			<th scope="row">index</th>
 			<th>평점</th>
@@ -236,17 +241,59 @@ img {
 			<th>작성날짜</th>
 		</tr>
 
-		<c:forEach items="${reviewList }" var="review">
+			<c:forEach items="${reviewList }" var="review">
+				<tr>
+					<td>${review.get('review_idx') }</td>
+					<td>${review.get('item_score') }</td>
+					<td>${review.get('review_content') }</td>
+					<td>${review.get('member_id') }</td>
+					<td>${review.get('review_date') }</td>
+				</tr>
+			</c:forEach>
 
-			<tr>
-				<td>${review.get('review_idx') }</td>
-				<td>${review.get('item_score') }</td>
-				<td>${review.get('review_content') }</td>
-				<td>${review.get('member_id') }</td>
-				<td>${review.get('review_date') }</td>
-			</tr>
-		</c:forEach>
 	</table>
+	
+	<!-- 페이징 처리 -->
+	<section class="paging">
+		<!-- [이전] 링크 동작 -->
+		<c:choose>
+			<c:when test="${pageNum > 1}">
+				<input type="button" value=" < " onclick="location.href='selectReviewList?page=${pageNum - 1}'">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value=" < " disabled="disabled">
+			</c:otherwise>
+		</c:choose>
+			
+		<!-- 페이지 번호 --> 
+		<c:forEach var="i" begin="${startPage }" end="${endPage }">
+			<c:choose>
+				<c:when test="${pageNum eq i}">
+					${i }
+				</c:when>
+				<c:otherwise>
+					<a href="selectReviewList?page=${i }">${i }</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+		<!-- [다음] 링크 동작 -->
+		<c:choose>
+			<c:when test="${pageNum < maxPage}">
+				<input type="button" value=" > " onclick="location.href='selectReviewList?page=${pageNum + 1}'">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value=" > " disabled="disabled">
+			</c:otherwise>
+		</c:choose>
+	</section>
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
 

@@ -17,6 +17,7 @@ import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PaymentDTO;
+import com.itwillbs.cono.vo.ReviewDTO;
 
 @Controller
 public class MypageController {
@@ -99,8 +100,16 @@ public class MypageController {
 	}
 
 
-	// 나의 후기 ( 구매 후기 작성 / 내가 쓴 후기 확인)
+	// 내가 쓴 후기 확인
+	@RequestMapping(value = "readReviewList", method = RequestMethod.GET)
+	public String readReview(HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
 
+		List<ReviewDTO> reviewList = service.getReadReviewList(sId);
+		model.addAttribute("reviewList", reviewList);
+		return "mypage/list_readList";
+		}
+	
 	// 알림
 
 	// 회원 정보 수정페이지 이동
