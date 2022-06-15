@@ -90,17 +90,11 @@ if(session.getAttribute("sId") == null) {
 	<jsp:include page="../header_footer/header.jsp" />
 </div>
 
-<aside class="side">
-	<ul class="side-list">
-		<li><a class="nav-link active" aria-current="page"
-			href="ProductMyshop.shop">내 상점</a> <a class="nav-link"
-			href="ItemUploadForm.shop">상품 등록</a> <a class="nav-link"
-			href="ItemMng.shop">상품 관리</a> <a class="nav-link"
-			href="ItemReviewMng.shop">상품 주문 관리</a> <a class="nav-link"
-			href="item_order_mng.jsp">상품 후기 관리</a> <a class="nav-link"
-			href="follow_shop.jsp">팔로우 상점</a></li>
-	</ul>
-</aside>
+	<!------ 사이드바 ------>
+	<div>
+		<jsp:include page="./myshop_sidebar.jsp"/>
+	</div>
+		
 
 <body style="width: 1040px; margin: auto;">
 
