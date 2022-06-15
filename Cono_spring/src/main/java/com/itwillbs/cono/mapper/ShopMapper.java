@@ -84,8 +84,11 @@ public interface ShopMapper {
 	//상품 고를 때 클릭할 이미지 조회
 	List<HashMap<String, String>> selectItemImgName(String member_id);
 
+	// 후기 개수 조회
+	public int selectReviewListCount(String member_id);
+	
 	// 후기 리스트 조회
-	List<HashMap<String, String>> selectReviewList(@Param("member_id") String member_id,  @Param("item_idx") String item_idx);
+	List<HashMap<String, String>> selectReviewList(@Param("member_id") String member_id,  @Param("item_idx") String item_idx, @Param("pageInfo")PageInfo pageInfo);
 	
 	// 클릭된 이미지 조회
 	String selectImg(String item_idx);
@@ -112,6 +115,8 @@ public interface ShopMapper {
 	public int selectFollowerCount(String sId);
 	// 팔로잉 삭제
 	public int deleteFollowing(String sId, String shop_idx);
+
+	
 
 	
 
