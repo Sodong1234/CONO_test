@@ -179,7 +179,7 @@ public class ShopController {
 		model.addAttribute("itemDetail", itemDetail);
 		model.addAttribute("imgList", imgList);
 		
-		return "myshop/item_detail";
+		return "myshop/item_detail_mng";
 	}
 	// -------------------------------------------------------------------------
 		

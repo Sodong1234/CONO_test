@@ -40,7 +40,7 @@ if(session.getAttribute("sId") == null) {
 				dataType: "json"
 			})
 			.done(function(data) {
-				$("#category_area").html("<select name='category_small' id='small' size='8'></select>");
+				$("#category_area").html("<select name='category_small'></select>");
 				let keys = data[big];	// 대분류에 해당하는 소분류 배열
 				for(let j = 0; j < Object.keys(keys).length; j++) {
 					let value = Object.keys(keys)[j];	// 소분류 key값
@@ -178,31 +178,26 @@ if(session.getAttribute("sId") == null) {
 
 
 							<li class="list">
-								
-									<div class="category_sub">
-										카테고리<span>*</span>
-									</div>
-									<div class="categoryStep">
-										<select name="category_big" id="big" size="8">
-											<option value="1">패션</option>
-											<option value="2">디지털/가전</option>
-											<option value="3">스포츠/레저</option>
-											<option value="4">가구/인테리어</option>
-											<option value="5">생활/가공식품</option>
-											<option value="6">도서/티켓</option>
-											<option value="7">뷰티/미용</option>
-											<option value="8">반려</option>
-										</select>
-									</div>
-									<div class="categoryStep">
-										<div id="category_area">
-											<select name="category_small" id="small" size="8">
-												<option value="11">여성패션</option>
-												<option value="12">남성패션</option>
-											</select>
-										</div>
+								<div class="category_sub">
+									카테고리<span>*</span>
 								</div>
-<!-- 							</li> -->
+								<select name="category_big" id="big">
+									<option value="1">패션</option>
+									<option value="2">디지털/가전</option>
+									<option value="3">스포츠/레저</option>
+									<option value="4">가구/인테리어</option>
+									<option value="5">생활/가공식품</option>
+									<option value="6">도서/티켓</option>
+									<option value="7">뷰티/미용</option>
+									<option value="8">반려</option>
+								</select>
+								<div id="category_area">
+									<select name="category_small">
+										<option value="11">여성패션</option>
+										<option value="12">남성패션</option>
+									</select>
+								</div>
+							</li>
 <!-- 								<div class="category_con"> -->
 <!-- 									<div class="contentArea"> -->
 <!-- 										<div class="categoryStep"> -->
@@ -232,14 +227,10 @@ if(session.getAttribute("sId") == null) {
 <!-- 									<div class="categoryDiv" id="categoryDiv">카테고리를 선택해주세요.</div> -->
 
 <!-- 									<h3 class="selectedCategory"> -->
-<!-- 										선택한 카테고리 :  -->
-<!-- 										<b id="selectedCategory" name="cate_code"> -->
-<!-- 											<span id="selected_big"></span> /  -->
-<!-- 											<span id="selected_small"></span> -->
-<!-- 										</b> -->
+<!-- 										선택한 카테고리 : <b id="selectedCategory" name="cate_code"></b> -->
 <!-- 									</h3> -->
 <!-- 								</div> -->
-							</li>
+<!-- 							</li> -->
 							<!-- 카테고리 -->
 
 

@@ -14,6 +14,12 @@ if(session.getAttribute("sId") == null) {
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
+<div>
+		<!-- 상단 부분 -->
+		<jsp:include page="../header_footer/header.jsp"/>
+	</div>
+	
+
 
 <div class="detail__area">
 <div class="detail__div">
@@ -39,10 +45,13 @@ if(session.getAttribute("sId") == null) {
 				<!-- 이미지 리스트 -->
 				<div class="swiper-container detail-info__image__list">
 					<div class="swiper-wrapper">
-						<!-- productDetail.js --> 이미지이미지이이
 						<c:forEach items="${imgList }" var="item">
-							<img src="upload/${item.getImg_real_name() }" style="width: 480px; height: 480px;" ><br>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${item.getImg_name() != null}">
+								<img src="resources/upload/file/${item.getImg_name() }"><br>
+							</c:when>
+						</c:choose>
+					</c:forEach>
 					</div>
 					<!-- 확대 버튼-->
 					<!-- <button class="detail-info__image--enlg" onclick="javascript:viewPic('../image/product/product_test.png')"> -->
@@ -218,7 +227,10 @@ if(session.getAttribute("sId") == null) {
 				
 <!-- 			</div>//prodInfo_wrap1 -->
 <!-- 		</div>//btmProdInfo_Wrap2 -->
-			
+			<div>
+		<!-- 하단 부분 -->
+		<jsp:include page="../header_footer/footer.jsp"/>
+	</div>
 
 </div>
 <!-- </div> -->
