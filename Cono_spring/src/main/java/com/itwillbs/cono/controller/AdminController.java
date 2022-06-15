@@ -17,7 +17,6 @@ import com.itwillbs.cono.service.AdminService;
 import com.itwillbs.cono.vo.AdminNoticeDTO;
 import com.itwillbs.cono.vo.AdminQNADTO;
 import com.itwillbs.cono.vo.AdminReportDTO;
-import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.PageInfo;
 
 @Controller
@@ -329,7 +328,6 @@ public class AdminController {
 		int listCount = service.getReportListCount();
 		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
 		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
-		System.out.println(listCount);
 		// 페이징 처리를 위한 계산 작업
 		int maxPage = (int) Math.ceil((double) listCount / listLimit);
 		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
@@ -430,14 +428,19 @@ public class AdminController {
 
 	// report 관리자가 신고당한 상품 삭제 비즈니스 로직 - POST
 	@RequestMapping(value = "ReportDeleteAdmin.admin", method = RequestMethod.GET)
-	public String deleteReportAdmin(@ModelAttribute ItemDTO itemList, @RequestParam int pageNum, Model model) {
-		boolean isDeleteSuccess = service.removeReportAdmin(itemList, pageNum);
-
+	public String deleteReportAdmin(String item_idx,  Model model, AdminReportDTO reportList) {
+		
+		boolean isDeleteSuccess = service.removeReportAdmin(item_idx);
+		
+		service.updateReportStatus(reportList.getReport_idx());
+		
 		if (!isDeleteSuccess) {
 			model.addAttribute("msg", "삭제실패!");
 			return "fail_back";
 		}
-		model.addAttribute("pageNum", pageNum);
+		
+		
+//		model.addAttribute("item_idx", itemList.getItem_idx());
 
 		return "redirect:/AdminReportList";
 	}

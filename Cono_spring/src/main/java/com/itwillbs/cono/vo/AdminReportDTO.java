@@ -10,6 +10,8 @@ CREATE TABLE report (
    report_subject varchar(50) NOT NULL,
    report_content varchar(500) NOT NULL,
    report_date varchar(20) NOT NULL,
+   report_status varchar(5),
+   report_secret varchar(2),
    primary key(report_idx, member_id, item_idx)
 );
  */
@@ -21,6 +23,10 @@ CREATE TABLE report (
 	private String report_subject;
 	private String report_content;
 	private String report_date;
+	private String report_status;
+	private String report_secret;
+	
+	
 	public String getReport_idx() {
 		return report_idx;
 	}
@@ -62,6 +68,25 @@ CREATE TABLE report (
 	}
 	public void setReport_date(String report_date) {
 		this.report_date = report_date;
+	}
+	public String getReport_status() {
+		return report_status;
+	}
+	public void setReport_status(String report_status) {
+		this.report_status = report_status;
+	}
+	public String getReport_secret() {
+		return report_secret;
+	}
+	public void setReport_secret(String report_secret) {
+		this.report_secret = report_secret;
+	}
+	@Override
+	public String toString() {
+		return "AdminReportDTO [report_idx=" + report_idx + ", member_id=" + member_id + ", item_idx=" + item_idx
+				+ ", report_type=" + report_type + ", report_subject=" + report_subject + ", report_content="
+				+ report_content + ", report_date=" + report_date + ", report_status=" + report_status
+				+ ", report_secret=" + report_secret + "]";
 	}
 	
 	

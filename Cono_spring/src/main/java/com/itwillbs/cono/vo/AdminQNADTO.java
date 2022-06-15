@@ -14,7 +14,7 @@ CREATE TABLE qna (
 	qna_date varchar(8),
 	qna_status varchar(20)
 	
-	qna_secret varchar(10)
+	qna_secret varchar(2)
 );
 
 */

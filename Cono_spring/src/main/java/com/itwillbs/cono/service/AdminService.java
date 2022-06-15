@@ -138,8 +138,13 @@ public class AdminService {
 	}
 
 	// report 관리자가 상품 글삭제
-	public boolean removeReportAdmin(ItemDTO itemList, int pageNum) {
-		return mapper.deleteReportListAdmin(itemList);
+	public boolean removeReportAdmin(String item_idx) {
+		return mapper.deleteReportListAdmin(item_idx);
+	}
+
+	public void updateReportStatus(String report_idx) {
+		 mapper.updateReportStatus(report_idx); 
+		
 	}
 
 //	public String getMemberId(String qna_idx) {

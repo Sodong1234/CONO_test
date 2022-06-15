@@ -117,7 +117,7 @@ select {
 				<input type="hidden" name="item_idx" value="<%=request.getParameter("item_idx")%>">
 				<div class = "report_type">
 					<select name="report_type">
-						<option value="선택">선택</option>
+						<option value="선택" selected="selected" disabled="disabled">선택</option>
 						<option value="게시글신고">게시글신고</option>
 						<option value="사용자신고">사용자신고</option>
 					</select></div>

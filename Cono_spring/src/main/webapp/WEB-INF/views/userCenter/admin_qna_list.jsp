@@ -229,9 +229,7 @@ input[type=text] {
 						<c:if test="${qna.qna_secret == true }">
 							<c:choose>
        						 <c:when test="${qna.member_id eq sId || sId eq 'admin'}">
-<%--        						 <c:if test="${qna.qna_re_ref eq qna.qna_idx }"> --%>
        						 <div class="title"><a href="AdminQNAView.admin?qna_idx=${qna.qna_idx }&pageNum=${pageInfo.pageNum}">${qna.qna_subject }</a></div>
-<%-- 						</c:if> --%>
 						</c:when>
 						  <c:otherwise>
 						  	<div class="title">비밀글은 작성자와 관리자만 볼 수 있습니다.</div>

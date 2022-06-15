@@ -156,7 +156,7 @@
 	<insert id="writeReport">
 		INSERT INTO report VALUES (
 				(SELECT COUNT(r.report_idx) FROM report r)+1
-				, #{member_id}, #{item_idx},#{report_type},#{report_subject},#{report_content},DATE_FORMAT(now(), "%Y-%m-%d") )
+				, #{member_id}, #{item_idx},#{report_type},#{report_subject},#{report_content},DATE_FORMAT(now(), "%Y-%m-%d"),'처리중',1)
 	</insert>
 	
 	<!-- 신고하기 상세페이지 -->
@@ -177,12 +177,14 @@
 	
 	<!-- 관리자가 신고당한 글 삭제 -->
 	<delete id="deleteReportListAdmin">
-		DELETE FROM item WHERE item_idx=#{item_idx}
+		DELETE FROM i,g,c USING (item i LEFT JOIN img g ON i.item_idx = g.item_idx) LEFT JOIN category c ON i.item_idx = c.item_idx WHERE i.item_idx=#{item_idx}
+	
 	</delete>
 	
+	<update id="updateReportStatus">
+		UPDATE report SET report_status='처리완료'
+		WHERE report_idx=#{report_idx} 
+	</update>
 	
 	
-<!-- 	<select id="selectQNAMemberId" resultType="string"> -->
-<!-- 		SELECT member_id from qna WHERE qna_idx=#{qna_idx} -->
-<!-- 	</select> -->
 </mapper>
