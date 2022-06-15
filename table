@@ -215,7 +215,15 @@ CREATE TABLE msgChat (
 	PRIMARY KEY (msgChat_idx, msgList_room)
 );
 
-
+CREATE TABLE cancel (
+	cancel_idx VARCHAR(20),
+	item_idx VARCHAR(20),
+	member_idx VARCHAR(20),
+	cancel_content VARCHAR(1000),
+	cancel_date VARCHAR(20),
+	cancel_status VARCAHR(3),
+	PRIMARY KEY (cancel_idx,item_idx,member_idx)
+);
 
 ------------------------ 삭제 예정 --------------------------------------
 CREATE TABLE alarm (
@@ -256,12 +264,4 @@ CREATE TABLE reserved (
 	PRIMARY KEY (item_idx, member_id)
 );
 
-CREATE TABLE cancel (
-	cancel_idx VARCHAR(20),
-	item_idx VARCHAR(20),
-	member_idx VARCHAR(20),
-	cancel_content VARCHAR(1000),
-	cancel_date VARCHAR(20),
-	cancel_status VARCAHR(3),
-	PRIMARY KEY (cancel_idx,item_idx,member_idx)
-)
+
