@@ -43,6 +43,13 @@ body{
    margin: 0;
    font-size: 25px;
    text-transform: uppercase;
+   cursor:pointer;
+}
+
+.sidebar h1:hover{
+	color: #fff;
+	margin-left: 20px;
+	transition: 0.4s;
 }
 
 .sidebar a{
@@ -69,6 +76,11 @@ body{
 	margin-right:15px;
 	text-decoration: none;
 	color: inherit;
+	cursor:pointer;
+}
+
+.nav a:hover{
+	color: gray;
 }
 
 .body {
@@ -93,7 +105,7 @@ body{
 <body>
 <!-- 사이드바 -->
 	<div class="sidebar">
-	   <h1>Cono</h1>
+	   <h1 onclick="location.href='./main'">Cono</h1>
 	   <a href="">대시보드</a>
 	   <a href="./AdminMemberList">회원관리</a>
 	   <a href="./AdminDealList">거래현황</a>

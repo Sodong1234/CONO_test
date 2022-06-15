@@ -23,8 +23,13 @@ public class AdminController2 {
 	// ------ 메인페이지로 이동!
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String home() {
-		
 		return "redirect:/";
+	}
+	
+	// ------ 관리자 메인페이지로 이동!
+	@RequestMapping(value = "/adminMain", method = RequestMethod.GET)
+	public String AdminMain() {
+		return "redirect:../admin_center/main";
 	}
 	
 	
