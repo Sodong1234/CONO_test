@@ -34,7 +34,6 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 		
 		<!------ 상단 바 ------>
 		
-		
 		<!-- 사이드 바 -->
 		
 				
