@@ -8,7 +8,7 @@ if(session.getAttribute("sId") == null) {
 %>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item_detail.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/button_mng.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="../js/jquery-3.6.0.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
@@ -86,24 +86,24 @@ if(session.getAttribute("sId") == null) {
 					<div class="detail-info__text__div3">
 						<div class="detail-info__text-header">
 							<!-- 상품명 --> 
-								상품번호 : ${itemDetail.get('item_idx')} <br>
+								<span>상품번호 : ${itemDetail.get('item_idx')} </span><br>
 							<h2> 상품명 : ${itemDetail.get('item_title')}</h2>
 							<div class="detail-info__text-title"></div>
 							<div class="detail-info__text-price__div">
 								<!-- 상품가격 --> 
-							<h3>	가격 : ${itemDetail.get('item_price')} </h3>
+							<h4> 가격 : ${itemDetail.get('item_price')} </h4>
 								<div class="detail-info__price" id="product_price">
 								</div>
 							</div>
 						</div>
 						<table>
 							<tr style="text-align:center;">
-								    <td>수량</td>
-								    <td class="bseq_ea"> 재고수량 :  ${itemDetail.get('item_quantity')}</td>
+								    <td>수량 : </td>
+								    <td class="bseq_ea"> ${itemDetail.get('item_quantity')}</td>
 								    <td>
-								        <button type ="button" onclick="fnCalCount('p',this);">+</button>
-								        <input type="text" name="pop_out" value="0" readonly="readonly" style="text-align:center; width: 50px;" />
 								        <button type="button" onclick="fnCalCount('m', this);">-</button>
+								        <input type="text" name="pop_out" value="0" readonly="readonly" style="text-align:center; width: 50px;" />
+								        <button type ="button" onclick="fnCalCount('p',this);">+</button>
 								    </td>
 								</tr>
 								</table>
@@ -140,18 +140,27 @@ if(session.getAttribute("sId") == null) {
 											<c:set var="unit" value="일 전" />
 										</c:if>
 										<div id="product_logtime"> ${time}${unit}</div> 
+										
+									</div>
+									<div class="detail-info--topL-item">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+									  <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+									</svg>
+									&nbsp; 판매상태 : ${itemDetail.get('item_status')}
+									
 									</div>
 								</div>
 							</div>
+									
 							<div class="detail-info__text-body-bottom">
 								<!-- 아이템 한개 -->
 								</div>
 								<div class="detail-info__text-body-bItem">
-										판매상태 : ${itemDetail.get('item_status')}
+									 <br>
 								<div class="detail-info__text-body-bItem">
 										<br>
 									<div class="detail-info__text-body-bItem-title">상품소개</div>
-									${itemDetail.get('item_content')} 상품소개입니다다아ㅏ아
+									${itemDetail.get('item_content')}
 									<div class="detail-info__location" id="product_location"></div>
 									
 									
@@ -159,14 +168,13 @@ if(session.getAttribute("sId") == null) {
 										<br>
 										<br>
 										
-								<div>숨김 ${itemDetail.get('item_hide')}
-								</div>
+								
 								
 									
 <!-- 									연락하기 버튼 -->
 								<div class="storeInfo_callBtn">
-									<button class="callBtn" onclick="location.href='ItemModifyForm.shop?item_idx=${itemDetail.get('item_idx')}'">수정하기</button>
-									<button class="callBtn2" onclick="location.href='ItemDelete.shop?item_idx=${itemDetail.get('item_idx')}'">삭제하기</button>
+<%-- 									<button class="callBtn" onclick="location.href='ItemModifyForm.shop?item_idx=${itemDetail.get('item_idx')}'">수정하기</button> --%>
+<%-- 									<button class="callBtn2" onclick="location.href='ItemDelete.shop?item_idx=${itemDetail.get('item_idx')}'">삭제하기</button> --%>
 									<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}">
 								</div>
 								</div>
@@ -175,12 +183,19 @@ if(session.getAttribute("sId") == null) {
 					</div>
 					<div class="detail-info__btn-list">
 						<!-- 찜 메세지 -->
+					  <button class="btn" onclick="location.href='ItemModifyForm.shop?item_idx=${itemDetail.get('item_idx')}'"><span>수 정</span></button>
+					    <button class="btn" onclick="location.href='ItemDelete.shop?item_idx=${itemDetail.get('item_idx')}'"><span>삭 제</span></button>
+<%-- 					<input type="button" value="수정하기" onclick="location.href='ItemModifyForm.shop?item_idx=${itemDetail.get('item_idx')}'"> --%>
+<%-- 					<input type="button" value="삭제하기" onclick="location.href='ItemDelete.shop?item_idx=${itemDetail.get('item_idx')}'"> --%>
+									
 						
 					</div> <!-- //버튼리스트 -->
 				</div>
 			</div>
 		</div>
 	</div><!-- //detail-info__area -->
+	
+	숨김 체크박스 만들기 ? ${itemDetail.get('item_hide')}
 						<!-- 지역, 카테고리, 상품태그 -->
 						<div class="prodInfo_detailWrap1">
 							<!-- 지역 -->
@@ -200,14 +215,14 @@ if(session.getAttribute("sId") == null) {
 								<div class="detailTitleWrap">
 									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAkCAYAAADo6zjiAAAAAXNSR0IArs4c6QAAANJJREFUWAntWEEKxCAMjGJ70h/4Aq/+/wm99gX9gTcVujsLe1pQoWj2kJyERCeZkNCOut9WSqHruiilRDjPtH3fyVpL3nvato1Uzvk+z5NqrTNxf942xlAIgTQqXw2ObIAJbA3auQzYenbPW8UBW7cCVvgkAXYGTK/PMcZeSNN/HEfT//8M9CpoljfgZGdAEhAGZA90GZA9MLDMHoXIGLIz0J0C+R6QPfBoyAcus08BfwL4R+cyaAXaOceF/xEqNJQKiAWrDZjAVqslGrQcrH8lmhfQ0lJsYYep+gAAAABJRU5ErkJggg==" width="16" height="18" alt="카테고리 아이콘">
 									카테고리
-									${itemDetail.get('category_big')} > ${itemDetail.get('category_small')}
+									${itemDetail.get('category_big')} , ${itemDetail.get('category_small')}
 								</div>
-								<div class="detailContentWrap">
-									<a href="#">
-										<span class="detailContent_cate">
-										</span>
-									</a>
-								</div>
+<!-- 								<div class="detailContentWrap"> -->
+<!-- 									<a href="#"> -->
+<!-- 										<span class="detailContent_cate"> -->
+<!-- 										</span> -->
+<!-- 									</a> -->
+<!-- 								</div> -->
 							</div>
 							<!-- 상품태그 -->
 							
@@ -225,7 +240,7 @@ if(session.getAttribute("sId") == null) {
 		<jsp:include page="../header_footer/footer.jsp"/>
 	</div>
 
-</div>
+<!-- </div> -->
 <!-- </div> -->
 
 
