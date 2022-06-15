@@ -181,6 +181,7 @@ CREATE TABLE qna (
    qna_re_lev INT,
    qna_re_seq INT,
    qna_date varchar(20) NOT NULL,
+   qna_secret varchar(3),
    qna_status varchar(20)
 );
 
