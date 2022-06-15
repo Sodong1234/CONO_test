@@ -255,3 +255,13 @@ CREATE TABLE reserved (
 	member_id varchar(20),
 	PRIMARY KEY (item_idx, member_id)
 );
+
+CREATE TABLE cancel (
+	cancel_idx VARCHAR(20),
+	item_idx VARCHAR(20),
+	member_idx VARCHAR(20),
+	cancel_content VARCHAR(1000),
+	cancel_date VARCHAR(20),
+	cancel_status VARCAHR(3),
+	PRIMARY KEY (cancel_idx,item_idx,member_idx)
+)
