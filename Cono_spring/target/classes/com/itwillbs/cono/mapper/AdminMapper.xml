@@ -80,6 +80,7 @@
 					, A.qna_re_ref
 					, A.qna_re_lev
 					, A.qna_re_seq
+					, A.qna_secret
 					 FROM qna A
 					, (SELECT @rownum:=(SELECT COUNT(*)+1 FROM qna)) TMP
 					 ORDER BY qna_re_ref+0 DESC LIMIT #{pageInfo.startRow},#{pageInfo.listLimit}
@@ -91,7 +92,7 @@
 	</select>
 
 	<insert id="insertQNA">
-		INSERT INTO qna VALUES (#{num},#{member_id},#{qna_type},#{qna_subject},#{qna_content},#{num},'0','0',DATE_FORMAT(now(), "%Y-%m-%d"),'답변대기')
+		INSERT INTO qna VALUES (#{num},#{member_id},#{qna_type},#{qna_subject},#{qna_content},#{num},'0','0',DATE_FORMAT(now(), "%Y-%m-%d"),'답변대기',#{qna_secret})
 	</insert>
 
 	<!-- qna 상세페이지 -->
@@ -121,7 +122,13 @@
 	</select>
 	
 	<insert id="writeQNAReply">
-		INSERT INTO qna VALUES (#{num},#{sId},"",#{qnaList.qna_subject},#{qnaList.qna_content},#{qnaList.qna_idx},#{qnaList.qna_re_lev}+1,#{num_seq},DATE_FORMAT(now(), "%Y-%m-%d"),"")
+		INSERT INTO qna VALUES (#{num},
+		
+		(SELECT q.member_id 
+ 		FROM qna q
+ 		WHERE q.qna_re_ref = #{qnaList.qna_idx})
+<!--  		#{sId} -->
+ 		,' ㄴ답변',#{qnaList.qna_subject},#{qnaList.qna_content},#{qnaList.qna_idx},#{qnaList.qna_re_lev}+1,#{num_seq},DATE_FORMAT(now(), "%Y-%m-%d"),"",1)
 	</insert>
 	
 	<update id="updateQNAStatus">
@@ -172,4 +179,10 @@
 	<delete id="deleteReportListAdmin">
 		DELETE FROM item WHERE item_idx=#{item_idx}
 	</delete>
+	
+	
+	
+<!-- 	<select id="selectQNAMemberId" resultType="string"> -->
+<!-- 		SELECT member_id from qna WHERE qna_idx=#{qna_idx} -->
+<!-- 	</select> -->
 </mapper>

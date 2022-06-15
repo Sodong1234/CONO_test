@@ -108,7 +108,7 @@ a {
 		
 		
 		
-			<div class = "admin_id"><input type="text" id="textBox"  name="member_id"  value="${sId }required="required" placeholder="관리자 이름을 입력해주세요." /></div>
+			<div class = "admin_id"><input type="text" id="textBox"  name="member_id"  value="${sId }"required="required" placeholder="관리자 이름을 입력해주세요." /></div>
 			<div class = "subject"><input type="text" id="textBox"  name="qna_subject" value="Re:${qnaList.qna_subject }"required="required" /></div>
 			<div class = "content"><textarea rows="30" cols="100"  id="qna_content" required="required">
 			

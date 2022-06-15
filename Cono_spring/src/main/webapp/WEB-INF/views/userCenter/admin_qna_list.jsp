@@ -221,11 +221,41 @@ input[type=text] {
 <%-- 						<td>${qna.getQna_idx() }</td> --%>
 						<div class="board_list_body">
 							<div class="item">
+      
 						<div class = "num">${qna.num }</div>
 								<div class="qna_type">${qna.qna_type }</div>
-						<div class="title"><a href="AdminQNAView.admin?qna_idx=${qna.qna_idx }&pageNum=${pageInfo.pageNum}">${qna.qna_subject }</a></div>
-
-						<div class="write">${qna.member_id }</div>
+								
+								
+						<c:if test="${qna.qna_secret == true }">
+							<c:choose>
+       						 <c:when test="${qna.member_id eq sId || sId eq 'admin'}">
+<%--        						 <c:if test="${qna.qna_re_ref eq qna.qna_idx }"> --%>
+       						 <div class="title"><a href="AdminQNAView.admin?qna_idx=${qna.qna_idx }&pageNum=${pageInfo.pageNum}">${qna.qna_subject }</a></div>
+<%-- 						</c:if> --%>
+						</c:when>
+						  <c:otherwise>
+						  	<div class="title">비밀글은 작성자와 관리자만 볼 수 있습니다.</div>
+						  </c:otherwise>
+      					  </c:choose>
+							</c:if>
+							<c:if test="${qna.qna_secret == false }">
+							 <div class="title"><a href="AdminQNAView.admin?qna_idx=${qna.qna_idx }&pageNum=${pageInfo.pageNum}">${qna.qna_subject }</a></div>
+							</c:if>
+							
+							<c:choose>
+							<c:when test="${qna.qna_re_lev > 0 }">
+								<div class="write"> admin </div>
+							
+							</c:when>
+							<c:otherwise>
+								<div class="write">${qna.member_id }</div>
+							
+							</c:otherwise>
+							</c:choose>
+							
+							
+						
+							
 
 						<div class="date">${qna.qna_date }</div>
 						<div class="qna_status">${qna.qna_status }</div>

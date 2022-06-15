@@ -142,6 +142,10 @@ public class AdminService {
 		return mapper.deleteReportListAdmin(itemList);
 	}
 
+//	public String getMemberId(String qna_idx) {
+//		return mapper.selectQNAMemberId(qna_idx);
+//	}
+
 
 }
 

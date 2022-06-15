@@ -81,6 +81,8 @@ public interface AdminMapper {
 	// 관리자가 report 당한 글삭제
 	public boolean deleteReportListAdmin(ItemDTO itemList);
 
+//	public String selectQNAMemberId(String qna_idx);
+
 
 
 	

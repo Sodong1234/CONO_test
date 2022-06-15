@@ -202,7 +202,7 @@ public class AdminController {
 		pageInfo.setListCount(listCount);
 		pageInfo.setStartRow(startRow);
 		pageInfo.setListLimit(listLimit);
-
+		
 		List<AdminQNADTO> qnaList = service.getQNAList(pageInfo);
 		System.out.println(qnaList.isEmpty());
 		model.addAttribute("qnaList", qnaList);
