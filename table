@@ -134,8 +134,8 @@ CREATE TABLE coin (
     member_id VARCHAR(20),
     coin_add VARCHAR(50) NOT NULL,
     coin_use VARCHAR(50) NOT NULL,
-    coin_total VARCHAR(50) NOT NULL,
-    coin_date VARCHAR(14) NOT NULL,
+    coin_total VARCHAR(50),
+    coin_date VARCHAR(14),
     PRIMARY KEY(coin_idx, member_id)
 );
 
