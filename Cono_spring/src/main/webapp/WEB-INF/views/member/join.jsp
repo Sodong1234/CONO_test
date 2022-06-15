@@ -317,7 +317,7 @@ body {
 		</article>
 
 		<div class="clear"></div>
-		<jsp:include page="../header_footer/bottom.jsp"></jsp:include>
+		<jsp:include page="../header_footer/footer.jsp"></jsp:include>
 	</div>
 </body>
 </html>

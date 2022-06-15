@@ -98,7 +98,7 @@
 </head>
 <body>
 	<div id="wrap">
-		<jsp:include page="../header_footer/top.jsp"/>
+		<jsp:include page="../header_footer/header.jsp"/>
 	</div>
 	<input type="button" value="문의하기" onclick="location.href='addMessageList?item_idx=2&shop_idx=1'">
 	<input type="button" value="문의하기" onclick="location.href='addMessageList?item_idx=1&shop_idx=3'">
@@ -161,7 +161,7 @@
 	
 	
 	<div id="wrap">
-		<jsp:include page="../header_footer/bottom.jsp"/>
+		<jsp:include page="../header_footer/footer.jsp"/>
 	</div>
 </body>
 </html>

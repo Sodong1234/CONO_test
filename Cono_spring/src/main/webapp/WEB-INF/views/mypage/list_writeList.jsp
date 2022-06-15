@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="wrap">
-		<jsp:include page="../header_footer/top.jsp"/>
+		<jsp:include page="../header_footer/header.jsp"/>
 	</div>
 	
 	<h1>구매 후기 쓰기</h1>
@@ -31,7 +31,7 @@
 	</section>
 	
 	<div class="clear">
- 		<jsp:include page="../header_footer/bottom.jsp" />
+ 		<jsp:include page="../header_footer/footer.jsp" />
 	</div>	
 </body>
 </html>

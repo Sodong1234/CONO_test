@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="wrap">
-		<jsp:include page="../header_footer/top.jsp"/>
+		<jsp:include page="../header_footer/header.jsp"/>
 	</div>
 	
 	
@@ -21,7 +21,7 @@
 	</section>
 	
 	<div class="clear">
- 		<jsp:include page="../header_footer/bottom.jsp" />
+ 		<jsp:include page="../header_footer/footer.jsp" />
 	</div>
 </body>
 </html>

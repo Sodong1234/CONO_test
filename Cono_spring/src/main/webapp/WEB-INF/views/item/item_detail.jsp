@@ -26,7 +26,7 @@
 <body>
 	<div>
 		<!-- 상단 부분 -->
-		<jsp:include page="../header_footer/top.jsp"/>
+		<jsp:include page="../header_footer/header.jsp"/>
 	</div>
 	
 	<!-------- 본문 -------->
@@ -118,7 +118,7 @@
 	
 	<div>
 		<!-- 하단 부분 -->
-		<jsp:include page="../header_footer/bottom.jsp"/>
+		<jsp:include page="../header_footer/footer.jsp"/>
 	</div>
 </body>
 </html>

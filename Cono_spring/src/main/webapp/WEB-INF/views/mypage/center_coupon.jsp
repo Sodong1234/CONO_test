@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div id="wrap">
-		<jsp:include page="../header_footer/top.jsp" />
+		<jsp:include page="../header_footer/header.jsp" />
 		<jsp:include page="./mypage_sidebar.jsp" />
 	</div>
 
@@ -65,7 +65,7 @@
 
 	<!-- 	=============================== coupon end =============================== -->
 	<footer>
-		<jsp:include page="../header_footer/bottom.jsp" />
+		<jsp:include page="../header_footer/footer.jsp" />
 	</footer>
 </body>
 </html>

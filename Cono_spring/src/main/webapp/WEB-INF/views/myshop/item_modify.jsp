@@ -95,7 +95,7 @@ input[type=file] {
 </head>
 <body>
 
-	<jsp:include page="../header_footer/top.jsp" />
+	<jsp:include page="../header_footer/header.jsp" />
 
 
 	<aside class="side">
@@ -271,6 +271,6 @@ input[type=file] {
 
 	
 
-	<jsp:include page="../header_footer/bottom.jsp" />
+	<jsp:include page="../header_footer/footer.jsp" />
 </body>
 </html>

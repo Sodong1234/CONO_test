@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="wrap">
-		<jsp:include page="../header_footer/top.jsp"/>
+		<jsp:include page="../header_footer/header.jsp"/>
 	</div>
 	
 	<section style="width: 980px; margin: auto;" >

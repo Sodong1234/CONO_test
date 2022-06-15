@@ -12,7 +12,7 @@
 
 </head>
 <body>
-		<jsp:include page="../header_footer/top.jsp" />
+		<jsp:include page="../header_footer/header.jsp" />
 
 <img alt="" src="${path }/resources/upload/test.jpg">
 <img alt="" src="${path }/resources/upload/file/${card.img_name }'/>">
@@ -153,7 +153,7 @@
 	</div>
 <!-- 	=============================== main (주문 정보 section) end =============================== -->
 	<footer style="position: relative; bottom: 600px;">	
-		<jsp:include page="../header_footer/bottom.jsp" />
+		<jsp:include page="../header_footer/footer.jsp" />
 	</footer>
 
 </body>

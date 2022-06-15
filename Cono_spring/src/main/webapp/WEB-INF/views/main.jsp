@@ -166,7 +166,7 @@ a{
 </head>
 <body>
 	<div id="wrap">
-		<jsp:include page="header_footer/top.jsp"/>
+		<jsp:include page="header_footer/header.jsp"/>
 	</div>
 
 
@@ -274,7 +274,7 @@ a{
 		  
 		  
 <!-- 	<footer style="position: relative; bottom: auto;"> -->
-<%--  			<jsp:include page="header_footer/bottom.jsp" /> --%>
+<%--  			<jsp:include page="header_footer/footer.jsp" /> --%>
 <!-- 	</footer> -->
 </body>
 </html>

@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div id="wrap">
-		<jsp:include page="../header_footer/top.jsp" />
+		<jsp:include page="../header_footer/header.jsp" />
 	</div>
 	<form action="PayItem" method="post">
 		<input type="hidden" name="ord_quantity" value="${ord_quantity }">

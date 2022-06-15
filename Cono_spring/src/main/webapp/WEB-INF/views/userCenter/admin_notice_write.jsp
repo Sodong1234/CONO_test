@@ -86,7 +86,7 @@ a {
 </head>
 <body>
 	<div>
-		<jsp:include page="../header_footer/top.jsp" />
+		<jsp:include page="../header_footer/header.jsp" />
 	</div>
    
    
@@ -111,7 +111,7 @@ a {
 		</div>
 
 	<div>
-		<jsp:include page="../header_footer/bottom.jsp" />
+		<jsp:include page="../header_footer/footer.jsp" />
 	</div>
 </body>
 </html>

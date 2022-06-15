@@ -218,7 +218,7 @@ p {
 	카테고리(대분류 소분류) -->
 	<div id="wrap">
 		<!-- 헤더 -->
-		<jsp:include page="../header_footer/top.jsp" />
+		<jsp:include page="../header_footer/header.jsp" />
 	</div>
 	<!-- 	<div class="navbar"></div> -->
 	<jsp:include page="../search/recentView.jsp" />
@@ -257,7 +257,7 @@ p {
 	</c:forEach>
 
 	<div>
-		<jsp:include page="../header_footer/bottom.jsp"/>
+		<jsp:include page="../header_footer/footer.jsp"/>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
