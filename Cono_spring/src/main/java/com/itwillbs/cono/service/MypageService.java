@@ -11,6 +11,7 @@ import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PaymentDTO;
+import com.itwillbs.cono.vo.ReviewDTO;
 
 @Service
 public class MypageService {
@@ -110,6 +111,11 @@ public class MypageService {
 
 	public int getWaitingCount(String sId) {
 		return mapper.selectWaitingCount(sId);
+	}
+	
+	// 내가 쓴 리뷰 확인
+	public List<ReviewDTO> getReadReviewList(String sId) {
+		return mapper.selectReadReviewList(sId);
 	}
 	
 

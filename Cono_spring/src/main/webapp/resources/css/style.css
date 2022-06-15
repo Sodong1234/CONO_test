@@ -543,8 +543,9 @@ ul, ol {
 .righttab {
 	position: relative;
 	text-align: center;
-	left: 242px;
 	bottom: 33px;
+    width: 130px;
+    left: 350px;
 }
 
 .righttab:hover {
@@ -566,11 +567,13 @@ body {
 }
 
 .search {
-	width: 100%;
 	position: relative;
 	text-align: center;
 	bottom: 40px;
 	right: 50px;
+    width: 360px;
+    left: 400px;
+	
 }
 
 .searchTerm {
@@ -582,6 +585,9 @@ body {
 	border-radius: 5px 0 0 5px;
 	outline: none;
 	color: #9DBFAF;
+	position: relative;
+    bottom: 2px;
+    left: 5px;
 }
 
 .searchTerm:focus {

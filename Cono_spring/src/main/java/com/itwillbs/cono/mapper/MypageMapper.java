@@ -9,6 +9,7 @@ import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PaymentDTO;
+import com.itwillbs.cono.vo.ReviewDTO;
 
 public interface MypageMapper {
 
@@ -55,6 +56,8 @@ public interface MypageMapper {
 	public List<HashMap<String, String>> selectCancelList(String sId);
 	// 구매 중 수
 	public int selectWaitingCount(String sId);
+	// 내가 쓴 리뷰 확인
+	public List<ReviewDTO> selectReadReviewList(String sId);
 
 
 

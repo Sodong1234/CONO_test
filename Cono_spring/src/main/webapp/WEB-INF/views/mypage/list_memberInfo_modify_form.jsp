@@ -14,9 +14,8 @@
 	</div>
 
 
-	<section style="position: relative; bottom: 700px; z-index: 1">
-		<form class="form-member" action="memberInfo_modify" method="post"
-			style="width: 1000px; margin: auto;">
+	<section style="position: relative; bottom: 700px; left: 600px; width: 600px;">
+		<form class="form-member" action="memberInfo_modify" method="post" style="width: 450px; margin: auto;">
 			<div class="title-style">
 				<a href="#" class="txt">회원 정보 수정</a> <br>
 			</div>
@@ -72,7 +71,7 @@
 				</tbody>
 			</table>
 			<br>
-			<div class="form-submit" style="text-align: center !important;">
+			<div class="form-submit" style="text-align: center !important; position: relative; right: 50px;">
 				<button type="submit" class="modifySubmit">회원 정보 수정하기</button>
 			</div>
 		</form>
