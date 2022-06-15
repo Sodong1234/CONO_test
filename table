@@ -160,7 +160,7 @@ CREATE TABLE payment (
 	member_id VARCHAR(20),
 	member_phone VARCHAR(13),
 	payment_name  VARCHAR(20),
-	payment_amount  VARCHAR(20)
+	payment_value  VARCHAR(20)
 );
 
 
