@@ -26,7 +26,10 @@ public class AdminController {
 	@Autowired
 	AdminService service;
 
-	// -------------- 관리자 메인 이동 (관리자) - 김도은 -------------
+	// -------------- 관리자 메인 이동 (관리자) - 김도은 -------------//
+	
+	
+	
 	@RequestMapping(value = "admin_center_main", method = RequestMethod.GET)
 	public String adminCenter() {
 		return "/admin_center/main";
