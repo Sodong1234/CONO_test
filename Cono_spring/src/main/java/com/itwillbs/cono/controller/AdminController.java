@@ -34,6 +34,9 @@ public class AdminController {
 	}
 	// -------------- 고객센터 공지사항 리스트, 검색기능 (관리자) - 김도은 -------------
 
+	
+	
+	
 	@RequestMapping(value = "AdminNoticeList", method = RequestMethod.GET)
 	public String list(@RequestParam(defaultValue = "") String searchType,
 			@RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "1") int pageNum,
