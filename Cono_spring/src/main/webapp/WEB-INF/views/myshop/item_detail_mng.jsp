@@ -37,6 +37,7 @@ if(session.getAttribute("sId") == null) {
 				<input id="prodno" type="hidden" data-no="78">
 				<!-- 이미지 리스트 -->
 				<div class="swiper-container detail-info__image__list">
+				<span> 상품번호 : ${itemDetail.get('item_idx')} </span>
 					<div class="swiper-wrapper">
 						<c:forEach items="${imgList }" var="item">
 						<c:choose>
@@ -86,7 +87,6 @@ if(session.getAttribute("sId") == null) {
 					<div class="detail-info__text__div3">
 						<div class="detail-info__text-header">
 							<!-- 상품명 --> 
-								<span>상품번호 : ${itemDetail.get('item_idx')} </span><br>
 							<h2> 상품명 : ${itemDetail.get('item_title')}</h2>
 							<div class="detail-info__text-title"></div>
 							<div class="detail-info__text-price__div">
@@ -95,18 +95,18 @@ if(session.getAttribute("sId") == null) {
 								<div class="detail-info__price" id="product_price">
 								</div>
 							</div>
-						</div>
 						<table>
 							<tr style="text-align:center;">
-								    <td>수량 : </td>
+								    <td>현재 수량 : &nbsp;&nbsp; </td>
 								    <td class="bseq_ea"> ${itemDetail.get('item_quantity')}</td>
-								    <td>
-								        <button type="button" onclick="fnCalCount('m', this);">-</button>
-								        <input type="text" name="pop_out" value="0" readonly="readonly" style="text-align:center; width: 50px;" />
-								        <button type ="button" onclick="fnCalCount('p',this);">+</button>
-								    </td>
+<!-- 								    <td> -->
+<!-- 								        <button type="button" onclick="fnCalCount('m', this);">-</button> -->
+<!-- 								        <input type="text" name="pop_out" value="0" readonly="readonly" style="text-align:center; width: 50px;" /> -->
+<!-- 								        <button type ="button" onclick="fnCalCount('p',this);">+</button> -->
+<!-- 								    </td> -->
 								</tr>
 								</table>
+						</div>
 									
 						<div class="detail-info__text-body">
 							<div class="detail-info__text-body-top">
@@ -185,9 +185,6 @@ if(session.getAttribute("sId") == null) {
 						<!-- 찜 메세지 -->
 					  <button class="btn" onclick="location.href='ItemModifyForm.shop?item_idx=${itemDetail.get('item_idx')}'"><span>수 정</span></button>
 					    <button class="btn" onclick="location.href='ItemDelete.shop?item_idx=${itemDetail.get('item_idx')}'"><span>삭 제</span></button>
-<%-- 					<input type="button" value="수정하기" onclick="location.href='ItemModifyForm.shop?item_idx=${itemDetail.get('item_idx')}'"> --%>
-<%-- 					<input type="button" value="삭제하기" onclick="location.href='ItemDelete.shop?item_idx=${itemDetail.get('item_idx')}'"> --%>
-									
 						
 					</div> <!-- //버튼리스트 -->
 				</div>
@@ -195,7 +192,7 @@ if(session.getAttribute("sId") == null) {
 		</div>
 	</div><!-- //detail-info__area -->
 	
-	숨김 체크박스 만들기 ? ${itemDetail.get('item_hide')}
+<%-- 	숨김 체크박스 만들기 ? ${itemDetail.get('item_hide')} --%>
 						<!-- 지역, 카테고리, 상품태그 -->
 						<div class="prodInfo_detailWrap1">
 							<!-- 지역 -->

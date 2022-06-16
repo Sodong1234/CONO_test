@@ -1,24 +1,24 @@
 @charset "UTF-8";
 /****************** 기본 설정  ******************/
 
-body, input, textarea, select, button {
-    -webkit-font-smoothing: antialiased;
-    direction: ltr;
-    text-align: left;
-    color: rgb(33, 33, 33);
-    letter-spacing: -0.5px;
-    outline: 0px;
-    border: 0px;
-}
-div {
-    display: block;
-    margin: 0px;
-    padding: 0px;
-    border: 0px;
-    font: inherit;
-    vertical-align: baseline;
-    text-align: center;
-}
+/* body, input, textarea, select, button { */
+/*     -webkit-font-smoothing: antialiased; */
+/*     direction: ltr; */
+/*     text-align: left; */
+/*     color: rgb(33, 33, 33); */
+/*     letter-spacing: -0.5px; */
+/*     outline: 0px; */
+/*     border: 0px; */
+/* } */
+/* div { */
+/*     display: block; */
+/*     margin: 0px; */
+/*     padding: 0px; */
+/*     border: 0px; */
+/*     font: inherit; */
+/*     vertical-align: baseline; */
+/*     text-align: center; */
+/* } */
 a {
     color: rgb(33, 33, 33); 
     text-decoration: none;
@@ -84,7 +84,7 @@ textarea {
     -webkit-box-pack: center;
     justify-content: center;
     background: rgb(255, 255, 255);
-    height: 790px;
+    height: 610px;
 }
 #storeWrap {
 	width: 1040px;
@@ -297,19 +297,6 @@ textarea {
     justify-content: space-between; /* 가운데 띄우기 */
 }
 
-#middleWrap2 {
-	height: 50px;
-    display: table;
-    -webkit-box-align: center;
-    align-items: flex-end;
-    border-top: 1px solid rgb(250, 250, 250);
-    border-bottom: 1px solid rgb(250, 250, 250);
-    margin-bottom: 15px;
-    flex-shrink: 0;
-    
-    justify-content: space-between; /* 가운데 띄우기 */
-}
-
 #middleWrap .storeIndication {
 	margin-right: 30px;
     font-size: 13px; /* 글씨체 바꾸면 13px로 바꾸기!! */
@@ -317,12 +304,6 @@ textarea {
     display: flex;
 }
 
-#middleWrap2 .storeIndication {
-	margin: auto;
-    font-size: 13px; /* 글씨체 바꾸면 13px로 바꾸기!! */
-    color: rgb(136, 136, 136);
-    display: flex;
-}
 .rigthIndi {
 	display: flex;
 }
@@ -433,35 +414,7 @@ textarea {
     margin-right: 10px;
     color: rgb(136, 136, 136);
 }
-/* 기타사유_textarea div 부분 */
-.contetnListTextarea {
-	width: 100%;
-    padding: 10px 0px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;	
-}
-.contetnListTextarea textarea {
-	width: 100%;
-    height: 80px;
-    resize: none;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    border: 1px solid rgb(238, 238, 238);	
-}
-.contetnListTextarea button {
-	border: 1px solid rgb(238, 238, 238);
-    height: 28px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    width: 56px;
-    -webkit-box-pack: center;
-    justify-content: center;
-    color: rgb(136, 136, 136);
-    font-size: 13px;
-    background: rgb(255, 255, 255);
-}
+
 
 
 /****************** storeBottom  ******************/

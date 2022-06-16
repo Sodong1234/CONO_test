@@ -17,7 +17,7 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 <meta charset="UTF-8">
 <title>myShop/my_page.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/my_page.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sass/my_page.scss">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
@@ -36,12 +36,6 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 		<jsp:include page="./myshop_sidebar.jsp"/>
 	</div>
 		
-
-
-
-	
-	
-			
 		<!-- 사이드 바 -->
 		
 		<div id="shopInfo">
@@ -58,7 +52,10 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 				
 						
 				
-<div id="storeBody">
+<div id="storeBody" style="
+    width: 2550px;
+    height: 750px;
+">
 <div id="storeWrap">
 	<div id="storeTop">
 		<div id="profileLeftWrap">
@@ -83,6 +80,9 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 						</div>
 					</div>
 					
+					
+					
+					
 					<div class="profileNickname">
 					
 					</div>
@@ -91,49 +91,21 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 				
 			</div>
 			
-		</div>
-		
-					<div id="middleWrap2">
-		
-						<div class="w3-panel w3-border w3-round-xxlarge">
-						판매자 이름 :${myShop.get('member_id') }
-						</div>
+			<ul role="list" style=" margin-top: revert;
+										    line-height: 50px;
+										    margin-left: 20px;">
 						
-						<div class="w3-panel w3-border w3-round-xxlarge">
-						  상점이름 :  ${myShop.get('shop_name') }
-						</div>
-						
-						<div class="w3-panel w3-border w3-round-xxlarge">
-						  상점소개 :  ${myShop.get('shop_content') }
-						</div>
-						
-						<div class="w3-panel w3-border w3-round-xxlarge">
-						  판매 횟수 : <%=myShopCountInfo[0] %> 번
-						</div>
-						
-						<div class="w3-panel w3-border w3-round-xxlarge">
-						   상품 갯수 :  <%=myShopCountInfo[1] %> 개
-						</div>
-						
-						<div class="w3-panel w3-border w3-round-xxlarge">
-						   팔로워 : x명 
-						</div>
-						
-						<div class="w3-panel w3-border w3-round-xxlarge">
-						 상점 오픈일 : ${myShop.get('member_date') }
-						</div>
-		
-		</div>
-			
-					
-		
-			<div id="middleWrap">
-			
-					
-					
-
+				  <li data-icon="🦄"> 판매자 이름 :${myShop.get('member_id') }</li>
+				  <li data-icon="🌈"> 상점이름 :  ${myShop.get('shop_name') }</li>
+				  <li data-icon="😎"> 상점소개 :  ${myShop.get('shop_content') }</li>
+<%-- 				  <li data-icon="🦄"> 판매 횟수 : <%=myShopCountInfo[0] %> 번</li> --%>
+<%-- 				  <li data-icon="🌈"> 상품 갯수 :  <%=myShopCountInfo[1] %> 개</li> --%>
+				  <li data-icon="😎"> 팔로워 : x명 </li>
+				  <li data-icon="🦄"> 상점 오픈일 : ${myShop.get('member_date') }</li>
+				</ul>
 				
-				<div class="rigthIndi">
+			<div id="middleWrap">
+			<div class="rigthIndi">
 					<!-- (2) 판매 횟수 -->
 					
 					<div class="storeIndication">
@@ -150,34 +122,44 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 						<div class="starIndicateNum"> 별점 0 / 5 </div>
 					</div>
 				</div>
+				
+			
+		</div>
+		
+			
+					
+				
 				<div class="w3-container">
 							
 					<input type="button" id="modify" value="수정" class="w3-button w3-blue" onclick="location.href='ProductMyshopModifyForm.shop'">
 		
 					</div>
-					
-						
-				<div id="singo">
-					<a class="singoBtn">
-					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAgtJREFUSA3tVrtOAkEUdQnKkvADFGtpIR01DYXyMLGwVisLjFEbE42FhYWJiY0YEwsqtLYwkZcFf2C3FJZuwQdIAvgAz8EdGHZZwpJIInGS3blzzzn3zty5m6wyM8Iol8tqs9lca7Vaq6CHFUUJUtZut6uYnj0ez4PP57uPRqMN+ocNZRhILJ/Pr2M6Q3BtGBebMIAfJxKJu6E8JxCn8tbr9SvgKXIQsIIpg7kUCARe6avVavPYyDLMLcyL9GHc+P3+XZz282fZ//b2L3srkQwJPuA9iMfj17C/eoyOpeOtI1m6UCjswL6AnYKW4DZf1jGwpCwjhLdMhvtZicViT1bhoHWxWFzCPT9COwvtxqDy2hKyQRqNxgtEGkT7EKVFcF3X5wzDOAW2SR/wrKZpJ6FQ6F1wsNk94JfADFVVF6yN5BFEMbMbzWQVllH4OTMZTnAIPMiHNn0yxyx9hTEYS8Zo2xKarU+MDdJ3ZwjSORlBMaw+U5MhLsUSdHtCIGGiEJa6LJeGpO3EkuW2E4Lc+ahF68tkYFl5TXuQT2hFLFljS4gSBUiIRCJvMpE2GwRde45AVT606bPyhFbEknHH71AmCdvsxiOs+Yw1bCccK4oL0X9CF8UajTr9JXX8LHK5XHu0IrljTbyk7rb3F9nKb92VUzEmfofdLk0mk7bfDaddjuMXlZz4Caf/Dr8BRaXTUmgtW58AAAAASUVORK5CYII=" width="14" height="14" alt="신고하기 아이콘">
-					<span style="color:rgb(136, 136, 136);">신고하기</span>
-					</a>
-				</div> 
-					
+					</div>
+
+				
+				
+		
+				
 					
 			</div><!-- middleWrap -->
 			<!-- 상점 주인 : 소개글 -->
-			<div class="introduce">
+<!-- 			<div class="introduce"> -->
+			
 				
+				
+<!-- 				<ol role="list"> -->
+<!--   <li>Ordered list item</li> -->
+<!--   <li style="--li-bg: darkcyan">Cake ice cream sweet sesame snaps dragée cupcake wafer cookie</li> -->
+<!--   <li style="--li-bg: navy">Ordered list item</li> -->
+<!-- </ol> -->
 				
 				
 	
-			</div>
+<!-- 			</div> -->
 			
 		</div>
 	</div><!-- //storeTop -->
 	
-
 	
 </form>
 	</div>
@@ -187,6 +169,11 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 <!-- </div>//storeWrap -->
 <!-- </div>//storeBody -->
 
+<!-- 					<div id="middleWrap2"> -->
+		
+<!-- 		</div> -->
+
+	
 	<div>
 		<!-- 하단 부분 -->
 		<jsp:include page="../header_footer/footer.jsp"/>
