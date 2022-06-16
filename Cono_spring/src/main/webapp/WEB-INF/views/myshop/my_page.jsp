@@ -20,8 +20,8 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/sass/my_page.scss">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
-<script defer src="${pageContext.request.contextPath}/resources/js/store.js"></script>
+<script src="resources/js/jquery-3.6.0.js"></script>
+<%-- <script defer src="${pageContext.request.contextPath}/resources/js/store.js"></script> --%>
 <!-- <script defer src="../js/reviews.js"></script>상점 상품후기 수 -->
 </head>
 <body>
@@ -43,20 +43,16 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 		<input type="hidden" name="shop_idx" value="${myShop.get('shop_idx') }">
 		
 		
-<!-- 				<tr> -->
-<!-- 					<td class="td_left"><label for="shop_idx">상점번호</label></td> -->
-<!-- 					<td class="td_right"> -->
-<%-- 						${myShop.get('shop_idx') } --%>
-<!-- 					</td> -->
-<!-- 				</tr> -->
-				
+
 						
 				
 <div id="storeBody" style="
-    width: 2550px;
-    height: 750px;
-">
-<div id="storeWrap">
+    width: 2050px;
+    height: 750px;" > 
+  <div id="storeWrap"> <h2 style="font-family: Cafe24Ohsquare;">
+	${myShop.get('shop_name') }의 상점 [${myShop.get('member_date') }]</h2> 
+	<hr class="hr-13">
+	
 	<div id="storeTop">
 		<div id="profileLeftWrap">
 			<div id="profileLeft">
@@ -68,7 +64,7 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 					<div class="profileLink"> 
 						<!-- 프로필 기본 이미지 -> 프로필 사진 변경 -->
 						<div id="preview">
-							<img width="100" height="100" alt="상점 프로필 이미지" class="profileImage" src="">
+							<img width="50" height="50" alt="상점 프로필 이미지" class="profileImage" src="">
 							<c:choose>
 							<c:when test="${myShop.get('shop_img') eq null }">
 								<img alt="상점 이미지" src="<spring:url value='/resources/default_img.png'/>">
@@ -80,7 +76,8 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 						</div>
 					</div>
 					
-					
+					<hr>
+					<hr>
 					
 					
 					<div class="profileNickname">
@@ -91,17 +88,12 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 				
 			</div>
 			
-			<ul role="list" style=" margin-top: revert;
-										    line-height: 50px;
-										    margin-left: 20px;">
+			<ul role="list">
 						
-				  <li data-icon="🦄"> 판매자 이름 :${myShop.get('member_id') }</li>
-				  <li data-icon="🌈"> 상점이름 :  ${myShop.get('shop_name') }</li>
-				  <li data-icon="😎"> 상점소개 :  ${myShop.get('shop_content') }</li>
-<%-- 				  <li data-icon="🦄"> 판매 횟수 : <%=myShopCountInfo[0] %> 번</li> --%>
-<%-- 				  <li data-icon="🌈"> 상품 갯수 :  <%=myShopCountInfo[1] %> 개</li> --%>
+				  <li data-icon="🦄"> 판매자 ID :${myShop.get('member_id') }</li>
+				  <li data-icon="🌈"> 상점소개 :  ${myShop.get('shop_content') }</li>
 				  <li data-icon="😎"> 팔로워 : x명 </li>
-				  <li data-icon="🦄"> 상점 오픈일 : ${myShop.get('member_date') }</li>
+<%-- 				  <li data-icon="🦄"> 상점 오픈일 : ${myShop.get('member_date') }</li> --%>
 				</ul>
 				
 			<div id="middleWrap">

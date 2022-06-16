@@ -9,10 +9,10 @@ if(session.getAttribute("sId") == null) {
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item_detail.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/button_mng.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="../js/jquery-3.6.0.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<script src="resources/js/jquery-3.6.0.js"></script>
+<!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"></script> -->
+<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
 
 <div>
 		<!-- 상단 부분 -->
@@ -126,20 +126,20 @@ if(session.getAttribute("sId") == null) {
 										<img class="timeIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAuRJREFUWAnFV01rE1EUzUwSMWATENpFRNyIi0YI+eiui4LoogWFgkvBH6Dgpip+dONKgivdC3XlpkWELkTQRVw1H4QwWQmhLrKwq1IwxHyM54zvDck4mc6bTO3AY97MO/eeM/e9d+c+LeLzqlQq8Wg0ujIajW6ZprkIs7SmaRfQN9HvsOG5pev6h+Fw+LVYLPb9uNaOAzUajYXBYPAcPHeATR2HF+OHEPMuFou9yGazP71spgowDONMt9t9BOMNtDkvJx5jRxgrJRKJl5lM5rcbzlVArVabR6i3YbDsZhTgXRlTs57P5w+ctv8IAPkiwr2LdskJnuUZU7KPtgoRrXE/EwL45SDeC5tcEgoRS+OR0OUg55xhPyly8tA3OcgleW0BYsEpzTnm9THaknTm874suCy4JYBbDU9c7UoXvugzwllRMvoL3hCcEUsA9zneB91qAfgjc4IzojPD4UuYZP7rRU5y60yvYPab4cIUmSK3ztweplcVX+TWEYqMilGYWHJzEabDdKroK60jO52aAHLbiUhReShwTIHJNcBiYqYLX/IxoIMOIxBYANLweRIXCoWb2FJrEPJdUUiHa8BQNLLh2EY7+IM+a7fbZ3O53G4ymbwKf08B+GWDPDrAtrR6vX4dNdwnD5yfoR9w9hCReE9ws9m82Ov1XqF728sYUbuhMR0CxEoljGz4DdPyQP6gqtXqXayxt1NEHOL9vFWQAPgawHtTgEqvEQm4Mrcg5An6VxDdL24OMPYGEbtvCeCvsd/vcwGF+UdkZRyFmHMuAo7i8fhlVsxWHhClc8kFOMur1BRy+izJct1ORCydMVCehdGnbVlwWXBbAOt2zNs6wrbv05EyjL7JMX5GsAXQG6tVgFZPQgR90vd4RUzOCQFCRAtAFpphTkeZPkE+cSZwFSBEHGCerqG/icbjVdCLtpv05fxy6dDahvLB7X5qh1OnGMfxnFUUj+dWLYHtJo/nBhaZ0vH8D6NELRJSWvu9AAAAAElFTkSuQmCC" width="16" height="16" alt="상품 상태 아이콘">
 										<!-- 시간 -->
 										상품 등록일 : ${itemDetail.get('item_date')}
-										<c:set var="b_time" value="${product_logtime}" />
-										<c:set var="time"
-											value="${ b_time > (60 * 24) ? Math.round( b_time / (60 * 24) ) : ( b_time > 60 ? Math.round( b_time / 60 ) : b_time ) }" />
+<%-- 										<c:set var="b_time" value="${itemDetail.get('item_date')}" /> --%>
+<%-- 										<c:set var="time" --%>
+<%-- 											value="${ b_time > (60 * 24) ? Math.round( b_time / (60 * 24) ) : ( b_time > 60 ? Math.round( b_time / 60 ) : b_time ) }" /> --%>
 								
-										<c:if test="${60 > b_time }">
-											<c:set var="unit" value="분 전" />
-										</c:if>
-										<c:if test="${ b_time > 60 }">
-											<c:set var="unit" value="시간 전" />
-										</c:if>
-										<c:if test="${ b_time > (60 * 24) }">
-											<c:set var="unit" value="일 전" />
-										</c:if>
-										<div id="product_logtime"> ${time}${unit}</div> 
+<%-- 										<c:if test="${60 > b_time }"> --%>
+<%-- 											<c:set var="unit" value="분 전" /> --%>
+<%-- 										</c:if> --%>
+<%-- 										<c:if test="${ b_time > 60 }"> --%>
+<%-- 											<c:set var="unit" value="시간 전" /> --%>
+<%-- 										</c:if> --%>
+<%-- 										<c:if test="${ b_time > (60 * 24) }"> --%>
+<%-- 											<c:set var="unit" value="일 전" /> --%>
+<%-- 										</c:if> --%>
+<%-- 										<div id="product_logtime"> ${time}${unit}</div>  --%>
 										
 									</div>
 									<div class="detail-info--topL-item">
@@ -288,6 +288,92 @@ function fnCalCount(type, ths){
         if(tCount >0) $input.val(Number(tCount)-1);    
         }
 }
+  
+  
+  // 확대버튼
+  
+$('.dtailImg_prodName').text(dto.product_subject);
+
+$.each(product_img, function(index, items){
+	if(items.product_img != ''){
+		if(items.product_img == null){
+			return false;
+		}else {
+			// ====================== 스와이퍼 ======================
+			$('.swiper-wrapper').append($('<div/>', {
+				class: 'swiper-slide'
+			}).append($('<img/>',{
+				src: '/market/storage/' + items.product_img,
+				alt: '상세 상품 이미지',
+				id:'product_img'+index
+			})))
+			
+			// 첫 장 빼고 처음엔 display:none
+			if(index != 0){
+				$('#product_img'+index).parent().css('display','none');
+				$('#product_img0').parent().css('display','block');
+			}
+			
+			// 슬라이더 버튼 dot
+			$('.paginationBtn').append($('<span/>', {
+				class: 'dot',
+				onclick: 'currentSlide('+(index)+')'
+			}))
+			
+			// 첫 장만 도트 검정
+			if( index == 0){
+				$('.dot').attr('class', 'dot active');
+			}
+			
+			// ====================== 확대 버튼 - 상세 이미지 ======================
+			$('.detailImgList').append($('<div/>', {
+				class: 'detailImg_wrap',
+			}).append($('<img/>', {
+				src: '/market/storage/' + items.product_img,
+				alt: '리뷰 이미지'
+			})).append($('<div/>', {
+				class: 'detailImg_watermark'
+			})))
+			
+			// 버튼
+			$('.detailImg_buttonWrap').append($('<button/>', {
+				class: 'detailImg_button'+index
+			}));
+			
+			// 첫번째 버튼은 흰색
+			if(index==0){
+				$('.detailImg_button'+index).css('opacity', '0.6');
+			}
+
+			$('.detailImg_button'+index).click(function(){
+				$(this).css('opacity', '0.6');
+				$(this).prevAll().css('opacity', '0.2');
+				$(this).nextAll().css('opacity', '0.2');
+				
+				
+				$('.detailImgList').attr('class', 'detailImgList_'+index);
+				
+				if(index==0){
+					for(var i=1; i<=4; i++){
+						$('.detailImgList_'+i).attr('class', 'detailImgList_0');
+					}
+				}else if(index==1){
+					$('.detailImgList_0, .detailImgList_2, .detailImgList_3, .detailImgList_4').attr('class', 'detailImgList_1');
+				}else if(index==2){
+					$('.detailImgList_0, .detailImgList_1, .detailImgList_3, .detailImgList_4').attr('class', 'detailImgList_2');
+				}else if(index==3){
+					$('.detailImgList_0, .detailImgList_1, .detailImgList_2, .detailImgList_4').attr('class', 'detailImgList_3');
+				}else if(index==4){
+					for(var i=0; i<=3; i++){
+						$('.detailImgList_'+i).attr('class', 'detailImgList_4');
+					}
+				}// if-else
+				
+			});// 버튼 클릭 
+		}//else
+		
+		
+	}
   
 </script>
 
