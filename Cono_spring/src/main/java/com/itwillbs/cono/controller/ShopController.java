@@ -275,6 +275,8 @@ public class ShopController {
 		pageInfo.setStartRow(startRow);
 		pageInfo.setListLimit(listLimit);
 		
+		System.out.println(pageInfo.getStartRow());
+		
 		// 후기 리스트 조회
 		List<HashMap<String, String>> reviewList = service.selectReviewList(member_id, item_idx, pageInfo);
 
@@ -284,29 +286,29 @@ public class ShopController {
 		PageInfo imgPageInfo = new PageInfo();
 		
 		// 이미지 개수 조회
-		int imgListCount = service.selectReviewImgListCount(member_id);
+		listCount = service.selectReviewImgListCount(member_id);
 		
 		// 페이징 처리
-		int imgListLimit = 5;
-		int imgPageLimit = 5;
+		listLimit = 5;
+		pageLimit = 5;
 
-		int imgMaxPage = (int)Math.ceil((double) imgListCount / imgListLimit);
-		int imgStartPage = ((int) ((double) imgPageNum / imgPageLimit + 0.9) - 1) * imgPageLimit + 1;
-		int imgEndPage = imgStartPage + imgPageLimit - 1;
-		if (imgEndPage > imgMaxPage) {
-			imgEndPage = imgMaxPage;
+		maxPage = (int)Math.ceil((double) listCount / listLimit);
+		startPage = ((int) ((double) imgPageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		endPage = startPage + pageLimit - 1;
+		if (endPage > maxPage) {
+			endPage = maxPage;
 		}
 		
 		// 조회 시작 게시물 번호(행 번호) 계산
-		int imgStartRow = (imgPageNum - 1) * imgListLimit;
+		startRow = (imgPageNum - 1) * listLimit;
 		
 		imgPageInfo.setPageNum(imgPageNum);
-		imgPageInfo.setMaxPage(imgMaxPage);
-		imgPageInfo.setStartPage(imgStartPage);
-		imgPageInfo.setEndPage(imgEndPage);
-		imgPageInfo.setListCount(imgListCount);
-		imgPageInfo.setStartRow(imgStartRow);
-		imgPageInfo.setListLimit(imgListLimit);
+		imgPageInfo.setMaxPage(maxPage);
+		imgPageInfo.setStartPage(startPage);
+		imgPageInfo.setEndPage(endPage);
+		imgPageInfo.setListCount(listCount);
+		imgPageInfo.setStartRow(startRow);
+		imgPageInfo.setListLimit(listLimit);
 		
 		// 상품 고를 때 클릭할 이미지(img_name) 조회
 		List<HashMap<String, String>> imgNameList = service.selectItemImgName(member_id, imgPageInfo);
@@ -316,8 +318,6 @@ public class ShopController {
 			String img = service.selectImg(item_idx);
 			model.addAttribute("img", img);
 		}
-		
-		System.out.println(imgPageInfo);
 		
 		model.addAttribute("itemAvg", itemAvg);
 		model.addAttribute("itemScore", itemScore);

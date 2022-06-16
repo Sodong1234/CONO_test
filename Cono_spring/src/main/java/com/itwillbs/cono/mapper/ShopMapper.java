@@ -88,7 +88,7 @@ public interface ShopMapper {
 	public int selectReviewListCount(String member_id);
 	
 	// 후기 리스트 조회
-	List<HashMap<String, String>> selectReviewList(@Param("member_id") String member_id,  @Param("item_idx") String item_idx, @Param("pageInfo")PageInfo pageInfo);
+	List<HashMap<String, String>> selectReviewList(@Param("member_id") String member_id, @Param("item_idx") String item_idx, @Param("pageInfo") PageInfo pageInfo);
 	
 	// 클릭된 이미지 조회
 	String selectImg(String item_idx);

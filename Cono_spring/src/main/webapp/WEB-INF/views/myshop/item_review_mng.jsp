@@ -185,6 +185,7 @@ img {
 		
 		<hr>
 		
+		<!---------------------------------------- 아이템 이미지 슬라이드 ------------------------------------------------->
 		<div id="item_img_slide_show">
 			
 			<table class="item_img_slides">
@@ -194,8 +195,8 @@ img {
 				<td>
 					<!-- [이전] 링크 동작 -->
 					<c:choose>
-						<c:when test="${imgPageNum > 1}">
-							<input type="button" value=" < " onclick="location.href='selectReviewList?page=${pageNum}&imgPageNum=${imgPageNum-1}'">
+						<c:when test="${imgPageInfo.pageNum > 1}">
+							<input type="button" value=" < " onclick="location.href='ItemReviewMng.shop?page=${pageInfo.pageNum}&imgPageNum=${imgPageInfo.pageNum-1}'">
 						</c:when>
 						<c:otherwise>
 							<input type="button" value=" < " disabled="disabled">
@@ -218,8 +219,8 @@ img {
 					<td>
 						<!-- [다음] 링크 동작 -->
 						<c:choose>
-							<c:when test="${imgPageNum < imgMaxPage}">
-								<input type="button" value=" > " onclick="location.href='selectReviewList?pageNum=${pageNum }&imgPageNum=${imgPageNum+1 }'">
+							<c:when test="${imgPageInfo.pageNum < imgPageInfo.maxPage}">
+								<input type="button" value=" > " onclick="location.href='ItemReviewMng.shop?pageNum=${pageInfo.pageNum }&imgPageNum=${imgPageInfo.pageNum+1 }'">
 							</c:when>
 							<c:otherwise>
 								<input type="button" value=" > " disabled="disabled">
@@ -229,7 +230,9 @@ img {
 				</tr>
 			</table>
 		</div>
-	
+		<!----------------------------------------------------------------------------------------------------------->
+		
+		
 	
 		<div id="item_review_list">
 			<!-- URL 파라미터로 구분(sort) -->
@@ -253,8 +256,8 @@ img {
 		<section class="paging">
 			<!-- [이전] 링크 동작 -->
 			<c:choose>
-				<c:when test="${pageNum > 1}">
-					<input type="button" value=" < " onclick="location.href='selectReviewList?pageNum=${pageNum - 1}&imgPageNum=${imgPageNum }'">
+				<c:when test="${pageInfo.pageNum > 1}">
+					<input type="button" value=" < " onclick="location.href='ItemReviewMng.shop?pageNum=${pageInfo.pageNum - 1}&imgPageNum=${imgPageInfo.pageNum }'">
 				</c:when>
 				<c:otherwise>
 					<input type="button" value=" < " disabled="disabled">
@@ -262,21 +265,21 @@ img {
 			</c:choose>
 				
 			<!-- 페이지 번호 --> 
-			<c:forEach var="i" begin="${startPage }" end="${endPage }">
+			<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
 				<c:choose>
-					<c:when test="${pageNum eq i}">
+					<c:when test="${pageInfo.pageNum eq i}">
 						${i }
 					</c:when>
 					<c:otherwise>
-						<a href="selectReviewList?pageNum=${i }&imgPageNum=${imgPageNum }">${i }</a>
+						<a href="ItemReviewMng.shop?pageNum=${i }&imgPageNum=${imgPageInfo.pageNum }">${i }</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 	
 			<!-- [다음] 링크 동작 -->
 			<c:choose>
-				<c:when test="${pageNum < maxPage}">
-					<input type="button" value=" > " onclick="location.href='selectReviewList?pageNum=${pageNum + 1}&imgPageNum=${imgPageNum }'">
+				<c:when test="${pageInfo.pageNum < pageInfo.maxPage}">
+					<input type="button" value=" > " onclick="location.href='ItemReviewMng.shop?pageNum=${pageInfo.pageNum + 1}&imgPageNum=${imgPageInfo.pageNum  }'">
 				</c:when>
 				<c:otherwise>
 					<input type="button" value=" > " disabled="disabled">

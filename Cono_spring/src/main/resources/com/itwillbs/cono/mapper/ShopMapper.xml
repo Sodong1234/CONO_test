@@ -197,7 +197,7 @@
 		AND g.img_idx = '1'
 		AND s.member_id = #{member_id}
 		ORDER BY i.item_idx*1
-		LIMIT #{imgPageInfo.imgStartRow}, #{imgPageInfo.imgListLimit}
+		LIMIT #{imgPageInfo.startRow}, #{imgPageInfo.listLimit}
 	</select>
 	
 	<!-- 후기 이미지 개수 조회 -->
@@ -229,6 +229,7 @@
 		<if test="item_idx != null">
 			AND i.item_idx = #{item_idx}
 		</if>
+		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 	</select>
 	
 	<!-- 클릭된 이미지 조회 -->
