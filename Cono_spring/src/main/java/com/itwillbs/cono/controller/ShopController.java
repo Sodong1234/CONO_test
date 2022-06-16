@@ -237,7 +237,7 @@ public class ShopController {
 	
 	// ----------------------- 상품 후기 조회 - 이소영 -------------------------
 	@RequestMapping(value = "/ItemReviewMng.shop", method = RequestMethod.GET)
-	public String selectReview(HttpSession session, String item_idx, Model model, @RequestParam(defaultValue = "1") int pageNum) {
+	public String selectReview(HttpSession session, String item_idx, @RequestParam(defaultValue = "1") int imgPageNum, @RequestParam(defaultValue = "1") int pageNum, Model model) {
 		
 		String member_id = session.getAttribute("sId").toString();
 		
@@ -246,8 +246,7 @@ public class ShopController {
 		
 		// 점수 별 상품 개수 조회
 		HashMap<String, String> itemScore = service.selectItemScore(member_id);
-		// 상품 고를 때 클릭할 이미지(img_name) 조회
-		List<HashMap<String, String>> imgNameList = service.selectItemImgName(member_id);
+		
 		
 		// 후기 개수 조회
 		int listCount = service.selectReviewListCount(member_id);
@@ -266,7 +265,7 @@ public class ShopController {
 		// 조회 시작 게시물 번호(행 번호) 계산
 		int startRow = (pageNum - 1) * listLimit;
 		
-		// 페이징 처리 정보를 PageInfo 객체에 저장
+		// 페이징 처리 정보를 PageInfo 객체에 저장(후기 리스트)
 		PageInfo pageInfo = new PageInfo();
 		pageInfo.setPageNum(pageNum);
 		pageInfo.setMaxPage(maxPage);
@@ -279,17 +278,53 @@ public class ShopController {
 		// 후기 리스트 조회
 		List<HashMap<String, String>> reviewList = service.selectReviewList(member_id, item_idx, pageInfo);
 
+		// ----------------------------------------------------------------------------------
+		
+		// 이미지 페이징 처리
+		PageInfo imgPageInfo = new PageInfo();
+		
+		// 이미지 개수 조회
+		int imgListCount = service.selectReviewImgListCount(member_id);
+		
+		// 페이징 처리
+		int imgListLimit = 5;
+		int imgPageLimit = 5;
+
+		int imgMaxPage = (int)Math.ceil((double) imgListCount / imgListLimit);
+		int imgStartPage = ((int) ((double) imgPageNum / imgPageLimit + 0.9) - 1) * imgPageLimit + 1;
+		int imgEndPage = imgStartPage + imgPageLimit - 1;
+		if (imgEndPage > imgMaxPage) {
+			imgEndPage = imgMaxPage;
+		}
+		
+		// 조회 시작 게시물 번호(행 번호) 계산
+		int imgStartRow = (imgPageNum - 1) * imgListLimit;
+		
+		imgPageInfo.setPageNum(imgPageNum);
+		imgPageInfo.setMaxPage(imgMaxPage);
+		imgPageInfo.setStartPage(imgStartPage);
+		imgPageInfo.setEndPage(imgEndPage);
+		imgPageInfo.setListCount(imgListCount);
+		imgPageInfo.setStartRow(imgStartRow);
+		imgPageInfo.setListLimit(imgListLimit);
+		
+		// 상품 고를 때 클릭할 이미지(img_name) 조회
+		List<HashMap<String, String>> imgNameList = service.selectItemImgName(member_id, imgPageInfo);
+		
 		// 클릭된 이미지 조회
 		if(item_idx != null) {
 			String img = service.selectImg(item_idx);
 			model.addAttribute("img", img);
 		}
 		
+		System.out.println(imgPageInfo);
+		
 		model.addAttribute("itemAvg", itemAvg);
 		model.addAttribute("itemScore", itemScore);
 		model.addAttribute("imgNameList", imgNameList);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("imgPageInfo", imgPageInfo);
 		
 		return "myshop/item_review_mng";
 	}

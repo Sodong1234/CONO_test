@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,11 +25,13 @@ img {
 	width: 100%;
     height: 20px;
 }
-.progress::-webkit-progress-bar {
+/* progress bar 배경 */
+.progress::-webkit-progress-bar {	
     background:#CDF0EA;
     border-radius:10px;
     box-shadow: inset 3px 3px 10px #CDF0EA;
 }
+/* progress bar 게이지 부분 */
 .progress::-webkit-progress-value {
     border-radius:10px;
     background: #1D976C;
@@ -60,8 +63,6 @@ img {
    text-align: center;   
    margin-left: 10px;
 }  
-
-
 .paging input:not(.btn){ 
   width: 30px;  
     height: 30px;   
@@ -89,7 +90,16 @@ img {
 	float: right;
 	margin: 0 50%;
 }
+/* ------------------------- 이미지 슬라이드 ------------------------- */
+.item_img_slides {
+	width: 80%;
+  	margin: 10px auto;
+}
+.item_img_slides td {
+	text-align: center;
+}
 </style>
+<script src="${path}/resources/js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	
@@ -175,14 +185,23 @@ img {
 		
 		<hr>
 		
-		<div id="item_img_slide">
-			<!-- &lang: 왼쪽 방향 화살표
-		      &rang: 오른쪽 방향 화살표 -->
-		    <span class="prev">&lang;</span>  
-			<table>
+		<div id="item_img_slide_show">
+			
+			<table class="item_img_slides">
 				<!-- 페이징 처리 처럼 옆으로 누르면 넘어가는 방식(한 칸씩 이동..! 부드럽게) -->
 				<!-- URL 파라미터로 구분(상품 번호?) -->
 				<tr>
+				<td>
+					<!-- [이전] 링크 동작 -->
+					<c:choose>
+						<c:when test="${imgPageNum > 1}">
+							<input type="button" value=" < " onclick="location.href='selectReviewList?page=${pageNum}&imgPageNum=${imgPageNum-1}'">
+						</c:when>
+						<c:otherwise>
+							<input type="button" value=" < " disabled="disabled">
+						</c:otherwise>
+					</c:choose>
+				</td>
 					<c:forEach items="${imgNameList }" var="imgName">
 						<td onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }'">
 							<c:choose>
@@ -193,12 +212,22 @@ img {
 									<img alt="" src="<spring:url value='/resources/default_img.png'/>">
 								</c:otherwise>
 							</c:choose>
-							<span>${imgName.get('item_idx') }</span>
+<%-- 							<span>${imgName.get('item_idx') }</span> --%>
 						</td>
 					</c:forEach>
+					<td>
+						<!-- [다음] 링크 동작 -->
+						<c:choose>
+							<c:when test="${imgPageNum < imgMaxPage}">
+								<input type="button" value=" > " onclick="location.href='selectReviewList?pageNum=${pageNum }&imgPageNum=${imgPageNum+1 }'">
+							</c:when>
+							<c:otherwise>
+								<input type="button" value=" > " disabled="disabled">
+							</c:otherwise>
+						</c:choose>
+					</td>
 				</tr>
 			</table>
-			<span class="next">&rang;</span>
 		</div>
 	
 	
@@ -225,7 +254,7 @@ img {
 			<!-- [이전] 링크 동작 -->
 			<c:choose>
 				<c:when test="${pageNum > 1}">
-					<input type="button" value=" < " onclick="location.href='selectReviewList?page=${pageNum - 1}'">
+					<input type="button" value=" < " onclick="location.href='selectReviewList?pageNum=${pageNum - 1}&imgPageNum=${imgPageNum }'">
 				</c:when>
 				<c:otherwise>
 					<input type="button" value=" < " disabled="disabled">
@@ -239,7 +268,7 @@ img {
 						${i }
 					</c:when>
 					<c:otherwise>
-						<a href="selectReviewList?page=${i }">${i }</a>
+						<a href="selectReviewList?pageNum=${i }&imgPageNum=${imgPageNum }">${i }</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -247,7 +276,7 @@ img {
 			<!-- [다음] 링크 동작 -->
 			<c:choose>
 				<c:when test="${pageNum < maxPage}">
-					<input type="button" value=" > " onclick="location.href='selectReviewList?page=${pageNum + 1}'">
+					<input type="button" value=" > " onclick="location.href='selectReviewList?pageNum=${pageNum + 1}&imgPageNum=${imgPageNum }'">
 				</c:when>
 				<c:otherwise>
 					<input type="button" value=" > " disabled="disabled">
