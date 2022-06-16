@@ -18,6 +18,10 @@ a {
 	color: inherit;
 }
 
+.body_wrap{
+	margin: 50px 60px 230px 60px;
+}
+
 .board_list_wrap {
 	padding: 50px;
 }
@@ -76,7 +80,7 @@ a {
 /*  paging  */
 
   .paging  {  
-  	margin-top: 30px;  
+  	margin-top: 60px;  
    	text-align: center;   
   	margin-left: 10px;
   }  
@@ -104,22 +108,28 @@ a {
 /* 검색 창 */
 
 
-.ssearch {
- 	position:relative; 
- 	float: right; 
- 	margin-right: 50px; 
- 	margin-top: 4px; 
-}
+  .ssearch_form {  
+/*      	text-align: right;      */
+   	float: right;    
+/* display: inline-block; */
+  	margin-right: 50px;   
+/*   	margin-top: 4px;   */
+position: relative;
+  }  
 
-.hh{
-	position:relative; 
- 	float: left; 
- 	margin-left: 90px; 
- 	margin-top: 4px;
-	color:#17191d;
+ .hh{ 
+ 	position:relative;  
+ 	float: left;  
+  	margin-left: 90px;  
+  	margin-top: -23px; 
+ 	color:#17191d; 
+ 	font-size: 50px;
+ 	width:100px;
  	
-}
+  }  
+  
 select {
+clear;
 	width:65px;
 	height :30px;
 	font-size: 13px;
@@ -187,11 +197,10 @@ input[type=text] {
 	<c:set var="listCount" value="${pageInfo.getListCount() }" />
 	
 	<hr>
-	<div class ="body">
-	<div class ="search">
-		<div class ="hh"><h1>QNA</h1></div>
+	<div class ="body_wrap">
+		<div class ="hh">QNA</div>
 		<div class="ssearch">
-		<form action="AdminQNASearch.admin" method="get">
+		<form action="AdminQNASearch.admin" method="get" class="ssearch_form">
 			<select name="searchType">
 				<option value="subject">제목</option>
 				<option value="name">작성자</option>
@@ -199,7 +208,6 @@ input[type=text] {
 			<input type="text" name="search" placeholder="here" > 
 			<input type="submit" value="Search" id="search_btn" >
 		</form></div>
-	</div>
 		
 		
 		<div class="board_list_wrap">

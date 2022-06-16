@@ -28,6 +28,9 @@ a {
 	color: inherit;
 }
 
+.body_wrap{
+	margin: 50px 60px 230px 60px;
+}
 .board_list_wrap {
 	padding: 50px;
 }
@@ -64,7 +67,7 @@ a {
 }
 
 .board_list_body div.title {
-	text-align: left;
+ 	text-align: left; 
 }
 
 .board_list_body div.title a:hover {
@@ -82,7 +85,7 @@ a {
 /*  paging  */
 
   .paging  {  
-  	margin-top: 30px;  
+  	margin-top: 60px;  
    	text-align: center;   
   	margin-left: 10px;
   }  
@@ -110,29 +113,36 @@ a {
 /* 검색 창 */
 
 
-.ssearch {
- 	position:relative; 
- 	float: right; 
- 	margin-right: 50px; 
- 	margin-top: 4px; 
-}
+  .ssearch_form {  
+/*      	text-align: right;      */
+   	float: right;    
+/* display: inline-block; */
+  	margin-right: 50px;   
+/*   	margin-top: 4px;   */
+position: relative;
+  }  
 
-.hh{
-	position:relative; 
- 	float: left; 
- 	margin-left: 90px; 
- 	margin-top: 4px;
-	color:#17191d;
+ .hh{ 
+ 	position:relative;  
+ 	float: left;  
+  	margin-left: 90px;  
+  	margin-top: -23px; 
+ 	color:#17191d; 
+ 	font-size: 50px;
+ 	width:100px;
  	
-}
-select {
-	width:65px;
-	height :30px;
-	font-size: 13px;
-	color:#999;
-	border:2px solid #bbb;
- 	border-radius:3px; 
-}
+  }  
+
+
+ select { 
+ clear;
+ 	width:65px; 
+ 	height :30px; 
+	font-size: 13px; 
+ 	color:#999; 
+ 	border:2px solid #bbb; 
+  	border-radius:3px;  
+ } 
 
 
 input[type=text] { 
@@ -194,11 +204,11 @@ input[type=text] {
 	<c:set var="listCount" value="${pageInfo.getListCount() }" />
 
 	<hr>
-	<div class ="body">
-	<div class ="search">
-		<div class ="hh"><h1>NOTICE</h1></div>
+	<div class ="body_wrap">
+		<div class ="hh">NOTICE</div>
+		
 		<div class="ssearch">
-		<form action="AdminNoticeList" method="post">
+		<form action="AdminNoticeList" method="post" class="ssearch_form">
 		<input type = "hidden" name ="pageNum" value="${pageNum }">
 			<select name="searchType">
 				<option value="subject" <c:if test="${searchType ne null and searchType eq 'subject'}">selected</c:if>>제목</option>
@@ -207,11 +217,9 @@ input[type=text] {
 			<input type="text" name="search" value="<c:if test="${search ne null}">${search}</c:if>" placeholder="here"> 
 			<input type="submit" value="Search" id="search_btn" >
 		</form></div>
-	</div>
 		
 		
 		<div class="board_list_wrap">
-		
 			<div class="board_list">
 				<div class="board_list_head">
 					<div class="num">번호</div>

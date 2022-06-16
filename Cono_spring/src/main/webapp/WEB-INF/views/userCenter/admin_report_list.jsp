@@ -8,7 +8,7 @@ String sId = (String) session.getAttribute("sId");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>신고하기</title>
 <style type="text/css">
 * {
 	margin: 0;
@@ -18,6 +18,10 @@ String sId = (String) session.getAttribute("sId");
 a {
 	text-decoration: none;
 	color: inherit;
+}
+
+.body_wrap{
+	margin: 50px 60px 230px 60px;
 }
 
 .board_list_wrap {
@@ -85,11 +89,12 @@ a {
 }
 
 /*  paging  */
-.paging {
-	margin-top: 30px;
-	text-align: center;
-	margin-left: 10px;
-}
+.paging  {  
+  	margin-top: 60px;  
+   	text-align: center;   
+  	margin-left: 10px;
+  }  
+
 
 .paging input:not(.btn) {
 	width: 30px;
@@ -118,13 +123,16 @@ a {
 	margin-top: 4px;
 }
 
-.hh {
-	position: relative;
-	float: left;
-	margin-left: 90px;
-	margin-top: 4px;
-	color: #17191d;
-}
+.hh{ 
+ 	position:relative;  
+ 	float: left;  
+  	margin-left: 90px;  
+  	margin-top: -23px; 
+ 	color:#17191d; 
+ 	font-size: 50px;
+ 	width:100px;
+ 	
+  }  
 
 select {
 	width: 65px;
@@ -221,11 +229,9 @@ input[type=text] {
 
 
 	<hr>
-	<div class="body">
+	<div class="body_wrap">
 <!-- 		<div class="search"> -->
-			<div class="hh">
-				<h1>REPORT</h1>
-			</div>
+				<div class ="hh">REPORT</div>
 <!-- 			<div class="ssearch"> -->
 <!-- 				<form action="AdminReportSearch.admin" method="get"> -->
 <!-- 					<select name="searchType"> -->

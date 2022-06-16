@@ -169,7 +169,6 @@ public class AdminController {
 	@RequestMapping(value = "AdminNoticeModifyPro.admin", method = RequestMethod.POST)
 	public String modifyNotice(@ModelAttribute AdminNoticeDTO noticeList, @RequestParam int pageNum, Model model) {
 		boolean isUpdateSuccess = service.modifyNotice(noticeList);
-		System.out.println(noticeList);
 		if (!isUpdateSuccess) {
 			model.addAttribute("msg", "수정실패!");
 			return "fail_back";
@@ -189,7 +188,6 @@ public class AdminController {
 		int listCount = service.getQNAListCount();
 		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
 		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
-		System.out.println(listCount);
 		// 페이징 처리를 위한 계산 작업
 		int maxPage = (int) Math.ceil((double) listCount / listLimit);
 		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
@@ -210,7 +208,6 @@ public class AdminController {
 		pageInfo.setListLimit(listLimit);
 		
 		List<AdminQNADTO> qnaList = service.getQNAList(pageInfo);
-		System.out.println(qnaList.isEmpty());
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("pageInfo", pageInfo);
 
@@ -276,7 +273,6 @@ public class AdminController {
 	@RequestMapping(value = "AdminQNAModifyPro.admin", method = RequestMethod.POST)
 	public String modifyQNA(@ModelAttribute AdminQNADTO qnaList, @RequestParam int pageNum, Model model) {
 		boolean isUpdateSuccess = service.modifyQNA(qnaList);
-		System.out.println(qnaList);
 		if (!isUpdateSuccess) {
 			model.addAttribute("msg", "수정실패!");
 			return "fail_back";
@@ -431,7 +427,6 @@ public class AdminController {
 	public String deleteReportAdmin(String item_idx,  Model model, AdminReportDTO reportList) {
 		
 		boolean isDeleteSuccess = service.removeReportAdmin(item_idx);
-		System.out.println(reportList.getReport_idx());
 		service.updateReportStatus(reportList.getReport_idx());
 		
 		
