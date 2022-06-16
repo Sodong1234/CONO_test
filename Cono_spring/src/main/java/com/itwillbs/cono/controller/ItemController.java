@@ -39,14 +39,15 @@ public class ItemController {
 		List<ImgDTO> imgList = service.selectImgList(item_idx);
 		
 		// 찜 여부 조회
-		WishDTO wish = service.selectWish(item_idx, member_id);
+		WishDTO wish = null;
+		if(member_id != null) {
+			wish = service.selectWish(item_idx, member_id);
+		}
 		
         // 최근 조회 존재여부
         int existRecent = service.existRecent(member_id, item_idx);
-        System.out.println("최근 1: " + existRecent);
         // 최근조회 insert
         int insertCount = service.insertRecentView(member_id, item_idx, existRecent);
-	    System.out.println("최근 2: " + insertCount);
 		model.addAttribute("itemDetail", itemDetail);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("wish", wish);
@@ -96,8 +97,9 @@ public class ItemController {
 		ord.setMember_id(member_id);
 		
 		// 상품 구매 가능 여부 확인(coin)
-		boolean checkCoin = service.checkCoinTotal(ord, item_price);
-		if(!checkCoin) {
+		int checkCoin = Integer.parseInt(service.checkCoinTotal(ord, item_price));	// coin_total 
+		int ordCoin = Integer.parseInt(item_price) * Integer.parseInt(ord.getOrd_quantity());	// 주문 금액
+		if(checkCoin < ordCoin) {
 			model.addAttribute("msg", "코인이 부족합니다");
 			return "myshop/fail_back";
 		}
@@ -138,7 +140,7 @@ public class ItemController {
 		
 		String member_id = session.getAttribute("sId").toString();
 		
-		int increaseCount = service.increaseWish(item_idx, member_id);
+		service.increaseWish(item_idx, member_id);
 		
 		return "redirect:/itemDetail?item_idx=" + item_idx;
 	}

@@ -39,9 +39,6 @@ public interface ItemMapper {
 	// 상품 수량 0일 경우 상품 상태 
 	void updateItemStatus(OrdDTO ord);
 	
-	// 상품 구매 가능 여부 확인 (coin)
-	Integer selectCoinTotalValue(@Param("ord") OrdDTO ord, @Param("item_price") String item_price);
-	
 	// coin_total 값 가져오기
 	String selectCoinTotal(String member_id);
 	
@@ -61,7 +58,7 @@ public interface ItemMapper {
 	String selectCouponPrice(String coupon_idx);
 	
 	// 찜 버튼 활성화(증가)
-	int insertWish(@Param("item_idx") String item_idx, @Param("member_id") String member_id);
+	void insertWish(@Param("item_idx") String item_idx, @Param("member_id") String member_id);
 	
 	// 찜 여부 조회
 	WishDTO selectWish(@Param("item_idx") String item_idx, @Param("member_id") String member_id);

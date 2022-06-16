@@ -72,14 +72,8 @@ public class ItemService {
 	}
 	
 	// 상품 구매 가능 여부 확인(coin)
-	public boolean checkCoinTotal(OrdDTO ord, String item_price) {
-		
-		Integer checkCoin = mapper.selectCoinTotalValue(ord, item_price);
-		if(checkCoin < 0 || checkCoin == null) {
-			return false;
-		} else {
-			return true;
-		}
+	public String checkCoinTotal(OrdDTO ord, String item_price) {
+		return mapper.selectCoinTotal(ord.getMember_id());
 	}
 	
 	// 구매자 정보 가져오기
@@ -103,8 +97,8 @@ public class ItemService {
 	}
 	
 	// 찜 버튼 활성화 (증가)
-	public int increaseWish(String item_idx, String member_id) {
-		return mapper.insertWish(item_idx, member_id);
+	public void increaseWish(String item_idx, String member_id) {
+		mapper.insertWish(item_idx, member_id);
 	}
 	
 	// 찜 여부 조회

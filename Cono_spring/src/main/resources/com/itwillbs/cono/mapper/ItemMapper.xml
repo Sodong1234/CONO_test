@@ -97,20 +97,7 @@
 		 WHERE item_idx=#{item_idx}
 	</update>
 	
-	<!-- 상품 구매 가능 여부 확인 (coin) -->
-	<select id="selectCoinTotalValue" resultType="java.lang.Integer">
-		SELECT * 
-		  FROM (SELECT IFNULL((coin_total-'10000'*'1'), -1)
-				  FROM coin
-				 WHERE member_id= #{ord.member_id}
-                   AND coin_idx = (SELECT * 
-									 FROM (SELECT max(coin_idx) 
-									         FROM coin
-									        WHERE member_id= #{ord.member_id}) AS d
-								  )
-           		) AS A
-	</select> 
-	
+	<!-- coin_total 값 들고오기 -->
 	<select id="selectCoinTotal" resultType="java.lang.String">
 		SELECT coin_total
 		  FROM coin
