@@ -49,8 +49,7 @@
 		</div>
 	</div>
 <!-- 	=============================== main (내 정보 section) end =============================== -->
-	
-	
+<jsp:include page="../search/recentView.jsp" />	
 <!-- 	=============================== leftbar start =============================== -->
 		<div class="plus" style="bottom: 200px;">
 			<jsp:include page="./mypage_sidebar.jsp" />

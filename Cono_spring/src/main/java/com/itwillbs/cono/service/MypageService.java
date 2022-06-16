@@ -121,6 +121,11 @@ public class MypageService {
 	public List<HashMap<String, String>> getWaitingList(String sId) {
 		return mapper.selectWaitingList(sId);
 	}
+
+	// 회원 탈퇴 로직
+	public boolean deleteId(String id, String passwd) {
+		return mapper.deleteId(id, passwd);
+	}
 	
 
 	

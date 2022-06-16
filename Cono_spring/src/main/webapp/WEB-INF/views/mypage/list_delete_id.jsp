@@ -44,22 +44,19 @@
 							</label>
 						</div>
 					</div>
-					<div class="deleteMember__check-user">
+					<form action="delete_id" class="deleteMember__check-user">
 						<p class="deleteMember__check-user-msg" style="margin = 0 0 10px;">
 						<strong>보안을 위해 회원님의 이름과 계정 이메일 및 비밀번호를 확인 합니다.</strong></p>
 						<label>
-							<span>이름 : </span>
-							<input class="deleteMember__check-user-name" type="text" readonly="true" value=${member_id }>
+							<span>아이디 : </span>
+							<input class="deleteMember__check-user-name" name="id" type="text" data-err-target="alert" data-err-msg="아이디를 입력하세요.">
 						</label>
 						<label>
-							<span>이메일 : </span>
-							<input class="deleteMember__check-user-email" type="text" readonly="true" value=${member_email }>
+							<span>비밀번호 : </span>
+							<input class="deleteMember__check-user-name" name="passwd" type="password" data-err-target="alert" data-err-msg="비밀번호를 입력하세요.">
 						</label>
-						<label>
-							<span>이름 : </span>
-							<input class="deleteMember__check-user-name" type="password" data-err-target="alert" data-err-msg="비밀번호를 입력하세요." value=${member_id }>
-						</label>
-						<button class="deleteMember__check-user-submit" onclick="" >탈퇴</button>
+						<input type="submit" value="탈퇴" class="deleteMember__check-user-submit">
+						</form>
 					</div>
 				</form>
 			</div>

@@ -1,5 +1,8 @@
 package com.itwillbs.cono.controller;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,7 +27,31 @@ public class MypageController {
 
 	@Autowired
 	private MypageService service;
-
+	// 비밀번호 암호화 
+			private String hashing(String algorithm, String strPlaintext) {
+				String strHashedData = "";
+				try {
+					MessageDigest md = MessageDigest.getInstance(algorithm);
+					
+					byte[] byteText = strPlaintext.getBytes();
+					System.out.println(Arrays.toString(byteText));
+					
+					md.update(byteText);
+					
+					byte[] digest = md.digest();
+					
+					for(byte b : digest) {
+						strHashedData += Integer.toHexString(b & 0xFF).toUpperCase();
+					}
+				} catch (NoSuchAlgorithmException e) {
+					System.out.println("입력한 암호화 알고리즘 존재 x");
+					e.printStackTrace();
+				}
+				System.out.println(strHashedData);
+				return strHashedData;
+			}
+	
+	
 	// 1. mypage 화면 이동
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session, Model model) {
@@ -143,14 +170,34 @@ public class MypageController {
 	public String account(HttpSession session, Model model) {
 		return "mypage/list_account";
 	}
-	// 회원 탈퇴
+	// 회원탈퇴 창 이동
 	@RequestMapping(value = "delete_id", method = RequestMethod.GET)
-	public String delete_id (HttpSession session, Model model) {
+	public String delete_id(HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
-		
 		String coin_total = service.getCoinTotal(sId);
+		
 		model.addAttribute("coin_total", coin_total);
 		return "mypage/list_delete_id";
+	}
+	
+	
+	
+	// 회원 탈퇴 로직
+	@RequestMapping(value = "delete_id", method = RequestMethod.POST)
+	public String delete(@RequestParam String id, @RequestParam String passwd, HttpSession session, Model model) {
+		String algorithm = "SHA-256";
+		String result = hashing(algorithm, passwd);
+		
+		boolean isDeleteSuccess = service.deleteId(id, result);
+
+		if (!isDeleteSuccess) {
+			model.addAttribute("msg", "입력 정보가 올바르지 않습니다!");
+			return "fail_back";
+		}
+		
+		session.invalidate();
+		
+		return "redirect:/";
 	}
 	// ===============================================
 

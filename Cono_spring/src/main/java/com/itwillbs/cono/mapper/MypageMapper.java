@@ -59,11 +59,9 @@ public interface MypageMapper {
 	// 내가 쓴 리뷰 확인
 	public List<ReviewDTO> selectReadReviewList(String sId);
 	public List<HashMap<String, String>> selectWaitingList(String sId);
+	// 회원 탈퇴 로직
+	public boolean deleteId(@Param("id") String id,@Param("passwd") String passwd);
 
-
-
-	
-	
 	
 	
 }
