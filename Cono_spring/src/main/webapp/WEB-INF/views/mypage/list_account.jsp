@@ -88,6 +88,40 @@
 		</div>
 	</div>
 	
+	
+	<div>	<!-- 2.2.3 등록계좌조회 API -->
+		<%-- JSTL 을 사용하여 accessToken 객체가 없을 경우 "토큰발급" 버튼 표시 --%>
+	<c:if test="${accessToken eq null }">
+		<h3>토큰 미발급 상태이므로 토큰 발급 필수!</h3>
+		<%-- /authorize URL 요청을 통해 OAuth 인증 요청 작업 수행 --%>
+		<form method="get" action="https://testapi.openbanking.or.kr/oauth/2.0/authorize">
+			<%-- 필요 파라미터는 입력데이터 없이 hidden 속성으로 전달 --%>
+			<input type="hidden" name="response_type" value="code">
+			<input type="hidden" name="client_id" value="4066d795-aa6e-4720-9383-931d1f60d1a9">
+			<input type="hidden" name="redirect_uri" value="http://localhost:8080/fintech/callback">
+			<input type="hidden" name="scope" value="login inquiry transfer">
+			<input type="hidden" name="state" value="12345678123456781234567812345678">
+			<input type="hidden" name="auth_type" value="0">
+			<input type="submit" value="토큰발급">
+		</form>
+	</c:if>
+	<hr>
+	<h3>인증완료</h3>
+	<h3>엑세스 토큰 : ${responseToken.access_token }</h3>
+	<h3>사용자 번호 : ${responseToken.user_seq_no }</h3>
+	<hr>
+		<form method="get" action="accountList">
+			<%-- 필요 파라미터는 입력데이터 없이 hidden 속성으로 전달 --%>
+			<input type="hidden" name="access_token" value="${responseToken.access_token }">
+			<input type="hidden" name="user_seq_no" value="${responseToken.user_seq_no }">
+			<input type="hidden" name="include_cancel_yn" value="Y">
+			<input type="hidden" name="sort_order" value="D">
+			<input type="submit" value="등록계좌조회">
+		</form>
+		
+	</div>
+	
+	
 	<div style="position: relative; top: 565px;">
  		<jsp:include page="../header_footer/footer.jsp"/>
  	</div>
