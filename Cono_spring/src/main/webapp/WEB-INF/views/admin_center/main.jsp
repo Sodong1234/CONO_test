@@ -14,11 +14,14 @@
    
 <div class="body">
 
-  		<a href="./AdminDealList">거래관리</a><br>
-  		<a href="./AdminMemberList">회원관리</a><br>
-  		<a href="/userCenter/AdminNoticeList">공지사항 관리</a> <br>
-  		<a href="../admin/AdminQNAList.admin">1:1 문의 관리</a> <br>
-  		<a href="../admin/AdminReportList.admin">신고 관리</a><br>
+ 	   <a href="AdminNoticeList">공지관리</a>
+	   <a href="./AdminMemberList">회원관리</a>
+	   <a href="./AdminDealList">거래현황</a>
+	   <a href="./AdminDealCancelList">거래취소</a>
+	   <a href="AdminQNAList">1:1 문의</a>
+	   <a href="AdminReportList">신고관리</a>
+	   
+	   
   		
   	  	<h2>Dashboard</h2>
   		

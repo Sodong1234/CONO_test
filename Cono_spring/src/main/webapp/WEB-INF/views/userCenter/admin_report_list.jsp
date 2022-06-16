@@ -53,10 +53,10 @@ a {
 }
 
 .board_list .report_type {
-	width: 15%;
+	width: 10%;
 }
 .board_list .title {
-	width: 40%;
+	width: 35%;
 }
 
 .board_list_body div.title {
@@ -77,7 +77,13 @@ a {
 
 .board_list .status {
 	width: 15%;
+	
 }
+.board_list .report_delete {
+	width: 10%;
+	
+}
+
 /*  paging  */
 .paging {
 	margin-top: 30px;
@@ -239,9 +245,9 @@ input[type=text] {
 					<div class="num">No.</div>
 					<div class="report_type">Classify</div>
 					<div class="title">Title</div>
-					<div class="write">Write</div>
+					<div class="writer">Write</div>
 					<div class="date">Date</div>
-					<div class ="status">Status</div>
+					<div class ="report_status">Status</div>
 				<%if(sId.equals("admin")){ %>	<div class="report_delete">delete</div> <%} %>
 				</div>
 
@@ -255,23 +261,23 @@ input[type=text] {
 							<div class="num">${report.report_idx }</div>
 							<div class="report_type">${report.report_type }</div>
 							
-<%-- 							<c:if test="${report.report_secret == true }"> --%>
-<%-- 							<c:choose> --%>
-<%--        						 <c:when test="${report.member_id eq sId || sId eq 'admin'}"> --%>
+							<c:if test="${report.report_secret == true }">
+							<c:choose>
+       						 <c:when test="${report.member_id eq sId || sId eq 'admin'}">
 					<div class="title"><a href="AdminReportView.admin?report_idx=${report.report_idx }&pageNum=${pageNum}">${report.report_subject }</a></div>
-<%-- 							</c:when> --%>
-<%-- 						  <c:otherwise> --%>
-<!-- 						  	<div class="title">비밀글.</div> -->
-<%--   					</c:otherwise> --%>
-<%--       					  </c:choose> --%>
-<%--       					  </c:if> --%>
-							<div class="write">${report.member_id }</div>
+							</c:when>
+						  <c:otherwise>
+						  	<div class="title">비밀글.</div>
+  					</c:otherwise>
+      					  </c:choose>
+      					  </c:if>
+							<div class="writer">${report.member_id }</div>
 
 							<div class="date">${report.report_date }</div>
 							<div class="report_status">${report.report_status }</div>
 							<div class="report_delete">
 							
-								<%if(sId.equals("admin")){ %><input type="button" id ="btn" onclick="location.href='ReportDeleteAdmin.admin?item_idx=4'" value="삭제"><%} %>
+								<%if(sId.equals("admin")){ %><input type="button" id ="btn" onclick="location.href='ReportDeleteAdmin.admin?report_idx=${report.report_idx}&item_idx=1'" value="삭제"><%} %>
 							</div>
 						</div>
 					</div>

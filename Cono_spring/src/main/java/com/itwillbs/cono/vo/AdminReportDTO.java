@@ -24,7 +24,7 @@ CREATE TABLE report (
 	private String report_content;
 	private String report_date;
 	private String report_status;
-	private String report_secret;
+	private boolean report_secret;
 	
 	
 	public String getReport_idx() {
@@ -75,10 +75,10 @@ CREATE TABLE report (
 	public void setReport_status(String report_status) {
 		this.report_status = report_status;
 	}
-	public String getReport_secret() {
+	public boolean getReport_secret() {
 		return report_secret;
 	}
-	public void setReport_secret(String report_secret) {
+	public void setReport_secret(boolean report_secret) {
 		this.report_secret = report_secret;
 	}
 	@Override

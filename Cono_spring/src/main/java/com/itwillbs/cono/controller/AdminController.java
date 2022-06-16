@@ -431,15 +431,14 @@ public class AdminController {
 	public String deleteReportAdmin(String item_idx,  Model model, AdminReportDTO reportList) {
 		
 		boolean isDeleteSuccess = service.removeReportAdmin(item_idx);
-		
+		System.out.println(reportList.getReport_idx());
 		service.updateReportStatus(reportList.getReport_idx());
+		
 		
 		if (!isDeleteSuccess) {
 			model.addAttribute("msg", "삭제실패!");
 			return "fail_back";
 		}
-		
-		
 //		model.addAttribute("item_idx", itemList.getItem_idx());
 
 		return "redirect:/AdminReportList";

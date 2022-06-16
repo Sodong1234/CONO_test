@@ -107,12 +107,12 @@ body{
 	<div class="sidebar">
 	   <h1 onclick="location.href='./main'">Cono</h1>
 	   <a href="">대시보드</a>
+	   <a href="AdminNoticeList">공지관리</a>
 	   <a href="./AdminMemberList">회원관리</a>
 	   <a href="./AdminDealList">거래현황</a>
 	   <a href="./AdminDealCancelList">거래취소</a>
-	   <a href="AdminQNAList.admin">1:1 문의</a>
-	   <a href="AdminNoticeList.admin">공지관리</a>
-	   <a href="AdminReportList.admin">신고관리</a>
+	   <a href="AdminQNAList">1:1 문의</a>
+	   <a href="AdminReportList">신고관리</a>
 	</div>
 	
 <!-- 네비게이션	 -->

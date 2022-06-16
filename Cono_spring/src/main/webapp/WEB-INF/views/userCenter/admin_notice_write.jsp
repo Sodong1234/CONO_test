@@ -96,7 +96,7 @@ a {
 		<form action="AdminNoticeWrite.admin" method="post">
 
 				
-					<div class = "admin_id"><input type="text" id="textBox" name="admin_id" required="required" placeholder="관리자 이름을 입력해주세요. "></div>
+					<div class = "admin_id"><input type="text" id="textBox" name="admin_id" value="admin" required="required" placeholder="관리자 이름을 입력해주세요. "></div>
 				
 					<div class = "subject"><input type="text"  id="textBox" name="notice_subject" required="required" placeholder="공지사항 제목을 입력해주세요. "></div>
 				
