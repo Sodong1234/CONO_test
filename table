@@ -33,7 +33,7 @@ CREATE TABLE member (
 	member_nick varchar(20) NOT NULL,
 	member_logo varchar(100) NOT NULL,
 	member_birth varchar(14) NOT NULL,
-	member_date varchar(14) NOT NULL,
+	member_date varchar(20) NOT NULL,
 	member_status varchar(20) NOT NULL
 );
 
@@ -52,8 +52,8 @@ CREATE TABLE item (
 	item_title varchar(20) NOT NULL,
 	item_content varchar(2000) NOT NULL,
 	item_price varchar(20) NOT NULL,
-	item_date varchar(14) NOT NULL,
-	item_endDate varchar(14),
+	item_date varchar(20) NOT NULL,
+	item_endDate varchar(20),
 	item_status varchar(3) NOT NULL,
 	item_hide varchar(3) NOT NULL,
 	item_readCnt varchar(20) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE review (
    	item_idx varchar(20),
    	review_content varchar(1000) NOT NULL,
 	review_score varchar(10) NOT NULL,
-   	review_date varchar(14) NOT NULL,
+   	review_date varchar(20) NOT NULL,
    	PRIMARY KEY (review_idx, item_idx ,member_id)  
 );
 
@@ -89,7 +89,7 @@ CREATE TABLE wish (
 CREATE TABLE ord (
 	item_idx varchar(20),
 	member_id varchar(20),
-	ord_date varchar(14) NOT NULL,
+	ord_date varchar(20) NOT NULL,
 	ord_reqContent varchar(1000),
 	ord_quantity varchar(10) NOT NULL,
 	ord_status varchar(5) NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE coin (
     coin_add VARCHAR(50) NOT NULL,
     coin_use VARCHAR(50) NOT NULL,
     coin_total VARCHAR(50),
-    coin_date VARCHAR(14),
+    coin_date VARCHAR(20),
     PRIMARY KEY(coin_idx, member_id)
 );
 
@@ -221,7 +221,7 @@ CREATE TABLE cancel (
 	member_idx VARCHAR(20),
 	cancel_content VARCHAR(1000),
 	cancel_date VARCHAR(20),
-	cancel_status VARCAHR(3),
+	cancel_status VARCAAR(3),
 	PRIMARY KEY (cancel_idx,item_idx,member_idx)
 );
 
@@ -238,7 +238,7 @@ CREATE TABLE msgList (
 	member_id varchar(20),
 	shop_idx varchar(20),
 	msgList_last_content varchar(50),
-	msgList_time varchar(14),
+	msgList_time varchar(20),
 	msgList_status varchar(5),
 	PRIMARY KEY (member_id, shop_idx)
 );
@@ -247,7 +247,7 @@ CREATE TABLE msgChat (
 	member_id varchar(20),
 	shop_idx varchar(20),
 	msgChat_content varchar(500),
-	msgChat_time varchar(14),
+	msgChat_time varchar(20),
 	PRIMARY KEY (member_id, shop_idx)
 );
 
