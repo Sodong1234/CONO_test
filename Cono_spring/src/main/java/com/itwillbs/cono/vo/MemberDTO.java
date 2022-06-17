@@ -77,8 +77,6 @@ public class MemberDTO {
 		this.member_status = member_status;
 	}
 
-	
 
-	
 
 }

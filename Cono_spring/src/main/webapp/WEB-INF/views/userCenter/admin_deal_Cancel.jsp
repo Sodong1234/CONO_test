@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>거래 현황 리스트</title>
+<title>거래 취소 요청</title>
 <link rel="stylesheet" href="resources/css/admin_table.css" />
 <script type="text/javascript">
 
@@ -55,13 +55,13 @@
 		<c:if test="${not empty dealList and pageInfo.listCount > 0 }">
 			<c:forEach var="product" items="${dealList}">
 				<tr>
-					<th>No.</th>
+					<th>${product.num}</th>
 					<td><a href="" class="title">${product.item_title }</a></td>
 					<td>${product.item_idx }</td>
-					<th>요청날짜</th>
-					<td>사유</td>
-					<td>${product.member_id }</td>
-					<th>판매자</th>
+					<th>${product.cancel_date }</th>
+					<td>${product.cancel_content }</td>
+					<td>${product.buyer}</td>
+					<th>${product.seller }</th>
 					<td>${product.safe_coin }</td>
 					<td><input type="button" id="search_btn" value="거래취소" onclick="dealCancel('${product.item_idx }', '${product.safe_coin }', '${product.item_status }','${pageInfo.pageNum }')"></td>
 				</tr>

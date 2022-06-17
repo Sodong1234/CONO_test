@@ -22,6 +22,21 @@
 		});
 	});
 </script>
+<style type="text/css">
+section {
+	margin-left:370px;
+	margin-right: 300px;
+}
+
+.footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 15px 0;
+}
+
+</style>
 </head>
 <body>
 	<div id="wrap">
@@ -62,5 +77,9 @@
 <%-- 		</c:forEach> --%>
 	</section>
 
+<!-- 푸터 -->
+	<div class="clear">
+ 		<jsp:include page="../header_footer/footer.jsp" />
+	</div>	
 </body>
 </html> 
