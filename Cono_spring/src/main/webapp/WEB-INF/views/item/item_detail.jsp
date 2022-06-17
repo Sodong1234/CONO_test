@@ -110,7 +110,7 @@
 								<div class="detail-info__text-title"></div>
 								<div class="detail-info__text-price__div"></div>
 								<!-- 상품가격 -->
-								<div class="detail-info__price" id="product_price">
+								<div class="detail-info__price" id="product_price" style="font-family:'Cafe24Ohsquare'; ">
 									상품명 : ${itemDetail.get('item_title')}
 									<!-- 찜 표시 -->
 									<c:choose>
@@ -138,21 +138,48 @@
 										</c:when>
 									</c:choose>
 								</div>
-								<h3>가격 : ${itemDetail.get('item_price')}</h3>
-
-							</div>
-							<table>
+								<h3 style="font-family:'Cafe24Ohsquare'; ">가격 : ${itemDetail.get('item_price')}</h3>
+								<table>
 								<tr style="text-align: center;">
-									<td>수량 : &nbsp;&nbsp;</td>
+									<td>현재 수량 :&nbsp;</td>
 									<td class="bseq_ea">${itemDetail.get('item_quantity')}</td>
-									<td>
-										<button type="button" onclick="fnCalCount('m', this);">-</button>
-										<input type="text" name="pop_out" value="0"
-										readonly="readonly" style="text-align: center; width: 50px;" />
-										<button type="button" onclick="fnCalCount('p',this);">+</button>
-									</td>
+<!-- 									<td> -->
+<!-- 										<button type="button" onclick="fnCalCount('m', this);">-</button> -->
+<!-- 										<input type="text" name="pop_out" value="0" -->
+<!-- 										readonly="readonly" style="text-align: center; width: 50px;" /> -->
+<!-- 										<button type="button" onclick="fnCalCount('p',this);">+</button> -->
+<!-- 									</td> -->
 								</tr>
 							</table>
+									<form action="PurchaseItem" method="post">
+								<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}"> 
+								<input type="hidden" name="img_name" value="${item.getImg_name() }">
+								<input type="hidden" name="item_price" value="${itemDetail.get('item_price')}">
+								<table>
+									<tr>
+										<td >구매수량&nbsp;</td>
+										<td id="purchase_item_quantity"></td>
+										<td><input type="submit" id="btn" value="" class="btn"></td>
+									</tr>
+<!-- 									<tr> -->
+<!-- 									</tr> -->
+								</table>
+							</form>
+							</div>
+							
+							<br>
+							
+							<form action="Myshop.shop" method="post">
+							
+								<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}">
+								 
+								<input type="submit" value="판매자의 다른 상품 보고싶으면 누르던가 아님 말고">
+				
+								</form>
+							
+							
+						
+							
 							<div class="detail-info__text-body">
 								<div class="detail-info__text-body-top">
 									<!-- 찜, 조회수, 시간 -->
@@ -162,8 +189,7 @@
 												src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAjhJREFUWAnFl1uPKUEUhbdCxF2Iu7h78f9/ixdexANeSNxCkJnz1ZwSRncrM0OvhK6ufVmrdiu1O/DxD/INq9VKFouFbDYbOR6PEggEJBKJSDqdlkKhIKFQ6FvE1+3pdJL5fC7EHw4HIXU4HJZEIiHZbFZSqdRdXOBaAEHj8VjW6/Wdo5kIBoNSLBalVCppYcxDNJvNNPn5fDaud9dkMimNRkMvxhgvAna7nQyHQ2EVNmBV3W5Xu45GI10tmziq1+v1JBaLaXctANLBYKDLbZPE+MTjcT3cbrdmyurKY+n3+/pRKiImk8nT5MRB/Cw5cfyu4ARqv9/LcrnUN+/8ghNuxcBhI7xcC5xwK7aMX4BbsfX8AtzKa9++Whjcij8WvwC3Yk/6BbiV+TPxQwTcKpPJ+MGtOeFWHBB+PAY44VYctZxu7waccOuzIJ/Pv7UKrB5OoAUopfQ5/a4q0BPAeRHAgG4nl8vpyVd+wQGXwZeM/3f1el2i0aix/fmV3HBc40YAZel0Oq4933Xgs2M6IXKb0pv4GwFM0ny22+1Lv2ccf3Pl195qtW56QZPvTgAG9mez2fwTEZCTy6kjhstRAAba6FqtxvBXIAe53OAqgADeASqVilvsw3liyeEFTwEElstl/fFK4mSzjXsogOSshBcRW+BrWzkrARBXq1UrEZDjawtrAUYEpXXDs+TkeUoAAZTWScRPyMnn/JqLxQPm+U6nU+2FIDPnEeZourycOlofTF4LeODqav4EUxqvNxGf2nsAAAAASUVORK5CYII="
 												width="16" height="16" alt="상품 상태 아이콘">
 											<!-- 찜 수 -->
-											<div id="zzim">찜
-												${itemDetail.get('COUNT(w.member_id)')}</div>
+											<div id="zzim">찜 ${itemDetail.get('COUNT(w.member_id)')}</div>
 										</div>
 										<div class="detail-info--topL-item">
 											<img
@@ -229,33 +255,20 @@
 								</div>
 							</div>
 						</div>
+						
 						<div class="detail-info__btn-list">
-<hr>
+						
 							<!-- 버튼 -->
-							<form action="PurchaseItem" method="post">
-								<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}"> 
-								<input type="hidden" name="img_name" value="${item.getImg_name() }">
-								<input type="hidden" name="item_price" value="${itemDetail.get('item_price')}">
-								<table>
-									<tr>
-										<th>구매수량</th>
-										<td id="purchase_item_quantity"></td>
-									</tr>
-									<tr>
-										<td colspan="2"><input type="submit" id="btn" value="구매하기" class="btn"></td>
-									</tr>
-								</table>
-							</form>
+						
 								<div class="center">
 									<a href="#" onclick="submitBtn()"><span data-attr="buy">buy</span><span
 										data-attr="now">now</span></a>
 
 
-	<form action="Myshop.shop" method="post">
-	<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}"> 
-				<input type="submit" >
-				
-				</form>
+									<br>
+
+								
+								
 								</div>
 
 						</div>

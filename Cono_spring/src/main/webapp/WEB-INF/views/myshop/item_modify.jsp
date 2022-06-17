@@ -1,32 +1,28 @@
-<%@page import="com.itwillbs.cono.vo.ImgDTO"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="com.itwillbs.cono.vo.ShopDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <%
 if (session.getAttribute("sId") == null) {
-	response.sendRedirect("MemberLogin.func");
-}
+	response.sendRedirect("MemberLogin.func"); 
+	}
 %>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/my_page.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/item_detail.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/nav.css">
-<!-- <script defer src="../js/store.js"></script> -->
-<!-- <script defer src="../js/reviews.js"></script>상점 상품후기 수 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/my_page.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item_detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/button_mng.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://www.w3schools.com/lib/w3-colors-flat.css">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<script src="resources/js/jquery-3.6.0.js"></script>
-<script type="text/javascript">
-	let imgStatus = [];
+<link rel="stylesheet" href="https://www.w3schools.c
+
+
+om/lib/w3-colors-flat.css">
+<script src="resources/js/jquery-3.6.0.js">
 	
 	for(let i = 0; i < 6; i++) {
 		imgStatus[i] = 'N';
@@ -75,195 +71,111 @@ if (session.getAttribute("sId") == null) {
 	
 </script>
 
-<style>
-div {
-	margin: auto;
-}
-
-.w3-button {
-	width: 150px;
-}
-
-img {
-	width: 200px;
-}
-
-input[type=file] {
-	display: none;
-}
-</style>
+<meta charset="UTF-8">
+<title>내 상품 수정</title>
 </head>
 <body>
-
-	<jsp:include page="../header_footer/header.jsp" />
-
+	<div>
+		<!-- 상단 부분 -->
+			<jsp:include page="../header_footer/header.jsp"/>
+	</div>
 
 	<!------ 사이드바 ------>
 	<div>
 		<jsp:include page="./myshop_sidebar.jsp"/>
 	</div>
 		
-
-	<h1>상품 정보 수정</h1>
-	<div>
-
-		<hr>
+  <div id="storeWrap"><h2 style="font-family: Cafe24Ohsquare;">
+	${myShop.get('shop_name') }의 상품 수정하기 ${myShop.get('member_date') }</h2> 
+	
+	
+	<hr class="hr-13">
+	<hr>
+	
 		<form name="fr" action="ItemModifyPro.shop" method="post"
 			enctype="multipart/form-data" onsubmit="return imgStatusCheck()">
 
 			<input type="hidden" name="item_idx"
-				value="${itemDetail.get('item_idx')}"> <input type="hidden"
-				name="imgStatus" value="">
-
-		</form>
-
-		<div id="storeBody">
-			<div id="storeWrap">
-				<div id="storeTop">
-					<div id="profileLeftWrap">
-						<div id="profileLeft">
-							<div class="background1">
-								<div class="backgroundImg"></div>
-							</div>
-							<!-- // (1) background -->
-
-
-							상품 이미지 변경
-
-							<button type="button">
-								<img src="${pageContext.request.contextPath}/resources/img/cancle.png" alt="">
-							</button>
-
-							<div class="background2">
-								<div class="profileLink">
-									<!-- 프로필 기본 이미지 -> 프로필 사진 변경 -->
-									<div id="preview">
-										<img width="80" height="80" alt="상점 프로필 이미지"
-											class="profileImage" src="">
-									</div>
-								</div>
-								<div class="profileNickname"></div>
-
-
-
-
-								<!-- 	<div id="middleWrap"> -->
-
-								<!-- 			</div>middleWrap -->
-								<!-- 			<!-- 상점 주인 : 소개글 -->
-
-
-								<!-- 			<div class="introduce"> -->
-								<!-- 				</div> -->
-
-
-
-
-								<div class="introduceEdit">
-									<button class="introduceEditBtn"
-										onclick="location.href='ProductMyshopModifyForm.shop'">
-										이미지수정</button>
-								</div>
-
-
-
-							</div>
-						</div>
-					</div>
-
-
-					<div class="profileRight">
-
-						<div class="w3-panel w3-leftbar w3-border-blue">상품명</div>
-
-						<div class="w3-panel w3-border w3-hover-border-blue">
-							<p>
-								<input type="text" name="item_title"
-									value="${itemDetail.get('item_title')}" />
-							</p>
-						</div>
-
-
-						<div class="w3-panel w3-leftbar w3-border-blue">카테고리</div>
-
-						<select name="category_big">
-							<option
-								<c:if test="${itemDetail.get('category_big') eq '1' }">selected="selected"</c:if>>1</option>
-							<option
-								<c:if test="${itemDetail.get('category_big') eq '2' }">selected="selected"</c:if>>2</option>
-							<option
-								<c:if test="${itemDetail.get('category_big') eq '3' }">selected="selected"</c:if>>3</option>
-						</select> 
-						
-						<select name="category_small">
-							<option
-								<c:if test="${itemDetail.get('category_small') eq '1' }">selected="selected"</c:if>>1</option>
-							<option
-								<c:if test="${itemDetail.get('category_small') eq '2' }">selected="selected"</c:if>>2</option>
-							<option
-								<c:if test="${itemDetail.get('category_small') eq '3' }">selected="selected"</c:if>>3</option>
-						</select>
-
-						<div class="w3-panel w3-leftbar w3-border-blue">거래지역</div>
-
-						<div class="w3-panel w3-border w3-hover-border-blue">
-							<p>
-								<input type="text" name="item_title" value="${itemDetail.get('item_region')} 우편 번호 API 사용 (원래 주소 출력)" />
-							</p>
-						</div>
-
-
-
-						<div class="w3-panel w3-leftbar w3-border-blue">가격</div>
-
-
-						<div class="w3-panel w3-border w3-hover-border-blue">
-							<p>
-								<input type="text" name="item_price"
-									value="${itemDetail.get('item_price')}"   />
-							</p>
-						</div>
-
-						<div class="w3-panel w3-leftbar w3-border-blue">수량</div>
-
-
-						<div class="w3-panel w3-border w3-hover-border-blue">
-							<p>
-								<input type="text" name="item_quantity" value="${itemDetail.get('item_quantity')}" />
-							</p>
-						</div>
-						<div class="w3-panel w3-leftbar w3-border-blue">상품 소개</div>
-
-						<textarea class="form-control" id="exampleTextarea"
-							name="item_content" cols="30" rows="4">${itemDetail.get('item_content')}</textarea>
-						<br> <br> <br> <br> <br>
-
-						<div class="w3-container">
-							<input type="submit" class="w3-button w3-blue" value="수정">
-						</div>
-
-					</div>
-
-
-				</div>
-			</div>
-		</div>
+				value="${itemDetail.get('item_idx')}"> 
+				<input type="hidden" name="imgStatus" value="">
+				
 		
-	</div>
-
-
-
-
-
-
-
-
-
-
-
+	<c:forEach var="i" begin="1" end="6">
+		<c:choose>
+			<c:when test="${imgList.get(i-1).getImg_name() ne null}">
+				<img id="target_img${i }" src="resources/upload/file/${imgList.get(i-1).getImg_name() }">
+				<input type="file" id="file${i }" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile${i }(this)">
+<%-- 				<input type="button" id="delFile${i }" value="x" onclick="deleteImg${i}()"><br> --%>
+				<input type="image" style="width: 10px" border="0" id="delFile${i }" value="이미지삭제" onclick="deleteImg${i}()" src="<spring:url value='/resources/cancle.png'/>" >&nbsp;이미지 삭제하기<br>
+			</c:when>
+			<c:when test="${imgList.get(i-1).getImg_name() eq null}">
+				<img id="target_img${i }" alt="상점 이미지" src="resources/default_img.png">
+				<input type="file" id="file${i }" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile${i }(this)">
+<%-- 				<input type="button" id="delFile${i }" value="x" onclick="deleteImg${i}()"><br> --%>
+				<input type="image" style="width: 10px" border="0" id="delFile${i }" value="이미지삭제" onclick="deleteImg${i}()" src="<spring:url value='/resources/cancle.png'/>" >&nbsp;이미지 삭제하기<br>
+			</c:when>
+		</c:choose>
+	</c:forEach>
+	
+	
+	<div class="form-group">
+				  <label class="col-form-label mt-4" for="inputDefault">상품명</label>
+ 				 <input type="text" class="form-control"  id="inputDefault" name="item_title" value="${itemDetail.get('item_title')}" >
+ 				 
+ 				  <label class="col-form-label mt-4" for="inputDefault">상품 소개</label>
+ 				 <input type="text" class="form-control"  id="inputDefault" name="item_title" value="${itemDetail.get('item_content')}" >
+ 				 
+ 				  <label class="col-form-label mt-4" for="inputDefault">가격</label>
+ 				 <input type="text" class="form-control"  id="inputDefault" name="item_priceitem_title" value="${itemDetail.get('item_price')}" >
+ 				 
+ 				  <label class="col-form-label mt-4" for="inputDefault">수량</label>
+ 				 <input type="text" class="form-control"  id="inputDefault" name="item_quantity" value="${itemDetail.get('item_quantity')}" >
+ 				 
+<!--  				  <label class="col-form-label mt-4" for="inputDefault">카테고리</label> -->
+ 				   <label for="exampleSelect1" class="form-label mt-4">카테고리</label><br><br>
+      					<select class="form-select" id="exampleSelect1" name="category_big">
+      					
+ 				 
+							<option <c:if test="${itemDetail.get('category_big') eq '1' }">selected="selected"</c:if>>1</option>
+							<option <c:if test="${itemDetail.get('category_big') eq '2' }">selected="selected"</c:if>>2</option>
+							<option <c:if test="${itemDetail.get('category_big') eq '3' }">selected="selected"</c:if>>3</option>
+						</select>
+						
+						<select class="form-select" id="exampleSelect1" name="category_small">
+							<option <c:if test="${itemDetail.get('category_small') eq '1' }">selected="selected"</c:if>>1</option>
+							<option <c:if test="${itemDetail.get('category_small') eq '2' }">selected="selected"</c:if>>2</option>
+							<option <c:if test="${itemDetail.get('category_small') eq '3' }">selected="selected"</c:if>>3</option>
+						</select> <br>
+						
+						
+						
+						
+						
+ 				 
+ 				  <label class="col-form-label mt-4" for="inputDefault">거래지역</label>
+ 				 <input type="text" class="form-control" id="inputDefault" name="item_title" value="${itemDetail.get('item_region')} " ><br><br>
+	
+				</div>		
 
 	
+	
+	
+	
+	
+	
+	
 
-	<jsp:include page="../header_footer/footer.jsp" />
+						<input type="submit" class="btn" value="수정" > 
+						<input type="button" class="btn" value="취소" onclick="history.back()">
+	</form>
+				    </div>
+		
+<!-- </div>  -->
+
+	<div>
+		<!-- 하단 부분 -->
+		<jsp:include page="../header_footer/footer.jsp"/>
+	</div>
+
 </body>
 </html>

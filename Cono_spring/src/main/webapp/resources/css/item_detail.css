@@ -1,3 +1,30 @@
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+*{
+	
+	 font-family: 'IBMPlexSansKR-Regular';
+
+}
+
+
+
+
 a {
     color: rgb(33, 33, 33);
     text-decoration: none;
@@ -18,7 +45,7 @@ div {
     font: inherit;
     vertical-align: baseline;
 }
-/* 연락하기 모달 */
+
 img {
     vertical-align: bottom;
     border-style: none;
@@ -266,7 +293,8 @@ img {
 	justify-content: space-between;
 }
 .detail-info__text-header {
-	padding-bottom: 30px;
+	
+/* 	padding-bottom: 30px; */
 	width: 100%;
 	border-bottom: 1px solid rgb(238, 238, 238);
 }
