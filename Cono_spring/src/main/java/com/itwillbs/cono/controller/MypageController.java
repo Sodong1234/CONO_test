@@ -19,6 +19,7 @@ import com.itwillbs.cono.service.MypageService;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.PaymentDTO;
 import com.itwillbs.cono.vo.ReviewDTO;
 
@@ -129,28 +130,58 @@ public class MypageController {
 
 	// 내가 쓴 후기 확인
 	@RequestMapping(value = "readReviewList", method = RequestMethod.GET)
-	public String readReview(HttpSession session, Model model) {
+	public String readReview(@RequestParam(defaultValue = "1") int pageNum, HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
 
-		List<ReviewDTO> reviewList = service.getReadReviewList(sId);
-		System.out.println(reviewList.isEmpty());
-		model.addAttribute("reviewList", reviewList);
+		
+		
+		int listCount = service.getPurchaseListCount(sId);
+		int listLimit = 10; // 한 페이지 당 표시할 목록 갯수
+		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
+		
+		// 페이징 처리를 위한 계산 작업
+		int maxPage = (int)Math.ceil((double)listCount / listLimit);
+		int startPage = ((int)((double)pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		int endPage = startPage + pageLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		// 조회 시작 게시물 번호(행 번호) 계산
+		int startRow = (pageNum - 1) * listLimit;
+		
+		// 페이징 처리 정보를 PageInfo 객체에 저장
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setPageNum(pageNum);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setListLimit(listLimit);
+		
+		List<HashMap<String, String>> purchaseList = service.getReadPurchaseList(sId, pageInfo);
+		model.addAttribute("purchaseList", purchaseList);
+		model.addAttribute("pageInfo", pageInfo);
 		return "mypage/list_readList";
 	}
 	
 	// 후기 작성 페이지 이동 - 사진 없는 페이지
 	@RequestMapping(value = "writeBasicReview", method = RequestMethod.GET)
-	public String writeBasicReview(HttpSession session, Model model) {
+	public String writeBasicReview(HttpSession session, String item_idx, Model model) {
+		
+		HashMap<String, String> itemInfo = service.getItemInfo(item_idx);
+		
+		model.addAttribute("itemInfo", itemInfo);
 		
 		return "mypage/review_basic_write";
 	}
 		
-	// 후기 작성 페이지 이동 - 사진 있는 페이지
-	@RequestMapping(value = "writePictureReview", method = RequestMethod.GET)
-	public String writePictureReview(HttpSession session, Model model) {
-
-		return "mypage/review_picture_write";
-	}
+//	// 후기 작성 페이지 이동 - 사진 있는 페이지
+//	@RequestMapping(value = "writePictureReview", method = RequestMethod.GET)
+//	public String writePictureReview(HttpSession session, Model model) {
+//
+//		return "mypage/review_picture_write";
+//	}
 	
 	// 알림
 

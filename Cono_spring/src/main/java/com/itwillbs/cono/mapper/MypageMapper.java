@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.PaymentDTO;
 import com.itwillbs.cono.vo.ReviewDTO;
 
@@ -57,8 +58,12 @@ public interface MypageMapper {
 	// 구매 중 수
 	public int selectWaitingCount(String sId);
 	// 내가 쓴 리뷰 확인
-	public List<ReviewDTO> selectReadReviewList(String sId);
+	public List<HashMap<String, String>> selectReadPurchaseList(@Param("sId") String sId, @Param("pageInfo") PageInfo pageInfo);
 	public List<HashMap<String, String>> selectWaitingList(String sId);
+	// 리뷰 개수 조회
+	public int selectPurchaseListCount(String sId);
+	// 리뷰 작성할 아이템 조회
+	public HashMap<String, String> selectItemInfo(String item_idx);
 	// 회원 탈퇴 로직
 	public boolean deleteId(@Param("id") String id,@Param("passwd") String passwd);
 

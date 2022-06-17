@@ -172,18 +172,36 @@
 	</select>
 	
 <!-- 		내가 쓴 리뷰 리스트 -->	
-	<select id="selectReadReviewList" resultType="com.itwillbs.cono.vo.ReviewDTO">
+	<select id="selectReadPurchaseList" resultType="java.util.HashMap">
 <!-- 		SELECT r.review_idx, r.member_id, r.item_idx, i.item_title, o.ord_quantity, r.review_content, r.review_date, r.review_score -->
 <!-- 		FROM review r, item i, ord o -->
 <!-- 		WHERE r.member_id = #{sId} -->
 <!-- 		  AND r.item_idx = i.item_idx -->
 <!-- 		  AND o.item_idx = i.item_idx -->
-		SELECT o.item_idx, i.item_title, o.ord_date, o.ord_status, ord_reqContent, ord_quantity
-		  FROM ord o, item i
+		SELECT o.item_idx, s.shop_name, i.item_title, i.item_price, im.img_name, o.ord_date, o.ord_status, o.ord_reqContent, o.ord_quantity
+		  FROM ord o, item i, img im, shop s
 		 WHERE 1=1
 		   AND o.item_idx = i.item_idx
+		   AND im.item_idx = o.item_idx
+		   AND i.shop_idx = s.shop_idx
 		   AND o.member_id = #{sId}
+		   AND im.img_idx='1'
+		 LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 		   
+	</select>
+	
+	<!-- 구매내역 개수 조회 -->
+	<select id="selectPurchaseListCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM ord
+		 WHERE member_id=#{sId}
+	</select>
+	
+	<!-- 후기 작성할 아이템 조회 -->
+	<select id="selectItemInfo" resultType="java.util.HashMap">
+		SELECT item_idx, item_title, item_quantity
+		  FROM item
+		 WHERE item_idx = #{item_idx}
 	</select>
 	
 <!-- 		회원 탈퇴 -->

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <!--  common-layout -->
+ <script src="${path}/resources/js/jquery-3.6.0.js"></script>
   <script type="text/javascript" src="//image.msscdn.net/static/common/1.2.0/chunk-vendors.js"></script>
   <link type="text/css" rel="stylesheet" href="//image.msscdn.net/static/common/1.2.0/pc.css"/>
   <link rel="stylesheet" type="text/css" href="https://static.msscdn.net/ui/build/pc/css/common.css">
@@ -185,6 +187,23 @@ div {
 }
 
 </style>
+<script type="text/javascript">
+// 	$(function() {
+// 		var new_window_width = 500;
+// 	    var new_window_height = 600;
+// 	    var positionX = ( window.screen.width / 2 ) - ( new_window_width / 2 );
+// 	    var positionY = ( window.screen.height / 2 ) - ( new_window_height / 2 );
+// 		$("#write_review").on("click", function() {
+// 			var item_idx = ${purchase.item_idx};
+// 			alert(item_idx);
+// 			window.open("writeBasicReview?item_idx=" + item_idx, "리뷰 작성", "width=" + new_window_width + ", height=" + new_window_height + ", top=" + positionY + ", left=" + positionX)
+// 		});
+// 	});
+// 	function writeReview(item_idx) {
+// 		window.open("writeReview?item_idx=" + item_idx, "리뷰 작성", "width=" + new_window_width + ", height=" + new_window_height + ", top=" + positionY + ", left=" + positionX);
+		
+// 	}
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -215,119 +234,104 @@ div {
 		<!-- //filter -->
 
 		<table class="n-table table-col" id="wrapReviewArea">
-			<colgroup>
-				<col style="width: *">
-				<col style="width: 12.8%">
-				<col style="width: 12.8%">
-				<col style="width: 12.8%">
-				<col style="width: 12.8%">
-				<col style="width: 12.8%">
-			</colgroup>
+<%-- 			<colgroup> --%>
+<%-- 				<col style="width: *"> --%>
+<%-- 				<col style="width: 12.8%"> --%>
+<%-- 				<col style="width: 12.8%"> --%>
+<%-- 				<col style="width: 12.8%"> --%>
+<%-- 				<col style="width: 12.8%"> --%>
+<%-- 			</colgroup> --%>
 			<thead>
 				<tr>
-					<th scope="col">상품번호</th>
+<!-- 					<th scope="col">상품번호</th> -->
 					<th scope="col">상품정보</th>
 					<th scope="col">구매 / 구매확정일</th>
-					<th scope="col">상품 사진 후기</th>
-					<th scope="col">일반 후기</th>
+					<th scope="col">후기</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-				<td>1 <!-- 리뷰번호 -->
-				</td> 
-					<td>
-						<div class="n-prd-row">
-							<a href="https://www.musinsa.com/app/goods/1459843/0" class="img-block">
-							<img src="//image.msscdn.net/images/goods_img/20200523/1459843/1459843_1_100.jpg" 
-							alt="박스 로고 스트라이프 링거 탑 [블루 퍼플]">
-							</a>
-							<ul class="info">
-								<li class="brand"><a href="">러닝하이</a></li>
-								<li class="name"><a href="">박스 로고 스트라이프 링거 탑 [블루 퍼플]</a></li>
-								<li class="option">FREE</li>
-							</ul>
-						</div>
-					</td>
-					<td>2022.06.14<br>구매확정
-					</td>
-					<!-- 상품 사진 후기 -->
-					<td><a class="n-btn w80 btn-sm btn-default" href="writePictureReview">작성하기</a></td>
-					<!-- //상품 사진 후기 -->
-					<!-- 일반 후기 -->
-					<td><a class="n-btn w80 btn-sm btn-default" href="writeBasicReview">작성하기</a></td>
-					<!-- //일반 후기 -->
-
-
-				</tr>
-				<tr>
-				<td>2 <!-- 상품번호 -->
-				</td> 
-					<td>
-						<div class="n-prd-row">
-							<a href="https://www.musinsa.com/app/goods/1801766/0" class="img-block"> <img class="lazyload"
-								data-original="//image.msscdn.net/images/goods_img/20210218/1801766/1801766_2_100.jpg" alt="브라운 하운드투스 체크 칼라 셋업 재킷 (351239JQ1D)"
-								src="//image.msscdn.net/images/goods_img/20210218/1801766/1801766_2_100.jpg" style="display: block;">
-							</a>
-							<ul class="info">
-								<li class="brand"><a href="">에잇세컨즈</a></li>
-								<li class="name"><a href="">브라운 하운드투스 체크 칼라 셋업 재킷 (351239JQ1D)</a></li>
-								<li class="option">진한갈색 : M</li>
-							</ul>
-						</div>
-					</td>
-					<td class="txt-lighter">2021.08.11<br>구매확정
-					</td>
-					<!-- 상품 사진 후기 -->
-					<td><span class="txt-lighter">작성불가<br>(90일 경과)
-					</span></td>
-					<!-- //상품 사진 후기 -->
-
-					<!-- 일반 후기 -->
-					<td><span class="txt-info">작성완료</span><br> (적립금 지급)</td>
-					<!-- //일반 후기 -->
-
-
-				</tr>
-				<tr>
-				<td>3 <!-- 상품번호 -->
-				</td> 
-					<td>
-						<div class="n-prd-row">
-							<a href="https://www.musinsa.com/app/goods/1274715/0" class="img-block"> <img class="lazyload"
-								data-original="//image.msscdn.net/images/goods_img/20200118/1274715/1274715_1_100.jpg" alt="캐주얼글로시백 / 블랙"
-								src="//image.msscdn.net/images/goods_img/20200118/1274715/1274715_1_100.jpg" style="display: block;">
-							</a>
-							<ul class="info">
-								<li class="brand"><a href="//www.musinsa.com/brands/neata">니트에이</a></li>
-								<li class="name"><a href="https://www.musinsa.com/app/goods/1274715/0">캐주얼글로시백 / 블랙</a></li>
-								<li class="option">없음</li>
-
-
-							</ul>
-						</div>
-					</td>
-					<td class="txt-lighter">2021.07.17<br>구매확정
-					</td>
-					<!-- 상품 사진 후기 -->
-					<td><span class="txt-lighter">작성불가<br>(90일 경과)
-					</span></td>
-					<!-- //상품 사진 후기 -->
-
-					<!-- 일반 후기 -->
-					<td><span class="txt-info">작성완료</span><br> (적립금 지급)</td>
-					<!-- //일반 후기 -->
-				</tr>
+				<c:forEach items="${purchaseList }" var="purchase">
+					<c:choose>
+						<c:when test="${purchase.ord_status eq 'N'}">
+							<tr>
+<!-- 								<td>1 리뷰번호 -->
+<!-- 								</td>  -->
+								<td>
+									<div class="n-prd-row">
+										<a href="https://www.musinsa.com/app/goods/1459843/0" class="img-block">
+										<img src="resources/upload/file/${purchase.img_name }">
+										</a>
+										<ul class="info">
+											<li class="brand"><a href="">${purchase.item_title }</a></li>
+											<li class="option">${purchase.ord_quantity }</li>
+										</ul>
+									</div>
+								</td>
+								<td>${purchase.ord_date }<br>
+									<input type="button" value="구매확정" onclick="location.href='confirmPurchase?item_idx=${purchase.item_idx}&ord_date=${purchase.ord_date }'">
+								</td>
+									<td>
+<!-- 										<a class="n-btn w80 btn-sm btn-default" href="writeBasicReview">작성하기</a> -->
+									</td>
+							</tr>
+						</c:when>
+						<c:when test="${purchase.ord_status eq 'Y'}">
+							<tr>
+<!-- 								<td>1 리뷰번호 -->
+<!-- 								</td>  -->
+								<td>
+									<div class="n-prd-row">
+										<a href="https://www.musinsa.com/app/goods/1459843/0" class="img-block">
+										<img src="resources/upload/file/${purchase.img_name }">
+										</a>
+										<ul class="info">
+											<li class="brand"><a href="">${purchase.item_title }</a></li>
+											<li class="option">${purchase.ord_quantity }</li>
+										</ul>
+									</div>
+								</td>
+								<td>${purchase.ord_date }<br>
+									<input type="button" value="구매확정완료" disabled="disabled">
+								</td>
+									<td><a class="n-btn w80 btn-sm btn-default" id="write_review" href="writeBasicReview?item_idx=${purchase.item_idx }">작성하기</a></td>
+<%--  									<td><a class="n-btn w80 btn-sm btn-default" id="write_review" onclick="writeReview(${purchase.item_idx})">작성하기</a></td> --%>
+							</tr>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				
 			</tbody>
 		</table>
-		<!-- //paging -->
-		<div class="n-paging">
-			<button type="button" class="page is-active">1</button>
-			<button type="button" class="page" onclick="click_paging(2);">2</button>
-			<button type="button" class="page" onclick="click_paging(3);">3</button>
-			<button type="button" class="page" onclick="click_paging(4);">4</button>
-			<button type="button" class="page" onclick="click_paging(5);">5</button>
-		</div>
+		
+		<div class ="paging">
+		<c:choose>
+			<c:when test="${pageInfo.pageNum > 1 }">
+				<input type="button" value=" < " onclick="location.href='readReviewList?pageNum=${pageInfo.pageNum - 1 }'">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value=" < ">
+			</c:otherwise>
+		</c:choose>
+
+		<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
+			<c:choose>
+			<c:when test="${pageInfo.pageNum eq i }">
+				${i }
+			</c:when>
+			<c:otherwise>
+				<a href="readReviewList?pageNum=${i }">${i }</a>
+			</c:otherwise>
+		</c:choose>
+		</c:forEach>
+		<c:choose>
+			<c:when test="${pageInfo.pageNum < pageInfo.maxPage }">
+				<input type="button" value=" > " onclick="location.href='IreadReviewList?pageNum=${pageInfo.pageNum + 1 }'">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value=" > ">
+			</c:otherwise>
+		</c:choose>
+	</div>
 	</section>
 
 	<div class="clear" style="position: relative; top: 4500px;">

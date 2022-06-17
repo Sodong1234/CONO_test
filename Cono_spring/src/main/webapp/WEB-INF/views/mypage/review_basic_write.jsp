@@ -57,7 +57,7 @@
 
                 
     <header class="n-section-title">
-        <h1 class="tit">일반 후기작성</h1>
+        <h1 class="tit">후기작성</h1>
     </header>
 
     <ul class="n-info-txt">
@@ -70,17 +70,16 @@
         </li>
     </ul>
 
-
+			
                 <div class="my-review-write" id="reviewWrap">
                     <!-- 상품 -->
                     <div class="n-prd-row">
                         <a href="/app/goods/1459843" class="img-block">
-                            <img src="//image.msscdn.net/images/goods_img/20200523/1459843/1459843_1_100.jpg" alt="박스 로고 스트라이프 링거 탑 [블루 퍼플]">
+                            <img src="resources/upload/file/${purchase.img_name }">
                         </a>
                         <ul class="info">
-                            <li class="brand"><a href="null/brands/runninghigh">러닝하이</a></li>
-                            <li class="name"><a href="/app/goods/1459843">박스 로고 스트라이프 링거 탑 [블루 퍼플]</a></li>
-                            <li class="option">FREE</li>
+                            <li class="brand"><a href="null/brands/runninghigh">${itemInfo.item_title }</a></li>
+                            <li class="option">${itemInfo.item_quantity }</li>
                             
                         </ul>
                     </div>
@@ -89,32 +88,24 @@
                     <!-- 별점 -->
                     <div class="review-score" id="reviewScorePos">
                         <em class="label">별점을 매겨주세요</em>
-                        <div class="n-score score-lg clickable goods_est_area" id="startScoreWrap">
-                            <a href="#" class="score score10" data-star="5"></a>
-                            <a href="#" class="score score8" data-star="4"></a>
-                            <a href="#" class="score score6" data-star="3"></a>
-                            <a href="#" class="score score4" data-star="2"></a>
-                            <a href="#" class="score score2" data-star="1"></a>
-                        </div>
+                        	<select name="review_score">
+                        		<option value="5">5</option>
+                        		<option value="4">4</option>
+                        		<option value="3">3</option>
+                        		<option value="2">2</option>
+                        		<option value="1">1</option>
+                        	</select>
+<!--                         <div class="n-score score-lg clickable goods_est_area" id="startScoreWrap"> -->
+<!--                             <a href="#" class="score score10" data-star="5"></a> -->
+<!--                             <a href="#" class="score score8" data-star="4"></a> -->
+<!--                             <a href="#" class="score score6" data-star="3"></a> -->
+<!--                             <a href="#" class="score score4" data-star="2"></a> -->
+<!--                             <a href="#" class="score score2" data-star="1"></a> -->
+<!--                         </div> -->
                     </div>
                     <!-- //별점 -->
 
                     <!-- 구매만족도 -->
-                    <ul class="review-check">
-                        <li class="n-radio-tab" value="1263">
-                            <em class="label satisfactionTitle">만족도</em>
-                            
-                                <input type="radio" id="" name="" value="" data-category="">
-                                <label for="choice0_25">좋아요</label>
-                            
-                                <input type="radio" id="" name="" value="" data-category="">
-                                <label for="choice0_11">보통이에요</label>
-                            
-                                <input type="radio" id="" name="" value="" data-category="">
-                                <label for="choice0_20">별로에요</label>
-                            
-                        </li>
-                    </ul>
                     <!-- // 구매만족도 -->
                     <!-- 후기 작성 -->
                     <div class="review-write">

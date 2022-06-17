@@ -10,6 +10,7 @@ import com.itwillbs.cono.mapper.MypageMapper;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.PaymentDTO;
 import com.itwillbs.cono.vo.ReviewDTO;
 
@@ -114,10 +115,20 @@ public class MypageService {
 	}
 	
 	// 내가 쓴 리뷰 확인
-	public List<ReviewDTO> getReadReviewList(String sId) {
-		return mapper.selectReadReviewList(sId);
+	public List<HashMap<String, String>> getReadPurchaseList(String sId, PageInfo pageInfo) {
+		return mapper.selectReadPurchaseList(sId, pageInfo);
 	}
-
+	
+	// 리뷰 개수 조회
+	public int getPurchaseListCount(String sId) {
+		return mapper.selectPurchaseListCount(sId);
+	}
+	
+	// 리뷰 작성할 아이템 정보 조회
+	public HashMap<String, String> getItemInfo(String item_idx) {
+		return mapper.selectItemInfo(item_idx);
+	}
+	
 	public List<HashMap<String, String>> getWaitingList(String sId) {
 		return mapper.selectWaitingList(sId);
 	}
@@ -126,6 +137,11 @@ public class MypageService {
 	public boolean deleteId(String id, String passwd) {
 		return mapper.deleteId(id, passwd);
 	}
+
+	
+
+
+	
 	
 
 	
