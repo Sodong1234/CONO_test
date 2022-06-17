@@ -7,104 +7,71 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-* {
-	margin: 0;
-	padding: 0;
-}
+<script src="${path}/resources/js/jquery-3.6.0.js"></script>
+<link rel="stylesheet" href="${path}/resources/css/style.css"
+	type="text/css">
+</head>
+<body>
+	<div id="wrap">
+		<jsp:include page="../header_footer/header.jsp" />
+		<jsp:include page="./mypage_sidebar.jsp" />
+	</div>
+ <style type="text/css">
 
-/* 제목 */
-.hh{
-	position:relative; 
- 	text-align: center; 
-	color:#17191d;
-	margin:20px;
- 	
-}
+ * { 
+ 	margin: 0; 
+ 	padding: 0; 
+ } 
 
 
 
-/* 라디오버튼 페이결제 */
 
-input[type=radio]{
- 	accent-color: #a4e7ff; 
-	font-size: 35px; 
-	border: 0px;
-	width:100%;
-    height: 0.5em; 
-}
-
-.radioBtn{
-	font-size: 20px;
-}
 
 
 
 /* 페이 리스트 */
 
-.cashListWrap {
-	width:100%;
-    
-}
-.coin_total{
-	width:100%;
-	text-align:right;
-	font-size: 20px;
-	color: #17191d; 
- 	margin-bottom:10px; 
+
+/* .coin_total{ */
+/* 	width:100%; */
+/* 	text-align:right; */
+/* 	font-size: 20px; */
+/* 	color: #17191d;  */
+/*  	margin-bottom:10px;  */
 	
-}
+/* } */
 
 .cashTable {
-/* 	border-top:3px solid #a4e7ff; */
-	border-bottom: 3px solid #a4e7ff;
+ 	 
+/* 	border:none; */
+	
 	width:100%;
-	font-size: 20px;
+	font-size: 16px;
 	padding-top:15px;
 	padding-bottom:15px;
 	
 }
 
-th {
-	border:3px solid #a4e7ff;
-	padding : 10px;
-}
-th .num {
-
-	width : 10%;
-	font-size: 20px;
-	color:#17191d; 
-}
-th .coin_add {
-	width : 25%;
-	font-size: 20px;
-	color:#17191d; 
-}
-th .coin_use {
-	width : 25%;
-	font-size: 20px;
-	color:#17191d; 
-}
-
- th .td_coin_total{
-	width : 25%;
-	font-size: 20px;
-	color:#17191d; 
-}
-th .date {
-	width : 15%;
-	font-size: 20px;
-	color:#17191d; 
-}
-
-td {
-	padding : 10px;
+.cashTable th{
+	border-bottom:1px solid #ccc;
 	text-align: center;
-	font-size:18px;
-	color:#17191d;
+	padding: 10px;
 }
-
+.cashTable td {
+border-bottom:1px solid #ccc;
+text-align: center;
+padding: 10px;
+}
+ 
 /* 버튼 */
+
+input[type=radio]{
+ 	accent-color: #a4e7ff; 
+  	font-size: 15px;   
+	border: 0px;
+/* 	width:100%; */
+/*     height: 0.3em;  */
+}
 .btnArea {
 	text-align: center;
 	width: 100%;
@@ -113,9 +80,9 @@ td {
 }
 
 .btn{
- 	font-size: 18px;
+ 	font-size: 14px;
  	font-weight:bold;
- 	padding: 6px 17px; 
+ 	padding: 4px 8px; 
 	background-color: #a4e7ff;
 	color: white;
 	border : 2px solid #a4e7ff;
@@ -134,8 +101,11 @@ td {
 .btn:hover{
 	background-color: white;
 	color:#a4e7ff;
-}
+}	
+
+
 </style>
+
 <script type="text/javascript">
    function visiblePayCheck() {
       var checkBox = document.getElementById("payCheck");
@@ -167,9 +137,9 @@ td {
 
 </head>
 <body>
-
-   <div class ="hh"><h1>코인페이지</h1></div>
-   <div class="btnArea"><button onclick="visiblePayCheck()" class="btn">코인충전</button></div>
+<section class="couponSection">
+   <div class ="txt">코인페이지</div>
+   <div class="segment"><div class="btnArea"><button onclick="visiblePayCheck()" class="btn">코인충전</button></div>
       
 <!--    <section id="payCheck" style="display: none;"> -->
 
@@ -182,13 +152,13 @@ td {
          <div class="btnArea"><input type="submit" value="결제하기" class="btn"></div>
       </form>
       </div>
-      
+      </div>
 <!--    </section> -->
       
 		
       
-				<div class="coin_total">사용가능한 코인 : ${coin_total}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-   		<div class="cashListWrap" align="center">
+<%-- 				<div class="coin_total">사용가능한 코인 : ${coin_total}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div> --%>
+   		<div class="segment"><div class="cashListWrap" align="center">
 			<table class="cashTable" >
 			
 				<tr>
@@ -207,6 +177,7 @@ td {
 	   </table>
       	
       	</div> <!-- cashListWrap 디브 -->
-      	
+      	</div>
+      </section>	
 </body>
 </html>

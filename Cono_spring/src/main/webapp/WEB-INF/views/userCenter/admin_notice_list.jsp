@@ -88,6 +88,7 @@ a {
   	margin-top: 60px;  
    	text-align: center;   
   	margin-left: 10px;
+  
   }  
 
 

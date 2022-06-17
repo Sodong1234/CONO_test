@@ -323,7 +323,7 @@ input[type=text] {
 			</c:otherwise>
 			</c:choose>
 
-			<input type="button" value="" class="btn" onclick="location.href='AdminReportWriteForm.admin?item_idx=1'">
+<!-- 			<input type="button" value="" class="btn" onclick="location.href='AdminReportWriteForm.admin?item_idx=1'"> -->
 		</div> <!-- 페이지디브 -->
 	</div> <!--  리스트랩 디브 -->
 	</div>

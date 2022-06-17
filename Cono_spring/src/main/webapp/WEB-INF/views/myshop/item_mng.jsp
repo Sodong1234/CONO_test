@@ -22,6 +22,42 @@ String sell_status = request.getParameter("sell_status");
 <script src="js/jquery-3.6.0.js"></script>
 <link rel="styleSheet" href="${pageContext.request.contextPath}/resources/css/item_mng.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+
+<style type="text/css">
+
+#search_row{
+	margin-right: 385px;
+}
+
+/*  paging  */
+
+  .paging  {  
+  	margin-top: 60px;  
+   	text-align: center;   
+  	margin-left: 10px;
+  		margin-bottom:300px;
+  }  
+
+
+  .paging input:not(.btn){ 
+    width: 30px;  
+   	height: 30px;   
+   	background-repeat:no-repeat; 
+   	border-radius:100px;  
+   	border-style: none;  
+    overflow: hidden;   
+    font-size: 13px;
+    font-weight: bold;
+  } 
+  
+  .paging input:not(.btn):hover{
+  	background-color: #999;
+  } 
+  
+  .paging a:hover{
+  	text-decoration: underline;
+  }
+</style>
 </head>
 
 <body>
@@ -35,21 +71,20 @@ String sell_status = request.getParameter("sell_status");
 		<jsp:include page="./myshop_sidebar.jsp"/>
 	</div>
 		
-			
-	<div class="float-end">
+<!-- 	<div class="float-end"> -->
 			<div class="row mb-4 float-end" style="width:500px;margin-top:5px;" id="search_row">
 				<form name="fr" action="ItemMng.shop" class="input-group">
-					<input type="text" class="form-control" name="keyword" id="keyword" placeholder="상품명 입력" <%if(keyword != null) { %> value="<%=keyword%>" <%} %>>
 					<select class="form-select"  name="sell_status">
 						<option value="" <%if(sell_status != null && sell_status.equals("")) { %> selected="selected" <%} %>>전체</option>
 						<option value="0" <%if(sell_status != null && sell_status.equals("0")) { %> selected="selected" <%} %>>판매 중</option>
 						<option value="1" <%if(sell_status != null && sell_status.equals("1")) { %> selected="selected" <%} %>>판매 완료</option>
 					</select>
+					<input type="text" class="form-control" name="keyword" id="keyword" placeholder="상품명 입력" <%if(keyword != null) { %> value="<%=keyword%>" <%} %>>
 						<button type="submit" class="btn btn-outline-primary">
 							<i class="bi bi-search"></i>
 						</button>
 				</form>
-			</div>
+<!-- 			</div> -->
 	<!-- 		<form action="ItemMng.shop" class="input-group"> -->
 	<!-- 			<div class="col"> -->
 	<%-- 				<input type="text" class="form-control" name="keyword" id="keyword" placeholder="상품명 입력" <%if(keyword != null) { %> value="<%=keyword%>" <%} %>> --%>
@@ -76,7 +111,7 @@ String sell_status = request.getParameter("sell_status");
 <!-- 			</select> -->
 <!-- 			<input type="submit" id="search" value="검색"> -->
 <!-- 		</form> -->
-		<div class="clearfix"></div>
+<!-- 		<div class="clearfix"></div> -->
 			<div class="row mb-4" id="list_row" style="width: 1020px;">
 				<table class="table table-hover lh-lg text-center" style="border:1px 0;border-color:bg-primary"; >
 					<tr class="border-top border-bottom border-primary pe-none">
@@ -119,13 +154,13 @@ String sell_status = request.getParameter("sell_status");
 			</div>
 <!-- 		</div> -->
 <!-- 	</div> -->
-	<div>
+	<div class ="paging">
 		<c:choose>
 			<c:when test="${pageInfo.pageNum > 1 }">
-				<input type="button" value="이전" onclick="location.href='ItemMng.shop?pageNum=${pageInfo.pageNum - 1 }'">
+				<input type="button" value=" < " onclick="location.href='ItemMng.shop?pageNum=${pageInfo.pageNum - 1 }'">
 			</c:when>
 			<c:otherwise>
-				<input type="button" value="이전">
+				<input type="button" value=" < ">
 			</c:otherwise>
 		</c:choose>
 
@@ -141,14 +176,14 @@ String sell_status = request.getParameter("sell_status");
 		</c:forEach>
 		<c:choose>
 			<c:when test="${pageInfo.pageNum < pageInfo.maxPage }">
-				<input type="button" value="다음" onclick="location.href='ItemMng.shop?pageNum=${pageInfo.pageNum + 1 }'">
+				<input type="button" value=" > " onclick="location.href='ItemMng.shop?pageNum=${pageInfo.pageNum + 1 }'">
 			</c:when>
 			<c:otherwise>
-				<input type="button" value="다음">
+				<input type="button" value=" > ">
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<div class="clearfix"></div>
+<!-- 	<div class="clearfix"></div> -->
 	<div>
 		<!-- 하단 부분 -->
 		<jsp:include page="../header_footer/footer.jsp"/>
