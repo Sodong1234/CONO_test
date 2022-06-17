@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.OrdDTO;
@@ -72,5 +73,8 @@ public interface ItemMapper {
 	int insertRecentView(@Param("member_id") String member_id, @Param("item_idx") String item_idx, @Param("existRecent") int existRecent);
 	// coin 테이블 insert (판매자)
 //	void insertCoinSeller(@Param("ord") OrdDTO ord, @Param("item_price") String item_price);
+	
+	// coin 존재 여부 확인
+	CoinDTO selectCoin(String member_id);
 	
 }

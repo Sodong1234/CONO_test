@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.itwillbs.cono.mapper.ItemMapper;
+import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.OrdDTO;
@@ -119,6 +120,11 @@ public class ItemService {
     public int insertRecentView(String member_id, String item_idx, int existRecent) {
        return mapper.insertRecentView(member_id, item_idx, existRecent);
     }
+
+	// coin 존재 여부 확인
+	public CoinDTO checkCoin(String member_id) {
+		return mapper.selectCoin(member_id);
+	}
 
 	
 	// coin 테이블 insert (판매자)

@@ -72,7 +72,13 @@ public class ItemController {
 		List<HashMap<String, String>> coupons = service.getUsableCoupon(buyer_id, item_price, ord_quantity);
 		
 		// 코인 잔액 조회
-		int balanceCoin = service.getBalanceCoin(buyer_id);
+		int balanceCoin = 0;
+		if(service.checkCoin(buyer_id) != null) {
+		balanceCoin = service.getBalanceCoin(buyer_id);
+		} else {
+			model.addAttribute("msg", "코인이 존재하지 않습니다");
+			return "./myshop/fail_back";
+		}
 		
 		model.addAttribute("itemDetail", itemDetail);
 		model.addAttribute("buyerInfo", buyerInfo);
@@ -97,12 +103,17 @@ public class ItemController {
 		ord.setMember_id(member_id);
 		
 		// 상품 구매 가능 여부 확인(coin)
-		int checkCoin = Integer.parseInt(service.checkCoinTotal(ord, item_price));	// coin_total 
-		int ordCoin = Integer.parseInt(item_price) * Integer.parseInt(ord.getOrd_quantity());	// 주문 금액
-		if(checkCoin < ordCoin) {
-			model.addAttribute("msg", "코인이 부족합니다");
-			return "myshop/fail_back";
-		}
+//		if(service.checkCoin(member_id) != null) {
+			int checkCoin = Integer.parseInt(service.checkCoinTotal(ord, item_price));	// coin_total 
+			int ordCoin = Integer.parseInt(item_price) * Integer.parseInt(ord.getOrd_quantity());	// 주문 금액
+			if(checkCoin < ordCoin) {
+				model.addAttribute("msg", "코인이 부족합니다");
+				return "myshop/fail_back";
+			}
+//		} else {
+//			model.addAttribute("msg", "코인이 존재하지 않습니다");
+//			return "myshop/fail_back";
+//		}
 		
 		// item 테이블 수량 변경
 		service.modifyItemQuantity(ord);

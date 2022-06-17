@@ -193,5 +193,12 @@
           WHERE member_id = #{member_id} AND item_idx = #{item_idx}
       </if>
    </insert>
+   
+   <!-- 코인 존재 여부 확인 -->
+   <select id="selectCoin" resultType="com.itwillbs.cono.vo.CoinDTO">
+   		SELECT *
+   		  FROM coin
+   		 WHERE member_id=#{member_id}
+   </select>
 
 </mapper>
