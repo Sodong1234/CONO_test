@@ -94,8 +94,14 @@ public interface ShopMapper {
 	// 클릭된 이미지 조회
 	String selectImg(String item_idx);
 
+	// 상품 주문(진행중) 개수 조회
+	public int selectOrdListCount(String member_id);
+	
 	// 상품 주문 (진행중) 리스트 조회
 	List<HashMap<String, String>> selectOrdList(String member_id);
+	
+	// 상품 주문(완료) 개수 조회
+	public int selectFinishOrdListCount(String member_id);
 
 	// 상품 주문 (완료) 리스트 조회
 	List<HashMap<String, String>> selectFinishOrdList(String member_id);

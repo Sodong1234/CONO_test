@@ -362,7 +362,7 @@ public class ShopController {
 	
 	// --------------------- 상품 주문 관리 - 문현진 ---------------------------
 	@RequestMapping(value = "/ItemOrdMng.shop", method = RequestMethod.GET)
-	public String getOrdList(HttpSession session, Model model) {
+	public String getOrdList(HttpSession session, Model model, @RequestParam(defaultValue = "1") int pageNum) {
 		
 		String member_id = session.getAttribute("sId").toString();
 		
@@ -370,14 +370,76 @@ public class ShopController {
 			return "redirect:/login";
 		}
 		
+		// 상품 주문(진행중) 개수 조회
+		int listCount = service.selectOrdListCount(member_id);
+		
+		// 페이징 처리
+		int listLimit = 5;
+		int pageLimit = 5;
+
+		int maxPage = (int)Math.ceil((double) listCount / listLimit);
+		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		int endPage = startPage + pageLimit - 1;
+		if (endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		// 조회 시작 게시물 번호(행 번호) 계산
+		int startRow = (pageNum - 1) * listLimit;
+		
+		// 페이징 처리 정보를 PageInfo 객체에 저장(후기 리스트)
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setPageNum(pageNum);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setListLimit(listLimit);
+		
+		System.out.println(pageInfo.getStartRow());
+		
 		// 상품 주문 조회(진행중)
 		List<HashMap<String, String>> ordList = service.getOrdList(member_id);
+		
+		//----------------------------------------------------------------------
+		
+		// 상품 주문(완료) 개수 조회
+		listCount = service.selectFinishOrdListCount(member_id);
+		
+		// 페이징 처리
+		listLimit = 5;
+		pageLimit = 5;
+
+		maxPage = (int)Math.ceil((double) listCount / listLimit);
+		startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		endPage = startPage + pageLimit - 1;
+		if (endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		// 조회 시작 게시물 번호(행 번호) 계산
+		startRow = (pageNum - 1) * listLimit;
+		
+		// 페이징 처리 정보를 PageInfo 객체에 저장(후기 리스트)
+		PageInfo finishPageInfo = new PageInfo();
+		finishPageInfo.setPageNum(pageNum);
+		finishPageInfo.setMaxPage(maxPage);
+		finishPageInfo.setStartPage(startPage);
+		finishPageInfo.setEndPage(endPage);
+		finishPageInfo.setListCount(listCount);
+		finishPageInfo.setStartRow(startRow);
+		finishPageInfo.setListLimit(listLimit);
+		
+		System.out.println(finishPageInfo.getStartRow());
 		
 		// 상품 주문 조회(완료)
 		List<HashMap<String, String>> finishOrdList = service.getFinishOrdList(member_id);
 		
 		model.addAttribute("ordList", ordList);
+		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("finishOrdList", finishOrdList);
+		model.addAttribute("finishPageInfo", finishPageInfo);
 		
 		return "myshop/item_order_mng";
 	}

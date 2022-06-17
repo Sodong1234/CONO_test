@@ -242,6 +242,16 @@
 		   AND img_idx = '1'
 	</select>
 	
+	<!-- 상품 주문(진행중) 개수 조회 -->
+	<select id="selectOrdListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		FROM item
+        WHERE shop_idx = (SELECT shop_idx
+							FROM shop
+                            WHERE member_id = #{member_id})
+		AND item_status = '1'
+	</select>
+	
 	<!-- 상품 주문 (진행중) 리스트 조회 -->			<!-- 이거도 해야대넹~~ i.member_id 읎애라 -->
 	<select id="selectOrdList" resultType="java.util.HashMap">
 		SELECT ord.ord_date, i.item_title, ord.member_id, i.item_price, ord.ord_reqContent
@@ -251,12 +261,22 @@
 		   AND s.member_id = #{member_id}
 		   AND i.item_status = '1'
 	</select>
+	
+	<!-- 상품 주문(완료) 개수 조회 -->
+	<select id="selectFinishOrdListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		FROM item
+        WHERE shop_idx = (SELECT shop_idx
+							FROM shop
+                            WHERE member_id = #{member_id})
+		AND item_status = '2'
+	</select>
 
 	<!-- 상품 주문 (완료) 리스트 조회 -->
 	<select id="selectFinishOrdList" resultType="java.util.HashMap">
 		SELECT ord.ord_date, i.item_title, ord.member_id , i.item_price, ord.ord_reqContent
-		  FROM ord ord, item i, shop s
-		 WHERE i.shop_idx = s.shop_idx
+		FROM ord ord, item i, shop s
+		WHERE i.shop_idx = s.shop_idx
 		   AND ord.item_idx = i.item_idx
 		   AND s.member_id = #{member_id}
 		   AND i.item_status = '2'

@@ -377,9 +377,19 @@ public class ShopService {
 		return mapper.selectImg(item_idx);
 	}
 
+	// 상품 주문(진행중) 개수 조회
+	public int selectOrdListCount(String member_id) {
+		return mapper.selectOrdListCount(member_id);
+	}
+
 	// 상품 주문 (진행중) 리스트 조회
 	public List<HashMap<String, String>> getOrdList(String member_id) {
 		return mapper.selectOrdList(member_id);
+	}
+	
+	// 상품 주문(완료) 개수 조회
+	public int selectFinishOrdListCount(String member_id) {
+		return mapper.selectFinishOrdListCount(member_id);
 	}
 
 	// 상품 주문 (완료) 리스트 조회
