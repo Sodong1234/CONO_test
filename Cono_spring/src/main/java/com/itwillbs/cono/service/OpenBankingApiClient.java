@@ -20,7 +20,7 @@ import com.itwillbs.cono.vo.ResponseTokenVO;
 public class OpenBankingApiClient {
 	private String clientId = "234192c2-8c1a-4cdb-a1d3-49e0f2ecc09a";
 	private String clientSecret = "8b0a78cd-ba5c-464d-8f45-78d9aff9e693";
-	private String redirectUri = "http://localhost:8080/cono/accountInfo";
+	private String redirectUri = "http://localhost:8080/cono/list_account";
 	private String baseUrl = "https://testapi.openbanking.or.kr/v2.0";
 	
 	// REST 방식의 API 요청에 사용할 클래스 타입 변수 선언

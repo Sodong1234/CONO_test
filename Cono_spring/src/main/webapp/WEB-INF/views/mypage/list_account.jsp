@@ -98,7 +98,7 @@
 			<%-- 필요 파라미터는 입력데이터 없이 hidden 속성으로 전달 --%>
 			<input type="hidden" name="response_type" value="code">
 			<input type="hidden" name="client_id" value="4066d795-aa6e-4720-9383-931d1f60d1a9">
-			<input type="hidden" name="redirect_uri" value="http://localhost:8080/cono/accountInfo">
+			<input type="hidden" name="redirect_uri" value="http://localhost:8080/cono/list_account">
 			<input type="hidden" name="scope" value="login inquiry transfer">
 			<input type="hidden" name="state" value="12345678123456781234567812345678">
 			<input type="hidden" name="auth_type" value="0">

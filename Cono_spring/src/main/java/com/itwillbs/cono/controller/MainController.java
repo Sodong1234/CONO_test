@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.cono.service.MainService;
 import com.itwillbs.cono.vo.ItemDTO;
@@ -59,6 +60,21 @@ public class MainController {
 			return "redirect:/";
 		}
 	}
+	
+	// 카카오톡 로그인
+	@RequestMapping("/kakaoLogin")
+    public String home(@RequestParam(value = "code", required = false) String code) throws Exception{
+	     System.out.println("#########" + code);
+	     String access_Token = service.getAccessToken(code);
+	     HashMap<String, Object> userInfo = service.getUserInfo(access_Token);
+	     System.out.println("###access_Token#### : " + access_Token);
+	     System.out.println("###userInfo#### : " + userInfo.get("email"));
+	     System.out.println("###nickname#### : " + userInfo.get("nickname"));
+	     System.out.println("###birth#### : " + userInfo.get("birth"));
+	     System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
+        return "redirect:/";
+    }
+	
 	// 로그아웃
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
