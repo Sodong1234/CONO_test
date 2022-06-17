@@ -383,8 +383,8 @@ public class ShopService {
 	}
 
 	// 상품 주문 (진행중) 리스트 조회
-	public List<HashMap<String, String>> getOrdList(String member_id) {
-		return mapper.selectOrdList(member_id);
+	public List<HashMap<String, String>> getOrdList(String member_id, PageInfo pageInfo) {
+		return mapper.selectOrdList(member_id, pageInfo);
 	}
 	
 	// 상품 주문(완료) 개수 조회
@@ -393,8 +393,8 @@ public class ShopService {
 	}
 
 	// 상품 주문 (완료) 리스트 조회
-	public List<HashMap<String, String>> getFinishOrdList(String member_id) {
-		return mapper.selectFinishOrdList(member_id);
+	public List<HashMap<String, String>> getFinishOrdList(String member_id, PageInfo finishPageInfo) {
+		return mapper.selectFinishOrdList(member_id, finishPageInfo);
 	}
 	
 	// 상품 조회 (페이징 처리를 위한 ListCount 조회)

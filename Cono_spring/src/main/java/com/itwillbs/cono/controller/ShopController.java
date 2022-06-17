@@ -400,7 +400,7 @@ public class ShopController {
 		System.out.println(pageInfo.getStartRow());
 		
 		// 상품 주문 조회(진행중)
-		List<HashMap<String, String>> ordList = service.getOrdList(member_id);
+		List<HashMap<String, String>> ordList = service.getOrdList(member_id, pageInfo);
 		
 		//----------------------------------------------------------------------
 		
@@ -434,7 +434,7 @@ public class ShopController {
 		System.out.println(finishPageInfo.getStartRow());
 		
 		// 상품 주문 조회(완료)
-		List<HashMap<String, String>> finishOrdList = service.getFinishOrdList(member_id);
+		List<HashMap<String, String>> finishOrdList = service.getFinishOrdList(member_id, finishPageInfo);
 		
 		model.addAttribute("ordList", ordList);
 		model.addAttribute("pageInfo", pageInfo);

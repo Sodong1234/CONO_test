@@ -30,7 +30,7 @@ h3 {
 
 /*  paging  */
  .paging  {  
- 	margin-top: 60px;  
+ 	margin-top: 70px;  
   	text-align: center;   
  	margin-right: 27px;
  	margin-bottom: 50px;

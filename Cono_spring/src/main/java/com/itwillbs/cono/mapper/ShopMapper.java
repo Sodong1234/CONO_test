@@ -98,13 +98,13 @@ public interface ShopMapper {
 	public int selectOrdListCount(String member_id);
 	
 	// 상품 주문 (진행중) 리스트 조회
-	List<HashMap<String, String>> selectOrdList(String member_id);
+	List<HashMap<String, String>> selectOrdList(@Param("member_id") String member_id, @Param("pageInfo") PageInfo pageInfo);
 	
 	// 상품 주문(완료) 개수 조회
 	public int selectFinishOrdListCount(String member_id);
 
 	// 상품 주문 (완료) 리스트 조회
-	List<HashMap<String, String>> selectFinishOrdList(String member_id);
+	List<HashMap<String, String>> selectFinishOrdList(@Param("member_id") String member_id, @Param("finishPageInfo") PageInfo finishPageInfo);
 	
 	// 상품 조회 (페이징 처리를 위한 ListCount 조회)
 	Integer selectItemListCount(String member_id);
@@ -112,14 +112,20 @@ public interface ShopMapper {
 	// 상품이 ord 테이블이 등록된 경우 삭제 방지
 	Integer selectItemOrd(String item_idx);
 	
+	// ===========================================================================
+	
 	// 팔로잉
 	public List<HashMap<String, String>> selectFollowingList(String sId);
+	
 	// 팔로워
 	public List<HashMap<String, String>> selectFollowerList(String shop_idx);
+	
 	// 팔로잉 수
 	public int selectFollowingCount(String sId);
+	
 	// 팔로워 수
 	public int selectFollowerCount(String sId);
+	
 	// 팔로잉 삭제
 	public int deleteFollowing(String sId, String shop_idx);
 	

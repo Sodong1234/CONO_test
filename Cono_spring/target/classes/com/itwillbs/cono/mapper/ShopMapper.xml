@@ -256,10 +256,11 @@
 	<select id="selectOrdList" resultType="java.util.HashMap">
 		SELECT ord.ord_date, i.item_title, ord.member_id, i.item_price, ord.ord_reqContent
 		  FROM ord ord, item i, shop s
-		 WHERE i.shop_idx = s.shop_idx
+		WHERE i.shop_idx = s.shop_idx
 		   AND ord.item_idx = i.item_idx
 		   AND s.member_id = #{member_id}
 		   AND i.item_status = '1'
+		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 	</select>
 	
 	<!-- 상품 주문(완료) 개수 조회 -->
@@ -280,6 +281,7 @@
 		   AND ord.item_idx = i.item_idx
 		   AND s.member_id = #{member_id}
 		   AND i.item_status = '2'
+		LIMIT #{finishPageInfo.startRow}, #{finishPageInfo.listLimit}
 	</select>
 	
 	<!-- 상품 조회 (페이징 처리를 위한 ListCount 조회) -->
