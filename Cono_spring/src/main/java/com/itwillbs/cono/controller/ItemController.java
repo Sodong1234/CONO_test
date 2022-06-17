@@ -30,7 +30,11 @@ public class ItemController {
 	@RequestMapping(value = "itemDetail", method = RequestMethod.GET)
 	public String getItemDetail(HttpSession session, String item_idx, Model model, HttpServletRequest request) {
 		
-		String member_id = session.getAttribute("sId").toString(); 
+		String member_id = null;
+		if(session.getAttribute("sId") != null) {
+			member_id = session.getAttribute("sId").toString(); 
+		}
+		
 		
 		// 상품 상세 정보 조회
 		HashMap<String, String> itemDetail = service.getItemDetail(item_idx); 
@@ -42,12 +46,12 @@ public class ItemController {
 		WishDTO wish = null;
 		if(member_id != null) {
 			wish = service.selectWish(item_idx, member_id);
+			// 최근 조회 존재여부
+			int existRecent = service.existRecent(member_id, item_idx);
+			// 최근조회 insert
+			int insertCount = service.insertRecentView(member_id, item_idx, existRecent);
 		}
 		
-        // 최근 조회 존재여부
-        int existRecent = service.existRecent(member_id, item_idx);
-        // 최근조회 insert
-        int insertCount = service.insertRecentView(member_id, item_idx, existRecent);
 		model.addAttribute("itemDetail", itemDetail);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("wish", wish);
@@ -60,7 +64,13 @@ public class ItemController {
 	@RequestMapping(value = "PurchaseItem", method = RequestMethod.POST)
 	public String purchaseItem(String item_idx, String item_price, String ord_quantity, String img_name, HttpSession session, Model model) {
 		
-		String buyer_id = session.getAttribute("sId").toString(); 
+		String buyer_id = null;
+		if(session.getAttribute("sId") != null) {
+			buyer_id = session.getAttribute("sId").toString(); 
+		} else {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			return "./myshop/fail_back";
+		}
 		
 		// 구매자 정보 가져오기
 		HashMap<String, String> buyerInfo = service.getBuyerInfo(buyer_id);
