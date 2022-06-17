@@ -76,9 +76,11 @@ body {
 										</div>
 										<input type="submit" class="btn btn-primary btn-user btn-block" value="로그인">
 										<hr>
-										<a href="" class="btn btn-warning btn-user btn-block" onclick="loginWithKakao()"> 
-										<i class="fab fa-google fa-fw"></i> 카카오로 로그인
-										</a> <a href="" class="btn btn-success btn-user btn-block"> <i class="fab fa-facebook-f fa-fw"></i> 네이버로 로그인
+										<a href="https://kauth.kakao.com/oauth/authorize?client_id=f9f5f6880f6e92a9e2fabbf34781366d&redirect_uri=http://localhost:8080/cono/kakao_callback&response_type=code" class="btn btn-warning btn-user btn-block"> 
+											<i class="fab fa-google fa-fw"></i> 카카오로 로그인
+										</a> 
+										<a href="" class="btn btn-success btn-user btn-block"> 
+											<i class="fab fa-facebook-f fa-fw"></i> 네이버로 로그인
 										</a>
 									</form>
 									<hr>
@@ -97,20 +99,6 @@ body {
 		</div>
 	</div>
 <!--  -->
-	<!-- 카카오 로그인 -->
-	<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
-	<script type="text/javascript">
-	    $(document).ready(function(){
-	        Kakao.init('ba7288b045b93c0d30a7bd856da85d67');
-	        Kakao.isInitialized();
-	    });
-	
-	    function loginWithKakao() {
-	        Kakao.Auth.authorize({ 
-	        redirectUri: 'http://localhost:8080/cono/' 
-	        }); // 등록한 리다이렉트uri 입력
-	    }
-	</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
 crossorigin="anonymous">

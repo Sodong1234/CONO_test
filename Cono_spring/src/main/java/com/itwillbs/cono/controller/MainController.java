@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -62,16 +63,16 @@ public class MainController {
 			return "redirect:/";
 		}
 	}
-	
+	// 카카오로그인 / 회원가입 
 	@RequestMapping(value = "/kakao_callback", method = RequestMethod.GET)
-    public String redirectkakao(@RequestParam String code, HttpSession session) throws IOException {
+    public String redirectkakao(@RequestParam String code, HttpSession session, Model model) throws IOException {
         System.out.println("code:: " + code);
 
         // 접속토큰 get
         String kakaoToken = service.getReturnAccessToken(code);
         
         
-        
+        System.out.println("카카오토큰 : " + kakaoToken);
         // 접속자 정보 get
         Map<String, Object> result = service.getUserInfo(kakaoToken);
         String id = (String) result.get("id");
@@ -80,7 +81,8 @@ public class MainController {
         String email = (String) result.get("email");
         String birth = (String) result.get("birth");
         String pass = id;
-
+        int num = (int)(Math.random()*100000000)+1;
+        String phone = "010" + Integer.toString(num);
         // 분기
         MemberDTO member = new MemberDTO();
         member.setMember_id(email.split("@")[0]);
@@ -88,25 +90,20 @@ public class MainController {
         member.setMember_nick(userName);
         member.setMember_email(email);
         member.setMember_birth(birth);
-        member.setMember_phone("kakao");
+        member.setMember_phone(phone);
         
         // 일치하는 snsId 없을 시 회원가입
         System.out.println(service.loginMember(member));
         if (service.loginMember(member) == null) {
             service.joinMember(member);
+            service.setShopInfo(member.getMember_id(), member.getMember_nick());  // 회원가입 시 상점 기본 정보 입력
+			service.joinCoupon(member.getMember_id());	// 회원가입 쿠폰 DB 입력
+			model.addAttribute("msg","회원가입을 축하합니다! 가입 축하 쿠폰이 지급되었습니다!");
+			return "member/success_msg";
         }
 
-        // 일치하는 snsId가 있으면 멤버객체에 담음.
-//        String userid = service.findUserIdBy2(id);
-//        MemberDTO vo = service.findByUserId(userid);
-            /*Security Authentication에 붙이는 과정*/
-//        CustomUser user = new CustomUser(vo);
-//        List<GrantedAuthority> roles = CustomUser.getList(vo);
-//        Authentication auth = new UsernamePasswordAuthenticationToken(user, null, roles);
-//        SecurityContextHolder.getContext().setAuthentication(auth);
-
         /* 로그아웃 처리 시, 사용할 토큰 값 */
-        session.setAttribute("sId", email);
+        session.setAttribute("sId", kakaoToken);
         session.setAttribute("member_nick", userName);
 
         return "redirect:/";

@@ -22,7 +22,7 @@ public class OpenBankingController {
 	@Autowired
 	private OpenBankingService openBankingService;
 	
-	@RequestMapping(value = "/callback", method = RequestMethod.GET)
+	@RequestMapping(value = "/list_account", method = RequestMethod.GET)
 	public String getToken(@ModelAttribute RequestTokenVO requestToken, Model model) {
 		// OAuth 인증 완료 후 전송되는 인증코드(code)를 자동으로 RequestTokenVO 객체에 저장
 		System.out.println("인증코드 : " + requestToken.getCode());
@@ -32,8 +32,8 @@ public class OpenBankingController {
 		// => 파라미터 : RequestTokenVO 객체, 리턴타입 : ResponseTokenVO 객체(responseToken)
 		ResponseTokenVO responseToken = openBankingService.requestToken(requestToken);
 		
-//		responseToken.setAccess_token("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDAyMjkwIiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2NjI5NjI1NTYsImp0aSI6IjI2YTFiM2Q4LTRhMDQtNDM4Ny05OTVhLWVhMGQ4OGMwYTJhYyJ9.yeOMnT3cyDjIfMWZn-3RYlDxZuM_JdWRfzZsrqH7sqE");
-//		responseToken.setUser_seq_no("1101002290");
+		responseToken.setAccess_token("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDAyMjkwIiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2NjI5NjI1NTYsImp0aSI6IjI2YTFiM2Q4LTRhMDQtNDM4Ny05OTVhLWVhMGQ4OGMwYTJhYyJ9.yeOMnT3cyDjIfMWZn-3RYlDxZuM_JdWRfzZsrqH7sqE");
+		responseToken.setUser_seq_no("1101002290");
 		
 		
 		

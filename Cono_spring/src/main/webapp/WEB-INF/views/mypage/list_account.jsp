@@ -97,7 +97,7 @@
 		<form method="get" action="https://testapi.openbanking.or.kr/oauth/2.0/authorize">
 			<%-- 필요 파라미터는 입력데이터 없이 hidden 속성으로 전달 --%>
 			<input type="hidden" name="response_type" value="code">
-			<input type="hidden" name="client_id" value="4066d795-aa6e-4720-9383-931d1f60d1a9">
+			<input type="hidden" name="client_id" value="234192c2-8c1a-4cdb-a1d3-49e0f2ecc09a">
 			<input type="hidden" name="redirect_uri" value="http://localhost:8080/cono/list_account">
 			<input type="hidden" name="scope" value="login inquiry transfer">
 			<input type="hidden" name="state" value="12345678123456781234567812345678">

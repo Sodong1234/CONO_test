@@ -65,7 +65,7 @@ public class MainService {
 	// 카톡 로그인 - 키를 이용하여 토큰 받아오기
      public String getReturnAccessToken(String code) {
          String access_token = "";
-//         String refresh_token = "";
+         String refresh_token = "";
          String reqURL = "https://kauth.kakao.com/oauth/token";
 
         try {
@@ -110,7 +110,7 @@ public class MainService {
              System.out.println("중간");
              // 토큰 값 저장 및 리턴
              access_token = element.getAsJsonObject().get("access_token").getAsString();
-//             refresh_token = element.getAsJsonObject().get("refresh_token").getAsString();
+             refresh_token = element.getAsJsonObject().get("refresh_token").getAsString();
 
              br.close();
              bw.close();
@@ -153,11 +153,10 @@ public class MainService {
               JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
               JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
               
-              
-              String id = element.getAsJsonObject().get("id").getAsString();
               String nickname = properties.getAsJsonObject().get("nickname").getAsString();
               String email = kakao_account.getAsJsonObject().get("email").getAsString();
               String birth = kakao_account.getAsJsonObject().get("birthday").getAsString();
+              String id = element.getAsJsonObject().get("id").getAsString();
               
               System.out.println("id: "+id);
               System.out.println("nickname: "+nickname);
