@@ -76,7 +76,6 @@ if(session.getAttribute("sId") == null) {
 	            	str = value.split(" ");
 	            	value = str[2];
 	            }
-	            alert(value);
 	            document.getElementById("item_region").value = value;
 	        }
 	    }).open();

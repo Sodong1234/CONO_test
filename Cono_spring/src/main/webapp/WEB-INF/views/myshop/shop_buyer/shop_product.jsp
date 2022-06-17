@@ -8,68 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-* {
-	box-sizing: border-box;
-}
-
-html {
-	position: relative;
-	min-height: 100%;
-	margin: 0;
-}
-
-body {
-	margin: 0;
-	min-width: 992px;
-	min-height: 100%;
-	font-family: Helvetica;
-}
-
-.navbar {
-	height: 60px;
-	padding-left: 30px;
-}
-
-.logo {
-	line-height: 60px;
-	float: left;
-}
-
-.logo img {
-	vertical-align: middle;
-}
-
-.navbar ul {
-	float: right;
-}
-
-.navbar li {
-	list-style-type: none;
-	float: left;
-	margin-right: 30px;
-}
-
-.navbar a {
-	text-decoration: none;
-	color: black;
-	font-style: bold;
-	font-size: 13px;
-}
-
-.hero_header {
-	height: 450px;
-	width: 100%;
-}
-
-body h1 {
-	text-align: center;
-	margin-top: 60px;
-	margin-bottom: 60px;
-	font-size: 24px;
-	font-style: bold;
-	color: #545454;
-}
-
 .products {
 	margin-left: auto;
 	margin-right: auto;
@@ -92,22 +30,21 @@ body h1 {
 	font-size: 16px;
 }
 
-
-
 .clearfix {
 	clear: both;
 }
 
-.footer {
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	padding: 15px 0;
-	text-align: center;
-}
+/*  .footer {  */
+/*  	position: absolute;  */
+/*  	left: 0;  */
+/*  	bottom: 0; */
+/*  	width: 100%;  */
+/*  	padding: 15px 0;  */
+/*  	text-align: center;  */
 
-p {
+/* }  */
+
+.product p {
 	display: block;
 	margin-block-start: 1em;
 	margin-block-end: 1em;

@@ -83,7 +83,8 @@ public class ItemController {
 		
 		// 코인 잔액 조회
 		int balanceCoin = 0;
-		if(service.checkCoin(buyer_id) != null) {
+		
+		if(!service.checkCoin(buyer_id).isEmpty()) {
 		balanceCoin = service.getBalanceCoin(buyer_id);
 		} else {
 			model.addAttribute("msg", "코인이 존재하지 않습니다");

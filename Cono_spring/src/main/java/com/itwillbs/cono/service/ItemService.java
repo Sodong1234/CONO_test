@@ -122,7 +122,7 @@ public class ItemService {
     }
 
 	// coin 존재 여부 확인
-	public CoinDTO checkCoin(String member_id) {
+	public List<CoinDTO> checkCoin(String member_id) {
 		return mapper.selectCoin(member_id);
 	}
 

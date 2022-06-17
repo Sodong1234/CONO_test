@@ -75,6 +75,6 @@ public interface ItemMapper {
 //	void insertCoinSeller(@Param("ord") OrdDTO ord, @Param("item_price") String item_price);
 	
 	// coin 존재 여부 확인
-	CoinDTO selectCoin(String member_id);
+	List<CoinDTO> selectCoin(String member_id);
 	
 }
