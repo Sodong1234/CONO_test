@@ -97,7 +97,7 @@ if(session.getAttribute("sId") == null) {
 		
 
 <body>
-
+	<div class="cono" style="width: 1140px; margin: auto;">
 	<form action="ItemUploadPro.shop" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="member_id" value="<%=session.getAttribute("sId")%>">
 		<div class="registWrap">
@@ -105,24 +105,24 @@ if(session.getAttribute("sId") == null) {
 			<!--------- registBody : 본문  --------->
 			<div class="registBody">
 				<!-- /* owOgK */ -->
-				<main id="registMain"></main>
+				<main id="registMain"> 
 					<!-- /* fzZuLM */ -->
 
 					<!-- section -->
-					<section class="section"></section>
+					<section class="section"> 
 						<h2>
 							기본정보<span>*필수항목</span>
 						</h2>
 
-<!-- 						<ul class="listBody"> -->
-<!-- 							/* bEbvUk */ -->
-<!-- 							<li class="list"> -->
+<!-- 						<ul class="listBody"> </ul> -->
+<!-- <!-- 							/* bEbvUk */ --> 
+<!-- 							<li class="list"> </li> -->
 <!-- 								<div class="image_sub"> -->
 <!-- 									상품이미지<span>*</span><small>(0/6)</small> -->
 <!-- 								</div> -->
-<!-- 								<div class="image_con"> -->
+<!-- 								<div class="image_con"> </div> -->
 <!-- 									<ul class="registImages" id="imageList"> -->
-<!-- 										<li class="imageList">이미지 등록 <input type="file" multiple="" id="inputImage"> -->
+<!-- 										<li class="imageList">이미지 등록 <input type="file" multiple="6" id="inputImage"> -->
 <!-- 										</li> -->
 <!-- 									</ul> -->
 
@@ -142,6 +142,8 @@ if(session.getAttribute("sId") == null) {
 										<!-- 									- 큰 이미지일경우 이미지가 깨지는 경우가 발생할 수 있습니다.<br> -->
 										<!-- 									최대 지원 사이즈인 640 X 640 으로 리사이즈 해서 올려주세요.(개당 이미지 최대 10M) -->
 									</div>
+									 </section>
+								</main>
 								</div>
 <!-- 							</li> -->
 							<!-- 상품이미지 -->
@@ -161,7 +163,7 @@ if(session.getAttribute("sId") == null) {
 <!-- 											<button type="button" class="subjectCancle"></button> -->
 										</div>
 										<div class="subjectSize">
-											<span>0</span>/40
+<!-- 											<span>0</span>/40 -->
 										</div>
 									</div>
 									<div class="subjectDiv" id="subjectDiv">상품명을 2자 이상
@@ -195,43 +197,7 @@ if(session.getAttribute("sId") == null) {
 											</select>
 										</div>
 								</div>
-<!-- 							</li> -->
-<!-- 								<div class="category_con"> -->
-<!-- 									<div class="contentArea"> -->
-<!-- 										<div class="categoryStep"> -->
-<!-- 											<ul class="categories" id="large_categories"> -->
-<!-- 												<li class="category"><button type="button" class="btn" -->
-<!-- 														id="100">패션</button></li> -->
-<!-- 												<li class="category"><button type="button" class="btn" -->
-<!-- 														id="200">디지털/가전</button></li> -->
-<!-- 												<li class="category"><button type="button" class="btn" -->
-<!-- 														id="300">스포츠/레저</button></li> -->
-<!-- 												<li class="category"><button type="button" class="btn" -->
-<!-- 														id="400">가구/인테리어</button></li> -->
-<!-- 												<li class="category"><button type="button" class="btn" -->
-<!-- 														id="500">생활/가공식품</button></li> -->
-<!-- 												<li class="category"><button type="button" class="btn" -->
-<!-- 														id="600">도서/티켓/문구</button></li> -->
-<!-- 												<li class="category"><button type="button" class="btn" -->
-<!-- 														id="700">뷰티/미용</button></li> -->
-<!-- 												<li class="category"><button type="button" class="btn" -->
-<!-- 														id="800">반려</button></li> -->
-<!-- 											</ul> -->
-<!-- 										</div> -->
-<!-- 										<div class="categoryStep"> -->
-<!-- 											<ul class="categories" id="small_categories"></ul> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="categoryDiv" id="categoryDiv">카테고리를 선택해주세요.</div> -->
 
-<!-- 									<h3 class="selectedCategory"> -->
-<!-- 										선택한 카테고리 :  -->
-<!-- 										<b id="selectedCategory" name="cate_code"> -->
-<!-- 											<span id="selected_big"></span> /  -->
-<!-- 											<span id="selected_small"></span> -->
-<!-- 										</b> -->
-<!-- 									</h3> -->
-<!-- 								</div> -->
 							</li>
 							<!-- 카테고리 -->
 
@@ -288,10 +254,7 @@ if(session.getAttribute("sId") == null) {
 
 
 							<li class="list">
-								<div class="instruction_sub" style="
-    height: 148px;
-    width: 604px; margin: auto;
-">설명</div>
+								<div class="instruction_sub">설명</div>
 								<div class="instruction_con">
 									<textarea placeholder="상품 설명을 입력해주세요." rows="6"
 										class="instruction" id="product_content"
@@ -306,18 +269,16 @@ if(session.getAttribute("sId") == null) {
 
 							<!-- 						</li> -->
 						</ul>
-					</section>
 
 
 
-				</main>
 				<!-- registMain -->
 			</div>
 			<!-- main -->
-		</div>
-		<!-- registWrap -->
 		<input type="submit" value="등록하기">
 	</form>
+		</div>
+		<!-- registWrap -->
 
 	<!--------- registBtm : 등록하기  --------->
 </body>
