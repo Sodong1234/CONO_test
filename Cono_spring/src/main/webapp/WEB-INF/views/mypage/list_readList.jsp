@@ -277,8 +277,6 @@ div {
 					<th scope="col">상품번호</th>
 					<th scope="col">상품정보</th>
 					<th scope="col">구매 / 구매확정일</th>
-					<th scope="col">사이즈 추천</th>
-					<th scope="col">스타일 후기</th>
 					<th scope="col">상품 사진 후기</th>
 					<th scope="col">일반 후기</th>
 				</tr>
@@ -302,21 +300,9 @@ div {
 					</td>
 					<td>2022.06.14<br>구매확정
 					</td>
-
-
-
-					<!-- 사이즈 추천 -->
-					<td><a class="n-btn w80 btn-sm btn-default" href="">작성하기</a></td>
-					<!-- //사이즈 추천 -->
-
-					<!-- 스타일 후기 -->
-					<td><a class="n-btn w80 btn-sm btn-default" href="">작성하기</a></td>
-					<!-- //스타일 후기 -->
-
 					<!-- 상품 사진 후기 -->
-					<td><a class="n-btn w80 btn-sm btn-default" href="">작성하기</a></td>
+					<td><a class="n-btn w80 btn-sm btn-default" href="writePictureReview">작성하기</a></td>
 					<!-- //상품 사진 후기 -->
-
 					<!-- 일반 후기 -->
 					<td><a class="n-btn w80 btn-sm btn-default" href="writeBasicReview">작성하기</a></td>
 					<!-- //일반 후기 -->
@@ -341,18 +327,6 @@ div {
 					</td>
 					<td class="txt-lighter">2021.08.11<br>구매확정
 					</td>
-
-
-
-					<!-- 사이즈 추천 -->
-					<td><span class="txt-info">작성완료</span><br> (적립금 지급)</td>
-					<!-- //사이즈 추천 -->
-
-					<!-- 스타일 후기 -->
-					<td><span class="txt-lighter">작성불가<br>(90일 경과)
-					</span></td>
-					<!-- //스타일 후기 -->
-
 					<!-- 상품 사진 후기 -->
 					<td><span class="txt-lighter">작성불가<br>(90일 경과)
 					</span></td>
@@ -384,18 +358,6 @@ div {
 					</td>
 					<td class="txt-lighter">2021.07.17<br>구매확정
 					</td>
-
-
-
-					<!-- 사이즈 추천 -->
-					<td><span class="txt-lighter">등록 불가 상품</span></td>
-					<!-- //사이즈 추천 -->
-
-					<!-- 스타일 후기 -->
-					<td><span class="txt-lighter">작성불가<br>(90일 경과)
-					</span></td>
-					<!-- //스타일 후기 -->
-
 					<!-- 상품 사진 후기 -->
 					<td><span class="txt-lighter">작성불가<br>(90일 경과)
 					</span></td>

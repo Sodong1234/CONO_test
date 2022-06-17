@@ -137,11 +137,18 @@ public class MypageController {
 		return "mypage/list_readList";
 		}
 	
-	// 후기 작성 페이지 이동
+	// 후기 작성 페이지 이동 - 사진 없는 페이지
 		@RequestMapping(value = "writeBasicReview", method = RequestMethod.GET)
 		public String writeBasicReview(HttpSession session, Model model) {
 			
 			return "mypage/review_basic_write";
+			}
+		
+	// 후기 작성 페이지 이동 - 사진 있는 페이지
+		@RequestMapping(value = "writePictureReview", method = RequestMethod.GET)
+		public String writePictureReview(HttpSession session, Model model) {
+
+			return "mypage/review_picture_write";
 			}
 	
 	// 알림
