@@ -63,22 +63,6 @@ public class MainController {
 		}
 	}
 	
-	// 카카오톡 회원가입 / 로그인
-//	@RequestMapping("/kakao_callback")
-//    public String home(@RequestParam(value = "code", required = false) String code, Model model) throws Exception{
-//	     System.out.println("#########" + code);
-//	     String access_Token = service.getReturnAccessToken(code);
-//	     Map<String, Object> userInfo = service.getUserInfo(access_Token);
-//	     System.out.println("###access_Token#### : " + access_Token);
-//	     System.out.println("###userInfo#### : " + userInfo.get("email"));
-//	     System.out.println("###nickname#### : " + userInfo.get("nickname"));
-//	     System.out.println("###birth#### : " + userInfo.get("birth"));
-////	     System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
-//	     
-//
-//	     
-//         return "redirect:/";
-//    }
 	@RequestMapping(value = "/kakao_callback", method = RequestMethod.GET)
     public String redirectkakao(@RequestParam String code, HttpSession session) throws IOException {
         System.out.println("code:: " + code);
@@ -99,18 +83,16 @@ public class MainController {
 
         // 분기
         MemberDTO member = new MemberDTO();
-        member.setMember_id(email);
+        member.setMember_id(email.split("@")[0]);
         member.setMember_pass(pass);
         member.setMember_nick(userName);
         member.setMember_email(email);
         member.setMember_birth(birth);
-        member.setMember_phone("---");
-        member.setMember_logo("---");
+        member.setMember_phone("kakao");
         
         // 일치하는 snsId 없을 시 회원가입
         System.out.println(service.loginMember(member));
         if (service.loginMember(member) == null) {
-
             service.joinMember(member);
         }
 
@@ -124,7 +106,8 @@ public class MainController {
 //        SecurityContextHolder.getContext().setAuthentication(auth);
 
         /* 로그아웃 처리 시, 사용할 토큰 값 */
-        session.setAttribute("sId", kakaoToken);
+        session.setAttribute("sId", email);
+        session.setAttribute("member_nick", userName);
 
         return "redirect:/";
 
