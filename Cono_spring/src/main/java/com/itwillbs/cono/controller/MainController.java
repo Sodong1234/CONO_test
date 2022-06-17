@@ -1,10 +1,12 @@
 package com.itwillbs.cono.controller;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -61,19 +63,73 @@ public class MainController {
 		}
 	}
 	
-	// 카카오톡 로그인
-	@RequestMapping("/kakaoLogin")
-    public String home(@RequestParam(value = "code", required = false) String code) throws Exception{
-	     System.out.println("#########" + code);
-	     String access_Token = service.getAccessToken(code);
-	     HashMap<String, Object> userInfo = service.getUserInfo(access_Token);
-	     System.out.println("###access_Token#### : " + access_Token);
-	     System.out.println("###userInfo#### : " + userInfo.get("email"));
-	     System.out.println("###nickname#### : " + userInfo.get("nickname"));
-	     System.out.println("###birth#### : " + userInfo.get("birth"));
-	     System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
+	// 카카오톡 회원가입 / 로그인
+//	@RequestMapping("/kakao_callback")
+//    public String home(@RequestParam(value = "code", required = false) String code, Model model) throws Exception{
+//	     System.out.println("#########" + code);
+//	     String access_Token = service.getReturnAccessToken(code);
+//	     Map<String, Object> userInfo = service.getUserInfo(access_Token);
+//	     System.out.println("###access_Token#### : " + access_Token);
+//	     System.out.println("###userInfo#### : " + userInfo.get("email"));
+//	     System.out.println("###nickname#### : " + userInfo.get("nickname"));
+//	     System.out.println("###birth#### : " + userInfo.get("birth"));
+////	     System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
+//	     
+//
+//	     
+//         return "redirect:/";
+//    }
+	@RequestMapping(value = "/kakao_callback", method = RequestMethod.GET)
+    public String redirectkakao(@RequestParam String code, HttpSession session) throws IOException {
+        System.out.println("code:: " + code);
+
+        // 접속토큰 get
+        String kakaoToken = service.getReturnAccessToken(code);
+        
+        
+        
+        // 접속자 정보 get
+        Map<String, Object> result = service.getUserInfo(kakaoToken);
+        String id = (String) result.get("id");
+        
+        String userName = (String) result.get("nickname");
+        String email = (String) result.get("email");
+        String birth = (String) result.get("birth");
+        String pass = id;
+
+        // 분기
+        MemberDTO member = new MemberDTO();
+        member.setMember_id(email);
+        member.setMember_pass(pass);
+        member.setMember_nick(userName);
+        member.setMember_email(email);
+        member.setMember_birth(birth);
+        member.setMember_phone("---");
+        member.setMember_logo("---");
+        
+        // 일치하는 snsId 없을 시 회원가입
+        System.out.println(service.loginMember(member));
+        if (service.loginMember(member) == null) {
+
+            service.joinMember(member);
+        }
+
+        // 일치하는 snsId가 있으면 멤버객체에 담음.
+//        String userid = service.findUserIdBy2(id);
+//        MemberDTO vo = service.findByUserId(userid);
+            /*Security Authentication에 붙이는 과정*/
+//        CustomUser user = new CustomUser(vo);
+//        List<GrantedAuthority> roles = CustomUser.getList(vo);
+//        Authentication auth = new UsernamePasswordAuthenticationToken(user, null, roles);
+//        SecurityContextHolder.getContext().setAuthentication(auth);
+
+        /* 로그아웃 처리 시, 사용할 토큰 값 */
+        session.setAttribute("sId", kakaoToken);
+
         return "redirect:/";
+
     }
+
 	
 	// 로그아웃
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
