@@ -87,13 +87,12 @@ CREATE TABLE wish (
 );
 
 CREATE TABLE ord (
-	item_idx varchar(20),
+	item_idx varchar(20) PRIMARY KEY,
 	member_id varchar(20),
 	ord_date varchar(20) NOT NULL,
 	ord_reqContent varchar(1000),
 	ord_quantity varchar(10) NOT NULL,
-	ord_status varchar(5) NOT NULL,
-	PRIMARY KEY (item_idx, member_id)
+	ord_status varchar(5) NOT NULL
 );
 
 
