@@ -26,7 +26,7 @@ String sell_status = request.getParameter("sell_status");
 <style type="text/css">
 
 #search_row{
-	margin-right: 385px;
+	margin-right: 438px;
 }
 
 /*  paging  */
@@ -72,7 +72,7 @@ String sell_status = request.getParameter("sell_status");
 	</div>
 		
 <!-- 	<div class="float-end"> -->
-			<div class="row mb-4 float-end" style="width:500px;margin-top:5px;" id="search_row">
+			<div class="row mb-4 float-end" style="margin-top:5px;" id="search_row">
 				<form name="fr" action="ItemMng.shop" class="input-group">
 					<select class="form-select"  name="sell_status">
 						<option value="" <%if(sell_status != null && sell_status.equals("")) { %> selected="selected" <%} %>>전체</option>
