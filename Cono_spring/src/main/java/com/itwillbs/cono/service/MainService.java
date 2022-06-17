@@ -196,17 +196,23 @@ public class MainService {
              conn.setRequestMethod("POST");
              conn.setDoOutput(true);
 
+             
+
 
              // buffer 스트림 객체 값 셋팅 후 요청
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
              StringBuilder sb = new StringBuilder();
-             sb.append("grant_type=authorization_code");
-             sb.append("&client_id=f9f5f6880f6e92a9e2fabbf34781366d");  //앱 KEY VALUE
-             sb.append("&redirect_uri=http://localhost:8080/kakao_callback"); // 앱 CALLBACK 경로
+	         sb.append("grant_type=authorization_code");
+	         sb.append("&client_id=f9f5f6880f6e92a9e2fabbf34781366d");  //본인이 발급받은 key
+	         sb.append("&redirect_uri=http://localhost:8080/cono/kakao_callback");     // 본인이 설정해 놓은 경로
+             
              sb.append("&code=" + code);
              bw.write(sb.toString());
              bw.flush();
 
+             int responseCode = conn.getResponseCode();
+             System.out.println("responseCode : " + responseCode);
+             
              //  RETURN 값 result 변수에 저장
              BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
              String br_line = "";
@@ -219,7 +225,7 @@ public class MainService {
              JsonParser parser = new JsonParser();
              JsonElement element = parser.parse(result);
 
-
+             System.out.println("중간");
              // 토큰 값 저장 및 리턴
              access_token = element.getAsJsonObject().get("access_token").getAsString();
              refresh_token = element.getAsJsonObject().get("refresh_token").getAsString();
@@ -245,7 +251,7 @@ public class MainService {
               conn.setRequestProperty("Authorization", "Bearer " + access_token);
 
               int responseCode = conn.getResponseCode();
-              System.out.println("responseCode : " + responseCode);
+              System.out.println("UI responseCode : " + responseCode);
 
               BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
