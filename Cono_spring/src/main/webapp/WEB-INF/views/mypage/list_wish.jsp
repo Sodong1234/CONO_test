@@ -33,8 +33,10 @@
 								<a href="#" style="text-decoration: none;">
 									<div class="card-thumb-cover">
 										<!-- 									<div class="product-thumb-img" style="background-image: url('resources/upload/file/${wish.img_name}");"></div> -->
+									<a href="itemDetail?item_idx=${wish.item_idx}">
 										<img alt=""
 											src="<spring:url value='/resources/upload/file/${wish.img_name}'/>">
+									</a>
 									</div>
 									<div class="card-info product-info">
 										<div class="product-info__name">${wish.item_title}</div>
