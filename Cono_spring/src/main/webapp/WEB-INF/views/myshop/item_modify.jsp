@@ -118,7 +118,8 @@ om/lib/w3-colors-flat.css">
 	</c:forEach>
 	
 	
-	<div class="form-group">
+			<div class="form-group">
+	
 				  <label class="col-form-label mt-4" for="inputDefault">상품명</label>
  				 <input type="text" class="form-control"  id="inputDefault" name="item_title" value="${itemDetail.get('item_title')}" >
  				 
