@@ -49,7 +49,7 @@ public class ShopController {
 		// 상점 상품 개수 조회
 		myShopCountInfo[1] = service.getShopItemCnt(member_id);
 		
-		// 팔로워 수 & 상점 등록일 조회
+		// 팔로워 수 조회
 		
 		model.addAttribute("myShop", myShop);
 		model.addAttribute("myShopCountInfo", myShopCountInfo);
@@ -141,6 +141,7 @@ public class ShopController {
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("sell_status", sell_status);
 		model.addAttribute("pageInfo", pageInfo);
+		
 		return "myshop/item_mng";
 	}
 	// -------------------------------------------------------------------------
@@ -261,7 +262,6 @@ public class ShopController {
 		if (endPage > maxPage) {
 			endPage = maxPage;
 		}
-		
 		// 조회 시작 게시물 번호(행 번호) 계산
 		int startRow = (pageNum - 1) * listLimit;
 		
@@ -275,44 +275,40 @@ public class ShopController {
 		pageInfo.setStartRow(startRow);
 		pageInfo.setListLimit(listLimit);
 		
-		System.out.println(pageInfo.getStartRow());
 		
 		// 후기 리스트 조회
 		List<HashMap<String, String>> reviewList = service.selectReviewList(member_id, item_idx, pageInfo);
 
 		// ----------------------------------------------------------------------------------
 		
-		// 이미지 페이징 처리
-		PageInfo imgPageInfo = new PageInfo();
-		
-		// 이미지 개수 조회
-		listCount = service.selectReviewImgListCount(member_id);
-		
-		// 페이징 처리
-		listLimit = 5;
-		pageLimit = 5;
-
-		maxPage = (int)Math.ceil((double) listCount / listLimit);
-		startPage = ((int) ((double) imgPageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
-		endPage = startPage + pageLimit - 1;
-		if (endPage > maxPage) {
-			endPage = maxPage;
-		}
-		
-		// 조회 시작 게시물 번호(행 번호) 계산
-		startRow = (imgPageNum - 1) * listLimit;
-		
-		imgPageInfo.setPageNum(imgPageNum);
-		imgPageInfo.setMaxPage(maxPage);
-		imgPageInfo.setStartPage(startPage);
-		imgPageInfo.setEndPage(endPage);
-		imgPageInfo.setListCount(listCount);
-		imgPageInfo.setStartRow(startRow);
-		imgPageInfo.setListLimit(listLimit);
-		
+//		// 이미지 페이징 처리
+//		PageInfo imgPageInfo = new PageInfo();
+//		
+//		// 페이징 처리
+//		listLimit = 5;
+//		pageLimit = 5;
+//
+//		maxPage = (int)Math.ceil((double) listCount / listLimit);
+//		startPage = ((int) ((double) imgPageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+//		endPage = startPage + pageLimit - 1;
+//		if (endPage > maxPage) {
+//			endPage = maxPage;
+//		}
+//		
+//		// 조회 시작 게시물 번호(행 번호) 계산
+//		startRow = (imgPageNum - 1) * listLimit;
+//		
+//		imgPageInfo.setPageNum(imgPageNum);
+//		imgPageInfo.setMaxPage(maxPage);
+//		imgPageInfo.setStartPage(startPage);
+//		imgPageInfo.setEndPage(endPage);
+//		imgPageInfo.setListCount(listCount);
+//		imgPageInfo.setStartRow(startRow);
+//		imgPageInfo.setListLimit(listLimit);
+//		
 		// 상품 고를 때 클릭할 이미지(img_name) 조회
-		List<HashMap<String, String>> imgNameList = service.selectItemImgName(member_id, imgPageInfo);
-		
+//		List<HashMap<String, String>> imgNameList = service.selectItemImgName(member_id, imgPageInfo);
+		List<HashMap<String, String>> imgNameList = service.selectItemImgName(member_id);
 		// 클릭된 이미지 조회
 		if(item_idx != null) {
 			String img = service.selectImg(item_idx);
@@ -324,7 +320,7 @@ public class ShopController {
 		model.addAttribute("imgNameList", imgNameList);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("pageInfo", pageInfo);
-		model.addAttribute("imgPageInfo", imgPageInfo);
+//		model.addAttribute("imgPageInfo", imgPageInfo);
 		
 		return "myshop/item_review_mng";
 	}
@@ -428,10 +424,111 @@ public class ShopController {
 		return "myshop/list_following";
 	}
  
+	//==================================================================================================================================================================
+	
+	// 상점 이동
+	@RequestMapping(value = "Myshop.shop", method = RequestMethod.POST)
+	public String myshop (String item_idx, Model model) {
+
+		// 상점 정보 조회
+		HashMap<String, String> shopInfo = service.getShop(item_idx);
+		
+		String[] shopCountInfo = new String[2];
+		
+		// 상점 판매 횟수 조회
+		shopCountInfo[0] = service.getShopSellCntBuyer(item_idx);
+		// 상점 상품 개수 조회
+		shopCountInfo[1] = service.getShopItemCntBuyer(item_idx);
+		
+		// 팔로워 수 조회
+		String followerCnt = service.getFollowerCnt(item_idx);
+		
+		model.addAttribute("shopInfo", shopInfo);
+		model.addAttribute("shopCountInfo", shopCountInfo);
+		model.addAttribute("followerCnt", followerCnt);
+		model.addAttribute("item_idx", item_idx);
+		
+		return "myshop/shop_buyer/shop";
+	}
+	// 상점 상품
+	@RequestMapping(value = "shopProduct", method = RequestMethod.GET)
+	public String showProduct (String shop_idx, Model model) {
+		
+		List<HashMap<String, String>> itemList = service.getItemList(shop_idx);
+		
+		model.addAttribute("itemList", itemList);
+		
+		return "myshop/shop_buyer/shop_product";
+	}
+	
+	// 상점 후기
+	@RequestMapping(value = "shopReview", method = RequestMethod.GET)
+	public String showReview (@RequestParam(defaultValue = "1") int pageNum, String shop_idx, Model model) {
+		// shop 주인 member_id 들고오기
+		String member_id = service.getMemberId(shop_idx);
+		
+		// 후기 개수 조회
+		int listCount = service.selectReviewListCount(member_id);
+		
+		// 페이징 처리
+		int listLimit = 5;
+		int pageLimit = 5;
+
+		int maxPage = (int)Math.ceil((double) listCount / listLimit);
+		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		int endPage = startPage + pageLimit - 1;
+		if (endPage > maxPage) {
+			endPage = maxPage;
+		}
+		// 조회 시작 게시물 번호(행 번호) 계산
+		int startRow = (pageNum - 1) * listLimit;
+		
+		// 페이징 처리 정보를 PageInfo 객체에 저장(후기 리스트)
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setPageNum(pageNum);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setListLimit(listLimit);
+		
+		// 후기 리스트 조회
+		List<HashMap<String, String>> reviewList = service.selectReviewList(member_id, "%%", pageInfo);
+		
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("pageInfo", pageInfo);
+		
+		return "myshop/shop_buyer/shop_review";
+	}
+	
+	// 상점 팔로워
+	@RequestMapping(value = "shopFollower", method = RequestMethod.GET)
+	public String showFollower (String shop_idx, Model model) {
+		
+		
+		
+		// 팔로워 정보 
+		List<HashMap<String, String>> followerList = service.getfollowerList(shop_idx);
+		
+		System.out.println(followerList.toString());
+		
+		model.addAttribute("followerList", followerList);
+		
+		return "myshop/shop_buyer/shop_follower";
+	}
 	
 	
 	
-	
-	
-	
+	// 상점 팔로잉
+	@RequestMapping(value = "shopFollowing", method = RequestMethod.GET)
+	public String showFollowing (String shop_idx, Model model) {
+		
+		// shop 주인 member_id 들고오기
+		String sId = service.getMemberId(shop_idx);
+		// 팔로잉 정보 
+		List<HashMap<String, String>> followingList = service.getfollowingList(sId);
+		model.addAttribute("followingList", followingList);
+		return "myshop/shop_buyer/shop_following";
+	}
 }

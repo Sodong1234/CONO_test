@@ -352,8 +352,11 @@ public class ShopService {
 	}	
 	
 	//상품 고를 때 클릭할 이미지 조회
-	public List<HashMap<String, String>> selectItemImgName(String member_id, PageInfo imgPageInfo) {
-		return mapper.selectItemImgName(member_id, imgPageInfo);
+//	public List<HashMap<String, String>> selectItemImgName(String member_id, PageInfo imgPageInfo) {
+//		return mapper.selectItemImgName(member_id, imgPageInfo);
+//	}
+	public List<HashMap<String, String>> selectItemImgName(String member_id) {
+		return mapper.selectItemImgName(member_id);
 	}
 
 	// 후기 개수 조회
@@ -362,6 +365,9 @@ public class ShopService {
 	}
 	
 	// 후기 리스트 조회
+//	public List<HashMap<String, String>> selectReviewList(String member_id, String item_idx, PageInfo pageInfo) {
+//		return mapper.selectReviewList(member_id, item_idx, pageInfo);
+//	}
 	public List<HashMap<String, String>> selectReviewList(String member_id, String item_idx, PageInfo pageInfo) {
 		return mapper.selectReviewList(member_id, item_idx, pageInfo);
 	}
@@ -391,8 +397,8 @@ public class ShopService {
 		return mapper.selectFollowingList(sId);
 	}
 	// 팔로워 리스트
-	public List<HashMap<String, String>> getfollowerList(String sId) {
-		return mapper.selectFollowerList(sId);
+	public List<HashMap<String, String>> getfollowerList(String shop_idx) {
+		return mapper.selectFollowerList(shop_idx);
 	}
 	// 팔로잉 수
 	public int getFollowingCount(String sId) {
@@ -411,6 +417,39 @@ public class ShopService {
 	public int selectReviewImgListCount(String member_id) {
 		return mapper.selectReviewImgListCount(member_id);
 	}
+
+	// ==========================================================================================
+	
+	// 상점 조회
+	public HashMap<String, String> getShop(String item_idx) {
+		return mapper.selectShop(item_idx);
+	}
+	
+	// 판매 횟수 조회
+	public String getShopSellCntBuyer(String item_idx) {
+		return mapper.selectShopSellCntBuyer(item_idx);
+	}
+	
+	// 상품 회수 조회
+	public String getShopItemCntBuyer(String item_idx) {
+		return mapper.selectShopItemCntBuyer(item_idx);
+	}
+	
+	// 팔로워 수 조회
+	public String getFollowerCnt(String item_idx) {
+		return mapper.selectFollowerCnt(item_idx);
+	}
+	
+	// 상점 상품 조회
+	public List<HashMap<String, String>> getItemList(String shop_idx) {
+		return mapper.selectItemListBuyer(shop_idx);
+	}
+	
+	// shop 주인 member_id 들고오기
+	public String getMemberId(String shop_idx) {
+		return mapper.selectMemberId(shop_idx);
+	}
+	
 	
 	
 

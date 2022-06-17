@@ -170,7 +170,7 @@
 	
 	<!-- 평균 평점과 후기 달린 아이템 개수 조회 -->		
 	<select id="selectItemAvg" resultType="java.util.HashMap">
-		SELECT SUM(r.review_score)/COUNT(i.item_idx) as avg, COUNT(i.item_idx) as item_idx
+		SELECT ROUND(SUM(r.review_score)/COUNT(i.item_idx),2) as avg, COUNT(i.item_idx) as item_idx
 		  FROM review r, item i, shop s
 		 WHERE 1=1
 		   AND r.item_idx = i.item_idx
@@ -197,7 +197,7 @@
 		AND g.img_idx = '1'
 		AND s.member_id = #{member_id}
 		ORDER BY i.item_idx*1
-		LIMIT #{imgPageInfo.startRow}, #{imgPageInfo.listLimit}
+<!-- 		LIMIT #{imgPageInfo.startRow}, #{imgPageInfo.listLimit} -->
 	</select>
 	
 	<!-- 후기 이미지 개수 조회 -->
@@ -214,8 +214,10 @@
 	<!-- 후기 리스트 개수 -->
 	<select id="selectReviewListCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
-		FROM review
-		WHERE member_id = #{member_id}
+		  FROM review r, item i, shop s
+		 WHERE r.item_idx = i.item_idx
+		   AND i.shop_idx = s.shop_idx
+		   AND s.member_id=#{member_id}
 	</select>
 	
 	<!-- 후기 리스트 조회 -->
@@ -227,7 +229,7 @@
 		AND i.shop_idx = s.shop_idx
 		AND s.member_id = #{member_id}
 		<if test="item_idx != null">
-			AND i.item_idx = #{item_idx}
+			AND i.item_idx LIKE #{item_idx}
 		</if>
 		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 	</select>
@@ -290,7 +292,7 @@
 	<select id="selectFollowerList" resultType="java.util.HashMap">
 		SELECT s.shop_idx, s.shop_img, s.shop_name, s.shop_content
 		FROM shop s, follow f
-		WHERE f.shop_idx = #{sId} AND f.member_id = s.member_id
+		WHERE f.shop_idx = #{shop_idx} AND f.member_id = s.member_id
 	</select>
 <!-- 	팔로잉 수 -->
 	<select id="selectFollowingCount" resultType="java.lang.Integer">
@@ -308,13 +310,61 @@
 		WHERE shop_idx = #{shop_idx} AND member_id = #{sId}
 	</delete>
 	
+	<!-- ================================================================================================================ -->
 	
+	<!-- 상점 조회 -->
+	<select id="selectShop" resultType="java.util.HashMap">
+		SELECT s.shop_idx, s.shop_img, s.member_id, s.shop_name, s.shop_content, m.member_date
+		  FROM shop s, item i, member m
+		 WHERE s.member_id = m.member_id
+		   AND i.shop_idx = s.shop_idx
+		   AND i.item_idx = #{item_idx}
+	</select>
 	
+	<!-- 판매 횟수 조회 -->
+	<select id="selectShopSellCntBuyer" resultType="java.lang.String">
+		SELECT COUNT(*) sellCount 
+		FROM item it, shop s 
+		WHERE it.shop_idx = s.shop_idx
+		  AND item_status = 'Y'
+	</select>
 	
+	<!-- 상품 횟수 조회 -->
+	<select id="selectShopItemCntBuyer" resultType="java.lang.String">
+		SELECT COUNT(*) itemCount
+		FROM item it, shop s 
+		WHERE it.shop_idx = s.shop_idx
+	</select>
 	
+	<!-- 팔로워 수 조회 -->
+	<select id="selectFollowerCnt" resultType="java.lang.String">
+		SELECT COUNT(*)
+		  FROM follow f, item i
+		 WHERE f.shop_idx = i.shop_idx
+	</select>
 	
+	<!-- 상점 상품 조회 -->
+	<select id="selectItemListBuyer" resultType="java.util.HashMap">
+		SELECT i.item_idx, g.img_name, i.item_title, i.item_price, i.item_date, i.item_status, COUNT(w.member_id), i.item_readCnt, i.item_hide
+		FROM item AS i
+		LEFT OUTER JOIN wish AS w
+		ON i.item_idx = w.item_idx
+		JOIN shop AS s
+		ON i.shop_idx = s.shop_idx
+		JOIN img AS g
+		ON i.item_idx = g.item_idx
+		WHERE s.shop_idx=#{shop_idx}
+		AND g.img_idx='1'
+		GROUP BY i.item_idx
+		ORDER BY i.item_idx+0 ASC
+	</select>
 	
-	
-	
+	<!-- shop 주인 member_id 가져오기 -->
+	<select id="selectMemberId" resultType="java.lang.String">
+		SELECT m.member_id AS sId
+		  FROM member m, shop s
+		 WHERE m.member_id = s.member_id
+		   AND s.shop_idx = #{shop_idx}
+	</select>
 	
 </mapper>

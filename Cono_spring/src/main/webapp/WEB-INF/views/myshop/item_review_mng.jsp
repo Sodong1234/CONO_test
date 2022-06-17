@@ -196,7 +196,8 @@ img {
 					<!-- [이전] 링크 동작 -->
 					<c:choose>
 						<c:when test="${imgPageInfo.pageNum > 1}">
-							<input type="button" value=" < " onclick="location.href='ItemReviewMng.shop?page=${pageInfo.pageNum}&imgPageNum=${imgPageInfo.pageNum-1}'">
+<%-- 							<input type="button" value=" < " onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }&pageNum=${pageInfo.pageNum}&imgPageNum=${imgPageInfo.pageNum-1}'"> --%>
+							<input type="button" value=" < " onclick="location.href='ItemReviewMng.shop?pageNum=${pageInfo.pageNum}'">
 						</c:when>
 						<c:otherwise>
 							<input type="button" value=" < " disabled="disabled">
@@ -204,7 +205,8 @@ img {
 					</c:choose>
 				</td>
 					<c:forEach items="${imgNameList }" var="imgName">
-						<td onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }'">
+<%-- 						<td onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }&pageNum=${pageInfo.pageNum}&imgPageNum=${imgPageInfo.pageNum}'"> --%>
+						<td onclick="location.href='ItemReviewMng.shop?pageNum=${pageInfo.pageNum}&item_idx=${imgName.get('item_idx')}'">
 							<c:choose>
 								<c:when test="${imgName.get('img_name') ne null }">
 									<img alt="" src="resources/upload/file/${imgName.get('img_name') }">
@@ -220,7 +222,8 @@ img {
 						<!-- [다음] 링크 동작 -->
 						<c:choose>
 							<c:when test="${imgPageInfo.pageNum < imgPageInfo.maxPage}">
-								<input type="button" value=" > " onclick="location.href='ItemReviewMng.shop?pageNum=${pageInfo.pageNum }&imgPageNum=${imgPageInfo.pageNum+1 }'">
+<%-- 								<input type="button" value=" > " onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }&pageNum=${pageInfo.pageNum }&imgPageNum=${imgPageInfo.pageNum+1 }'"> --%>
+								<input type="button" value=" > " onclick="location.href='ItemReviewMng.shop?pageNum=${pageInfo.pageNum }'">
 							</c:when>
 							<c:otherwise>
 								<input type="button" value=" > " disabled="disabled">
@@ -257,7 +260,7 @@ img {
 			<!-- [이전] 링크 동작 -->
 			<c:choose>
 				<c:when test="${pageInfo.pageNum > 1}">
-					<input type="button" value=" < " onclick="location.href='ItemReviewMng.shop?pageNum=${pageInfo.pageNum - 1}&imgPageNum=${imgPageInfo.pageNum }'">
+					<input type="button" value=" < " onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }&pageNum=${pageInfo.pageNum - 1}c'">
 				</c:when>
 				<c:otherwise>
 					<input type="button" value=" < " disabled="disabled">
@@ -271,7 +274,7 @@ img {
 						${i }
 					</c:when>
 					<c:otherwise>
-						<a href="ItemReviewMng.shop?pageNum=${i }&imgPageNum=${imgPageInfo.pageNum }">${i }</a>
+						<a href="ItemReviewMng.shop?pageNum=${i }">${i }</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -279,7 +282,7 @@ img {
 			<!-- [다음] 링크 동작 -->
 			<c:choose>
 				<c:when test="${pageInfo.pageNum < pageInfo.maxPage}">
-					<input type="button" value=" > " onclick="location.href='ItemReviewMng.shop?pageNum=${pageInfo.pageNum + 1}&imgPageNum=${imgPageInfo.pageNum  }'">
+					<input type="button" value=" > " onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }&ItemR">
 				</c:when>
 				<c:otherwise>
 					<input type="button" value=" > " disabled="disabled">

@@ -82,7 +82,8 @@ public interface ShopMapper {
 	String selectItemScore(@Param("member_id") String member_id, @Param("i") String i);
 
 	//상품 고를 때 클릭할 이미지 조회
-	List<HashMap<String, String>> selectItemImgName(@Param("member_id") String member_id, @Param("imgPageInfo") PageInfo imgPageInfo);
+//	List<HashMap<String, String>> selectItemImgName(@Param("member_id") String member_id, @Param("imgPageInfo") PageInfo imgPageInfo);
+	List<HashMap<String, String>> selectItemImgName(@Param("member_id") String member_id);
 
 	// 후기 개수 조회
 	public int selectReviewListCount(String member_id);
@@ -108,7 +109,7 @@ public interface ShopMapper {
 	// 팔로잉
 	public List<HashMap<String, String>> selectFollowingList(String sId);
 	// 팔로워
-	public List<HashMap<String, String>> selectFollowerList(String sId);
+	public List<HashMap<String, String>> selectFollowerList(String shop_idx);
 	// 팔로잉 수
 	public int selectFollowingCount(String sId);
 	// 팔로워 수
@@ -118,6 +119,26 @@ public interface ShopMapper {
 	
 	// 후기 이미지 개수 조회
 	int selectReviewImgListCount(String member_id);
+	
+	// ==========================================================================================
+	
+	// 상점 조회
+	HashMap<String, String> selectShop(String item_idx);
+	
+	// 판매 횟수 조회
+	String selectShopSellCntBuyer(String item_idx);
+	
+	// 상품 횟수 조회
+	String selectShopItemCntBuyer(String item_idx);
+	
+	// 팔로워 수 조회
+	String selectFollowerCnt(String item_idx);
+	
+	// 상점 상품 조회
+	List<HashMap<String, String>> selectItemListBuyer(String shop_idx);
+	
+	// shop 주인 member_id 가져오기
+	String selectMemberId(String shop_idx);
 
 	
 
