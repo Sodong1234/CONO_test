@@ -61,18 +61,18 @@
 	
 		<form action="ProductMyshopModifyPro.shop" name="shopForm" method="post" enctype="multipart/form-data" >
 			<input type="hidden" name="shop_idx" value="${myShop.get('shop_idx') }">
-				<div class="form-group" style="width: 424px; margin-right: 80%; font-family:IBMPlexSansKR-Regular;" >
+				<div class="form-group" style="width: 424px; margin-right: 70%; font-family:IBMPlexSansKR-Regular;" >
 						<c:choose>
 						<c:when test="${myShop.get('shop_img') eq null }">
 							<img alt="상점 이미지" id="img" style="width: 300px;" src="<spring:url value='/resources/default_img.png'/>" >
 						</c:when>
 						<c:when test="${myShop.get('shop_img') ne null }">
-							<img alt="상점 이미지" id="img" lstyle="width: 300px;" src="<spring:url value='/resources/upload/shopImg/${myShop.get("shop_img") }'/>">
+							<img alt="상점 이미지" id="img" style="width: 300px;" src="<spring:url value='/resources/upload/shopImg/${myShop.get("shop_img") }'/>">
 						</c:when>
 						</c:choose>
 						<input type="file" id="file" name="upload" onchange="readInputFile(this)" style="display: none;">
 						<br>
-						<input type="image" src="이미지 주소" border="0" id="delFile" value="이미지삭제"  onclick="deleteImg()"><br>
+						<input type="image" style="width: 10px" border="0" id="delFile" value="이미지삭제" onclick="deleteImg()" src="<spring:url value='/resources/cancle.png'/>" >&nbsp;이미지 삭제하기<br>
 						<label for="exampleInputPassword1" class="form-label mt-4">비밀번호</label>
       				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="member_pass" required="required">
 						 <label class="col-form-label mt-4" for="inputDefault">상점이름</label>

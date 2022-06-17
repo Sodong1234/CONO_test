@@ -96,7 +96,7 @@ if(session.getAttribute("sId") == null) {
 	</div>
 		
 
-<body style="width: 1040px; margin: auto;">
+<body>
 
 	<form action="ItemUploadPro.shop" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="member_id" value="<%=session.getAttribute("sId")%>">
@@ -105,11 +105,11 @@ if(session.getAttribute("sId") == null) {
 			<!--------- registBody : 본문  --------->
 			<div class="registBody">
 				<!-- /* owOgK */ -->
-				<main id="registMain">
+				<main id="registMain"></main>
 					<!-- /* fzZuLM */ -->
 
 					<!-- section -->
-					<section class="section">
+					<section class="section"></section>
 						<h2>
 							기본정보<span>*필수항목</span>
 						</h2>
@@ -288,7 +288,10 @@ if(session.getAttribute("sId") == null) {
 
 
 							<li class="list">
-								<div class="instruction_sub">설명</div>
+								<div class="instruction_sub" style="
+    height: 148px;
+    width: 604px; margin: auto;
+">설명</div>
 								<div class="instruction_con">
 									<textarea placeholder="상품 설명을 입력해주세요." rows="6"
 										class="instruction" id="product_content"

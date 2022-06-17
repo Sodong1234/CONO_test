@@ -39,6 +39,13 @@ hr.hr-13 {
   box-shadow: 0 10px 10px -10px #8c8c8c inset;
 }
 
+.cono{
+	
+	margin-left: 20%;
+	
+	
+}
+
 ul {
 	
 	
@@ -125,8 +132,8 @@ textarea {
 	/* border: 1px solid red; */
 }
 #storeTop {
-	display: flex;
-	width: 100%;
+/* 	display: flex; */
+	width: 50%;
 	margin-bottom: 30px;
 	height: 310px;
 	/* border: 1px solid blue;  */
@@ -212,110 +219,110 @@ textarea {
     border: 1px solid rgb(255, 255, 255);
     cursor: pointer;
 }
-/* 프로필 사진 변경 -> 라벨 클릭 + [파일]버튼숨김   */
-.imageEdit {
-    display: flex;
-    margin-top: 20px;
-}
-.imageEditLink:first-child {
-    margin-left: 0px;
-}
-.imageEdit label{
-	width: 110px;
-    height: 40px;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    margin-left: 10px;
-    font-size: 13px;
-    border: 1px solid rgb(255, 255, 255);
-    cursor: pointer;
-}
-.imageEdit input[type=file]{
-	position: absolute;
-    overflow: hidden;
-	clip: rect(0,0,0,0);
-	width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    border: 0;
-}
-.imageEdit btn2{
-	color: #333;
-}
-/* 상단 - 오른쪽 */
-#profileRight {
-    flex: 1 0 0%;
-    padding: 0px 30px;
-    border-top: 1px solid rgb(238, 238, 238);
-    border-right: 1px solid rgb(238, 238, 238);
-    border-bottom: 1px solid rgb(238, 238, 238);
-    display: flex;
-    height: 310px;
-    flex-direction: column;
-}
-#profileRight .storeTitleWrap {
-	font-size: 18px;
-    height: 75px;
-    font-weight: 600;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    flex-shrink: 0;
-}
-.nickName {
-	display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-}
-/* 닉네임 수정 버튼 클릭 후 */
-.nickNameWrapDiv {
-	display: flex;
-   /*border: 1px solid red;*/
-    height: 52px;
-    width: 305px;
-    display: block;
-    margin-top: 21px;
-}
-.nickNameWrap {
-	display: flex;
-    border: 1px solid rgb(238, 238, 238);
-    height: 32px;
-    width: 305px;
-}
-.nickNameWrap input{
-	margin: 0px 15px;
-    font-size: 14px;
-    -webkit-box-flex: 1;
-    flex-grow: 1;
-    appearance: none;
-}
-.nickNameWrap button {
-    font-size: 13px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    padding: 0px 15px;
-    color: rgb(136, 136, 136);
-    background: rgb(250, 250, 250);
-    border-left: 1px solid rgb(238, 238, 238);
-}
-.nickNameEdit {
-	height: 20px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    padding: 0px 5px;
-    color: rgb(136, 136, 136);
-    border: 1px solid rgb(238, 238, 238);
-    font-size: 11px;
-    margin-left: 10px;
-}
+/* /* 프로필 사진 변경 -> 라벨 클릭 + [파일]버튼숨김   */ */
+/* .imageEdit { */
+/*     display: flex; */
+/*     margin-top: 20px; */
+/* } */
+/* .imageEditLink:first-child { */
+/*     margin-left: 0px; */
+/* } */
+/* .imageEdit label{ */
+/* 	width: 110px; */
+/*     height: 40px; */
+/*     display: flex; */
+/*     -webkit-box-pack: center; */
+/*     justify-content: center; */
+/*     -webkit-box-align: center; */
+/*     align-items: center; */
+/*     margin-left: 10px; */
+/*     font-size: 13px; */
+/*     border: 1px solid rgb(255, 255, 255); */
+/*     cursor: pointer; */
+/* } */
+/* .imageEdit input[type=file]{ */
+/* 	position: absolute; */
+/*     overflow: hidden; */
+/* 	clip: rect(0,0,0,0); */
+/* 	width: 1px; */
+/*     height: 1px; */
+/*     margin: -1px; */
+/*     padding: 0; */
+/*     border: 0; */
+/* } */
+/* .imageEdit btn2{ */
+/* 	color: #333; */
+/* } */
+/* /* 상단 - 오른쪽 */ */
+/* #profileRight { */
+/*     flex: 1 0 0%; */
+/*     padding: 0px 30px; */
+/*     border-top: 1px solid rgb(238, 238, 238); */
+/*     border-right: 1px solid rgb(238, 238, 238); */
+/*     border-bottom: 1px solid rgb(238, 238, 238); */
+/*     display: flex; */
+/*     height: 310px; */
+/*     flex-direction: column; */
+/* } */
+/* #profileRight .storeTitleWrap { */
+/* 	font-size: 18px; */
+/*     height: 75px; */
+/*     font-weight: 600; */
+/*     display: flex; */
+/*     -webkit-box-align: center; */
+/*     align-items: center; */
+/*     -webkit-box-pack: justify; */
+/*     justify-content: space-between; */
+/*     flex-shrink: 0; */
+/* } */
+/* .nickName { */
+/* 	display: flex; */
+/*     -webkit-box-align: center; */
+/*     align-items: center; */
+/* } */
+/* /* 닉네임 수정 버튼 클릭 후 */ */
+/* .nickNameWrapDiv { */
+/* 	display: flex; */
+/*    border: 1px solid red; */
+/*     height: 52px; */
+/*     width: 305px; */
+/*     display: block; */
+/*     margin-top: 21px; */
+/* } */
+/* .nickNameWrap { */
+/* 	display: flex; */
+/*     border: 1px solid rgb(238, 238, 238); */
+/*     height: 32px; */
+/*     width: 305px; */
+/* } */
+/* .nickNameWrap input{ */
+/* 	margin: 0px 15px; */
+/*     font-size: 14px; */
+/*     -webkit-box-flex: 1; */
+/*     flex-grow: 1; */
+/*     appearance: none; */
+/* } */
+/* .nickNameWrap button { */
+/*     font-size: 13px; */
+/*     display: flex; */
+/*     -webkit-box-align: center; */
+/*     align-items: center; */
+/*     padding: 0px 15px; */
+/*     color: rgb(136, 136, 136); */
+/*     background: rgb(250, 250, 250); */
+/*     border-left: 1px solid rgb(238, 238, 238); */
+/* } */
+/* .nickNameEdit { */
+/* 	height: 20px; */
+/*     display: flex; */
+/*     -webkit-box-align: center; */
+/*     align-items: center; */
+/*     padding: 0px 5px; */
+/*     color: rgb(136, 136, 136); */
+/*     border: 1px solid rgb(238, 238, 238); */
+/*     font-size: 11px; */
+/*     margin-left: 10px; */
+/* } */
 /* 에코 지수 + 판매내역 + 조회수?(+아이콘) */
 #middleWrap {
 	height: 50px;

@@ -21,75 +21,47 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 <script src="resources/js/jquery-3.6.0.js"></script>
-<%-- <script defer src="${pageContext.request.contextPath}/resources/js/store.js"></script> --%>
-<!-- <script defer src="../js/reviews.js"></script>상점 상품후기 수 -->
 </head>
 <body>
+
 	<div>
 		<!-- 상단 부분 -->
-		
 			<jsp:include page="../header_footer/header.jsp"/>
 	</div>
-		
+
 	<!------ 사이드바 ------>
 	<div>
 		<jsp:include page="./myshop_sidebar.jsp"/>
 	</div>
 		
-		<!-- 사이드 바 -->
 		
-		<div id="shopInfo">
-		<form action="ProductMyshopModifyForm.shop" name="shopForm" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="shop_idx" value="${myShop.get('shop_idx') }">
-		
-		
-
-						
-				
-<div id="storeBody" style="
-    width: 2050px;
-    height: 750px;" > 
-  <div id="storeWrap"> <h2 style="font-family: Cafe24Ohsquare;">
+	<div class="cono">
+	
+	
+	
+  <h2 style="font-family: Cafe24Ohsquare;">
 	${myShop.get('shop_name') }의 상점 [${myShop.get('member_date') }]</h2> 
 	
 	<hr class="hr-13">
-	
-	<div id="storeTop">
-		<div id="profileLeftWrap">
-			<div id="profileLeft">
-				<div class="background1">
-					<div class="backgroundImg"></div>
-				</div><!-- // (1) background -->
-			
-				<div class="background2">
-					<div class="profileLink"> 
-						<!-- 프로필 기본 이미지 -> 프로필 사진 변경 -->
-						<div id="preview">
-							<img width="50" height="50" alt="상점 프로필 이미지" class="profileImage" src="">
-							<c:choose>
-							<c:when test="${myShop.get('shop_img') eq null }">
-								<img alt="상점 이미지" src="<spring:url value='/resources/default_img.png'/>">
-							</c:when>
-							<c:when test="${myShop.get('shop_img') ne null }">
-								<img alt="상점 이미지" src="<spring:url value='/resources/upload/shopImg/${myShop.get("shop_img") }'/>">
-							</c:when>
-							</c:choose>
-						</div>
-					</div>
-					
-					<hr>
-					<hr>
-					
-					
-					<div class="profileNickname">
-					
-					</div>
-				
-				</div>
-				
-			</div>
-			
-			<ul role="list">
+	<hr>
+	<div id="shopInfo">
+		<form action="ProductMyshopModifyForm.shop" name="shopForm" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="shop_idx" value="${myShop.get('shop_idx') }">
+				<div class="form-group" style="width: 424px; margin-right: 70%; font-family:IBMPlexSansKR-Regular;" >
+						<c:choose>
+						<c:when test="${myShop.get('shop_img') eq null }">
+							<img alt="상점 이미지" id="img" style="width: 300px;" src="<spring:url value='/resources/default_img.png'/>" >
+						</c:when>
+						<c:when test="${myShop.get('shop_img') ne null }">
+							<img alt="상점 이미지" id="img" style="width: 300px;" src="<spring:url value='/resources/upload/shopImg/${myShop.get("shop_img") }'/>">
+						</c:when>
+						</c:choose>
+<!-- 						<input type="file" id="file" name="upload" onchange="readInputFile(this)" style="display: none;"> -->
+						<br>
+						
+
+						
+				<ul role="list">
 						
 				  <li data-icon="🦄"> 판매자 ID :${myShop.get('member_id') }</li>
 				  <li data-icon="🌈"> 상점소개 :  ${myShop.get('shop_content') }</li>
@@ -97,7 +69,8 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 <%-- 				  <li data-icon="🦄"> 상점 오픈일 : ${myShop.get('member_date') }</li> --%>
 				</ul>
 				
-			<div id="middleWrap">
+				
+				<div id="middleWrap">
 			<div class="rigthIndi">
 					<!-- (2) 판매 횟수 -->
 					
@@ -119,54 +92,18 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
 			
 		</div>
 		
-			
-					
-				
-				<div class="w3-container">
+		<br>	<br>
+		
+					<div class="w3-container">
 							
 					<input type="button" id="modify" value="수정" class="w3-button w3-blue" onclick="location.href='ProductMyshopModifyForm.shop'">
 		
 					</div>
 					</div>
+	</form>
+</div>	
+</div> 
 
-				
-				
-		
-				
-					
-			</div><!-- middleWrap -->
-			<!-- 상점 주인 : 소개글 -->
-<!-- 			<div class="introduce"> -->
-			
-				
-				
-<!-- 				<ol role="list"> -->
-<!--   <li>Ordered list item</li> -->
-<!--   <li style="--li-bg: darkcyan">Cake ice cream sweet sesame snaps dragée cupcake wafer cookie</li> -->
-<!--   <li style="--li-bg: navy">Ordered list item</li> -->
-<!-- </ol> -->
-				
-				
-	
-<!-- 			</div> -->
-			
-		</div>
-	</div><!-- //storeTop -->
-	
-	
-</form>
-	</div>
-<!-- 	</div>//storeBottom -->
-
-	
-<!-- </div>//storeWrap -->
-<!-- </div>//storeBody -->
-
-<!-- 					<div id="middleWrap2"> -->
-		
-<!-- 		</div> -->
-
-	
 	<div>
 		<!-- 하단 부분 -->
 		<jsp:include page="../header_footer/footer.jsp"/>
