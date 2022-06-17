@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,6 +48,36 @@
   <!-- 스토어, 매거진 공통 스크립트 -->
   <script type="text/javascript" href="//static.msscdn.net/mfile_outsrc/js/common/base.js?202206161419"></script>
   <script type="text/javascript" href="//static.msscdn.net/mfile_outsrc/js/common/common.js?202206161419"></script>
+    <script type="text/javascript" src="//static.msscdn.net/skin/musinsa/js/ui.js?202206161419"></script>
+  <!--// 스토어, 매거진 공통 스크립트 -->
+
+  <!-- 유사 이미지 상품 검색 -->
+  <link type="text/css" rel="stylesheet" href="//static.msscdn.net/skin/musinsa/css/image_search.css?202206161419"/>
+  <script type="text/javascript" src="//static.msscdn.net/skin/musinsa/js/image_search.js?202206161419"></script>
+  <!-- //유사 이미지 상품 검색 -->
+  <style type="text/css">
+  .n-review-guide {
+    position: relative;
+    height: 136px;
+/*     padding: 0 0 0 153px; */
+    margin: 20px 0 4px;
+    background: #f5f5f5;
+}
+
+n-review-guide .guide_img {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    width: 84px;
+    height: 116px;
+    background: 0 0 no-repeat;
+    background-size: 84px auto;
+}
+
+.n-review-guide .guide_txt {
+    padding-top: 48px;
+}
+  </style>
 </head>
 <body>
 <section class="mypage-cont">
@@ -117,7 +149,9 @@
                     </ul>
                     <div class="box-form">
                         <div class="n-review-guide">
-                            <div class="guide_img"></div>
+                            <div class="guide_img">
+                            <img src="${path}/resources/img/review_guide_img.png"
+                            style="float: left; width: 100px;"></div>
                             <div class="guide_txt">
                                 <p class="tit">상품 사진 후기 작성 예시</p>
                                 <p class="txt">포장 제거 후 또렷하게 보이도록 상품 전체를 직접 촬영한 사진을 등록해야 합니다.</p>

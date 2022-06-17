@@ -208,42 +208,6 @@ div {
 			<li>작성 시 관리자 확인 후 적립금이 지급됩니다.</li>
 			<li>후기작성은 구매확정일로부터 90일까지 가능합니다.</li>
 		</ul>
-
-		<!-- 베스트 후기 선정 기준 확인하기 팝업 버튼 -->
-
-		<!-- //베스트 후기 선정 기준 확인하기 팝업 버튼 -->
-
-		<!-- filter -->
-		<form name="f2" method="get" action="/goods/mypage/review/write-review">
-			<input type="hidden" name="stateType" value=""> <input type="hidden" name="period" value=""> <input type="hidden"
-				name="fromOrderDate" value=""> <input type="hidden" name="toOrderDate" value=""> <input type="hidden" name="page" value="1">
-
-			<div class="n-table-filter">
-				<div class="n-radio-tab">
-					<input type="radio" id="radioTabGuide0" name="radioTabGuide" onclick="setPeriod(this,'1week');"> <label for="radioTabGuide0">1주일</label>
-
-					<input type="radio" id="radioTabGuide1" name="radioTabGuide" onclick="setPeriod(this,'1month');"> <label for="radioTabGuide1">1개월</label>
-
-					<input type="radio" id="radioTabGuide2" name="radioTabGuide" onclick="setPeriod(this,'3month');"> <label for="radioTabGuide2">3개월</label>
-
-					<input type="radio" id="radioTabGuide3" name="radioTabGuide" onclick="setPeriod(this,'');" checked="checked"> <label for="radioTabGuide3">전체
-						시기</label>
-				</div>
-
-				<div class="n-datepicker sb">
-					<input type="text" class="n-input hasDatepicker" name="fromOrderDateInput" value="" placeholder="-" onblur="checkDateFormat(this);"
-						id="dp1655344710846"><img class="ui-datepicker-trigger" src="//image.msscdn.net/skin/musinsa/images/ico_calendar.png?20200528"
-						alt="날짜 선택" title="날짜 선택">
-				</div>
-				<div class="n-datepicker">
-					<input type="text" class="n-input hasDatepicker" name="toOrderDateInput" value="" placeholder="-" onblur="checkDateFormat(this);"
-						id="dp1655344710847"><img class="ui-datepicker-trigger" src="//image.msscdn.net/skin/musinsa/images/ico_calendar.png?20200528"
-						alt="날짜 선택" title="날짜 선택">
-				</div>
-
-				<button type="button" class="n-btn btn-sm btn-accent" onclick="search();">조회</button>
-			</div>
-		</form>
 		<form name="f1" method="get" action="/goods/mypage/review/write-review">
 			<input type="hidden" name="stateType" value=""> <input type="hidden" name="period" value=""> <input type="hidden"
 				name="fromOrderDate" value=""> <input type="hidden" name="toOrderDate" value=""> <input type="hidden" name="page" value="1">
@@ -259,19 +223,6 @@ div {
 				<col style="width: 12.8%">
 				<col style="width: 12.8%">
 			</colgroup>
-			<!-- 	<section> -->
-<!-- 		<table border="1"> -->
-<!-- 			<tr> -->
-<!-- 				<td>번호</td> -->
-<!-- 				<td>상품이미지</td> -->
-<!-- 				<td>상품명</td> -->
-<!-- 				<td>평점</td> -->
-<!-- 				<td>후기 내용</td> -->
-<!-- 				<td>작성일</td> -->
-<!-- 			</tr> -->
-<!-- 		</table> -->
-<!-- 	</section> -->
-			
 			<thead>
 				<tr>
 					<th scope="col">상품번호</th>
