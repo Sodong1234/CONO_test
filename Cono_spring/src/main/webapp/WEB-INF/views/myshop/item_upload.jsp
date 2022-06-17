@@ -21,6 +21,7 @@ if(session.getAttribute("sId") == null) {
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm_common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm_btn.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
 
 <script type="text/javascript">
 
@@ -81,6 +82,10 @@ if(session.getAttribute("sId") == null) {
 	    }).open();
 	}
 // ---------------------------------------------------------------------------------------------------
+
+function submitBtn() {
+		document.getElementById('btn').click();
+	}
 </script>
 
 </head>
@@ -274,8 +279,20 @@ if(session.getAttribute("sId") == null) {
 				<!-- registMain -->
 			</div>
 			<!-- main -->
-		<input type="submit" value="등록하기">
+			
+		<input type="submit" value="" id="btn" class="btn">
+
 	</form>
+<div class ="btnArea" style="float:center; margin-left: 500px;
+    margin-bottom: 50px;">
+	  <div class="svg-wrapper" >
+      <svg height="40" width="120" xmlns="http://www.w3.org/2000/svg">
+        <rect id="shape" height="40" width="120" />
+        <div id="text">
+          <a href="#" onclick="submitBtn()"><span class="spot"></span>등록하기</a>
+        </div>
+      </svg>
+    </div>
 		</div>
 		<!-- registWrap -->
 
@@ -287,7 +304,7 @@ if(session.getAttribute("sId") == null) {
 <!-- 		<button type="submit" class="registBtn" id="registBtn"></button> -->
 <!-- 	</div> -->
 <!-- </footer> -->
-	<div>
+	<div class="clear">
 		<!-- 하단 부분 -->
 		<jsp:include page="../header_footer/footer.jsp" />
 	</div>

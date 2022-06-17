@@ -139,7 +139,7 @@ clear;
 }
 
 
-input[type=text] { 
+.searchText{ 
  	width:180px; 
  	border:1px solid #bbb; 
  	border-radius: 3px; 
@@ -205,7 +205,7 @@ input[type=text] {
 				<option value="subject">제목</option>
 				<option value="name">작성자</option>
 			</select> 
-			<input type="text" name="search" placeholder="here" > 
+			<input type="text" class="searchText" name="search" placeholder="here" > 
 			<input type="submit" value="Search" id="search_btn" >
 		</form></div>
 		

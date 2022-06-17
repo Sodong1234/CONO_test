@@ -64,7 +64,7 @@
   fill: transparent;
   stroke: #F6C6EA;
   stroke-dasharray: 75 400;
-  stroke-dashoffset: -180;
+  stroke-dashoffset: -182;
   transition: 1s all ease;
 }
 /* 
@@ -73,7 +73,7 @@
 */
 
 #text {
-  margin-top: -35px;
+   margin-top: -33px; 
   text-align: center;
 }
 

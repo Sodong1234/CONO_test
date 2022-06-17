@@ -146,7 +146,7 @@ position: relative;
  } 
 
 
-input[type=text] { 
+.searchText { 
  	width:180px; 
  	border:1px solid #bbb; 
  	border-radius: 3px; 
@@ -215,7 +215,7 @@ input[type=text] {
 				<option value="subject" <c:if test="${searchType ne null and searchType eq 'subject'}">selected</c:if>>제목</option>
 				<option value="content" <c:if test="${searchType ne null and searchType eq 'content'}">selected</c:if>>내용</option>
 			</select> 
-			<input type="text" name="search" value="<c:if test="${search ne null}">${search}</c:if>" placeholder="here"> 
+			<input type="text" class ="searchText"name="search" value="<c:if test="${search ne null}">${search}</c:if>" placeholder="here"> 
 			<input type="submit" value="Search" id="search_btn" >
 		</form></div>
 		

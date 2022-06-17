@@ -143,13 +143,13 @@ select {
 	border-radius: 3px;
 }
 
-input[type=text] {
-	width: 180px;
-	border: 1px solid #bbb;
-	border-radius: 3px;
-	padding: 8px 12px;
-	font-size: 14px;
-}
+/* input[type=text] { */
+/* 	width: 180px; */
+/* 	border: 1px solid #bbb; */
+/* 	border-radius: 3px; */
+/* 	padding: 8px 12px; */
+/* 	font-size: 14px; */
+/* } */
 
 #search_btn {
 	font-size: 13px;
