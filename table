@@ -31,7 +31,6 @@ CREATE TABLE member (
 	member_email varchar(50) NOT NULL UNIQUE,
 	member_phone varchar(13) NOT NULL,
 	member_nick varchar(20) NOT NULL,
-	member_logo varchar(100) NOT NULL,
 	member_birth varchar(14) NOT NULL,
 	member_date varchar(20) NOT NULL,
 	member_status varchar(20) NOT NULL
