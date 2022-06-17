@@ -7,10 +7,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/my_page.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
-<script defer src="../js/store.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/button_mng.css">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <script src="resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
@@ -54,147 +53,38 @@
 		<jsp:include page="./myshop_sidebar.jsp"/>
 	</div>
 		
-
+  <div id="storeWrap"><h2 style="font-family: Cafe24Ohsquare;">
+	${myShop.get('shop_name') }의 상점 수정하기 [${myShop.get('member_date') }]</h2> 
+	
+	<hr class="hr-13">
 	<hr>
 	
-	<form action="ProductMyshopModifyPro.shop" name="shopForm" method="post" enctype="multipart/form-data">
+		<form action="ProductMyshopModifyPro.shop" name="shopForm" method="post" enctype="multipart/form-data" >
 			<input type="hidden" name="shop_idx" value="${myShop.get('shop_idx') }">
-			
-	<div id="storeBody">
-	<div id="storeWrap">
-		<div id="storeTop">
-			<div id="profileLeftWrap">
-				<div id="profileLeft">
-					<div class="background1">
-						<div class="backgroundImg"></div>
-					</div><!-- // (1) background -->
-					<div class="background2">
-						<div class="profileLink"> 
-							<!-- 프로필 기본 이미지 -> 프로필 사진 변경 -->
-							<div id="preview">
-								<img width="80" height="80" alt="상점 프로필 이미지" class="profileImage" src="">
-							</div>
-						</div>
-						<div class="profileNickname"></div>
-						
+				<div class="form-group" style="width: 424px; margin-right: 80%; font-family:IBMPlexSansKR-Regular;" >
+						<c:choose>
+						<c:when test="${myShop.get('shop_img') eq null }">
+							<img alt="상점 이미지" id="img" style="width: 300px;" src="<spring:url value='/resources/default_img.png'/>" >
+						</c:when>
+						<c:when test="${myShop.get('shop_img') ne null }">
+							<img alt="상점 이미지" id="img" lstyle="width: 300px;" src="<spring:url value='/resources/upload/shopImg/${myShop.get("shop_img") }'/>">
+						</c:when>
+						</c:choose>
+						<input type="file" id="file" name="upload" onchange="readInputFile(this)" style="display: none;">
+						<br>
+						<input type="image" src="이미지 주소" border="0" id="delFile" value="이미지삭제"  onclick="deleteImg()"><br>
+						<label for="exampleInputPassword1" class="form-label mt-4">비밀번호</label>
+      				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="member_pass" required="required">
+						 <label class="col-form-label mt-4" for="inputDefault">상점이름</label>
+ 				 <input type="text" class="form-control" placeholder="Default input" id="inputDefault" name="shop_name" value="${myShop.get('shop_name') }" >
+				      <label for="exampleTextarea" class="form-label mt-4">내 상점 소개</label>
+				      <textarea class="form-control" id="board_content" rows="5" name="shop_content">${myShop.get('shop_content') }</textarea>
 
-				
-				
-				
-	<div id="middleWrap">
-	
-			</div><!-- middleWrap -->
-			<!-- 상점 주인 : 소개글 -->
-			
-			
-			<div class="introduce">
-				</div>
-				
-			<div class="introduceEdit"><button class="introduceEditBtn" onchange="readInputFile(this)">이미지 수정</button></div> 
-<!-- 			<input type="button" id="delFile" value="x" onclick="deleteImg()"> -->
-			
-			
-			
-			
-				
-						</div>
-					</div>
-				</div>
-			
-				
-				<div class="profileRight" >
-
-					  
-				<div class="w3-panel w3-leftbar w3-border-blue">
-					 비밀번호 
-					 </div>
-					 
-					 
-					<div class="w3-panel w3-border w3-hover-border-blue">
-					 	<p><input type="password" name="member_pass" required="required" ></p> 
-					 </div>
-					 
-					 
-					 
-					<div class="w3-panel w3-leftbar w3-border-blue">
-					 상점이름
-					</div>
-					
-					
-					<div class="w3-panel w3-border w3-hover-border-blue">
-				  <p><input type="text" name="shop_name" value="${myShop.get('shop_name') }"  /></p>
-					</div>
-					
-					
-<!-- 					<div class="w3-panel w3-leftbar w3-border-blue"> -->
-<!-- 						내 상점 소개 수정 -->
-<!-- 					</div> -->
-					
-<!-- 					<div class="w3-panel w3-border w3-hover-border-blue"> -->
-<%-- 					 <textarea id="board_content" name="shop_content" cols="30" rows="5" >${myShop.get('shop_content') }</textarea> --%>
-<%-- 					 <p><input type="text" id="board_content" name="shop_content" value="${myShop.get('shop_content') }"></p> --%>
-<!-- 					</div> -->
-					
-					 <div class="form-group">
-				     <div class="w3-panel w3-leftbar w3-border-blue">내 상점 소개 수정</div>
-				      <textarea class="form-control" id="exampleTextarea" rows="4" >${myShop.get('shop_content') }</textarea>
+						<input type="submit" class="btn" value="수정" > 
+						<input type="button" class="btn" value="취소" onclick="history.back()">
 				    </div>
-					
-			
-						<div class="w3-container">
-				  <input type="submit" class="w3-button w3-blue" value="수정">
-				  <input type="button" class="w3-button w3-blue" value="취소" onclick="history.back()">
-					</div>
-				
-					 </div>
-				
-			
-					</div>
-					</div>
-			</div>
-		
-<!-- 			<table> -->
-<!-- 				<tr> -->
-<!-- 					<td style="width:100px;"> -->
-<%-- 						<c:choose> --%>
-<%-- 						<c:when test="${myShop.get('shop_img') eq null }"> --%>
-<%-- 							<img alt="상점 이미지" id="img" style="width: 200px;" src="<spring:url value='/resources/default_img.png'/>" > --%>
-<%-- 						</c:when> --%>
-<%-- 						<c:when test="${myShop.get('shop_img') ne null }"> --%>
-<%-- 							<img alt="상점 이미지" id="img" style="width: 200px;" src="<spring:url value='/resources/upload/shopImg/${myShop.get("shop_img") }'/>"> --%>
-<%-- 						</c:when> --%>
-<%-- 						</c:choose> --%>
-<!-- 						<input type="file" id="file" name="upload" onchange="readInputFile(this)" style="display: none;"> -->
-<!-- 						<input type="button" id="delFile" value="x" onclick="deleteImg()"><br> -->
-<!-- 						<i class="glyphicon glyphicon-remove" style="color: red;" ></i> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<!-- 					<td class="td_left"><label for="member_pass">비밀번호</label></td> -->
-<!-- 					<td class="td_right"> -->
-<!-- 						<input type="password" name="member_pass" required="required" /> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<!-- 					<td class="td_left"><label for="shop_name">상점이름</label></td> -->
-<!-- 					<td class="td_right"> -->
-<%-- 						<input type="text" name="shop_name" value="${myShop.get('shop_name') }"  /> --%>
-<!-- 					</td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<!-- 					<td class="td_left"><label for="shop_content">내용</label></td> -->
-<!-- 					<td class="td_right"> -->
-<%-- 						<textarea id="board_content" name="shop_content" cols="40" rows="15" >${myShop.get('shop_content') }</textarea> --%>
-<!-- 					</td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<!-- 					<td colspan="2"> -->
-<!-- 						<input type="submit"  value="수정">  -->
-<!-- 						<input type="button" value="취소" onclick="history.back()"> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-<!-- 			</table> -->
 	</form>
+</div> 
 
 	<div>
 		<!-- 하단 부분 -->

@@ -250,6 +250,12 @@
 									<a href="#" onclick="submitBtn()"><span data-attr="buy">buy</span><span
 										data-attr="now">now</span></a>
 
+
+	<form action="Myshop.shop" method="post">
+	<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}"> 
+				<input type="submit" >
+				
+				</form>
 								</div>
 
 						</div>
@@ -288,12 +294,7 @@
 				</div>
 				
 				
-												<div class="detailContentWrap">
-													<a href="#">
-														<span class="detailContent_cate">
-														</span>
-													</a>
-												</div>
+												
 			</div>
 			<!-- 상품태그 -->
 

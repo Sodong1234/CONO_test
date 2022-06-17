@@ -51,6 +51,7 @@ String[] myShopCountInfo = (String[])request.getAttribute("myShopCountInfo");
     height: 750px;" > 
   <div id="storeWrap"> <h2 style="font-family: Cafe24Ohsquare;">
 	${myShop.get('shop_name') }의 상점 [${myShop.get('member_date') }]</h2> 
+	
 	<hr class="hr-13">
 	
 	<div id="storeTop">
