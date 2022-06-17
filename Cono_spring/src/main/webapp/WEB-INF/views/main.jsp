@@ -25,20 +25,21 @@ a{
     height: 350px;
     background-color:#CDF0EA;
 }
-.main_text{
-	width: 920px;
-	height: 52px;
-	font-size: 45px;
-	position: relative;
-	top: 120px;
-	margin: auto;
-}
+/* .main_text{ */
+/* 	width: 920px; */
+/* 	height: 52px; */
+/* 	font-size: 45px; */
+/* 	position: relative; */
+/* 	top: 120px; */
+/* 	margin: auto; */
+/* } */
 .inner_home_theme{
 	background-color: #eaedf2;
-    width: 1280px;
-    height: 460px;
+    width: 1150px;
+/*     height: 460px; */
+	padding: 20px;
     position: relative;
-    top: 220px;
+    top: 130px;
     margin: auto;
     background: #fff;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);  /* 우 아래 흐려짐 색(-넣으면 좌 위 변경) */
@@ -195,9 +196,8 @@ a{
 
 	
  		<div class="intro_bg">
- 			<div class="main_text">
- 				<span>오늘은 어떤게 필요하신가요?</span>
- 			</div>
+<!--  			<div class="main_text"> -->
+<!--  			</div> -->
 	 		<div class="inner_home_theme">
 	                <ul class="list_home_theme1">
 	                    <li class="list_category">
