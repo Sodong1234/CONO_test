@@ -318,7 +318,7 @@ div {
 					<!-- //상품 사진 후기 -->
 
 					<!-- 일반 후기 -->
-					<td><a class="n-btn w80 btn-sm btn-default" href="">작성하기</a></td>
+					<td><a class="n-btn w80 btn-sm btn-default" href="writeBasicReview">작성하기</a></td>
 					<!-- //일반 후기 -->
 
 

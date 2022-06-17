@@ -137,6 +137,13 @@ public class MypageController {
 		return "mypage/list_readList";
 		}
 	
+	// 후기 작성 페이지 이동
+		@RequestMapping(value = "writeBasicReview", method = RequestMethod.GET)
+		public String writeBasicReview(HttpSession session, Model model) {
+			
+			return "mypage/review_basic_write";
+			}
+	
 	// 알림
 
 	// 회원 정보 수정페이지 이동
