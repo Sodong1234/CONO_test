@@ -193,6 +193,8 @@ CREATE TABLE report (
    report_subject varchar(50) NOT NULL,
    report_content varchar(500) NOT NULL,
    report_date varchar(20) NOT NULL,
+   report_status varchar(5),
+   report_secret varchar(1)
    primary key(report_idx, member_id, item_idx)
 );
 
