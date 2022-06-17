@@ -15,10 +15,11 @@
 	<div id="wrap">
 		<jsp:include page="../header_footer/header.jsp" />
 		<jsp:include page="./mypage_sidebar.jsp" />
+		<jsp:include page="../search/recentView.jsp" />	
 	</div>
 
 	<!-- 	=============================== coupon start =============================== -->
-	<section class="couponSection">
+	<section class="couponSection" style="bottom: 1020px;">
 		<div class="title-style no-mt clf">
 			<a href="#" class="txt fl">쿠폰함</a>
 		</div>
@@ -64,7 +65,7 @@
 	</section>
 
 	<!-- 	=============================== coupon end =============================== -->
-	<footer>
+	<footer style="position: relative; width: 2800px; right: 850px;">
 		<jsp:include page="../header_footer/footer.jsp" />
 	</footer>
 </body>

@@ -13,7 +13,7 @@
 <body>
 	<div class="plus2">
 		<div class="inner-w layout-split">
-			<aside class="my-info">
+			<aside class="my-info" style="position: relative; left: 100px; bottom: 60px;">
 				<div class="profile-area">
 					<div class="outline">
 						<label> 

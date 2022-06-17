@@ -16,10 +16,11 @@
 	<div id="wrap">
 		<jsp:include page="../header_footer/header.jsp" />
 		<jsp:include page="./mypage_sidebar.jsp" />
+		<jsp:include page="../search/recentView.jsp" />	
 	</div>
 
 	<div class="inner-w layout-split">
-		<section style="position: relative; left: 400px; bottom: 1100px;">
+		<section style="position: relative; left: 400px; bottom: 900px;">
 			<div class="title-style watch-list-title--favorite">
 				<h2 class="txt">위시리스트</h2>
 				<br>
@@ -56,7 +57,7 @@
 		</section>
 	</div>
 
-	<footer style="position: relative; top: 500px;">
+	<footer style="position: relative; bottom: 200px;">
 		<jsp:include page="../header_footer/footer.jsp" />
 	</footer>
 </body>

@@ -1271,7 +1271,6 @@ body {
 	float: left;
 	position: relative;
 	left: 400px;
-	bottom: 950px;
 }
 
 .title-style no-mt clf {
@@ -1974,6 +1973,12 @@ body {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+}
+
+.table-style td {
+	padding: 12px 10px;
+    border-bottom: 1px solid #d9d9d9;
+    height: 48px;
 }
 
 tbody {
@@ -2786,8 +2791,10 @@ vertical-align: middle;
 	margin-left: -14px !important;
 	padding: 0 2px 0 0;
     margin-top: -16px;
-height: 100%;
-    overflow: hidden;    	
+	height: 100%;
+    overflow: hidden;   
+    width: 1050px;
+     	
 }
 
 .ui_grid__item {
@@ -2805,22 +2812,20 @@ height: 100%;
     margin-top: 16px;	
 }
 
-.card-thumb-cover {
-	position: relative;
-	overflow: hidden;
-	border-radius: 2px;
+.products {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	width: 992px;
+	text-align: center;
 }
 
-.product-thumb-img {
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: 50%;
-	width: 100%;
-	height: auto;
-	display: block;
-	position: relative;
+.card-thumb-cover img{
+	width: 225px;
+	height: 225px;
+	margin-right: 20px;
+	margin-bottom: 20px;
 }
-
 .card-info product-info {
 	padding: 12px 8px;
 	height: 204px;

@@ -11,10 +11,11 @@
 	<div id="wrap">
 		<jsp:include page="../header_footer/header.jsp" />
 		<jsp:include page="./mypage_sidebar.jsp" />
+		<jsp:include page="../search/recentView.jsp" />	
 	</div>
 
 
-	<section style="position: relative; bottom: 700px; left: 600px; width: 600px;">
+	<section style="position: relative; bottom: 800px; left: 600px; width: 600px;">
 		<form class="form-member" action="memberInfo_modify" method="post" style="width: 450px; margin: auto;">
 			<div class="title-style">
 				<a href="#" class="txt">회원 정보 수정</a> <br>
@@ -25,7 +26,7 @@
 						<th>닉네임</th>
 						<td>
 							<div class="input-text"
-								style="inline-block: inline-block; vertical-align: middle">
+								style="display: inline-block; vertical-align: middle">
 								<input type="text" name="member_nick" id="id"
 									required="required" value="${member.member_nick }"><br>
 							</div>
@@ -78,7 +79,7 @@
 	</section>
 
 
-	<div class="clear">
+	<div class="clear" style="position: relative; bottom: 400px;">
 		<jsp:include page="../header_footer/footer.jsp" />
 	</div>
 
