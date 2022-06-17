@@ -173,9 +173,17 @@
 	
 <!-- 		내가 쓴 리뷰 리스트 -->	
 	<select id="selectReadReviewList" resultType="com.itwillbs.cono.vo.ReviewDTO">
-		SELECT review_idx, member_id, item_idx, review_content, review_date, review_score
-		FROM review
-		WHERE member_id = #{sId}
+<!-- 		SELECT r.review_idx, r.member_id, r.item_idx, i.item_title, o.ord_quantity, r.review_content, r.review_date, r.review_score -->
+<!-- 		FROM review r, item i, ord o -->
+<!-- 		WHERE r.member_id = #{sId} -->
+<!-- 		  AND r.item_idx = i.item_idx -->
+<!-- 		  AND o.item_idx = i.item_idx -->
+		SELECT o.item_idx, i.item_title, o.ord_date, o.ord_status, ord_reqContent, ord_quantity
+		  FROM ord o, item i
+		 WHERE 1=1
+		   AND o.item_idx = i.item_idx
+		   AND o.member_id = #{sId}
+		   
 	</select>
 	
 <!-- 		회원 탈퇴 -->
