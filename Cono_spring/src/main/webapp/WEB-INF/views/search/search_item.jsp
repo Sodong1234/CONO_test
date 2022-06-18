@@ -136,6 +136,63 @@ p {
 	color: #5CFFD1;
 	font-size: 13pt;
 }
+
+/* 필터정보 */
+.search_filter {
+    width: 85%;
+    margin: auto;
+	margin-top: 30px;
+    margin-bottom: 50px;    
+} 
+.filter_button_wrap {
+    width: 100%;
+}
+
+.filter_button_wrap button {
+    width: 50%;
+}
+
+.filter_button{
+	background-color: #04AA6D;
+	border: 1px solid green;
+	color: white;
+	padding: 10px 24px;
+	cursor: pointer;
+	float: left;
+} 
+.filter_button_wrap:after {
+    content: "";
+    clear: both;
+    display: table;
+}  	
+.filter_button_wrap button:not(:last-child) {
+    border-right: none;
+}
+
+.filter_button:hover {
+    background-color: #3e8e41;
+}
+
+.filter_active{
+	background-color: #045d3c;
+}
+
+.filter_content{
+	padding:20px 50px 20px 50px;
+	border: 1px solid gray;
+}
+
+.filter_content a:not(:first-child){
+	margin-left: 10px;
+}
+
+.filter_a{
+	display: block;
+}
+
+.filter_b{
+	display: none;
+}
 </style>
 <script type="text/javascript">
 // 무한스크롤 시도
@@ -195,6 +252,23 @@ p {
 <%-- 				<p class="region">${card.item_region }</p> --%>
 <%-- 				<p class="price">${card.item_price }</p> --%>
 <!-- 			</a> -->
+
+let buttonA = $("#filter_button_a");
+let buttonB = $("#filter_button_b");
+
+buttonA.on("click", function(){
+	$(".filter_b").css("display", "none");
+	$(".filter_a").css("display", "block");		
+	buttonA.attr("class", "filter_button filter_active");
+	buttonB.attr("class", "filter_button");
+});
+
+buttonB.on("click", function(){
+	$(".filter_a").css("display", "none");
+	$(".filter_b").css("display", "block");
+	buttonB.attr("class", "filter_button filter_active");
+	buttonA.attr("class", "filter_button");		
+});
 	
 </script>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
@@ -230,7 +304,7 @@ p {
 		</div>
 		
 		<div class="filter_content filter_a">
-						<a>테스트용1</a>
+						<a>테스트용11</a>
 						<a>테스트용2</a>
 		</div>
 		<div class="filter_content filter_b">
