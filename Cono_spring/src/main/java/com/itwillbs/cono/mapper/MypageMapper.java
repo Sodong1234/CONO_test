@@ -68,8 +68,16 @@ public interface MypageMapper {
 	public int insertReview(@Param("review") ReviewDTO review, @Param("sId") String sId, @Param("item_idx") String item_idx);
 	// 구매 확정
 	public void updateordStatus(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
+	// 판매자한테 safe에 저장된 코인 입금
+	public void insertCoinSeller(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date, @Param("safe_coin") String safe_coin, @Param("coin_total")  String coin_total);
+	// safe 테이블 status 변경 
+	public boolean updateSafeStatus(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
 	// 회원 탈퇴 로직
 	public boolean deleteId(@Param("id") String id,@Param("passwd") String passwd);
+	// safe_coin
+	public String selectSafeCoin(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
+	// coin_total
+	public String selectCoinTotal(String sId);
 
 	
 	

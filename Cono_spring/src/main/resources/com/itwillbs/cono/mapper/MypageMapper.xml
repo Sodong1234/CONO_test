@@ -223,9 +223,62 @@
 	<update id="updateordStatus">
 		UPDATE ord
 		   SET ord_status='Y'
-		 WHERE member_id=#{sId},
-		       item_idx=#{item_idx},
-		       ord_date=#{ord_date}
+		 WHERE member_id=#{sId}
+		   AND item_idx=#{item_idx}
+		   AND ord_date=#{ord_date}
+	</update>
+	
+	<select id="selectSafeCoin" resultType="java.lang.String">
+		SELECT safe_coin 
+			       FROM safe 
+			      WHERE ord_idx=(SELECT ord_idx
+			      				   FROM ord
+			      				  WHERE member_id=#{sId}
+			      				    AND item_idx=#{item_idx}
+									AND ord_date=#{ord_date}
+									AND ord_status='Y'
+			                    )
+	</select>
+	
+	<select id="selectCoinTotal" resultType="java.lang.String">
+		SELECT coin_total
+				    FROM coin
+			   	   WHERE coin_idx = (SELECT * 
+				   					   FROM (SELECT max(coin_idx) 
+				   					   		   FROM coin
+				   					   		  WHERE member_id=#{sId}) AS a)
+				
+	</select>
+	
+	<!-- 판매자한테 safe에 저장된 코인 입금 -->
+	<insert id="insertCoinSeller">
+		INSERT INTO coin
+		VALUES (
+				(SELECT *
+			      FROM (SELECT IFNULL(MAX(coin_idx)+1,'1') 
+			      		  FROM coin) temp)
+			   ,#{sId}
+			   ,#{safe_coin}
+			   ,''
+			   ,#{coin_total}-#{safe_coin}
+			   ,date_format(now(), '%Y%m%d%H%i%S')
+			   )
+			   
+	</insert>
+	
+	<!-- safe 테이블 status 변경 -->
+	<update id="updateSafeStatus">
+		UPDATE safe
+		   SET safe_status='Y'
+		 WHERE item_idx=#{item_idx}
+		   AND member_id=#{sId}
+		   AND ord_idx= (SELECT ord_idx
+		   				   FROM ord
+		   			      WHERE member_id=#{sId}
+	      				    AND item_idx=#{item_idx}
+							AND ord_date=#{ord_date}
+							AND ord_status='Y'
+	                    )
 	</update>
 	
 <!-- 		회원 탈퇴 -->

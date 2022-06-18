@@ -48,7 +48,10 @@
 	<insert id="insertOrd">
 		INSERT INTO ord
 		VALUES (
-			   #{item_idx}
+				(SELECT *
+			      FROM (SELECT IFNULL(MAX(ord_idx)+1,'1') 
+			      		  FROM ord) temp)
+			   ,#{item_idx}
 			   ,#{member_id}
 			   ,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
 			   ,#{ord_reqContent}
@@ -65,6 +68,13 @@
 			      FROM (SELECT IFNULL(MAX(safe_idx)+1,'1') 
 			      		  FROM safe) temp)
 			   ,#{ord.item_idx}
+			   ,(SELECT ord_idx 
+			       FROM ord 
+			      WHERE item_idx=#{ord.item_idx} 
+			        AND member_id=#{ord.member_id}
+			        AND ord_reqContent=#{ord.ord_reqContent}
+			        AND ord_quantity=#{ord.ord_quantity} 
+			    )
 			   ,#{ord.member_id}
 			   ,(SELECT s.shop_idx 
 			       FROM shop s, item i

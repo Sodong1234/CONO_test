@@ -129,8 +129,8 @@ public class MypageController {
 	}
 
 
-	// 내가 쓴 후기 확인
-	@RequestMapping(value = "readReviewList", method = RequestMethod.GET)
+	// 내가 구매한 제품 리스트 확인
+	@RequestMapping(value = "readOrdList", method = RequestMethod.GET)
 	public String readReview(@RequestParam(defaultValue = "1") int pageNum, HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
 
@@ -178,9 +178,17 @@ public class MypageController {
 		// ord 테이블 변경
 		service.confirmPurchase(sId, item_idx, ord_date);
 		
-		// 판매자 코인 입금
-//		service.insertCoinSeller(item_idx, );
+		// safe_coin
+		String safe_coin = service.selectSafeCoin(sId, item_idx, ord_date);
 		
+		// coin_total
+		String coin_total = service.selectCoinTotal(sId);
+		
+		// 판매자 코인 입금
+		service.insertCoinSeller(sId, item_idx, ord_date, safe_coin, coin_total);
+		
+		// safe 테이블 status 변경
+		service.modifySafeStatus(sId, item_idx, ord_date);
 		
 		return "mypage/list_readList";
 	}

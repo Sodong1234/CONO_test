@@ -144,12 +144,30 @@ public class MypageService {
 		mapper.updateordStatus(sId, item_idx, ord_date);
 	}
 
+	// 판매자한테 safe에 저장된 코인 입금
+	public void insertCoinSeller(String sId, String item_idx, String ord_date, String safe_coin, String coin_total) {
+		mapper.insertCoinSeller(sId, item_idx, ord_date, safe_coin, coin_total);
+	}
+	
+	public boolean modifySafeStatus(String sId, String item_idx, String ord_date) {
+		return mapper.updateSafeStatus(sId, item_idx, ord_date);
+	}
+	
+	
 	// 회원 탈퇴 로직
 	public boolean deleteId(String id, String passwd) {
 		return mapper.deleteId(id, passwd);
 	}
-	
 
+	// safe_coin 
+	public String selectSafeCoin(String sId, String item_idx, String ord_date) {
+		return mapper.selectSafeCoin(sId, item_idx, ord_date);
+	}
+	// coin_total
+	public String selectCoinTotal(String sId) {
+		return mapper.selectCoinTotal(sId);
+	}
+	
 
 	
 	

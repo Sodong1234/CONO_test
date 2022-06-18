@@ -33,7 +33,7 @@
 						<nav class="sidenav">
 							<b></b>
 							<ul class="main-buttons">
-								<li><a href="readReviewList">나의 후기</a></li>
+								<li><a href="readOrdList">나의 후기</a></li>
 								<li><a href="#">메시지</a></li>
 								<li><a href="coin">코인</a></li>
 								<li><a href="coupon">쿠폰</a></li>
