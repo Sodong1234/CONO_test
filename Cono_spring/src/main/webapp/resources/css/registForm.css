@@ -804,6 +804,7 @@ js : 한글자 이상 입력 시 나타나는 x 버튼. 내용 지우기 역할
     display: flex;
     -webkit-box-align: center;
     align-items: center;
+    margin-left: -20px;
 }
 .locationDiv::before {
     content: "";
@@ -837,7 +838,7 @@ js : 한글자 이상 입력 시 나타나는 x 버튼. 내용 지우기 역할
 
 /* 기타 공통 */
 .add_description {
-    margin-top: 1.5rem;
+    margin-top: 10px;
     color: rgb(3, 155, 229);
     line-height: 1.5;
     font-size: 14px;

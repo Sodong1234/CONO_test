@@ -19,8 +19,7 @@ if(session.getAttribute("sId") == null) {
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm_common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm_btn.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm_btn.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
 
 <script type="text/javascript">
@@ -212,9 +211,13 @@ function submitBtn() {
 								</div>
 								<div class="location_con">
 									<div class="contentArea">
-										<input type="button" value="지역선택" onclick="getAddressInfo()">
+									
+									 <a href="#"  onclick="getAddressInfo()" class="btnLightBlue"></a><br>
+									 
+									 
+<!-- 										<input type="button" value="지역선택" onclick="getAddressInfo()"> -->
 									</div>
-									<input type="text" name="item_region" id="item_region" readonly="readonly">
+									<br><input type="text" name="item_region" id="item_region" readonly="readonly">
 									<div class="locationDiv" id="locationDiv">거래지역을 선택해주세요.</div>
 									<div class="add_description">
 
