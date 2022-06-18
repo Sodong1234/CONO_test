@@ -194,15 +194,12 @@ div {
 // 	    var positionX = ( window.screen.width / 2 ) - ( new_window_width / 2 );
 // 	    var positionY = ( window.screen.height / 2 ) - ( new_window_height / 2 );
 // 		$("#write_review").on("click", function() {
-// 			var item_idx = ${purchase.item_idx};
-// 			alert(item_idx);
-// 			window.open("writeBasicReview?item_idx=" + item_idx, "리뷰 작성", "width=" + new_window_width + ", height=" + new_window_height + ", top=" + positionY + ", left=" + positionX)
+// 			window.open("리뷰 작성", "width=" + new_window_width + ", height=" + new_window_height + ", top=" + positionY + ", left=" + positionX)
 // 		});
 // 	});
-// 	function writeReview(item_idx) {
-// 		window.open("writeReview?item_idx=" + item_idx, "리뷰 작성", "width=" + new_window_width + ", height=" + new_window_height + ", top=" + positionY + ", left=" + positionX);
-		
-// 	}
+	function writeReview() {
+		window.open("", "리뷰 작성", "width=600px,height=720px,top=180px,left=500px");
+	}
 </script>
 </head>
 <body>
@@ -293,7 +290,13 @@ div {
 								<td>${purchase.ord_date }<br>
 									<input type="button" value="구매확정완료" disabled="disabled">
 								</td>
-									<td><a class="n-btn w80 btn-sm btn-default" id="write_review" href="writeBasicReview?item_idx=${purchase.item_idx }">작성하기</a></td>
+									<td>	
+										<form action="writeBasicReview" method="post" target="리뷰 작성" onsubmit="writeReview()">
+											<input type="hidden" name="item_idx" value="${purchase.item_idx }">
+											<input type="submit" class="n-btn w80 btn-sm btn-default" id="write_review" value="작성하기">
+										</form>
+									</td>
+<%-- 									<td><a class="n-btn w80 btn-sm btn-default" id="write_review" href="writeBasicReview?item_idx=${purchase.item_idx }">작성하기</a></td> --%>
 <%--  									<td><a class="n-btn w80 btn-sm btn-default" id="write_review" onclick="writeReview(${purchase.item_idx})">작성하기</a></td> --%>
 							</tr>
 						</c:when>

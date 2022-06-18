@@ -204,6 +204,30 @@
 		 WHERE item_idx = #{item_idx}
 	</select>
 	
+	<!-- 후기 등록 -->
+	<insert id="insertReview">
+		INSERT INTO review 
+		VALUES (
+				(SELECT *
+			      FROM (SELECT IFNULL(MAX(review_idx)+1,'1') 
+			      		  FROM review) temp)
+			    ,#{sId}
+			    ,#{item_idx}
+			    ,#{review.review_content}
+			    ,#{review.review_score}
+			    ,date_format(now(), '%Y%m%d%H%i%S')
+			   )
+	</insert>
+	
+	<!-- 구매 확정 -->
+	<update id="updateordStatus">
+		UPDATE ord
+		   SET ord_status='Y'
+		 WHERE member_id=#{sId},
+		       item_idx=#{item_idx},
+		       ord_date=#{ord_date}
+	</update>
+	
 <!-- 		회원 탈퇴 -->
 	<delete id="deleteId">
 		DELETE FROM member

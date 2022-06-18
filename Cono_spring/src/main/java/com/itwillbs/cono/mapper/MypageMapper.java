@@ -60,10 +60,14 @@ public interface MypageMapper {
 	// 내가 쓴 리뷰 확인
 	public List<HashMap<String, String>> selectReadPurchaseList(@Param("sId") String sId, @Param("pageInfo") PageInfo pageInfo);
 	public List<HashMap<String, String>> selectWaitingList(String sId);
-	// 리뷰 개수 조회
+	// 후기 개수 조회
 	public int selectPurchaseListCount(String sId);
-	// 리뷰 작성할 아이템 조회
+	// 후기 작성할 아이템 조회
 	public HashMap<String, String> selectItemInfo(String item_idx);
+	// 후기 등록
+	public int insertReview(@Param("review") ReviewDTO review, @Param("sId") String sId, @Param("item_idx") String item_idx);
+	// 구매 확정
+	public void updateordStatus(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
 	// 회원 탈퇴 로직
 	public boolean deleteId(@Param("id") String id,@Param("passwd") String passwd);
 

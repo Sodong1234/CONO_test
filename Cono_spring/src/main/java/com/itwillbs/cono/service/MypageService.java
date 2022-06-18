@@ -133,11 +133,21 @@ public class MypageService {
 		return mapper.selectWaitingList(sId);
 	}
 
+	
+	// 후기 등록
+	public int uploadReview(ReviewDTO review, String sId, String item_idx) {
+		return mapper.insertReview(review, sId, item_idx);
+	}
+	
+	// 구매확정
+	public void confirmPurchase(String sId, String item_idx, String ord_date) {
+		mapper.updateordStatus(sId, item_idx, ord_date);
+	}
+
 	// 회원 탈퇴 로직
 	public boolean deleteId(String id, String passwd) {
 		return mapper.deleteId(id, passwd);
 	}
-
 	
 
 

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -160,13 +161,32 @@ public class MypageController {
 		pageInfo.setListLimit(listLimit);
 		
 		List<HashMap<String, String>> purchaseList = service.getReadPurchaseList(sId, pageInfo);
+		
+		
+		
 		model.addAttribute("purchaseList", purchaseList);
 		model.addAttribute("pageInfo", pageInfo);
 		return "mypage/list_readList";
 	}
 	
+	// 구매 확정
+	@RequestMapping(value = "confirmPurchase", method = RequestMethod.GET)
+	public String confirmPurchase(HttpSession session, String item_idx, String ord_date, Model model) {
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		// ord 테이블 변경
+		service.confirmPurchase(sId, item_idx, ord_date);
+		
+		// 판매자 코인 입금
+//		service.insertCoinSeller(item_idx, );
+		
+		
+		return "mypage/list_readList";
+	}
+	
 	// 후기 작성 페이지 이동 - 사진 없는 페이지
-	@RequestMapping(value = "writeBasicReview", method = RequestMethod.GET)
+	@RequestMapping(value = "writeBasicReview", method = RequestMethod.POST)
 	public String writeBasicReview(HttpSession session, String item_idx, Model model) {
 		
 		HashMap<String, String> itemInfo = service.getItemInfo(item_idx);
@@ -176,12 +196,25 @@ public class MypageController {
 		return "mypage/review_basic_write";
 	}
 		
-//	// 후기 작성 페이지 이동 - 사진 있는 페이지
-//	@RequestMapping(value = "writePictureReview", method = RequestMethod.GET)
-//	public String writePictureReview(HttpSession session, Model model) {
-//
-//		return "mypage/review_picture_write";
-//	}
+	// 후기 insert 작업
+	@RequestMapping(value = "uploadReview", method = RequestMethod.POST)
+	public String uploadReview(@ModelAttribute ReviewDTO review, String item_idx, HttpSession session, Model model) {
+		
+		String insertCheck = "";
+		
+		String sId = (String)session.getAttribute("sId");
+		
+//		System.out.println("reviewv: " + review.getReview_content());
+		int insertCnt = service.uploadReview(review, sId, item_idx);
+		
+		if(insertCnt > 0) {
+			insertCheck = "done";
+		}
+		
+		model.addAttribute("insertCheck", insertCheck);
+		
+		return "mypage/review_basic_write";
+	}
 	
 	// 알림
 
