@@ -96,8 +96,11 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 		height: 50px;
 		text-align: center;
 		margin-bottom: 30px;
-		margin-left: 505px;
-		margin-right: 505px;
+		margin-left: 21%;
+    margin-right: 505px;
+    border-bottom: inset;
+    background: #cdf0ea;
+    border-radius: 8px;
 	}
 	#under_nav_bar li {
 		width: 260px;
@@ -105,6 +108,11 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 		float: left;
 		text-align: center;
 	}
+	
+/* 	#under_nav_bar li:hover:before{ */
+/* 		  background: black;  */
+/* 	} */
+	
 	#shop_resultArea {
 		margin-bottom: 50px;
 		width: 100%;
@@ -119,7 +127,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 	.shopInfo134{
 		position: relative;
 		display: inline-block;
-		    height: 600px;
+		height: 400px;
 	}
 	.shopForm134 {
 		/*  margin:inherit; */
@@ -127,7 +135,9 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 		/* margin-right:-500px; */
 		/* position:inherit; */
 		/* float:left; */
-	 	display: inline-table; 
+	display: inline-table; 
+	margin-left: 38px;
+    margin-top: 20px;
 	}
 	
 	.listWarp132 {
@@ -137,10 +147,17 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 		  	margin-left: 30px;  
 	}
 	
-	.shopModify{
-	    margin-left: 400px;
-		float:right;
+.shopModify{
+ 	margin-top: 7px;
+   	margin-left: 40px;
+	float:right;
 	}
+	
+/* #product:before { */
+/*   color: black; */
+/*   background-color: #a6a6a6; */
+/* } */
+	
 </style>
 </head>
 <body>
@@ -160,6 +177,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 		<hr>
 		  	<div class="shopInfo134">  
  			<div class="shopForm134"> 
+ 			
  			<form action="ProductMyshopModifyForm.shop" name="shopForm" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="shop_idx" value="${myShop.get('shop_idx') }">
 			<!-- 				<div class="form-group" style= font-family:IBMPlexSansKR-Regular;" > -->
@@ -214,10 +232,10 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 							<!-- 						<div class="starIndicateNum"> </div> -->
 						</div>
 					</div>
+												</div>	
+							
 							
 							<div class="shopModify">
-							</div>
-							
 							<div class="listWarp132" style="">
 			<ul role="list">
 
@@ -226,6 +244,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 				<li data-icon="😎">팔로워 : ${followerCnt } 명</li>
 				<%-- 				  <li data-icon="🦄"> 상점 오픈일 : ${myShop.get('member_date') }</li> --%>
 			</ul>
+		</div>
 		</div>
 								
 <!-- 							<div id="middleWrap"> -->
@@ -245,8 +264,8 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 <!-- 									</div> -->
 <!-- 								</div> -->
 <!-- 							</div> -->
+
 		</form>
-						</div>
 					</div><!-- middleWrap -->
 				</div>
 <!-- 			</div> -->

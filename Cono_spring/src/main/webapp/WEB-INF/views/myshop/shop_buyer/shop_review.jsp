@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 #item_review_list {
-	background: #cdf0ea;
+/* 	background: #cdf0ea; */
 	padding: 30px 30px 10px 30px;
 	border-radius: 10px;
 	border-collapse: collapse;

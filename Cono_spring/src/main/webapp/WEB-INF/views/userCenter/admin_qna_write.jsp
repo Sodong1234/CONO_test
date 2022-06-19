@@ -9,6 +9,14 @@ String sId = (String)session.getAttribute("sId");
 <head>
 <meta charset="UTF-8">
 <title>QNA 글쓰기 폼</title>
+<script src="js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+if(!$('#qna_type > option:selected').val()) {
+    alert("아나 선택 좀..");
+}
+
+</script>
+
 <style type="text/css">
 * {
 	margin: 0;
@@ -113,7 +121,7 @@ select {
 			<div class="hh"><h1>Qna Write </h1></div>
 			<form action="AdminQNAWritePro.admin" method="post">
 				<div class = "qna_type">
-				<select name="qna_type">
+				<select name="qna_type" id="qna_type">
 						<option value="선택" selected="selected" disabled="disabled" >선택  </option>
 						<option value="버그신고">버그신고</option>
 						<option value="유저신고">유저신고</option>
