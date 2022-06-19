@@ -29,20 +29,25 @@ public class MessageService {
 	public List<HashMap<String, String>> getAllMsg(String msgList_room) {
 		return mapper.selectAllMsg(msgList_room);
 	}
-	// 삭제
-	public int deleteMsg(String msgList_room) {
-		return mapper.deleteMsg(msgList_room);
-	}
 	public String selectShop_idx(String sId) {
 		return mapper.selectShop_idx(sId);
 	}
 //	public List<HashMap<String, String>> getMsgList_shop(String sId) {
 //		return null;
 //	}
+	// 샵 메시지
 	public List<HashMap<String, String>> getShopMsgList(String shop_idx) {
 		return mapper.selectShopMsgList(shop_idx);
 	}
+	// 룸 번호
+	public String getRoomNum() {
+		return mapper.selectRoomNun();
+	}
 	
+	// 삭제
+	public int deleteMsg(String msgList_room) {
+		return mapper.deleteMsg(msgList_room);
+	}
 
 
 	}

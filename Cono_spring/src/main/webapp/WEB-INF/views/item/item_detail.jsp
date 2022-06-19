@@ -259,7 +259,9 @@
 						<div class="detail-info__btn-list">
 						
 							<!-- 버튼 -->
-						
+								<div> 
+									<input type="button" value="문의하기" onclick="location.href='addMessageList?shop_idx=${itemDetail.shop_idx}&item_idx=${itemDetail.item_idx}'">
+								 </div>
 								<div class="center">
 									<a href="#" onclick="submitBtn()"><span data-attr="buy">buy</span><span
 										data-attr="now">now</span></a>

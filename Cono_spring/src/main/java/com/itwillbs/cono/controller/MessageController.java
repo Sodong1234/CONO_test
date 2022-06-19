@@ -25,8 +25,18 @@ public class MessageController {
 	@RequestMapping(value = "addMessageList", method = RequestMethod.GET)
 	public String insert_message_list(Model model, HttpSession session, String shop_idx, String item_idx) {
 		String sId = (String)session.getAttribute("sId");
+		String room = service.getRoomNum();
 		
 		service.setMessageList(sId, shop_idx, item_idx);
+		
+		// 첫 메시지 등록
+		MsgChatDTO dto = new MsgChatDTO();
+		dto.setMsgList_room(room);
+		dto.setMsgChat_send(sId);
+		dto.setMsgChat_recv(shop_idx);
+		dto.setMsgChat_content("상품 문의 입니다~");
+		service.setMsgContent(dto);
+		
 		return "message/message_list";
 	}
 	// member - shop room 목록

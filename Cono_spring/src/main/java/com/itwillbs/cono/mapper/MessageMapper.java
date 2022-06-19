@@ -28,6 +28,8 @@ public interface MessageMapper {
 	public String selectShop_idx(String sId);
 	
 	public List<HashMap<String, String>> selectShopMsgList(String shop_idx);
+	// Room 번호
+	public String selectRoomNun();
 
 
 }

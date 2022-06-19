@@ -8,6 +8,10 @@
 				#{sId}, #{shop_idx}, #{item_idx}, '0'
 				)
 	</insert>
+	<select id="selectRoomNun" resultType="string">
+		SELECT COUNT(msgList_room)+1
+		  FROM msgList
+	</select>
 	
 <!-- 	MsgList 뽑기 -->
 	<select id="selectMsgList" resultType="java.util.HashMap">
