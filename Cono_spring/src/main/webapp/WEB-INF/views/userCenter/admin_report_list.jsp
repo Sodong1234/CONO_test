@@ -283,7 +283,7 @@ select {
 							<div class="report_status">${report.report_status }</div>
 							<div class="report_delete">
 							
-								<%if(sId.equals("admin")){ %><input type="button" id ="btn" onclick="location.href='ReportDeleteAdmin.admin?report_idx=${report.report_idx}&item_idx=1'" value="삭제"><%} %>
+								<%if(sId.equals("admin")){ %><input type="button" id ="btn" onclick="location.href='ReportDeleteAdmin.admin?report_idx=${report.report_idx}&item_idx=${report.item_idx}'" value="삭제"><%} %>
 							</div>
 						</div>
 					</div>
