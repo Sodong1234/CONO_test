@@ -25,7 +25,7 @@ public class MessageService {
 	public int setMsgContent(MsgChatDTO dto) {
 		return mapper.insertMsgContent(dto);
 	}
-	// 메시지 내용 출력
+	// 메시지 상세 내용 출력
 	public List<HashMap<String, String>> getAllMsg(String msgList_room) {
 		return mapper.selectAllMsg(msgList_room);
 	}
@@ -33,12 +33,16 @@ public class MessageService {
 	public int deleteMsg(String msgList_room) {
 		return mapper.deleteMsg(msgList_room);
 	}
-//	public String selectShop_idx(String sId) {
-//		return mapper.selectShop_idx(sId);
-//	}
+	public String selectShop_idx(String sId) {
+		return mapper.selectShop_idx(sId);
+	}
 //	public List<HashMap<String, String>> getMsgList_shop(String sId) {
 //		return null;
 //	}
+	public List<HashMap<String, String>> getShopMsgList(String shop_idx) {
+		return mapper.selectShopMsgList(shop_idx);
+	}
+	
 
 
 	}

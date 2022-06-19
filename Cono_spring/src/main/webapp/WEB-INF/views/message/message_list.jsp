@@ -20,11 +20,11 @@
 	function sendMsg() {
 		// 방번호 샵네임 저장
 		var msgList_room = document.getElementById("rNum").value;
-		var shop_name = document.getElementById("sName").value;
-		sendMessage(msgList_room, shop_name);
+		var shop_idx	 = document.getElementById("sNum").value;
+		sendMessage(msgList_room, shop_idx);
 	}
 //  Msg DB 저장 함수
-	const sendMessage = function(msgList_room, shop_name) {
+	const sendMessage = function(msgList_room, shop_idx) {
 		let content = $('#msgText').val();
 // 		alert("content: " + content + "msgList_room: " + msgList_room + "shop_name:" + shop_name);
 		
@@ -39,7 +39,7 @@
 				method:"GET",
 				data:{
 					msgList_room : msgList_room,
-					shop_name : shop_name,
+					shop_idx : shop_idx,
 					content : content
 				},
 				success:function(data) {
@@ -47,13 +47,13 @@
 					// 메시지 입력칸 비우기
 					$('#msgText').val("");
 					// 메시지 내용 리로드
-					MessageContentList(msgList_room, shop_name);
+					MessageContentList(msgList_room, shop_idx);
 					// 메시지 리스트 리로드
 // 					MessageList();
 				},
 				error : function() {
 // 					alert('전송완료 후 실패');
-					MessageContentList(msgList_room, shop_name);
+					MessageContentList(msgList_room, shop_idx);
 					$('#msgText').val("");
 				}
 			});
@@ -64,8 +64,8 @@
 	
 	
 	// 헤더 이름 붙이기 + msg 불러오기
-	const MessageContentList = function(msgList_room, shop_name) {
-		$(".sname").html(shop_name);
+	const MessageContentList = function(msgList_room, shop_idx) {
+		$(".sNum").html(shop_idx);
 		$.ajax({
 			type:"GET",
 			url:"getAllMsg",
@@ -80,17 +80,18 @@
 			}
 		});
 	}
-	function getMsgList(msgList_room, shop_name) {
+	// 헤더 클릭시 내용 호출을 위한 함수
+	function getMsgList(msgList_room, shop_idx) {
 		var btn = document.getElementById("msgbtn");
 		var msg_form = document.getElementById("msg_form");
-		document.getElementById("sName").value = shop_name;
+		document.getElementById("sNum").value = shop_idx;
 		document.getElementById("rNum").value = msgList_room;
 		btn.style.visibility = "visible";
 		msg_form.style.visibility = "visible";
 		
 		
-		
-		MessageContentList(msgList_room, shop_name);
+		// 내용 호출
+		MessageContentList(msgList_room, shop_idx);
 		
 	}
 		
@@ -105,20 +106,20 @@
 	<br>
 	<br>
 	
-	
+	<input type="button" value="내 상점 메시지" onclick="location.href='shop_msgList'">
 	<div class="box">
 	<div class="msg_container">
 		<div class="msg_title">
-			<h2>메세지</h2>
+			<h2> 구매 문의</h2>
 		</div>
 		
 <!-- 		room 리스트 -->
 		<ul class="msg_lists">
 			<c:forEach var="msgH" items="${msgList }">
-				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.shop_name }')">
+				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.shop_idx }')">
 <!-- 					room / shopname 저장 -->
 					<c:set value="${msgH.msgList_room }" var="rNum"></c:set>
-					<c:set value="${msgH.shop_name }" var="sName"></c:set>
+					<c:set value="${msgH.shop_idx }" var="sNum"></c:set>
 					<a href="#" class="room">
 						<span class="area-txt">
 							<span class="Htime">${msgH.msgChat_time }</span>
@@ -146,7 +147,7 @@
 		</div>
 <!-- 		메시지 전송 -->
 		<div class="msg_form" id="msg_form" style="visibility: hidden">
-			<input type="text" id="sName">
+			<input type="text" id="sNum">
 			<input type="text" id="rNum">
 			<textarea rows="3" cols="75" id="msgText"></textarea>
 			<button class="btn_send" onclick="sendMsg()">버튼</button>

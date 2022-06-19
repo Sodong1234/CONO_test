@@ -19,7 +19,15 @@ public interface MessageMapper {
 	// 메시지 삭제
 	public int deleteMsg(String msgList_room);
 	
-//	public String selectShop_idx(String sId);
+	
+	
+	
+	
+	
+	
+	public String selectShop_idx(String sId);
+	
+	public List<HashMap<String, String>> selectShopMsgList(String shop_idx);
 
 
 }

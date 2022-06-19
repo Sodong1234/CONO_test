@@ -20,7 +20,7 @@
 <!-- 	WHERE m.member_id = #{sId} AND m.shop_idx = s.shop_idx AND c.msgChat_time = (SELECT c.msgChat_time FROM msgChat c ORDER BY c.msgChat_time DESC LIMIT 1) -->
 <!-- 	group by c.msgList_room; -->
 	
-		SELECT s.shop_name, m.shop_idx, m.msgList_room, c.msgChat_content, c.msgChat_time
+		SELECT s.shop_name, m.member_id, m.shop_idx, m.msgList_room, c.msgChat_content, c.msgChat_time
 		FROM (shop s, msgList m) LEFT OUTER JOIN msgChat c ON m.msgList_room = c.msgList_room 
 		WHERE m.member_id = #{sId} AND m.shop_idx = s.shop_idx
 		group by c.msgList_room
@@ -50,7 +50,24 @@
 	</delete>
 	
 	
+	
+	
+	
+	
+	
 	<select id="selectShop_idx" resultType="string">
-<!-- 		SELECT shop_idx FROM shop WHERE member_id = #{sId} -->
+		SELECT shop_idx FROM shop WHERE member_id = #{sId}
 	</select>
+	
+	<select id="selectShopMsgList" resultType="java.util.HashMap">
+		SELECT  m.member_nick, l.member_id, c.msgChat_time, c.msgChat_content, l.msgList_status, l.msgList_room
+		FROM (msgList l, member m) LEFT OUTER JOIN msgChat c ON l.msgList_room = c.msgList_room 
+		WHERE l.shop_idx = #{shop_idx}
+		  AND m.member_id = l.member_id
+		  AND l.msgList_room = c.msgList_room
+		GROUP BY c.msgList_room
+	</select>
+
+	
+	
 </mapper>
