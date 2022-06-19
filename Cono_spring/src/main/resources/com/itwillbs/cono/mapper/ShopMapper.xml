@@ -26,7 +26,11 @@
 	
 	<!-- 등록된 상품 개수(item_idx) 조회 -->
 	<select id="selectItemIdx" resultType="java.lang.Integer">
-		SELECT MAX(item_idx) FROM item
+		SELECT item_idx 
+		  FROM item
+		 ORDER BY item_idx*1 DESC
+		 LIMIT 1
+
 	</select>
 	
 	<!-- item 테이블 insert -->
