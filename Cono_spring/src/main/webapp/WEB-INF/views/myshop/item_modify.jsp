@@ -154,7 +154,7 @@ om/lib/w3-colors-flat.css">
 						
  				 
  				  <label class="col-form-label mt-4" for="inputDefault">거래지역</label>
- 				 <input type="text" class="form-control" id="inputDefault" name="item_title" value="${itemDetail.get('item_region')} " ><br><br>
+ 				 <input type="text" class="form-control" id="inputDefault" name="item_region" value="${itemDetail.get('item_region')} " ><br><br>
 	
 				</div>		
 
