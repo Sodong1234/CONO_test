@@ -9,7 +9,7 @@
 if (session.getAttribute("sId") == null) {
 	response.sendRedirect("MemberLogin.func");
 }
-String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
+// String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 %>
 <!DOCTYPE html>
 <html>
@@ -106,7 +106,7 @@ form {
 
 					<div class="storeIndication">
 						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAQBJREFUSA1jZCASNOz/z3L34Z1aBkaGZLCW/wxzleVVmhscGf8QYwQLMYpAakCW/GdgqGMAElBQBxQDMethAvhoJnySKHIwnyALYhNDlkdiE28RkiZymMRbBIwTDAuwiWEogggQHUegiAfHCSy4oIkBh7kjQJgxdtHtUIZ/jJP+M/yXoIV/GRkYXzAw/c9joqUlIIeDPQD0CPGpjkLvMoG8BfYehQbh0g4LOkZcCkDiMQtuIwocfAqhcksSVHGaR8egI8Kl1FAy6iOyQ5HoQhVkA3qqIiVVjsYR2XE0woIOubBFZsPCD1kMmQ2TR6bxBx20ZAcbAmQjawSzCckjaQAAJL9HBV3GwxoAAAAASUVORK5CYII="
-							width="14" height="15" alt="상점방문수 아이콘">판매횟수 <%=myShopCountInfo[0]%> &nbsp;
+							width="14" height="15" alt="상점방문수 아이콘">판매횟수 ${myShopCountInfo[0]} &nbsp;
 <!-- 						<div class="reviewIndicateNum">  -->
 						
 <!-- 						</div> -->
@@ -115,19 +115,20 @@ form {
 
 						<!-- 					<div class="storeIndication"> -->
 						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAl1JREFUSA21Vc9PE1EQnnktW2yIFy9GiCduSki4QjSGwA3qj248q/HCwQtnwg//CxKrMd4WMO2RQrxwkbQmBI0XExMxqQk3TTAt7Q4zu91l231btrq85KWz33wz39v3vn0F6HOYO7nHMvssA+ynwPxgXrebjc9So9LGbeue9StuvYpLFJ592lgHomsynbiP4thC+XLuCQDN8Rb8limxi8VTi7V1Ztm8SVQ/JICriPhUWhNRwRHFzJg1Y/24SO7CN+KGSNAotEVKGzPF1zJZsCSYk2POfwvld+8vsNg0dzq+klXPvYYSCyY54Xh41G/PlbDLRu3T+gEXZ1UKH1rTxffBRuZu7oHdoi3GTtRAZpxd+C2YD8aRW7dCK4pF3jA5y9v0tltEmggmOeEIV2oE143IxJedT4tcMAmARwjGC12xYG4Oj4TbrtFSMV+e/0kEw9psYiDWFBDuJ9YvohEiVWXrPkbkk4QrSim69DcCTFXV0CBUENBOcvndvQYNrKrCVOkPXyhfu5OhZ4SmAlxWqcyIMzlmyzVDvBCAtXd3tmppB0c2BNGtECcAKMKX1mxxLQCtmds5sIFWA1goFCMI6H5HGMMQKeNVqIsOC5Gg4gvxfXV5hmAj+EJj6YlDvkr+hhcTQFqNZ4EnN9RhXSQxgkD+pfpoe36Pn/nKiRhiBj4n8LaLRWykJSBwz1lbhrXN2eINSfkkfqN93sJoIW7oHHyrfn74/IfUa3hGEI5/qWIcQ/Tqqs85RugQggEjeUO0jdAhZN21vvOBHesX9m+oZ4QOIaeVfLiJDfdG8NqdARu11RN7gt5lAAAAAElFTkSuQmCC"
-							width="14" height="15" alt="상품판매 아이콘">상품갯수  <%=myShopCountInfo[1]%>
+							width="14" height="15" alt="상품판매 아이콘">상품갯수  ${myShopCountInfo[1]}
 <!-- 						<div class="sellIndicateNum"></div> -->
 						<!-- 					</div> -->
 
 <!-- 						<div class="storeStar"> -->
 							<img width="20" height="23" class="star1" alt="별 "
-								src="resources/img/star.png">별점 0 / 5
+								src="resources/img/star.png">별점 ${itemAvg.get('avg') } / 5
 							<!-- 						<div class="starIndicateNum"> </div> -->
 						</div>
 					</div>
 					
 
 
+		</form>
 				</div>
 		<div class="shopModify">
 		  <div class="svg-wrapper">
@@ -138,7 +139,6 @@ form {
         </div>
       </svg>
     </div>
-		</form>
 		</div>
 <!-- 		</div> -->
 		<div class="listWarp132" style="">
@@ -146,9 +146,10 @@ form {
 
 				<li data-icon="🦄">판매자 ID :${myShop.get('member_id') }</li>
 				<li data-icon="🌈">상점소개 : ${myShop.get('shop_content') }</li>
-				<li data-icon="😎">팔로워 : x명</li>
+				<li data-icon="😎">팔로워 : ${followerCnt } 명</li>
 				<%-- 				  <li data-icon="🦄"> 상점 오픈일 : ${myShop.get('member_date') }</li> --%>
 			</ul>
+			
 		</div>
 		
 							
@@ -158,7 +159,7 @@ form {
 
 		<br> <br>
 
-
+</div>
 	</div>
 
 	<!-- </div>	 -->
