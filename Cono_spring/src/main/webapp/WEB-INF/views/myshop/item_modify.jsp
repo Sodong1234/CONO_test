@@ -124,10 +124,10 @@ om/lib/w3-colors-flat.css">
  				 <input type="text" class="form-control"  id="inputDefault" name="item_title" value="${itemDetail.get('item_title')}" >
  				 
  				  <label class="col-form-label mt-4" for="inputDefault">상품 소개</label>
- 				 <input type="text" class="form-control"  id="inputDefault" name="item_title" value="${itemDetail.get('item_content')}" >
+ 				 <input type="text" class="form-control"  id="inputDefault" name="item_content" value="${itemDetail.get('item_content')}" >
  				 
  				  <label class="col-form-label mt-4" for="inputDefault">가격</label>
- 				 <input type="text" class="form-control"  id="inputDefault" name="item_priceitem_title" value="${itemDetail.get('item_price')}" >
+ 				 <input type="text" class="form-control"  id="inputDefault" name="item_price" value="${itemDetail.get('item_price')}" >
  				 
  				  <label class="col-form-label mt-4" for="inputDefault">수량</label>
  				 <input type="text" class="form-control"  id="inputDefault" name="item_quantity" value="${itemDetail.get('item_quantity')}" >
