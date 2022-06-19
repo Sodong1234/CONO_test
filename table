@@ -87,12 +87,14 @@ CREATE TABLE wish (
 );
 
 CREATE TABLE ord (
+	ord_idx VARCHAR(20),
 	item_idx varchar(20),
 	member_id varchar(20),
 	ord_date varchar(20) NOT NULL,
 	ord_reqContent varchar(1000),
 	ord_quantity varchar(10) NOT NULL,
-	ord_status varchar(5) NOT NULL
+	ord_status varchar(5) NOT NULL,
+	PRIMARY KEY (ord_idx,item_idx,member_id)
 );
 
 
@@ -141,6 +143,7 @@ CREATE TABLE coin (
 CREATE TABLE safe (
     safe_idx VARCHAR(50),
     item_idx VARCHAR(20),
+    ord_idx VARCHAR(20),
     member_id VARCHAR(20),
     shop_idx VARCHAR(20),
     safe_coin VARCHAR(50),
