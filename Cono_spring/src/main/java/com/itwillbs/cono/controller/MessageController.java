@@ -90,13 +90,7 @@ public class MessageController {
 		return "message/message_content_list";
 	}
 
-	// Message DELETE 
-	@RequestMapping(value = "msgDelete", method = RequestMethod.GET)
-	public String deleteMsg(@RequestParam String msgList_room, HttpSession session) {
-		int deleteCount = service.deleteMsg(msgList_room);
-		System.out.println(deleteCount);
-		return "message_list";
-	}
+	
 
 	// -------------- 내 상점 문의
 	
@@ -149,5 +143,14 @@ public class MessageController {
 			return insertCount; 
 		}
 
+		
+		// Message DELETE 
+		@RequestMapping(value = "msgDelete", method = RequestMethod.GET)
+		public String deleteMsg(@RequestParam String msgList_room, HttpSession session) {
+			System.out.println("딜리트 : " + msgList_room);
+			int deleteCount = service.deleteMsg(msgList_room);
+			System.out.println(deleteCount);
+			return "message/message_list";
+		}
 	
 }

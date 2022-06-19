@@ -12,8 +12,9 @@
 <script type="text/javascript">
 
 	function msgDelete() {
-		var room = document.getElementById("rNum").value;
-		location.href="msgDelete?room=" + room;
+		var msgList_room = document.getElementById("rNum").value;
+		alert("방번호 : " + msgList_room);
+		location.href="msgDelete?msgList_room=" + msgList_room;
 	}
 	
 
@@ -101,8 +102,6 @@
 	<div id="wrap">
 		<jsp:include page="../header_footer/header.jsp"/>
 	</div>
-	<input type="button" value="문의하기" onclick="location.href='addMessageList?item_idx=2&shop_idx=1'">
-	<input type="button" value="문의하기" onclick="location.href='addMessageList?item_idx=1&shop_idx=3'">
 	<br>
 	<br>
 	
@@ -138,7 +137,7 @@
 			</div>
 			<fieldset class="msgbtn" id="msgbtn" style="visibility: hidden">
 				<button class="follwing" onclick="location.href='following'">팔로우</button>
-				<button class="msg_out" onclick="location.href='msgDelete()'">나가기</button>
+				<button class="msg_out" onclick="msgDelete()">나가기</button>
 			</fieldset>
 		</div>
 <!-- 		메시지 내용 -->

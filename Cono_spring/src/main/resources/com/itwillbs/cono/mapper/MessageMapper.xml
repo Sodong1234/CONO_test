@@ -47,10 +47,12 @@
 	</select>
 	
 <!-- 	deleteMsg -->
-	<delete id="deleteMsgList">
-		DELETE FROM msgChat c, msgList l 
-		WHERE c.msgList_room = #{msgList_room} 
-			OR l.msgList_room = #{msgList_room}
+	<delete id="deleteMsg">
+		DELETE FROM l, c 
+			USING msgList l
+			LEFT JOIN msgChat c
+		    ON l.msgList_room = c.msgList_room
+		WHERE c.msgList_room = #{msgList_room}
 	</delete>
 	
 	
