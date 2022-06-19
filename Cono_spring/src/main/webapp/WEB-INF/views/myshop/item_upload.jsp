@@ -23,33 +23,29 @@ if(session.getAttribute("sId") == null) {
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
 
 <script type="text/javascript">
-
-//	$(function() {
-//	$(".img").change(function() {
-//		alert($(".img").val().split(".")[1]);
-//		/* 나중에 하자                       이게 뭐더라 */
-//	});
-//});
-
 	$(function() {
+		
+		let categoryList = {
+				패션: ["여성패션","남성패션"],
+				디지털_가전:["모바일","가전제품","카메라"],
+				스포츠_레저:["캠핑","헬스"],
+				가구_인테리어:["가구","인테리어"],
+				생활_가공식품:["생활용품","식품"],
+				도서_티켓:["도서","상품권","티켓"],
+				뷰티_미용:["스킨케어","메이크업"],
+				반려:["강아지 간식","고양이 간식", "기타"]
+		}
+		
 		$("#big").on("change", function() {
-			let big = $("#big").val()-1;	// 대분류 value값
-			$.ajax({
-				type:"GET",
-				url:"${path}/resources/category.txt",
-				dataType: "json"
-			})
-			.done(function(data) {
-				$("#category_area").html("<select name='category_small' id='small' size='8'></select>");
-				let keys = data[big];	// 대분류에 해당하는 소분류 배열
-				for(let j = 0; j < Object.keys(keys).length; j++) {
-					let value = Object.keys(keys)[j];	// 소분류 key값
-					$("#category_area > select").append("<option value='Object.keys(keys)[j]'>" + keys[value] + "</option>");
+			let big = $("#big").val();
+			$("#category_area").html("<select name='category_small' id='small' size='8'></select>");
+			for(let bigList in categoryList) {
+				if(big == bigList) {
+					for(let i = 0; i < categoryList[big].length; i++){
+					$("#category_area > select").append("<option value=" + categoryList[big][i] + ">" + categoryList[big][i] + "</option>");
+					}
 				}
-			})
-			.fail(function() {
-				$("#category_area").html("요청 실패");
-			});
+			}
 		});
 	});
 	
@@ -182,21 +178,21 @@ function submitBtn() {
 									</div>
 									<div class="categoryStep">
 										<select name="category_big" id="big" size="8">
-											<option value="1">패션</option>
-											<option value="2">디지털/가전</option>
-											<option value="3">스포츠/레저</option>
-											<option value="4">가구/인테리어</option>
-											<option value="5">생활/가공식품</option>
-											<option value="6">도서/티켓</option>
-											<option value="7">뷰티/미용</option>
-											<option value="8">반려</option>
+											<option value="패션">패션</option>
+											<option value="디지털_가전">디지털/가전</option>
+											<option value="스포츠_레저">스포츠/레저</option>
+											<option value="가구_인테리어">가구/인테리어</option>
+											<option value="생활_가공식품">생활/가공식품</option>
+											<option value="도서_티켓">도서/티켓</option>
+											<option value="뷰티_미용">뷰티/미용</option>
+											<option value="반려">반려</option>
 										</select>
 									</div>
 									<div class="categoryStep">
 										<div id="category_area">
 											<select name="category_small" id="small" size="8">
-												<option value="11">여성패션</option>
-												<option value="12">남성패션</option>
+												<option value="여성패션">여성패션</option>
+												<option value="남성패션">남성패션</option>
 											</select>
 										</div>
 								</div>
@@ -284,8 +280,8 @@ function submitBtn() {
 			<!-- main -->
 			
 		<input type="submit" value="" id="btn" class="btn">
-
 	</form>
+	</div>
 <div class ="btnArea" style="float:center; margin-left: 500px;
     margin-bottom: 50px;">
 	  <div class="svg-wrapper" >

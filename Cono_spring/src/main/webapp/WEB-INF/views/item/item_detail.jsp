@@ -18,11 +18,20 @@
 		for(let i = 1; i <= ${itemDetail.get('item_quantity')}; i++) {
 			$("#purchase_item_quantity > select").append("<option value=" + i + ">" + i + "</option>");
 		}
+		$("#buy_now_btn").on("click", function(e) {
+			if(${itemDetail.get('item_quantity')} != '0') {
+				$("#btn").click();
+			} else {
+				alert("구매할 수 없는 상품입니다.");
+				e.preventDefault();
+			}
+		});
 	});
-
-	function submitBtn() {
-		document.getElementById('btn').click();
-	}
+	
+	
+// 	function submitBtn() {
+// 		document.getElementById('btn').click();
+// 	}
 </script>
 
 <div>
@@ -257,22 +266,17 @@
 						</div>
 						
 						<div class="detail-info__btn-list">
-						
 							<!-- 버튼 -->
-								<div> 
-									<input type="button" value="문의하기" onclick="location.href='addMessageList?shop_idx=${itemDetail.shop_idx}&item_idx=${itemDetail.item_idx}'">
-								 </div>
-								<div class="center">
-									<a href="#" onclick="submitBtn()"><span data-attr="buy">buy</span><span
-										data-attr="now">now</span></a>
-
-
-									<br>
-
-								
-								
-								</div>
-
+							<div> 
+								<input type="button" value="문의하기" onclick="location.href='addMessageList?shop_idx=${itemDetail.shop_idx}&item_idx=${itemDetail.item_idx}'">
+							</div>
+							<div class="center">
+								<a href="#" id="buy_now_btn">
+									<span data-attr="buy">buy</span>
+									<span data-attr="now">now</span>
+								</a>
+								<br>
+							</div>
 						</div>
 						<!-- //버튼리스트 -->
 					</div>
