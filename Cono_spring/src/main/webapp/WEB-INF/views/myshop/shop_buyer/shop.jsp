@@ -213,7 +213,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 <%-- 					${shopCount.itemCount } --%>
 						<div class="storeIndication">
 						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAQBJREFUSA1jZCASNOz/z3L34Z1aBkaGZLCW/wxzleVVmhscGf8QYwQLMYpAakCW/GdgqGMAElBQBxQDMethAvhoJnySKHIwnyALYhNDlkdiE28RkiZymMRbBIwTDAuwiWEogggQHUegiAfHCSy4oIkBh7kjQJgxdtHtUIZ/jJP+M/yXoIV/GRkYXzAw/c9joqUlIIeDPQD0CPGpjkLvMoG8BfYehQbh0g4LOkZcCkDiMQtuIwocfAqhcksSVHGaR8egI8Kl1FAy6iOyQ5HoQhVkA3qqIiVVjsYR2XE0woIOubBFZsPCD1kMmQ2TR6bxBx20ZAcbAmQjawSzCckjaQAAJL9HBV3GwxoAAAAASUVORK5CYII="
-							width="14" height="15" alt="상점방문수 아이콘"> 판매횟수 ${shopCountInfo[0]}
+							width="14" height="15" alt="상점방문수 아이콘"> 판매횟수 ${shopCountInfo[0]} &nbsp;
 <!-- 						<div class="reviewIndicateNum">  -->
 						
 <!-- 						</div> -->
@@ -228,10 +228,11 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 
 <!-- 						<div class="storeStar"> -->
 							<img width="20" height="23" class="star1" alt="별 "
-								src="resources/img/star.png">별점  ${itemAvg.get('avg') }  / 5
+								src="resources/img/star.png">별점 ${itemAvg.get('avg') }  / 5
 							<!-- 						<div class="starIndicateNum"> </div> -->
 						</div>
 					</div>
+							</form>
 												</div>	
 							
 							
@@ -244,6 +245,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 				<li data-icon="😎">팔로워 : ${followerCnt } 명</li>
 				<%-- 				  <li data-icon="🦄"> 상점 오픈일 : ${myShop.get('member_date') }</li> --%>
 			</ul>
+
 		</div>
 		</div>
 								
@@ -265,9 +267,9 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 <!-- 								</div> -->
 <!-- 							</div> -->
 
-		</form>
 					</div><!-- middleWrap -->
 				</div>
+		
 <!-- 			</div> -->
 <!-- 		</div>//storeTop -->
 		<div id="under_nav_bar">

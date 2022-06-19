@@ -272,8 +272,7 @@
 							</div>
 							<div class="center">
 								<a href="#" id="buy_now_btn">
-									<span data-attr="buy">buy</span>
-									<span data-attr="now">now</span>
+									<span data-attr="buy">buy</span><span data-attr="now">now</span>
 								</a>
 								<br>
 							</div>
