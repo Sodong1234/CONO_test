@@ -268,12 +268,22 @@ body {
 							<form class="validation-form" novalidate>
 								<div class="row">
 									<div class="col-md-6 mb-3">
-										<label for="name">아이디</label> <input type="text" class="form-control" name="member_id" id="id" placeholder="아이디를 입력해주세요" required>
+										<label for="name">아이디</label> 
+										<input type="text" class="form-control" name="member_id" id="id" 
+										placeholder="아이디를 입력해주세요" required>
 										<div class="invalid-feedback">아이디를 입력해주세요.</div>
+									</div>
+									<div class="col-md-3 mb-3">
+									<label for="dup">&nbsp;</label>
+									<button class="form-control" style="background-color: aquamarine;">중복확인</button>
 									</div>
 									<div class="col-md-6 mb-3">
 										<label for="nick">별명</label> <input type="text" class="form-control" name="member_nick" id="nick" placeholder="닉네임을 입력해주세요" required>
 										<div class="invalid-feedback">별명을 입력해주세요.</div>
+									</div>
+									<div> <!-- 별명 오른쪽 빈칸 만들기용.. -->
+										<label>&nbsp;</label>
+										<div>&nbsp;</div>
 									</div>
 									<div class="col-md-6 mb-3">
 										<label for="pass">비밀번호</label> <input type="password" class="form-control" name="member_pass" id="pass" placeholder="영문 + 숫자 + 특수문자 8자 이상" required>
