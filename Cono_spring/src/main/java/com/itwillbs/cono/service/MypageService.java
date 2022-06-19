@@ -168,6 +168,11 @@ public class MypageService {
 		return mapper.selectCoinTotal(sId);
 	}
 	
+	// 후기 내역 조회
+	public List<HashMap<String, String>> getReviewList(String sId) {
+		return mapper.selectReviewList(sId);
+	}
+	
 
 	
 	

@@ -178,13 +178,17 @@
 <!-- 		WHERE r.member_id = #{sId} -->
 <!-- 		  AND r.item_idx = i.item_idx -->
 <!-- 		  AND o.item_idx = i.item_idx -->
-		SELECT o.item_idx, s.shop_name, i.item_title, i.item_price, im.img_name, o.ord_date, o.ord_status, o.ord_reqContent, o.ord_quantity
-		  FROM ord o, item i, img im, shop s
-		 WHERE 1=1
-		   AND o.item_idx = i.item_idx
-		   AND im.item_idx = o.item_idx
-		   AND i.shop_idx = s.shop_idx
-		   AND o.member_id = #{sId}
+		SELECT o.item_idx, s.shop_name, i.item_title, i.item_price, im.img_name, o.ord_date, o.ord_status, o.ord_reqContent, o.ord_quantity, r.review_idx
+		  FROM ord o 
+		  JOIN item i
+			ON o.item_idx = i.item_idx
+		  JOIN img im
+		    ON im.item_idx = o.item_idx
+		  JOIN shop s
+		    ON i.shop_idx = s.shop_idx
+		  LEFT JOIN review r
+		    ON r.item_idx = i.item_idx
+		 WHERE o.member_id = #{sId}
 		   AND im.img_idx='1'
 		 LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 		   
@@ -255,7 +259,7 @@
 		INSERT INTO coin
 		VALUES (
 				(SELECT *
-			      FROM (SELECT IFNULL(MAX(coin_idx)+1,'1') 
+			      FROM (SELECT IFNULL(COUNT(coin_idx)+1,'1') 
 			      		  FROM coin) temp)
 			   ,#{sId}
 			   ,#{safe_coin}
@@ -280,6 +284,17 @@
 							AND ord_status='Y'
 	                    )
 	</update>
+	
+	<!-- 후기 내역 조회 -->
+	<select id="selectReviewList" resultType="java.util.HashMap">
+		SELECT i.item_title, o.ord_quantity, s.shop_name, o.ord_date, r.review_content, r.review_score, r.review_date
+		  FROM item i, ord o, shop s, review r
+		 WHERE i.item_idx=o.item_idx
+		   AND s.shop_idx=i.shop_idx
+		   AND r.item_idx=i.item_idx
+		   AND ord_status='Y'
+		   AND o.member_id=#{sId}
+	</select>
 	
 <!-- 		회원 탈퇴 -->
 	<delete id="deleteId">

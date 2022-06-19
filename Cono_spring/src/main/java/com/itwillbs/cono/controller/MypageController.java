@@ -133,8 +133,6 @@ public class MypageController {
 	@RequestMapping(value = "readOrdList", method = RequestMethod.GET)
 	public String readReview(@RequestParam(defaultValue = "1") int pageNum, HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
-
-		
 		
 		int listCount = service.getPurchaseListCount(sId);
 		int listLimit = 10; // 한 페이지 당 표시할 목록 갯수
@@ -161,12 +159,9 @@ public class MypageController {
 		pageInfo.setListLimit(listLimit);
 		
 		List<HashMap<String, String>> purchaseList = service.getReadPurchaseList(sId, pageInfo);
-		
-		
-		
 		model.addAttribute("purchaseList", purchaseList);
 		model.addAttribute("pageInfo", pageInfo);
-		return "mypage/list_readList";
+		return "mypage/list_read_ord_list";
 	}
 	
 	// 구매 확정
@@ -190,7 +185,7 @@ public class MypageController {
 		// safe 테이블 status 변경
 		service.modifySafeStatus(sId, item_idx, ord_date);
 		
-		return "mypage/list_readList";
+		return "redirect:/readOrdList";
 	}
 	
 	// 후기 작성 페이지 이동 - 사진 없는 페이지
@@ -201,7 +196,7 @@ public class MypageController {
 		
 		model.addAttribute("itemInfo", itemInfo);
 		
-		return "mypage/review_basic_write";
+		return "mypage/review_write";
 	}
 		
 	// 후기 insert 작업
@@ -212,7 +207,6 @@ public class MypageController {
 		
 		String sId = (String)session.getAttribute("sId");
 		
-//		System.out.println("reviewv: " + review.getReview_content());
 		int insertCnt = service.uploadReview(review, sId, item_idx);
 		
 		if(insertCnt > 0) {
@@ -221,7 +215,19 @@ public class MypageController {
 		
 		model.addAttribute("insertCheck", insertCheck);
 		
-		return "mypage/review_basic_write";
+		return "mypage/review_write";
+	}
+	
+	// 후기 내역 조회
+	@RequestMapping(value = "reviewList", method = RequestMethod.GET)
+	public String getReviewList(@ModelAttribute ReviewDTO review, String item_idx, HttpSession session, Model model) {
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		List<HashMap<String, String>> reviewList = service.getReviewList(sId);
+		
+		model.addAttribute("reviewList", reviewList);
+		return "mypage/list_review_list";
 	}
 	
 	// 알림

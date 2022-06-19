@@ -78,6 +78,8 @@ public interface MypageMapper {
 	public String selectSafeCoin(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
 	// coin_total
 	public String selectCoinTotal(String sId);
+	// 후기 내역 조회
+	public List<HashMap<String, String>> selectReviewList(String sId);
 
 	
 	
