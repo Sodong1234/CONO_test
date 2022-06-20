@@ -91,8 +91,23 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 // 	});
 
 	$(function() {
+		
+		function initBackGroud(a){
+			debugger;
+			let lis = $('#under_nav_bar').children().children();
+			for(var i = 0; i < lis.length; i++){
+				if(lis[i] == a){
+					$(a).css("background","lightblue")					
+				} else {
+					$(lis[i]).css("background","none")
+				}
+			}
+		}
+		
 		$("#product").click(function() {
-			$(this).css("background","coral")
+			
+			initBackGroud(this);
+			
 			$.ajax({
 				type: "GET",
 				url: "shopProduct",
@@ -110,7 +125,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 		})
 	
 		$("#review").on("click", function() {
-			$(this).css("background","coral")
+			initBackGroud(this);
 			$.ajax({
 				type: "GET",
 				url: "shopReview",
@@ -128,7 +143,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 		})
 		
 		$("#follower").on("click", function() {
-			$(this).css("background","coral")
+			initBackGroud(this);
 			$.ajax({
 				type: "GET",
 				url: "shopFollower",
@@ -145,7 +160,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 			})
 		})
 		$("#following").on("click", function() {
-			$(this).css("background","coral")
+			initBackGroud(this);
 			$.ajax({
 				type: "GET",
 				url: "shopFollowing",
@@ -163,8 +178,6 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 		});
 		
 	});
-	
-	
 	
 
 	
@@ -315,24 +328,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 
 		</div>
 		</div>
-								
-<!-- 							<div id="middleWrap"> -->
-<!-- 								<div class="rigthIndi"> -->
-<!-- 									<div class="storeIndication"> -->
-<!-- 										<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAQBJREFUSA1jZCASNOz/z3L34Z1aBkaGZLCW/wxzleVVmhscGf8QYwQLMYpAakCW/GdgqGMAElBQBxQDMethAvhoJnySKHIwnyALYhNDlkdiE28RkiZymMRbBIwTDAuwiWEogggQHUegiAfHCSy4oIkBh7kjQJgxdtHtUIZ/jJP+M/yXoIV/GRkYXzAw/c9joqUlIIeDPQD0CPGpjkLvMoG8BfYehQbh0g4LOkZcCkDiMQtuIwocfAqhcksSVHGaR8egI8Kl1FAy6iOyQ5HoQhVkA3qqIiVVjsYR2XE0woIOubBFZsPCD1kMmQ2TR6bxBx20ZAcbAmQjawSzCckjaQAAJL9HBV3GwxoAAAAASUVORK5CYII=" width="14" height="15" alt="상점방문수 아이콘">판매횟수 <div class="reviewIndicateNum"></div> -->
-<!-- 									</div> -->
-<!-- 									(3) 상품 갯수  -->
-									
-<!-- 									<div class="storeIndication"> -->
-<!-- 										<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAl1JREFUSA21Vc9PE1EQnnktW2yIFy9GiCduSki4QjSGwA3qj248q/HCwQtnwg//CxKrMd4WMO2RQrxwkbQmBI0XExMxqQk3TTAt7Q4zu91l231btrq85KWz33wz39v3vn0F6HOYO7nHMvssA+ynwPxgXrebjc9So9LGbeue9StuvYpLFJ592lgHomsynbiP4thC+XLuCQDN8Rb8limxi8VTi7V1Ztm8SVQ/JICriPhUWhNRwRHFzJg1Y/24SO7CN+KGSNAotEVKGzPF1zJZsCSYk2POfwvld+8vsNg0dzq+klXPvYYSCyY54Xh41G/PlbDLRu3T+gEXZ1UKH1rTxffBRuZu7oHdoi3GTtRAZpxd+C2YD8aRW7dCK4pF3jA5y9v0tltEmggmOeEIV2oE143IxJedT4tcMAmARwjGC12xYG4Oj4TbrtFSMV+e/0kEw9psYiDWFBDuJ9YvohEiVWXrPkbkk4QrSim69DcCTFXV0CBUENBOcvndvQYNrKrCVOkPXyhfu5OhZ4SmAlxWqcyIMzlmyzVDvBCAtXd3tmppB0c2BNGtECcAKMKX1mxxLQCtmds5sIFWA1goFCMI6H5HGMMQKeNVqIsOC5Gg4gvxfXV5hmAj+EJj6YlDvkr+hhcTQFqNZ4EnN9RhXSQxgkD+pfpoe36Pn/nKiRhiBj4n8LaLRWykJSBwz1lbhrXN2eINSfkkfqN93sJoIW7oHHyrfn74/IfUa3hGEI5/qWIcQ/Tqqs85RugQggEjeUO0jdAhZN21vvOBHesX9m+oZ4QOIaeVfLiJDfdG8NqdARu11RN7gt5lAAAAAElFTkSuQmCC" width="14" height="15" alt="상품판매 아이콘">상품갯수<div class="sellIndicateNum"></div> -->
-<!-- 									</div> -->
-								
-<!-- 									<div class="storeStar">  -->
-<!-- 										<img width="20" height="23" class="star1" alt="별 " src="resources/img/star.png" > -->
-<!-- 										<div class="starIndicateNum"> 별점 0 / 5 </div> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
+						
 
 					</div><!-- middleWrap -->
 				</div>
