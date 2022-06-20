@@ -230,8 +230,31 @@ public class MypageController {
 		return "mypage/list_review_list";
 	}
 	
-	// 알림
-
+	// 회원 정보 수정페이지 진입 전 비밀번호 확인 작업
+	@RequestMapping(value = "passCheck", method = RequestMethod.GET)
+	public String check(HttpSession session, Model model) {
+		
+		
+		return "member/memberCheck";
+	}
+	
+	@RequestMapping(value = "passCheck", method = RequestMethod.POST)
+	public String passCheck(@RequestParam String passwd, Model model, HttpSession session) {
+		String algorithm = "SHA-256";
+		String result = hashing(algorithm, passwd);
+		String sId = (String)session.getAttribute("sId");
+		MemberDTO member = service.checkPass(sId, result);
+		
+		if (member == null) {
+			model.addAttribute("msg", "패스워드가 올바르지 않습니다!");
+			return "fail_back";
+		}
+		
+		return "redirect:/memberInfo_modify";
+	}
+	
+	
+	
 	// 회원 정보 수정페이지 이동
 	@RequestMapping(value = "memberInfo_modify", method = RequestMethod.GET)
 	public String modify(Model model, HttpSession session) {
@@ -239,7 +262,6 @@ public class MypageController {
 		MemberDTO member = service.getMemberDetail(sId); // 기존 데이터 자동 입력
 
 		model.addAttribute("member", member);
-		System.out.println(member);
 		return "mypage/list_memberInfo_modify_form"; // 폼
 	}
 
@@ -263,6 +285,7 @@ public class MypageController {
 	public String account(HttpSession session, Model model) {
 		return "mypage/list_account";
 	}
+	
 	// 회원탈퇴 창 이동
 	@RequestMapping(value = "delete_id", method = RequestMethod.GET)
 	public String delete_id(HttpSession session, Model model) {

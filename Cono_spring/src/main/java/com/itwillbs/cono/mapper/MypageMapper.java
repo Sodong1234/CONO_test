@@ -73,13 +73,15 @@ public interface MypageMapper {
 	// safe 테이블 status 변경 
 	public boolean updateSafeStatus(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
 	// 회원 탈퇴 로직
-	public boolean deleteId(@Param("id") String id,@Param("passwd") String passwd);
+	public boolean deleteId(@Param("id") String id, @Param("passwd") String passwd);
 	// safe_coin
 	public String selectSafeCoin(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
 	// coin_total
 	public String selectCoinTotal(String sId);
 	// 후기 내역 조회
 	public List<HashMap<String, String>> selectReviewList(String sId);
+	// 회원 정보 수정페이지 진입 전 비밀번호 확인 작업
+	public MemberDTO checkPass(@Param("sId") String sId, @Param("passwd") String passwd);
 
 	
 	

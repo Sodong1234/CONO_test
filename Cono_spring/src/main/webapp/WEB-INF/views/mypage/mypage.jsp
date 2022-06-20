@@ -29,8 +29,14 @@
 				<ul class="main__content-list">
 					<li>
 					<strong class="label">Coin</strong>
-					<a href="coin" class="value">${coin_total}c</a>
-					</li>
+					<c:choose>
+						<c:when test="${coin_total eq null }">
+							<a href="coin" class="value">0c</a>
+						</c:when>
+						<c:otherwise>
+							<a href="coin" class="value">${coin_total}c</a>
+						</c:otherwise>
+					</c:choose>	
 					<li>
 					<strong class="label">구매 중</strong>
 					<a href="waiting" class="value">${waitingCount }</a>

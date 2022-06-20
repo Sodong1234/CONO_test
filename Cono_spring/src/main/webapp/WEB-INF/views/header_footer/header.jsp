@@ -4,7 +4,6 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <%
 String sId = (String) session.getAttribute("sId");
-String member_nick = (String) session.getAttribute("member_nick");
 %>
 <script type="text/javascript">
 	function userCenterList() {
@@ -71,7 +70,7 @@ String member_nick = (String) session.getAttribute("member_nick");
 				<li class="test"><a href="ProductMyshop.shop"><p>판매자 전용
 							마이페이지</p></a></li>
 				<li class="test"><a href="admin_center_main"><p>관리자 전용 마이페이지</p></a></li>
-				<li class="test"><a href="mypage"><p><%=member_nick%>님
+				<li class="test"><a href="mypage"><p><%=sId%>님
 						</p></a></li>
 				<%
 				}
@@ -103,8 +102,8 @@ String member_nick = (String) session.getAttribute("member_nick");
 				<i class="fa fa-search"></i>
 			</button>
 			<div class="righttab">
-				<a class="myShop" href="ProductMyshop.shop"><i class="fa fa-shop fa-2x"></i></a> 
-				<a class="wish" href="wish"><i class="fa fa-heart fa-2x"></i></a>
+				<a class="myShop" href="ProductMyshop.shop" style="color: black;"><i class="fa fa-shop fa-2x"></i></a> 
+				<a class="wish" href="wish" style="color: black;"><i class="fa fa-heart fa-2x"></i></a>
 			</div>
 		</div>
 	</div>

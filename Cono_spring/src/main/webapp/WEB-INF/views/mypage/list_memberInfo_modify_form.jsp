@@ -38,10 +38,19 @@
 							<div class="input-text"
 								style="inline-block: inline-block; vertical-align: middle">
 								<input type="password" name="member_pass" id="pass"
-									required="required" value="${member.member_pass }"
-									placeholder="영문 + 숫자 + 특수문자 8자 이상">
+									required="required" placeholder="영문 + 숫자 + 특수문자 8자 이상">
 							</div>
 						</td>
+					</tr>
+					<tr>
+						<th>비밀번호확인</th>
+							<td>
+								<div class="input-text"
+									style="inline-block: inline-block; vertical-align: middle">
+									<input type="password" name="member_pass2" id="pass"
+										required="required" placeholder="비밀번호를 재입력하세요">
+								</div>
+							</td>
 					</tr>
 					<tr>
 						<th>이메일</th>

@@ -172,6 +172,11 @@ public class MypageService {
 	public List<HashMap<String, String>> getReviewList(String sId) {
 		return mapper.selectReviewList(sId);
 	}
+
+	// 회원 정보 수정페이지 진입 전 비밀번호 확인 작업
+	public MemberDTO checkPass(String sId, String passwd) {
+		return mapper.checkPass(sId, passwd);
+	}
 	
 
 	

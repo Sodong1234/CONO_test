@@ -19,11 +19,26 @@
 		WHERE member_id = #{sId}
 	</select>
 	
+<!-- 	회원 정보 수정페이지 진입 전 비밀번호 확인 작업 -->
+	<select id="checkPass" resultType="com.itwillbs.cono.vo.MemberDTO">
+		SELECT member_pass 
+		FROM member 
+		WHERE member_id = #{sId} AND member_pass = #{passwd}
+	</select>
+
 <!-- 	회원 정보 수정 -->
 	<update id="updateMemberInfo">
 		UPDATE member
-		SET member_pass = #{member.member_pass}, member_nick = #{member.member_nick}, member_email = #{member.member_email}, member_phone = #{member.member_phone}
-		WHERE member_id = #{sId}
+		<choose>
+			<when test="member.member_pass eq null">
+				SET member_nick = #{member.member_nick}, member_email = #{member.member_email}, member_phone = #{member.member_phone}
+				WHERE member_id = #{sId}
+			</when>
+			<otherwise>
+				SET member_pass = #{member.member_pass}, member_nick = #{member.member_nick}, member_email = #{member.member_email}, member_phone = #{member.member_phone}
+				WHERE member_id = #{sId}
+			</otherwise>
+		</choose>
 	</update>
 <!-- 	================================================Center=================================================== -->
 <!-- 	코인 내역 리스트 COUNT  -->

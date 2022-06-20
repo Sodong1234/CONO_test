@@ -37,7 +37,7 @@
 								<li><a href="#">메시지</a></li>
 								<li><a href="coin">코인</a></li>
 								<li><a href="coupon">쿠폰</a></li>
-								<li><a href="memberInfo_modify">회원 정보 수정</a></li>
+								<li><a href="passCheck">회원 정보 수정</a></li>
 								<li><a href="accountInfo">계좌 정보 관리</a></li>
 								<li><a href="delete_id">회원 탈퇴</a></li>
 							</ul>
