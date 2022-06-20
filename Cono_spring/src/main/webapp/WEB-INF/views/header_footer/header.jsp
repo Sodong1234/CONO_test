@@ -8,9 +8,6 @@ String member_nick = (String) session.getAttribute("member_nick");
 %>
 <script type="text/javascript">
 	function userCenterList() {
-		// 		let state = document.getElementById("userCenterList").style.visibility;	
-		// 		state = (state == "hidden") ? "visible" : "hidden";
-
 		let userCenterList = document.getElementById("userCenterList");
 		userCenterList.style.visibility = "visible";
 	}
@@ -27,6 +24,38 @@ String member_nick = (String) session.getAttribute("member_nick");
 		let searchText = document.getElementById("searchText").value
 
 		location.href = ("search_item?searchText=" + searchText);
+	}
+	
+	function myShop_loginCheck() {
+		if("${sId}" == "") {
+			alert("로그인이 필요합니다.");
+		} else {
+			location.href="ProductMyshop.shop";
+		}
+	}
+	
+	function wish_loginCheck() {
+		if("${sId}" == "") {
+			alert("로그인이 필요합니다.");
+		} else {
+			location.href="wish";
+		}
+	}
+	
+	function report_loginCheck() {
+		if("${sId}" == "") {
+			alert("로그인이 필요합니다.");
+		} else {
+			location.href="AdminReportList";
+		}
+	}
+	
+	function qna_loginCheck() {
+		if("${sId}" == "") {
+			alert("로그인이 필요합니다.");
+		} else {
+			location. href="AdminQNAList";
+		}
 	}
 </script>
 <meta charset="UTF-8">
@@ -84,9 +113,9 @@ String member_nick = (String) session.getAttribute("member_nick");
 				<ul id="userCenterList" style="visibility: hidden">
 					<li class="test2"><a
 						href="AdminNoticeList"><p>공지사항</p></a></li>
-					<li class="test2"><a href="AdminQNAList"><p>문의하기</p></a></li>
-					<li class="test2"><a
-						href="AdminReportList"><p>신고하기</p></a></li>
+					<li class="test2"><a onclick="qna_loginCheck()"><p>문의하기</p></a></li>
+					<li class="test2">
+					<a onclick="report_loginCheck()"><p>신고하기</p></a></li>
 				</ul>
 			</ul>
 		</div>
@@ -103,8 +132,8 @@ String member_nick = (String) session.getAttribute("member_nick");
 				<i class="fa fa-search"></i>
 			</button>
 			<div class="righttab">
-				<a class="myShop" href="ProductMyshop.shop" style="color: black;"><i class="fa fa-shop fa-2x"></i></a> 
-				<a class="wish" href="wish" style="color: black;"><i class="fa fa-heart fa-2x"></i></a>
+				<a class="myShop" onclick="myShop_loginCheck()" style="color: black;"><i class="fa fa-shop fa-2x"></i></a> 
+				<a class="wish" onclick="wish_loginCheck()" style="color: black;"><i class="fa fa-heart fa-2x"></i></a>
 			</div>
 		</div>
 	</div>
