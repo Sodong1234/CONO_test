@@ -252,24 +252,6 @@ p {
 <%-- 				<p class="region">${card.item_region }</p> --%>
 <%-- 				<p class="price">${card.item_price }</p> --%>
 <!-- 			</a> -->
-
-let buttonA = $("#filter_button_a");
-let buttonB = $("#filter_button_b");
-
-buttonA.on("click", function(){
-	$(".filter_b").css("display", "none");
-	$(".filter_a").css("display", "block");		
-	buttonA.attr("class", "filter_button filter_active");
-	buttonB.attr("class", "filter_button");
-});
-
-buttonB.on("click", function(){
-	$(".filter_a").css("display", "none");
-	$(".filter_b").css("display", "block");
-	buttonB.attr("class", "filter_button filter_active");
-	buttonA.attr("class", "filter_button");		
-});
-	
 </script>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 </head>
@@ -297,26 +279,6 @@ buttonB.on("click", function(){
 	<!-- 	<div class="navbar"></div> -->
 	<jsp:include page="../search/recentView.jsp" />
 	<hr>
-	<div class="search_filter">
-		<div class="filter_button_wrap">
-			<button class="filter_button filter_active" id="filter_button_a">검색A</button>
-			<button class="filter_button" id="filter_button_b">검색B</button>
-		</div>
-		
-		<div class="filter_content filter_a">
-						<a>테스트용11</a>
-						<a>테스트용2</a>
-		</div>
-		<div class="filter_content filter_b">
-						<a>테스트용3</a>
-						<a>테스트용4</a>				
-		</div>		
-		<form id="filter_form" action="/search_item" method="get" >
-			<input type="hidden" name="keyword">
-			<input type="hidden" name="cateCode">
-			<input type="hidden" name="type">
-		</form>			
-	</div>
 	<!-- 필터 추가 -->
 	<h1>'${searchText }' 검색 내용입니다.</h1>
 	<c:forEach var="card" items="${cardList }">
