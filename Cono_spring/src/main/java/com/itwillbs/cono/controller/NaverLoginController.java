@@ -99,7 +99,8 @@ public class NaverLoginController {
 			model.addAttribute("msg","회원가입을 축하합니다! 가입 축하 쿠폰이 지급되었습니다!");
 			return "member/success_msg";
         }
-		
+        session.setAttribute("sId", member.getMember_id());
+		session.setAttribute("member_nick", nickname);
 		
         /* 네이버 로그인 성공 페이지 View 호출 */
 		return "redirect:/";

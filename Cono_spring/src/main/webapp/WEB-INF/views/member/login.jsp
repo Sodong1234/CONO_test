@@ -79,7 +79,7 @@ body {
 										<a href="https://kauth.kakao.com/oauth/authorize?client_id=f9f5f6880f6e92a9e2fabbf34781366d&redirect_uri=http://localhost:8080/cono/kakao_callback&response_type=code" class="btn btn-warning btn-user btn-block"> 
 											<i class="fab fa-google fa-fw"></i> 카카오로 로그인
 										</a> 
-										<a href="" class="btn btn-success btn-user btn-block"> 
+										<a href="" class="btn btn-success btn-user btn-block" onclick="location.href='${urlNaver}'" > 
 											<i class="fab fa-facebook-f fa-fw"></i> 네이버로 로그인
 										</a>
 									</form>
