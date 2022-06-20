@@ -22,11 +22,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwillbs.cono.service.MainService;
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.NaverLoginBO;
 
 
 @Controller
 public class MainController {
+	/* NaverLoginBO */
+	private NaverLoginBO naverLoginBO;
 	
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
 	@Autowired
 	MainService service;
 	
@@ -38,7 +45,14 @@ public class MainController {
 	
 	// 로그인창 이동
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login() {
+	public String login(Model model, HttpSession session) {
+		
+		/* 네아로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		/* 인증요청문 확인 */
+		System.out.println("네이버:" + naverAuthUrl);
+		/* 객체 바인딩 */
+		model.addAttribute("urlNaver", naverAuthUrl);
 		return "member/login";
 	}
 	
@@ -52,6 +66,8 @@ public class MainController {
 
 		MemberDTO memberResult = service.loginMember(member);
 
+
+		
 		if(memberResult == null) {
 			model.addAttribute("msg", "로그인 실패");
 			return "member/fail_back";
@@ -121,13 +137,20 @@ public class MainController {
 	
 	// 회원가입 방법 선택창 이동
 	@RequestMapping(value = "joinHow", method = RequestMethod.GET)
-	public String joinHow() {
+	public String joinHow(Model model, HttpSession session) {
+		/* 네아로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		/* 인증요청문 확인 */
+		System.out.println("네이버:" + naverAuthUrl);
+		/* 객체 바인딩 */
+		model.addAttribute("urlNaver", naverAuthUrl);
 		return "member/joinHow";
 	}
 	
 	// 회원가입 창이동 
 	@RequestMapping(value = "join", method = RequestMethod.GET)
 	public String join() {
+
 		return "member/join";
 	}
 	// 회원가입 프로 - 회원가입 쿠폰 지급

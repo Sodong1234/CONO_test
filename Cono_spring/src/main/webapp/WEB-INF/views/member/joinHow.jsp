@@ -36,7 +36,7 @@ body {
 			<div class="btn-group-vertical">
 				<a href="https://kauth.kakao.com/oauth/authorize?client_id=f9f5f6880f6e92a9e2fabbf34781366d&redirect_uri=http://localhost:8080/cono/kakao_callback&response_type=code"><button class="btn btn-warning" name="kakao">카카오톡으로 가입</button></a>
 				
-				<button class="btn btn-success" name="naver">네이버로 가입</button>
+				<button class="btn btn-success" name="naver" onclick="location.href='${urlNaver}'" >네이버로 가입</button>
 				<button class="btn btn-primary" name="normal" 
 				onclick="location.href='join'">기본 가입</button>	    
 				<br>
