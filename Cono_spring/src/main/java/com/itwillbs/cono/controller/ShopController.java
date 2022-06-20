@@ -133,7 +133,6 @@ public class ShopController {
 		pageInfo.setListLimit(listLimit);
 		
 		List<HashMap<String, String>> itemList = service.selectItemList(member_id, keyword, sell_status, pageInfo);
-		System.out.println(itemList);
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("sell_status", sell_status);
@@ -478,7 +477,6 @@ public class ShopController {
 		String sId = (String)session.getAttribute("sId");
 		
 		int deleteCount = service.deleteFollowing(sId, shop_idx);
-		System.out.println(deleteCount);
 		
 		return "myshop/list_following";
 	}
@@ -570,7 +568,6 @@ public class ShopController {
 		// 팔로워 정보 
 		List<HashMap<String, String>> followerList = service.getfollowerList(shop_idx);
 		
-		System.out.println(followerList.toString());
 		
 		model.addAttribute("followerList", followerList);
 		

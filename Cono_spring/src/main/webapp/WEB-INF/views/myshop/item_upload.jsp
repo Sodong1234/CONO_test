@@ -23,6 +23,7 @@ if(session.getAttribute("sId") == null) {
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
 
 <script type="text/javascript">
+// ---------------------------------- 카테고리 작업 --------------------------------------------------
 	$(function() {
 		
 		let categoryList = {
@@ -49,6 +50,14 @@ if(session.getAttribute("sId") == null) {
 		});
 	});
 	
+	function check() {
+		if($("#big").val() == null || $("#big").val() == "" || $("#small").val() == null || $("#small").val() == "") {
+			alert("카테고리 선택 필수");
+			return false;
+		}
+	}
+// ---------------------------------------------------------------------------------------------------
+
 // ------------------------------------------ 주소 API -----------------------------------------------
 	function getAddressInfo(){
 	    new daum.Postcode({
@@ -78,11 +87,25 @@ if(session.getAttribute("sId") == null) {
 	}
 // ---------------------------------------------------------------------------------------------------
 
-function submitBtn() {
+	function submitBtn() {
 		document.getElementById('btn').click();
 	}
-</script>
+	
+// ------------------------------------------ 이미지 미리보기 ----------------------------------------
 
+// ---------------------------------------------------------------------------------------------------
+</script>
+<style type="text/css">
+	.section ul li {
+		float: left;
+	}
+	#upload_img_area {
+		margin: 0 auto;
+	}
+	#upload_img_area img {
+		margin: 5px 40px;
+	}
+</style>
 </head>
 <div>
 	<!-- 상단 부분 -->
@@ -97,82 +120,88 @@ function submitBtn() {
 
 <body>
 	<div class="cono" style="width: 1140px; margin: auto;">
-	<form action="ItemUploadPro.shop" method="post" enctype="multipart/form-data">
+		<form action="ItemUploadPro.shop" method="post" enctype="multipart/form-data" onsubmit="return check()">
 			<input type="hidden" name="member_id" value="<%=session.getAttribute("sId")%>">
-		<div class="registWrap">
-
-			<!--------- registBody : 본문  --------->
-			<div class="registBody">
-				<!-- /* owOgK */ -->
-				<main id="registMain"> 
-					<!-- /* fzZuLM */ -->
-
-					<!-- section -->
-					<section class="section"> 
-						<h2>
-							기본정보<span>*필수항목</span>
-						</h2>
-
-<!-- 						<ul class="listBody"> </ul> -->
-<!-- <!-- 							/* bEbvUk */ --> 
-<!-- 							<li class="list"> </li> -->
-<!-- 								<div class="image_sub"> -->
-<!-- 									상품이미지<span>*</span><small>(0/6)</small> -->
-<!-- 								</div> -->
-<!-- 								<div class="image_con"> </div> -->
-<!-- 									<ul class="registImages" id="imageList"> -->
-<!-- 										<li class="imageList">이미지 등록 <input type="file" multiple="6" id="inputImage"> -->
-<!-- 										</li> -->
-<!-- 									</ul> -->
-
-						<input type="file" class="img" accept=".gif, .jpg, .png" name="upload"><br>
-						<input type="file" class="img" accept=".gif, .jpg, .png" name="upload"><br>
-						<input type="file" class="img" accept=".gif, .jpg, .png" name="upload"><br>
-						<input type="file" class="img" accept=".gif, .jpg, .png" name="upload"><br>
-						<input type="file" class="img" accept=".gif, .jpg, .png" name="upload"><br>
-						<input type="file" class="img" accept=".gif, .jpg, .png" name="upload"><br>
-
-									<div class="imageDiv" id="imageDiv">상품 사진을 등록해주세요.</div>
-									<div class="add_description">
-										<b>* 상품 이미지는 상품 디테일 사진에 맞게 되어있음.</b><br> 
+			<div class="registWrap">
+	
+				<!--------- registBody : 본문  --------->
+				<div class="registBody">
+					<!-- /* owOgK */ -->
+					<main id="registMain"> 
+						<!-- /* fzZuLM */ -->
+	
+						<!-- section -->
+						<section class="section"> 
+							<h2>기본정보<span>*필수항목</span></h2>
+							<ul>
+								<li class="list" style="border: none;">
+									<div class="category_sub">
+										이미지<span>*</span>
+									</div>
+									<div id="upload_img_area">
+										<ul>
+											<li>
+												<img alt="상점 이미지" src="resources/default_img.png">
+												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;">
+											</li>
+											<li>
+												<img alt="상점 이미지" src="resources/default_img.png">
+												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;">
+											</li>
+											<li>
+												<img alt="상점 이미지" src="resources/default_img.png">
+												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;">
+											</li>
+										</ul>
+										<ul>
+											<li>
+												<img alt="상점 이미지" src="resources/default_img.png">
+												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;">
+											</li>
+											<li>
+												<img alt="상점 이미지" src="resources/default_img.png">
+												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;">
+											</li>
+											<li>
+												<img alt="상점 이미지" src="resources/default_img.png">
+												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;">
+											</li>
+										</ul>
+									</div>
+									
+								</li>
+								<li class="list">
+									<div class="subject_sub"></div>
+									<div class="imageDiv" id="imageDiv">상품 사진을 등록해주세요.<br>
+										<b>* 상품 이미지는 상품 디테일 사진에 맞게 되어있음.</b><br>
 										이미지는 10mb 넘으면 안됨, 1대1 비율이어야함 <br>
 										<!-- 									- 이미지를 클릭 할 경우 원본이미지를 확인할 수 있습니다.<br> -->
 										<!-- 									- 이미지를 클릭 후 이동하여 등록순서를 변경할 수 있습니다.<br> -->
 										<!-- 									- 큰 이미지일경우 이미지가 깨지는 경우가 발생할 수 있습니다.<br> -->
 										<!-- 									최대 지원 사이즈인 640 X 640 으로 리사이즈 해서 올려주세요.(개당 이미지 최대 10M) -->
 									</div>
-									 </section>
-								</main>
-								</div>
-<!-- 							</li> -->
-							<!-- 상품이미지 -->
-<!-- 						</ul> -->
-
-						<ul>
-							<li class="list">
-								<div class="subject_sub">
-									제목<span>*</span>
-								</div>
-								<div class="subject_con">
-									<div class="contentArea">
-										<div class="subjectBox">
-											<input type="text" placeholder="상품 제목을 입력해주세요."
-												class="subjectInput" id="product_subject"
-												name="item_title">
-<!-- 											<button type="button" class="subjectCancle"></button> -->
+								</li>
+								<!-- 제목 -->
+								<li class="list">
+									<div class="subject_sub">
+										제목<span>*</span>
+									</div>
+									<div class="subject_con">
+										<div class="contentArea">
+											<div class="subjectBox">
+												<input type="text" placeholder="상품 제목을 입력해주세요."
+													class="subjectInput" id="product_subject"
+													name="item_title">
+											</div>
 										</div>
-										<div class="subjectSize">
-<!-- 											<span>0</span>/40 -->
+										<div class="subjectDiv" id="subjectDiv">
+										상품명을 2자 이상 입력해주세요.
 										</div>
 									</div>
-									<div class="subjectDiv" id="subjectDiv">상품명을 2자 이상
-										입력해주세요.</div>
-								</div>
-							</li>
-							<!-- 제목 -->
-
-							<li class="list">
+								</li>
 								
+								<!-- 카테고리 -->
+								<li class="list">
 									<div class="category_sub">
 										카테고리<span>*</span>
 									</div>
@@ -195,114 +224,97 @@ function submitBtn() {
 												<option value="남성패션">남성패션</option>
 											</select>
 										</div>
-								</div>
-
-							</li>
-							<!-- 카테고리 -->
-
-
-							<li class="list">
-								<div class="location_sub">
-									거래지역<span>*</span>
-								</div>
-								<div class="location_con">
-									<div class="contentArea">
-									
-									 <a href="#"  onclick="getAddressInfo()" class="btnLightBlue"></a><br>
-									 
-									 
-<!-- 										<input type="button" value="지역선택" onclick="getAddressInfo()"> -->
 									</div>
-									<br><input type="text" name="item_region" id="item_region" readonly="readonly">
-									<div class="locationDiv" id="locationDiv">거래지역을 선택해주세요.</div>
-									<div class="add_description">
-
-										<b> * 동·면·읍 까지 표시 됩니다.</b>
-										<!-- 	<b>* 주소 검색 후 구매자에게 알려주고 싶은 주소 범위까지만 나타나도록 주소를 수정해주세요.</b><br> -->
-										<!-- 	ex) 서울특별시 서초구 서초동 1303-34 → 서울특별시 서초구 서초동 -->
+								</li>
+								
+								<!-- 거래 지역 -->
+								<li class="list">
+									<div class="location_sub">
+										거래지역<span>*</span>
 									</div>
-									<div id="map"
-										style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
-								</div>
-							</li>
-
-
-							<li class="list">
-								<div class="price_sub">
-									가격<span>*</span>
-								</div>
-								<div class="price_con">
-									<div class="priceBox">
-										<input type="text" placeholder="숫자만 입력해주세요."
-											class="priceInput" id="product_price" name="item_price">원
+									<div class="location_con">
+										<div class="contentArea">
+											 <a href="#"  onclick="getAddressInfo()" class="btnLightBlue"></a><br>
+										</div>
+										<br>
+										<input type="text" name="item_region" id="item_region" readonly="readonly">
+										<div class="locationDiv" id="locationDiv">거래지역을 선택해주세요.</div>
+										<div class="add_description">
+											<b> * 동·면·읍 까지 표시 됩니다.</b>
+											<!-- 	<b>* 주소 검색 후 구매자에게 알려주고 싶은 주소 범위까지만 나타나도록 주소를 수정해주세요.</b><br> -->
+											<!-- 	ex) 서울특별시 서초구 서초동 1303-34 → 서울특별시 서초구 서초동 -->
+										</div>
+										<div id="map"
+											style="width: 300px; height: 300px; margin-top: 10px; display: none">
+										</div>
 									</div>
-
-								</div>
-							</li>
-							<!-- 가격 -->
-
-							<li class="list">
-								<div class="quantity_sub">
-									수량<span>*</span>
-								</div>
-								<div class="quantity_con">
-									<div class="quantityBox">
-										<input type="text" placeholder="숫자만 입력해주세요."
-											class="quantityInput" name="item_quantity" id="item_quantity">개
-									</div>
-
-								</div>
-							</li>
-							<!-- 수량 -->
-
-
-							<li class="list">
-								<div class="instruction_sub">설명</div>
-								<div class="instruction_con">
-									<textarea placeholder="상품 설명을 입력해주세요." rows="6"
-										class="instruction" id="product_content"
-										name="item_content" ></textarea>
-									<div class="text">
-										<a target="_blank" href="/market/notice/fag"> </a>
-										<div class="limit">0/2000</div>
-									</div>
-								</div>
-							</li>
-							<!-- 설명 -->
-
-							<!-- 						</li> -->
-						</ul>
-
-
-
-				<!-- registMain -->
-			</div>
-			<!-- main -->
+								</li>
 			
-		<input type="submit" value="" id="btn" class="btn">
-	</form>
+								<!-- 가격 -->
+								<li class="list">
+									<div class="price_sub">
+										가격<span>*</span>
+									</div>
+									<div class="price_con">
+										<div class="priceBox">
+											<input type="text" placeholder="숫자만 입력해주세요."
+												class="priceInput" id="product_price" name="item_price">원
+										</div>
+									</div>
+								</li>
+			
+								<!-- 수량 -->
+								<li class="list">
+									<div class="quantity_sub">
+										수량<span>*</span>
+									</div>
+									<div class="quantity_con">
+										<div class="quantityBox">
+											<input type="text" placeholder="숫자만 입력해주세요."
+												class="quantityInput" name="item_quantity" id="item_quantity">개
+										</div>
+									</div>
+								</li>
+			
+			
+								<!-- 설명 -->
+								<li class="list">
+									<div class="instruction_sub">설명</div>
+									<div class="instruction_con">
+										<textarea placeholder="상품 설명을 입력해주세요." rows="6"
+											class="instruction" id="product_content"
+											name="item_content" ></textarea>
+										<div class="text">
+											<a target="_blank" href="/market/notice/fag"> </a>
+											<div class="limit">0/2000</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						<!-- registMain -->
+						
+						 </section>
+					</main>
+				</div>
+			</div>
+				<!-- main -->
+			<input type="submit" value="" id="btn" class="btn">
+		</form>
 	</div>
-<div class ="btnArea" style="float:center; margin-left: 500px;
-    margin-bottom: 50px;">
-	  <div class="svg-wrapper" >
-      <svg height="40" width="120" xmlns="http://www.w3.org/2000/svg">
-        <rect id="shape" height="40" width="120" />
-        <div id="text">
-          <a href="#" onclick="submitBtn()"><span class="spot"></span>등록하기</a>
-        </div>
-      </svg>
-    </div>
-		</div>
+	<div class ="btnArea" style="float:center; margin-left: 500px; margin-bottom: 50px;">
+		<div class="svg-wrapper" >
+     		 <svg height="40" width="120" xmlns="http://www.w3.org/2000/svg">
+      			 <rect id="shape" height="40" width="120" />
+     	 	</svg>
+    		<div id="text">
+     			 <a href="#" onclick="submitBtn()"><span class="spot"></span>등록하기</a>
+     		</div>
+   	 	</div>
+	</div>
 		<!-- registWrap -->
 
 	<!--------- registBtm : 등록하기  --------->
 </body>
-<!-- <footer class="registBtm"> -->
-<!-- 	<div class="btmArea"> -->
-		<!-- <button type="submit" class="registBtn" idC="registBtn"></button> -->
-<!-- 		<button type="submit" class="registBtn" id="registBtn"></button> -->
-<!-- 	</div> -->
-<!-- </footer> -->
 	<div class="clear">
 		<!-- 하단 부분 -->
 		<jsp:include page="../header_footer/footer.jsp" />
