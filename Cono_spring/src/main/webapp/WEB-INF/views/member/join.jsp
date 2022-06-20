@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +8,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge; chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>member/join.jsp</title>
- <!-- jQuery -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-  <!-- iamport.payment.js -->
-  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-1.1.8}.js"></script>
+<!--  jQuery -->
+<script src="${path}/resources/js/jquery-3.6.0.js"></script>
+<!--   iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-1.1.8}.js"></script>
 <script type="text/javascript">
 
 	var isCheckRetypePass = false;
@@ -97,6 +99,9 @@
 		// 			return false;
 		// 		}
 		
+// =============================================약관동의========================================
+
+		
 // ============================================휴대폰 본인인증 ====================================
 	// 가맹점 식별 코드 : imp64297364
 	// REST API : 7440562304225525
@@ -135,7 +140,7 @@
  	}
  	 
  	//web.php
- 	Route::post('/iamport/certificate', [Controller::class,'certificate']);
+ 	Route:post('/iamport/certificate', [Controller::class,'certificate']);
 
  	//Controller
  	function certificate(Request $request){
@@ -237,8 +242,18 @@ body {
 	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
 }
 
-#number {
-	height: 10px;
+input[type="date"] {
+  width:150px;
+}
+input[type="date"]::before {
+  display:none;
+}
+input[type="date"].after::-webkit-calendar-picker-indicator{
+    margin-left: 0px;
+}
+
+.checkbox_group {
+	text-align: center;
 }
 </style>
 <!-- Bootstrap core JavaScript-->
@@ -297,28 +312,33 @@ body {
 								<div class="mb-3">
 									<label for="email">이메일</label> <input type="email" class="form-control" name="member_email" id="email" placeholder="이메일을 입력해주세요" required>
 									<div class="invalid-feedback">이메일을 입력해주세요.</div>
-								</div>
+								</div>					
 								<div class="mb-3">
-									<label for="address">주소</label> <input type="text" class="form-control" name="member_address" id="address" placeholder="서울특별시 강남구" required>
-									<div class="invalid-feedback">주소를 입력해주세요.</div>
-								</div>
-								<div class="mb-3">
-									<label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label> <input type="text" class="form-control" name="member_address2" id="address2" placeholder="상세주소를 입력해주세요.">
-								</div>
-								<div class="mb-3">
-									<label for="birth">생년월일</label> <input type="text" class="form-control" name="member_birth" id="birth" placeholder="생년월일" required>
+									<label for="birth">생년월일</label> <input type="date" class="form-control" name="member_birth" id="birth" placeholder="생년월일" required>
 									<div class="invalid-feedback">생년월일을 입력해주세요.</div>
 								</div>
 								<div class="mb-3">
 									<label for="phone">전화번호</label> <input type="text" class="form-control" name="member_phone" id="phone" placeholder="전화번호 입력" required>
 									<div class="invalid-feedback">전화번호를 입력해주세요.</div>
 									<input type="button" value="인증요청"><br> 
-									<input type="text" class="input-form" 
-									name="number" id="number" placeholder="인증번호 입력"><br>
+									<input type="text" name="number" id="number" placeholder="인증번호 입력"><br>
 									<input type="button" value="확인"><br>
 								</div>
-<!--  -->
-								<input type="checkbox" name="1" value="모두동의" checked="checked">모두동의 <br> <input type="checkbox" name="2" value="약관1" checked="checked">약관1 <br> <input type="checkbox" name="3" value="약관2" checked="checked">약관2 <br> <input type="checkbox" name="4" value="약관3" checked="checked">약관3 <br> <input type="submit" value="가입하기" class="submit">
+								<div class="checkbox_group">
+									<input type="checkbox" id="check_all">
+									 <label for="check_all">전체 동의</label><br>
+									 
+									<input type="checkbox" id="check_1" class="normal">
+									<label for="check_1">개인정보 처리방침 동의</label> <br>
+									
+									<input type="checkbox" id="check_2" class="normal">
+									<label for="check_2">서비스 이용약관 동의</label><br> 
+									
+									<input type="checkbox" id="check_3" class="normal">
+									<label for="check_3">마케팅 수신 동의</label><br>
+								</div> 
+								<input type="submit" value="가입하기" class="submit">
+							
 							</form>
 						</div>
 					</div>
