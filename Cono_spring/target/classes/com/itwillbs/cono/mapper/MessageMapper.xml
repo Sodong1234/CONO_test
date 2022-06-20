@@ -15,20 +15,22 @@
 	
 <!-- 	MsgList 뽑기 -->
 	<select id="selectMsgList" resultType="java.util.HashMap">
-<!-- 		SELECT s.shop_name, m.shop_idx, m.msgList_room -->
-<!-- 		FROM shop s, msgList m -->
-<!-- 		WHERE m.member_id = #{sId} AND m.shop_idx = s.shop_idx -->
-
-<!-- 	SELECT DISTINCT s.shop_name, m.shop_idx, m.msgList_room, c.msgChat_content, c.msgChat_time -->
-<!-- 	FROM shop s, msgList m LEFT OUTER JOIN msgChat c ON m.msgList_room = c.msgList_room  -->
-<!-- 	WHERE m.member_id = #{sId} AND m.shop_idx = s.shop_idx AND c.msgChat_time = (SELECT c.msgChat_time FROM msgChat c ORDER BY c.msgChat_time DESC LIMIT 1) -->
-<!-- 	group by c.msgList_room; -->
-	
-		SELECT s.shop_name, m.member_id, m.shop_idx, m.msgList_room, c.msgChat_content, c.msgChat_time
-		FROM (shop s, msgList m) LEFT OUTER JOIN msgChat c ON m.msgList_room = c.msgList_room 
-		WHERE m.member_id = #{sId} AND m.shop_idx = s.shop_idx
-		group by c.msgList_room
-		ORDER BY c.msgChat_time DESC
+		SELECT t.shop_name, t.member_id, t.shop_idx, t.msgList_room, t.msgChat_content, t.msgChat_time
+			FROM (SELECT s.shop_name, l.member_id, l.shop_idx, l.msgList_room, c.msgChat_content, c.msgChat_time
+				FROM msgList l
+					LEFT OUTER JOIN shop s
+						 ON l.shop_idx = s.shop_idx
+					LEFT OUTER JOIN (SELECT msgList_room ,msgChat_time, msgChat_content
+						   			   FROM msgChat
+								 	  WHERE (msgList_room ,msgChat_time) 
+								 	  in 
+								 	  (SELECT msgList_room, MAX(msgChat_time) as msgChat_time
+										 FROM msgChat
+										GROUP BY msgList_room)) c
+				         ON l.msgList_room = c.msgList_room) t
+		WHERE t.member_id = #{sId}
+        group by t.msgList_room
+		ORDER BY t.msgChat_time DESC
 	</select>
 	
 <!-- 	MsgChat insert -->
@@ -66,12 +68,21 @@
 	</select>
 	
 	<select id="selectShopMsgList" resultType="java.util.HashMap">
-		SELECT  m.member_nick, l.member_id, c.msgChat_time, c.msgChat_content, l.msgList_status, l.msgList_room
-		FROM (msgList l, member m) LEFT OUTER JOIN msgChat c ON l.msgList_room = c.msgList_room 
-		WHERE l.shop_idx = #{shop_idx}
-		  AND m.member_id = l.member_id
-		  AND l.msgList_room = c.msgList_room
-		GROUP BY c.msgList_room
+		SELECT t.member_nick, t.member_id, t.shop_idx, t.msgList_room, t.msgChat_content, t.msgChat_time, t.msgList_status
+		FROM (SELECT m.member_nick, m.member_id, l.shop_idx, l.msgList_room, c.msgChat_content, c.msgChat_time, l.msgList_status
+				FROM msgList l
+				LEFT OUTER JOIN member m
+							 ON l.member_id = m.member_id
+				LEFT OUTER JOIN (SELECT msgList_room ,msgChat_time, msgChat_content
+						   FROM msgChat
+						  WHERE (msgList_room ,msgChat_time) in (
+								SELECT msgList_room, MAX(msgChat_time) as msgChat_time
+								  FROM msgChat
+								 GROUP BY msgList_room)) c
+					        ON l.msgList_room = c.msgList_room) t
+		WHERE t.shop_idx = #{shop_idx}
+        group by t.msgList_room
+		ORDER BY t.msgChat_time DESC
 	</select>
 
 	
