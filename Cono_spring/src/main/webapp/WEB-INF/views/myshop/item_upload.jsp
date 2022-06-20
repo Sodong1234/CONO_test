@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%
 if(session.getAttribute("sId") == null) {
@@ -21,7 +22,6 @@ if(session.getAttribute("sId") == null) {
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm_common.css">
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm_btn.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
-
 <script type="text/javascript">
 // ---------------------------------- 카테고리 작업 --------------------------------------------------
 	$(function() {
@@ -87,13 +87,43 @@ if(session.getAttribute("sId") == null) {
 	}
 // ---------------------------------------------------------------------------------------------------
 
+
+// ------------------------------------------ 이미지 미리보기 ----------------------------------------
+<c:forEach var="i" begin="1" end="6">
+	$(function() {
+		// 이미지 클릭 시 파일 선택 창 열림
+		$('#target_img${i}').click(function (e) {
+			    e.preventDefault();
+			    $('#file${i}').click();
+			});
+	});	
+	
+	// 파일 선택 시 이미지 src 변환
+	function readInputFile${i}(value) {
+		if(value.files && value.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#target_img${i}').attr('src', e.target.result); 
+			}
+			reader.readAsDataURL(value.files[0]);
+		}
+	}
+	
+	</c:forEach>
+	<c:forEach var="i" begin="1" end="6">
+	// 이미지 초기화
+	$(function() {
+		$("#delFile${i}").click(function() {
+			document.getElementById('target_img${i}').src = "${path}/resources/default_img.png";
+			$("#file${i}").val("");
+		});
+	});
+	</c:forEach>
+// ---------------------------------------------------------------------------------------------------
 	function submitBtn() {
 		document.getElementById('btn').click();
 	}
 	
-// ------------------------------------------ 이미지 미리보기 ----------------------------------------
-
-// ---------------------------------------------------------------------------------------------------
 </script>
 <style type="text/css">
 	.section ul li {
@@ -102,9 +132,24 @@ if(session.getAttribute("sId") == null) {
 	#upload_img_area {
 		margin: 0 auto;
 	}
+	#upload_img_area ul li {
+		float: left;
+	}	
 	#upload_img_area img {
 		margin: 5px 40px;
 	}
+    input[type=button] {
+       background-color: white;
+       border: none;
+       text-decoration: none;
+       color: red;
+       padding: 3px 3px;
+       margin: 3px 3px;
+       cursor: pointer;
+    }
+    .delete_img {
+    	margin: 5px 40px;
+    }
 </style>
 </head>
 <div>
@@ -119,7 +164,7 @@ if(session.getAttribute("sId") == null) {
 		
 
 <body>
-	<div class="cono" style="width: 1140px; margin: auto;">
+	<div class="cono" style="width: 1200px; margin: auto; margin-left: 350px; margin-right: 350px;">
 		<form action="ItemUploadPro.shop" method="post" enctype="multipart/form-data" onsubmit="return check()">
 			<input type="hidden" name="member_id" value="<%=session.getAttribute("sId")%>">
 			<div class="registWrap">
@@ -141,30 +186,49 @@ if(session.getAttribute("sId") == null) {
 									<div id="upload_img_area">
 										<ul>
 											<li>
-												<img alt="상점 이미지" src="resources/default_img.png">
-												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;">
+												<img alt="상점 이미지" id="target_img1" src="resources/default_img.png">
+												<input type="file" id="file1" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile1(this)" style="display: none;">
+<%-- 												<input type="image" style="width: 10px" id="delFile1" value="이미지삭제" src="<spring:url value='/resources/cancle.png'/>"><br> --%>
+<%-- 												<input type="image" style="width: 10px" border="0" id="delFile1" value="이미지삭제" src="${path }/resources/cancle.png"><br> --%>
+												<div class="delete_img"><input type="button" id="delFile1" value="X">이미지삭제</div>
+<!-- 												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;"> -->
 											</li>
 											<li>
-												<img alt="상점 이미지" src="resources/default_img.png">
-												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;">
+												<img alt="상점 이미지" id="target_img2" src="resources/default_img.png">
+												<input type="file" id="file2" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile2(this)" style="display: none;">
+<%-- 												<input type="image" style="width: 10px" border="0" id="delFile2" value="이미지삭제" src="<spring:url value='/resources/cancle.png'/>"><br> --%>
+												<div class="delete_img"><input type="button" id="delFile2" value="X">이미지삭제</div>
+<!-- 												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;"> -->
 											</li>
 											<li>
-												<img alt="상점 이미지" src="resources/default_img.png">
-												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;">
+												<img alt="상점 이미지" id="target_img3" src="resources/default_img.png">
+												<input type="file" id="file3" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile3(this)" style="display: none;">
+<%-- 												<input type="image" style="width: 10px" border="0" id="delFile3" value="이미지삭제" src="<spring:url value='/resources/cancle.png'/>"><br> --%>
+												<div class="delete_img"><input type="button" id="delFile3" value="X">이미지삭제</div>
+<!-- 												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;"> -->
 											</li>
 										</ul>
 										<ul>
 											<li>
-												<img alt="상점 이미지" src="resources/default_img.png">
-												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;">
+												<img alt="상점 이미지" id="target_img4" src="resources/default_img.png">
+												<input type="file" id="file4" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile4(this)" style="display: none;">
+<%-- 												<input type="image" style="width: 10px" border="0" id="delFile4" value="이미지삭제" src="<spring:url value='/resources/cancle.png'/>"><br> --%>
+												<div class="delete_img"><input type="button" id="delFile4" value="X">이미지삭제</div>
+<!-- 												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;"> -->
 											</li>
 											<li>
-												<img alt="상점 이미지" src="resources/default_img.png">
-												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;">
+												<img alt="상점 이미지" id="target_img5" src="resources/default_img.png">
+												<input type="file" id="file5" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile5(this)" style="display: none;">
+<%-- 												<input type="image" style="width: 10px" border="0" id="delFile5" value="이미지삭제" src="<spring:url value='/resources/cancle.png'/>"><br> --%>
+												<div class="delete_img"><input type="button" id="delFile5" value="X">이미지삭제</div>
+<!-- 												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;"> -->
 											</li>
 											<li>
-												<img alt="상점 이미지" src="resources/default_img.png">
-												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;">
+												<img alt="상점 이미지" id="target_img6" src="resources/default_img.png">
+												<input type="file" id="file6" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile6(this)" style="display: none;">
+<%-- 												<input type="image" style="width: 10px" border="0" id="delFile6" value="이미지삭제" src="<spring:url value='/resources/cancle.png'/>"><br> --%>
+												<div class="delete_img"><input type="button" id="delFile6" value="X">이미지삭제</div>
+<!-- 												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;"> -->
 											</li>
 										</ul>
 									</div>
@@ -298,7 +362,7 @@ if(session.getAttribute("sId") == null) {
 				</div>
 			</div>
 				<!-- main -->
-			<input type="submit" value="" id="btn" class="btn">
+			<input type="submit" value="" id="btn" class="btn" name="등록">
 		</form>
 	</div>
 	<div class ="btnArea" style="float:center; margin-left: 500px; margin-bottom: 50px;">
@@ -314,9 +378,9 @@ if(session.getAttribute("sId") == null) {
 		<!-- registWrap -->
 
 	<!--------- registBtm : 등록하기  --------->
-</body>
 	<div class="clear">
 		<!-- 하단 부분 -->
 		<jsp:include page="../header_footer/footer.jsp" />
 	</div>
+</body>
 </html>
