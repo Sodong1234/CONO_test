@@ -68,11 +68,13 @@ public class NaverLoginController {
 		String nickname = (String) response_obj.get("nickname");
 		String birthday = (String) response_obj.get("birthday");
 		String mobile = (String) response_obj.get("mobile");
+		String birthyear = (String) response_obj.get("birthyear");
 		
 		System.out.println("id : " + id);
 		System.out.println("email : " + email);
 		System.out.println("nickname : " + nickname);
 		System.out.println("birthday : " + birthday);
+		
 		
 		// 세션에 사용자 정보 등록
 		// session.setAttribute("islogin_r", "Y");
@@ -83,7 +85,7 @@ public class NaverLoginController {
         member.setMember_pass(id);
         member.setMember_nick(nickname);
         member.setMember_email(email);
-        member.setMember_birth(birthday);
+        member.setMember_birth(birthyear + "" + birthday);
         member.setMember_phone(mobile);
 	        
         System.out.println("멤버 : " + member.toString());
