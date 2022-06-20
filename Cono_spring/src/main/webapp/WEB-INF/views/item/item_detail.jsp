@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/item_detail.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/button.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item_detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/button.css">
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <script src="resources/js/jquery-3.6.0.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"></script> -->
+<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
 <script type="text/javascript">
 	$(function() {
 		$("#purchase_item_quantity").html("<select name='ord_quantity'></select>");
@@ -70,9 +68,9 @@
 						</div>
 						<!-- 확대 버튼-->
 						<!-- <button class="detail-info__image--enlg" onclick="javascript:viewPic('../image/product/product_test.png')"> -->
-						<button class="detail-info__image--enlg">
-							<i class="fas fa-search"></i> 확대하기
-						</button>
+<!-- 						<button class="detail-info__image--enlg"> -->
+<!-- 							<i class="fas fa-search"></i> 확대하기 -->
+<!-- 						</button> -->
 						<div
 							class="detail-info__image--prev swiper-button-next swiper-button-white"
 							onclick="moveSlides(-1)">&#10094;</div>
@@ -89,11 +87,11 @@
 						<!-- 확대버튼 하는 중 -->
 						<div class="prodDetailImgWrap1">
 							<div class="prodDetailImgWrap2">
-								<button type="button" class="detailImg_closeBtn">
-									<img
-										src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABACAYAAACjgtGkAAAAAXNSR0IArs4c6QAAAolJREFUeAHl20tSxCAQANCJW12ql3DtKTxE9GQ6h/AU7j2EutT12J1qUowhCZ/+AFLFgIEU9pvApjPDAcrpdLqH5gHqJ9TjMAzf0HZfIO4rCHKEegP1FeJ+u6Co36H9oIGRJtJQn80fDIwdDQ6DCxcmXEIftW6hdv2kBDBwV/ygxQyCf/wHlC2MBUjvKHsYQZBeUWIwVkF6Q4nF2ATpBSUFYxekdZRUjCiQVlFyMKJBWkPJxUgCaQWlBCMZpHaUUowskFpRODCyQWpD4cIoAqkFhROjGMQahRuDBcQKRQKDDUQbRQqDFUQLRRKDHUQaRRpDBEQKRQNDDIQbRQtDFIQLRRNDHKQURRtDBSQXxQJDDSQVxQpDFSQWxRJDHWQPxRrDBGQNBa9DcYlnzLXO6cVpROnjLJWptOa0DDwNfi75i9a+htYMA/8HMxBcnFCeoIsQWBDm2SWepyvKH+51COVl5+VCX0jo2nyDdMcMxDtA8enAJwMr9kcag65+Mfk2PAx8c2c6Myh08/dT1EFCGO7MgDH/oDV5aUcVZAvDbQ5rFDWQGIwaUFRAUjCsUcRBcjAsUURBSjCsUMRAODAsUERAODG0UdhBJDA0UVhBJDG0UNhANDA0UFhANDGkUYpBLDAkUYpALDGkULJBasCQQMkCqQmDGyUZpEYMTpQkkJoxuFCiQVrA4ECJAmkJoxRlF6RFjBKUTZCWMXJRVkF6wMhBCSaqesJAFEpzHKGLOSDMBY0QI6Y8FmUBQhNdFt7lRqYf+S7ubuiCh4IxIcpjCOVsy9CER7oBb3xxSSTod1H2YpxB9iZ2oUFBbMU6gWxN6AnCj2UtZneG3MFk3FddbhMfwvUDZwoaHH4B+xHVOFecBB4AAAAASUVORK5CYII="
-										width="34" height="32" alt="닫기 버튼 아이콘">
-								</button>
+<!-- 								<button type="button" class="detailImg_closeBtn"> -->
+<!-- 									<img -->
+<!-- 										src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABACAYAAACjgtGkAAAAAXNSR0IArs4c6QAAAolJREFUeAHl20tSxCAQANCJW12ql3DtKTxE9GQ6h/AU7j2EutT12J1qUowhCZ/+AFLFgIEU9pvApjPDAcrpdLqH5gHqJ9TjMAzf0HZfIO4rCHKEegP1FeJ+u6Co36H9oIGRJtJQn80fDIwdDQ6DCxcmXEIftW6hdv2kBDBwV/ygxQyCf/wHlC2MBUjvKHsYQZBeUWIwVkF6Q4nF2ATpBSUFYxekdZRUjCiQVlFyMKJBWkPJxUgCaQWlBCMZpHaUUowskFpRODCyQWpD4cIoAqkFhROjGMQahRuDBcQKRQKDDUQbRQqDFUQLRRKDHUQaRRpDBEQKRQNDDIQbRQtDFIQLRRNDHKQURRtDBSQXxQJDDSQVxQpDFSQWxRJDHWQPxRrDBGQNBa9DcYlnzLXO6cVpROnjLJWptOa0DDwNfi75i9a+htYMA/8HMxBcnFCeoIsQWBDm2SWepyvKH+51COVl5+VCX0jo2nyDdMcMxDtA8enAJwMr9kcag65+Mfk2PAx8c2c6Myh08/dT1EFCGO7MgDH/oDV5aUcVZAvDbQ5rFDWQGIwaUFRAUjCsUcRBcjAsUURBSjCsUMRAODAsUERAODG0UdhBJDA0UVhBJDG0UNhANDA0UFhANDGkUYpBLDAkUYpALDGkULJBasCQQMkCqQmDGyUZpEYMTpQkkJoxuFCiQVrA4ECJAmkJoxRlF6RFjBKUTZCWMXJRVkF6wMhBCSaqesJAFEpzHKGLOSDMBY0QI6Y8FmUBQhNdFt7lRqYf+S7ubuiCh4IxIcpjCOVsy9CER7oBb3xxSSTod1H2YpxB9iZ2oUFBbMU6gWxN6AnCj2UtZneG3MFk3FddbhMfwvUDZwoaHH4B+xHVOFecBB4AAAAASUVORK5CYII=" -->
+<!-- 										width="34" height="32" alt="닫기 버튼 아이콘"> -->
+<!-- 								</button> -->
 								<div class="detailImgListWrap">
 									<div class="dtailImg_prodName"></div>
 									<!-- 이미지 리스트 -->
@@ -147,7 +145,7 @@
 										</c:when>
 									</c:choose>
 								</div>
-								<h3 style="font-family:'Cafe24Ohsquare'; ">가격 : ${itemDetail.get('item_price')}</h3>
+								<h3 style="font-family:'Cafe24Ohsquare';">가격 : ${itemDetail.get('item_price')}</h3>
 								<table>
 								<tr style="text-align: center;">
 									<td>현재 수량 :&nbsp;</td>
@@ -178,14 +176,22 @@
 							
 							<br>
 							
+							 판매자 : ${itemDetail.get('shop_name') } 
+							
+							<br>
+							<br>
+							
 							<form action="Myshop.shop" method="post">
 							
 								<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}">
 								 
-								<input type="submit" value="판매자의 다른 상품 보고싶으면 누르던가 아님 말고">
+								<input type="submit" value="판매자 상점 가기"> &nbsp;&nbsp;&nbsp;
+								
 				
 								</form>
-							
+								<input type="button" value="문의하기" onclick="location.href='addMessageList?shop_idx=${itemDetail.shop_idx}&item_idx=${itemDetail.item_idx}'">
+				
+						
 							
 						
 							
@@ -267,9 +273,7 @@
 						
 						<div class="detail-info__btn-list">
 							<!-- 버튼 -->
-							<div> 
-								<input type="button" value="문의하기" onclick="location.href='addMessageList?shop_idx=${itemDetail.shop_idx}&item_idx=${itemDetail.item_idx}'">
-							</div>
+							
 							<div class="center">
 								<a href="#" id="buy_now_btn">
 									<span data-attr="buy">buy</span><span data-attr="now">now</span>
@@ -333,41 +337,11 @@
 <!-- </div> -->
 
 
+
+
 <script>
 
-// 슬라이더 관련
-var slideIndex = 0; // slide index
-function currentSlide(n) {
-	  slideIndex = n;
-	  showSlides(slideIndex);
-	}
-	
-function moveSlides(n) { // Next/previous controls
-  slideIndex = slideIndex + n
-  showSlides(slideIndex);
-}
-function showSlides(n) {
-    var slides = document.getElementsByClassName("swiper-slide");
-    var dots = document.getElementsByClassName("dot");
-    var size = slides.length;
-    if ((n+1) > size) {
-      slideIndex = 0; n = 0;
-    }else if (n < 0) {
-      slideIndex = (size-1);
-      n = (size-1);
-    }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-	
-    slides[n].style.display = "block";
-    dots[n].className += " active";
-  }
-  
-  
+
   // 수량버튼 관련
 function fnCalCount(type, ths){
     var $input = $(ths).parents("td").find("input[name='pop_out']");
