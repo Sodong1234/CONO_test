@@ -11,24 +11,32 @@
 <title>회원 관리</title>
 <link rel="stylesheet" href="resources/css/admin_table.css" />
 <style type="text/css">
-p {
-	margin-top: 34px;
-	margin-bottom: 8px;
-}
-a {
-	color: inherit;
-	text-decoration: none;
-}
-
-a:hover {
-	color: #c7c3c3;
-}
+	p {
+		margin-top: 34px;
+		margin-bottom: 8px;
+	}
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #c7c3c3;
+	}
 </style>
 <script type="text/javascript">
 
+	//회원 되돌리기
+	function confirmBack(member_id, page){
+		var exitConfirm = confirm("회원 상태를 되돌리시겠습니까?");
+		
+		if(exitConfirm){
+			location.href="./AdminMemberBack?member_id=" + member_id + "&page=" + page;
+		} 
+	}
+
 	// 회원 탈퇴
 	function confirmExit(member_id, page){
-		var exitConfirm = confirm("탈퇴를 진행하시겠습니까?" + '\n' + "탈퇴한 아이디는 복원하실 수 없습니다.");
+		var exitConfirm = confirm("탈퇴회원의 정보를 삭제하시겠습니까?" + '\n' + "탈퇴한 아이디는 복원하실 수 없습니다.");
 		
 		if(exitConfirm){
 			location.href="./AdminMemberExit?member_id=" + member_id + "&page=" + page;
@@ -52,53 +60,35 @@ a:hover {
 	</div>
 	
 	<div class="body">
-		<h2><a href="./AdminMemberList">MEMBER</a> &nbsp; / &nbsp; <a href="./AdminExitMemberList">탈퇴회원보기</a></h2>
+		<h2><a href="./AdminMemberList">MEMBER</a> &nbsp; / &nbsp; <a href="./AdminExitMemberList">탈퇴회원조회</a></h2>
 		
-		<p>현재 회원 수 : ${listCount }</p>
+		<p>탈퇴 회원 수 : ${listCount }</p>
 			
 		<hr>
-		
-	<!-- 검색 기능 -->
-		<div id="member_search">
-			<form>
-				<input type="hidden" name="pageNum" value="${pageNum}">
-				<select name="searchType" class="ssearch">
-					<option value="">전체</option>
-					<option value="id" <c:if test="${searchType ne null and searchType eq 'id'}">selected</c:if>>아이디</option>
-					<option value="nick" <c:if test="${searchType ne null and searchType eq 'nick'}">selected</c:if>>닉네임</option>
-					<option value="shop" <c:if test="${searchType ne null and searchType eq 'shop'}">selected</c:if>>판매여부</option>
-				</select>
-				<input type="text" name="search" value="<c:if test="${search ne null}">${search }</c:if>" placeholder="검색어를 입력하세요">
-				<input type="submit" id="search_btn" value="검색">
-			</form>
-		</div>
-	
+
 		<!-- 회원리스트 테이블 -->
-		<table class="type04">
+		<table class="type04" style="margin-top: 32px">
 			<tr>
 				<th width="100" >아이디</th>
 				<th width="100" >닉네임</th>
-				<th width="100" >shopName</th>
-				<th width="150" >Coin Total</th>
 				<th width="200" >Phone</th>	
 				<th width="200" >E-Mail</th>
 				<th width="150" >가입일</th>
 				<th width="150" >회원상태</th>
 				<th width="100" >관 리</th>
 			</tr>
-			<c:if test="${not empty memberList and pageInfo.getListCount() > 0}">
-					<c:forEach var="member" items="${memberList }">
+			<c:if test="${not empty exitList and pageInfo.getListCount() > 0}">
+					<c:forEach var="member" items="${exitList }">
 						<tr> 
 							<td>${member.member_id }</td>
 							<td>${member.member_nick }</td>
-							<td>${member.shop_name }</td>
-							<td>${member.coin_total }</td>
 							<td>${member.member_phone }</td>
 		 					<td>${member.member_email }</td>
 							<td>${member.member_date }</td>
 							<td>${member.member_status }</td>
 							<td>
-								<input type="button" id="search_btn" value="정지" onclick="confirmExit('${member.member_id }', '${pageInfo.pageNum }' )">
+								<input type="button" id="search_btn" value="되돌리기" onclick="confirmBack('${member.member_id }', '${pageInfo.pageNum }' )">
+								<input type="button" id="search_btn" value="정보삭제" onclick="confirmExit('${member.member_id }', '${pageInfo.pageNum }' )">
 							</td> 
 						</tr> 
 					</c:forEach>

@@ -7,6 +7,20 @@
 <meta charset="UTF-8">
 <title>거래 현황 리스트</title>
 <link rel="stylesheet" href="resources/css/admin_table.css" />
+<style type="text/css">
+	p {
+		margin-top: 34px;
+		margin-bottom: 8px;
+	}
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+	
+	a:hover {
+		color: #c7c3c3;
+	}
+</style>
 <script type="text/javascript">
 
 	function dealCancel(item_idx, coin_use, safe_status, page){
@@ -35,27 +49,27 @@
 <div class="body">
 
 
-	<h2>거래 현황 리스트</h2>
+	<h2><a href="./AdminDealList">거래 현황</a> &nbsp; / &nbsp; <a href="./AdminDealCancelList">거래취소요청</a></h2>
 
-	현재 거래 현황 : ${listCount }
+	<p>현재 거래 현황 : ${listCount }</p>
+	
 	<hr>
-	<table class="type04">
+	
+	<table class="type04" style="margin-top: 32px">
 		<tr>
-			<th>No.</th>
-			<th>상품명</th>
-			<th>상품번호</th>
-			<th>구매자</th>
-			<th>거래 코인</th>
-			<th>거래 날짜</th>
-			<th>거래상태</th>
-			<th>거래취소</th>
+			<th width="200">상품명</th>
+			<th width="100">상품번호</th>
+			<th width="100">구매자</th>
+			<th width="150">거래 코인</th>
+			<th width="150">거래 날짜</th>
+			<th width="100">거래상태</th>
+			<th width="150">관 리</th>
 		</tr>
 		
 		<c:if test="${not empty dealList and pageInfo.listCount > 0 }">
 			<c:forEach var="product" items="${dealList}">
 				<tr>
-					<th>No.</th>
-					<td><a href="" class="title">${product.item_title }</a></td>
+					<td><a href="itemDetail?item_idx=${product.item_idx }" class="title">${product.item_title }</a></td>
 					<td>${product.item_idx }</td>
 					<td>${product.member_id }</td>
 					<td>${product.safe_coin }</td>

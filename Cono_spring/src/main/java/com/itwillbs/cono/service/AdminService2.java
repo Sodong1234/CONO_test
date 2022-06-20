@@ -17,7 +17,7 @@ public class AdminService2 {
 	
 	// ------------------- (관리자) 회원 정보 조회 - 김혜은 ---------------------------
 	// 회원 수
-	public int getMemberListCount(String searchType, String search) {
+	public Integer getMemberListCount(String searchType, String search) {
 		
 		return mapper.selectMemberListCount(searchType, search);
 	}
@@ -28,11 +28,30 @@ public class AdminService2 {
 		return mapper.selectAllMember(searchType, search, pageInfo);
 	}
 
-	// 회원탈퇴
+	// 회원 정지
 	public int exitMember(String member_id) {
 		
 		return mapper.updateExitMember(member_id);
 	}
+	
+	// 회원 되돌리기
+	public int backMember(String member_id) {
+
+		return mapper.updateBackMember(member_id);
+	}
+	
+	// 탈퇴 회원 수
+	public int getExitMemberListCount() {
+
+		return mapper.selectExitMemberCount();
+	}
+
+	// 탈퇴 회원 리스트 조회
+	public List<HashMap<String, Object>> getExitMemberList(PageInfo pageInfo) {
+		
+		return mapper.selectExitMember(pageInfo);
+	}
+
 
 	// -------------------(관리자) 거래 현황 조회 - 김혜은 ----------------------------
 	// 현재 진행 거래 수
@@ -65,6 +84,10 @@ public class AdminService2 {
 		return mapper.updateDealCancel(item_idx, safe_status);
 	}
 
+	
+
+	
+	
 
 
 

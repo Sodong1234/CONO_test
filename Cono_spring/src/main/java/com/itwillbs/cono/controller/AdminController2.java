@@ -29,7 +29,7 @@ public class AdminController2 {
 	// ------ 관리자 메인페이지로 이동!
 	@RequestMapping(value = "/adminMain", method = RequestMethod.GET)
 	public String AdminMain() {
-		return "redirect:../admin_center/main";
+		return "admin_center/main";
 	}
 	
 	
@@ -42,7 +42,7 @@ public class AdminController2 {
 		int pageLimit = 5;	// 페이지 당 페이지 목록 갯수
 		
 		// 회원수 조회
-		int listCount = service.getMemberListCount(searchType, "%" + search + "%");
+		Integer listCount = service.getMemberListCount(searchType, "%" + search + "%");
 		
 		// 페이징 처리 계산
 		int maxPage = (int)Math.ceil((double) listCount / listLimit);
@@ -118,7 +118,65 @@ public class AdminController2 {
 		return "userCenter/admin_member_list";
 	}
 	
-	// ------ 회원 탈퇴 (관리자) - 김혜은
+	// 탈퇴 회원 리스트 조회
+	@RequestMapping(value = "/AdminExitMemberList", method = RequestMethod.GET)
+	public String ExitMemberListPost(@RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String search,
+			@RequestParam(defaultValue = "1") int pageNum, Model model) {
+		
+		int listLimit = 15;	// 페이지 당 글 목록 갯수
+		int pageLimit = 5;	// 페이지 당 페이지 목록 갯수
+		
+		// 회원수 조회
+		int listCount = service.getExitMemberListCount();
+		
+		// 페이징 처리 계산
+		int maxPage = (int)Math.ceil((double) listCount / listLimit);
+		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		int endPage = startPage + pageLimit - 1;
+		if (endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		// 조회 시작 게시물 번호(행 번호) 계산
+		int startRow = (pageNum - 1) * listLimit;
+		
+		// 페이징 처리 정보를 PageInfo 객체에 저장
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setPageNum(pageNum);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setListLimit(listLimit);
+		
+		// 회원 리스트
+		List<HashMap<String, Object>> exitList = service.getExitMemberList(pageInfo);
+		
+		// Model 객체에 저장
+		model.addAttribute("exitList", exitList);
+		model.addAttribute("pageInfo", pageInfo);
+		
+		return "userCenter/admin_exit_member_list";
+	}
+	
+	// ----- 회원 되돌리기 
+	@RequestMapping(value = "/AdminMemberBack", method = RequestMethod.GET)
+	public String adminMemberBack(@RequestParam String member_id, @RequestParam(defaultValue = "1")int pageNum, Model model) {
+		
+		int exitCount = service.backMember(member_id);
+		
+		if(exitCount == 0) {
+			model.addAttribute("msg", "회원 되돌리기 실패!");
+			return "fail_back";
+		}
+		
+		model.addAttribute("pageNum", pageNum);
+		
+		return "redirect:/AdminMemberList";
+	}
+	
+	// ------ 회원 정지 (관리자) - 김혜은
 	@RequestMapping(value = "/AdminMemberExit", method = RequestMethod.GET)
 	public String adminMemberExit(@RequestParam String member_id, @RequestParam(defaultValue = "1")int pageNum, Model model) {
 		
@@ -131,24 +189,24 @@ public class AdminController2 {
 		
 		model.addAttribute("pageNum", pageNum);
 		
-		return "userCenter/admin_member_list";
+		return "redirect:/AdminExitMemberList";
 	}
 	
 	// ------ 회원 탈퇴 로직
-	@RequestMapping(value = "/AdminMemberExit", method = RequestMethod.POST)
-	public String adminMemberExitPost(@RequestParam String member_id, @RequestParam(defaultValue = "1")int pageNum, Model model) {
-		
-		int exitCount = service.exitMember(member_id);
-		
-		if(exitCount == 0) {
-			model.addAttribute("msg", "회원 탈퇴 실패!");
-			return "fail_back";
-		}
-		
-		model.addAttribute("pageNum", pageNum);
-		
-		return "userCenter/admin_member_list";
-	}
+//	@RequestMapping(value = "/AdminMemberExit", method = RequestMethod.POST)
+//	public String adminMemberExitPost(@RequestParam String member_id, @RequestParam(defaultValue = "1")int pageNum, Model model) {
+//		
+//		int exitCount = service.exitMember(member_id);
+//		
+//		if(exitCount == 0) {
+//			model.addAttribute("msg", "회원 탈퇴 실패!");
+//			return "fail_back";
+//		}
+//		
+//		model.addAttribute("pageNum", pageNum);
+//		
+//		return "redirect:/AdminMemberList";
+//	}
 	
 	// --------------------------------------------------------------------------------------------------------
 	// ------ 거래 리스트 (관리자) - 김혜은
@@ -204,7 +262,7 @@ public class AdminController2 {
 			int listCount = service.getAdminDealCancelListCount();
 			
 			// 거래 목록 조회
-			List<HashMap<String, Object>> dealList = service.getAdminDealCancelList(pageNum, listLimit);
+			List<HashMap<String, Object>> cancelList = service.getAdminDealCancelList(pageNum, listLimit);
 			
 			// 페이징 처리를 위한 계산 작업
 			int maxPage = (int) Math.ceil((double) listCount / listLimit);
@@ -226,7 +284,7 @@ public class AdminController2 {
 			pageInfo.setStartRow(startRow);
 			pageInfo.setListLimit(listLimit);
 			
-			model.addAttribute("dealList", dealList);
+			model.addAttribute("cancelList", cancelList);
 			model.addAttribute("pageInfo", pageInfo);
 			
 			return "userCenter/admin_deal_Cancel";
@@ -248,7 +306,7 @@ public class AdminController2 {
 		
 		model.addAttribute("pageNum", pageNum);
 		
-		return "redirect:/userCenter/admin_deal_list";
+		return "/userCenter/admin_deal_list";
 	}
 	
 	// ------ 거래 취소 로직 (관리자)
@@ -266,7 +324,7 @@ public class AdminController2 {
 			
 			model.addAttribute("pageNum", pageNum);
 			
-			return "redirect:/userCenter/admin_deal_list";
+			return "/AdminDealCancelList";
 		}
 	
 	

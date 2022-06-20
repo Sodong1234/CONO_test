@@ -13,14 +13,22 @@ public interface AdminMapper2 {
 	
 	// ------------------- (관리자) 회원 정보 조회 - 김혜은 ---------------------------
 	// 회원 수
-	public int selectMemberListCount(@Param("searchType") String searchType, @Param("search") String search);
+	public Integer selectMemberListCount(@Param("searchType") String searchType, @Param("search") String search);
 
 	// 회원 리스트
 	public List<HashMap<String, Object>> selectAllMember(@Param("searchType") String searchType,@Param("search") String search, @Param("pageInfo")PageInfo pageInfo);
 
-	// 회원 탈퇴
+	// 회원 정지
 	public int updateExitMember(@Param("member_id") String member_id);
 
+	// 회원 되돌리기
+	public int updateBackMember(String member_id);
+
+	// 탈퇴 회원 수
+	public int selectExitMemberCount();
+	
+	// 탈퇴 회원 리스트
+	public List<HashMap<String, Object>> selectExitMember(PageInfo pageInfo);
 	
 	// -------------------(관리자) 거래 현황 조회 - 김혜은 ----------------------------
 	// 현재 진행 거래 수
@@ -37,7 +45,10 @@ public interface AdminMapper2 {
 
 	// 거래취소
 	public int updateDealCancel(@Param("item_idx")String item_idx, @Param("safe_status") String safe_status);
+
+
 	
+
 	
 
 }
