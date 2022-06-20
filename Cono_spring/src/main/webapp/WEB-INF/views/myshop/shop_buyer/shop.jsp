@@ -23,15 +23,83 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
+// 	$(function() {
+// 		$("#product").on("click", function() {
+// 			$.ajax({
+// 				type: "GET",
+// 				url: "shopProduct",
+// 				dataType: "text",
+// 				data: {
+// 					shop_idx : ${shopInfo.get('shop_idx') }
+// 				}
+// 			})
+// 			.done(function(data) {
+// 				$("#shop_resultArea").html(data);
+// 			})
+// 			.fail(function() {
+// 				$("#shop_resultArea").html("요청 실패");
+// 			})
+// 		});
+// 		$("#review").on("click", function() {
+// 			$.ajax({
+// 				type: "GET",
+// 				url: "shopReview",
+// 				dataType: "text",
+// 				data: {
+// 					shop_idx : ${shopInfo.get('shop_idx') }
+// 				}
+// 			})
+// 			.done(function(data) {
+// 				$("#shop_resultArea").html(data);
+// 			})
+// 			.fail(function() {
+// 				$("#shop_resultArea").html("요청 실패");
+// 			})
+// 		});
+// 		$("#follower").on("click", function() {
+// 			$.ajax({
+// 				type: "GET",
+// 				url: "shopFollower",
+// 				dataType: "text",
+// 				data: {
+// 					shop_idx : ${shopInfo.get('shop_idx') }
+// 				}
+// 			})
+// 			.done(function(data) {
+// 				$("#shop_resultArea").html(data);
+// 			})
+// 			.fail(function() {
+// 				$("#shop_resultArea").html("요청 실패");
+// 			})
+// 		});
+// 		$("#following").on("click", function() {
+// 			$.ajax({
+// 				type: "GET",
+// 				url: "shopFollowing",
+// 				dataType: "text",
+// 				data: {
+// 					shop_idx : ${shopInfo.get('shop_idx') }
+// 				}
+// 			})
+// 			.done(function(data) {
+// 				$("#shop_resultArea").html(data);
+// 			})
+// 			.fail(function() {
+// 				$("#shop_resultArea").html("요청 실패");
+// 			})
+// 		});
+// 	});
+
 	$(function() {
-		$("#product").on("click", function() {
+		$("#product").click(function() {
+			$(this).css("background","coral")
 			$.ajax({
 				type: "GET",
 				url: "shopProduct",
 				dataType: "text",
 				data: {
 					shop_idx : ${shopInfo.get('shop_idx') }
-				}
+				} 
 			})
 			.done(function(data) {
 				$("#shop_resultArea").html(data);
@@ -39,8 +107,10 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 			.fail(function() {
 				$("#shop_resultArea").html("요청 실패");
 			})
-		});
+		})
+	
 		$("#review").on("click", function() {
+			$(this).css("background","coral")
 			$.ajax({
 				type: "GET",
 				url: "shopReview",
@@ -55,8 +125,10 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 			.fail(function() {
 				$("#shop_resultArea").html("요청 실패");
 			})
-		});
+		})
+		
 		$("#follower").on("click", function() {
+			$(this).css("background","coral")
 			$.ajax({
 				type: "GET",
 				url: "shopFollower",
@@ -71,8 +143,9 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 			.fail(function() {
 				$("#shop_resultArea").html("요청 실패");
 			})
-		});
+		})
 		$("#following").on("click", function() {
+			$(this).css("background","coral")
 			$.ajax({
 				type: "GET",
 				url: "shopFollowing",
@@ -88,7 +161,13 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 				$("#shop_resultArea").html("요청 실패");
 			})
 		});
+		
 	});
+	
+	
+	
+
+	
 </script>
 <style type="text/css">
 	#under_nav_bar {
@@ -171,7 +250,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 
 
 		<h2 style="font-family: Cafe24Ohsquare;">
-			${myShop.get('shop_name') }의 상점 [${myShop.get('member_date') }]</h2>
+			${shopInfo.get('shop_name') }의 상점 [${shopInfo.get('member_date') }]</h2>
 
 		<hr class="hr-13">
 		<hr>
@@ -179,16 +258,16 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
  			<div class="shopForm134"> 
  			
  			<form action="ProductMyshopModifyForm.shop" name="shopForm" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="shop_idx" value="${myShop.get('shop_idx') }">
+			<input type="hidden" name="shop_idx" value="${shopInfo.get('shop_idx') }">
 			<!-- 				<div class="form-group" style= font-family:IBMPlexSansKR-Regular;" > -->
 				<c:choose>
-					<c:when test="${myShop.get('shop_img') eq null }">
+					<c:when test="${shopInfo.get('shop_img') eq null }">
 						<img alt="상점 이미지" id="img" style="width: 300px;"
 							src="<spring:url value='/resources/default_img.png'/>">
 					</c:when>
-					<c:when test="${myShop.get('shop_img') ne null }">
+					<c:when test="${shopInfo.get('shop_img') ne null }">
 						<img alt="상점 이미지" id="img" style="width: 300px;"
-							src="<spring:url value='/resources/upload/shopImg/${myShop.get("shop_img") }'/>">
+							src="<spring:url value='/resources/upload/shopImg/${shopInfo.get("shop_img") }'/>">
 					</c:when>
 				</c:choose>
 				<!-- 						<input type="file" id="file" name="upload" onchange="readInputFile(this)" style="display: none;"> -->
@@ -198,19 +277,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 				<!-- <div class="w3-container"> -->
 
 				<div class="rigthIndi">
-					<!-- (2) 판매 횟수 -->
-<%-- 						<c:forEach var="shopCount" items="${shopCountInfo[0]}"> --%>
-<!-- 						<div class="shop_list_body"> -->
-<!-- 							<div class="item"> -->
-<%-- 								<div class="shopCountInfo_sell"> ${shopCountInfo[0]}</div> --%>
-<%-- 								<div class="shopCountInfo_item">${shopCount. }</div> --%>
-<%-- 								<div class="writer">${notice.getAdmin_id() }</div> --%>
-<%-- 								<div class="date">${notice.getNotice_date() }</div> --%>
-<!-- 							</div> -->
-<!-- 						</div> -->
-<%-- 					</c:forEach> --%>
-					
-<%-- 					${shopCount.itemCount } --%>
+
 						<div class="storeIndication">
 						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAQBJREFUSA1jZCASNOz/z3L34Z1aBkaGZLCW/wxzleVVmhscGf8QYwQLMYpAakCW/GdgqGMAElBQBxQDMethAvhoJnySKHIwnyALYhNDlkdiE28RkiZymMRbBIwTDAuwiWEogggQHUegiAfHCSy4oIkBh7kjQJgxdtHtUIZ/jJP+M/yXoIV/GRkYXzAw/c9joqUlIIeDPQD0CPGpjkLvMoG8BfYehQbh0g4LOkZcCkDiMQtuIwocfAqhcksSVHGaR8egI8Kl1FAy6iOyQ5HoQhVkA3qqIiVVjsYR2XE0woIOubBFZsPCD1kMmQ2TR6bxBx20ZAcbAmQjawSzCckjaQAAJL9HBV3GwxoAAAAASUVORK5CYII="
 							width="14" height="15" alt="상점방문수 아이콘"> 판매횟수 ${shopCountInfo[0]} &nbsp;
@@ -240,7 +307,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 							<div class="listWarp132" style="">
 			<ul role="list">
 
-				<li data-icon="🦄">판매자 ID :${myShop.get('member_id') }</li>
+				<li data-icon="🦄">판매자 ID :${shopInfo.get('member_id') }</li>
 				<li data-icon="🌈">상점소개 : ${shopInfo.get('shop_content') }</li>
 				<li data-icon="😎">팔로워 : ${followerCnt } 명</li>
 				<%-- 				  <li data-icon="🦄"> 상점 오픈일 : ${myShop.get('member_date') }</li> --%>
