@@ -13,7 +13,8 @@ String member_nick = (String) session.getAttribute("member_nick");
 	}
 	// =========================양윤석==================================
 	function confirmLogout() {
-		if (confirm("로그아웃 하시겠습니까?")) {
+		var result = confirm("로그아웃 하시겠습니까?");
+		if( result ){
 			location.href = "logout";
 		}
 	}
@@ -93,7 +94,7 @@ String member_nick = (String) session.getAttribute("member_nick");
 				} else {
 				%>
 				<!-- ==============================양윤석============================= -->
-				<li class="test"><a href="logout" onclick="confirmLogout()"><p>로그아웃</p></a></li>
+				<li class="test"><a href="#" onclick="confirmLogout()"><p>로그아웃</p></a></li>
 				<!-- ==============================양윤석============================= -->
 				<li class="test"><a href="#"><p>알림</p></a></li>
 				<li class="test"><a href="message_list"><p>메세지</p></a></li>
