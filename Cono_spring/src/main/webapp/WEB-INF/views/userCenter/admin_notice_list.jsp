@@ -5,6 +5,9 @@
 <%
 // 세션 객체에 저장된 세션 아이디("sId") 가져와서 변수에 저장
 String sId = (String)session.getAttribute("sId");	// String 형변환
+if(sId == null) {
+	sId = "";
+}
 %> 
 
 	<c:if test = "${param.search ne null}">
@@ -277,7 +280,7 @@ position: relative;
 		</c:choose>
 		<%if(sId.equals("admin")){ %>
 		<input type="button" class="btn" onclick="location.href='AdminNoticeWrite.admin'" >
-		<%} %>
+		<%}%>
 		</div>
 		</div>  <!-- 리스트랩 디브 -->
 	
