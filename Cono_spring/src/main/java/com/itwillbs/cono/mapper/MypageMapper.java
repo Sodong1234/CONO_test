@@ -25,7 +25,7 @@ public interface MypageMapper {
 	// 코인 내역 리스트 COUNT
 	public int coinListCount(String sId);
 	// 코인 내역 조회
-	public List<CoinDTO> selectCoinInfoList(@Param("sId") String sId);
+	public List<CoinDTO> selectCoinInfoList(@Param("sId") String sId,@Param("pageInfo") PageInfo pageInfo);
 	// 현재 보유 코인
 	public String coinTotal(String sId);
 	// 결제

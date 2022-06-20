@@ -61,6 +61,13 @@ public class MypageController {
 
 		// 코인 잔액
 		String coin_total = service.getCoinTotal(sId);
+		// 6543210
+		for(int i=1; i<coin_total.length()+1; i++) {
+			if(i%3 == 0) {
+				
+			}
+		}
+		
 		model.addAttribute("coin_total", coin_total);
 		System.out.println("Coin_total : " + coin_total);
 		// 예약 상품 수
@@ -319,15 +326,42 @@ public class MypageController {
 
 	// 코인 이용 내역
 	@RequestMapping(value = "coin", method = RequestMethod.GET)
-	public String coin(HttpSession session, Model model) {
+	public String coin(HttpSession session, Model model,@RequestParam(defaultValue = "1")int pageNum) {
 		String sId = (String)session.getAttribute("sId");
 
+
+		int listCount = service.getCoinListCount(sId);
+		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
+		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
+
+		// 페이징 처리를 위한 계산 작업
+		int maxPage = (int) Math.ceil((double) listCount / listLimit);
+		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		int endPage = startPage + pageLimit - 1;
+		if (endPage > maxPage) {
+			endPage = maxPage;
+		}
+
+		int startRow = (pageNum - 1) * listLimit;
+
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setPageNum(pageNum);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setListLimit(listLimit);
+
+		
 		String coin_total = service.getCoinTotal(sId);
-		List<CoinDTO> coin = service.getCoinInfoList(sId);
+		List<CoinDTO> coin = service.getCoinInfoList(sId,pageInfo);
+		
 //		System.out.println(coin.toString());
 //			
 		model.addAttribute("coin_total", coin_total);
 		model.addAttribute("coin", coin);
+		model.addAttribute("pageInfo",pageInfo);
 		System.out.println(coin.toString());
 		return "mypage/center_coin";
 	}

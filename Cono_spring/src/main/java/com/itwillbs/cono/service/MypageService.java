@@ -44,8 +44,8 @@ public class MypageService {
 			return mapper.coinListCount(sId);
 		}
 	// 코인 이용 내역
-	public List<CoinDTO> getCoinInfoList(String sId) {
-		return mapper.selectCoinInfoList(sId);
+	public List<CoinDTO> getCoinInfoList(String sId, PageInfo pageInfo) {
+		return mapper.selectCoinInfoList(sId,pageInfo);
 	}
 	// 현재 보유 코인
 	public String getCoinTotal(String sId) {

@@ -42,10 +42,11 @@
 	</update>
 <!-- 	================================================Center=================================================== -->
 <!-- 	코인 내역 리스트 COUNT  -->
-	<select id="coinListCount">
+	<select id="coinListCount" resultType="int">
 		SELECT COUNT(coin_idx)
 		FROM coin
 		WHERE member_id = #{sId}
+		
 	</select>	
 	
 <!-- 	코인 이용 내역 조회 -->
@@ -53,7 +54,9 @@
 		SELECT coin_idx, coin_add, coin_use, coin_total, coin_date
 		FROM coin c
 		WHERE member_id = #{sId}
-		ORDER BY coin_idx DESC
+		ORDER BY coin_idx+0 DESC
+		LIMIT #{pageInfo.startRow},
+		#{pageInfo.listLimit}
 	</select>
 	
 <!-- 	현재 보유 코인 -->

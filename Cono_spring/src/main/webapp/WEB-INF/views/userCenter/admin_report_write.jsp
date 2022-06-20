@@ -9,6 +9,45 @@ String sId = (String)session.getAttribute("sId");
 <head>
 <meta charset="UTF-8">
 <title>Report 글쓰기 폼</title>
+<script src="resources/js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+
+// selectbox 항목 선택하지 않았을 때 돌아가기 
+
+$(function() {
+
+	$("form").submit(function() {
+		
+		
+		if($("#report_type > option").eq(0).prop("selected")) {
+			
+			alert("신고 유형을 선택하세요.");
+			$("#report_type > option").eq(0).focus();
+			return false;
+			
+			
+			}
+		
+	});
+	
+	$('#report_content').keyup(function(){
+		  var content = $(this).val();
+		  $('#cnt').html(content.length);
+		  if (content.length > 500){
+		    alert("최대 500자까지 입력 가능합니다.");
+		    $(this).val(content.substring(0, 500));
+		    $('#report_content .count span').html(500);
+		  }
+		});
+		
+	
+});
+
+
+
+
+</script>
+
 <style type="text/css">
 * {
 	margin: 0;
@@ -116,15 +155,17 @@ select {
 			<form action="AdminReportWritePro.admin" method="post">
 				<input type="hidden" name="item_idx" value="<%=request.getParameter("item_idx")%>">
 				<div class = "report_type">
-					<select name="report_type" required="required">
+					<select name="report_type" id="report_type" required="required">
 						<option value="선택" selected="selected" disabled="disabled">선택</option>
 						<option value="게시글신고">게시글신고</option>
 						<option value="사용자신고">사용자신고</option>
 					</select></div>
 					<div class = "admin_id"><input type="text" id="textBox" name="member_id" value = "<%=sId %>" readonly="readonly" required="required" placeholder="이름을 입력해주세요. "></div>
 					<div class = "subject"><input type="text" id="textBox" name="report_subject" required="required" placeholder="제목을 입력해주세요. "></div>
-					<div class = "content"><textarea rows="30" cols="100"  id="report_content" name="report_content" required="required" placeholder="신고 내용을 입력해주세요. "></textarea></div>
-					
+					<div class = "content">
+					<textarea rows="20" cols="90"  id="report_content" name="report_content" required="required" placeholder="신고 내용을 입력해주세요. "></textarea>
+					<div class="count"><span id="cnt">0</span>/500</div>
+					</div>
 
 				<div class = "buttonArea"><input type="submit" value="글쓰기" id="btn"></div>
 				

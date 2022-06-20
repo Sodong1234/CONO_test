@@ -12,10 +12,6 @@ String sId = (String)session.getAttribute("sId");
 <script src="resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 
-// if(!$('#qna_type > option:selected').val()) {
-//     alert("아나 선택 좀..");
-// }
-
 // selectbox 항목 선택하지 않았을 때 돌아가기 
 
 $(function() {
@@ -34,7 +30,19 @@ $(function() {
 		
 	});
 	
+	$('#qna_content').keyup(function(){
+	  var content = $(this).val();
+	  $('#cnt').html(content.length);
+	  if (content.length > 500){
+	    alert("최대 500자까지 입력 가능합니다.");
+	    $(this).val(content.substring(0, 500));
+	    $('#qna_content .count span').html(500);
+	  }
+	});
+	
 });
+
+
 
 
 
@@ -95,7 +103,7 @@ a {
 }
 
 select {
-	width:65px;
+	width:95px;
 	height :30px;
 	font-size: 13px;
 	color:#999;
@@ -136,6 +144,11 @@ select {
 	padding-top: 15px;
 }
 
+.check{
+	text-align: center;
+    margin: 20px;
+}
+
 </style>
 </head>
 <body>
@@ -154,12 +167,17 @@ select {
 					</select></div>
 					<div class = "admin_id"><input type="text" id="textBox" name="member_id" value = "<%=sId %>" readonly="readonly" required="required"  placeholder="이름을 입력해주세요. "></div>
 					<div class = "subject"><input type="text" id="textBox" name="qna_subject" required="required"  placeholder="제목을 입력해주세요. "></div>
-					<div class = "content"><textarea rows="30" cols="100"  id="qna_content" name="qna_content" required="required" placeholder="문의 내용을 입력해주세요. "></textarea></div>
+					<div class = "content">
+					<textarea rows="20" cols="90"  id="qna_content" name="qna_content" required="required" placeholder="문의 내용을 입력해주세요. " style="resize: "none"; maxlength="500" ></textarea>
+					<div class="count"><span id="cnt">0</span>/500</div>
+					
+					</div>
+				
 				<div class="check"><input type ="checkbox" name="qna_secret">비밀글 설정</div>
 					
 				
 				<div class = "buttonArea"><input type="submit" value="글쓰기" id="btn" ></div>
-				</form>
+			</form>
 				</div>
 		
 	<div>

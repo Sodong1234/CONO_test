@@ -23,6 +23,7 @@ import com.itwillbs.cono.service.MainService;
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.NaverLoginBO;
+import com.itwillbs.cono.vo.PageInfo;
 
 
 @Controller
@@ -206,6 +207,31 @@ public class MainController {
 	public String search_item(String searchText, Model model, HttpSession session) {
 		String sId = (String)session.getAttribute("sId");
 		
+
+//		int listCount = service.getCardList("%" + searchText + "%");
+//		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
+//		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
+//
+//		// 페이징 처리를 위한 계산 작업
+//		int maxPage = (int) Math.ceil((double) listCount / listLimit);
+//		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+//		int endPage = startPage + pageLimit - 1;
+//		if (endPage > maxPage) {
+//			endPage = maxPage;
+//		}
+//
+//		int startRow = (pageNum - 1) * listLimit;
+//
+//		PageInfo pageInfo = new PageInfo();
+//		pageInfo.setPageNum(pageNum);
+//		pageInfo.setMaxPage(maxPage);
+//		pageInfo.setStartPage(startPage);
+//		pageInfo.setEndPage(endPage);
+//		pageInfo.setListCount(listCount);
+//		pageInfo.setStartRow(startRow);
+//		pageInfo.setListLimit(listLimit);
+		
+		
 		List<HashMap<String, String>>  cardList = service.getCardList("%" + searchText + "%");
 		
 		// 최근 조회
@@ -214,6 +240,7 @@ public class MainController {
 		model.addAttribute("searchText", searchText);
 		model.addAttribute("cardList", cardList);
 		model.addAttribute("getRecent", getRecent);
+//		model.addAttribute("pageInfo",pageInfo);
 		return "search/search_item";
 	}
 	
