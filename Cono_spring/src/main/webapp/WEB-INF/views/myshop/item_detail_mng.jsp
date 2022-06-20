@@ -16,7 +16,72 @@ if(session.getAttribute("sId") == null) {
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/button_mng.css">
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
+	$(function() {
+		var imgs;
+		var img_count;
+		var img_position = 1;
+		
+		imgs = $(".swiper-wrapper ul");
+		img_count = imgs.children().length;
+		
+		$("#previous").click(function() {
+			back();
+		});
+		$("#next").click(function() {
+			next();
+		});
+		
+		function back() {
+			if(img_position > 1) {
+				imgs.animate({
+					left:'+=400px'
+				});
+				img_position--;
+			}
+		}
+		function next() {
+			if(img_position < img_count) {
+				imgs.animate({
+					left:'-=400px'
+				});
+				img_position++;
+			}
+		}
+	});
 </script>
+<style type="text/css">
+	.swiper-wrapper {
+		width: 400px;
+		height: 400px;
+		overflow: hidden;
+		position: relative;
+		margin: 0 auto;
+	}
+	.swiper-wrapper ul {
+		width: 5000px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size: 0;
+	}
+	.swiper-wrapper ul li {
+		display: inline-block;
+	}
+	.swiper-wrapper img {
+		width: 400px;
+		height: 400px;
+	}
+	#previous {
+		position: absolute;
+		cursor: pointer;
+		z-index: 1;
+	}
+	#next {
+		position: absolute;
+		cursor: pointer;
+		z-index: 1;
+	}
+</style>
 </head>
 <body>
 	<div>
@@ -40,17 +105,21 @@ if(session.getAttribute("sId") == null) {
 					<!-- 이미지 리스트 -->
 					<div class="swiper-container detail-info__image__list">
 					<span> 상품번호 : ${itemDetail.get('item_idx')} </span>
+							<div class="detail-info__image--prev swiper-button-next swiper-button-white" id="previous">&#10094;</div>
 						<div class="swiper-wrapper">
-							<c:forEach items="${imgList }" var="item">
-							<c:choose>
-								<c:when test="${item.getImg_name() != null}">
-									<img src="resources/upload/file/${item.getImg_name() }"><br>
-								</c:when>
-							</c:choose>
-						</c:forEach>
+							<ul>
+								<c:forEach items="${imgList }" var="item">
+									<c:choose>
+										<c:when test="${item.getImg_name() != null}">
+											<li>
+												<img class="image" src="resources/upload/file/${item.getImg_name() }"><br>
+											</li>
+										</c:when>
+									</c:choose>
+								</c:forEach>
+							</ul>
 						</div>
-						<div class="detail-info__image--prev swiper-button-next swiper-button-white" onclick="moveSlides(-1)">&#10094;</div>
-						<div class="detail-info__image--next swiper-button-prev swiper-button-white" onclick="moveSlides(1)">&#10095;</div>
+							<div class="detail-info__image--next swiper-button-prev swiper-button-white" id="next">&#10095;</div>
 						<!-- 슬라이더 버튼 수 -->
 						<div class="swiper-pagination">
 							<div class="paginationBtn" style="text-align: center">
@@ -60,6 +129,7 @@ if(session.getAttribute("sId") == null) {
 						
 						<!-- 확대버튼 하는 중 -->
 						<div class="prodDetailImgWrap1">
+									
 							<div class="prodDetailImgWrap2"> 
 								<button type="button" class="detailImg_closeBtn">
 									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABACAYAAACjgtGkAAAAAXNSR0IArs4c6QAAAolJREFUeAHl20tSxCAQANCJW12ql3DtKTxE9GQ6h/AU7j2EutT12J1qUowhCZ/+AFLFgIEU9pvApjPDAcrpdLqH5gHqJ9TjMAzf0HZfIO4rCHKEegP1FeJ+u6Co36H9oIGRJtJQn80fDIwdDQ6DCxcmXEIftW6hdv2kBDBwV/ygxQyCf/wHlC2MBUjvKHsYQZBeUWIwVkF6Q4nF2ATpBSUFYxekdZRUjCiQVlFyMKJBWkPJxUgCaQWlBCMZpHaUUowskFpRODCyQWpD4cIoAqkFhROjGMQahRuDBcQKRQKDDUQbRQqDFUQLRRKDHUQaRRpDBEQKRQNDDIQbRQtDFIQLRRNDHKQURRtDBSQXxQJDDSQVxQpDFSQWxRJDHWQPxRrDBGQNBa9DcYlnzLXO6cVpROnjLJWptOa0DDwNfi75i9a+htYMA/8HMxBcnFCeoIsQWBDm2SWepyvKH+51COVl5+VCX0jo2nyDdMcMxDtA8enAJwMr9kcag65+Mfk2PAx8c2c6Myh08/dT1EFCGO7MgDH/oDV5aUcVZAvDbQ5rFDWQGIwaUFRAUjCsUcRBcjAsUURBSjCsUMRAODAsUERAODG0UdhBJDA0UVhBJDG0UNhANDA0UFhANDGkUYpBLDAkUYpALDGkULJBasCQQMkCqQmDGyUZpEYMTpQkkJoxuFCiQVrA4ECJAmkJoxRlF6RFjBKUTZCWMXJRVkF6wMhBCSaqesJAFEpzHKGLOSDMBY0QI6Y8FmUBQhNdFt7lRqYf+S7ubuiCh4IxIcpjCOVsy9CER7oBb3xxSSTod1H2YpxB9iZ2oUFBbMU6gWxN6AnCj2UtZneG3MFk3FddbhMfwvUDZwoaHH4B+xHVOFecBB4AAAAASUVORK5CYII=" width="34" height="32" alt="닫기 버튼 아이콘">
@@ -116,21 +186,6 @@ if(session.getAttribute("sId") == null) {
 											<img class="timeIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAuRJREFUWAnFV01rE1EUzUwSMWATENpFRNyIi0YI+eiui4LoogWFgkvBH6Dgpip+dONKgivdC3XlpkWELkTQRVw1H4QwWQmhLrKwq1IwxHyM54zvDck4mc6bTO3AY97MO/eeM/e9d+c+LeLzqlQq8Wg0ujIajW6ZprkIs7SmaRfQN9HvsOG5pev6h+Fw+LVYLPb9uNaOAzUajYXBYPAcPHeATR2HF+OHEPMuFou9yGazP71spgowDONMt9t9BOMNtDkvJx5jRxgrJRKJl5lM5rcbzlVArVabR6i3YbDsZhTgXRlTs57P5w+ctv8IAPkiwr2LdskJnuUZU7KPtgoRrXE/EwL45SDeC5tcEgoRS+OR0OUg55xhPyly8tA3OcgleW0BYsEpzTnm9THaknTm874suCy4JYBbDU9c7UoXvugzwllRMvoL3hCcEUsA9zneB91qAfgjc4IzojPD4UuYZP7rRU5y60yvYPab4cIUmSK3ztweplcVX+TWEYqMilGYWHJzEabDdKroK60jO52aAHLbiUhReShwTIHJNcBiYqYLX/IxoIMOIxBYANLweRIXCoWb2FJrEPJdUUiHa8BQNLLh2EY7+IM+a7fbZ3O53G4ymbwKf08B+GWDPDrAtrR6vX4dNdwnD5yfoR9w9hCReE9ws9m82Ov1XqF728sYUbuhMR0CxEoljGz4DdPyQP6gqtXqXayxt1NEHOL9vFWQAPgawHtTgEqvEQm4Mrcg5An6VxDdL24OMPYGEbtvCeCvsd/vcwGF+UdkZRyFmHMuAo7i8fhlVsxWHhClc8kFOMur1BRy+izJct1ORCydMVCehdGnbVlwWXBbAOt2zNs6wrbv05EyjL7JMX5GsAXQG6tVgFZPQgR90vd4RUzOCQFCRAtAFpphTkeZPkE+cSZwFSBEHGCerqG/icbjVdCLtpv05fxy6dDahvLB7X5qh1OnGMfxnFUUj+dWLYHtJo/nBhaZ0vH8D6NELRJSWvu9AAAAAElFTkSuQmCC" width="16" height="16" alt="상품 상태 아이콘">
 											<!-- 시간 -->
 											상품 등록일 : ${itemDetail.get('item_date')}
-	<%-- 										<c:set var="b_time" value="${itemDetail.get('item_date')}" /> --%>
-	<%-- 										<c:set var="time" --%>
-	<%-- 											value="${ b_time > (60 * 24) ? Math.round( b_time / (60 * 24) ) : ( b_time > 60 ? Math.round( b_time / 60 ) : b_time ) }" /> --%>
-									
-	<%-- 										<c:if test="${60 > b_time }"> --%>
-	<%-- 											<c:set var="unit" value="분 전" /> --%>
-	<%-- 										</c:if> --%>
-	<%-- 										<c:if test="${ b_time > 60 }"> --%>
-	<%-- 											<c:set var="unit" value="시간 전" /> --%>
-	<%-- 										</c:if> --%>
-	<%-- 										<c:if test="${ b_time > (60 * 24) }"> --%>
-	<%-- 											<c:set var="unit" value="일 전" /> --%>
-	<%-- 										</c:if> --%>
-	<%-- 										<div id="product_logtime"> ${time}${unit}</div>  --%>
-											
 										</div>
 										<div class="detail-info--topL-item">
 											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
@@ -204,143 +259,6 @@ if(session.getAttribute("sId") == null) {
 
 <!-- </div> -->
 <!-- </div> -->
-
-
-<script>
-// 슬라이더 관련
-var slideIndex = 0; // slide index
-function currentSlide(n) {
-	  slideIndex = n;
-	  showSlides(slideIndex);
-	}
-	
-function moveSlides(n) { // Next/previous controls
-  slideIndex = slideIndex + n
-  showSlides(slideIndex);
-}
-function showSlides(n) {
-    var slides = document.getElementsByClassName("swiper-slide");
-    var dots = document.getElementsByClassName("dot");
-    var size = slides.length;
-    if ((n+1) > size) {
-      slideIndex = 0; n = 0;
-    }else if (n < 0) {
-      slideIndex = (size-1);
-      n = (size-1);
-    }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-	
-    slides[n].style.display = "block";
-    dots[n].className += " active";
-  }
-  
-  
-  // 수량버튼 관련
-function fnCalCount(type, ths){
-    var $input = $(ths).parents("td").find("input[name='pop_out']");
-    var tCount = Number($input.val());
-    var tEqCount = Number($(ths).parents("tr").find("td.bseq_ea").html());
-    
-    if(type=='p'){
-        if(tCount < tEqCount) $input.val(Number(tCount)+1);
-        
-    }else{
-        if(tCount >0) $input.val(Number(tCount)-1);    
-        }
-}
-  
-  
-  // 확대버튼
-  
-$('.dtailImg_prodName').text(dto.product_subject);
-
-$.each(product_img, function(index, items){
-	if(items.product_img != ''){
-		if(items.product_img == null){
-			return false;
-		}else {
-			// ====================== 스와이퍼 ======================
-			$('.swiper-wrapper').append($('<div/>', {
-				class: 'swiper-slide'
-			}).append($('<img/>',{
-				src: '/market/storage/' + items.product_img,
-				alt: '상세 상품 이미지',
-				id:'product_img'+index
-			})))
-			
-			// 첫 장 빼고 처음엔 display:none
-			if(index != 0){
-				$('#product_img'+index).parent().css('display','none');
-				$('#product_img0').parent().css('display','block');
-			}
-			
-			// 슬라이더 버튼 dot
-			$('.paginationBtn').append($('<span/>', {
-				class: 'dot',
-				onclick: 'currentSlide('+(index)+')'
-			}))
-			
-			// 첫 장만 도트 검정
-			if( index == 0){
-				$('.dot').attr('class', 'dot active');
-			}
-			
-			// ====================== 확대 버튼 - 상세 이미지 ======================
-			$('.detailImgList').append($('<div/>', {
-				class: 'detailImg_wrap',
-			}).append($('<img/>', {
-				src: '/market/storage/' + items.product_img,
-				alt: '리뷰 이미지'
-			})).append($('<div/>', {
-				class: 'detailImg_watermark'
-			})))
-			
-			// 버튼
-			$('.detailImg_buttonWrap').append($('<button/>', {
-				class: 'detailImg_button'+index
-			}));
-			
-			// 첫번째 버튼은 흰색
-			if(index==0){
-				$('.detailImg_button'+index).css('opacity', '0.6');
-			}
-
-			$('.detailImg_button'+index).click(function(){
-				$(this).css('opacity', '0.6');
-				$(this).prevAll().css('opacity', '0.2');
-				$(this).nextAll().css('opacity', '0.2');
-				
-				
-				$('.detailImgList').attr('class', 'detailImgList_'+index);
-				
-				if(index==0){
-					for(var i=1; i<=4; i++){
-						$('.detailImgList_'+i).attr('class', 'detailImgList_0');
-					}
-				}else if(index==1){
-					$('.detailImgList_0, .detailImgList_2, .detailImgList_3, .detailImgList_4').attr('class', 'detailImgList_1');
-				}else if(index==2){
-					$('.detailImgList_0, .detailImgList_1, .detailImgList_3, .detailImgList_4').attr('class', 'detailImgList_2');
-				}else if(index==3){
-					$('.detailImgList_0, .detailImgList_1, .detailImgList_2, .detailImgList_4').attr('class', 'detailImgList_3');
-				}else if(index==4){
-					for(var i=0; i<=3; i++){
-						$('.detailImgList_'+i).attr('class', 'detailImgList_4');
-					}
-				}// if-else
-				
-			});// 버튼 클릭 
-		}//else
-		
-		
-	}
-  
-</script>
 </body>
 </html>
 

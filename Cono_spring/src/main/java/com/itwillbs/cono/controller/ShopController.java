@@ -132,9 +132,6 @@ public class ShopController {
 		pageInfo.setStartRow(startRow);
 		pageInfo.setListLimit(listLimit);
 		
-		System.out.println(startRow);
-		System.out.println(listLimit);
-		
 		List<HashMap<String, String>> itemList = service.selectItemList(member_id, keyword, sell_status, pageInfo);
 		System.out.println(itemList);
 		model.addAttribute("itemList", itemList);
