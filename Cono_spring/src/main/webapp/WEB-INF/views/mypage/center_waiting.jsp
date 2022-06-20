@@ -162,8 +162,8 @@ p {
 				<p class="name">${card.item_title }</p>
 				<p class="region">${card.item_region }</p>
 				<p class="price">${card.item_price }원</p>
-			</a>
 			<button value="${card.item_idx}">취소하기${card.item_idx}</button>
+			</a>
 		</div>
 	</c:forEach>
 

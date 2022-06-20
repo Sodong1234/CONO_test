@@ -24,7 +24,7 @@
 						</label>
 					</div>
 					<div class="area-txt">
-						<a><span>아기손</span></a> <strong>양윤석</strong>
+						<a><span>아기손</span></a> <strong>${member_nick }</strong>
 					</div>
 				</div>
 				<div style="background: #f5f5f5; text-align: center; display: none;"></div>

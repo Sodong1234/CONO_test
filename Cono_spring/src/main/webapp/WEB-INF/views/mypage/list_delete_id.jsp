@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,15 +39,24 @@
 						</div>
 						<div class="deleteMember__box__comfirm">
 							<label class="deleteMember__box__comfirm-check">
-								<h5><strong>현재 보유 CONO 코인 : ${coin_total } c</strong></h5><br>
-								<input class="deleteMember__box__comfirm-check-input" type="checkbox" data-type="checked" data-err-target="alert" data-err-msg="탈퇴 처리사항 안내 확인에 동의하세요.">
+							
+						<c:choose>
+							<c:when test="${coin_total eq null }">
+								<h5><strong>현재 보유 CONO 코인 : 0c</strong></h5><br>
+							</c:when>
+							<c:otherwise>
+								<h5><strong>현재 보유 CONO 코인 : ${coin_total }c</strong></h5><br>
+							</c:otherwise>
+						</c:choose>	
+						
+								<input class="deleteMember__box__comfirm-check-input" type="checkbox" data-type="checked" required="required">
 								<span>상기 CONO 회원탈퇴 시 처리사항 안내를 확인하였음에 동의합니다.</span>
 							</label>
 						</div>
 					</div>
 					<form action="delete_id" class="deleteMember__check-user">
 						<p class="deleteMember__check-user-msg" style="margin = 0 0 10px;">
-						<strong>보안을 위해 회원님의 이름과 계정 이메일 및 비밀번호를 확인 합니다.</strong></p>
+						<strong>보안을 위해 회원님의 아이디와 비밀번호를 확인 합니다.</strong></p>
 						<label>
 							<span>아이디 : </span>
 							<input class="deleteMember__check-user-name" name="id" type="text" data-err-target="alert" data-err-msg="아이디를 입력하세요.">
@@ -62,6 +72,8 @@
 			</div>
 		</div>
 	</section>
+	
+	
 	
 </body>
 </html>

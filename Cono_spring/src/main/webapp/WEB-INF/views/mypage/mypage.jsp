@@ -94,9 +94,6 @@
 			        					<div class="my-review__writable__date">수량 : ${item.ord_quantity }개</div>
 			        				</div>
 			        				<div class="my-review__writable__btn-wrap">
-			        					<button class="my-review__writable__write-btn js_reviewWritableWriteBtn" type="button" onclick="list_reviewWrite_form.jsp">
-			        					<span class="my-review__writable__write-btn-text">리뷰 작성하기</span>
-			        					</button>
 			        				</div>
 		        			</li>
 
