@@ -1,3 +1,5 @@
+/* 폰트 */
+
 @font-face {
     font-family: 'IBMPlexSansKR-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
@@ -17,15 +19,54 @@
 	
 }
 
+
+
+
+
+
 h2{
 	
 	font-family:Cafe24Ohsquare;
 	
 }
 
-li {
-	list-style: none;
+/* 리스트 스타일 */
+
+.circle{
+    counter-reset: list-counter;
+    float:left;
+    width: 120%;
+	height: 720px;
+	position: relative;
+	top: 0px;
+	overflow: auto;
+
 }
+.circle li{
+    margin: 1.5em 0;
+    list-style: none;    
+}
+.circle li:before{
+    content: counter(list-counter);
+    counter-increment: list-counter;
+    width: 1.5em;
+    height: 1.5em;
+/*     padding: .3em; */
+/*     margin-right: 1em; */
+    border-radius: 50%;
+    border: .25em solid #ccc;
+    background: #87CEFA;
+    color: 		#E6E6FA;
+    font-family: Cafe24Ohsquare;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    
+}
+
+/* li { */
+/* 	list-style: none; */
+/* } */
 a {
 	text-decoration: none;
 }
@@ -33,16 +74,17 @@ a {
 	text-decoration: none;
 }
 .box {
-	width: 1055px;
-	height: 786px;
+	width: 1080px;
+	height: 986px;
 	margin: auto;
 	margin-left: 80px;
 }
 .msg_container {
-	width: 342px;
+	width: 542px;
 	height: 786px;
-	background: #f8f8f8;
-	margin: auto;
+	background: #FFFAFA;
+	margin : 0;
+	
 }
 .msg_title {
 	align-items: center;
@@ -125,16 +167,16 @@ a {
 }
 .msg_board {
 	display: inline-block;
-	width: 713px;
-	height: 786px;
+	width: 913px;
+	height: 720px;
 	background-color: #E8F5FF;
 	position: relative;
 	top: -786px;
 	left: 698px;
 }
 .board_head {
-	width: 710px;
-	height: 80px;
+	width: 706px;
+	height: 70px;
 	display: block;
 	position: relative;
 }
@@ -149,10 +191,11 @@ a {
 .msgbtn {
 	display: inline-block;
 	margin-top: 20p;
+	visibility: hidden;
 }
 .msg_area {
 	width: 711px;
-	height: 611px;
+	height: 511px;
 	background-color: #E0EBFF;
 	overflow: auto;
 }

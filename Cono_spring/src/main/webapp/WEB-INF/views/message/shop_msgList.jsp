@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="resources/js/jquery-3.6.0.js"></script>
-<link href="resources/css/msg.css" rel="stylesheet" />
+<script src="${path}/resources/js/jquery-3.6.0.js"></script>
+<link href="${path}/resources/css/msg.css" rel="stylesheet" />
 
 <script type="text/javascript">
 	// 헤더 클릭시 - 성공
@@ -111,7 +111,7 @@
 		</div>
 		
 <!-- 		room 리스트 -->
-		<ul class="msg_lists">
+		<ul class="circle">
 			<c:forEach var="msgH" items="${msgList }">
 				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.member_id }','${msgH.member_nick }','${msgH.img_name }','${msgH.item_title }')">
 <!-- 					room / shopname 저장  -->
