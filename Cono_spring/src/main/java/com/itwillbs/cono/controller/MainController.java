@@ -208,7 +208,7 @@ public class MainController {
 		System.out.println(strHashedData);
 		return strHashedData;
 	}
-	
+// -===================================== 모든 검색 ================================
 	// 검색
 	@RequestMapping(value = "search_item", method = RequestMethod.GET)
 	public String search_item(String searchText, Model model, HttpSession session) {
@@ -263,13 +263,25 @@ public class MainController {
 		return "search/search_item";
 	}
 	
-	// 무한 스크롤
-//	@RequestMapping(value="/infiniteScrollDown", method = RequestMethod.POST)
-//	public @ResponseBody List<HashMap<String, String>> infiniteScrollDownPOST(@RequestBody HashMap<String, String> card ) {
-//			card.keySet();
-//			Integer item_idxTostart = card.;
-//			return service.infiniteScrollDown(item_idxTostart);
-//	}
+	@RequestMapping(value = "search_price", method = RequestMethod.GET)
+	public String search_price(Model model, HttpSession session, @RequestParam String checkPrice) {
+		String sId = (String)session.getAttribute("sId");
+		List<HashMap<String, String>>  priceList = service.getPriceList(checkPrice);
+		
+		List<HashMap<String, String>> getRecent = service.getRecent(sId);
+		model.addAttribute("getRecent", getRecent);
+		return "search/search_item";
+	}
+	
+	// -===================================== 모든 검색 ================================
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	// 실시간 인기순위 - 김혜은

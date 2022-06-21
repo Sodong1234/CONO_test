@@ -26,6 +26,8 @@ public interface MainMapper {
 	public List<ItemDTO> selectHotItemList();
 	// 최근 상품 조회
 	public List<HashMap<String, String>> selectRecent(String sId);
+	// 가격대별 조회
+	List<HashMap<String, String>> selectPriceList(String checkPrice);
 
 
 }

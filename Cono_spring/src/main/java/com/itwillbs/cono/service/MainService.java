@@ -175,5 +175,9 @@ public class MainService {
           }
           return resultMap;
       }
+
+	public List<HashMap<String, String>> getPriceList(String checkPrice) {
+		return mapper.selectPriceList(checkPrice);
+	}
 	
 }

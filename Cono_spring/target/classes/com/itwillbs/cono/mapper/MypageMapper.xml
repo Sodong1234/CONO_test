@@ -95,7 +95,7 @@
 		VALUES (1+(	SELECT COUNT(c.coin_idx) FROM coin c WHERE c.member_id = #{sId}),
 				#{sId}, 
 				#{payment_value}, 
-				'0', 
+				'', 
 				(#{payment_value} + #{balance}), 
 				date_format(now(), '%Y%m%d%H%i%S'))
 	</insert>
@@ -270,6 +270,11 @@
 				
 	</select>
 	
+<!-- 	판매자 검색 -->
+	<select id="selectShop_idx" resultType="string">
+		SELECT shop_idx FROM item WHERE item_idx = #{item_idx}
+	</select>
+	
 	<!-- 판매자한테 safe에 저장된 코인 입금 -->
 	<insert id="insertCoinSeller">
 		INSERT INTO coin
@@ -277,10 +282,10 @@
 				(SELECT *
 			      FROM (SELECT IFNULL(COUNT(coin_idx)+1,'1') 
 			      		  FROM coin) temp)
-			   ,#{sId}
+			   ,#{shop_idx}
 			   ,#{safe_coin}
 			   ,''
-			   ,#{coin_total}-#{safe_coin}
+			   ,#{coin_total}+#{safe_coin}
 			   ,date_format(now(), '%Y%m%d%H%i%S')
 			   )
 			   

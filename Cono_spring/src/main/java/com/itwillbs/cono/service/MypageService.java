@@ -146,8 +146,8 @@ public class MypageService {
 	}
 
 	// 판매자한테 safe에 저장된 코인 입금
-	public void insertCoinSeller(String sId, String item_idx, String ord_date, String safe_coin, String coin_total) {
-		mapper.insertCoinSeller(sId, item_idx, ord_date, safe_coin, coin_total);
+	public void insertCoinSeller(String shop_idx, String item_idx, String ord_date, String safe_coin, String coin_total) {
+		mapper.insertCoinSeller(item_idx, ord_date, shop_idx, safe_coin, coin_total);
 	}
 	
 	public boolean modifySafeStatus(String sId, String item_idx, String ord_date) {
@@ -181,6 +181,10 @@ public class MypageService {
 	// 취소신청
 	public int setCancelReq(CancelDTO dto) {
 		return mapper.insertCancelReq(dto);
+	}
+
+	public String selectShop_idx(String item_idx) {
+		return mapper.selectShop_idx(item_idx);
 	}
 	
 
