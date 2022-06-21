@@ -298,6 +298,8 @@ public class ShopService {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String reName = shop.getShop_idx() + "_" + sdf.format(System.currentTimeMillis()) + ext;	// => 1_20200202.png
 		
+		System.out.println(f.isEmpty());
+		
 		// 전달 받은 파일이 없을 경우
 		if(f.isEmpty()) {
 			// 원본 이미지가 있을 경우
@@ -305,7 +307,7 @@ public class ShopService {
 				shop.setShop_img(null);
 				mapper.updateMyshop(shop);
 				
-				File file = new File(saveDir + "/" + orgShopImg.get("shop_img"));
+				File file = new File(saveDir + "\\" + orgShopImg.get("shop_img"));
 	    		if(file.exists()) {	// 원본 이미지 삭제
 	    			file.delete();
 	    		}
@@ -317,7 +319,8 @@ public class ShopService {
 			
 			// 원본 이미지가 있을 경우
 			if(orgShopImg.get("shop_img") != null) {
-				File file = new File(saveDir + "/" + orgShopImg.get("shop_img"));
+				File file = new File(saveDir + "\\" + orgShopImg.get("shop_img"));
+				System.out.println(saveDir + "\\" + orgShopImg.get("shop_img"));
 	    		if(file.exists()) {
 	    			file.delete(); // 원본 이미지 파일 삭제
 	    		}

@@ -361,6 +361,10 @@ public class ShopController {
 		
 		member.setMember_id(session.getAttribute("sId").toString());
 		
+		String algorithm = "SHA-256";
+		String result = hashing(algorithm, member.getMember_pass());
+		member.setMember_pass(result);
+		
 		MemberDTO memberResult = service.checkMember(member);
 		
 		if(memberResult == null) {
