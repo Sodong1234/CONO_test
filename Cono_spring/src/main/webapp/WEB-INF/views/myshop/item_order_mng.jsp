@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -151,7 +152,8 @@ h3 {
 					      <td onclick="location.href='ItemDetail.shop?item_idx=${item.get('item_idx') }'"${item.get("item_title") }>${ord.get('item_title') }</td>
 					      <td>${ord.get('ord_quantity') }</td>
 					      <td>${ord.get('member_id') }</td>
-					      <td>${ord.get('item_price') }</td>
+<%-- 					      <td>${ord.get('item_price') }</td> --%>
+ <td><fmt:formatNumber value="${ord.get('item_price') }" pattern="\#,###.##"/></td>
 					      <td>${ord.get('ord_reqContent') }</td>
 					    </tr>
 					    </c:forEach>
@@ -210,7 +212,8 @@ h3 {
 									<td>${ord.get('item_title') }</td>
 									<%--   <td>${ord.get('ord_quantity') }</td> --%>
 									<td>${ord.get('member_id') }</td>
-									<td>${ord.get('item_price') }</td>
+<%-- 									<td>${ord.get('item_price') }</td> --%>
+				<td><fmt:formatNumber value="${ord.get('item_price') }" pattern="\#,###.##"/></td>
 									<td>${ord.get('ord_reqContent') }</td>
 								</tr>
 							</c:forEach>

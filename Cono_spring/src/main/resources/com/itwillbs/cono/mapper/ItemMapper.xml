@@ -53,7 +53,8 @@
 			      		  FROM ord) temp)
 			   ,#{item_idx}
 			   ,#{member_id}
-			   ,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+<!-- 			   ,DATE_FORMAT(now(), "%Y%m%d%H%i%s") -->
+				,DATE_FORMAT(now(), "%Y-%m%d-%H%i")
 			   ,#{ord_reqContent}
 			   ,#{ord_quantity}
 			   ,'N'
@@ -98,7 +99,8 @@
 				,'0'	<!-- add -->	
 				,#{item_price} * #{ord.ord_quantity}		<!-- use --> 
 				,#{coin_total}
-				,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+<!-- 				,DATE_FORMAT(now(), "%Y%m%d%H%i%s") -->
+				,DATE_FORMAT(now(), "%Y-%m%d-%H%i")
 			   )
 	</insert>
 	
@@ -197,11 +199,14 @@
    <insert id="insertRecentView">
       <if test="existRecent == 0">
          INSERT INTO recentView 
-             VALUES (#{member_id}, #{item_idx} ,DATE_FORMAT(now(), "%Y%m%d%H%i%s"))
+             VALUES (#{member_id}, #{item_idx} 
+<!--              ,DATE_FORMAT(now(), "%Y%m%d%H%i%s") -->
+			,DATE_FORMAT(now(), "%Y-%m%d-%H%i")
+             )
       </if>
       <if test="existRecent != 0">
          UPDATE recentView 
-            SET viewTime = DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+            SET viewTime = DATE_FORMAT(now(), "%Y-%m%d-%H%i")
           WHERE member_id = #{member_id} AND item_idx = #{item_idx}
       </if>
    </insert>

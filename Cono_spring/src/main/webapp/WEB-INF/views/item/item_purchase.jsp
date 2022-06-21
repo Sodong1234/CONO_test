@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- <!DOCTYPE html> -->
 <html>
@@ -38,7 +39,8 @@
 					onclick="location.href='itemDetail?item_idx=${itemDetail.item_idx}'">${itemDetail.item_title }</td>
 				<td><textarea name="ord_reqContent" rows="" cols="" placeholder="요구사항 작성"></textarea></td>
 				<td>${ord_quantity }</td>
-				<td>${itemDetail.item_price }</td>
+<%-- 				<td>${itemDetail.item_price }</td> --%>
+				<td><fmt:formatNumber value="${itemDetail.item_price }" pattern="\#,###.##"/></td>
 			</tr>
 
 		</table>

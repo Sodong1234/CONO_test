@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 if(session.getAttribute("sId") == null) {
 	response.sendRedirect("MemberLogin.func");
@@ -140,7 +141,8 @@ String sell_status = request.getParameter("sell_status");
 								</c:choose>
 							</td>
 							<td onclick="location.href='ItemDetail.shop?item_idx=${item.get('item_idx') }'">${item.get("item_title") }</td>
-							<td>${item.get("item_price") }</td>
+<%-- 							<td>${item.get("item_price") }</td> --%>
+<td><fmt:formatNumber value="${item.item_price }"pattern="#,###.##"/></td>
 							<td>${item.get("item_date") }</td>
 							<td>${item.get("item_status") }</td>
 							<td>${item.get("COUNT(w.member_id)") }</td>
