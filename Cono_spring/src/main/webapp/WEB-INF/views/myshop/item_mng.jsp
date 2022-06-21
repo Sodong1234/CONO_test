@@ -122,7 +122,7 @@ String sell_status = request.getParameter("sell_status");
 						<th width="100px">판매 상태</th>
 						<th width="100px">찜</th>
 						<th width="100px">조회수</th>
-						<th width="100px">숨김</th>
+<!-- 						<th width="100px">숨김</th> -->
 					</tr>
 					
 					<!--수정이 가능한 (판매자가 보는) 상품 상세 페이지로 이동 -->
@@ -145,8 +145,8 @@ String sell_status = request.getParameter("sell_status");
 							<td>${item.get("item_status") }</td>
 							<td>${item.get("COUNT(w.member_id)") }</td>
 							<td>${item.get("item_readCnt") }</td>
-							<td><input type="checkbox" name="item_hide" class="item_hide" <c:if test="${item.get('item_hide') eq 'Y'}"> checked="checked"</c:if>
-							     onchange="location.href='ItemHide.shop?item_idx=${item.get('item_idx') }&item_hide=${item.get('item_hide') }'"></td>
+<%-- 							<td><input type="checkbox" name="item_hide" class="item_hide" <c:if test="${item.get('item_hide') eq 'Y'}"> checked="checked"</c:if> --%>
+<%-- 							     onchange="location.href='ItemHide.shop?item_idx=${item.get('item_idx') }&item_hide=${item.get('item_hide') }'"></td> --%>
 						</tr>
 					</c:forEach>
 				</table>
