@@ -311,7 +311,7 @@ input[type="date"].after::-webkit-calendar-picker-indicator{
 									<div class="col-md-6 mb-3">
 										<label for="passworid">비밀번호</label>
 										<input type="password" class="form-control" 
-										name="pass" id="pass" placeholder="영문 + 숫자 + 특수문자 8자 이상" 
+										name="member_pass" id="pass" placeholder="영문 + 숫자 + 특수문자 8자 이상" 
 										required onkeyup="checkPass(this.value)">
 										<span id="checkPassResult"></span><br>
 									</div>
