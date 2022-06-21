@@ -36,7 +36,7 @@
 				</td>
 				<td
 					onclick="location.href='itemDetail?item_idx=${itemDetail.item_idx}'">${itemDetail.item_title }</td>
-				<td><textarea name="ord_reqContent" rows="" cols="">요구사항 적으세여</textarea></td>
+				<td><textarea name="ord_reqContent" rows="" cols="" placeholder="요구사항 작성"></textarea></td>
 				<td>${ord_quantity }</td>
 				<td>${itemDetail.item_price }</td>
 			</tr>

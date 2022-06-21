@@ -89,9 +89,11 @@
 	<insert id="insertCoin">
 		INSERT INTO coin
 		VALUES (
-			   (SELECT *
-			      FROM (SELECT IFNULL(MAX(coin_idx)+1,'1')
-			      		  FROM coin) temp)
+			   (SELECT * FROM
+			   (SELECT coin_idx+1
+				  FROM coin
+				 ORDER BY coin_idx+1 DESC
+				 LIMIT 1) AS A)
 				,#{ord.member_id}	
 				,'0'	<!-- add -->	
 				,#{item_price} * #{ord.ord_quantity}		<!-- use --> 
@@ -111,8 +113,8 @@
 	<select id="selectCoinTotal" resultType="java.lang.String">
 		SELECT coin_total
 		  FROM coin
-		 WHERE coin_idx = (SELECT * 
-		 			         FROM (SELECT max(coin_idx) FROM coin WHERE member_id=#{member_id}) AS a) 
+		 WHERE coin_date = (SELECT * 
+		 			         FROM (SELECT max(coin_date) FROM coin WHERE member_id=#{member_id}) AS a)
 	</select>
 	
 	<!-- 구매자 정보 가져오기 -->
