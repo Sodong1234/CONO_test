@@ -56,7 +56,7 @@
 					<input id="prodno" type="hidden" data-no="78">
 					<!-- 이미지 리스트 -->
 					<div class="swiper-container detail-info__image__list">
-						<span> 상품번호 : ${itemDetail.get('item_idx')} </span>
+<%-- 						<span> 상품번호 : ${itemDetail.get('item_idx')} </span> --%>
 						<div class="swiper-wrapper">
 							<c:forEach items="${imgList }" var="item">
 								<c:choose>
@@ -119,7 +119,7 @@
 								<div class="detail-info__text-price__div"></div>
 								<!-- 상품가격 -->
 								<div class="detail-info__price" id="product_price" style="font-family:'Cafe24Ohsquare'; ">
-									상품명 : ${itemDetail.get('item_title')}
+									${itemDetail.get('item_title')}
 									<!-- 찜 표시 -->
 									<c:choose>
 										<c:when test="${wish eq null }">
@@ -147,7 +147,7 @@
 									</c:choose>
 								</div>
 <%-- 								<h3 style="font-family:'Cafe24Ohsquare';">가격 : ${itemDetail.get('item_price')}</h3> --%>
-								<h3 style="font-family:'Cafe24Ohsquare';">가격 :<fmt:formatNumber value="${itemDetail.get('item_price')}" pattern="\#,###.##"/></h3>
+								<h3 style="font-family:'Cafe24Ohsquare';"> <fmt:formatNumber value="${itemDetail.get('item_price')}" pattern="\#,###.##"/></h3>
 								<table>
 								<tr style="text-align: center;">
 									<td>현재 수량 :&nbsp;</td>
@@ -178,9 +178,9 @@
 							
 							<br>
 							
-							 판매자 : ${itemDetail.get('shop_name') } 
+							<div style="font-weight: bold;" > 판매자 : ${itemDetail.get('shop_name') } </div> 
 							
-							<br>
+							
 							<br>
 							
 							<form action="Myshop.shop" method="post">
