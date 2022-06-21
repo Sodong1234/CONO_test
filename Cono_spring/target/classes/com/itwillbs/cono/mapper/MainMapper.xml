@@ -70,16 +70,45 @@
 		LIMIT 0,3
 	</select>
 	
-<!-- 	지역별 검색 -->
-	
 	
 <!-- 	가격대 조회 -->
 	<select id="selectPriceList" resultType="java.util.HashMap">
 		SELECT it.item_idx, im.img_name, it.item_title, it.item_region, it.item_price, it.item_date
 		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx
 					 LEFT OUTER JOIN category cg ON cg.item_idx = it.item_idx
-		WHERE im.item_idx = it.item_idx AND im.img_idx = '1' AND cg.category_big = #{cgr}
-		ORDER BY it.item_date DESC
+		WHERE 1=1 AND im.item_idx = it.item_idx AND im.img_idx = '1'
+<!-- 		2 만원 이하 -->
+		<if test='checkPrice.equals("0")'>
+			AND 20000 >= it.item_price
+			ORDER BY it.item_date DESC
+		</if>
+<!-- 		2 ~ 5 만원 -->
+		<if test='checkPrice.equals("1")'>
+			AND (50000 >= it.item_price OR it.item_price >= 20000)
+			ORDER BY it.item_date DESC
+		</if>
+<!-- 		5~10 -->
+		<if test='checkPrice.equals("2")'>
+			AND (100000 >= it.item_price OR it.item_price >= 50000)
+			ORDER BY it.item_date DESC
+		</if>
+<!-- 		10 이상 -->
+		<if test='checkPrice.equals("3")'>
+			AND it.item_price >= 100000
+			ORDER BY it.item_date DESC
+		</if>
+<!-- 		가격 낮은 순 -->
+		<if test='checkPrice.equals("4")'>
+			ORDER BY it.item_price DESC
+		</if>
+<!-- 		가격 높은 순 -->
+		<if test='checkPrice.equals("5")'>
+			ORDER BY it.item_price ASC
+		</if>
+<!-- 		최신 정렬 -->
+		<if test='checkPrice.equals("6")'>
+			ORDER BY it.item_date ASC
+		</if>
 	</select>
 	<!-- 	==================================================================아이템 정렬 끝 -->
 	
