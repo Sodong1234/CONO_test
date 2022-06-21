@@ -15,6 +15,33 @@ public class AdminService2 {
 	@Autowired
 	private AdminMapper2 mapper;
 	
+	// ------------------- (관리자) 대시보드 ------------------------------------------
+	// 전체 회원
+	public int getDashMemberCount() {
+		
+		return mapper.selectDashMember();
+	}
+	
+	// 새로운 회원
+	public int getDashNewMemberCount() {
+		
+		return mapper.selectDashNewMember();
+	}
+	
+	// 답변대기
+
+	public int getQnaWaitCount() {
+		
+		return mapper.selectDashQnaWait();
+	}
+	
+	// 신고된 글
+	public int getDashReportCount() {
+		
+		return mapper.selectDashReport();
+	}
+	
+	
 	// ------------------- (관리자) 회원 정보 조회 - 김혜은 ---------------------------
 	// 회원 수
 	public Integer getMemberListCount(String searchType, String search) {
@@ -83,6 +110,12 @@ public class AdminService2 {
 		
 		return mapper.updateDealCancel(item_idx, safe_status);
 	}
+
+
+
+
+
+	
 
 	
 

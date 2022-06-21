@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.itwillbs.cono.mapper.AdminMapper2">
+
+<!-- 대시보드 -->
+<!-- 전체회원 -->
+	<select id="selectDashMember" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM member m
+		LEFT OUTER JOIN shop s
+			ON m.member_id = s.member_id
+		WHERE m.member_status = 'Y'
+	</select>
+	
+<!-- 새로운 회원 -->
+	<select id="selectDashNewMember" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM member
+		WHERE member_date = CURRENT_DATE()
+			AND member_status = 'Y'
+	</select>
+	
+<!-- 답변대기 -->
+	<select id="selectDashQnaWait" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM qna
+		WHERE qna_status = '답변대기'
+	</select>
+	
+<!-- 신고된 글 -->
+	<select id="selectDashReport" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM report
+		WHERE report_status = '처리중'
+	</select>
 	
 <!-- 회원 수 조회(검색 기능 추가) -->
 	<select id="selectMemberListCount" resultType="java.lang.Integer">

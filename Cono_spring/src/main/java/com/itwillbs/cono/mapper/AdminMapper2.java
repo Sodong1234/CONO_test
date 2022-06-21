@@ -11,6 +11,21 @@ import com.itwillbs.cono.vo.PageInfo;
 
 public interface AdminMapper2 {
 	
+
+	// ------------------- (관리자) 대시보드 ------------------------------------------
+	// 전체 회원
+	public int selectDashMember();
+	
+	// 새로운 회원
+	public int selectDashNewMember();
+	
+	// 답변 대기
+	public int selectDashQnaWait();
+
+	// 신고된 글
+	public int selectDashReport();
+
+
 	// ------------------- (관리자) 회원 정보 조회 - 김혜은 ---------------------------
 	// 회원 수
 	public Integer selectMemberListCount(@Param("searchType") String searchType, @Param("search") String search);
@@ -46,6 +61,7 @@ public interface AdminMapper2 {
 	// 거래취소
 	public int updateDealCancel(@Param("item_idx")String item_idx, @Param("safe_status") String safe_status);
 
+	
 
 	
 

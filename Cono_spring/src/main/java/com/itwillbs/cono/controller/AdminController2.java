@@ -27,8 +27,37 @@ public class AdminController2 {
 	}
 	
 	// ------ 관리자 메인페이지로 이동!
+	// 관리자 대시보드
 	@RequestMapping(value = "/adminMain", method = RequestMethod.GET)
-	public String AdminMain() {
+	public String AdminMain(Model model) {
+		
+		// 전체 회원수
+		int memberCount = service.getDashMemberCount();
+		
+		// 새로운 회원
+		int newMemberCount = service.getDashNewMemberCount();
+		
+		// 진행중인 거래
+		int dealCount = service.getAdminDealListCount();
+		
+		// 거래취소 요청
+		int dealCancel = service.getAdminDealCancelListCount();
+		
+		// 답변대기
+		int qnaWaitCount = service.getQnaWaitCount();
+		
+		// 신고된 글
+		int reportCount = service.getDashReportCount();
+
+		// 오늘 등록된 글
+		
+		model.addAttribute("memberCount", memberCount);
+		model.addAttribute("newMemberCount", newMemberCount);
+		model.addAttribute("dealCount", dealCount);
+		model.addAttribute("dealCancel", dealCancel);
+		model.addAttribute("qnaWaitCount", qnaWaitCount);
+		model.addAttribute("reportCount", reportCount);
+		
 		return "admin_center/main";
 	}
 	
@@ -251,44 +280,44 @@ public class AdminController2 {
 	
 	
 	// ------ 거래 취소 요청 리스트 (관리자) - 김혜은
-		@RequestMapping(value = "/AdminDealCancelList", method = RequestMethod.GET)
-		public String dealCancelList(@RequestParam(defaultValue = "1")int pageNum, Model model) {
-			
-			// 페이징 처리
-			int listLimit = 10;
-			int pageLimit = 5;
-			
-			// 현재 거래 수 조회
-			int listCount = service.getAdminDealCancelListCount();
-			
-			// 거래 목록 조회
-			List<HashMap<String, Object>> cancelList = service.getAdminDealCancelList(pageNum, listLimit);
-			
-			// 페이징 처리를 위한 계산 작업
-			int maxPage = (int) Math.ceil((double) listCount / listLimit);
-			int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
-			int endPage = startPage + pageLimit - 1;
-			if (endPage > maxPage) {
-				endPage = maxPage;
-			}
-			
-			int startRow = (pageNum - 1) * listLimit;
-			
-			// 페이징 처리 정보 저장
-			PageInfo pageInfo = new PageInfo();
-			pageInfo.setPageNum(pageNum);
-			pageInfo.setMaxPage(maxPage);
-			pageInfo.setStartPage(startPage);
-			pageInfo.setEndPage(endPage);
-			pageInfo.setListCount(listCount);
-			pageInfo.setStartRow(startRow);
-			pageInfo.setListLimit(listLimit);
-			
-			model.addAttribute("cancelList", cancelList);
-			model.addAttribute("pageInfo", pageInfo);
-			
-			return "userCenter/admin_deal_Cancel";
+	@RequestMapping(value = "/AdminDealCancelList", method = RequestMethod.GET)
+	public String dealCancelList(@RequestParam(defaultValue = "1")int pageNum, Model model) {
+		
+		// 페이징 처리
+		int listLimit = 10;
+		int pageLimit = 5;
+		
+		// 현재 거래 수 조회
+		int listCount = service.getAdminDealCancelListCount();
+		
+		// 거래 목록 조회
+		List<HashMap<String, Object>> cancelList = service.getAdminDealCancelList(pageNum, listLimit);
+		
+		// 페이징 처리를 위한 계산 작업
+		int maxPage = (int) Math.ceil((double) listCount / listLimit);
+		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		int endPage = startPage + pageLimit - 1;
+		if (endPage > maxPage) {
+			endPage = maxPage;
 		}
+		
+		int startRow = (pageNum - 1) * listLimit;
+		
+		// 페이징 처리 정보 저장
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setPageNum(pageNum);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setListLimit(listLimit);
+		
+		model.addAttribute("cancelList", cancelList);
+		model.addAttribute("pageInfo", pageInfo);
+		
+		return "userCenter/admin_deal_Cancel";
+	}
 	
 	
 	// ------ 거래 취소 (관리자)
@@ -310,22 +339,25 @@ public class AdminController2 {
 	}
 	
 	// ------ 거래 취소 로직 (관리자)
-		@RequestMapping(value = "/AdminDealCancel", method = RequestMethod.POST)
-		public String dealCancelPost(@RequestParam String item_idx, @RequestParam String safe_coin,
-									@RequestParam String safe_status, @RequestParam(defaultValue = "1")int pageNum, Model model) {
-			// 취소 작업 요청
-			int dealCancel = service.dealCancel(item_idx, safe_status);
-			
-			// 실패 시
-			if(dealCancel == 0) {
-				model.addAttribute("msg", "거래취소 실패!");
-				return "fail_back";
-			}
-			
-			model.addAttribute("pageNum", pageNum);
-			
-			return "/AdminDealCancelList";
+	@RequestMapping(value = "/AdminDealCancel", method = RequestMethod.POST)
+	public String dealCancelPost(@RequestParam String item_idx, @RequestParam String safe_coin,
+								@RequestParam String safe_status, @RequestParam(defaultValue = "1")int pageNum, Model model) {
+		// 취소 작업 요청
+		int dealCancel = service.dealCancel(item_idx, safe_status);
+		
+		// 실패 시
+		if(dealCancel == 0) {
+			model.addAttribute("msg", "거래취소 실패!");
+			return "fail_back";
 		}
+		
+		model.addAttribute("pageNum", pageNum);
+		
+		return "/AdminDealCancelList";
+	}
+		
+	//========================================================================================
+	
 	
 	
 }
