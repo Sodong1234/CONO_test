@@ -142,7 +142,7 @@ String sell_status = request.getParameter("sell_status");
 							</td>
 							<td onclick="location.href='ItemDetail.shop?item_idx=${item.get('item_idx') }'">${item.get("item_title") }</td>
 <%-- 							<td>${item.get("item_price") }</td> --%>
-<td><fmt:formatNumber value="${item.item_price }"pattern="#,###.##"/></td>
+<td><fmt:formatNumber value="${item.get('item_price') }" pattern="#,###.##"/></td>
 							<td>${item.get("item_date") }</td>
 							<td>${item.get("item_status") }</td>
 							<td>${item.get("COUNT(w.member_id)") }</td>
