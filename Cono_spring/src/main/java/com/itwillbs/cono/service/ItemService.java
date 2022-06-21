@@ -47,8 +47,8 @@ public class ItemService {
 	}
 	
 	// safe 테이블 insert
-	public void insertSafe(OrdDTO ord, String item_price) {
-		mapper.insertSafe(ord, item_price);
+	public void insertSafe(OrdDTO ord, String item_price, String ord_date) {
+		mapper.insertSafe(ord, item_price, ord_date);
 	}
 	
 	// coin 테이블 insert (구매자)
@@ -132,6 +132,11 @@ public class ItemService {
 	public void increaseReadCount(String item_idx) {
 		mapper.updateReadcount(item_idx);
 		// TODO Auto-generated method stub
+		
+	}
+
+	public String selectOrdDate(OrdDTO ord) {
+		return mapper.selectOrdDate(ord);
 		
 	}
 

@@ -166,6 +166,7 @@ public class MypageController {
 		pageInfo.setStartRow(startRow);
 		pageInfo.setListLimit(listLimit);
 		List<HashMap<String, String>> purchaseList = service.getReadPurchaseList(sId, pageInfo);
+		
 		model.addAttribute("purchaseList", purchaseList);
 		model.addAttribute("pageInfo", pageInfo);
 		return "mypage/list_read_ord_list";
@@ -212,11 +213,10 @@ public class MypageController {
 	// 후기 insert 작업
 	@RequestMapping(value = "uploadReview", method = RequestMethod.POST)
 	public String uploadReview(@ModelAttribute ReviewDTO review, String item_idx, String ord_date, HttpSession session, Model model) {
-		
 		String insertCheck = "";
 		
 		String sId = (String)session.getAttribute("sId");
-		
+		System.out.println(sId);
 		int insertCnt = service.uploadReview(review, sId, item_idx, ord_date);
 		
 		if(insertCnt > 0) {

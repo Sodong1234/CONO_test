@@ -29,7 +29,7 @@ public interface ItemMapper {
 	void insertOrd(OrdDTO ord);
 	
 	// safe 테이블 insert
-	void insertSafe(@Param("ord") OrdDTO ord, @Param("item_price") String item_price);
+	void insertSafe(@Param("ord") OrdDTO ord, @Param("item_price") String item_price, @Param("ord_date") String ord_date);
 
 	// coin 테이블 insert (구매자)
 	void insertCoin(@Param("ord") OrdDTO ord, @Param("item_price") String item_price, @Param("coin_total") String coin_total, @Param("coupon_price") String coupon_price);
@@ -79,5 +79,8 @@ public interface ItemMapper {
 
 	// 조회수 증가
 	void updateReadcount(String item_idx);
+	
+	// ord_data 조회
+	String selectOrdDate(OrdDTO ord);
 	
 }

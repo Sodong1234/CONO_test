@@ -48,9 +48,9 @@
 	<insert id="insertOrd">
 		INSERT INTO ord
 		VALUES (
-				(SELECT *
-			      FROM (SELECT IFNULL(MAX(ord_idx)+1,'1') 
-			      		  FROM ord) temp)
+				(SELECT * 
+				FROM (SELECT IFNULL(MAX(ord_idx)+1, '1')
+			     	    FROM ord) AS A)
 			   ,#{item_idx}
 			   ,#{member_id}
 			   ,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
@@ -60,6 +60,14 @@
 			   ,'N'
 			   )
 	</insert>
+	<!-- ord_date 조회 -->
+	<select id="selectOrdDate" resultType="java.lang.String">
+		SELECT ord_date
+		  FROM ord
+		 WHERE ord_idx=(SELECT MAX(ord_idx)
+		                  FROM ord
+		                 WHERE member_id=#{member_id})
+	</select>
 	
 	<!-- safe 테이블 insert -->
 	<insert id="insertSafe">
@@ -75,6 +83,7 @@
 			        AND member_id=#{ord.member_id}
 			        AND ord_reqContent=#{ord.ord_reqContent}
 			        AND ord_quantity=#{ord.ord_quantity} 
+			        AND ord_date=#{ord_date}
 			    )
 			   ,#{ord.member_id}
 			   ,(SELECT s.shop_idx 

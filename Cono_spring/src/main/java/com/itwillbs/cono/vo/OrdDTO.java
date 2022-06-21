@@ -2,6 +2,7 @@ package com.itwillbs.cono.vo;
 
 public class OrdDTO {
    
+   private String ord_idx;
    private String item_idx;
    private String member_id;
    private String ord_date;
@@ -9,6 +10,12 @@ public class OrdDTO {
    private String ord_quantity;
    private String ord_status;
    
+   public String getOrd_idx() {
+	   return ord_idx;
+   }
+   public void setOrd_idx(String ord_idx) {
+	   this.ord_idx = ord_idx;
+   }
    public String getItem_idx() {
       return item_idx;
    }

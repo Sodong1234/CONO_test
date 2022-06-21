@@ -146,8 +146,8 @@ public class ItemController {
 		// ord 테이블 insert	
 		service.insertOrd(ord);
 		// safe 테이블 insert
-		System.out.println(ord.getMember_id());
-		service.insertSafe(ord, item_price);
+		String ord_date = service.selectOrdDate(ord);
+		service.insertSafe(ord, item_price, ord_date);
 		// coin 테이블 insert (구매자)
 		service.insertCoin(ord, item_price, coupon.getCoupon_idx());
 		

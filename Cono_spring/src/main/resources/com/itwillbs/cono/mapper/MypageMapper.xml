@@ -322,6 +322,7 @@
 		 WHERE i.item_idx=o.item_idx
 		   AND s.shop_idx=i.shop_idx
 		   AND r.item_idx=i.item_idx
+		   AND o.ord_idx=r.ord_idx
 		   AND ord_status='Y'
 		   AND o.member_id=#{sId}
 	</select>
