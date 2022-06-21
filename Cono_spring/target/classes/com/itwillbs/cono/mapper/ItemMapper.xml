@@ -200,13 +200,13 @@
       <if test="existRecent == 0">
          INSERT INTO recentView 
              VALUES (#{member_id}, #{item_idx} 
-<!--              ,DATE_FORMAT(now(), "%Y%m%d%H%i%s") -->
-			,DATE_FORMAT(now(), "%Y-%m%d-%H%i")
+             ,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+<!-- 			,DATE_FORMAT(now(), "%Y-%m%d-%H%i") -->
              )
       </if>
       <if test="existRecent != 0">
          UPDATE recentView 
-            SET viewTime = DATE_FORMAT(now(), "%Y-%m%d-%H%i")
+            SET viewTime = DATE_FORMAT(now(), "%Y%m%d%H%i%s")
           WHERE member_id = #{member_id} AND item_idx = #{item_idx}
       </if>
    </insert>

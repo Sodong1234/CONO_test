@@ -36,7 +36,7 @@
 						</c:when>
 						<c:otherwise>
 <%-- 							<a href="coin" class="value">${coin_total}c</a> --%>
-							<a href="coin" class="value"><fmt:formatNumber value="${coin_total}" pattern="\#,###.##"/>c</a>
+							<a href="coin" class="value"><fmt:formatNumber value="${coin_total}" pattern="#,###.##"/>c</a>
 							
 						</c:otherwise>
 					</c:choose>	
