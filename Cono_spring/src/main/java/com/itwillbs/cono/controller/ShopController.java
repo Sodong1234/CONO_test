@@ -372,9 +372,9 @@ public class ShopController {
 		
 		return "redirect:/ProductMyshop.shop";
 	}
-	// -------------------------------------------------------------------------
 	
-	// --------------------- 상품 주문 관리 - 문현진 ---------------------------
+	// -------------------------------------------------------------------------
+	// --------------------- 상품 주문 관리(구매 진행중) - 문현진 ---------------------------
 	@RequestMapping(value = "/ItemOrdMng.shop", method = RequestMethod.GET)
 	public String getOrdList(HttpSession session, Model model, @RequestParam(defaultValue = "1") int pageNum) {
 		
@@ -416,7 +416,7 @@ public class ShopController {
 		// 상품 주문 조회(진행중)
 		List<HashMap<String, String>> ordList = service.getOrdList(member_id, pageInfo);
 		
-		//----------------------------------------------------------------------
+		//====================================================================================
 		
 		// 상품 주문(완료) 개수 조회
 		listCount = service.selectFinishOrdListCount(member_id);
@@ -436,29 +436,30 @@ public class ShopController {
 		startRow = (pageNum - 1) * listLimit;
 		
 		// 페이징 처리 정보를 PageInfo 객체에 저장(후기 리스트)
-		PageInfo finishPageInfo = new PageInfo();
-		finishPageInfo.setPageNum(pageNum);
-		finishPageInfo.setMaxPage(maxPage);
-		finishPageInfo.setStartPage(startPage);
-		finishPageInfo.setEndPage(endPage);
-		finishPageInfo.setListCount(listCount);
-		finishPageInfo.setStartRow(startRow);
-		finishPageInfo.setListLimit(listLimit);
+		PageInfo finPageInfo = new PageInfo();
+		finPageInfo.setPageNum(pageNum);
+		finPageInfo.setMaxPage(maxPage);
+		finPageInfo.setStartPage(startPage);
+		finPageInfo.setEndPage(endPage);
+		finPageInfo.setListCount(listCount);
+		finPageInfo.setStartRow(startRow);
+		finPageInfo.setListLimit(listLimit);
 		
-		System.out.println(finishPageInfo.getStartRow());
+		System.out.println(finPageInfo.getStartRow());
 		
 		// 상품 주문 조회(완료)
-		List<HashMap<String, String>> finishOrdList = service.getFinishOrdList(member_id, finishPageInfo);
+		List<HashMap<String, String>> finishOrdList = service.getFinishOrdList(member_id, finPageInfo);
 		
 		model.addAttribute("ordList", ordList);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("finishOrdList", finishOrdList);
-		model.addAttribute("finishPageInfo", finishPageInfo);
+		model.addAttribute("finPageInfo", finPageInfo);
 		
 		return "myshop/item_order_mng";
 	}
-	// -------------------------------------------------------------------------
 	
+	
+	// -------------------------------------------------------------------------
 	// 팔로워
 	@RequestMapping(value = "follow", method = RequestMethod.GET)
 	public String follower(HttpSession session, Model model) {

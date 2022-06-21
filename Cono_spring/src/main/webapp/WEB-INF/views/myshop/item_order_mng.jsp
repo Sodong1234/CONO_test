@@ -220,17 +220,17 @@ h3 {
 			<!-- 구매 완료 페이징 처리 -->
 				<div class ="paging">
 					<c:choose>
-						<c:when test="${finishPageInfo.pageNum > 1 }">
-							<input type="button" value=" < " onclick="location.href='ItemOrdMng.shop?pageNum=${finishPageInfo.pageNum - 1 }'">
+						<c:when test="${finPageInfo.pageNum > 1 }">
+							<input type="button" value=" < " onclick="location.href='ItemOrdMng.shop?pageNum=${finPageInfo.pageNum - 1 }'">
 						</c:when>
 						<c:otherwise>
 							<input type="button" value=" < ">
 						</c:otherwise>
 					</c:choose>
 			
-					<c:forEach var="i" begin="${finishPageInfo.startPage }" end="${finishPageInfo.endPage }">
+					<c:forEach var="i" begin="${finPageInfo.startPage }" end="${finPageInfo.endPage }">
 						<c:choose>
-						<c:when test="${finishPageInfo.pageNum eq i }">
+						<c:when test="${finPageInfo.pageNum eq i }">
 							${i }
 						</c:when>
 						<c:otherwise>
@@ -239,8 +239,8 @@ h3 {
 					</c:choose>
 					</c:forEach>
 					<c:choose>
-						<c:when test="${finishPageInfo.pageNum < finishPageInfo.maxPage }">
-							<input type="button" value=" > " onclick="location.href='ItemOrdMng.shop?pageNum=${finishPageInfo.pageNum + 1 }'">
+						<c:when test="${finPageInfo.pageNum < finPageInfo.maxPage }">
+							<input type="button" value=" > " onclick="location.href='ItemOrdMng.shop?pageNum=${finPageInfo.pageNum + 1 }'">
 						</c:when>
 						<c:otherwise>
 							<input type="button" value=" > ">

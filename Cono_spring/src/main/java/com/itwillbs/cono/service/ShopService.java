@@ -394,8 +394,8 @@ public class ShopService {
 	}
 
 	// 상품 주문 (완료) 리스트 조회
-	public List<HashMap<String, String>> getFinishOrdList(String member_id, PageInfo finishPageInfo) {
-		return mapper.selectFinishOrdList(member_id, finishPageInfo);
+	public List<HashMap<String, String>> getFinishOrdList(String member_id, PageInfo finPageInfo) {
+		return mapper.selectFinishOrdList(member_id, finPageInfo);
 	}
 	
 	// 상품 조회 (페이징 처리를 위한 ListCount 조회)

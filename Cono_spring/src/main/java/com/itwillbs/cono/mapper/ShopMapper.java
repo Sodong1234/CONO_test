@@ -107,7 +107,7 @@ public interface ShopMapper {
 	public int selectFinishOrdListCount(String member_id);
 
 	// 상품 주문 (완료) 리스트 조회
-	List<HashMap<String, String>> selectFinishOrdList(@Param("member_id") String member_id, @Param("finishPageInfo") PageInfo finishPageInfo);
+	List<HashMap<String, String>> selectFinishOrdList(@Param("member_id") String member_id, @Param("finPageInfo") PageInfo finPageInfo);
 	
 	// 상품 조회 (페이징 처리를 위한 ListCount 조회)
 	Integer selectItemListCount(String member_id);
