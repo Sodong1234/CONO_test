@@ -62,11 +62,11 @@ public class MypageController {
 		// 코인 잔액
 		String coin_total = service.getCoinTotal(sId);
 		// 6543210
-		for(int i=1; i<coin_total.length()+1; i++) {
-			if(i%3 == 0) {
-				
-			}
-		}
+//		for(int i=1; i<coin_total.length()+1; i++) {
+//			if(i%3 == 0) {
+//				
+//			}
+//		}
 		
 		model.addAttribute("coin_total", coin_total);
 		System.out.println("Coin_total : " + coin_total);
