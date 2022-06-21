@@ -154,6 +154,13 @@ public class MainController {
 
 		return "member/join";
 	}
+	
+	// 약관동의 (종찬)
+		@RequestMapping(value = "newLawWindow", method = RequestMethod.GET)
+		public String newLawWindow() {
+
+			return "member/newLawWindow";
+		}
 	// 회원가입 프로 - 회원가입 쿠폰 지급
 	@RequestMapping(value = "joinPost", method = RequestMethod.POST)
 	public String joinPost(@ModelAttribute MemberDTO member, Model model) {

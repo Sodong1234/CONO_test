@@ -98,17 +98,54 @@
 	// 			return false;
 	// 		}
 	
+// 	function newLawWindow() {
+// 		window.open("newLawWindow","","width=400, height=250");
+// 	}
+	
 	//=============================================약관동의========================================
 		
 		// 전체 선택&해제
 		
-		$(document).ready(function () {
-			$("#check_all").click(function() {
-				$(".normal").prop("checked", this.checked);
-			});
-		});
+// 		$(document).ready(function () {
+// 			$("#check_all").click(function() {
+// 				$(".normal").prop("checked", this.checked);
+// 			});
+// 		});
 	
-	// 개별 선택 만들기
+		// 전체 선택&해제
+		// 선택된거 풀면 전체 선택 풀림
+	$(document).ready(function() {
+		$("#check_all").click(function() {
+			if ($("#check_all").is(":checked"))
+				$("input[class=normal]").prop("checked", true);
+			else
+				$("input[class=normal]").prop("checked", false);
+		});
+
+		$("input[class=normal]").click(function() {
+			var total = $("input[class=normal]").length;
+			var checked = $("input[class=normal]:checked").length;
+
+			if (total != checked)
+				$("#check_all").prop("checked", false);
+			else
+				$("#check_all").prop("checked", true);
+		});
+	});
+	
+	$(function() {
+		$("#submit").click(function () {
+			if($("#check_1").is(":checked") == false) {
+				alert("필수 약관에 동의하셔야 가입 가능합니다.");
+				return false;
+			} else if($("#check_2").is(":checked") == false) {
+				alert("필수 약관에 동의하셔야 가입 가능합니다.");
+				return false;
+			} else {
+				$("#join").submit();
+			}
+		});
+	});
 
 	// // ============================================휴대폰 본인인증 ====================================
 	// 	// 가맹점 식별 코드 : imp64297364
@@ -263,6 +300,11 @@ input[type="date"].after::-webkit-calendar-picker-indicator{
 .checkbox_group {
 	text-align: center;
 }
+
+input[type="submit"] {
+	float: right;
+	margin: 10px;
+}
 </style>
 <!-- Bootstrap core JavaScript-->
 <script src="resources/vendor/jquery/jquery.min.js"></script>
@@ -304,7 +346,8 @@ input[type="date"].after::-webkit-calendar-picker-indicator{
 										<label for="nick">별명</label> <input type="text" class="form-control" name="member_nick" id="nick" placeholder="닉네임을 입력해주세요" required>
 										<div class="invalid-feedback">별명을 입력해주세요.</div>
 									</div>
-									<div> <!-- 별명 오른쪽 빈칸 만들기용.. -->
+									<div> 
+									<!-- 별명 오른쪽 빈칸 만들기용.. -->
 										<label>&nbsp;</label>
 										<div>&nbsp;</div>
 									</div>
@@ -341,18 +384,27 @@ input[type="date"].after::-webkit-calendar-picker-indicator{
 								<div class="checkbox_group">
 									<input type="checkbox" id="check_all">
 									 <label for="check_all">전체 동의</label><br>
-									 
 									<input type="checkbox" id="check_1" class="normal">
-									<label for="check_1">개인정보 처리방침 동의</label> <br>
+									<label for="check_1">
+									개인정보 처리방침 동의<strong> (필수)</strong>
+									</label><br>
 									
 									<input type="checkbox" id="check_2" class="normal">
-									<label for="check_2">서비스 이용약관 동의</label><br> 
+									<label for="check_2">
+									서비스 이용약관 동의<strong> (필수)</strong>
+									</label><br> 
 									
 									<input type="checkbox" id="check_3" class="normal">
-									<label for="check_3">마케팅 수신 동의</label><br>
+									<label for="check_3">
+									마케팅 수신 동의<strong> (선택)</strong>
+									</label><br>
+									<button class="col-md-3 mb-3 form-control" 
+									style="background-color: aquamarine; left: 37%;" 
+									id="checkBtn" onclick="location.href='newLawWindow'">
+									약관 보기
+									</button>
 								</div> 
-
-								<input type="submit" value="가입하기" class="submit">
+								<input type="submit" value="가입하기" class="submit" id="submit">
 							</form>
 						</div>
 					</div>
