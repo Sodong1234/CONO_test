@@ -227,7 +227,7 @@ CREATE TABLE cancel (
 	cancel_content VARCHAR(1000),
 	cancel_date VARCHAR(20),
 	cancel_status VARCHAR(3),
-	PRIMARY KEY (cancel_idx,item_idx,member_idx)
+	PRIMARY KEY (cancel_idx,item_idx,member_i)
 );
 
 ------------------------ 삭제 예정 --------------------------------------
