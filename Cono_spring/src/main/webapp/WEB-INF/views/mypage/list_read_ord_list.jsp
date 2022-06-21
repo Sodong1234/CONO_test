@@ -288,6 +288,7 @@ div {
 										<c:when test="${purchase.review_idx eq null }">
 											<form action="writeBasicReview" method="post" target="리뷰 작성" onsubmit="writeReview()">
 												<input type="hidden" name="item_idx" value="${purchase.item_idx }">
+												<input type="hidden" name="ord_date" value="${ord_date }">
 												<input type="submit" class="n-btn w80 btn-sm btn-default" id="write_review" value="작성하기">
 											</form>
 										</c:when>

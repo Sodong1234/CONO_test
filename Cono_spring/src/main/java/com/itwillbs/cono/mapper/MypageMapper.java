@@ -66,7 +66,7 @@ public interface MypageMapper {
 	// 후기 작성할 아이템 조회
 	public HashMap<String, String> selectItemInfo(String item_idx);
 	// 후기 등록
-	public int insertReview(@Param("review") ReviewDTO review, @Param("sId") String sId, @Param("item_idx") String item_idx);
+	public int insertReview(@Param("review") ReviewDTO review, @Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
 	// 구매 확정
 	public void updateordStatus(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
 	// 판매자한테 safe에 저장된 코인 입금

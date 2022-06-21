@@ -205,10 +205,9 @@
 		  JOIN shop s
 		    ON i.shop_idx = s.shop_idx
 		  LEFT JOIN review r
-		    ON r.item_idx = i.item_idx
+		    ON o.ord_idx = r.ord_idx
 		 WHERE o.member_id = #{sId}
 		   AND im.img_idx='1'
-		   AND o.ord_idx = r.ord_idx
 		 LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 		   
 	</select>
@@ -236,6 +235,13 @@
 			      		  FROM review) temp)
 			    ,#{sId}
 			    ,#{item_idx}
+			    ,(SELECT ord_idx
+   				   FROM ord
+   				  WHERE member_id=#{sId}
+   				    AND item_idx=#{item_idx}
+					AND ord_date=#{ord_date}
+					AND ord_status='Y'
+                   )
 			    ,#{review.review_content}
 			    ,#{review.review_score}
 			    ,date_format(now(), '%Y%m%d%H%i%S')

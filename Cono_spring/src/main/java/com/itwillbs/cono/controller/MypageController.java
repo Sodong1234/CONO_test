@@ -165,7 +165,6 @@ public class MypageController {
 		pageInfo.setListCount(listCount);
 		pageInfo.setStartRow(startRow);
 		pageInfo.setListLimit(listLimit);
-		
 		List<HashMap<String, String>> purchaseList = service.getReadPurchaseList(sId, pageInfo);
 		model.addAttribute("purchaseList", purchaseList);
 		model.addAttribute("pageInfo", pageInfo);
@@ -194,30 +193,31 @@ public class MypageController {
 		
 		// safe 테이블 status 변경
 		service.modifySafeStatus(sId, item_idx, ord_date);
+		model.addAttribute("ord_date", ord_date);
 		
 		return "redirect:/readOrdList";
 	}
 	
 	// 후기 작성 페이지 이동 - 사진 없는 페이지
 	@RequestMapping(value = "writeBasicReview", method = RequestMethod.POST)
-	public String writeBasicReview(HttpSession session, String item_idx, Model model) {
+	public String writeBasicReview(HttpSession session, String item_idx, String ord_date, Model model) {
 		
 		HashMap<String, String> itemInfo = service.getItemInfo(item_idx);
 		
 		model.addAttribute("itemInfo", itemInfo);
-		
+		model.addAttribute("ord_date", ord_date);
 		return "mypage/review_write";
 	}
 		
 	// 후기 insert 작업
 	@RequestMapping(value = "uploadReview", method = RequestMethod.POST)
-	public String uploadReview(@ModelAttribute ReviewDTO review, String item_idx, HttpSession session, Model model) {
+	public String uploadReview(@ModelAttribute ReviewDTO review, String item_idx, String ord_date, HttpSession session, Model model) {
 		
 		String insertCheck = "";
 		
 		String sId = (String)session.getAttribute("sId");
 		
-		int insertCnt = service.uploadReview(review, sId, item_idx);
+		int insertCnt = service.uploadReview(review, sId, item_idx, ord_date);
 		
 		if(insertCnt > 0) {
 			insertCheck = "done";

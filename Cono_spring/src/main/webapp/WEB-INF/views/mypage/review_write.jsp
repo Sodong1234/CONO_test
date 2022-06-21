@@ -70,7 +70,7 @@
 <body>
 <section class="mypage-cont">
             <form action="uploadReview" id="reviewForm" name="reviewForm" method="post">
-                <input type="hidden" name="tmpcode" value="1655368349687">
+                <input type="hidden" name="ord_date" value="${ord_date }">
                 <input type="hidden" id="insertCheck" name="insertCheck" value="${insertCheck }">
 <!--                <input type="hidden" name="goods_est" value=""> // TODO 사용여부 확인 후 삭제-->
                 <input type="hidden" name="item_idx" value="${param.item_idx }">
