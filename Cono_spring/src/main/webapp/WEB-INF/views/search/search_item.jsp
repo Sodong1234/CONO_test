@@ -10,6 +10,10 @@
 rel="stylesheet" 
 integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
 crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="//static.danawa.com/css/shop.navigation.css?v=20210714">
+<link rel="stylesheet" type="text/css" href="//static.danawa.com/css/market_share.css?v=20210714">
+<link rel="stylesheet" type="text/css" href="/mobile/www/css/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="//static.danawa.com/css/shop.virtualestimate.css" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -194,6 +198,37 @@ p {
 .filter_b{
 	display: none;
 }
+
+.search_option_item {
+    position: relative;
+    padding: 0 17px;
+    
+}
+
+.search_cate_title {
+    float: left;
+    width: 112px;
+    height: 27px;
+    line-height: 27px;
+    font-weight: bold;
+}
+
+.search_cate_contents {
+    float: left;
+}
+
+.search_cate_list {
+    width: 640px;
+    height: 27px;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#container_main li {
+    list-style: none;
+    text-align: left;
+}
 </style>
 <script type="text/javascript">
 // 무한스크롤 시도
@@ -271,8 +306,6 @@ p {
 <!-- 			</table> -->
 <!-- 		</div> -->
 <%-- 	</c:forEach> --%>
-	<!-- 가격대(만원이하/만원삼만원/삼만원오만원/이상), 지역(지역검색 버튼1개), 
-	카테고리(대분류 소분류) -->
 	<div id="wrap">
 		<!-- 헤더 -->
 		<jsp:include page="../header_footer/header.jsp" />
@@ -280,6 +313,46 @@ p {
 	<!-- 	<div class="navbar"></div> -->
 	<jsp:include page="../search/recentView.jsp" />
 	<hr>
+<!-- 	<div class="filterBox1"> -->
+<!-- 		<div class="filterBox2"> -->
+<!-- 			<div class="filterBoxRow"> -->
+<!-- 				<input type="checkbox" id="chk1"> <label for="chk1">최신순</label>  -->
+<!-- 				<input type="checkbox" id="chk2"> <label for="chk2">높은 가격 순</label>  -->
+<!-- 				<input type="checkbox" id="chk3"> <label for="chk3">낮은 가격 순</label> -->
+<!-- 			</div> -->
+<!-- 			<div class="filterBoxRow"> -->
+<!-- 				<input type="checkbox" id="chk1"> <label for="chk1">최신순</label>  -->
+<!-- 				<input type="checkbox" id="chk2"> <label for="chk2">높은 가격 순</label>  -->
+<!-- 				<input type="checkbox" id="chk3"> <label for="chk3">낮은 가격 순</label> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	<div class="search_option_item">
+		<div class="search_cate_title">정렬</div>
+		<div class="search_cate_contents">
+			<ul class="search_cate_list">
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="checkbox" name="chk1"> <span class="item_text">최신순</span>
+				</label></li>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="checkbox" name="chk2"> <span class="item_text">높은 가격 순</span>
+				</label></li>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="checkbox" name="chk3"> <span class="item_text">낮은 가격 순</span>
+				</label></li>
+			</ul>
+		</div>
+	</div>
+	<div class="search_option_item">
+		<div class="search_cate_title">가격대</div>
+		<div class="search_cate_contents">
+			<ul class="search_cate_list">
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="checkbox" name="chk1"> <span class="item_text">가격대1</span>
+				</label></li>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="checkbox" name="chk2"> <span class="item_text">가격대2</span>
+				</label></li>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="checkbox" name="chk3"> <span class="item_text">가격대3</span>
+				</label></li>
+			</ul>
+		</div>
+	</div>
 	<!-- 필터 추가 -->
 	<h1>'${searchText }' 검색 내용입니다.</h1>
 	<c:forEach var="card" items="${cardList }">
