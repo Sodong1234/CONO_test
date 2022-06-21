@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.itwillbs.cono.vo.CancelDTO;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
@@ -82,6 +83,8 @@ public interface MypageMapper {
 	public List<HashMap<String, String>> selectReviewList(String sId);
 	// 회원 정보 수정페이지 진입 전 비밀번호 확인 작업
 	public MemberDTO checkPass(@Param("sId") String sId, @Param("passwd") String passwd);
+	// 취소신청
+	public int insertCancelReq(CancelDTO dto);
 
 	
 	

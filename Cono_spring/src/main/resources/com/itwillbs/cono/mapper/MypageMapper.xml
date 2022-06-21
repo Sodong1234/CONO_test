@@ -318,6 +318,12 @@
 		WHERE member_id=#{id} AND member_pass=#{passwd}
 	</delete>
 	
+	
+<!-- 	취소신청 -->
+	<insert id="insertCancelReq">
+		INSERT into cancel values (IFNULL((SELECT MAX(c.cancel_idx) FROM cancel c),'1'),#{dto.item_idx},#{dto.member_id},#{dto.cancel_content},DATE_FORMAT(now(), "%Y-%m-%d %H:%i"),'N');
+	</insert>
+
 <!-- 	================================================ Center =================================================== -->
 <!-- 	================================================ List =================================================== -->
 

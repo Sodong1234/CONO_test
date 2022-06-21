@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.cono.mapper.MypageMapper;
+import com.itwillbs.cono.vo.CancelDTO;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
@@ -176,6 +177,10 @@ public class MypageService {
 	// 회원 정보 수정페이지 진입 전 비밀번호 확인 작업
 	public MemberDTO checkPass(String sId, String passwd) {
 		return mapper.checkPass(sId, passwd);
+	}
+	// 취소신청
+	public int setCancelReq(CancelDTO dto) {
+		return mapper.insertCancelReq(dto);
 	}
 	
 

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.cono.service.MypageService;
+import com.itwillbs.cono.vo.CancelDTO;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
@@ -409,15 +410,7 @@ public class MypageController {
 		
 		return "mypage/center_waiting";
 	}
-	// 예약중인 상품 조회
-//	@RequestMapping(value = "reserved", method = RequestMethod.GET)
-//	public String reserved(HttpSession session, Model model) {
-//		String sId = (String) session.getAttribute("sId");
-//
-//		List<HashMap<String, String>> reservedList = service.getReservedList(sId);
-//		model.addAttribute("reservedList",reservedList);
-//		return "mypage/center_reservedList";
-//	}
+
 	// 위시 리스트 (양윤석)
 	@RequestMapping(value = "wish", method = RequestMethod.GET)
 	public String wish(HttpSession session, Model model) {
@@ -427,26 +420,20 @@ public class MypageController {
 		model.addAttribute("wishList", wishList);
 		return "mypage/list_wish";
 	}
-	// 장바구니
-//	@RequestMapping(value = "basket", method = RequestMethod.GET)
-//	public String basket(HttpSession session, Model model) {
-//		String sId = (String) session.getAttribute("sId");
-//
-//		List<HashMap<String, String>> basketList = service.getBasketList(sId);
-//		model.addAttribute("basketList",basketList);
-//
-//		return "mypage/center_basket";
-//	}
 
-	// 구매완료
-//	@RequestMapping(value = "purchased", method = RequestMethod.GET)
-//	public String purchased(HttpSession session, Model model) {
-//		String sId = (String) session.getAttribute("sId");
-//
-//		List<HashMap<String, String>> purchasedList = service.getPurchasedList(sId);
-//		model.addAttribute("purchasedList",purchasedList);
-//		return "redirect:/mypage";
-//	}
+	// 취소 신청 (가준)
+	@RequestMapping(value = "cancelReq", method = RequestMethod.GET)
+	public void cancelReq(HttpSession session, Model model, String item_idx, String content) {
+		String sId = (String) session.getAttribute("sId");
+		
+		CancelDTO dto = new CancelDTO();
+		dto.setItem_idx(item_idx);
+		dto.setMember_id(sId);
+		dto.setCancel_content(content);
+		
+		int insertCount = service.setCancelReq(dto);
+	}
+	
 	
 
 }
