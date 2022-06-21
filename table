@@ -74,6 +74,7 @@ CREATE TABLE review (
 	review_idx varchar(20),
    	member_id varchar(20),
    	item_idx varchar(20),
+	ord_idx varchar(20),
    	review_content varchar(1000) NOT NULL,
 	review_score varchar(10) NOT NULL,
    	review_date varchar(20) NOT NULL,
