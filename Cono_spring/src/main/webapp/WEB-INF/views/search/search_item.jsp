@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
@@ -287,7 +288,9 @@ p {
 				src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
 				<p class="name">${card.item_title }</p>
 				<p class="region">${card.item_region }</p>
-				<p class="price">${card.item_price }원</p>
+<%-- 				<p class="price">${card.item_price }원</p> --%>
+				<p class="price"><fmt:formatNumber value="${card.item_price }" pattern="#,###.##"/>원</p>
+				
 			</a>
 		</div>
 	</c:forEach>

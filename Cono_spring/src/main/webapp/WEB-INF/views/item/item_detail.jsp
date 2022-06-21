@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 
@@ -145,7 +146,8 @@
 										</c:when>
 									</c:choose>
 								</div>
-								<h3 style="font-family:'Cafe24Ohsquare';">가격 : ${itemDetail.get('item_price')}</h3>
+<%-- 								<h3 style="font-family:'Cafe24Ohsquare';">가격 : ${itemDetail.get('item_price')}</h3> --%>
+								<h3 style="font-family:'Cafe24Ohsquare';">가격 :<fmt:formatNumber value="${itemDetail.get('item_price')}" pattern="\#,###.##"/></h3>
 								<table>
 								<tr style="text-align: center;">
 									<td>현재 수량 :&nbsp;</td>

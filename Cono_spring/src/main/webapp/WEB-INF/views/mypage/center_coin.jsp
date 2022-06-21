@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -206,10 +207,17 @@ input[type=radio]{
       		
 						<tr>
 							<td class="num">${coinVO.coin_idx}</td>
-							<td class="coin_add">${coinVO.coin_add }</td>
-							<td class="coin_use">${coinVO.coin_use }</td>
-							<td class="td_coin_total">${coinVO.coin_total }</td>
+<%-- 							<td class="coin_add">${coinVO.coin_add }</td> --%>
+<%-- 							<td class="coin_use">${coinVO.coin_use }</td> --%>
+<%-- 							<td class="td_coin_total">${coinVO.coin_total }</td> --%>
+				<td class="coin_add"><fmt:formatNumber value="${coinVO.coin_add}" pattern="\#,###.##"/></td>
+				<td class="coin_use"><fmt:formatNumber value="${coinVO.coin_use}" pattern="\#,###.##"/></td>
+				<td class="td_coin_total"><fmt:formatNumber value="${coinVO.coin_total}" pattern="\#,###.##"/></td>
+<%-- 			<td class="date"><fmt:formatDate value="${coinVO.coin_date}" type=”both” pattern="yyyy-MM-dd"/></td> --%>
 							<td class="date">${coinVO.coin_date }</td>
+				
+				
+				
 						</tr>
 	 
    					</c:forEach>

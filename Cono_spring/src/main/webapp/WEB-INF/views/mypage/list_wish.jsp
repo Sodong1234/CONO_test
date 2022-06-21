@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -41,8 +42,9 @@
 									<div class="card-info product-info">
 										<div class="product-info__name">${wish.item_title}</div>
 										<div class="product-info__price">
-											<span class="price-origin"> ${wish.item_price} <span
-												style="font-size: 14px;">원</span>
+<%-- 											<span class="price-origin"> ${wish.item_price}  --%>
+											<span class="price-origin"><fmt:formatNumber value="${wish.item_price}" pattern="\#,###.##"/>
+											<span style="font-size: 14px;">원</span>
 											</span>
 										</div>
 										<br>

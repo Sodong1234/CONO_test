@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -117,9 +118,10 @@
 								</th>
 								<td>
 									<div class="payOrder">
-										<strong class="price"> <span id="totalPriceDisp"
-											class="use-calculation-for-totalprice"> ${itemDetail.item_price * param.ord_quantity  } </span> <span
-											class="unit">원</span>
+										<strong class="price"> 
+<%-- 										<span id="totalPriceDisp" class="use-calculation-for-totalprice"> ${itemDetail.item_price * param.ord_quantity  } </span>  --%>
+										<span id="totalPriceDisp" class="use-calculation-for-totalprice"><fmt:formatNumber value="${itemDetail.item_price * param.ord_quantity  }" pattern="\#,###.##"/></span>
+										<span class="unit">원</span>
 										</strong>
 									</div>
 								</td>
@@ -201,7 +203,8 @@
 													<li class="pay-type-section">
 														<div class="line-title" style="letter-spacing: -1px;">잔액</div>
 														<div class="line-data">
-															<strong>${balanceCoin }원</strong>
+<%-- 															<strong>${balanceCoin }원</strong> --%>
+															<strong><fmt:formatNumber value="${balanceCoin }" pattern="\#,###.##"/>원</strong>
 														</div>
 													</li>
 												</ul>

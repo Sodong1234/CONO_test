@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -34,7 +35,9 @@
 							<a href="coin" class="value">0c</a>
 						</c:when>
 						<c:otherwise>
-							<a href="coin" class="value">${coin_total}c</a>
+<%-- 							<a href="coin" class="value">${coin_total}c</a> --%>
+							<a href="coin" class="value"><fmt:formatNumber value="${coin_total}" pattern="\#,###.##"/>c</a>
+							
 						</c:otherwise>
 					</c:choose>	
 					<li>
@@ -90,7 +93,9 @@
 			        					<div class="my-review__writable__content-title">제목 : ${item.item_title }</div>
 			        					<div class="my-review__writable__content">내용 : ${item.item_content }</div>
 			        					<div class="my-review__writable__date">구매날짜 : ${item.ord_date }</div>
-			        					<div class="my-review__writable__date">가격 : ${item.ord_quantity * item.item_price }코인</div>
+<%-- 			        					<div class="my-review__writable__date">가격 : ${item.ord_quantity * item.item_price }코인</div> --%>
+			        					<div class="my-review__writable__date">가격 : <fmt:formatNumber value="${item.ord_quantity * item.item_price }" pattern="\#,###.##"/>코인</div>
+			        					
 			        					<div class="my-review__writable__date">수량 : ${item.ord_quantity }개</div>
 			        				</div>
 			        				<div class="my-review__writable__btn-wrap">
