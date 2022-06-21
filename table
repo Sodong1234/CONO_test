@@ -223,7 +223,7 @@ CREATE TABLE msgChat (
 CREATE TABLE cancel (
 	cancel_idx VARCHAR(20),
 	item_idx VARCHAR(20),
-	member_idx VARCHAR(20),
+	member_id VARCHAR(20),
 	cancel_content VARCHAR(1000),
 	cancel_date VARCHAR(20),
 	cancel_status VARCHAR(3),
@@ -238,35 +238,4 @@ CREATE TABLE alarm (
 	alarm_content varchar(1000),
 	alarm_status varchar(5)
 );
-
-CREATE TABLE msgList (
-	member_id varchar(20),
-	shop_idx varchar(20),
-	msgList_last_content varchar(50),
-	msgList_time varchar(20),
-	msgList_status varchar(5),
-	PRIMARY KEY (member_id, shop_idx)
-);
-
-CREATE TABLE msgChat (
-	member_id varchar(20),
-	shop_idx varchar(20),
-	msgChat_content varchar(500),
-	msgChat_time varchar(20),
-	PRIMARY KEY (member_id, shop_idx)
-);
-
-CREATE TABLE basket (
-	member_id varchar(20),
-	item_idx varchar(20),
-	PRIMARY KEY (member_id, item_idx)
-);
-
-
-CREATE TABLE reserved (
-	item_idx varchar(20),
-	member_id varchar(20),
-	PRIMARY KEY (item_idx, member_id)
-);
-
 
