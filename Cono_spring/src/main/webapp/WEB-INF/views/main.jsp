@@ -201,7 +201,7 @@ a{
 	 		<div class="inner_home_theme">
 	                <ul class="list_home_theme1">
 	                    <li class="list_category">
-	                    	<a href="search_category?cgr=1" class="cgr_req">
+	                    	<a href="search_category?cgr=패션" class="cgr_req">
 	                            <span class="category_img">
 	                            	<img class="category_img" src="resources/main_img/fassion.jpg">
 	                            </span>
@@ -209,7 +209,7 @@ a{
 	                        </a>
 	                    </li>
 	                    <li class="list_category">
-	                        <a href="search_category?cgr=2" class="cgr_req">
+	                        <a href="search_category?cgr=디지털_가전" class="cgr_req">
 	                            <span class="category_img">
 	                            	<img class="category_img" src="resources/main_img/digi.jpg">
 	                            </span>
@@ -217,7 +217,7 @@ a{
 	                        </a>
 	                    </li>
 	                    <li class="list_category">
-	                        <a href="search_category?cgr=3" class="cgr_req">
+	                        <a href="search_category?cgr=스포츠_레저" class="cgr_req">
 	                            <span class="category_img">
 	                            	<img class="category_img" src="resources/main_img/sports.jpg">
 	                            </span>
@@ -225,7 +225,7 @@ a{
 	                        </a>
 	                    </li>
 	                    <li class="list_category">
-	                        <a href="search_category?cgr=4" class="cgr_req">
+	                        <a href="search_category?cgr=가구_인테리어" class="cgr_req">
 	                            <span class="category_img">
 	                            	<img class="category_img" src="resources/main_img/inter.jpg">
 	                            </span>
@@ -235,7 +235,7 @@ a{
 	                </ul>
 	                <ul class="list_home_theme2">
 		         	 <li class="list_category">
-		                        <a href="search_category?cgr=5" class="cgr_req">
+		                        <a href="search_category?cgr=생활_가공식품" class="cgr_req">
 	                            <span class="category_img">
 	                            	<img class="category_img" src="resources/main_img/life_food.jpg">
 	                            </span>
@@ -243,7 +243,7 @@ a{
 	                        </a>
 		                    </li>
 		                    <li class="list_category">
-		                        <a href="search_category?cgr=6" class="cgr_req">
+		                        <a href="search_category?cgr=도서_티켓" class="cgr_req">
 	                            <span class="category_img">
 	                            	<img class="category_img" src="resources/main_img/book.jpg">
 	                            </span>
@@ -251,7 +251,7 @@ a{
 	                        </a>
 		                    </li>
 		                    <li class="list_category">
-		                        <a href="search_category?cgr=7" class="cgr_req">
+		                        <a href="search_category?cgr=뷰티_미용" class="cgr_req">
 	                            <span class="category_img">
 	                            	<img class="category_img" src="resources/main_img/beauty.jpg">
 	                            </span>
@@ -259,7 +259,7 @@ a{
 	                        </a>
 		                    </li>
 		                    <li class="list_category">
-		                        <a href="search_category?cgr=8" class="cgr_req">
+		                        <a href="search_category?cgr=반려" class="cgr_req">
 	                             <span class="category_img">
 	                            	<img class="category_img" src="resources/main_img/야옹이.jpg">
 	                            </span>
