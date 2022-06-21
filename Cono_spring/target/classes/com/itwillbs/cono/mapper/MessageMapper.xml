@@ -79,11 +79,15 @@
 	</select>
 	
 	<select id="selectShopMsgList" resultType="java.util.HashMap">
-		SELECT t.member_nick, t.member_id, t.shop_idx, t.msgList_room, t.msgChat_content, t.msgChat_time, t.msgList_status
-		FROM (SELECT m.member_nick, m.member_id, l.shop_idx, l.msgList_room, c.msgChat_content, c.msgChat_time, l.msgList_status
+		SELECT t.member_nick, t.member_id, t.shop_idx, t.msgList_room, t.msgChat_content, t.msgChat_time, t.msgList_status, t.item_title, t.img_name
+		FROM (SELECT m.member_nick, m.member_id, l.shop_idx, l.msgList_room, c.msgChat_content, c.msgChat_time, l.msgList_status, it.item_title, im.img_name
 				FROM msgList l
 				LEFT OUTER JOIN member m
 							 ON l.member_id = m.member_id
+				LEFT OUTER JOIN item it
+						 ON l.item_idx = it.item_idx
+				LEFT OUTER JOIN img im
+						 ON it.item_idx = im.item_idx
 				LEFT OUTER JOIN (SELECT msgList_room ,msgChat_time, msgChat_content
 						   FROM msgChat
 						  WHERE (msgList_room ,msgChat_time) in (

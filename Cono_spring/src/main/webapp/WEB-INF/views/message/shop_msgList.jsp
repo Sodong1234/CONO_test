@@ -12,23 +12,28 @@
 
 <script type="text/javascript">
 	// 헤더 클릭시 - 성공
-	function getMsgList(msgList_room, member_id) {
+	function getMsgList(msgList_room, member_id, member_nick, img_name, item_title) {
 		var btn = document.getElementById("msgbtn");
 		var msg_form = document.getElementById("msg_form");
-		document.getElementById("mId").value = member_id;
-		document.getElementById("rNum").value = msgList_room;
+		
+		document.getElementById("mname").value = member_nick;
+		document.getElementById("prof_imName").src = "resources/upload/file/" + img_name;
+		document.getElementById("itTitle").value = item_title;
+		
 		btn.style.visibility = "visible";
 		msg_form.style.visibility = "visible";
 		
 		
 		
-		MessageContentList(msgList_room, member_id);
+		MessageContentList(msgList_room, member_id, member_nick, img_name, item_title);
 		
 	}
 	
 	//헤더 이름 붙이기 + msg 불러오기 - 성공
-	const MessageContentList = function(msgList_room, member_id) {
-		$(".sNum").html(member_id);
+	const MessageContentList = function(msgList_room, member_id, member_nick, img_name, item_title) {
+		$(".mname").html(member_nick);
+		$(".itTitle").html(item_title);
+		
 		$.ajax({
 			type:"GET",
 			// 샵 메시지 전체 가져오기
@@ -108,7 +113,7 @@
 <!-- 		room 리스트 -->
 		<ul class="msg_lists">
 			<c:forEach var="msgH" items="${msgList }">
-				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.member_id }')">
+				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.member_id }','${msgH.member_nick }','${msgH.img_name }','${msgH.item_title }')">
 <!-- 					room / shopname 저장  -->
 					<c:set value="${msgH.msgList_room }" var="rNum"></c:set>
 					<c:set value="${msgH.member_id }" var="mId"></c:set>
@@ -125,11 +130,12 @@
 	</div>
 	<section class="msg_board">
 		<div class="board_head">
-			<div class="prof">
-				<span class="sname"></span>
-			</div>
 			<fieldset class="msgbtn" id="msgbtn" style="visibility: hidden">
-<!-- 				<button class="follwing" onclick="location.href='following'">팔로우</button> -->
+			<div class="prof">
+				<span class="mname" id="mname"></span>
+				<img src='' class="prof_imName" id="prof_imName"></img>
+				<span class="itTitle" id="itTitle"></span>
+			</div>
 				<button class="msg_out" onclick="location.href='msgDelete()'">나가기</button>
 			</fieldset>
 		</div>
@@ -139,8 +145,6 @@
 		</div>
 <!-- 		메시지 전송 -->
 		<div class="msg_form" id="msg_form" style="visibility: hidden">
-			<input type="text" id="mId">
-			<input type="text" id="rNum">
 			<textarea rows="3" cols="75" id="msgText"></textarea>
 			<button class="btn_send" onclick="sendMsg()">버튼</button>
 		</div>

@@ -122,10 +122,6 @@
 		<ul class="msg_lists">
 			<c:forEach var="msgH" items="${msgList }">
 				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.shop_idx }', '${msgH.shop_name }','${msgH.img_name }','${msgH.item_title }')">
-<!-- 					room / shopname 저장 -->
-					<c:set value="${msgH.shop_name }" var="sName"></c:set>
-					<c:set value="${msgH.img_name }" var="imName"></c:set>
-					<c:set value="${msgH.item_title }" var="itTitle"></c:set>
 					<a href="#" class="room">
 						<span class="area-txt">
 							<span class="Htime">${msgH.msgChat_time }</span>
@@ -141,7 +137,7 @@
 		<div class="board_head">
 			<fieldset class="msgbtn" id="msgbtn" style="visibility: hidden">
 			<div class="prof">
-				<span class="sname" id="sname"></span>
+				<span class="sname" id="sname" onclick=""></span>
 				<img src='' class="prof_imName" id="prof_imName"></img>
 				<span class="itTitle" id="itTitle"></span>
 			</div>
@@ -155,8 +151,6 @@
 		</div>
 <!-- 		메시지 전송 -->
 		<div class="msg_form" id="msg_form" style="visibility: hidden">
-			<input type="text" id="sNum">
-			<input type="text" id="rNum">
 			<textarea rows="3" cols="75" id="msgText"></textarea>
 			<button class="btn_send" onclick="sendMsg()">버튼</button>
 		</div>
