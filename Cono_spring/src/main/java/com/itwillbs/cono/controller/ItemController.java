@@ -35,12 +35,15 @@ public class ItemController {
 			member_id = session.getAttribute("sId").toString(); 
 		}
 		
+		// 조회수 증가
+		service.increaseReadCount(item_idx);
 		
 		// 상품 상세 정보 조회
 		HashMap<String, String> itemDetail = service.getItemDetail(item_idx); 
 		
 		// 상품 이미지 조회
 		List<ImgDTO> imgList = service.selectImgList(item_idx);
+		
 		
 		// 찜 여부 조회
 		WishDTO wish = null;

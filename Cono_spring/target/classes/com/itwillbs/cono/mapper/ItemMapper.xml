@@ -210,5 +210,13 @@
    		  FROM coin
    		 WHERE member_id=#{member_id}
    </select>
+   
+   
+   <!-- 조회수 증가 -->
+   <update id="updateReadcount">
+	   UPDATE item
+	   SET  item_readCnt = item_readCnt + 1
+	   WHERE item_idx = #{item_idx}
+   </update>
 
 </mapper>

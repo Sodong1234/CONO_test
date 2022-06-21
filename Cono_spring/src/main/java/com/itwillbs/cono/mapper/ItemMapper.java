@@ -76,5 +76,8 @@ public interface ItemMapper {
 	
 	// coin 존재 여부 확인
 	List<CoinDTO> selectCoin(String member_id);
+
+	// 조회수 증가
+	void updateReadcount(String item_idx);
 	
 }

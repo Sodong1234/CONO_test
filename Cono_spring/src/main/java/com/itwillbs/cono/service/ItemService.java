@@ -126,6 +126,13 @@ public class ItemService {
 		return mapper.selectCoin(member_id);
 	}
 
+	// 조회수 증가
+	public void increaseReadCount(String item_idx) {
+		mapper.updateReadcount(item_idx);
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	// coin 테이블 insert (판매자)
 //	public void insertCoinSeller(OrdDTO ord, String item_price) {
