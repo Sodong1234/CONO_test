@@ -60,6 +60,9 @@ public interface ShopMapper {
 	// 카테고리 정보 변경
 	void updateCategory(@Param("category") CategoryDTO category, @Param("item") ItemDTO item);
 	
+	// 상품이 ord 테이블에 등록된 경우 삭제 방지
+	int isOrdered(String item_idx);
+	
 	// 상품 삭제 (item)
 	int deleteItem(@Param("member") MemberDTO member, @Param("item_idx") String item_idx);
 	
@@ -151,6 +154,8 @@ public interface ShopMapper {
 	
 	// shop 주인 member_id 가져오기
 	String selectMemberId(String shop_idx);
+
+	
 
 	
 

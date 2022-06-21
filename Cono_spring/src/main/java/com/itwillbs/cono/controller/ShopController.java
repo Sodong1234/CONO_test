@@ -1,5 +1,8 @@
 package com.itwillbs.cono.controller;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -221,6 +224,21 @@ public class ShopController {
 	// -------------------- 상품 삭제 비즈니스 로직 - 이소영 -------------------
 	@RequestMapping(value = "/ItemDeletePro.shop", method = RequestMethod.POST)
 	public String deleteItemPost(MemberDTO member, String item_idx, HttpServletRequest request, Model model) {
+		String algorithm = "SHA-256";
+		String result = hashing(algorithm, member.getMember_pass());
+		member.setMember_pass(result);
+		// 아이디, 비밀번호 확인
+		MemberDTO memberResult = service.checkMember(member);
+		
+		if(memberResult == null) {
+			model.addAttribute("msg", "아이디 또는 비밀번호 불일치");
+			return "myshop/fail_back";
+		}
+		// 상품이 ord 테이블에 등록된 경우 삭제 방지
+		if(service.isOrdered(item_idx) > 0) {
+			model.addAttribute("msg", "주문 진행 중인 상품입니다");
+			return "myshop/fail_back";
+		}
 		
 		boolean isDeleteSuccess = service.deleteItem(member, item_idx, request);
 		
@@ -586,5 +604,29 @@ public class ShopController {
 		List<HashMap<String, String>> followingList = service.getfollowingList(sId);
 		model.addAttribute("followingList", followingList);
 		return "myshop/shop_buyer/shop_following";
+	}
+	
+	// ---------------------------------------- 비밀번호 암호화 -------------------------------------------
+	private String hashing(String algorithm, String strPlaintext) {
+		String strHashedData = "";
+		try {
+			MessageDigest md = MessageDigest.getInstance(algorithm);
+			
+			byte[] byteText = strPlaintext.getBytes();
+			System.out.println(Arrays.toString(byteText));
+			
+			md.update(byteText);
+			
+			byte[] digest = md.digest();
+			
+			for(byte b : digest) {
+				strHashedData += Integer.toHexString(b & 0xFF).toUpperCase();
+			}
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("입력한 암호화 알고리즘 존재 x");
+			e.printStackTrace();
+		}
+		System.out.println(strHashedData);
+		return strHashedData;
 	}
 }

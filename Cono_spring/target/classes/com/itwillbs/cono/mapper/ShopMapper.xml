@@ -163,6 +163,13 @@
 		   AND member_pass=#{member_pass}
 	</select>
 	
+	<select id="isOrdered" resultType="int">
+		SELECT COUNT(*)
+		  FROM ord
+		 WHERE item_idx = #{item_idx}
+		   AND ord_status = 'N' 
+	</select>
+	
 	<!-- 상점 정보 수정 -->
 	<update id="updateMyshop">
 		UPDATE shop

@@ -231,16 +231,17 @@ public class ShopService {
 		}
 	}
 	
+	// 상품이 ord 테이블에 등록된 경우 삭제 방지
+	public int isOrdered(String item_idx) {
+		return mapper.isOrdered(item_idx);
+	}
+	
+	
 	// 상품 삭제
 	public boolean deleteItem(MemberDTO member, String item_idx, HttpServletRequest request) {
 		boolean isDeleteSuccess = false;
 		
 		int[] deleteCount = new int[3];
-		
-		// 상품이 ord 테이블에 등록된 경우 삭제 방지
-		if(mapper.selectItemOrd(item_idx) > 0) {
-			return false;
-		}
 		
 		List<ImgDTO> imgList = mapper.selectImgList(item_idx);
 		
@@ -459,6 +460,13 @@ public class ShopService {
 	public String getMemberId(String shop_idx) {
 		return mapper.selectMemberId(shop_idx);
 	}
+
+	public int selectItemOrd(String item_idx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 	
 	
 	
