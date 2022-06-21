@@ -263,12 +263,10 @@
 	</select>
 	
 	<select id="selectCoinTotal" resultType="java.lang.String">
-		SELECT coin_total
-				    FROM coin
-			   	   WHERE coin_idx = (SELECT * 
-				   					   FROM (SELECT max(coin_idx) 
-				   					   		   FROM coin
-				   					   		  WHERE member_id=#{sId}) AS a)
+		 SELECT coin_total
+		  FROM coin
+		 WHERE coin_date = (SELECT * 
+		 			         FROM (SELECT max(coin_date) FROM coin WHERE member_id=#{sId}) AS a)
 				
 	</select>
 	
