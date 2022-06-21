@@ -422,8 +422,8 @@ public class MypageController {
 	}
 
 	// 취소 신청 (가준)
-	@RequestMapping(value = "cancelReq", method = RequestMethod.GET)
-	public void cancelReq(HttpSession session, Model model, String item_idx, String content) {
+	@RequestMapping(value = "cancelReq", method = RequestMethod.POST)
+	public String cancelReq(HttpSession session, Model model, String item_idx, String content) {
 		String sId = (String) session.getAttribute("sId");
 		
 		CancelDTO dto = new CancelDTO();
@@ -432,8 +432,14 @@ public class MypageController {
 		dto.setCancel_content(content);
 		
 		int insertCount = service.setCancelReq(dto);
+		
+		if(insertCount > 0) {
+			model.addAttribute("msg", "취소 접수가 완료되었습니다.");
+		} else {
+			model.addAttribute("msg", "취소 접수에 실패하였습니다.");
+		}
+		return "redirect:/mapage/cancel";
 	}
-	
 	
 
 }
