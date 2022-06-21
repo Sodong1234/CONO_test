@@ -96,11 +96,11 @@
 				 ORDER BY coin_idx+1 DESC
 				 LIMIT 1) AS A)
 				,#{ord.member_id}	
-				,'0'	<!-- add -->	
+				,''	<!-- add -->	
 				,#{item_price} * #{ord.ord_quantity}		<!-- use --> 
 				,#{coin_total}
-<!-- 				,DATE_FORMAT(now(), "%Y%m%d%H%i%s") -->
-				,DATE_FORMAT(now(), "%Y-%m%d-%H%i")
+				,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+<!-- 				,DATE_FORMAT(now(), "%Y-%m%d-%H%i") -->
 			   )
 	</insert>
 	
