@@ -53,8 +53,8 @@
 			      		  FROM ord) temp)
 			   ,#{item_idx}
 			   ,#{member_id}
-<!-- 			   ,DATE_FORMAT(now(), "%Y%m%d%H%i%s") -->
-				,DATE_FORMAT(now(), "%Y-%m%d-%H%i")
+			   ,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+<!-- 				,DATE_FORMAT(now(), "%Y-%m%d-%H%i") -->
 			   ,#{ord_reqContent}
 			   ,#{ord_quantity}
 			   ,'N'
@@ -100,7 +100,6 @@
 				,#{item_price} * #{ord.ord_quantity}		<!-- use --> 
 				,#{coin_total}
 				,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
-<!-- 				,DATE_FORMAT(now(), "%Y-%m%d-%H%i") -->
 			   )
 	</insert>
 	
