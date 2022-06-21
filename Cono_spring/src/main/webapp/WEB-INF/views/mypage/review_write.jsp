@@ -55,6 +55,15 @@
 			opener.location.reload();
 			window.close();
 		}
+		$("#goods_text").on("keyup", function() {
+			var content = $(this).val();
+			$("#cnt").html(content.length + " 자");
+			if(content.length > 500) {
+			 	alert("최대 500자까지 입력 가능합니다.");
+			    $(this).val(content.substring(0, 500));
+			    $('#goods_text .info span').html(500);
+			}
+		});
 	});
 </script>
 </head>
@@ -124,28 +133,13 @@
                         <label for="goods_text" class="label">상품에 대한 평가를 20자 이상 작성해 주세요.</label>
                         <!-- 입력 영역 -->
                         <div class="n-comment-input tab-wrap is-active">
-                            <!-- Default -->
-<!--                             <button type="button" class="default"> -->
-<!--                                 <i class="ico ico-cont"></i> -->
-<!--                                 <i class="ico ico-image"></i> -->
-<!--                                 <i class="ico ico-emot"></i> -->
-<!--                                 댓글을 남겨주세요 -->
-<!--                             </button> -->
-
-                            <!-- Util -->
-<!--                             <div class="util-area"> -->
-<!--                                 <button type="button" class="tab-btn is-active" data-tab="text"> -->
-<!--                                     <i class="ico ico-cont">내용 입력</i> -->
-<!--                                 </button> -->
-<!--                             </div> -->
 
                             <div class="input-area">
                                 <!-- Text -->
                                 <div class="tab-block is-active" data-tab="text">
                                     <textarea id="goods_text" placeholder="내용" name="review_content"></textarea>
-                                    <p class="info" id="text_size">0 자 / 20자 이상</p>
+                                    <p class="info" id="text_size"><span id="cnt">0 자</span> / 500자 이하</p>
                                 </div>
-                                <!-- Image -->
                             </div>
                         </div>
                         <!-- //입력 영역 -->
