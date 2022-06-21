@@ -178,7 +178,7 @@ public class MypageController {
 		
 		String sId = (String)session.getAttribute("sId");
 		// 판매자 아뒤 찾기
-		String shop_idx = service.selectShop_idx(item_idx);
+		String shop_member_id = service.selectShop_idx(item_idx);
 		
 		// ord 테이블 변경
 		service.confirmPurchase(sId, item_idx, ord_date);
@@ -190,7 +190,7 @@ public class MypageController {
 		String coin_total = service.selectCoinTotal(sId);
 		
 		// 판매자 코인 입금
-		service.insertCoinSeller(item_idx, ord_date, shop_idx, safe_coin, coin_total);
+		service.insertCoinSeller(item_idx, ord_date, shop_member_id, safe_coin, coin_total);
 		
 		// safe 테이블 status 변경
 		service.modifySafeStatus(sId, item_idx, ord_date);
