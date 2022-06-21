@@ -24,6 +24,7 @@
 
 
 
+
 h2{
 	
 	font-family:Cafe24Ohsquare;
@@ -80,10 +81,13 @@ a {
 	margin-left: 80px;
 }
 .msg_container {
-	width: 542px;
-	height: 786px;
-	background: #FFFAFA;
-	margin : 0;
+	width: 700px;
+	height: 1100px;
+	background: #F0FFFF;
+	margin-left : 30%;
+	margin-top : -8%;
+	border-radius: 5em;
+	
 	
 }
 .msg_title {
@@ -129,10 +133,12 @@ a {
 	overflow: auto;
 }
 .msg_item {
-	height: 95PX;
+	height: 70px;
+	width : 350px;
 	position: relative;
-	border: 1px solid #D2D2FF;
-	border-radius: 10px;
+/* 	border: 1px solid #D2D2FF; */
+	border-radius: 5em;
+	background: #B0E0E6;
 }
 .area_item {
 	margin: auto;
@@ -145,7 +151,8 @@ a {
 .area_txt {
 	display: inline;
 	width: 220px;
-	margin: auto;
+	height: 100px;
+	margin-right: 10px;
 }
 .Htxt {
 	display: block;
@@ -155,28 +162,35 @@ a {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
+	text-align: center;
+	margin-top: -17px;
+	font-style: italic;
 }
 .Hname {
 	position: relative;
-	right: 30px;
+	right: -4px;
+	font-size: large;	
+	/* font-style: inherit; */
+	font-weight: bold;
 }
 .Htime {
 	position: relative;
-	left: 200px;
-	top: 0px;
+	left: 217px;
+	top: -20px;
 }
 .msg_board {
 	display: inline-block;
-	width: 913px;
-	height: 720px;
+	width: 713px;
+	height: 986px;
 	background-color: #E8F5FF;
 	position: relative;
-	top: -786px;
+	top: -1100px;
 	left: 698px;
+	border-radius: 5em;
 }
 .board_head {
 	width: 706px;
-	height: 70px;
+	height: 200px;
 	display: block;
 	position: relative;
 }
@@ -195,9 +209,10 @@ a {
 }
 .msg_area {
 	width: 711px;
-	height: 511px;
+	height: 565px;
 	background-color: #E0EBFF;
 	overflow: auto;
+	margin-top: 10%;
 }
 .msg_for {
 	width: 711px;
@@ -225,6 +240,14 @@ textarea {
 	border: 20px;
 }
 
+.msg_form {
+	visibility: hidden;
+/* 	margin-top: 8%; */
+
+	
+	
+}
+
 
 /* message_content_list */
 .sendBox, .recvBox {
@@ -235,12 +258,14 @@ textarea {
 	top:20px;
 }
 .sendMsg {
-	border: 1px solid #46B4B4;
+/* 	border: 1px solid #46B4B4; */
 	border-radius: 10px;
-	background-color: #46B4B4;
+	background-color:#87CEEB;
 	color: white;
 	float: right;
-	font-family: 'Noto Sans KR', sans-serif;
+/* 	font-family: 'Noto Sans KR', sans-serif; */
+ 	font-family: IBMPlexSansKR-Regular;
+ 	font-style: inherit;
 	display: block;
 	position: relative;
 	right: 20px;
@@ -271,3 +296,12 @@ textarea {
 	left: 25px;
 	top:2px;
 }
+
+.sname {
+	
+font-size: large;	
+font-style: inherit;
+font-weight: bold;
+	
+}
+

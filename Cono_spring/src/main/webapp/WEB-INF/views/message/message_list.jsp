@@ -115,7 +115,7 @@
 	<div class="box">
 	<div class="msg_container">
 		<div class="msg_title">
-			<h2> 구매 문의</h2>
+			<h2 style="font-family: Cafe24Ohsquare;">코노톡 * 구매 문의</h2>
 		</div>
 		
 <!-- 		room 리스트 -->
@@ -128,9 +128,9 @@
 					<c:set value="${msgH.item_title }" var="itTitle"></c:set>
 					<a href="#" class="room">
 						<span class="area-txt">
+							<span class="Hname">${msgH.shop_name }</span><br>
 							<span class="Htime">${msgH.msgChat_time }</span>
-							<span class="Hname">${msgH.shop_name }</span>
-							<span class="Htxt">	${msgH.msgChat_content }</span>
+						    <span class="Htxt">${msgH.msgChat_content }</span><br>
 						</span>
 					</a>
 				</li>
@@ -150,12 +150,12 @@
 		<div class="board_head">
 			<fieldset class="msgbtn" id="msgbtn" >
 			<div class="prof">
-				<span class="sname" id="sname"></span>
+				<span class="sname" id="sname"></span> &nbsp;&nbsp;&nbsp;
+				<button class="follwing" onclick="location.href='following'">팔로우</button> 
+				<button class="msg_out" onclick="msgDelete()">나가기</button>
 				<img src='' class="prof_imName" id="prof_imName"></img>
 				<span class="itTitle" id="itTitle"></span>
 			</div>
-				<button class="follwing" onclick="location.href='following'">팔로우</button>
-				<button class="msg_out" onclick="msgDelete()">나가기</button>
 			</fieldset>
 		</div>
 <!-- 		메시지 내용 -->
