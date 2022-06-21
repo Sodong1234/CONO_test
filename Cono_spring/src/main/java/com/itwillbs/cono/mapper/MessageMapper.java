@@ -18,7 +18,8 @@ public interface MessageMapper {
 	public List<HashMap<String, String>> selectAllMsg(String msgList_room);
 	// 메시지 삭제
 	public int deleteMsg(String msgList_room);
-	
+	// shop name 출력
+	public String selectShop_name(String msgList_room);
 	
 	
 	
@@ -30,6 +31,9 @@ public interface MessageMapper {
 	public List<HashMap<String, String>> selectShopMsgList(String shop_idx);
 	// Room 번호
 	public String selectRoomNun();
+	// 샵 - 상대 닉네임
+	public String selectShop_member_nick(String msgList_room);
+	
 
 
 }

@@ -19,6 +19,7 @@
 			<c:otherwise>
 				<div></div>
 				<div class="recvBox">
+					<div class='recvNick'>${member_nick}</div>
 					<span class="recvMsg">${msg.msgChat_content }</span><span class="rtime">${msg.msgChat_time}</span>
 				</div>
 			</c:otherwise>

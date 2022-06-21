@@ -86,6 +86,10 @@ public class MessageController {
 	public String getAllMsg(@RequestParam String msgList_room, Model model) {
 		System.out.println("getAllmsg msgList_room : " + msgList_room);
 		List<HashMap<String,String>> Allmsg = service.getAllMsg(msgList_room);
+		// 상대 닉네임 뽑기
+		String shop_name = service.getShop_name(msgList_room);
+		
+		model.addAttribute("shop_name",shop_name);
 		model.addAttribute("Allmsg",Allmsg);
 		return "message/message_content_list";
 	}
@@ -105,15 +109,20 @@ public class MessageController {
 		return "message/shop_msgList";
 	}
 	
-	// ------------ 완성
+	// ------------ shop 모든 메시지 내용 
 	
 		@RequestMapping(value = "shop_getAllMsg", method = RequestMethod.GET)
 		public String getShopAllMsg(@RequestParam String msgList_room, Model model,  HttpSession session) {
 			String sId = (String)session.getAttribute("sId");
 			String shop_idx = service.selectShop_idx(sId);
 			System.out.println("getAllmsg msgList_room : " + msgList_room);
+			// 내용 뽑기
 			List<HashMap<String,String>> Allmsg = service.getAllMsg(msgList_room);
 			
+			// 상대 닉네임 뽑기
+			String member_nick = service.getMember_nick(msgList_room);
+			
+			model.addAttribute("member_nick", member_nick);
 			model.addAttribute("Allmsg",Allmsg);
 			session.setAttribute("shop_idx", shop_idx);
 

@@ -65,8 +65,11 @@
 	
 	
 	// 헤더 이름 붙이기 + msg 불러오기
-	const MessageContentList = function(msgList_room, shop_idx) {
-		$(".sNum").html(shop_idx);
+	const MessageContentList = function(msgList_room, shop_idx, shop_name, img_name, item_title) {
+		
+		$(".sname").html(shop_name);
+		$(".itTitle").html(item_title);
+		
 		$.ajax({
 			type:"GET",
 			url:"getAllMsg",
@@ -82,17 +85,20 @@
 		});
 	}
 	// 헤더 클릭시 내용 호출을 위한 함수
-	function getMsgList(msgList_room, shop_idx) {
+	function getMsgList(msgList_room, shop_idx, shop_name, img_name, item_title) {
 		var btn = document.getElementById("msgbtn");
 		var msg_form = document.getElementById("msg_form");
-		document.getElementById("sNum").value = shop_idx;
-		document.getElementById("rNum").value = msgList_room;
+		
+		document.getElementById("sname").value = shop_name;
+		document.getElementById("prof_imName").src = "resources/upload/file/" + img_name;
+		document.getElementById("itTitle").value = item_title;
+		
 		btn.style.visibility = "visible";
 		msg_form.style.visibility = "visible";
 		
 		
 		// 내용 호출
-		MessageContentList(msgList_room, shop_idx);
+		MessageContentList(msgList_room, shop_idx, shop_name, img_name, item_title);
 		
 	}
 		
@@ -115,10 +121,11 @@
 <!-- 		room 리스트 -->
 		<ul class="msg_lists">
 			<c:forEach var="msgH" items="${msgList }">
-				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.shop_idx }')">
+				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.shop_idx }', '${msgH.shop_name }','${msgH.img_name }','${msgH.item_title }')">
 <!-- 					room / shopname 저장 -->
-					<c:set value="${msgH.msgList_room }" var="rNum"></c:set>
-					<c:set value="${msgH.shop_idx }" var="sNum"></c:set>
+					<c:set value="${msgH.shop_name }" var="sName"></c:set>
+					<c:set value="${msgH.img_name }" var="imName"></c:set>
+					<c:set value="${msgH.item_title }" var="itTitle"></c:set>
 					<a href="#" class="room">
 						<span class="area-txt">
 							<span class="Htime">${msgH.msgChat_time }</span>
@@ -132,10 +139,12 @@
 	</div>
 	<section class="msg_board">
 		<div class="board_head">
-			<div class="prof">
-				<span class="sname"></span>
-			</div>
 			<fieldset class="msgbtn" id="msgbtn" style="visibility: hidden">
+			<div class="prof">
+				<span class="sname" id="sname"></span>
+				<img src='' class="prof_imName" id="prof_imName"></img>
+				<span class="itTitle" id="itTitle"></span>
+			</div>
 				<button class="follwing" onclick="location.href='following'">팔로우</button>
 				<button class="msg_out" onclick="msgDelete()">나가기</button>
 			</fieldset>

@@ -15,11 +15,15 @@
 	
 <!-- 	MsgList 뽑기 -->
 	<select id="selectMsgList" resultType="java.util.HashMap">
-		SELECT t.shop_name, t.member_id, t.shop_idx, t.msgList_room, t.msgChat_content, t.msgChat_time
-			FROM (SELECT s.shop_name, l.member_id, l.shop_idx, l.msgList_room, c.msgChat_content, c.msgChat_time
+		SELECT t.shop_name, t.member_id, t.shop_idx, t.msgList_room, t.msgChat_content, t.msgChat_time, t.item_title, t.img_name
+			FROM (SELECT s.shop_name, l.member_id, l.shop_idx, l.msgList_room, c.msgChat_content, c.msgChat_time, it.item_title, im.img_name
 				FROM msgList l
 					LEFT OUTER JOIN shop s
 						 ON l.shop_idx = s.shop_idx
+					LEFT OUTER JOIN item it
+						 ON l.item_idx = it.item_idx
+					LEFT OUTER JOIN img im
+						 ON it.item_idx = im.item_idx
 					LEFT OUTER JOIN (SELECT msgList_room ,msgChat_time, msgChat_content
 						   			   FROM msgChat
 								 	  WHERE (msgList_room ,msgChat_time) 
@@ -46,6 +50,13 @@
 		FROM msgChat mc
 		WHERE msgList_room = #{msgList_room}
 		ORDER BY mc.msgChat_time ASC
+	</select>
+<!-- 	샵 네임 -->
+	<select id="selectShop_name" resultType="string">
+		SELECT s.shop_name
+		  FROM shop s, msgList l
+		 WHERE l.msgList_room = #{msgList_room}
+		   AND l.shop_idx = s.shop_idx
 	</select>
 	
 <!-- 	deleteMsg -->
@@ -84,7 +95,13 @@
         group by t.msgList_room
 		ORDER BY t.msgChat_time DESC
 	</select>
-
+	<select id="selectShop_member_nick" resultType='string'>
+		SELECT m.member_nick
+		  FROM member m, msgList l
+		 WHERE l.msgList_room = #{msgList_room}
+		   AND l.member_id = m.member_id
+	</select>
+	
 	
 	
 </mapper>

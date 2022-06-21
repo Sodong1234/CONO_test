@@ -48,6 +48,12 @@ public class MessageService {
 	public int deleteMsg(String msgList_room) {
 		return mapper.deleteMsg(msgList_room);
 	}
+	public String getMember_nick(String msgList_room) {
+		return mapper.selectShop_member_nick(msgList_room);
+	}
+	public String getShop_name(String msgList_room) {
+		return mapper.selectShop_name(msgList_room);
+	}
 
 
 	}
