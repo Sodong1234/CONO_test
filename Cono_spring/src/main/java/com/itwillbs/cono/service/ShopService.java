@@ -209,7 +209,6 @@ public class ShopService {
             		if(file.exists()) {
             			file.delete();
             		}
-            		
             		try {
             			f.transferTo(new File(saveDir + "/" + reName));
             		}catch (IllegalStateException | IOException e) {
