@@ -34,7 +34,7 @@
 	}
 	
 	function checkEmail(email) {
-		var regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		var regEmail = /^[A-Za-z0-9-_.]+@[A-Za-z0-9-]+\.[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*$/;
 		
 		if(!regEmail.exec(email)) {
 			document.getElementById("checkEmailResult").innerHTML = "이메일 양식에 맞지 않습니다.";
@@ -125,7 +125,7 @@
 			document.fr.phone.focus();
 			return false;
 		} else if (!isCheckEmail) {
-			alert("전화번호 확인 필수!");
+			alert("이메일 확인 필수!");
 			document.fr.email.focus();
 			return false;
 		}
@@ -363,11 +363,11 @@ input[type="submit"] {
 		<div id="sub_img_member"></div>
 		<nav id="sub_menu"></nav>
 		<article>
-			<form action="joinPost" method="post" id="join" name="fr">
+			<form action="joinPost" method="post" id="join" name="fr" onsubmit="return checkSubmit()">
 				<div class="container">
 					<div class="input-form-backgroud row">
 						<div class="input-form col-md-12 mx-auto">
-							<h4 class="mb-3">회원가입123</h4>
+							<h4 class="mb-3">회원가입</h4>
 							<form class="validation-form" novalidate>
 								<div class="row">
 									<div class="col-md-6 mb-3">
@@ -445,8 +445,7 @@ input[type="submit"] {
 									약관 보기
 									</button>
 								</div> 
-								<input type="submit" value="가입하기" 
-								class="submit" id="submit" onclick="checkSubmit()">
+								<input type="submit" value="가입하기" class="submit" id="submit">
 							</form>
 						</div>
 					</div>
