@@ -50,7 +50,9 @@
 		VALUES (
 				(SELECT * 
 				FROM (SELECT IFNULL(MAX(ord_idx)+1, '1')
-			     	    FROM ord) AS A)
+			     	    FROM ord
+			     	   ORDER BY ord_idx*1
+			     	   LIMIT 1) AS A)
 			   ,#{item_idx}
 			   ,#{member_id}
 			   ,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
@@ -75,7 +77,9 @@
 		VALUES (
 			   (SELECT *
 			      FROM (SELECT IFNULL(MAX(safe_idx)+1,'1') 
-			      		  FROM safe) temp)
+			      		  FROM safe
+			      		 ORDER BY safe_idx*1 DESC
+			      		 LIMIT 1) temp)
 			   ,#{ord.item_idx}
 			   ,(SELECT ord_idx 
 			       FROM ord 
@@ -100,7 +104,7 @@
 		INSERT INTO coin
 		VALUES (
 			   (SELECT * FROM
-			   (SELECT coin_idx+1
+			   (SELECT IFNULL(MAX(safe_idx)+1, '1')
 				  FROM coin
 				 ORDER BY coin_idx+1 DESC
 				 LIMIT 1) AS A)
