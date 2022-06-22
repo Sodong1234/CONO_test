@@ -363,7 +363,8 @@ public class ShopController {
 		
 		String algorithm = "SHA-256";
 		String result = hashing(algorithm, member.getMember_pass());
-		member.setMember_pass(result);
+		member.setMember_pass(result);		
+		
 		
 		MemberDTO memberResult = service.checkMember(member);
 		

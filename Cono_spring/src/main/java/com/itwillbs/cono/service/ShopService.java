@@ -300,6 +300,7 @@ public class ShopService {
 		
 		System.out.println(f.isEmpty());
 		
+		
 		// 전달 받은 파일이 없을 경우
 		if(f.isEmpty()) {
 			// 원본 이미지가 있을 경우
