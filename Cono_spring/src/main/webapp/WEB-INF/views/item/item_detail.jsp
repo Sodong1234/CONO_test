@@ -7,6 +7,7 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item_detail.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/button.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <script src="resources/js/jquery-3.6.0.js"></script>
 <!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"></script> -->
@@ -33,11 +34,35 @@
 // 	}
 </script>
 
+<style type="text/css">
+.btnMessage{
+ 	background-image: url(./resources/img/7550143_massage_chatting_texting_chat_email_icon.png); 
+ 	background-size: cover;
+ 	width: 44px;   
+    height: 43px;    
+   	background-repeat:no-repeat;
+   	border:0;
+   	border-style: none; 
+   	background-color: white;
+	margin-left: 10p
+ 	}
+.btnShop{
+	background-image: url(./resources/img/shop.png); 
+ 	background-size: cover;
+ 	width: 43px;   
+    height: 43px;    
+   	background-repeat:no-repeat;
+   	border:0;
+   	border-style: none; 
+   	background-color: white;
+/*    	margin:-10px; */
+}
+
+</style>
 <div>
 	<!-- 상단 부분 -->
 	<jsp:include page="../header_footer/header.jsp" />
 </div>
-
 
 
 <div class="detail__area">
@@ -187,11 +212,9 @@
 							
 								<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}">
 								 
-								<input type="submit" value="판매자 상점 가기"> &nbsp;&nbsp;&nbsp;
-								
-				
+								<input type="submit" class = "btnShop" value=""> &nbsp;&nbsp;&nbsp;
+								<input type="button" class="btnMessage" value="" onclick="location.href='addMessageList?shop_idx=${itemDetail.shop_idx}&item_idx=${itemDetail.item_idx}'">
 								</form>
-								<input type="button" value="문의하기" onclick="location.href='addMessageList?shop_idx=${itemDetail.shop_idx}&item_idx=${itemDetail.item_idx}'">
 				
 						
 							
@@ -290,8 +313,18 @@
 		</div>
 		<!-- //detail-info__area -->
 
-<input type="button" value="신고하기" class="btn" onclick="location.href='AdminReportWriteForm.admin?item_idx=${itemDetail.get('item_idx')}'">
-
+<!-- 		<div class="btnArea" -->
+<!-- 			style="float: left;"> -->
+			<div class="svg-wrapper" style="margin-top: -40px;">
+				<svg height="40" width="120" xmlns="http://www.w3.org/2000/svg">
+      			 <rect id="shape" height="40" width="120" />
+     	 	</svg>
+				<div id="text1">
+					<input type="button" value="신고하기" class="btn"
+						onclick="location.href='AdminReportWriteForm.admin?item_idx=${itemDetail.get('item_idx')}'">
+				</div>
+			</div>
+<!-- 		</div> -->
 		<%-- 	숨김 체크박스 만들기 ? ${itemDetail.get('item_hide')} --%>
 		<!-- 지역, 카테고리, 상품태그 -->
 		<div class="prodInfo_detailWrap1">
