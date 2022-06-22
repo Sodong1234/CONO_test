@@ -12,16 +12,20 @@
 	
 	<!-- 내 상점 판매 횟수 조회 -->
 	<select id="selectShopSellCnt" resultType="java.lang.String">
-		SELECT COUNT(*) sellCount 
-		FROM item it, shop s 
-		WHERE s.member_id = #{member_id} AND item_status = 'Y'
+		SELECT COUNT(i.item_idx)
+		  FROM item i, ord o, shop s
+		 WHERE i.item_idx=o.item_idx
+		   AND i.shop_idx=s.shop_idx
+		   AND s.member_id=#{member_id}
+		   AND o.ord_status='Y'
 	</select>
 	
 	<!-- 내 상점 상품 개수 조회 -->
 	<select id="selectShopItemCnt" resultType="java.lang.String">
-		SELECT COUNT(*) itemCount
-		FROM item it, shop s 
+		SELECT COUNT(item_idx)
+		 FROM item it, shop s 
 		WHERE s.member_id = #{member_id}
+          AND it.shop_idx = s.shop_idx;
 	</select>
 	
 	<!-- 등록된 상품 개수(item_idx) 조회 -->
@@ -41,7 +45,7 @@
 			   , #{item.item_title}
 			   , #{item.item_content}
 			   , #{item.item_price}
-			   , date_format(now(), '%Y%m%d')
+			   , date_format(now(), '%Y%m%d%H%i%S')
 			   , '0'
 			   , '0'
 			   , 'N'

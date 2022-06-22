@@ -51,9 +51,11 @@ public class ShopController {
 		myShopCountInfo[0] = service.getShopSellCnt(member_id);
 		// 상점 상품 개수 조회
 		myShopCountInfo[1] = service.getShopItemCnt(member_id);
-		
+		// 별점 조회
+		HashMap<String, String> itemAvg = service.selectItemAvg(member_id);
 		// 팔로워 수 조회
 		
+		model.addAttribute("itemAvg", itemAvg);
 		model.addAttribute("myShop", myShop);
 		model.addAttribute("myShopCountInfo", myShopCountInfo);
 		
@@ -514,12 +516,13 @@ public class ShopController {
 		// 상점 정보 조회
 		HashMap<String, String> shopInfo = service.getShop(item_idx);
 		
-		String[] shopCountInfo = new String[2];
+		String[] shopCountInfo = new String[3];
 		
 		// 상점 판매 횟수 조회
 		shopCountInfo[0] = service.getShopSellCntBuyer(item_idx);
 		// 상점 상품 개수 조회
 		shopCountInfo[1] = service.getShopItemCntBuyer(item_idx);
+		
 		
 		// 팔로워 수 조회
 		String followerCnt = service.getFollowerCnt(item_idx);
