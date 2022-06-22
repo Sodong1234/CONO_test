@@ -325,14 +325,14 @@ public class ShopService {
 	    			file.delete(); // 원본 이미지 파일 삭제
 	    		}
 	    		try {
-	    			f.transferTo(new File(reName));	// 전달 받은 이미지 파일 저장
+	    			f.transferTo(new File(saveDir + "\\" + reName));	// 전달 받은 이미지 파일 저장
 	    		}catch (IllegalStateException | IOException e) {
 	    			e.printStackTrace();
 	    		}
 	    	// 원본 이미지가 없을 경우
 			} else {
 				try {
-					f.transferTo(new File(reName));	// 전달 받은 이미지 저장
+					f.transferTo(new File(saveDir + "\\" + reName));	// 전달 받은 이미지 저장
 	    		}catch (IllegalStateException | IOException e) {
 	    			e.printStackTrace();
 	    		}

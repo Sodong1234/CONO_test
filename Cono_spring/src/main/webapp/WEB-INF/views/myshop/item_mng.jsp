@@ -144,7 +144,7 @@ String sell_status = request.getParameter("sell_status");
 <%-- <td><fmt:formatNumber value="${item.get('item_price') }" pattern="#,###.##"/></td> --%>
 							<td>${item.get("item_date") }</td>
 							<td>${item.get("item_status") }</td>
-							<td>${item.get("COUNT(w.member_id)") }</td>
+							<td>${item.get("wish") }</td>
 							<td>${item.get("item_readCnt") }</td>
 <%-- 							<td><input type="checkbox" name="item_hide" class="item_hide" <c:if test="${item.get('item_hide') eq 'Y'}"> checked="checked"</c:if> --%>
 <%-- 							     onchange="location.href='ItemHide.shop?item_idx=${item.get('item_idx') }&item_hide=${item.get('item_hide') }'"></td> --%>

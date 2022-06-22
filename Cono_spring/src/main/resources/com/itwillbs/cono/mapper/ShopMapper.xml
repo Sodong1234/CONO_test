@@ -75,7 +75,7 @@
 	<!-- 상품 관리 (상품 리스트 조회) -->
 	<select id="selectItemList" resultType="java.util.HashMap">
 		<!-- 임시 코드... -->
-		SELECT i.item_idx, g.img_name, i.item_title, i.item_price, i.item_date, i.item_status, COUNT(w.member_id), i.item_readCnt, i.item_hide
+		SELECT i.item_idx, g.img_name, i.item_title, i.item_price, i.item_date, i.item_status, COUNT(w.member_id) as wish, i.item_readCnt, i.item_hide
 		FROM item AS i
 		LEFT OUTER JOIN wish AS w
 		ON i.item_idx = w.item_idx
