@@ -85,7 +85,17 @@ if(session.getAttribute("sId") == null) {
 	        }
 	    }).open();
 	}
-// ---------------------------------------------------------------------------------------------------
+// ------------------------------------------- 숫자만 입력 할 수 있게 하기 ----------------------------------------------
+
+function checkNumber(event) {
+  if(event.key === '.' 
+     || event.key === '-'
+     || event.key >= 0 && event.key <= 9) {
+    return true;
+  }
+  
+  return false;
+}
 
 // ------------------------------------------ 이미지 미리보기 ----------------------------------------
 <c:forEach var="i" begin="1" end="6">
@@ -185,22 +195,22 @@ if(session.getAttribute("sId") == null) {
 									<div id="upload_img_area">
 										<ul>
 											<li>
-												<img alt="상점 이미지" id="target_img1" src="resources/default_img.png">
-												<input type="file" id="file1" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile1(this)" style="display: none;">
+												<img alt="상점 이미지" id="target_img1" src="resources/default_img.png" style="width: 200px; height: 200px;">
+												<input type="file" id="file1" class="file1" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile1(this)" style="display: none;">
 <%-- 												<input type="image" style="width: 10px" id="delFile1" value="이미지삭제" src="<spring:url value='/resources/cancle.png'/>"><br> --%>
 <%-- 												<input type="image" style="width: 10px" border="0" id="delFile1" value="이미지삭제" src="${path }/resources/cancle.png"><br> --%>
 												<div class="delete_img"><input type="button" id="delFile1" value="X">이미지삭제</div>
 <!-- 												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;"> -->
 											</li>
 											<li>
-												<img alt="상점 이미지" id="target_img2" src="resources/default_img.png">
+												<img alt="상점 이미지" id="target_img2" src="resources/default_img.png" style="width: 200px; height: 200px;">
 												<input type="file" id="file2" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile2(this)" style="display: none;">
 <%-- 												<input type="image" style="width: 10px" border="0" id="delFile2" value="이미지삭제" src="<spring:url value='/resources/cancle.png'/>"><br> --%>
 												<div class="delete_img"><input type="button" id="delFile2" value="X">이미지삭제</div>
 <!-- 												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;"> -->
 											</li>
 											<li>
-												<img alt="상점 이미지" id="target_img3" src="resources/default_img.png">
+												<img alt="상점 이미지" id="target_img3" src="resources/default_img.png" style="width: 200px; height: 200px;">
 												<input type="file" id="file3" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile3(this)" style="display: none;">
 <%-- 												<input type="image" style="width: 10px" border="0" id="delFile3" value="이미지삭제" src="<spring:url value='/resources/cancle.png'/>"><br> --%>
 												<div class="delete_img"><input type="button" id="delFile3" value="X">이미지삭제</div>
@@ -209,21 +219,21 @@ if(session.getAttribute("sId") == null) {
 										</ul>
 										<ul>
 											<li>
-												<img alt="상점 이미지" id="target_img4" src="resources/default_img.png">
+												<img alt="상점 이미지" id="target_img4" src="resources/default_img.png" style="width: 200px; height: 200px;">
 												<input type="file" id="file4" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile4(this)" style="display: none;">
 <%-- 												<input type="image" style="width: 10px" border="0" id="delFile4" value="이미지삭제" src="<spring:url value='/resources/cancle.png'/>"><br> --%>
 												<div class="delete_img"><input type="button" id="delFile4" value="X">이미지삭제</div>
 <!-- 												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;"> -->
 											</li>
 											<li>
-												<img alt="상점 이미지" id="target_img5" src="resources/default_img.png">
+												<img alt="상점 이미지" id="target_img5" src="resources/default_img.png" style="width: 200px; height: 200px;">
 												<input type="file" id="file5" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile5(this)" style="display: none;">
 <%-- 												<input type="image" style="width: 10px" border="0" id="delFile5" value="이미지삭제" src="<spring:url value='/resources/cancle.png'/>"><br> --%>
 												<div class="delete_img"><input type="button" id="delFile5" value="X">이미지삭제</div>
 <!-- 												<input type="file" class="img" accept=".gif, .jpg, .png" name="upload" style="display: none;"> -->
 											</li>
 											<li>
-												<img alt="상점 이미지" id="target_img6" src="resources/default_img.png">
+												<img alt="상점 이미지" id="target_img6" src="resources/default_img.png" style="width: 200px; height: 200px;">
 												<input type="file" id="file6" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile6(this)" style="display: none;">
 <%-- 												<input type="image" style="width: 10px" border="0" id="delFile6" value="이미지삭제" src="<spring:url value='/resources/cancle.png'/>"><br> --%>
 												<div class="delete_img"><input type="button" id="delFile6" value="X">이미지삭제</div>
@@ -321,7 +331,7 @@ if(session.getAttribute("sId") == null) {
 									<div class="price_con">
 										<div class="priceBox">
 											<input type="text" placeholder="숫자만 입력해주세요."
-												class="priceInput" id="product_price" name="item_price">원
+												class="priceInput" id="product_price" name="item_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />원
 										</div>
 									</div>
 								</li>
@@ -334,7 +344,7 @@ if(session.getAttribute("sId") == null) {
 									<div class="quantity_con">
 										<div class="quantityBox">
 											<input type="text" placeholder="숫자만 입력해주세요."
-												class="quantityInput" name="item_quantity" id="item_quantity">개
+												class="quantityInput" name="item_quantity" id="item_quantity" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />개
 										</div>
 									</div>
 								</li>
@@ -364,7 +374,7 @@ if(session.getAttribute("sId") == null) {
 			<input type="submit" value="" id="btn" class="btn" name="등록">
 		</form>
 	</div>
-	<div class ="btnArea" style="float:center; margin-left: 500px; margin-bottom: 50px;">
+	<div class ="btnArea" style="float:center; margin-left: 900px; margin-bottom: 50px;">
 		<div class="svg-wrapper" >
      		 <svg height="40" width="120" xmlns="http://www.w3.org/2000/svg">
       			 <rect id="shape" height="40" width="120" />
