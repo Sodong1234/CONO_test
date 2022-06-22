@@ -7,11 +7,23 @@
 	</select>  
 	
 	<select id="selectBoardList" resultType="java.util.HashMap">
-		SELECT it.item_idx, im.img_name, it.item_title, it.item_price, it.item_region , it.item_date 
-		FROM item it, recentView re, img im
-		WHERE re.member_id = #{sId} AND it.item_idx IN (re.item_idx) AND it.item_idx = im.item_idx AND im.img_idx = '1'
-		ORDER BY re.viewTime DESC
+<!-- 		SELECT it.item_idx, im.img_name, it.item_title, it.item_price, it.item_region , it.item_date  -->
+<!-- 		FROM item it, recentView re, img im -->
+<!-- 		WHERE re.member_id = #{sId} AND it.item_idx IN (re.item_idx) AND it.item_idx = im.item_idx AND im.img_idx = '1' -->
+<!-- 		ORDER BY re.viewTime DESC -->
 	</select>
+	
+<!-- 	최근조회 -->
+	<select id="selectRecent" resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_name, it.item_title
+		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, recentView rv
+		WHERE 1=1
+		  AND rv.member_id = #{sId} AND rv.item_idx = it.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1'
+		  AND it.item_quantity > 0
+		ORDER BY rv.viewTime DESC
+		LIMIT 0,3
+	</select>
+	
 	
 <!-- 	회원 상세 정보 (for 회원 정보 수정) -->
 	<select id="selectMemberInfo" resultType="com.itwillbs.cono.vo.MemberDTO">
@@ -105,7 +117,7 @@
 		SELECT COUNT(coupon_idx)
 		  FROM coupon
 		 WHERE member_id = #{sId}
-		   AND coupon_status ='N'
+		 AND coupon_status ='N'
 	</select>
 	
 <!-- 	현재 보유 쿠폰 리스트 -->

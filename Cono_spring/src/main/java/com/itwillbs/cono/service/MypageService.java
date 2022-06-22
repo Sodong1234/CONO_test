@@ -29,10 +29,14 @@ public class MypageService {
 	}
 	
 	// 최근 조회 리스트 첫 화면
-	public List<List<String>> getRecentViewList(String sId) {
-		return mapper.selectBoardList(sId);
+//	public List<List<String>> getRecentViewList(String sId) {
+//		return mapper.selectBoardList(sId);
+//	}
+	// 최근게시물 조회
+	public List<HashMap<String, String>> getRecent(String sId) {
+		return mapper.selectRecent(sId);
 	}
-
+	
 	// 회원정보 가져오기 (for 수정)
 	public MemberDTO getMemberDetail(String sId) {
 		return mapper.selectMemberInfo(sId);

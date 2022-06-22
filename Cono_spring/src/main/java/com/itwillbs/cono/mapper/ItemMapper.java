@@ -82,5 +82,7 @@ public interface ItemMapper {
 	
 	// ord_data 조회
 	String selectOrdDate(OrdDTO ord);
+
+	public List<List<String>> selectBoardList(String sId);
 	
 }

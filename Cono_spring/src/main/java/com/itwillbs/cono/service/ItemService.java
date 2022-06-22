@@ -140,6 +140,11 @@ public class ItemService {
 		
 	}
 
+	// 최근 조회 리스트 첫 화면
+	public List<List<String>> getRecentViewList(String sId) {
+		return mapper.selectBoardList(sId);
+	}
+
 	
 	// coin 테이블 insert (판매자)
 //	public void insertCoinSeller(OrdDTO ord, String item_price) {

@@ -238,4 +238,11 @@
 	   WHERE item_idx = #{item_idx}
    </update>
 
+<!-- 	최근 조회 -->
+	<select id="selectBoardList" resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_name, it.item_title, it.item_price, it.item_region , it.item_date 
+		FROM item it, recentView re, img im
+		WHERE re.member_id = #{sId} AND it.item_idx IN (re.item_idx) AND it.item_idx = im.item_idx AND im.img_idx = '1'
+		ORDER BY re.viewTime DESC
+	</select>
 </mapper>

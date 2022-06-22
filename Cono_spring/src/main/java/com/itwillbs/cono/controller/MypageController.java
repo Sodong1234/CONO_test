@@ -69,6 +69,10 @@ public class MypageController {
 //				
 //			}
 //		}
+		List<HashMap<String, String>> getRecent = service.getRecent(sId);
+		model.addAttribute("getRecent", getRecent);
+		System.out.println(getRecent.isEmpty());
+
 		
 		model.addAttribute("coin_total", coin_total);
 		System.out.println("Coin_total : " + coin_total);
@@ -100,43 +104,20 @@ public class MypageController {
 		return "mypage/mypage";
 	}
 
-	// 2. 최근조회화면 첫 이동
-	@RequestMapping(value = "recentViewList", method = RequestMethod.GET)
-	public String recentView(@RequestParam(defaultValue = "1") int pageNum, Model model, HttpSession session) {
-		// 페이징 처리에 필요한 전체 게시물 수 조회 - getRecentViewListCount()
-		// => 파라미터 : 없음, 리턴타입 : int(listCount)
-		// => 게시물이 없을 경우 null 이 아닌 0 이 리턴되므로 Integer 대신 int 사용 가능
-//		int listCount = service.getRecentViewListCount();
-//		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
-//		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
+//	// 2. 최근조회
+//	@RequestMapping(value = "recentViewList", method = RequestMethod.GET)
+//	public String recentView(@RequestParam(defaultValue = "1") int pageNum, Model model, HttpSession session) {
 //
-//		int maxPage = (int) Math.ceil((double) listCount / listLimit);
-//		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
-//		int endPage = startPage + pageLimit - 1;
-//		if (endPage > maxPage) {
-//			endPage = maxPage;
-//		}
+//		String sId = (String)session.getAttribute("sId");
 //
-//		int startRow = (pageNum - 1) * listLimit;
+//		List<List<String>> recentViewList = service.getRecentViewList(sId);
+//		System.out.println(recentViewList);
+//		model.addAttribute("recentViewList", recentViewList);
 //
-//		PageInfo pageInfo = new PageInfo();
-//		pageInfo.setPageNum(pageNum);
-//		pageInfo.setMaxPage(maxPage);
-//		pageInfo.setStartPage(startPage);
-//		pageInfo.setEndPage(endPage);
-//		pageInfo.setListCount(listCount);
-//		pageInfo.setStartRow(startRow);
-//		pageInfo.setListLimit(listLimit);
+//		return "mypage/list_recentView";
+//	}
 
-		String sId = (String)session.getAttribute("sId");
-
-		List<List<String>> recentViewList = service.getRecentViewList(sId);
-		System.out.println(recentViewList);
-		model.addAttribute("recentViewList", recentViewList);
-
-		return "mypage/list_recentView";
-	}
-
+	
 
 	// 내가 구매한 제품 리스트 확인
 	@RequestMapping(value = "readOrdList", method = RequestMethod.GET)
@@ -410,6 +391,9 @@ public class MypageController {
 	public String coupon(HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
 
+		List<HashMap<String, String>> getRecent = service.getRecent(sId);
+		model.addAttribute("getRecent", getRecent);
+		
 		List<CouponDTO> couponList = service.getCouponList(sId);
 		model.addAttribute("couponList", couponList);
 		return "mypage/center_coupon";
@@ -433,6 +417,9 @@ public class MypageController {
 		// 위시 리스트 상품
 		List<HashMap<String, String>> wishList = service.getwishList(sId);
 		model.addAttribute("wishList", wishList);
+		
+		List<HashMap<String, String>> getRecent = service.getRecent(sId);
+		model.addAttribute("getRecent", getRecent);
 		return "mypage/list_wish";
 	}
 

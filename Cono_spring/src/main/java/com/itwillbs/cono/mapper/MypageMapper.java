@@ -19,7 +19,9 @@ public interface MypageMapper {
 	// 최근 조회 게시물 수
 	public int selectRecentViewCount();
 	// 아직 ㄴㄴ
-	public List<List<String>> selectBoardList(String sId);
+//	public List<List<String>> selectBoardList(String sId);
+	// 최근 상품 조회
+	public List<HashMap<String, String>> selectRecent(String sId);
 	// 회원 상세 조회 (for 수정)
 	public MemberDTO selectMemberInfo(String sId);
 	// 회원 정보 수정
