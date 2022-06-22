@@ -196,6 +196,7 @@ div {
 </script>
 </head>
 <body>
+
 	<div id="wrap">
 		<jsp:include page="../header_footer/header.jsp" />
 	</div>
@@ -240,6 +241,7 @@ div {
 				</tr>
 			</thead>
 			<tbody>
+				
 				<c:forEach items="${purchaseList }" var="purchase">
 					<c:choose>
 						<c:when test="${purchase.ord_status eq 'N'}">
@@ -258,7 +260,12 @@ div {
 									</div>
 								</td>
 								<td>${purchase.ord_date }<br>
-									<input type="button" value="구매확정" onclick="location.href='confirmPurchase?item_idx=${purchase.item_idx}&ord_date=${purchase.ord_date }'">
+									<form action="confirmPurchase" method="post">
+										<input type="hidden" name="item_idx" value="${purchase.item_idx}">
+										<input type="hidden" name="ord_date" value="${purchase.ord_date}">
+<%-- 										<input type="button" value="구매확정" onclick="location.href='confirmPurchase?item_idx=&ord_date=${purchase.ord_date }'"> --%>
+										<input type="submit" value="구매확정">
+									</form>
 								</td>
 								<td>
 <!-- 										<a class="n-btn w80 btn-sm btn-default" href="writeBasicReview">작성하기</a> -->
@@ -281,6 +288,7 @@ div {
 									</div>
 								</td>
 								<td>${purchase.ord_date }<br>
+								${ordresult }
 									<input type="button" value="구매확정완료" disabled="disabled">
 								</td>
 								<td>
@@ -288,7 +296,7 @@ div {
 										<c:when test="${purchase.review_idx eq null }">
 											<form action="writeBasicReview" method="post" target="리뷰 작성" onsubmit="writeReview()">
 												<input type="hidden" name="item_idx" value="${purchase.item_idx }">
-												<input type="hidden" name="ord_date" value="${purchase.ord_date }">
+												<input type="hidden" name="ord_date" value="${purchase.ord_date}">
 												<input type="submit" class="n-btn w80 btn-sm btn-default" id="write_review" value="작성하기">
 											</form>
 										</c:when>

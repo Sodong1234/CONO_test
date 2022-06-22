@@ -46,16 +46,19 @@ public class OrdDTO {
    public void setOrd_quantity(String ord_quantity) {
       this.ord_quantity = ord_quantity;
    }
-   @Override
-   public String toString() {
-      return "OrdDTO [item_idx=" + item_idx + ", member_id=" + member_id + ", order_date=" + ord_date
-            + ", ord_reqContent=" + ord_reqContent + ", ord_quantity=" + ord_quantity + "]";
-   }
+
    public String getOrd_status() {
       return ord_status;
    }
    public void setOrd_status(String ord_status) {
       this.ord_status = ord_status;
    }
+	@Override
+	public String toString() {
+		return "OrdDTO [ord_idx=" + ord_idx + ", item_idx=" + item_idx + ", member_id=" + member_id + ", ord_date="
+				+ ord_date + ", ord_reqContent=" + ord_reqContent + ", ord_quantity=" + ord_quantity + ", ord_status="
+				+ ord_status + "]";
+	}
+   
    
 }

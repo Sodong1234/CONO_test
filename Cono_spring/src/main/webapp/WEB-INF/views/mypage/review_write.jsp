@@ -70,11 +70,15 @@
 <body>
 <section class="mypage-cont">
             <form action="uploadReview" id="reviewForm" name="reviewForm" method="post">
-                <input type="hidden" name="ord_date" value="${ord_date }">
+<%--                 <input type="hidden" name="ordresult" value="${ordresult }"> --%>
+				<input type="hidden" name="ord_idx" value="${ordresult.ord_idx }">
+				<input type="hidden" name="item_idx" value="${ordresult.item_idx }">
+				<input type="hidden" name="member_id" value="${ordresult.member_id }">
+				<input type="hidden" name="ord_date" value="${ordresult.ord_date }">
+				<input type="hidden" name="ord_reqContent" value="${ordresult.ord_reqContent }">
+				<input type="hidden" name="ord_quantity" value="${ordresult.ord_quantity }">
+				<input type="hidden" name="ord_status" value="${ordresult.ord_status }">
                 <input type="hidden" id="insertCheck" name="insertCheck" value="${insertCheck }">
-<!--                <input type="hidden" name="goods_est" value=""> // TODO 사용여부 확인 후 삭제-->
-                <input type="hidden" name="item_idx" value="${param.item_idx }">
-
 
                 
     <header class="n-section-title">
@@ -116,19 +120,7 @@
                         		<option value="2">2</option>
                         		<option value="1">1</option>
                         	</select>
-<!--                         <div class="n-score score-lg clickable goods_est_area" id="startScoreWrap"> -->
-<!--                             <a href="#" class="score score10" data-star="5"></a> -->
-<!--                             <a href="#" class="score score8" data-star="4"></a> -->
-<!--                             <a href="#" class="score score6" data-star="3"></a> -->
-<!--                             <a href="#" class="score score4" data-star="2"></a> -->
-<!--                             <a href="#" class="score score2" data-star="1"></a> -->
-<!--                         </div> -->
                     </div>
-                    <!-- //별점 -->
-
-                    <!-- 구매만족도 -->
-                    <!-- // 구매만족도 -->
-                    <!-- 후기 작성 -->
                     <div class="review-write">
                         <label for="goods_text" class="label">상품에 대한 평가를 20자 이상 작성해 주세요.</label>
                         <!-- 입력 영역 -->
@@ -145,14 +137,6 @@
                         <!-- //입력 영역 -->
                     </div>
                     <!-- //후기 작성 -->
-					
-                    <!--[D] 전체동의 / 수집이용 동의-->
-<!--                     <div class="n-wrap-agree"> -->
-<!--                                 <input type="checkbox" class="n-check agree" id="allAgree"> -->
-<!--                                 <label for="allAgree" class="n-all-agree">전체 동의하기</label>             -->
-<!--                             <input type="checkbox" class="n-check agree ckbMyAgree btnReviewAgree" id="myReviewAgree" name="review_agree"> -->
-<!--                             <label for="myReviewAgree">작성된 후기는 CONO 홍보 콘텐츠로 사용될 수 있습니다. (필수)</label> -->
-<!--                     </div> -->
                     <div class="n-btn-group">
                         <input type="submit" class="n-btn btn-accent" id="btnSave" value="등록">
                     </div>

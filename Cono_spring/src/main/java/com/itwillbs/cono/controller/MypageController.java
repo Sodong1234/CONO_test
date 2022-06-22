@@ -21,6 +21,7 @@ import com.itwillbs.cono.vo.CancelDTO;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.OrdDTO;
 import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.PaymentDTO;
 import com.itwillbs.cono.vo.ReviewDTO;
@@ -166,17 +167,17 @@ public class MypageController {
 		pageInfo.setStartRow(startRow);
 		pageInfo.setListLimit(listLimit);
 		List<HashMap<String, String>> purchaseList = service.getReadPurchaseList(sId, pageInfo);
-		
 		model.addAttribute("purchaseList", purchaseList);
 		model.addAttribute("pageInfo", pageInfo);
 		return "mypage/list_read_ord_list";
 	}
 	
 	// 구매 확정
-	@RequestMapping(value = "confirmPurchase", method = RequestMethod.GET)
-	public String confirmPurchase(HttpSession session, String item_idx, String ord_date, Model model) {
+	@RequestMapping(value = "confirmPurchase", method = RequestMethod.POST)
+	public String confirmPurchase(@RequestParam(defaultValue = "1") int pageNum,HttpSession session, String item_idx, String ord_date, Model model) {
 		
 		String sId = (String)session.getAttribute("sId");
+		
 		// 판매자 아뒤 찾기
 		String shop_member_id = service.selectShop_idx(item_idx);
 		
@@ -191,10 +192,15 @@ public class MypageController {
 		
 		// 판매자 코인 입금
 		service.insertCoinSeller(item_idx, ord_date, shop_member_id, safe_coin, coin_total);
-		
+
 		// safe 테이블 status 변경
 		service.modifySafeStatus(sId, item_idx, ord_date);
-		model.addAttribute("ord_date", ord_date);
+		
+		// ord 조회 (가지고 다닐거)
+//		OrdDTO ordresult = service.selectOrd(sId, item_idx, ord_date);
+//		System.out.println("ordresult : " + ordresult);
+		
+//		model.addAttribute("ordresult", ordresult);
 		
 		return "redirect:/readOrdList";
 	}
@@ -203,21 +209,28 @@ public class MypageController {
 	@RequestMapping(value = "writeBasicReview", method = RequestMethod.POST)
 	public String writeBasicReview(HttpSession session, String item_idx, String ord_date, Model model) {
 		
+		String sId = (String)session.getAttribute("sId");
+		
 		HashMap<String, String> itemInfo = service.getItemInfo(item_idx);
 		
+		OrdDTO ordresult = service.selectOrd(sId, item_idx, ord_date);
+		System.out.println("후기 이동 : " + ordresult);
+		
 		model.addAttribute("itemInfo", itemInfo);
-		model.addAttribute("ord_date", ord_date);
+		model.addAttribute("ordresult", ordresult);
 		return "mypage/review_write";
 	}
 		
 	// 후기 insert 작업
 	@RequestMapping(value = "uploadReview", method = RequestMethod.POST)
-	public String uploadReview(@ModelAttribute ReviewDTO review, String item_idx, String ord_date, HttpSession session, Model model) {
+	public String uploadReview(@ModelAttribute ReviewDTO review, OrdDTO ordresult, HttpSession session, Model model) {
+		
+		System.out.println("ordresult(insert) : " + ordresult);
 		String insertCheck = "";
 		
 		String sId = (String)session.getAttribute("sId");
-		System.out.println(sId);
-		int insertCnt = service.uploadReview(review, sId, item_idx, ord_date);
+		
+		int insertCnt = service.uploadReview(review, sId, ordresult);
 		
 		if(insertCnt > 0) {
 			insertCheck = "done";

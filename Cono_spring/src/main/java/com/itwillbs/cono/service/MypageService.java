@@ -11,6 +11,7 @@ import com.itwillbs.cono.vo.CancelDTO;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.OrdDTO;
 import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.PaymentDTO;
 import com.itwillbs.cono.vo.ReviewDTO;
@@ -133,11 +134,10 @@ public class MypageService {
 	public List<HashMap<String, String>> getWaitingList(String sId) {
 		return mapper.selectWaitingList(sId);
 	}
-
 	
 	// 후기 등록
-	public int uploadReview(ReviewDTO review, String sId, String item_idx, String ord_date) {
-		return mapper.insertReview(review, sId, item_idx, ord_date);
+	public int uploadReview(ReviewDTO review, String sId, OrdDTO ordresult) {
+		return mapper.insertReview(review, sId, ordresult);
 	}
 	
 	// 구매확정
@@ -150,10 +150,15 @@ public class MypageService {
 		mapper.insertCoinSeller(item_idx, ord_date, shop_member_id, safe_coin, coin_total);
 	}
 	
+	// safe 테이블 상태 변경
 	public boolean modifySafeStatus(String sId, String item_idx, String ord_date) {
 		return mapper.updateSafeStatus(sId, item_idx, ord_date);
 	}
 	
+	// ord 테이블 조회(가지고 다닐거)
+	public OrdDTO selectOrd(String sId, String item_idx, String ord_date) {
+		return mapper.selectOrd(sId, item_idx, ord_date);
+	}
 	
 	// 회원 탈퇴 로직
 	public boolean deleteId(String id, String passwd) {

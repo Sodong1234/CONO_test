@@ -234,12 +234,14 @@
 			      FROM (SELECT IFNULL(MAX(review_idx)+1,'1') 
 			      		  FROM review) temp)
 			    ,#{sId}
-			    ,#{item_idx}
+<!-- 			    ,#{item_idx} -->
+			    ,#{ordresult.item_idx}
 			    ,(SELECT ord_idx
    				   FROM ord
    				  WHERE member_id=#{sId}
-   				    AND item_idx=#{item_idx}
-					AND ord_date=#{ord_date}
+   				    AND item_idx=#{ordresult.item_idx}
+					AND ord_date=#{ordresult.ord_date}
+					AND ord_reqContent=#{ordresult.ord_reqContent}
 					AND ord_status='Y'
                    )
 			    ,#{review.review_content}
@@ -314,6 +316,15 @@
 							AND ord_status='Y'
 	                    )
 	</update>
+	
+	<!-- ord 테이블 조회 (가지고 다닐거) -->
+	<select id="selectOrd" resultType="com.itwillbs.cono.vo.OrdDTO">
+		SELECT ord_idx, item_idx, member_id, ord_date, ord_reqContent, ord_quantity, ord_status
+		  FROM ord
+		 WHERE member_id=#{sId}
+		   AND item_idx=#{item_idx}
+		   AND ord_date=#{ord_date}
+	</select>
 	
 	<!-- 후기 내역 조회 -->
 	<select id="selectReviewList" resultType="java.util.HashMap">
