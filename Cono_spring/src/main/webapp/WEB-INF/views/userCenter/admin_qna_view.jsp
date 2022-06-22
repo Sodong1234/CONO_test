@@ -46,40 +46,48 @@ a {
 	color: #363940;
 }
 
-h1 {
-	position: relative;
-	float: left;
-	margin-left: 60px;
-	margin-top: 4px;
-	margin-bottom: 10px;
-	color: #17191d;;
+.hh{
+	position:relative; 
+ 	float: left; 
+ 	margin-left: 60px; 
+ 	margin-top: 4px;
+ 	margin-bottom: 10px;
+	color:#17191d;;
+ 	font-size: xx-large;
 }
+ .title{ 
+ 	width: 50%;
+    float: left;
+    height: 30px;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 20px;
+ } 
 
-.title {
-	width: 50%;
-	float: left;
-	height: 70px;
-	font-size: 25px;
-	/*  	padding:14px 0 11px 20px; */
-	font-weight: 600;
-	line-height: 50px;
-	/* 	padding-left: 10px; */
-}
-
+ .writer{ 
+ 	width:50%;
+ 	height: 30px;
+  	float : right;  
+ 	font-size: 14px;
+ 	font-weight: 200;
+ 	color: #737881;
+ 	line-height: 60px;  
+	text-align: right;	
+ } 
+ .date { 
+ 	width:50%;
+/*  	height: 30px; */
+ 	float : right; 
+ 	font-size: 14px;
+ 	font-weight: 200;
+ 	color: #737881;
+   	line-height: 60px;   
+	text-align: left;	
+ } 
+ 
+  
 .qna_type{
 	width: 50%;
-	height: 70px;
-	float: right;
-	font-size: 14px;
-	font-weight: 200;
-	color: #737881;
-	line-height: 60px;
-	text-align: right;
-}
-
-
-.writer {
-	width: 50%;
 	height: 30px;
 	float: right;
 	font-size: 14px;
@@ -89,16 +97,7 @@ h1 {
 	text-align: right;
 }
 
-.date {
-	width: 50%;
-	height: 30px;
-	float: right;
-	font-size: 14px;
-	font-weight: 200;
-	color: #737881;
-	line-height: 60px;
-	text-align: left;
-}
+
 
 #btn {
 	font-size: 13px;
@@ -135,7 +134,7 @@ h1 {
 
 
 	<div class="body">
-		<h1>QNA</h1>
+		<div class ="hh">QNA</div>
 		<div class="board_list_wrap">
 			<div class="board_list_head">
 				<%-- 						<td>${qna.getQna_idx() }</td> --%>

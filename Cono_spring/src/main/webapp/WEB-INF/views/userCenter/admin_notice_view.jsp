@@ -54,24 +54,22 @@ a {
 /* } */
 
 
-h1{
+.hh{
 	position:relative; 
  	float: left; 
  	margin-left: 60px; 
  	margin-top: 4px;
  	margin-bottom: 10px;
 	color:#17191d;;
- 	
+ 	font-size: xx-large;
 }
  .title{ 
- 	width:100%;
- 	float: left; 
- 	height: 70px;
- 	font-size: 25px;
-/*  	padding:14px 0 11px 20px; */
-	font-weight: 600;
-	line-height: 50px; 
-/* 	padding-left: 10px; */
+ 	width: 100%;
+    float: left;
+    height: 60px;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 20px;
  } 
 
  .writer{ 
@@ -81,17 +79,17 @@ h1{
  	font-size: 14px;
  	font-weight: 200;
  	color: #737881;
-	line-height: 60px; 
+/* 	line-height: 60px;  */
 	text-align: right;	
  } 
  .date { 
  	width:50%;
- 	height: 30px;
+/*  	height: 30px; */
  	float : right; 
  	font-size: 14px;
  	font-weight: 200;
  	color: #737881;
-  	line-height: 60px;  
+/*   	line-height: 60px;   */
 	text-align: left;	
  } 
  
@@ -130,7 +128,7 @@ h1{
 	
 	
 	<div class="body">
-		<h1>NOTICE</h1>
+		<div class ="hh">NOTICE</div>
 			<div class="board_list_wrap">
 			<div class="board_list_head">
 					<div class="title">제목 : ${noticeList.getNotice_subject() }</div>
