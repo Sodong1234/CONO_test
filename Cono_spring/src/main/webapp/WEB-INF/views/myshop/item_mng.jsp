@@ -23,11 +23,17 @@ String sell_status = request.getParameter("sell_status");
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 
 <style type="text/css">
+#item_mng_wrap {
+	width: 1040px;
+	margin: 0 430px;
+}
 
 #search_row{
 	margin-right: 438px;
 }
-
+#item_mng_shearch_box {
+	margin-left: 440px;
+}
 /*  paging  */
 
   .paging  {  
@@ -70,9 +76,9 @@ String sell_status = request.getParameter("sell_status");
 		<jsp:include page="./myshop_sidebar.jsp"/>
 	</div>
 		
-<!-- 	<div class="float-end"> -->
+	<div id="item_mng_wrap">
 			<div class="row mb-4 float-end" style="margin-top:5px;" id="search_row">
-				<form name="fr" action="ItemMng.shop" class="input-group">
+				<form name="fr" action="ItemMng.shop" class="input-group" id="item_mng_shearch_box">
 					<select class="form-select"  name="sell_status">
 						<option value="" <%if(sell_status != null && sell_status.equals("")) { %> selected="selected" <%} %>>전체</option>
 						<option value="0" <%if(sell_status != null && sell_status.equals("0")) { %> selected="selected" <%} %>>판매 중</option>
@@ -183,6 +189,7 @@ String sell_status = request.getParameter("sell_status");
 			</c:otherwise>
 		</c:choose>
 	</div>
+</div>
 <!-- 	<div class="clearfix"></div> -->
 	<div>
 		<!-- 하단 부분 -->

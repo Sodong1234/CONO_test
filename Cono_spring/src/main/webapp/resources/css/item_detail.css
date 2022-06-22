@@ -55,9 +55,8 @@ img {
     box-sizing: border-box;
 }
 .detail__area {
-	display: flex;
-	-webkit-box-pack: center;
-	justify-content: center;
+	width: 1040px;
+    margin: 0 430px;
 	background: rgb(255, 255, 255);
 	font-family: "Noto Sans KR";
 	font-size: 14px;
