@@ -2353,6 +2353,7 @@ colgroup {
 	color: #111;
 	font-size: 12px;
 	font-weight: 400;
+	width: 40px;
 }
 
 .payCoupon .price {
@@ -2360,7 +2361,7 @@ colgroup {
 	font-size: 12px;
 	color: #ff0025;
 	display: inline-block;
-	width: 100px;
+	width: 150px;
 	padding-left: 15px;
 	padding-bottom: 10px;
 }
@@ -2468,12 +2469,11 @@ colgroup {
 
 .line-title {
 	letter-spacing: -1px;
-	display: inline-block;
-	width: 90px;
+	width: 27px;
 	font-size: 12px;
 	font-weight: 700;
 	margin: 0;
-	vertical-align: middle;
+/* 	vertical-align: middle; */
 }
 
 .orderBox wrap-order-agree {

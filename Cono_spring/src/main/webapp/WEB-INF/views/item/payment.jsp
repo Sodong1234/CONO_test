@@ -112,8 +112,16 @@
 							<col>
 						</colgroup>
 						<tbody>
+						<tr class="payType-wrap">
+								<th class="wrap-title">잔액</th>
+								<td class="inputWrap payType" style="padding: 0 15px;">
+<%-- 															<strong>${balanceCoin }원</strong> --%>
+															<strong><fmt:formatNumber value="${balanceCoin }" pattern="\#,###.##"/>원</strong>
+									</td>
+								</tr>
+						
 							<tr class="payOrder-wrap">
-								<th class="wrap-title" scope="row">총상품가격 <input
+								<th class="wrap-title" scope="row">상품가격 <input
 									type="hidden" value="총상품가격받아오기">
 								</th>
 								<td>
@@ -139,7 +147,7 @@
 													</c:forEach>
 												</select>
 	<!-- 											<SPAN CLASS="VALUE USE-CALCULATION-FOR-TOTALPRICE">쿠폰가격받아오기</SPAN> -->
-												선택된 쿠폰
+												선택된 쿠폰<br>
 												<span class="unit" id="coupon_select_result"></span>
 											</strong>
 										</div>
@@ -177,55 +185,20 @@
 									</div>
 								</td>
 							</tr>
-							<tr class="payType-wrap">
-								<th class="wrap-title">결제방법</th>
-								<td class="inputWrap payType" style="padding: 0 15px;">
-									<div class="pay-box">
-										<div class="pay-type-selector"></div>
-										<div class="type-selector-list-wrapper">
-											<ul class="type-selector-list">
-												<li class="type-selector-li"><input
-													class="type-selector-radio" type="radio" name="payType"
-													value="CONO_COIN"> <label class="CONOCOIN"
-													for="payType8" style="font-weight: normal;"> <span
-														class="type-selector-label__text">CONO COIN</span> <!-- 코노코인 창 어케띄우지 -->
-												</label></li>
-											</ul>
-										</div>
-									</div>
-									<div class="pay-box-contents">
-										<div class="CONOCOIN" style="display: block;">
-											<h3 class="title" style="display: none; position: relative;">CONO
-												COIN</h3>
-											<!-- 스크립트? -->
-											<div class="CONOCOIN_content">
-												<ul class="pay-type-sections">
-													<li class="pay-type-section">
-														<div class="line-title" style="letter-spacing: -1px;">잔액</div>
-														<div class="line-data">
-<%-- 															<strong>${balanceCoin }원</strong> --%>
-															<strong><fmt:formatNumber value="${balanceCoin }" pattern="\#,###.##"/>원</strong>
-														</div>
-													</li>
-												</ul>
-												<button type="button">코인 충전</button>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="orderBox wrap-order-agree">
-					<div class="agreeBtn">
-						<input type="submit" value="결제하기">
-						<img src="${path }/resources/img/btn_payment.gif" width="260" height="60" alt="결제하기">
+							
+							
+							</tbody>
+						</table>
 					</div>
+					<div class="orderBox wrap-order-agree">
+						<div class="agreeBtn">
+							<input type="image" src="${path }/resources/img/btn_payment.gif" width="260" height="60" alt="결제하기">
+<%-- 							<img src="${path }/resources/img/btn_payment.gif" width="260" height="60" alt="결제하기"> --%>
+							</div>
+						</div>
+					</form>
 				</div>
-			</form>
-		</div>
-	</div>
+			</div>
 
 
 
