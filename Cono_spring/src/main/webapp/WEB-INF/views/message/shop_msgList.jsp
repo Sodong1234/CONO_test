@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <link href="${path}/resources/css/msg.css" rel="stylesheet" />
+<link href="${path}/resources/sass/msgbtn.scss" rel="stylesheet" />
 
 <script type="text/javascript">
 	// 헤더 클릭시 - 성공
@@ -105,48 +106,56 @@
 	
 	
 	<div class="box">
-	<div class="msg_container">
+	<div class="msg_container" style="margin-top: 0%; background-color:#FFF0F5;" >
 		<div class="msg_title">
-			<h2> 판매 문의</h2>
+			<h2 style="font-family: Cafe24Ohsquare;">코노톡 * 판매 문의</h2>
 		</div>
 		
 <!-- 		room 리스트 -->
 		<ul class="circle">
 			<c:forEach var="msgH" items="${msgList }">
-				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.member_id }','${msgH.member_nick }','${msgH.img_name }','${msgH.item_title }')">
+				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.member_id }','${msgH.member_nick }','${msgH.img_name }','${msgH.item_title }')" style="background-color: #FFC0CB;">
 <!-- 					room / shopname 저장  -->
 					<c:set value="${msgH.msgList_room }" var="rNum"></c:set>
 					<c:set value="${msgH.member_id }" var="mId"></c:set>
 					<a href="#" class="room">
 						<span class="area-txt">
-							<span class="Htime">${msgH.msgChat_time }</span>
-							<span class="Hname">${msgH.member_nick }</span>
-							<span class="Htxt">	${msgH.msgChat_content }</span>
+							<span class="Htime" style="left: 185px; top: 0px;">${msgH.msgChat_time }</span>
+							<span class="Hname" style="right: 111px;">${msgH.member_nick }</span>
+							<span class="Htxt" style="margin-top: 5px;">${msgH.msgChat_content }</span>
 						</span>
 					</a>
 				</li>
 			</c:forEach>
 		</ul>
 	</div>
-	<section class="msg_board">
+	<!-- 		<ul class="msg_lists"> -->
+<!--   <li>lorem ipsum</li> -->
+<!--   <li>lorem ipsum</li> -->
+<!--   <li>lorem ipsum</li> -->
+<!--   <li>lorem ipsum</li> -->
+<!--   <li>lorem ipsum</li> -->
+<!-- </ul> -->
+
+	<section class="msg_board" style="background-color: #FFC0CB;">
 		<div class="board_head">
-			<fieldset class="msgbtn" id="msgbtn" style="visibility: hidden">
+			<fieldset class="msgbtn" id="msgbtn">
 			<div class="prof">
-				<span class="mname" id="mname"></span>
-				<img src='' class="prof_imName" id="prof_imName"></img>
-				<span class="itTitle" id="itTitle"></span>
+				<span class="mname" id="mname" ></span> &nbsp;&nbsp;&nbsp;
+				<span class="itTitle" id="itTitle" style="margin-left: 10px;"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<img src='' class="prof_imName" id="prof_imName" style="margin-top:0px; "></img> &nbsp;&nbsp;&nbsp;
+				<button class="btn btn-primary btn-ghost btn-close" onclick="location.href='msgDelete()'">나가기</button>
 			</div>
-				<button class="msg_out" onclick="location.href='msgDelete()'">나가기</button>
 			</fieldset>
 		</div>
 <!-- 		메시지 내용 -->
-		<div class="msg_area">
+		<div class="msg_area" style="background-color: #FFE4E1;	">
 			
 		</div>
 <!-- 		메시지 전송 -->
-		<div class="msg_form" id="msg_form" style="visibility: hidden">
-			<textarea rows="3" cols="75" id="msgText"></textarea>
-			<button class="btn_send" onclick="sendMsg()">버튼</button>
+		<div class="msg_form" id="msg_form" style="visibility: hidden; margin-top:20px;  ">
+			<textarea rows="3" cols="75" id="msgText"></textarea> &nbsp;&nbsp;
+			<button class="btn btn-primary btn-ghost btn-close" onclick="sendMsg()">버튼</button>
 		</div>
 	</section>	
 	

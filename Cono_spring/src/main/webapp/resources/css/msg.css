@@ -21,13 +21,28 @@
 
 
 
-
-
-
-
 h2{
 	
 	font-family:Cafe24Ohsquare;
+	
+}
+
+.prof_imName{
+	width: 125px;
+	height: 125px;
+	border-radius: 30%; 
+	margin-top : -25px;
+	
+	
+	
+}
+
+.mname{
+	
+	font-size: large;
+    font-style: inherit;
+    font-weight: bold;
+	
 	
 }
 
@@ -39,7 +54,7 @@ h2{
     width: 120%;
 	height: 720px;
 	position: relative;
-	top: 0px;
+	top: -20px;
 	overflow: auto;
 
 }
@@ -57,7 +72,7 @@ h2{
     border-radius: 50%;
     border: .25em solid #ccc;
     background: #87CEFA;
-    color: 		#E6E6FA;
+    color: 		#FFFFFF;
     font-family: Cafe24Ohsquare;
     font-weight: bold;
     text-align: center;
@@ -65,9 +80,6 @@ h2{
     
 }
 
-/* li { */
-/* 	list-style: none; */
-/* } */
 a {
 	text-decoration: none;
 }
@@ -193,6 +205,7 @@ a {
 	height: 200px;
 	display: block;
 	position: relative;
+	text-align: center;
 }
 .prof {
 	display: inline-block;
@@ -208,11 +221,11 @@ a {
 	visibility: hidden;
 }
 .msg_area {
-	width: 711px;
-	height: 565px;
+	width: 713px;
+	height:680px;
 	background-color: #E0EBFF;
 	overflow: auto;
-	margin-top: 10%;
+	margin-top: -5%;
 }
 .msg_for {
 	width: 711px;
@@ -240,13 +253,6 @@ textarea {
 	border: 20px;
 }
 
-.msg_form {
-	visibility: hidden;
-/* 	margin-top: 8%; */
-
-	
-	
-}
 
 
 /* message_content_list */
@@ -299,9 +305,11 @@ textarea {
 
 .sname {
 	
+	
 font-size: large;	
 font-style: inherit;
 font-weight: bold;
+margin-left: -333px;
 	
 }
 

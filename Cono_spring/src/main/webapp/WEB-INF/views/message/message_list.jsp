@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <link href="${path}/resources/css/msg.css" rel="stylesheet" />
+<link href="${path}/resources/sass/msgbtn.scss" rel="stylesheet" />
 <script type="text/javascript">
 
 	function msgDelete() {
@@ -150,11 +151,11 @@
 		<div class="board_head">
 			<fieldset class="msgbtn" id="msgbtn" >
 			<div class="prof">
-				<span class="sname" id="sname"></span> &nbsp;&nbsp;&nbsp;
+				<span class="sname" id="sname"></span> <br>
+				<span class="itTitle" id="itTitle"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<img src='' class="prof_imName" id="prof_imName"></img>&nbsp;&nbsp;&nbsp;&nbsp;
 				<button class="follwing" onclick="location.href='following'">팔로우</button> 
 				<button class="msg_out" onclick="msgDelete()">나가기</button>
-				<img src='' class="prof_imName" id="prof_imName"></img>
-				<span class="itTitle" id="itTitle"></span>
 			</div>
 			</fieldset>
 		</div>
