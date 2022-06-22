@@ -16,6 +16,36 @@
 	var isCheckRetypePass = false;
 	var isCheckId = false;
 	var isCheckPass = false;
+	var isCheckPhone = false;
+	var isCheckEmail = false;
+	
+	function checkPhone(phone) {
+		var regPhone = /^01([0|1|6|7|8|9)])-?([0-9]{3,4})-?([0-9]{4})$/;
+		
+		if(!regPhone.exec(phone)) {
+			document.getElementById("checkPhoneResult").innerHTML = "전화번호 양식에 맞지 않습니다.";
+			document.getElementById("checkPhoneResult").style.color = "RED";
+			isCheckPhone = false;
+		} else {
+			document.getElementById("checkPhoneResult").innerHTML = "사용 가능합니다.";
+			document.getElementById("checkPhoneResult").style.color = "GREEN";
+			isCheckPhone = true;
+		}
+	}
+	
+	function checkEmail(email) {
+		var regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
+		if(!regEmail.exec(email)) {
+			document.getElementById("checkEmailResult").innerHTML = "이메일 양식에 맞지 않습니다.";
+			document.getElementById("checkEmailResult").style.color = "red";
+			isCheckEmail = false;
+		} else {
+			document.getElementById("checkEmailResult").innerHTML = "사용 가능합니다.";
+			document.getElementById("checkEmailResult").style.color = "GREEN";
+			isCheckEmail = true;
+		}
+	}
 
 	function checkPass(pass) {
 
@@ -89,6 +119,14 @@
 		} else if (!isCheckPass) {
 			alert("패스워드 규칙 확인 필수");
 			document.fr.pass.focus();
+			return false;
+		} else if (!isCheckPhone) {
+			alert("전화번호 확인 필수!");
+			document.fr.phone.focus();
+			return false;
+		} else if (!isCheckEmail) {
+			alert("전화번호 확인 필수!");
+			document.fr.email.focus();
 			return false;
 		}
 	}
@@ -329,7 +367,7 @@ input[type="submit"] {
 				<div class="container">
 					<div class="input-form-backgroud row">
 						<div class="input-form col-md-12 mx-auto">
-							<h4 class="mb-3">회원가입</h4>
+							<h4 class="mb-3">회원가입123</h4>
 							<form class="validation-form" novalidate>
 								<div class="row">
 									<div class="col-md-6 mb-3">
@@ -344,7 +382,6 @@ input[type="submit"] {
 									</div>
 									<div class="col-md-6 mb-3">
 										<label for="nick">별명</label> <input type="text" class="form-control" name="member_nick" id="nick" placeholder="닉네임을 입력해주세요" required>
-										<div class="invalid-feedback">별명을 입력해주세요.</div>
 									</div>
 									<div> 
 									<!-- 별명 오른쪽 빈칸 만들기용.. -->
@@ -367,16 +404,20 @@ input[type="submit"] {
 									</div>
 								</div>
 								<div class="mb-3">
-									<label for="email">이메일</label> <input type="email" class="form-control" name="member_email" id="email" placeholder="이메일을 입력해주세요" required>
-									<div class="invalid-feedback">이메일을 입력해주세요.</div>
+									<label for="email">이메일</label> 
+									<input type="email" class="form-control" name="member_email" id="email" placeholder="이메일을 입력해주세요" 
+									required onblur="checkEmail(this.value)">
+									<span id="checkEmailResult"></span><br>
 								</div>					
 								<div class="mb-3">
-									<label for="birth">생년월일</label> <input type="date" class="form-control" name="member_birth" id="birth" placeholder="생년월일" required>
-									<div class="invalid-feedback">생년월일을 입력해주세요.</div>
+									<label for="birth">생년월일</label> 
+									<input type="date" class="form-control" name="member_birth" id="birth" placeholder="생년월일" required>
 								</div>
 								<div class="mb-3">
-									<label for="phone">전화번호</label> <input type="text" class="form-control" name="member_phone" id="phone" placeholder="전화번호 입력" required>
-									<div class="invalid-feedback">전화번호를 입력해주세요.</div>
+									<label for="phone">전화번호</label> 
+									<input type="text" class="form-control" name="member_phone" id="phone" placeholder="전화번호 입력" 
+									required onblur="checkPhone(this.value)">
+									<span id="checkPhoneResult"></span><br>
 									<input type="button" value="인증요청"><br> 
 									<input type="text" name="number" id="number" placeholder="인증번호 입력"><br>
 									<input type="button" value="확인"><br>
@@ -404,7 +445,8 @@ input[type="submit"] {
 									약관 보기
 									</button>
 								</div> 
-								<input type="submit" value="가입하기" class="submit" id="submit">
+								<input type="submit" value="가입하기" 
+								class="submit" id="submit" onclick="checkSubmit()">
 							</form>
 						</div>
 					</div>
