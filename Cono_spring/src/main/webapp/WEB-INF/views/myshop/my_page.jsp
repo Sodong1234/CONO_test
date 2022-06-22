@@ -28,6 +28,9 @@ if (session.getAttribute("sId") == null) {
 	href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
 
 <style type="text/css">
+#storeWrap {
+
+}
 form {
 	margin: 0;
 	padding: 0;
@@ -73,11 +76,11 @@ form {
 	</div>
 
 
-	<div class="cono">
+<!-- 	<div  class="cono"> -->
 
 
 
-		<h2 style="font-family: Cafe24Ohsquare;">
+		<div id="storeWrap"><h2 style="font-family: Cafe24Ohsquare;">
 			${myShop.get('shop_name') }의 상점 [${myShop.get('member_date') }]</h2>
 
 		<hr class="hr-13">
@@ -151,19 +154,10 @@ form {
 			</ul>
 			
 		</div>
-		
-							
-
-
-
-
-		<br> <br>
-
-</div>
 	</div>
+</div>
 
 	<!-- </div>	 -->
-
 
 	<div>
 		<!-- 하단 부분 -->

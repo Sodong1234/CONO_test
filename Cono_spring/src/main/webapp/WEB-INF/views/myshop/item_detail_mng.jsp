@@ -104,7 +104,6 @@ if(session.getAttribute("sId") == null) {
 					<input id="prodno" type="hidden" data-no="78">
 					<!-- 이미지 리스트 -->
 					<div class="swiper-container detail-info__image__list">
-					<span> 상품번호 : ${itemDetail.get('item_idx')} </span>
 							<div class="detail-info__image--prev swiper-button-next swiper-button-white" id="previous">&#10094;</div>
 						<div class="swiper-wrapper">
 							<ul>
