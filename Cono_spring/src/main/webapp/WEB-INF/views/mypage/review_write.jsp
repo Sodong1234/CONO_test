@@ -100,7 +100,7 @@
                     <!-- 상품 -->
                     <div class="n-prd-row">
                         <a href="/app/goods/1459843" class="img-block">
-                            <img src="resources/upload/file/${purchase.img_name }">
+                            <img src="resources/upload/file/${itemInfo.img_name}">
                         </a>
                         <ul class="info">
                             <li class="brand"><a href="null/brands/runninghigh">${itemInfo.item_title }</a></li>

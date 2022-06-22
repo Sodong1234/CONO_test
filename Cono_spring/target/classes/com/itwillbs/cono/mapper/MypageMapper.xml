@@ -221,9 +221,12 @@
 	
 	<!-- 후기 작성할 아이템 조회 -->
 	<select id="selectItemInfo" resultType="java.util.HashMap">
-		SELECT item_idx, item_title, item_quantity
-		  FROM item
-		 WHERE item_idx = #{item_idx}
+		SELECT it.item_idx, it.item_title, it.item_quantity, im.img_name
+		  FROM item it LEFT OUTER JOIN img im
+		    ON it.item_idx = im.item_idx
+		 WHERE 1=1
+		   AND it.item_idx = #{item_idx}
+		   AND im.img_idx = '1'
 	</select>
 	
 	<!-- 후기 등록 -->
