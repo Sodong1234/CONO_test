@@ -46,8 +46,8 @@
 		  AND im.item_idx = it.item_idx 
 		  AND im.img_idx = '1' 
 		  AND it.item_quantity > 0
-		  AND (it.item_title LIKE #{searchType} 
-		   OR it.item_region LIKE #{searchType})
+		  AND (it.item_title LIKE #{searchText} 
+		   OR it.item_region LIKE #{searchText})
 		ORDER BY it.item_date DESC
 <!-- 		LIMIT 0,20 -->
 	</select>
@@ -86,38 +86,43 @@
 		  AND im.item_idx = it.item_idx 
 		  AND im.img_idx = '1'
 		  AND it.item_quantity > 0
-<!-- 		2 만원 이하 -->
-		<if test='checkPrice.equals("0")'>
-			AND 20000 >= it.item_price
-			ORDER BY it.item_date DESC
+		  AND (it.item_title LIKE #{searchText} 
+		   OR it.item_region LIKE #{searchText})
+		   
+<!-- 		전체 -->
+		<if test='filter2 == "0"'>
+			AND it.item_price >= 0
 		</if>
-<!-- 		2 ~ 5 만원 -->
-		<if test='checkPrice.equals("1")'>
-			AND (50000 >= it.item_price OR it.item_price >= 20000)
-			ORDER BY it.item_date DESC
+<!-- 		0 ~ 3 만원 -->
+		<if test='filter2 == "1"'>
+			AND (30000 >= it.item_price AND it.item_price >= 0)
 		</if>
-<!-- 		5~10 -->
-		<if test='checkPrice.equals("2")'>
-			AND (100000 >= it.item_price OR it.item_price >= 50000)
-			ORDER BY it.item_date DESC
+<!-- 		3~5 -->
+		<if test='filter2 == "2"'>
+			AND (50000 >= it.item_price AND it.item_price >= 30000)
+		</if>
+<!-- 		5~ 10 -->
+		<if test='filter2 == "3"'>
+			AND (100000 >= it.item_price AND it.item_price >= 50000)
 		</if>
 <!-- 		10 이상 -->
-		<if test='checkPrice.equals("3")'>
+		<if test='filter2 == "4"'>
 			AND it.item_price >= 100000
-			ORDER BY it.item_date DESC
 		</if>
-<!-- 		가격 낮은 순 -->
-		<if test='checkPrice.equals("4")'>
-			ORDER BY it.item_price DESC
-		</if>
-<!-- 		가격 높은 순 -->
-		<if test='checkPrice.equals("5")'>
-			ORDER BY it.item_price ASC
-		</if>
-<!-- 		최신 정렬 -->
-		<if test='checkPrice.equals("6")'>
+				   <!-- 		최신 정렬 -->
+		<if test='filter1 == "0"'>
 			ORDER BY it.item_date ASC
 		</if>
+<!-- 		가격 높은 순 -->
+		<if test='filter1 == "1"'>
+			ORDER BY it.item_price DESC
+		</if>
+<!-- 		가격 낮은 순 -->
+		<if test='filter1 == "2"'>
+			ORDER BY it.item_price ASC
+		</if>
+		
+
 	</select>
 	<!-- 	==================================================================아이템 정렬 끝 -->
 	

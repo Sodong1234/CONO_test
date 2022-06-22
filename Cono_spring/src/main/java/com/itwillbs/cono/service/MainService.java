@@ -51,6 +51,10 @@ public class MainService {
 	public void setShopInfo(String member_id, String member_nick) {
 		mapper.insertShopInfo(member_id, member_nick);
 	}
+	public List<HashMap<String, String>> getPriceList(String filter1, String filter2, String searchText) {
+		return mapper.selectPriceList(filter1, filter2, searchText);
+	}
+	
 
 	// 실시간 인기상품 - 김혜은
 	public List<ItemDTO> getHotItemList() {
@@ -176,8 +180,6 @@ public class MainService {
           return resultMap;
       }
 
-	public List<HashMap<String, String>> getPriceList(String filter1, String filter2) {
-		return mapper.selectPriceList(filter1, filter2);
-	}
+
 	
 }

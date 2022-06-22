@@ -214,31 +214,6 @@ public class MainController {
 	public String search_item(String searchText, Model model, HttpSession session) {
 		String sId = (String)session.getAttribute("sId");
 		
-
-//		int listCount = service.getCardList("%" + searchText + "%");
-//		int listLimit = 10; // 한 페이지 당 표시할 게시물 목록 갯수
-//		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
-//
-//		// 페이징 처리를 위한 계산 작업
-//		int maxPage = (int) Math.ceil((double) listCount / listLimit);
-//		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
-//		int endPage = startPage + pageLimit - 1;
-//		if (endPage > maxPage) {
-//			endPage = maxPage;
-//		}
-//
-//		int startRow = (pageNum - 1) * listLimit;
-//
-//		PageInfo pageInfo = new PageInfo();
-//		pageInfo.setPageNum(pageNum);
-//		pageInfo.setMaxPage(maxPage);
-//		pageInfo.setStartPage(startPage);
-//		pageInfo.setEndPage(endPage);
-//		pageInfo.setListCount(listCount);
-//		pageInfo.setStartRow(startRow);
-//		pageInfo.setListLimit(listLimit);
-		
-		
 		List<HashMap<String, String>>  cardList = service.getCardList("%" + searchText + "%");
 		
 		// 최근 조회
@@ -251,6 +226,25 @@ public class MainController {
 		return "search/search_item";
 	}
 	
+	@RequestMapping(value = "search_filter", method = RequestMethod.GET)
+	public String search_price(Model model, HttpSession session, @RequestParam String filter1, @RequestParam String filter2, String searchText) {
+		String sId = (String)session.getAttribute("sId");
+		
+		System.out.println("filter1 : " + filter1 + "---" + "filter2 : " + filter2 + "---" + searchText);
+		System.out.println();
+		
+		List<HashMap<String, String>>  cardList = service.getPriceList(filter1, filter2, "%" + searchText + "%");
+		
+		for(int i=0; i<cardList.size(); i++) {
+			System.out.println(i + " 번 ----- :" + cardList.get(i).toString());
+		}
+		
+		List<HashMap<String, String>> getRecent = service.getRecent(sId);
+		model.addAttribute("cardList", cardList);
+		model.addAttribute("getRecent", getRecent);
+		return "search/search_item";
+	}
+	
 	@RequestMapping(value = "search_category", method = RequestMethod.GET)
 	public String search_item_fashion(Model model, String cgr, HttpSession session) {
 		String sId = (String)session.getAttribute("sId");
@@ -259,17 +253,6 @@ public class MainController {
 		List<HashMap<String, String>> getRecent = service.getRecent(sId);
 		
 		model.addAttribute("cardList", cardList);
-		model.addAttribute("getRecent", getRecent);
-		return "search/search_item";
-	}
-	
-	@RequestMapping(value = "search_filter", method = RequestMethod.GET)
-	public String search_price(Model model, HttpSession session, @RequestParam String filter1, @RequestParam String filter2) {
-		String sId = (String)session.getAttribute("sId");
-
-		List<HashMap<String, String>>  priceList = service.getPriceList(filter1, filter2);
-		
-		List<HashMap<String, String>> getRecent = service.getRecent(sId);
 		model.addAttribute("getRecent", getRecent);
 		return "search/search_item";
 	}

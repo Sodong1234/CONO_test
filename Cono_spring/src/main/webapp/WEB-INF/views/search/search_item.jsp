@@ -233,30 +233,34 @@ p {
 <script src="resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	
-		function chk(value) {
+		function filter1(value) {
+			var searchText = document.getElementById("searchText").value;
+			$("#search_data").html = searchText + "검색 내용입니다.";
 			var filter1 = value;
-			var filter2 = $("input[name='chkP']:checked").val();
-			alert(filter1 + "---" + filter2);
+			var filter2 = $("input[name='filter2']:checked").val();
 			$.ajax({
 				type: "GET",
 				url: "search_filter",
 				data: {
-					filter1 : filter1,
-					filter2 : filter2
+						filter1 : filter1,
+						filter2 : filter2,
+						searchText : searchText
 					  },
 			});
 			
 		}
-		function chk2(value) {
-			var filter1 = $("input[name='chk']:checked").val();
+		function filter2(value) {
+			var searchText = document.getElementById("searchText").value;
+			$("#search_data").html = searchText + "검색 내용입니다.";
+			var filter1 = $("input[name='filter1']:checked").val();
 			var filter2 = value;
-			alert(filter1 + "---" + filter2);
 			$.ajax({
 				type: "GET",
 				url: "search_filter",
 				data: {
-					filter1 : filter1,
-					filter2 : filter2
+						filter1 : filter1,
+						filter2 : filter2,
+						searchText : searchText
 					  },
 			});
 		}
@@ -269,18 +273,17 @@ p {
 		<!-- 헤더 -->
 		<jsp:include page="../header_footer/header.jsp" />
 	</div>
-	<!-- 	<div class="navbar"></div> -->
 	<jsp:include page="../search/recentView.jsp" />
 	<hr>
 	<div class="search_option_item">
 		<div class="search_cate_title">정렬</div>
 		<div class="search_cate_contents">
 			<ul class="search_cate_list">
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chk" id="filter1" value="5" checked="checked" onclick="chk(this.value)"> <span class="item_text">최신순</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter1" id="filter1" value="0" checked="checked" onclick="filter1(this.value)"> <span class="item_text">최신순</span>
 				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chk" id="filter1" value="6" onclick="chk(this.value)"> <span class="item_text">높은 가격 순</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter1" id="filter1" value="1" onclick="filter1(this.value)"> <span class="item_text">높은 가격 순</span>
 				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chk" id="filter1" value="7" onclick="chk(this.value)"> <span class="item_text">낮은 가격 순</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter1" id="filter1" value="2" onclick="filter1(this.value)"> <span class="item_text">낮은 가격 순</span>
 				</label></li>
 			</ul>
 		</div>
@@ -289,21 +292,21 @@ p {
 		<div class="search_cate_title">가격대</div>
 		<div class="search_cate_contents">
 			<ul class="search_cate_list">
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chkP" id="filter2" value="0" onclick="chk2(this.value)" checked="checked"> <span class="item_text">전체</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="0" onclick="filter2(this.value)" checked="checked"> <span class="item_text">전체</span>
 				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chkP" id="filter2" value="1" onclick="chk2(this.value)" > <span class="item_text">3만원 이하</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="1" onclick="filter2(this.value)" > <span class="item_text">3만원 이하</span>
 				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chkP" id="filter2" value="2" onclick="chk2(this.value)" > <span class="item_text">3만원~5만원</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="2" onclick="filter2(this.value)" > <span class="item_text">3만원~5만원</span>
 				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chkP" id="filter2" value="3" onclick="chk2(this.value)" > <span class="item_text">5만원~10만원</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="3" onclick="filter2(this.value)" > <span class="item_text">5만원~10만원</span>
 				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chkP" id="filter2" value="4" onclick="chk2(this.value)" > <span class="item_text">10만원 이상</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="4" onclick="filter2(this.value)" > <span class="item_text">10만원 이상</span>
 				</label></li>
 			</ul>
 		</div>
 	</div>
 	<!-- 필터 추가 -->
-	<h1>'${searchText }' 검색 내용입니다.</h1>
+	<h1 id="search_data">'${searchText }' 검색 내용입니다.</h1>
 	<c:forEach var="card" items="${cardList }">
 		<div class="products">
 			<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""

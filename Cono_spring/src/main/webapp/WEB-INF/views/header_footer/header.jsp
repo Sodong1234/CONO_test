@@ -5,6 +5,12 @@
 <%
 String sId = (String) session.getAttribute("sId");
 String member_nick = (String) session.getAttribute("member_nick");
+
+String search = request.getParameter("searchText");
+
+if(request.getParameter("searchText") == null) {
+	search = "";
+}
 %>
 <script type="text/javascript">
 	function userCenterList() {
@@ -128,7 +134,7 @@ String member_nick = (String) session.getAttribute("member_nick");
 
 		<div class="search">
 			<input type="text" class="searchTerm" id="searchText"
-				placeholder="상품을 입력하세요">
+				placeholder="상품을 입력하세요" value="<%=search%>">
 			<button type="submit" class="searchButton" onclick="search_item()">
 				<i class="fa fa-search"></i>
 			</button>
