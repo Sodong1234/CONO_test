@@ -155,7 +155,7 @@
 <!-- 		메시지 전송 -->
 		<div class="msg_form" id="msg_form" style="visibility: hidden; margin-top:20px;  ">
 			<textarea rows="3" cols="75" id="msgText"></textarea> &nbsp;&nbsp;
-			<button class="btn btn-primary btn-ghost btn-close" onclick="sendMsg()">버튼</button>
+			<button class="btn btn-primary btn-ghost btn-through" onclick="sendMsg()">버튼</button>
 		</div>
 	</section>	
 	
