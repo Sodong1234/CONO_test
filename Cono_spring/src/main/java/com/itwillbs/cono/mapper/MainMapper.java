@@ -30,7 +30,7 @@ public interface MainMapper {
 	// 가격대별 조회
 	List<HashMap<String, String>> selectPriceList(@Param("filter1") String filter1,@Param("filter2") String filter2,@Param("searchText") String searchText, @Param("pageInfo")PageInfo pageInfo);
 
-	int selectCardListCount(@Param("filter1") String filter1,@Param("filter2") String filter2,@Param("searchText") String searchText);
+	int selectCardListCount();
 
 
 }

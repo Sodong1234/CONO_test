@@ -67,6 +67,34 @@ public class MainService {
 		return mapper.selectRecent(sId);
 	}
 	
+	
+	public int getCardListCount() {
+		return mapper.selectCardListCount();
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 카톡 로그인 - 키를 이용하여 토큰 받아오기
      public String getReturnAccessToken(String code) {
          String access_token = "";
@@ -180,10 +208,6 @@ public class MainService {
           }
           return resultMap;
       }
-
-	public int getCardListCount(String filter1, String filter2, String searchText) {
-		return mapper.selectCardListCount(filter1, filter2,searchText);
-	}
 
 
 	
