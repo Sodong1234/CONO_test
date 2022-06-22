@@ -31,6 +31,23 @@
 		<property name="mapperLocations" value="classpath:/com/itwillbs/cono/mapper/*Mapper.xml"></property>
 	</bean>
 	
+	<!-- 메일링 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	 <property name="host" value="smtp.gmail.com" /> <!-- gmail을 사용 -->
+        <property name="port" value="587" />
+        <property name="username" value="cono.itwill@gmail.com" />
+        <property name="password" value="busanitwill!" />
+        <!-- 보안연결 TLS와 관련된 설정 -->
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+	</bean>
+	
 	<!-- MyBatis 연동에 사용될 객체들의 패키지 위치 지정(기본 루트 패키지 지정) -->
 	<mybatis-spring:scan base-package="com.itwillbs.cono"/>
 </beans>
