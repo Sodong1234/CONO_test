@@ -140,6 +140,10 @@ public class ShopController {
 		pageInfo.setListLimit(listLimit);
 		
 		List<HashMap<String, String>> itemList = service.selectItemList(member_id, keyword, sell_status, pageInfo);
+		for(HashMap<String, String> item : itemList) {
+			item.put("item_date", item.get("item_date").substring(0,4) + "." + item.get("item_date").substring(4,6) + "." + item.get("item_date").substring(6,8)
+					+ " " + item.get("item_date").substring(8, 10) + ":" + item.get("item_date").substring(10, 12) + ":" + item.get("item_date").substring(12));
+		}
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("sell_status", sell_status);
@@ -178,6 +182,8 @@ public class ShopController {
 		// 상품 상세 정보 조회
 		HashMap<String, String> itemDetail = service.selectItemDetail(item_idx); 
 		
+		itemDetail.put("item_date", itemDetail.get("item_date").substring(0,4) + "." + itemDetail.get("item_date").substring(4,6) + "." + itemDetail.get("item_date").substring(6,8)
+				+ " " + itemDetail.get("item_date").substring(8, 10) + ":" + itemDetail.get("item_date").substring(10, 12) + ":" + itemDetail.get("item_date").substring(12));
 		// 상품 이미지 조회
 		List<ImgDTO> imgList = service.selectImgList(item_idx);
 		model.addAttribute("itemDetail", itemDetail);

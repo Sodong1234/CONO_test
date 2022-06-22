@@ -103,7 +103,7 @@
 	
 	<!-- 상품 상세 정보 조회 -->
 	<select id="selectItemDetail" resultType="java.util.HashMap">
-		SELECT i.item_idx, i.item_title, i.item_content, i.item_price, i.item_date, i.item_status, COUNT(w.member_id), i.item_readCnt
+		SELECT i.item_idx, i.item_title, i.item_content, i.item_price, i.item_date, i.item_status, COUNT(w.member_id) as wish, i.item_readCnt
 			   , c.category_big, c.category_small, i.item_region, i.item_hide, i.item_quantity
 	      FROM item AS i
 	      LEFT JOIN wish AS w

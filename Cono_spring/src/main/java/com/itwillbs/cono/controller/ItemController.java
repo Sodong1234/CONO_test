@@ -43,7 +43,7 @@ public class ItemController {
 		
 		// 상품 이미지 조회
 		List<ImgDTO> imgList = service.selectImgList(item_idx);
-		
+		itemDetail.put("item_date", itemDetail.get("item_date").substring(0, 4) + "." + itemDetail.get("item_date").substring(4, 6) + "." + itemDetail.get("item_date").substring(6));
 		
 		// 찜 여부 조회
 		WishDTO wish = null;
