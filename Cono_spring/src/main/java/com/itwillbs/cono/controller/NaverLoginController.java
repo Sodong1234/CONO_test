@@ -75,7 +75,7 @@ public class NaverLoginController {
 		System.out.println("nickname : " + nickname);
 		System.out.println("birthday : " + birthday);
 		
-		
+		mobile = mobile.split("-")[0] + mobile.split("-")[1] + mobile.split("-")[2];
 		// 세션에 사용자 정보 등록
 		// session.setAttribute("islogin_r", "Y");
 //		session.setAttribute("signIn", apiResult);

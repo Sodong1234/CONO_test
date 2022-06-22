@@ -263,10 +263,11 @@ public class MainController {
 		return "search/search_item";
 	}
 	
-	@RequestMapping(value = "search_price", method = RequestMethod.GET)
-	public String search_price(Model model, HttpSession session, @RequestParam String checkPrice) {
+	@RequestMapping(value = "search_filter", method = RequestMethod.GET)
+	public String search_price(Model model, HttpSession session, @RequestParam String filter1, @RequestParam String filter2) {
 		String sId = (String)session.getAttribute("sId");
-		List<HashMap<String, String>>  priceList = service.getPriceList(checkPrice);
+
+		List<HashMap<String, String>>  priceList = service.getPriceList(filter1, filter2);
 		
 		List<HashMap<String, String>> getRecent = service.getRecent(sId);
 		model.addAttribute("getRecent", getRecent);

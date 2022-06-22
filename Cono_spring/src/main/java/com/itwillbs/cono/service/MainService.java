@@ -176,8 +176,8 @@ public class MainService {
           return resultMap;
       }
 
-	public List<HashMap<String, String>> getPriceList(String checkPrice) {
-		return mapper.selectPriceList(checkPrice);
+	public List<HashMap<String, String>> getPriceList(String filter1, String filter2) {
+		return mapper.selectPriceList(filter1, filter2);
 	}
 	
 }

@@ -42,8 +42,10 @@
 	<select id="selectCardList" resultType="java.util.HashMap">
 		SELECT it.item_idx, im.img_name, it.item_title, it.item_region, it.item_price, it.item_date
 		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx
-		WHERE im.item_idx = it.item_idx 
+		WHERE 1=1
+		  AND im.item_idx = it.item_idx 
 		  AND im.img_idx = '1' 
+		  AND it.item_quantity > 0
 		  AND (it.item_title LIKE #{searchType} 
 		   OR it.item_region LIKE #{searchType})
 		ORDER BY it.item_date DESC
@@ -55,7 +57,9 @@
 		SELECT it.item_idx, im.img_name, it.item_title, it.item_region, it.item_price, it.item_date
 		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx
 					 LEFT OUTER JOIN category cg ON cg.item_idx = it.item_idx
-		WHERE im.item_idx = it.item_idx AND im.img_idx = '1' AND cg.category_big = #{cgr}
+		WHERE 1=1
+		  AND im.item_idx = it.item_idx AND im.img_idx = '1' AND cg.category_big = #{cgr}
+		  AND it.item_quantity > 0
 		ORDER BY it.item_date DESC
 <!-- 		LIMIT 0,20 -->
 	</select>
@@ -65,7 +69,9 @@
 	<select id="selectRecent" resultType="java.util.HashMap">
 		SELECT it.item_idx, im.img_name, it.item_title
 		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, recentView rv
-		WHERE rv.member_id = #{sId} AND rv.item_idx = it.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1'
+		WHERE 1=1
+		  AND rv.member_id = #{sId} AND rv.item_idx = it.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1'
+		  AND it.item_quantity > 0
 		ORDER BY rv.viewTime DESC
 		LIMIT 0,3
 	</select>
@@ -76,7 +82,10 @@
 		SELECT it.item_idx, im.img_name, it.item_title, it.item_region, it.item_price, it.item_date
 		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx
 					 LEFT OUTER JOIN category cg ON cg.item_idx = it.item_idx
-		WHERE 1=1 AND im.item_idx = it.item_idx AND im.img_idx = '1'
+		WHERE 1=1 
+		  AND im.item_idx = it.item_idx 
+		  AND im.img_idx = '1'
+		  AND it.item_quantity > 0
 <!-- 		2 만원 이하 -->
 		<if test='checkPrice.equals("0")'>
 			AND 20000 >= it.item_price

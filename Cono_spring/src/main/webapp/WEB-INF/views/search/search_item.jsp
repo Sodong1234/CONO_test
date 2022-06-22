@@ -230,82 +230,41 @@ p {
     text-align: left;
 }
 </style>
+<script src="resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
-// 무한스크롤 시도
-// 	// 1. 스크롤 이벤트 최초 발생
-// 	var lastScrollTop = 0;
-// 	$(window).scroll(function(){
-// 		var currentScrollTop = $(window).scrollTop();
-		
-// 		// 2. 현재 스크롤의 위치가 화면의 보이는 위치보다 크면
-// 		if($(window.scrollTop() >= $(document).height() - $(window).height()){
-// 			// 3. ajax 로 서버에 게시물 데이터 요청
-// 			// 3. class 가 스크롤 마지막인 요소를 선택한 다음 그것의 속성 값을 받아온다.
-// 			var lastitem_idx = $(".scrolling:last").attr("data-item_idx");
-// 			$.ajax({
-// 				type:'post',
-// 				url:'/infiniteScrollDown',
-// 				dataType : 'json',
-// 				data : JSON.stringify({
-// 					item_idx : lastitem_idx
-// 				}),
-// 				success : function(data) {
-// 					var str = "";
-// 					if(data != "") {
-// 						$(data).each(
-// 						function() {
-// 							console.log(this);
-// 							str += "<tr class =" + "'listToChange'" + ">"
-// 								+		"<td class= " + "'scrolling'" + " data-idx='" + this.item_idx + "'>"
-// 								+ 			this.item_idx
-// 								+		"</td>"
-// 								+		"<td>" + this.img_real_name + "</td>"
-// 								+		"<td>" + this.item_title + "</td>"
-// 								+		"<td>" + this.item_region + "</td>"
-// 								+		"<td>" + this.item_price + "</td>"
-// 								+		"<td>" + this.item_date + "</td>"
-// 								+  "</tr>"
-// 						});
-// 						$(".listToChange").empty();
-// 						$(".scrollLocation").after(str);
-// 					}
-// 					else {
-// 						alert("불러올 데이터가 없습니다.");
-// 					}
-// 				}
-				
-// 			});		
+	
+		function chk(value) {
+			var filter1 = value;
+			var filter2 = $("input[name='chkP']:checked").val();
+			alert(filter1 + "---" + filter2);
+			$.ajax({
+				type: "GET",
+				url: "search_filter",
+				data: {
+					filter1 : filter1,
+					filter2 : filter2
+					  },
+			});
 			
-// 		})
-// 	});
-
-// 종찬이형 디자인에 쓸거
-<!-- 			<a href="">  -->
-<%-- 			<img src="${card.img_real_name }"> --%>
-<%-- 				<input hidden="${card.item_idx }"> --%>
-<%-- 				<input hidden="${card.item_date }"> --%>
-<%-- 				<p class="name">${card.item_title }</p> --%>
-<%-- 				<p class="region">${card.item_region }</p> --%>
-<%-- 				<p class="price">${card.item_price }</p> --%>
-<!-- 			</a> -->
+		}
+		function chk2(value) {
+			var filter1 = $("input[name='chk']:checked").val();
+			var filter2 = value;
+			alert(filter1 + "---" + filter2);
+			$.ajax({
+				type: "GET",
+				url: "search_filter",
+				data: {
+					filter1 : filter1,
+					filter2 : filter2
+					  },
+			});
+		}
+	
 </script>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
-<%-- 	<c:forEach var="card" items="${cardList }"> --%>
-<!-- 		<div> -->
-<%-- 			<table border="1" onclick="location.href='itemDetail?item_idx=${card.item_idx}'"> --%>
-<!-- 				<tr> -->
-<%-- 					<td class="scrolling" data-item_idx="${card.item_idx }">${card.item_idx }</td> --%>
-<%-- 					<td>${card.img_real_name }</td> --%>
-<%-- 					<td>${card.item_title }</td> --%>
-<%-- 					<td>${card.item_region }</td> --%>
-<%-- 					<td>${card.item_price }</td>	 --%>
-<%-- 					<td>${card.item_date }</td>		 --%>
-<!-- 				</tr> -->
-<!-- 			</table> -->
-<!-- 		</div> -->
-<%-- 	</c:forEach> --%>
 	<div id="wrap">
 		<!-- 헤더 -->
 		<jsp:include page="../header_footer/header.jsp" />
@@ -313,29 +272,15 @@ p {
 	<!-- 	<div class="navbar"></div> -->
 	<jsp:include page="../search/recentView.jsp" />
 	<hr>
-<!-- 	<div class="filterBox1"> -->
-<!-- 		<div class="filterBox2"> -->
-<!-- 			<div class="filterBoxRow"> -->
-<!-- 				<input type="checkbox" id="chk1"> <label for="chk1">최신순</label>  -->
-<!-- 				<input type="checkbox" id="chk2"> <label for="chk2">높은 가격 순</label>  -->
-<!-- 				<input type="checkbox" id="chk3"> <label for="chk3">낮은 가격 순</label> -->
-<!-- 			</div> -->
-<!-- 			<div class="filterBoxRow"> -->
-<!-- 				<input type="checkbox" id="chk1"> <label for="chk1">최신순</label>  -->
-<!-- 				<input type="checkbox" id="chk2"> <label for="chk2">높은 가격 순</label>  -->
-<!-- 				<input type="checkbox" id="chk3"> <label for="chk3">낮은 가격 순</label> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
 	<div class="search_option_item">
 		<div class="search_cate_title">정렬</div>
 		<div class="search_cate_contents">
 			<ul class="search_cate_list">
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="checkbox" name="chk1"> <span class="item_text">최신순</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chk" id="filter1" value="5" checked="checked" onclick="chk(this.value)"> <span class="item_text">최신순</span>
 				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="checkbox" name="chk2"> <span class="item_text">높은 가격 순</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chk" id="filter1" value="6" onclick="chk(this.value)"> <span class="item_text">높은 가격 순</span>
 				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="checkbox" name="chk3"> <span class="item_text">낮은 가격 순</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chk" id="filter1" value="7" onclick="chk(this.value)"> <span class="item_text">낮은 가격 순</span>
 				</label></li>
 			</ul>
 		</div>
@@ -344,11 +289,15 @@ p {
 		<div class="search_cate_title">가격대</div>
 		<div class="search_cate_contents">
 			<ul class="search_cate_list">
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="checkbox" name="chk1"> <span class="item_text">가격대1</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chkP" id="filter2" value="0" onclick="chk2(this.value)" checked="checked"> <span class="item_text">전체</span>
 				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="checkbox" name="chk2"> <span class="item_text">가격대2</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chkP" id="filter2" value="1" onclick="chk2(this.value)" > <span class="item_text">3만원 이하</span>
 				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="checkbox" name="chk3"> <span class="item_text">가격대3</span>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chkP" id="filter2" value="2" onclick="chk2(this.value)" > <span class="item_text">3만원~5만원</span>
+				</label></li>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chkP" id="filter2" value="3" onclick="chk2(this.value)" > <span class="item_text">5만원~10만원</span>
+				</label></li>
+				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="chkP" id="filter2" value="4" onclick="chk2(this.value)" > <span class="item_text">10만원 이상</span>
 				</label></li>
 			</ul>
 		</div>

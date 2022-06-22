@@ -27,7 +27,7 @@ public interface MainMapper {
 	// 최근 상품 조회
 	public List<HashMap<String, String>> selectRecent(String sId);
 	// 가격대별 조회
-	List<HashMap<String, String>> selectPriceList(String checkPrice);
+	List<HashMap<String, String>> selectPriceList(String filter1, String filter2);
 
 
 }
