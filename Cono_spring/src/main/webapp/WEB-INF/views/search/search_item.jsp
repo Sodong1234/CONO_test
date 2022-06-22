@@ -229,6 +229,38 @@ p {
     list-style: none;
     text-align: left;
 }
+
+
+/*  paging  */
+
+  .paging  {  
+  	margin-top: 1400px;  
+  	padding-bottom:50px;
+   	text-align: center;   
+  	margin-left: 10px;
+  
+  }  
+
+
+  .paging input:not(.btn){ 
+    width: 30px;  
+   	height: 30px;   
+   	background-repeat:no-repeat; 
+   	border-radius:100px;  
+   	border-style: none;  
+    overflow: hidden;   
+    font-size: 13px;
+    font-weight: bold;
+  } 
+  
+  .paging input:not(.btn):hover{
+  	background-color: #999;
+  } 
+  
+  .paging a:hover{
+  	text-decoration: underline;
+  }
+
 </style>
 <script src="resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
@@ -260,6 +292,11 @@ p {
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
+<c:set var="pageNum" value="${pageInfo.getPageNum() }" />
+	<c:set var="maxPage" value="${pageInfo.getMaxPage() }" />
+	<c:set var="startPage" value="${pageInfo.getStartPage() }" />
+	<c:set var="endPage" value="${pageInfo.getEndPage() }" />
+	<c:set var="listCount" value="${pageInfo.getListCount() }" />
 	<div id="wrap">
 		<!-- 헤더 -->
 		<jsp:include page="../header_footer/header.jsp" />
@@ -297,7 +334,10 @@ p {
 		</div>
 	</div>
 	<!-- 필터 추가 -->
+	
 	<h1 id="search_data">'${searchText }' 검색 내용입니다.</h1>
+	 <input type = "hidden" name ="pageNum" value="${pageNum }">
+	 <c:if test="${not empty cardList && pageInfo.listCount > 0}">	
 	<c:forEach var="card" items="${cardList }">
 		<div class="products">
 			<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""
@@ -310,6 +350,39 @@ p {
 			</a>
 		</div>
 	</c:forEach>
+	</c:if>
+	
+	<div class ="paging">
+		<c:choose>
+			<c:when test="${pageNum > 1 }">
+				<input type="button"  value=" < " onclick="location.href='search_item?pageNum=${pageNum - 1}&searchText=${searchText }&filter1=${filter1 }&filter2=${filter2 }'">
+			</c:when>
+			<c:otherwise>
+
+				<input type="button"  value=" < ">&nbsp;
+			</c:otherwise>
+		</c:choose>
+		
+		<c:forEach var="i" begin="${startPage }" end="${endPage }">
+			<c:choose>
+				<c:when test="${pageNum eq i }">
+				${i }
+			</c:when>
+				<c:otherwise>
+					<a href="search_item?pageNum=${i }&searchText=${searchText }&filter1=${filter1 }&filter2=${filter2 }">${i }</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	<c:choose>
+			<c:when test="${pageNum < maxPage}">
+				<input type="button"  value=" > "  onclick="location.href='search_item?pageNum=${pageNum + 1}&searchText=${searchText }&filter1=${filter1 }&filter2=${filter2 }'">
+			</c:when>
+			<c:otherwise>
+				<input type="button"  value=" > " >&nbsp;
+			</c:otherwise>
+		</c:choose>
+		</div>
+	
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 

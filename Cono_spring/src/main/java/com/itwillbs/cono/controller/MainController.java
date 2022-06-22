@@ -216,11 +216,38 @@ public class MainController {
 // -===================================== 모든 검색 ================================
 	// 검색
 	@RequestMapping(value = "search_item", method = RequestMethod.GET)
-	public String search_item(Model model, HttpSession session, @RequestParam String filter1, @RequestParam String filter2, String searchText) {
+	public String search_item(Model model, HttpSession session,
+			@RequestParam String filter1, 
+			@RequestParam String filter2, 
+			@RequestParam String searchText,
+			@RequestParam(defaultValue = "1")int pageNum) {
 		String sId = (String)session.getAttribute("sId");
 		
+		int listCount = service.getCardListCount(filter1, filter2, "%" + searchText + "%");
+		int listLimit = 12; // 한 페이지 당 표시할 게시물 목록 갯수
+		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
+
+		// 페이징 처리를 위한 계산 작업
+		int maxPage = (int) Math.ceil((double) listCount / listLimit);
+		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		int endPage = startPage + pageLimit - 1;
+		if (endPage > maxPage) {
+			endPage = maxPage;
+		}
+
+		int startRow = (pageNum - 1) * listLimit;
+
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setPageNum(pageNum);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setListLimit(listLimit);
+		
 //		List<HashMap<String, String>>  cardList = service.getCardList("%" + searchText + "%");
-		List<HashMap<String, String>>  cardList = service.getPriceList(filter1, filter2, "%" + searchText + "%");
+		List<HashMap<String, String>>  cardList = service.getPriceList(filter1, filter2, "%" + searchText + "%",pageInfo);
 		// 최근 조회
 		List<HashMap<String, String>> getRecent = service.getRecent(sId);
 		
@@ -229,7 +256,7 @@ public class MainController {
 		model.addAttribute("getRecent", getRecent);
 		model.addAttribute("filter1",filter1);
 		model.addAttribute("filter2",filter2);
-//		model.addAttribute("pageInfo",pageInfo);
+		model.addAttribute("pageInfo",pageInfo);
 		return "search/search_item";
 	}
 	

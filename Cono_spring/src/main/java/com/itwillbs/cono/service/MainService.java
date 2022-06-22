@@ -20,6 +20,7 @@ import com.google.gson.JsonParser;
 import com.itwillbs.cono.mapper.MainMapper;
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.PageInfo;
 
 
 @Service
@@ -51,8 +52,8 @@ public class MainService {
 	public void setShopInfo(String member_id, String member_nick) {
 		mapper.insertShopInfo(member_id, member_nick);
 	}
-	public List<HashMap<String, String>> getPriceList(String filter1, String filter2, String searchText) {
-		return mapper.selectPriceList(filter1, filter2, searchText);
+	public List<HashMap<String, String>> getPriceList(String filter1, String filter2, String searchText, PageInfo pageInfo) {
+		return mapper.selectPriceList(filter1, filter2, searchText,pageInfo);
 	}
 	
 
@@ -179,6 +180,10 @@ public class MainService {
           }
           return resultMap;
       }
+
+	public int getCardListCount(String filter1, String filter2, String searchText) {
+		return mapper.selectCardListCount(filter1, filter2,searchText);
+	}
 
 
 	

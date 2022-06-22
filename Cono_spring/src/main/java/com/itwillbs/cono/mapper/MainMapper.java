@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
+import com.itwillbs.cono.vo.PageInfo;
 
 public interface MainMapper {
 
@@ -27,7 +28,9 @@ public interface MainMapper {
 	// 최근 상품 조회
 	public List<HashMap<String, String>> selectRecent(String sId);
 	// 가격대별 조회
-	List<HashMap<String, String>> selectPriceList(@Param("filter1") String filter1,@Param("filter2") String filter2,@Param("searchText") String searchText);
+	List<HashMap<String, String>> selectPriceList(@Param("filter1") String filter1,@Param("filter2") String filter2,@Param("searchText") String searchText, @Param("pageInfo")PageInfo pageInfo);
+
+	int selectCardListCount(@Param("filter1") String filter1,@Param("filter2") String filter2,@Param("searchText") String searchText);
 
 
 }
