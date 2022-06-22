@@ -45,6 +45,8 @@ public class ShopController {
 		// 상점 정보 조회
 		HashMap<String, String> myShop = service.getMyShop(member_id);
 		
+		myShop.put("member_date", myShop.get("member_date").substring(0, 4) + "." + myShop.get("member_date").substring(4, 6) + "." + myShop.get("member_date").substring(6));
+		
 		String[] myShopCountInfo = new String[2];
 		
 		// 상점 판매 횟수 조회

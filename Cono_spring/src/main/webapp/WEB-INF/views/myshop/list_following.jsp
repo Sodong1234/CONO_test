@@ -54,7 +54,7 @@ section {
 			<a href="follow" class="activefollow">팔로우 상점</a>
 			<a href="following" class="activefollower">팔로워 상점</a>
 		</nav>
-<%-- 		<c:forEach var="follow" items="${followingList }"> --%>
+		<c:forEach var="follow" items="${followingList }">
 			<div class="follow">
 			<p><strong style="font-weight: bold;">${followingCount }명</strong>의 상점을 팔로우 중입니다. </p>
 				<ul class="shop-list">
@@ -74,7 +74,7 @@ section {
 					</div>
 				</ul>
 			</div>
-<%-- 		</c:forEach> --%>
+		</c:forEach>
 	</section>
 
 <!-- 푸터 -->
