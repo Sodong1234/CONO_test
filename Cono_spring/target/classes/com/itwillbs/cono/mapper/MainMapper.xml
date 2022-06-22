@@ -18,13 +18,13 @@
 <!-- 	회원가입 축하 쿠폰 -->
 	<insert id="insertJoinCoupon">
 		INSERT INTO coupon
-		VALUES ((SELECT MAX(c.coupon_idx) FROM coupon c) + 1, #{member_id},'','가입 축하 쿠폰','가입을 축하합니다! 2만원 이상 구매시 이용 가능' ,'5000','N')
+		VALUES (IFNULL((SELECT MAX(c.coupon_idx) FROM coupon c) + 1,1), #{member_id},'','가입 축하 쿠폰','가입을 축하합니다! 2만원 이상 구매시 이용 가능' ,'5000','N')
 	</insert>
 	
 <!-- 		회원가입시 샵 기본 정보 생성 -->
 	<insert id="insertShopInfo">
 		INSERT INTO shop
-		VALUES ((SELECT MAX(s.shop_idx) FROM shop s) + 1,#{member_id},#{member_nick},null,'')
+		VALUES (IFNULL((SELECT MAX(c.coupon_idx) FROM coupon c) + 1,1),#{member_id},#{member_nick},null,'')
 	</insert>
 	
 <!-- 실시간 인기상품 - 김혜은 -->
