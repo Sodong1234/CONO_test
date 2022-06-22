@@ -48,7 +48,7 @@
 		  AND it.item_quantity > 0
 		  AND (it.item_title LIKE #{searchText} 
 		   OR it.item_region LIKE #{searchText})
-		ORDER BY it.item_date DESC
+		ORDER BY it.item_date ASC
 <!-- 		LIMIT 0,20 -->
 	</select>
 	
@@ -60,7 +60,7 @@
 		WHERE 1=1
 		  AND im.item_idx = it.item_idx AND im.img_idx = '1' AND cg.category_big = #{cgr}
 		  AND it.item_quantity > 0
-		ORDER BY it.item_date DESC
+		ORDER BY it.item_date ASC
 <!-- 		LIMIT 0,20 -->
 	</select>
 	
@@ -115,11 +115,11 @@
 		</if>
 <!-- 		가격 높은 순 -->
 		<if test='filter1 == "1"'>
-			ORDER BY it.item_price DESC
+			ORDER BY cast(it.item_price as unsigned) DESC
 		</if>
 <!-- 		가격 낮은 순 -->
 		<if test='filter1 == "2"'>
-			ORDER BY it.item_price ASC
+            ORDER BY cast(it.item_price as unsigned) ASC
 		</if>
 		
 
