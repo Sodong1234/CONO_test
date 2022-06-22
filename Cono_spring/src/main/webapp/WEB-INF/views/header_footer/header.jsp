@@ -29,8 +29,7 @@ if(request.getParameter("searchText") == null) {
 	//============== 가준 검색 ============
 	function search_item() {
 		let searchText = document.getElementById("searchText").value
-
-		location.href = ("search_item?searchText=" + searchText);
+		location.href = ("search_item?searchText=" + searchText + "&filter1=0" + "&filter2=0");
 	}
 	
 	function myShop_loginCheck() {
@@ -134,7 +133,7 @@ if(request.getParameter("searchText") == null) {
 
 		<div class="search">
 			<input type="text" class="searchTerm" id="searchText"
-				placeholder="상품을 입력하세요" value="<%=search%>">
+				placeholder="상품을 입력하세요">
 			<button type="submit" class="searchButton" onclick="search_item()">
 				<i class="fa fa-search"></i>
 			</button>

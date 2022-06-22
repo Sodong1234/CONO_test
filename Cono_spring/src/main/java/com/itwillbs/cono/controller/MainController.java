@@ -1,6 +1,8 @@
 package com.itwillbs.cono.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -9,9 +11,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -211,39 +216,51 @@ public class MainController {
 // -===================================== 모든 검색 ================================
 	// 검색
 	@RequestMapping(value = "search_item", method = RequestMethod.GET)
-	public String search_item(String searchText, Model model, HttpSession session) {
+	public String search_item(Model model, HttpSession session, @RequestParam String filter1, @RequestParam String filter2, String searchText) {
 		String sId = (String)session.getAttribute("sId");
 		
-		List<HashMap<String, String>>  cardList = service.getCardList("%" + searchText + "%");
-		
+//		List<HashMap<String, String>>  cardList = service.getCardList("%" + searchText + "%");
+		List<HashMap<String, String>>  cardList = service.getPriceList(filter1, filter2, "%" + searchText + "%");
 		// 최근 조회
 		List<HashMap<String, String>> getRecent = service.getRecent(sId);
 		
 		model.addAttribute("searchText", searchText);
 		model.addAttribute("cardList", cardList);
 		model.addAttribute("getRecent", getRecent);
+		model.addAttribute("filter1",filter1);
+		model.addAttribute("filter2",filter2);
 //		model.addAttribute("pageInfo",pageInfo);
 		return "search/search_item";
 	}
 	
-	@RequestMapping(value = "search_filter", method = RequestMethod.GET)
-	public String search_price(Model model, HttpSession session, @RequestParam String filter1, @RequestParam String filter2, String searchText) {
-		String sId = (String)session.getAttribute("sId");
-		
-		System.out.println("filter1 : " + filter1 + "---" + "filter2 : " + filter2 + "---" + searchText);
-		System.out.println();
-		
-		List<HashMap<String, String>>  cardList = service.getPriceList(filter1, filter2, "%" + searchText + "%");
-		
-		for(int i=0; i<cardList.size(); i++) {
-			System.out.println(i + " 번 ----- :" + cardList.get(i).toString());
-		}
-		
-		List<HashMap<String, String>> getRecent = service.getRecent(sId);
-		model.addAttribute("cardList", cardList);
-		model.addAttribute("getRecent", getRecent);
-		return "search/search_item";
-	}
+//	@RequestMapping(value = "search_filter", method = RequestMethod.GET)
+//	public String search_price(HttpServletRequest request, Model model, HttpSession session, @RequestParam String filter1, @RequestParam String filter2, String searchText) {
+//		String sId = (String)session.getAttribute("sId");
+//		try {
+//			request.setCharacterEncoding("UTF-8");
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println("filter1 : " + filter1 + "---" + "filter2 : " + filter2 + "---" + searchText);
+//		System.out.println();
+//		System.out.println(searchText);
+////		List<HashMap<String, String>>  cardList = service.getPriceList(filter1, filter2, "%" + searchText + "%");
+////		
+////		for(int i=0; i<cardList.size(); i++) {
+////			System.out.println(i + " 번 ----- :" + cardList.get(i).toString());
+////		}
+//		try {
+//			searchText = URLEncoder.encode(searchText,"UTF-8");
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+////		List<HashMap<String, String>> getRecent = service.getRecent(sId);
+////		model.addAttribute("cardList", cardList);
+////		model.addAttribute("getRecent", getRecent);
+//		return "redirect:/search_item?searchText="+ searchText +"&filter1="+filter1+"&filter2="+filter2;
+//	}
 	
 	@RequestMapping(value = "search_category", method = RequestMethod.GET)
 	public String search_item_fashion(Model model, String cgr, HttpSession session) {

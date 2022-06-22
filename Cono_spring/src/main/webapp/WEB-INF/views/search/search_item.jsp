@@ -232,38 +232,29 @@ p {
 </style>
 <script src="resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
+	$(function () {
+		$("input:radio[name='filter1'][value='${filter1}']").attr('checked', true);
+		$("input:radio[name='filter2'][value='${filter2}']").attr('checked', true);
+	});
 	
-		function filter1(value) {
-			var searchText = document.getElementById("searchText").value;
-			$("#search_data").html = searchText + "검색 내용입니다.";
-			var filter1 = value;
-			var filter2 = $("input[name='filter2']:checked").val();
-			$.ajax({
-				type: "GET",
-				url: "search_filter",
-				data: {
-						filter1 : filter1,
-						filter2 : filter2,
-						searchText : searchText
-					  },
-			});
-			
-		}
-		function filter2(value) {
-			var searchText = document.getElementById("searchText").value;
-			$("#search_data").html = searchText + "검색 내용입니다.";
-			var filter1 = $("input[name='filter1']:checked").val();
-			var filter2 = value;
-			$.ajax({
-				type: "GET",
-				url: "search_filter",
-				data: {
-						filter1 : filter1,
-						filter2 : filter2,
-						searchText : searchText
-					  },
-			});
-		}
+	
+	function filter1(value) {
+		var searchText = document.getElementById("searchText").value;
+		$("#search_data").html = searchText + "검색 내용입니다.";
+		var filter1 = value;
+		var filter2 = $("input[name='filter2']:checked").val();
+		location.href="search_item?searchText="+ searchText+"&filter1="+filter1+"&filter2="+filter2;
+		
+	}
+	function filter2(value) {
+		var searchText = document.getElementById("searchText").value;
+		$("#search_data").html = searchText + "검색 내용입니다.";
+		var filter1 = $("input[name='filter1']:checked").val();
+		var filter2 = value;
+		
+		location.href="search_item?searchText="+searchText+"&filter1="+filter1+"&filter2="+filter2;
+	}
+		
 	
 </script>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
