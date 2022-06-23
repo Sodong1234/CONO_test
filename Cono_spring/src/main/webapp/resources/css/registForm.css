@@ -1,5 +1,20 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 .body{
 	
 	margin: auto;
@@ -75,12 +90,14 @@
     margin-bottom: 3rem;
 }
 .registBody section h2 {
-    height: 100px;
-    font-size: 26px;
+    height: 30px;
+/*     font-size: 26px; */
+    font-family: 'Cafe24Ohsquare';
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    border-bottom: 2px solid rgb(30, 29, 41);
+/*     border-bottom: 2px solid rgb(30, 29, 41); */
+    
 }
 .registBody section h2 > span {
     color: rgb(255, 80, 88);
@@ -242,7 +259,7 @@
 	flex-flow: row wrap;
 }
 .subject_con > .contentArea input {
-	width: 1000px; /* 원래 100% */
+	width: 900x; /* 원래 100% */
 	border-width: 1px;
 	border-style: solid;
 	border-color: rgb(195, 194, 204);

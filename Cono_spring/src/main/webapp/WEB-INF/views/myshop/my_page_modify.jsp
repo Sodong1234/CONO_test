@@ -39,6 +39,19 @@
 		$("#file").val("");
 	}
 </script>
+<style type="text/css">
+
+ input[type=button] {
+       background-color: white;
+       border: none;
+       text-decoration: none;
+       color: red;
+       padding: 3px 3px;
+       margin: 3px 3px;
+       cursor: pointer;
+    }
+
+</style>
 <meta charset="UTF-8">
 <title>내 상점 수정</title>
 </head>
@@ -72,7 +85,7 @@
 						</c:choose>
 						<input type="file" id="file" name="upload" onchange="readInputFile(this)" style="display: none;">
 						<br>
-						<input type="image" style="width: 10px" border="0" id="delFile" value="이미지삭제" onclick="deleteImg()" src="<spring:url value='/resources/cancle.png'/>" >&nbsp;이미지 삭제하기<br>
+						<input type="button" id="delFile${i }" onclick="deleteImg${i}()" value="X">이미지삭제</div>
 						<label for="exampleInputPassword1" class="form-label mt-4">비밀번호</label>
       				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="member_pass" required="required">
 						 <label class="col-form-label mt-4" for="inputDefault">상점이름</label>
@@ -82,9 +95,8 @@
 
 						<input type="submit" class="btn" value="수정" > 
 						<input type="button" class="btn" value="취소" onclick="history.back()">
-				    </div>
 	</form>
-</div> 
+				    </div>
 
 	<div>
 		<!-- 하단 부분 -->

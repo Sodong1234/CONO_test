@@ -61,6 +61,15 @@ String sell_status = request.getParameter("sell_status");
   .paging a:hover{
   	text-decoration: underline;
   }
+  
+  hr.hr-13 {
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8c8c inset;
+  width: 1020px;
+  margin-left: 441px;
+  
+}
 </style>
 </head>
 
@@ -74,6 +83,12 @@ String sell_status = request.getParameter("sell_status");
 	<div>
 		<jsp:include page="./myshop_sidebar.jsp"/>
 	</div>
+	
+	<h2 style="font-family: Cafe24Ohsquare; margin-left: 441px; margin-top: 25px;">
+			상품 관리</h2>
+
+		<hr class="hr-13">
+		
 		
 	<div id="item_mng_wrap">
 			<div class="row mb-4 float-end" style="margin-top:5px;" id="search_row">

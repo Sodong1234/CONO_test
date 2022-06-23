@@ -89,15 +89,15 @@ if(session.getAttribute("sId") == null) {
 
 }
 
-/* h2{ */
-/* 	 font-family: 'Cafe24Ohsquare'; */
+ h2{ 
+ 	 font-family: 'Cafe24Ohsquare'; 
 	
-/* } */
+ } 
 
-/* h4{ */
-/* 	 font-family: "Cafe24Ohsquare"; */
+ h4{ 
+	 font-family: "Cafe24Ohsquare"; 
 	
-/* } */
+} 
 </style>
 </head>
 <body>

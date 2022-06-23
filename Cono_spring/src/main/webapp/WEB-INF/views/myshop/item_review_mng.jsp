@@ -16,7 +16,7 @@ img {
 #review_wrap {
 	width: 1200px;
 	margin: 0 350px;
-	margin-top: 25px;
+	margin-top: -72px;
 	margin-bottom: 25px;
 }
 #progress_div {
@@ -143,6 +143,13 @@ img {
 #img_slide_direction {
 	text-align: center;
 }
+
+hr.hr-13 {
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8c8c inset;
+}
+
 </style>
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
@@ -194,8 +201,12 @@ img {
 	</div>
 	
 	<div id="review_wrap">
+		<div id="cono" style="margin-top: 10px; margin: 100px;">
 		<div id="review_top">
-			<h3>상품 후기 관리</h3>
+			<h2 style="font-family: Cafe24Ohsquare; margin-top: 25px;">
+			상품 후기 관리</h2>
+
+		<hr class="hr-13">
 			<hr style="height: 3px;">
 			<div id="review_score_div">
 				
@@ -260,7 +271,7 @@ img {
 		</div>
 		
 		<div style="clear: both;"></div>
-		
+		</div>
 		<hr>
 		
 		<!---------------------------------------- 아이템 이미지 슬라이드 ------------------------------------------------->
@@ -315,7 +326,7 @@ img {
 					</c:when>
 				</c:choose>
 			</table>
-		</div>
+		
 	
 	
 		<!-- 페이징 처리 -->
@@ -353,6 +364,7 @@ img {
 			</c:choose>
 		</section>
 		
+	</div>
 	</div>
 	
 	<!-- 하단 부분 -->

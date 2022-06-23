@@ -23,77 +23,11 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
-// 	$(function() {
-// 		$("#product").on("click", function() {
-// 			$.ajax({
-// 				type: "GET",
-// 				url: "shopProduct",
-// 				dataType: "text",
-// 				data: {
-// 					shop_idx : ${shopInfo.get('shop_idx') }
-// 				}
-// 			})
-// 			.done(function(data) {
-// 				$("#shop_resultArea").html(data);
-// 			})
-// 			.fail(function() {
-// 				$("#shop_resultArea").html("요청 실패");
-// 			})
-// 		});
-// 		$("#review").on("click", function() {
-// 			$.ajax({
-// 				type: "GET",
-// 				url: "shopReview",
-// 				dataType: "text",
-// 				data: {
-// 					shop_idx : ${shopInfo.get('shop_idx') }
-// 				}
-// 			})
-// 			.done(function(data) {
-// 				$("#shop_resultArea").html(data);
-// 			})
-// 			.fail(function() {
-// 				$("#shop_resultArea").html("요청 실패");
-// 			})
-// 		});
-// 		$("#follower").on("click", function() {
-// 			$.ajax({
-// 				type: "GET",
-// 				url: "shopFollower",
-// 				dataType: "text",
-// 				data: {
-// 					shop_idx : ${shopInfo.get('shop_idx') }
-// 				}
-// 			})
-// 			.done(function(data) {
-// 				$("#shop_resultArea").html(data);
-// 			})
-// 			.fail(function() {
-// 				$("#shop_resultArea").html("요청 실패");
-// 			})
-// 		});
-// 		$("#following").on("click", function() {
-// 			$.ajax({
-// 				type: "GET",
-// 				url: "shopFollowing",
-// 				dataType: "text",
-// 				data: {
-// 					shop_idx : ${shopInfo.get('shop_idx') }
-// 				}
-// 			})
-// 			.done(function(data) {
-// 				$("#shop_resultArea").html(data);
-// 			})
-// 			.fail(function() {
-// 				$("#shop_resultArea").html("요청 실패");
-// 			})
-// 		});
-// 	});
 
 	$(function() {
 		
 		function initBackGroud(a){
-			debugger;
+			
 			let lis = $('#under_nav_bar').children().children();
 			for(var i = 0; i < lis.length; i++){
 				if(lis[i] == a){

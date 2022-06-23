@@ -15,7 +15,6 @@ if(session.getAttribute("sId") == null) {
 <title>코노::상품등록</title>
 
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
-<%-- <script defer src="${path}/resources/js/registForm.js"></script> --%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm.css">
@@ -186,7 +185,8 @@ function checkNumber(event) {
 	
 						<!-- section -->
 						<section class="section"> 
-							<h2>기본정보<span>*필수항목</span></h2>
+							<h2>상품 등록<span>*필수항목</span></h2>
+							<hr class="hr-13">
 							<ul>
 								<li class="list" style="border: none;">
 									<div class="category_sub">

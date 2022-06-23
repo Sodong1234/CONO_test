@@ -1,24 +1,6 @@
 @charset "UTF-8";
 /****************** 기본 설정  ******************/
 
-/* body, input, textarea, select, button { */
-/*     -webkit-font-smoothing: antialiased; */
-/*     direction: ltr; */
-/*     text-align: left; */
-/*     color: rgb(33, 33, 33); */
-/*     letter-spacing: -0.5px; */
-/*     outline: 0px; */
-/*     border: 0px; */
-/* } */
-/* div { */
-/*     display: block; */
-/*     margin: 0px; */
-/*     padding: 0px; */
-/*     border: 0px; */
-/*     font: inherit; */
-/*     vertical-align: baseline; */
-/*     text-align: center; */
-/* } */
 @font-face {
     font-family: 'IBMPlexSansKR-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');

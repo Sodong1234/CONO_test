@@ -257,7 +257,7 @@ if (session.getAttribute("sId") == null) {
 							카테고리
 						</div>
 						
-						<div class="categoryStep" style="height: 211px;">
+						<div class="categoryStep1" style="height: 198px;">
 							<select name="category_big" id="big" size="8">
 								<option value="패션">패션</option>
 								<option value="디지털_가전">디지털/가전</option>
@@ -269,7 +269,7 @@ if (session.getAttribute("sId") == null) {
 								<option value="반려">반려</option>
 							</select>
 						</div>
-						<div class="categoryStep">
+						<div class="categoryStep2">
 <!-- 							<div id="category_area"> -->
 								<select name="category_small" id="small" size="8">
 									<option value="여성패션">여성패션</option>

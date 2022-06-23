@@ -9,7 +9,6 @@
 if (session.getAttribute("sId") == null) {
 	response.sendRedirect("MemberLogin.func");
 }
-// String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 %>
 <!DOCTYPE html>
 <html>
@@ -84,7 +83,6 @@ form {
 			${myShop.get('shop_name') }의 상점 [${myShop.get('member_date') }]</h2>
 
 		<hr class="hr-13">
-		<hr>
 		  	<div class="shopInfo134">  
  			<div class="shopForm134"> 
 		<form action="ProductMyshopModifyForm.shop" name="shopForm" method="post" enctype="multipart/form-data">
