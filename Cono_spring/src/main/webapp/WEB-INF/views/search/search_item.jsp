@@ -92,6 +92,7 @@ body h1 {
 	height: 225px;
 	margin-right: 20px;
 	margin-bottom: 20px;
+	border-radius: 10px;
 }
 
 .products a {
@@ -138,7 +139,7 @@ p {
 .price {
 	margin-top: 4px;
 	margin-bottom: 80px;
-	color: #5CFFD1;
+	color: #6EB4B5;
 	font-size: 13pt;
 }
 
@@ -333,7 +334,6 @@ p {
 			</ul>
 		</div>
 	</div>
-	<!-- 필터 추가 -->
 	
 	<h1 id="search_data">'${searchText }' 검색 내용입니다.</h1>
 	 <input type = "hidden" name ="pageNum" value="${pageNum }">
@@ -342,10 +342,11 @@ p {
 		<div class="products">
 			<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""
 				src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
-				<p class="name">${card.item_title }</p>
+				<p class="name" >${card.item_title }</p>
 				<p class="region">${card.item_region }</p>
 <%-- 				<p class="price">${card.item_price }원</p> --%>
-				<p class="price"><fmt:formatNumber value="${card.item_price }" pattern="#,###.##"/>원</p>
+				<p class="price" style="padding-left: 0px;">
+	<fmt:formatNumber value="${card.item_price }" pattern="#,###.##"/>원</p>
 				
 			</a>
 		</div>

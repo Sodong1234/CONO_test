@@ -25,42 +25,6 @@
   <link type="text/css" rel="stylesheet" href="//static.msscdn.net/skin/musinsa/css/style.min.css?202206141054"/>
   <link type="text/css" rel="stylesheet" href="//static.msscdn.net/skin/musinsa/css/store_common.css?202206141054"/>
   <link type="text/css" rel="stylesheet" href="//static.msscdn.net/skin/musinsa/css/sub.css?202206141054"/>
-
-  <link rel="stylesheet" href="//image.msscdn.net/ui/musinsa/resources/common/css/icon.min.css?202101051200"/>
-
-  <!-- lib -->
-  <script type="text/javascript" src="//static.msscdn.net/mfile_outsrc/js/vendor/jquery-1.11.1.min.js"></script>
-  <script type="text/javascript" src="//static.msscdn.net/mfile_outsrc/js/vendor/jquery.easing.js?202206141054"></script>
-  <script type="text/javascript" src="//static.msscdn.net/skin/musinsa/js/jquery.lazyload.min.js"></script>
-  <script type="text/javascript" src="//static.msscdn.net/skin/musinsa/js/m_js/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="//static.msscdn.net/skin/musinsa/js/clipboard.min.js"></script>
-  <script type="text/javascript" src="//static.msscdn.net/skin/musinsa/js/jquery.bxslider.js"></script>
-  <script type="text/javascript" src="//static.msscdn.net/skin/musinsa/js/jquery.cycle.all.js"></script>
-  <script type="text/javascript" src="//static.msscdn.net/skin/musinsa/js/jslib.js"></script>
-
-  <!-- Swiper -->
-  <link type="text/css" rel="stylesheet" href="//static.msscdn.net/swiper/swiper.min.css?20200316"/>
-  <script type="text/javascript" src="//static.msscdn.net/swiper/swiper.min.js?20200316"></script>
-
-  <!--jqModal-->
-  <link type="text/css" rel="stylesheet" href="//static.msscdn.net/skin/musinsa/css/jqModal.css"/>
-  <script type="text/javascript" src="//static.msscdn.net/skin/musinsa/js/jqModal.min.js"></script>
-  <!--//jqModal-->
-
-  <!-- 스토어, 매거진 공통 스크립트 -->
-  <script type="text/javascript" href="//static.msscdn.net/mfile_outsrc/js/common/base.js?202206141054"></script>
-  <script type="text/javascript" href="//static.msscdn.net/mfile_outsrc/js/common/common.js?202206141054"></script>
-
-<!--  <script type="text/javascript" th:src="|//static.msscdn.net/skin/musinsa/js/common.js?${staticResourceVersion}|"></script>-->
-<!--  <script type="text/javascript" th:src="|//static.msscdn.net/skin/musinsa/js/mini_cart.js?${staticResourceVersion}|"></script>-->
-<!--  <script type="text/javascript" th:src="|//static.msscdn.net/skin/musinsa/js/suggestions.js?${staticResourceVersion}|"></script>-->
-<!--  <script type="text/javascript" th:src="|//static.msscdn.net/skin/musinsa/js/search_form.js?${staticResourceVersion}|"></script>-->
-  <script type="text/javascript" src="//static.msscdn.net/skin/musinsa/js/ui.js?202206141054"></script>
-  <!--// 스토어, 매거진 공통 스크립트 -->
-
-  <!-- 유사 이미지 상품 검색 -->
-  <link type="text/css" rel="stylesheet" href="//static.msscdn.net/skin/musinsa/css/image_search.css?202206141054"/>
-  <script type="text/javascript" src="//static.msscdn.net/skin/musinsa/js/image_search.js?202206141054"></script>
 <style type="text/css">
 
 html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, form, dl, dt, dd, ol, ul, li, input, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
@@ -218,8 +182,11 @@ div {
 			<li>후기작성은 구매확정일로부터 90일까지 가능합니다.</li>
 		</ul>
 		<form name="f1" method="get" action="/goods/mypage/review/write-review">
-			<input type="hidden" name="stateType" value=""> <input type="hidden" name="period" value=""> <input type="hidden"
-				name="fromOrderDate" value=""> <input type="hidden" name="toOrderDate" value=""> <input type="hidden" name="page" value="1">
+			<input type="hidden" name="stateType" value=""> 
+			<input type="hidden" name="period" value=""> 
+			<input type="hidden" name="fromOrderDate" value=""> 
+			<input type="hidden" name="toOrderDate" value=""> 
+			<input type="hidden" name="page" value="1">
 		</form>
 		<!-- //filter -->
 
