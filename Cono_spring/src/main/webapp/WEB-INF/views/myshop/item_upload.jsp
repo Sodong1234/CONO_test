@@ -15,6 +15,7 @@ if(session.getAttribute("sId") == null) {
 <title>코노::상품등록</title>
 
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
+<%-- <script defer src="${path}/resources/js/registForm.js"></script> --%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm.css">
@@ -23,7 +24,7 @@ if(session.getAttribute("sId") == null) {
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
 <script type="text/javascript">
 // ---------------------------------- 카테고리 작업 --------------------------------------------------
-	$(function() {
+	$(function () {
 		
 		let categoryList = {
 				패션: ["여성패션","남성패션"],
@@ -49,12 +50,7 @@ if(session.getAttribute("sId") == null) {
 		});
 	});
 	
-	function check() {
-		if($("#big").val() == null || $("#big").val() == "" || $("#small").val() == null || $("#small").val() == "") {
-			alert("카테고리 선택 필수");
-			return false;
-		}
-	}
+	
 // ---------------------------------------------------------------------------------------------------
 
 // ------------------------------------------ 주소 API -----------------------------------------------
@@ -127,11 +123,49 @@ function checkNumber(event) {
 		});
 	});
 	</c:forEach>
-// ---------------------------------------------------------------------------------------------------
-	function submitBtn() {
-		document.getElementById('btn').click();
-	}
 	
+// ------------------------------ 등록하기 버튼 클릭 시 필수 입력 항목 메시지 출력 ---------------------------------
+	function submit() {
+	
+		var check1 = true;
+		var check2 = true;
+		var check3 = true;
+		var check4 = true;
+		var check5 = true;
+		var check6 = true;
+		
+		if($("#product_subject").val() == "") {
+			alert("제목 입력 필수!");
+			check1 = false;			
+		}
+		if($("#big").val() == null || $("#small").val() == null) {
+			alert("카테고리 선택 필수!");
+			check2 = false;	
+		}
+		if($("#item_region").val() == "" || $("#item_region").val() == null) {
+			alert("거래지역 등록 필수!");
+			check3 = false;	
+		}
+		if($("#product_price").val() == "") {
+			alert("가격 입력 필수!");
+			check4 = false;	
+		}
+		if($("#item_quantity").val() == "") {
+			alert("수량 입력 필수!");
+			check5 = false;	
+		}
+		if($("#product_content").val() == "") {
+			alert("상품 설명 입력 필수!");
+			check6 = false;	
+		}
+		if(check1 && check2 && check3 && check4 && check5 && check6) {
+			$('#checkSubmit').click();
+		}
+		
+		return false;
+		
+	}
+
 </script>
 <style type="text/css">
 	.section ul li {
@@ -173,7 +207,7 @@ function checkNumber(event) {
 
 <body>
 	<div class="cono" style="width: 1200px; margin: auto; margin-left: 350px; margin-right: 350px;">
-		<form action="ItemUploadPro.shop" method="post" enctype="multipart/form-data" onsubmit="return check()">
+		<form action="ItemUploadPro.shop" method="post" enctype="multipart/form-data" onsubmit="">
 			<input type="hidden" name="member_id" value="<%=session.getAttribute("sId")%>">
 			<div class="registWrap">
 	
@@ -185,12 +219,11 @@ function checkNumber(event) {
 	
 						<!-- section -->
 						<section class="section"> 
-							<h2>상품 등록<span>*필수항목</span></h2>
-							<hr class="hr-13">
+							<h2>기본정보<span>*필수항목</span></h2>
 							<ul>
 								<li class="list" style="border: none;">
 									<div class="category_sub">
-										이미지<span>*</span>
+										이미지
 									</div>
 									<div id="upload_img_area">
 										<ul>
@@ -275,7 +308,7 @@ function checkNumber(event) {
 								
 								<!-- 카테고리 -->
 								<li class="list">
-									<div class="category_sub">
+									<div class="subject_sub">
 										카테고리<span>*</span>
 									</div>
 									<div class="categoryStep">
@@ -356,7 +389,7 @@ function checkNumber(event) {
 									<div class="instruction_con">
 										<textarea placeholder="상품 설명을 입력해주세요." rows="6"
 											class="instruction" id="product_content"
-											name="item_content" ></textarea>
+											name="item_content"></textarea>
 										<div class="text">
 											<a target="_blank" href="/market/notice/fag"> </a>
 											<div class="limit">0/2000</div>
@@ -371,7 +404,7 @@ function checkNumber(event) {
 				</div>
 			</div>
 				<!-- main -->
-			<input type="submit" value="" id="btn" class="btn" name="등록">
+			<input type="submit" value="" id="checkSubmit" class="btn" name="등록">
 		</form>
 	</div>
 	<div class ="btnArea" style="float:center; margin-left: 900px; margin-bottom: 50px;">
@@ -380,7 +413,7 @@ function checkNumber(event) {
       			 <rect id="shape" height="40" width="120" />
      	 	</svg>
     		<div id="text">
-     			 <a href="#" onclick="submitBtn()"><span class="spot"></span>등록하기</a>
+     			 <a href="#" onclick="submit()"><span class="spot"></span>등록하기</a>
      		</div>
    	 	</div>
 	</div>
