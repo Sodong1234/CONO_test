@@ -19,6 +19,10 @@
 	var isCheckPhone = false;
 	var isCheckEmail = false;
 	
+	function checkId() {
+		
+	}
+	
 	function checkPhone(phone) {
 		var regPhone = /^01([0|1|6|7|8|9)])-?([0-9]{3,4})-?([0-9]{4})$/;
 		
@@ -136,22 +140,6 @@
 	// 			return false;
 	// 		}
 	
-// 	function newLawWindow() {
-// 		window.open("newLawWindow","","width=400, height=250");
-// 	}
-	
-	//=============================================약관동의========================================
-		
-		// 전체 선택&해제
-		
-// 		$(document).ready(function () {
-// 			$("#check_all").click(function() {
-// 				$(".normal").prop("checked", this.checked);
-// 			});
-// 		});
-	
-		// 전체 선택&해제
-		// 선택된거 풀면 전체 선택 풀림
 	$(document).ready(function() {
 		$("#check_all").click(function() {
 			if ($("#check_all").is(":checked"))
@@ -184,112 +172,20 @@
 			}
 		});
 	});
-
-	// // ============================================휴대폰 본인인증 ====================================
-	// 	// 가맹점 식별 코드 : imp64297364
-	// 	// REST API : 7440562304225525
-	//   	var IMP = window.IMP;
-	//  	IMP.init("imp64297364"); // "iamport" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
-
-	//  	IMP.certification(
-	//  			//파라미터 생략시 빈 object는 입력해줘야한것 같음. 제거 시 모듈 동작 안함.
-	//  			        {},
-	//  			        function (rsp) {
-	//  			            //본인인증 성공 프로세스
-	//  			            if (rsp.success) {
-	//  			            	 $.ajax({
-	//  			                  	type: 'POST',
-	//  			                   	url: '인증정보 조회할 본인 웹서버 API 경로',
-	//  			                   	dataType: 'json',
-	//  			                   	data: {'imp_uid' : rsp.imp_uid},
-	//  			                  });
-	//  			            }
-	//  			            //본인인증 실패 프로세스
-	//  			            else{
-	//  			                alert("인증에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
-	//  			            }
-	//  			        }
-	//  			    );	
-
-	//  	 //callback rsp 인자 값
-	//  	 {
-	//  	      error_code: null
-	//  	      error_msg: null
-	//  	      imp_uid: "고유인증값"
-	//  	      merchant_uid: "주문번호(신경안써도됌)"
-	//  	      pg_provider: "danal" //PG사
-	//  	      pg_type: "certification" //PG타입(본인인증)
-	//  	      success: true // 성공
-	//  	}
-
-	//  	//web.php
-	//  	Route:post('/iamport/certificate', [Controller::class,'certificate']);
-
-	//  	//Controller
-	//  	function certificate(Request $request){
-	//  	      //아임포트 관리자 페이지의 시스템설정->내정보->REST API 키 값을 입력한다.
-	//  	      $imp_key = "REST API 키";
-	//  	      //아임포트 관리자 페이지의 시스템설정->내정보->REST API Secret 값을 입력한다.
-	//  	      $imp_secret = "REST API Secret";
-	//  	      //본인인증 모듈을 호출한 페이지에서 ajax로 넘겨받은 imp_uid값을 저장한다.
-	//  	      $imp_uid = $request->input('imp_uid');
-
-	//  	      try{
-	//  	        $getToken  = Http::withHeaders([
-	//  	          'Content-Type' => 'application/json'
-	//  	        ])->post('https://api.iamport.kr/users/getToken', [
-	//  	          'imp_key' => $imp_key,
-	//  	          'imp_secret' => $imp_secret,
-	//  	        ]);
-	//  	        /*
-	//  	         * 본인인증한 사람의 정보를 얻기 위해서는 아임포트 API 통신을해야 한다.
-	//  	         * api access_key를 얻기위해 아임포트에서 제공되는 imp_key,imp_secret을 이용하여
-	//  	         * 아래 api로 token을 얻는다.
-	//  	         * return 값이 json이므로 decode하여 원하는 값을 들고온다.
-	//  	        */
-	//  	        $getTokenJson = json_decode($getToken, true);
-
-	//  	        //API TOKEN
-	//  	        $access_token = $getTokenJson['response']['access_token'];
-	//  	        $getCertifications=Http::withHeaders([
-	//  	          'Authorization' => $access_token
-	//  	        ])->get('https://api.iamport.kr/certifications/'.$imp_uid);
-
-	//  	        $getCertificationsJson = json_decode($getCertifications,true);
-	//  	        $responseData = $getCertificationsJson['response'];
-
-	//  	        $result = ['code'=>200, 'message'=>'success','data'=>$responseData];
-	//  	      }catch(Exception $e){
-	//  	        $result = [
-	//  	          'code' => 410,
-	//  	          'message' => $e->getMessage()
-	//  	        ];
-	//  	      }
-
-	//  	      return response()->json($result);
-
-	//  	    }
-
-	//  	    //$responseData 상세 값
-
-	//  	   {
-	//  	    "birth":, //무슨 표기법으로 표시한지 모르겠음.
-	//  	    "birthday":"YYYY-MM-DD",
-	//  	    "carrier":"SKT", //통신사
-	//  	    "certified":true, //인증 성공 여부
-	//  	    "certified_at":인증날짜,
-	//  	    "foreigner":false, //외국인 여부
-	//  	    "gender":"male", // 성별
-	//  	    "imp_uid":"인증고유값",
-	//  	    "merchant_uid":"신경안써도되는값",
-	//  	    "name":"이름",
-	//  	    "origin":"요청URL",
-	//  	    "pg_provider":"danal", //PG사
-	//  	    "pg_tid":"요청일시",
-	//  	    "phone":"휴대폰번호",
-	//  	    "unique_in_site":"뭔지 모르겠음",
-	//  	    "unique_key":"뭔지 모르겠음"
-	//  	    }
+	
+	$(".sendMail").click(function () {
+		var email = $(".email").val();
+		
+		if(email == "") {
+			alert("메일 주소를 입력해주세요!");
+			return false;
+		}
+		
+		
+	})
+	
+// =========================================== 메일 발송 ===============================
+	
 </script>
 <link href="../css/default.css" rel="stylesheet" type="text/css">
 <link href="../css/subpage.css" rel="stylesheet" type="text/css">
@@ -368,7 +264,6 @@ input[type="submit"] {
 					<div class="input-form-backgroud row">
 						<div class="input-form col-md-12 mx-auto">
 							<h4 class="mb-3">회원가입</h4>
-							<form class="validation-form" novalidate>
 								<div class="row">
 									<div class="col-md-6 mb-3">
 										<label for="name">아이디</label> 
@@ -378,7 +273,7 @@ input[type="submit"] {
 									<div class="col-md-3 mb-3">
 									<label for="dup">&nbsp;</label>
 									<button class="form-control" 
-									style="background-color: aquamarine;" id="dupBtn">중복확인</button>
+									style="background-color: aquamarine;" id="dupBtn" onclick="checkId()">중복확인</button>
 									</div>
 									<div class="col-md-6 mb-3">
 										<label for="nick">별명</label> <input type="text" class="form-control" name="member_nick" id="nick" placeholder="닉네임을 입력해주세요" required>
@@ -408,6 +303,8 @@ input[type="submit"] {
 									<input type="email" class="form-control" name="member_email" id="email" placeholder="이메일을 입력해주세요" 
 									required onblur="checkEmail(this.value)">
 									<span id="checkEmailResult"></span><br>
+									<input type="button" value="이메일 인증요청" class="sendMail"><br> 
+									<input type="text" name="number" id="number" placeholder="인증번호 입력"><br>
 								</div>					
 								<div class="mb-3">
 									<label for="birth">생년월일</label> 
@@ -418,9 +315,6 @@ input[type="submit"] {
 									<input type="text" class="form-control" name="member_phone" id="phone" placeholder="전화번호 입력" 
 									required onblur="checkPhone(this.value)">
 									<span id="checkPhoneResult"></span><br>
-									<input type="button" value="인증요청"><br> 
-									<input type="text" name="number" id="number" placeholder="인증번호 입력"><br>
-									<input type="button" value="확인"><br>
 								</div>
 								<div class="checkbox_group">
 									<input type="checkbox" id="check_all">
@@ -439,14 +333,13 @@ input[type="submit"] {
 									<label for="check_3">
 									마케팅 수신 동의<strong> (선택)</strong>
 									</label><br>
-									<button class="col-md-3 mb-3 form-control" 
+									<button type="button" class="col-md-3 mb-3 form-control" 
 									style="background-color: aquamarine; left: 37%;" 
 									id="checkBtn" onclick="location.href='newLawWindow'">
 									약관 보기
 									</button>
 								</div> 
 								<input type="submit" value="가입하기" class="submit" id="submit">
-							</form>
 						</div>
 					</div>
 				</div>
