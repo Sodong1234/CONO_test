@@ -289,16 +289,7 @@ public class ShopService {
             dir.mkdirs();
         }
         
-        
 		MultipartFile f = upload[0];
-		String oriFileName = f.getOriginalFilename();	// 파일 실제 이름
-		String ext = oriFileName.substring(oriFileName.lastIndexOf("."));	// 파일 확장자
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		String reName = shop.getShop_idx() + "_" + sdf.format(System.currentTimeMillis()) + ext;	// => 1_20200202.png
-		
-		System.out.println(f.isEmpty());
-		
 		
 		// 전달 받은 파일이 없을 경우
 		if(f.isEmpty()) {
@@ -314,6 +305,11 @@ public class ShopService {
 			}
 		// 전달 받은 파일이 있을 경우
 		} else {
+			String oriFileName = f.getOriginalFilename();	// 파일 실제 이름
+			String ext = oriFileName.substring(oriFileName.lastIndexOf("."));	// 파일 확장자
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			String reName = shop.getShop_idx() + "_" + sdf.format(System.currentTimeMillis()) + ext;	// => 1_20200202.png
 			shop.setShop_img(reName);
 			mapper.updateMyshop(shop);
 			

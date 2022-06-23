@@ -136,39 +136,39 @@ function checkNumber(event) {
 	
 </script>
 <style type="text/css">
-	.section ul li {
-		float: left;
-	}
-	#upload_img_area {
-		margin: 0 auto;
-	}
-	#upload_img_area ul li {
-		float: left;
-	}	
-	#upload_img_area img {
-		margin: 5px 40px;
-	}
-    input[type=button] {
-       background-color: white;
-       border: none;
-       text-decoration: none;
-       color: red;
-       padding: 3px 3px;
-       margin: 3px 3px;
-       cursor: pointer;
-    }
-    .delete_img {
-    	margin: 5px 40px;
-    }
-    
-	     hr.hr-13 {
-	  height: 10px;
-	  border: 0;
-	  box-shadow: 0 10px 10px -10px #8c8c8c inset;
-	  width: 1020px;
-	  margin-left: 0px;
-	  
+.section ul li {
+	float: left;
 }
+#upload_img_area {
+	margin: 0 auto;
+}
+#upload_img_area ul li {
+	float: left;
+}	
+#upload_img_area img {
+	margin: 5px 40px;
+}
+input[type=button] {
+   background-color: white;
+   border: none;
+   text-decoration: none;
+   color: red;
+   padding: 3px 3px;
+   margin: 3px 3px;
+   cursor: pointer;
+}
+.delete_img {
+	margin: 5px 40px;
+}
+
+hr.hr-13 {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8c8c inset;
+	width: 1020px;
+	margin-left: 0px;
+}
+#svg-wrapper
 </style>
 </head>
 <div>
@@ -357,17 +357,17 @@ function checkNumber(event) {
 				</div>
 			</div>
 				<!-- main -->
-			<input type="submit" value="" id="btn" class="btn" name="수정">
+<!-- 			<input type="submit" value="" id="btn" class="btn" name="수정"> -->
+<!-- 			<div class ="btnArea" style="float:center; margin-left: 900px; margin-bottom: 50px;"> -->
+				<div class="svg-wrapper" style="width: 100%; text-align: center;">
+<!-- 		     		 <svg height="40" width="120" xmlns="http://www.w3.org/2000/svg"> -->
+		<!--       			 <rect id="shape" height="40" width="120" /> -->
+<!-- 		     	 	</svg> -->
+		    		<input type="submit" class="btn" value="수정" > 
+					<input type="button" class="btn" value="취소" onclick="history.back()">
+		   	 	</div>
+<!-- 			</div> -->
 		</form>
-	</div>
-	<div class ="btnArea" style="float:center; margin-left: 900px; margin-bottom: 50px;">
-		<div class="svg-wrapper" >
-     		 <svg height="40" width="120" xmlns="http://www.w3.org/2000/svg">
-<!--       			 <rect id="shape" height="40" width="120" /> -->
-     	 	</svg>
-    		<input type="submit" class="btn" value="수정" > 
-			<input type="button" class="btn" value="취소" onclick="history.back()">
-   	 	</div>
 	</div>
 		<!-- registWrap -->
 

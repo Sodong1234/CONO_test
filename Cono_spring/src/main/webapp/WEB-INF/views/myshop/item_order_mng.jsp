@@ -240,7 +240,7 @@ hr.hr-13 {
 									<%--   <td>${ord.get('ord_quantity') }</td> --%>
 									<td>${ord.get('member_id') }</td>
 <%-- 									<td>${ord.get('item_price') }</td> --%>
-				<td><fmt:formatNumber value="${ord.get('item_price') }" pattern="\#,###.##"/></td>
+				<td><fmt:formatNumber value="${ord.get('item_price') }" pattern="#,###.##"/></td>
 									<td>${ord.get('ord_reqContent') }</td>
 								</tr>
 							</c:forEach>
@@ -248,35 +248,35 @@ hr.hr-13 {
 					</table>
 			    
 			<!-- 구매 완료 페이징 처리 -->
-				<div class ="paging">
-					<c:choose>
-						<c:when test="${finPageInfo.pageNum > 1 }">
-							<input type="button" value=" < " onclick="location.href='ItemOrdMng.shop?pageNum=${finPageInfo.pageNum - 1 }'">
-						</c:when>
-						<c:otherwise>
-							<input type="button" value=" < ">
-						</c:otherwise>
-					</c:choose>
+<!-- 				<div class ="paging"> -->
+<%-- 					<c:choose> --%>
+<%-- 						<c:when test="${finPageInfo.pageNum > 1 }"> --%>
+<%-- 							<input type="button" value=" < " onclick="location.href='ItemOrdMng.shop?pageNum=${finPageInfo.pageNum - 1 }'"> --%>
+<%-- 						</c:when> --%>
+<%-- 						<c:otherwise> --%>
+<%-- 							<input type="button" value=" < "> --%>
+<%-- 						</c:otherwise> --%>
+<%-- 					</c:choose> --%>
 			
-					<c:forEach var="i" begin="${finPageInfo.startPage }" end="${finPageInfo.endPage }">
-						<c:choose>
-						<c:when test="${finPageInfo.pageNum eq i }">
-							${i }
-						</c:when>
-						<c:otherwise>
-							<a href="ItemOrdMng.shop?pageNum=${i }">${i }</a>
-						</c:otherwise>
-					</c:choose>
-					</c:forEach>
-					<c:choose>
-						<c:when test="${finPageInfo.pageNum < finPageInfo.maxPage }">
-							<input type="button" value=" > " onclick="location.href='ItemOrdMng.shop?pageNum=${finPageInfo.pageNum + 1 }'">
-						</c:when>
-						<c:otherwise>
-							<input type="button" value=" > ">
-						</c:otherwise>
-					</c:choose>
-				</div>
+<%-- 					<c:forEach var="i" begin="${finPageInfo.startPage }" end="${finPageInfo.endPage }"> --%>
+<%-- 						<c:choose> --%>
+<%-- 						<c:when test="${finPageInfo.pageNum eq i }"> --%>
+<%-- 							${i } --%>
+<%-- 						</c:when> --%>
+<%-- 						<c:otherwise> --%>
+<%-- 							<a href="ItemOrdMng.shop?pageNum=${i }">${i }</a> --%>
+<%-- 						</c:otherwise> --%>
+<%-- 					</c:choose> --%>
+<%-- 					</c:forEach> --%>
+<%-- 					<c:choose> --%>
+<%-- 						<c:when test="${finPageInfo.pageNum < finPageInfo.maxPage }"> --%>
+<%-- 							<input type="button" value=" > " onclick="location.href='ItemOrdMng.shop?pageNum=${finPageInfo.pageNum + 1 }'"> --%>
+<%-- 						</c:when> --%>
+<%-- 						<c:otherwise> --%>
+<!-- 							<input type="button" value=" > "> -->
+<%-- 						</c:otherwise> --%>
+<%-- 					</c:choose> --%>
+<!-- 				</div> -->
 			</div>	<!-- 탭 2 -->
 		</div>	<!-- 탭1,2 -->
 	</div> <!-- allTab -->
