@@ -27,9 +27,7 @@ if (session.getAttribute("sId") == null) {
 	href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
 
 <style type="text/css">
-#storeWrap {
 
-}
 form {
 	margin: 0;
 	padding: 0;

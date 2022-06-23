@@ -52,6 +52,8 @@ img {
 	border-radius: 10px;
 	border-collapse: collapse;
 	line-height: 5px;
+	width: 85%;
+    margin-left: 85px;
 }
 #review_list tr {
 	background: #e1f3f0;
@@ -148,6 +150,18 @@ hr.hr-13 {
   height: 10px;
   border: 0;
   box-shadow: 0 10px 10px -10px #8c8c8c inset;
+  
+}
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+  font-family: 'IBMPlexSansKR-Regular';
 }
 
 </style>
@@ -272,7 +286,8 @@ hr.hr-13 {
 		
 		<div style="clear: both;"></div>
 		</div>
-		<hr>
+		<hr style="width: 85%;
+    margin-left: 85px;">
 		
 		<!---------------------------------------- 아이템 이미지 슬라이드 ------------------------------------------------->
 		<div id="item_img_slide_show">

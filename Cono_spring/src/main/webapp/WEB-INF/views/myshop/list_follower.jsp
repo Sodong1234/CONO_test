@@ -36,6 +36,34 @@ section {
 	padding: 15px 0;
 }
 
+hr.hr-13 {
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8c8c inset;
+  width: 1250px;
+  margin-left: 370px;
+  
+}
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+ font-family: 'IBMPlexSansKR-Regular';
+}
+
+
 </style>
 </head>
 <body>
@@ -47,7 +75,10 @@ section {
 	<div>
 		<jsp:include page="./myshop_sidebar.jsp"/>
 	</div>
-		
+	
+		<h2 style="font-family: Cafe24Ohsquare; margin-left:370px;"> 팔로우/팔로잉 상점</h2>
+
+		<hr class="hr-13"  >
 	
 	<section>
 		<nav class="navstyle">

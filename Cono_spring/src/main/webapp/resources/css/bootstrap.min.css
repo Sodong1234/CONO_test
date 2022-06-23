@@ -4,6 +4,14 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+ 
+ @font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -38,7 +46,9 @@
 *,
 ::after,
 ::before {
-    box-sizing: border-box
+    box-sizing: border-box;
+    
+    
 }
 
 html {
@@ -2813,16 +2823,60 @@ fieldset:disabled a.btn {
     pointer-events: none
 }
 
-.btn-primary {
-    color: #fff;
+.btn-primary2{
+	color: #fff;
     background-color: 	#F08080;
     border-color: 	#F08080;
 }
 
-.btn-primary:hover {
+.btn-primary2:hover {
     color: #fff;
     background-color: 	#A52A2A;	
     border-color: 	#A52A2A;
+}
+
+.btn-primary2.focus,
+.btn-primary2:focus {
+    color: #fff;
+    background-color: #A52A2A;
+    border-color: #A52A2A;
+    box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .5)
+}
+
+.btn-primary2.disabled,
+.btn-primary2:disabled {
+    color: #fff;
+    background-color: #A52A2A;
+    border-color: #A52A2A;
+}
+
+.btn-primary2:not(:disabled):not(.disabled).active,
+.btn-primary2:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #A52A2A;
+    border-color: #A52A2A;
+}
+
+.btn-primary2:not(:disabled):not(.disabled).active:focus,
+.btn-primary2:not(:disabled):not(.disabled):active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .5)
+}
+
+
+.btn-primary {
+    color: #fff;
+    background-color: 	#007bff;
+    border-color: 	#007bff;
+}
+
+
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: 	#0069d9;	
+    border-color: 	#0069d9;
 }
 
 .btn-primary.focus,

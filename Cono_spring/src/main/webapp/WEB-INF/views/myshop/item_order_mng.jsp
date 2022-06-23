@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <meta charset="UTF-8">
 <title>myshop/item_order_mng.jsp</title>
 <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
@@ -89,6 +88,32 @@ h3 {
 	margin-top: 11px;
 	padding-bottom: 70px;
 }
+
+hr.hr-13 {
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8c8c inset;
+  width: 68.8%;
+  margin-left: 370px;
+}
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+  font-family: 'IBMPlexSansKR-Regular';
+}
 </style>
 <script type="text/javascript">	
 	function openTab(evt, tabName) {
@@ -123,9 +148,11 @@ h3 {
 	구매 완료 ('2') : ord 테이블 delete할 때
 	예약 중('3')
 	 -->
+	<div class="cono" style="margin-top: 25px;">
+		<h2 style="font-family: Cafe24Ohsquare; margin-left:370px;">상품 주문 관리</h2>
+
+		<hr class="hr-13">
 	
-		
-	<hr>
 	<div class="allTab">
 		<div class="tab">
 			<button class="tablinks active" onclick="openTab(event, 'tab1')">구매진행</button>
@@ -134,7 +161,7 @@ h3 {
 		<!-- 탭 1 -->
 		<div class="tabBox">
 			<div id="tab1" class="tabcontent" style="display: block;">
-				<h3>구매 진행중 ▼</h3>
+				<h3 style="font-family: 'IBMPlexSansKR-Regular';">구매 진행중 ▼</h3>
 					<table class="table table-hover" style="border:1px 0; border-color:bg-primary; width: 1090px;">
 					    <tr>
 					      <th scope="col">주문일시</th>
@@ -194,7 +221,7 @@ h3 {
 			
 			<!-- 탭 2 -->
 			<div id="tab2" class="tabcontent" style="display: none;">
-				<h3>구매 완료 ▼</h3>
+				<h3 style="font-family: 'IBMPlexSansKR-Regular';">구매 완료 ▼</h3>
 					<table class="table table-hover" style="border:1px 0;border-color:bg-primary; width: 1080px;">
 						<tr>
 							<th scope="col">주문일시</th>
@@ -253,6 +280,7 @@ h3 {
 			</div>	<!-- 탭 2 -->
 		</div>	<!-- 탭1,2 -->
 	</div> <!-- allTab -->
+	</div>
 	
 	
 

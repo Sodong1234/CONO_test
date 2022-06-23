@@ -160,6 +160,15 @@ function checkNumber(event) {
     .delete_img {
     	margin: 5px 40px;
     }
+    
+	     hr.hr-13 {
+	  height: 10px;
+	  border: 0;
+	  box-shadow: 0 10px 10px -10px #8c8c8c inset;
+	  width: 1020px;
+	  margin-left: 0px;
+	  
+}
 </style>
 </head>
 <div>
@@ -189,6 +198,7 @@ function checkNumber(event) {
 						<!-- section -->
 						<section class="section"> 
 							<h2>상품 정보 수정</h2>
+								<hr class="hr-13">
 							<ul>
 								<li class="list" style="border: none;">
 									<div class="category_sub">
