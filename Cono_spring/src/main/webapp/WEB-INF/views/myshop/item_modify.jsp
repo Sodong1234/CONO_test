@@ -18,8 +18,8 @@ if (session.getAttribute("sId") == null) {
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/my_page.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item_detail.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/button_mng.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css"> -->
 <script src="${path }/resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 
@@ -91,12 +91,12 @@ if (session.getAttribute("sId") == null) {
 	#item_modify_area {
 		margin: 0 auto;
 	}
-	#item_modify_area ul li {
-		float: left;
-	}
-	#item_img_area img {
-		margin: 5px 40px;
-	}
+/* 	#item_modify_area ul li { */
+/* 		float: left; */
+/* 	} */
+/* 	#item_img_area img { */
+/* 		margin: 5px 40px; */
+/* 	} */
 	#item_img_area {
 		float: left;
 	}
@@ -106,10 +106,19 @@ if (session.getAttribute("sId") == null) {
 	    padding-top: 8px;
 	}
 
-	#big, #small {
+	#big {
 	    width: 10.5rem;
 	    font-size: 18px;
 	    padding-top: 8px;
+	    margin-top: 1px;
+	}
+	
+	#small {
+	    width: 10.5rem;
+	    font-size: 18px;
+	    padding-top: 8px;
+	    margin-left: 170px;
+   		margin-top: -241px;
 	}
 	.categoryStep {
     width: 200px;
@@ -128,6 +137,19 @@ if (session.getAttribute("sId") == null) {
 	#category_list div{
 		float: left;
 	}
+	
+	input[type=button] {
+       background-color: white;
+       border: none;
+       text-decoration: none;
+       color: red;
+       padding: 3px 3px;
+       margin: 3px 3px;
+       cursor: pointer;
+    }
+    .delete_img {
+    	margin: 5px 40px;
+    }
 </style>
 <meta charset="UTF-8">
 <title>내 상품 수정</title>
@@ -144,25 +166,24 @@ if (session.getAttribute("sId") == null) {
 	</div>
 		
   <div id="storeWrap"><h2 style="font-family: Cafe24Ohsquare;">
-	${myShop.get('shop_name') }의 상품 수정하기 ${myShop.get('member_date') }</h2> 
+	${myShop.get('shop_name') }의 상품 수정하기 </h2> 
 	
 	
 	<hr class="hr-13">
 	<hr>
 	
 		<form name="fr" action="ItemModifyPro.shop" method="post"
-			enctype="multipart/form-data" onsubmit="return imgStatusCheck()">
+			enctype="multipart/form-data" onsubmit="return imgStatusCheck()"> 
 			<input type="hidden" name="item_idx"
 				value="${itemDetail.get('item_idx')}"> 
 				<input type="hidden" name="imgStatus" value="">
-			<div class="form-group">
+<!-- 			<div class="form-group"> -->
 <!-- 						<div id="item_modify_area">				 -->
-				<ul>
-					<li>
-							<ul>	
-								<div id="item_img_area">
+				
+<!-- 								<div id="item_img_area"> -->
+<!-- 							<ul>	 -->
 									<c:forEach var="i" begin="1" end="3">
-										<li>
+<!-- 										<li> -->
 											<c:choose>
 												<c:when test="${imgList.get(i-1).getImg_name() ne null}">
 													<img id="target_img${i }" src="resources/upload/file/${imgList.get(i-1).getImg_name() }" style="width: 200px; height: 200px;">
@@ -177,10 +198,10 @@ if (session.getAttribute("sId") == null) {
 													<div class="delete_img"><input type="button" id="delFile${i }" onclick="deleteImg${i}()" value="X">이미지삭제</div>
 												</c:when>
 											</c:choose>
-										</li>
+<!-- 										</li> -->
 									</c:forEach>
 									<c:forEach var="i" begin="4" end="6">
-										<li>
+<!-- 										<li> -->
 											<c:choose>
 												<c:when test="${imgList.get(i-1).getImg_name() ne null}">
 													<img id="target_img${i }" src="resources/upload/file/${imgList.get(i-1).getImg_name() }" style="width: 200px; height: 200px;">
@@ -195,38 +216,48 @@ if (session.getAttribute("sId") == null) {
 													<div class="delete_img"><input type="button" id="delFile${i }" onclick="deleteImg${i}()" value="X">이미지삭제</div>
 												</c:when>
 											</c:choose>
-										</li>
+<!-- 										</li> -->
 									</c:forEach>
-								</div>
-							</ul>
-
-					</li>
-					<li>
+<!-- 								</div> -->
+								
+								<br>
+								<br>
+								
+<!-- 							</ul> -->
+<!-- 				<ul> -->
+<!-- 					<li> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+						<div>
 						<label class="col-form-label mt-4" for="inputDefault">상품명</label>
 		 				<input type="text" class="form-control"  id="inputDefault" name="item_title" value="${itemDetail.get('item_title')}" >
-	 				</li>
-	 				<li> 
+<!-- 	 				</li> -->
+<!-- 	 				<li>  -->
 		 				<label class="col-form-label mt-4" for="inputDefault">상품 소개</label>
 		 				<input type="text" class="form-control"  id="inputDefault" name="item_content" value="${itemDetail.get('item_content')}" >
-	 				</li>
-	 				<li>
+<!-- 	 				</li> -->
+<!-- 	 				<li> -->
 		 				<label class="col-form-label mt-4" for="inputDefault">가격</label>
 		 				<input type="text" class="form-control"  id="inputDefault" name="item_price" value="${itemDetail.get('item_price')}" >
-	 				</li>
-	 				<li>
+<!-- 	 				</li> -->
+<!-- 	 				<li> -->
 		 				<label class="col-form-label mt-4" for="inputDefault">수량</label>
 		 				<input type="text" class="form-control"  id="inputDefault" name="item_quantity" value="${itemDetail.get('item_quantity')}" >
-	 				</li>
+<!-- 	 				</li> -->
 	<!--  				  <label class="col-form-label mt-4" for="inputDefault">카테고리</label> -->
-					<li>
+<!-- 					<li> -->
 		 				<label class="col-form-label mt-4" for="inputDefault">거래지역</label>
 		 				<input type="text" class="form-control" id="inputDefault" name="item_region" value="${itemDetail.get('item_region')} " ><br><br>
-					</li>	
-					<li id="category_list">
-	 					 <div class="category_sub">
-							카테고리<span>*</span>
+<!-- 					</li>	 -->
+					
 						</div>
-						<div class="categoryStep">
+					
+<!-- 					<li id="category_list"> -->
+	 					 <div class="category_sub">
+							카테고리
+						</div>
+						
+						<div class="categoryStep" style="height: 211px;">
 							<select name="category_big" id="big" size="8">
 								<option value="패션">패션</option>
 								<option value="디지털_가전">디지털/가전</option>
@@ -239,32 +270,33 @@ if (session.getAttribute("sId") == null) {
 							</select>
 						</div>
 						<div class="categoryStep">
-							<div id="category_area">
+<!-- 							<div id="category_area"> -->
 								<select name="category_small" id="small" size="8">
 									<option value="여성패션">여성패션</option>
 									<option value="남성패션">남성패션</option>
 								</select>
-							</div>
+<!-- 							</div> -->
 						</div>
-					</li>	
-					
-				</ul>
-										</div>
-			</div>		
-
-	
-	
-	
-	
-	
-	
-	
-
+						
+						<br>
+						<br>
+						<br>
+						
 						<input type="submit" class="btn" value="수정" > 
 						<input type="button" class="btn" value="취소" onclick="history.back()">
-	</form>
-				    </div>
+						</form>
+					</div>
+<!-- 					</li>	 -->
+					
+<!-- 					</ul> -->
+<!-- 					</ul> -->
+<!-- 				</ul> -->
+<!-- 										</div> -->
+			
+<!-- 				    </div> -->
+
 		
+
 <!-- </div>  -->
 
 	<div>
