@@ -219,7 +219,8 @@ function checkNumber(event) {
 	
 						<!-- section -->
 						<section class="section"> 
-							<h2>기본정보<span>*필수항목</span></h2>
+							<h2>상품 등록<span>*필수항목</span></h2>
+							<hr class="hr-13">
 							<ul>
 								<li class="list" style="border: none;">
 									<div class="category_sub">
