@@ -87,6 +87,7 @@ a{
 
 </style>
 
+
 <!-- 실시간 인기순위 -->
 <style type="text/css">
 
@@ -118,10 +119,11 @@ a{
 	left:10px;
 	top:10px;
 	z-index:99;
-	font-size:10px;
+	font-size:12px;
 	font-weight:bold;
-	border: 1px solid #d9d9d9;
+	border: 2px solid navy;
 	border-radius: 4px;
+	float: center;
 	}
 
 #search-ranking {
@@ -132,20 +134,26 @@ a{
 }
 
 #search-ranking ul {
+	letter-spacing:1px;
     display: none;
     list-style: none;
     padding: 17px;
     margin: 0;
     width: 300px;
     height: 330px;
-    border: 1px solid #d9d9d9;
+    border: 1px solid #EFFFFD;
     background: white;
     border-radius:5px;
     position: absolute;
     top: 0;
     right: 0;
     z-index: 100;
-    box-shadow: 4px #d9d9d9;
+    box-shadow: 4px gray;
+    background-color: #EFFFFD;
+}
+
+#search-ranking li  {
+	margin-top: 1px;
 }
 
 #search-ranking:hover ul {
@@ -161,6 +169,25 @@ a{
 #rank-title {
     letter-spacing: -1px;
     font-size: 14px;
+}
+
+.clickBtnDiv {
+	display: inline-block;
+}
+
+.clickBtn {
+	padding: 5px 5px;
+	border: 2px solid #1597BB;
+	background-color: #1597BB;
+	font:bold italic;
+	color: navy;
+	border-radius: 6px;
+	margin: auto;
+}
+
+#readCnt {
+	float: right;
+	text-decoration: none;
 }
 
 </style>
@@ -179,14 +206,21 @@ a{
 	        <span id="rank-number">실시간 인기!</span>
 	      </div>
 	      <ul>
-		    <p class="view">실시간 인기순위 &nbsp;</p>
+		    <p class="view"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>☆ 실시간 인기순위 ☆</strong> &nbsp;</p>
 		    	<c:if test="${sessionScope.hotList eq null }">
-		    		<input type="button" value="Click!" onclick="location.href='./hotItem'">
+		    		<div class="clickBtnDiv">
+		    			<input type="button" class="clickBtn" value="Click!" onclick="location.href='./hotItem'">
+		    		</div>
 		    	</c:if>
 			<c:forEach var="hot" items="${sessionScope.hotList }">
 		        <li>
 		          <span class="rank-number">${hot.num}.</span>
-		          <span class="rank-title"><a href="">${hot.item_title}</a></span>&nbsp;<span>${hot.item_readCnt}</span>
+		          <span class="rank-title"><a href="itemDetail?item_idx=${hot.item_idx }">${hot.item_title}</a>
+		          <a id="readCnt">
+		          <img 
+		          	src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAaCAYAAADMp76xAAAAAXNSR0IArs4c6QAABAdJREFUWAm9mFtIFFEYx9tZ11UW1tLoaoGEPShqq3ahgogyIgnqQXqIgih6qKgEH4JIqCgIIoowIrSn6i0irOxCQdAN7wb2IiSlSUZuGJGyumu/b9lZZo8zs7ObdeBwvvNd/uc/53zznWFcs9Js7e3tczVNWzs1NbUKiErGfJfLNYcxVyCRg8g/GAeZdiC3eTyeN2VlZd/Enm5zpRLY09Pjm5yc3EnMbghUMbpTiYd8BP8X9Dt+v/9uYWHhz1TixdcR4YGBgezh4eFD+J+gz5XAGWijYFzKycm5nArxpIQ5+hqAr9AXzgBJM4ggqXWyvLz8uplR1VkShmgOR3iVo9+jBv2LOWs9pu+H+JAdvilhyC4j6AldxqSNhT7g1Oh2u59mZWV9loDx8fGl4XB4C+IBHrpIdA7ad7C2V1RUvLPynUa4u7s7wIvVQsB8qyCDfgK5jgUaWChs0MdFyLo7OjoOo7hI98QN1sJvsHaB+cDMJYFwV1fXCnblJY5+M2dFN8GOVgcCgWeK3nQKdhXYDzE6IR2GdA2k76lgmq7o7OxcBGAzcydkJazOKVlxjvnWieyguTmZ25y21PiEFt3h/v7+rJGRkddYyhOsFhOe/gMvR6lVGliEzZL0YGPep5DTw16vd2VJScmAjhnd4WAweBaFI7KxwEaVLCQyIHOafB2ULrLo9IVkjMU0GnVJ5PmhUOim0UejIqwGuNaoTCZLNVB9yNFTkUikHqzF0kUWnepnFqv6GOdgbWYDDuo6jaduYOLWFU5Gvgk+qX4A73ei08ue6ms3B/ui3LbiozExLUd2AOxSQnWx850h2+f8/PyQYGksfoRxMhVguRRUf06qyYnOLFaNM87BjdAP0KMbq1Fu2phcMDolk2M3WIIbOGf5JjgD1hfpIosuwYmJWazqo8yvGG++6NH29vZmjo2NPcdxveJsOoXQ/yprXcKpsrLyt04kWtaKi4tDPp9vB0T6dIPdSN4Xxa5bO7dpNomR2GkGEwVchjIyMrYbyYpbwstDGSqkHL0CdJ4Jhqr6l1ezfNhvhGynumj8ahYDOSc7vI7+UeZJmke+DajjR3lAy7IoNvERX/CcfEd8pRBsMCMrfBJ2WCdITi8gpx8xD+g6u1FyGvtff15KSlLjt5aWllpumClhIdfX1+cdHR09D0gtu2TpZ/cgKdqasrOzj/M+/bKLS0qEb4JN5PU1QJbbAaVrY0M+UQKPkY73nWAkJSwgkoe84fsQ6+lLRDcD7Stkz3FV35Aq5RTPEWEdLFavt7HQXnTVPEimbnM4ThDbQtytvLy85oKCgnGHcXG3lAjHoxAogbNJlTWIq6VDQn6k5DLmih+y/EgJMsqPlFaOvZW3/y0v1A+xp9v+ADhPuomDsZuZAAAAAElFTkSuQmCC"
+					width="16" height="10" alt="조회수 아이콘">
+		          &nbsp; ${hot.item_readCnt}</a></span>
 		        </li>
 			</c:forEach>
 	      </ul>

@@ -74,7 +74,8 @@
 					<td>${product.member_id }</td>
 					<td>${product.safe_coin }</td>
 					<td>${product.ord_date }</td>
-					<td>${product.item_status }</td>
+<%-- 					<td>${product.item_status }</td> --%>
+					<td>Y</td>
 					<td><input type="button" id="search_btn" value="거래취소" onclick="dealCancel('${product.item_idx }', '${product.safe_coin }', '${product.item_status }','${pageInfo.pageNum }')"></td>
 				</tr>
 			</c:forEach>
