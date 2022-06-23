@@ -293,7 +293,7 @@
 		 SELECT coin_total
 		  FROM coin
 		 WHERE coin_date = (SELECT * 
-		 			         FROM (SELECT max(coin_date) FROM coin WHERE member_id=#{sId}) AS a)
+		 			         FROM (SELECT max(coin_date) FROM coin WHERE member_id=#{shop_member_id}) AS a)
 				
 	</select>
 	

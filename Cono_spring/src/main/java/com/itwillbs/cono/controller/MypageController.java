@@ -166,13 +166,13 @@ public class MypageController {
 		// ord 테이블 변경
 		service.confirmPurchase(sId, item_idx, ord_date);
 		
-		// safe_coin
-		String safe_coin = service.selectSafeCoin(sId, item_idx, ord_date);
-		
-		// coin_total
-		String coin_total = service.selectCoinTotal(sId);
 		// safe 테이블 status 변경
 		service.modifySafeStatus(sId, item_idx, ord_date);
+		
+		// coin_total
+		String coin_total = service.selectCoinTotal(shop_member_id);
+		// safe_coin
+		String safe_coin = service.selectSafeCoin(sId, item_idx, ord_date);
 		// 판매자 코인 입금
 //		coin_total = coin_total + safe_coin
 		service.insertCoinSeller(shop_member_id, safe_coin, coin_total);

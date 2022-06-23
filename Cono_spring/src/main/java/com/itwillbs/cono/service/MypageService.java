@@ -174,8 +174,8 @@ public class MypageService {
 		return mapper.selectSafeCoin(sId, item_idx, ord_date);
 	}
 	// coin_total
-	public String selectCoinTotal(String sId) {
-		return mapper.selectCoinTotal(sId);
+	public String selectCoinTotal(String shop_member_id) {
+		return mapper.selectCoinTotal(shop_member_id);
 	}
 	
 	// 후기 내역 조회
