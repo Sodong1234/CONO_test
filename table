@@ -72,7 +72,7 @@ CREATE TABLE img(
 
 CREATE TABLE review (
 	review_idx varchar(20),
-   	member_id varchar(20),
+   	member_id varchar(50),
    	item_idx varchar(20),
 	ord_idx varchar(20),
    	review_content varchar(1000) NOT NULL,
@@ -83,14 +83,14 @@ CREATE TABLE review (
 
 CREATE TABLE wish (
 	item_idx varchar(20),
-	member_id varchar(20),
+	member_id varchar(50),
 	PRIMARY KEY (item_idx, member_id) 
 );
 
 CREATE TABLE ord (
 	ord_idx VARCHAR(20),
 	item_idx varchar(20),
-	member_id varchar(20),
+	member_id varchar(50),
 	ord_date varchar(20) NOT NULL,
 	ord_reqContent varchar(1000),
 	ord_quantity varchar(10) NOT NULL,
