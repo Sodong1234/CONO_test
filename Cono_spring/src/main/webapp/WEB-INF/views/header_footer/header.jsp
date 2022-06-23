@@ -105,7 +105,9 @@ if(request.getParameter("searchText") == null) {
 				<li class="test"><a href="message_list"><p>메세지</p></a></li>
 				<li class="test"><a href="ProductMyshop.shop"><p>판매자 전용
 							마이페이지</p></a></li>
-				<li class="test"><a href="admin_center_main"><p>관리자 전용 마이페이지</p></a></li>
+				<c:if test="${sId eq 'admin'}">
+					<li class="test"><a href="adminMain"><p>관리자 전용 마이페이지</p></a></li>
+				</c:if>
 				<li class="test"><a href="mypage"><p><%=member_nick%>님
 						</p></a></li>
 				<%

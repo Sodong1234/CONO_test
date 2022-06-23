@@ -25,6 +25,11 @@ public interface AdminMapper2 {
 	// 신고된 글
 	public int selectDashReport();
 
+	// 전체 상품
+	public int selectDashAllItem();
+
+	// 오늘 등록된 상품
+	public int selectDashNewItem();
 
 	// ------------------- (관리자) 회원 정보 조회 - 김혜은 ---------------------------
 	// 회원 수
@@ -60,6 +65,8 @@ public interface AdminMapper2 {
 
 	// 거래취소
 	public int updateDealCancel(@Param("item_idx")String item_idx, @Param("safe_status") String safe_status);
+
+	
 
 	
 

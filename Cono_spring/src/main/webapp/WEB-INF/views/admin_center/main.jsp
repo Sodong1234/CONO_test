@@ -72,28 +72,28 @@ hr {
 	  			<div class="val-box">
 					<h3>MEMBER</h3>
 					<hr>
-					<p></p>
+					<p>${memberCount} 명</p>
 	  			</div>
   			</a>
   			<a href="">
 	  			<div class="val-box">
 					<h3>NEW USER</h3>
 					<hr>
-					<p>진행</p>
+					<p>${newMemberCount} 명</p>
 				</div>
 			</a>
 			<a href="./AdminDealList">
 				<div class="val-box">
 					<h3>진행중인 거래</h3>
 					<hr>
-					<p>진행</p>
+					<p>${dealCount} 건</p>
 				</div>
 			</a>
 			<a href="./AdminDealCancelList">
 				<div class="val-box">
 					<h3>거래취소 요청</h3>
 					<hr>
-					<p>진행</p>
+					<p>${dealCancel} 건</p>
 	  			</div>
 	  		</a>
   		</div> <!-- 첫번째 줄 -->
@@ -103,28 +103,28 @@ hr {
 	  			<div class="val-box">
 					<h3>답변대기</h3>
 					<hr>
-					<p>10</p>
+					<p>${qnaWaitCount} 건</p>
 	  			</div>
 	  		</a>
 	  		<a href="">
 	  			<div class="val-box">
 					<h3>신고된 글</h3>
 					<hr>
-					<p>10</p>
+					<p>${reportCount} 건</p>
 				</div>
 			</a>
 			<a href="">
 				<div class="val-box">
-					<h3>전체 글</h3>
+					<h3>전체 상품</h3>
 					<hr>
-					<p>진행</p>
+					<p>${allItemCount} 건</p>
 				</div>
 			</a>
 			<a href="">
 				<div class="val-box">
-					<h3>오늘 등록된 글</h3>
+					<h3>오늘 등록된 상품</h3>
 					<hr>
-					<p>진행</p>
+					<p>${newItemCount} 건</p>
 	  			</div>
 	  		</a>
   		</div>

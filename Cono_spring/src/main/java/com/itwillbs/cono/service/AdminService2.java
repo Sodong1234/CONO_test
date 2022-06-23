@@ -41,7 +41,18 @@ public class AdminService2 {
 		return mapper.selectDashReport();
 	}
 	
-	
+	// 전체 상품
+	public int getDashAllItemCount() {
+		
+		return mapper.selectDashAllItem();
+	}
+
+	// 오늘 등록된 상품
+	public int getDashNewItemCount() {
+		
+		return mapper.selectDashNewItem();
+	}
+
 	// ------------------- (관리자) 회원 정보 조회 - 김혜은 ---------------------------
 	// 회원 수
 	public Integer getMemberListCount(String searchType, String search) {
@@ -110,6 +121,8 @@ public class AdminService2 {
 		
 		return mapper.updateDealCancel(item_idx, safe_status);
 	}
+
+
 
 
 

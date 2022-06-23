@@ -88,7 +88,6 @@
 							<td>${member.member_status }</td>
 							<td>
 								<input type="button" id="search_btn" value="되돌리기" onclick="confirmBack('${member.member_id }', '${pageInfo.pageNum }' )">
-								<input type="button" id="search_btn" value="정보삭제" onclick="confirmExit('${member.member_id }', '${pageInfo.pageNum }' )">
 							</td> 
 						</tr> 
 					</c:forEach>

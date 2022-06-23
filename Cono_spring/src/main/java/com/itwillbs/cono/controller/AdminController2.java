@@ -48,8 +48,12 @@ public class AdminController2 {
 		
 		// 신고된 글
 		int reportCount = service.getDashReportCount();
-
-		// 오늘 등록된 글
+		
+		// 전체 상품
+		int allItemCount = service.getDashAllItemCount();
+		
+		// 오늘 등록된 상품
+		int newItemCount = service.getDashNewItemCount();
 		
 		model.addAttribute("memberCount", memberCount);
 		model.addAttribute("newMemberCount", newMemberCount);
@@ -57,6 +61,8 @@ public class AdminController2 {
 		model.addAttribute("dealCancel", dealCancel);
 		model.addAttribute("qnaWaitCount", qnaWaitCount);
 		model.addAttribute("reportCount", reportCount);
+		model.addAttribute("allItemCount", allItemCount);
+		model.addAttribute("newItemCount", newItemCount);
 		
 		return "admin_center/main";
 	}
@@ -220,22 +226,6 @@ public class AdminController2 {
 		
 		return "redirect:/AdminExitMemberList";
 	}
-	
-	// ------ 회원 탈퇴 로직
-//	@RequestMapping(value = "/AdminMemberExit", method = RequestMethod.POST)
-//	public String adminMemberExitPost(@RequestParam String member_id, @RequestParam(defaultValue = "1")int pageNum, Model model) {
-//		
-//		int exitCount = service.exitMember(member_id);
-//		
-//		if(exitCount == 0) {
-//			model.addAttribute("msg", "회원 탈퇴 실패!");
-//			return "fail_back";
-//		}
-//		
-//		model.addAttribute("pageNum", pageNum);
-//		
-//		return "redirect:/AdminMemberList";
-//	}
 	
 	// --------------------------------------------------------------------------------------------------------
 	// ------ 거래 리스트 (관리자) - 김혜은

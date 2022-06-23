@@ -6,18 +6,18 @@
 <!-- 전체회원 -->
 	<select id="selectDashMember" resultType="java.lang.Integer">
 		SELECT COUNT(*)
-		FROM member m
-		LEFT OUTER JOIN shop s
+		  FROM member m
+		  LEFT OUTER JOIN shop s
 			ON m.member_id = s.member_id
-		WHERE m.member_status = 'Y'
+		 WHERE m.member_status = 'Y'
 	</select>
 	
 <!-- 새로운 회원 -->
 	<select id="selectDashNewMember" resultType="java.lang.Integer">
 		SELECT COUNT(*)
-		FROM member
-		WHERE member_date = CURRENT_DATE()
-			AND member_status = 'Y'
+		  FROM member
+		 WHERE member_date = CURRENT_DATE()
+		   AND member_status = 'Y'
 	</select>
 	
 <!-- 답변대기 -->
@@ -30,10 +30,24 @@
 <!-- 신고된 글 -->
 	<select id="selectDashReport" resultType="java.lang.Integer">
 		SELECT COUNT(*)
-		FROM report
-		WHERE report_status = '처리중'
+		  FROM report
+		 WHERE report_status = '처리중'
 	</select>
 	
+<!-- 전체상품 -->
+	<select id="selectDashAllItem" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM item
+	</select>
+
+<!-- 오늘 등록된 상품 -->
+	<select id="selectDashNewItem" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM item
+		 WHERE LEFT(item_date, 8) = REPLACE(CURRENT_DATE(), '-', '')
+	</select>
+	
+<!-- ============================================================ -->
 <!-- 회원 수 조회(검색 기능 추가) -->
 	<select id="selectMemberListCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
@@ -111,33 +125,37 @@
 <!-- 회원 정지 -->
 	<update id="updateExitMember">
 		UPDATE member
-		SET member_status = 'N'
-		WHERE member_id = #{member_id}
+		   SET member_status = 'N'
+		 WHERE member_id = #{member_id}
 	</update>
 	
 <!-- 회원 되돌리기 -->
 	<update id="updateBackMember">
 		UPDATE member
-		SET member_status = 'Y'
-		WHERE member_id = #{member_id}
+		   SET member_status = 'Y'
+		 WHERE member_id = #{member_id}
 	</update>
 	
 <!-- 탈퇴 회원 수 -->
 	<select id="selectExitMemberCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
-		FROM member m
-		LEFT OUTER JOIN shop s
+		  FROM member m
+		  LEFT OUTER JOIN shop s
 			ON m.member_id = s.member_id
-		LEFT OUTER JOIN coin c
+		  LEFT OUTER JOIN coin c
 			ON s.member_id = c.member_id
-		WHERE m.member_status='N';
+		 WHERE m.member_status='N';
 	</select>
 	
 <!-- 탈퇴 회원 리스트 -->
 	<select id="selectExitMember" resultType="java.util.HashMap">
-		SELECT member_id, member_nick, member_phone, member_date, member_status
-		FROM member
-		WHERE member_status='N';
+		SELECT member_id
+			 , member_nick
+			 , member_phone
+			 , member_date
+			 , member_status
+		  FROM member
+		 WHERE member_status='N';
 	</select>
 	
 <!-- 회원정보 삭제 -->
