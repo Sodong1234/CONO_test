@@ -150,8 +150,8 @@ public class MypageService {
 	}
 
 	// 판매자한테 safe에 저장된 코인 입금
-	public void insertCoinSeller(String shop_member_id, String item_idx, String ord_date, String safe_coin, String coin_total) {
-		mapper.insertCoinSeller(item_idx, ord_date, shop_member_id, safe_coin, coin_total);
+	public void insertCoinSeller(String shop_member_id, String safe_coin, String coin_total) {
+		mapper.insertCoinSeller(shop_member_id, safe_coin, coin_total);
 	}
 	
 	// safe 테이블 상태 변경

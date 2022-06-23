@@ -298,25 +298,22 @@
 	</select>
 	
 <!-- 	판매자 검색 -->
-	<select id="selectShop_idx" resultType="string">
-		SELECT s.member_id 
-		FROM shop s 
-		WHERE s.shop_idx = (SELECT shop_idx FROM item WHERE item_idx = #{item_idx})
+	<select id="selectShop_idx" resultType="java.lang.String">
+		SELECT s.member_id
+		  FROM item i, shop s
+		 WHERE i.shop_idx = s.shop_idx
+		   AND i.item_idx = #{item_idx}
 	</select>
 	
 	<!-- 판매자한테 safe에 저장된 코인 입금 -->
 	<insert id="insertCoinSeller">
 		INSERT INTO coin
 		VALUES (
-				(SELECT *
-			      FROM (SELECT IFNULL(MAX(coin_idx)+1,'1') 
-			      		  FROM coin
-			      		 ORDER BY coin_idx*1
-			      		 LIMIT 1) temp)
+				(SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c)
 			   ,#{shop_member_id}
 			   ,#{safe_coin}
 			   ,''
-			   ,#{coin_total}+#{safe_coin}
+			   ,#{coin_total} + #{safe_coin}
 			   ,date_format(now(), '%Y%m%d%H%i%S')
 			   )
 			   

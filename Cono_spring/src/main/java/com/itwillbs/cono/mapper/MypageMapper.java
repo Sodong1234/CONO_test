@@ -73,7 +73,7 @@ public interface MypageMapper {
 	// 구매 확정
 	public void updateordStatus(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
 	// 판매자한테 safe에 저장된 코인 입금
-	public void insertCoinSeller(@Param("shop_member_id") String shop_member_id, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date, @Param("safe_coin") String safe_coin, @Param("coin_total")  String coin_total);
+	public void insertCoinSeller(@Param("shop_member_id") String shop_member_id, @Param("safe_coin") String safe_coin, @Param("coin_total") String coin_total);
 	// safe 테이블 status 변경 
 	public boolean updateSafeStatus(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
 	// ord 테이블 조회 (가지고 다닐거)

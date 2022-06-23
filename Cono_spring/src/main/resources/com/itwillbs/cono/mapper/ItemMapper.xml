@@ -100,16 +100,11 @@
 			   ,'N'
 			   )
 	</insert>
-	
 	<!-- coin 테이블 insert (구매자) -->
 	<insert id="insertCoin">
 		INSERT INTO coin
 		VALUES (
-			   (SELECT * FROM
-			   (SELECT IFNULL(MAX(coin_idx)+1, '1')
-				  FROM coin
-				 ORDER BY coin_idx+1 DESC
-				 LIMIT 1) AS A)
+			    (SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c)
 				,#{ord.member_id}	
 				,''	<!-- add -->	
 				,#{item_price} * #{ord.ord_quantity}		<!-- use --> 

@@ -161,6 +161,7 @@ public class MypageController {
 		
 		// 판매자 아뒤 찾기
 		String shop_member_id = service.selectShop_idx(item_idx);
+		System.out.println(shop_member_id);
 		
 		// ord 테이블 변경
 		service.confirmPurchase(sId, item_idx, ord_date);
@@ -170,12 +171,12 @@ public class MypageController {
 		
 		// coin_total
 		String coin_total = service.selectCoinTotal(sId);
-		
-		// 판매자 코인 입금
-		service.insertCoinSeller(item_idx, ord_date, shop_member_id, safe_coin, coin_total);
-
 		// safe 테이블 status 변경
 		service.modifySafeStatus(sId, item_idx, ord_date);
+		// 판매자 코인 입금
+//		coin_total = coin_total + safe_coin
+		service.insertCoinSeller(shop_member_id, safe_coin, coin_total);
+
 		
 		// ord 조회 (가지고 다닐거)
 //		OrdDTO ordresult = service.selectOrd(sId, item_idx, ord_date);
