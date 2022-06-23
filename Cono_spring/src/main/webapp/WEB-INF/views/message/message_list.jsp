@@ -106,6 +106,29 @@
 		
 </script>
 </head>
+<style type="text/css">
+.btn_send{
+ 	background-image: url(./resources/img/3171647_mail_send_friend_icon.png); 
+ 	background-size: cover;
+ 	width: 57px;
+    height: 50px;    
+   	background-repeat:no-repeat;
+   	border:0;
+   	border-style: none; 
+   	background-color: #E8F5FF;
+	top: -23px;
+    left: 20px;
+
+ 	}
+ 	
+ 	.myShopMsg{ 
+  	border-color: #F6C6EA;
+    background: none;
+    font-size: 15px;
+  	} 
+</style>
+
+
 <body>
 	<div id="wrap">
 		<jsp:include page="../header_footer/header.jsp"/>
@@ -113,11 +136,23 @@
 	<br>
 	<br>
 	
-	<input type="button" value="내 상점 메시지" onclick="location.href='shop_msgList'">
+	
 	<div class="box">
 	<div class="msg_container">
 		<div class="msg_title">
-			<h2 style="font-family: Cafe24Ohsquare;">코노톡 * 구매 문의</h2>
+			<h2 style="font-family: Cafe24Ohsquare; margin-left: 60px">코노톡 * 구매 문의</h2>
+			
+<!-- 		<div class="svg-wrapper" > -->
+<!--      		 <svg height="45" width="120" xmlns="http://www.w3.org/2000/svg"> -->
+<!--       			 <rect id="shape" height="45" width="120" style="stroke-dasharray: 93 400;  -->
+<!--    stroke-dashoffset: -174;"/> -->
+<!-- 			<div class="text1"> -->
+			
+			<input type="button" value="내 상점 메시지" onclick="location.href='shop_msgList'" class="myShopMsg">
+			
+<!-- 			</div> -->
+<!--      	 	</svg> -->
+<!--    	 	</div> -->
 		</div>
 		
 <!-- 		room 리스트 -->
@@ -155,7 +190,7 @@
 				<span class="sname" id="sname"></span> <br>
 				<span class="itTitle" id="itTitle"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<img src='' class="prof_imName" id="prof_imName"></img>&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="follwing" onclick="location.href='following'">팔로우</button> 
+				<button class="follwing" onclick="location.href='following'">팔로우</button> <br>
 				<button class="msg_out" onclick="msgDelete()">나가기</button>
 			</div>
 			</fieldset>
@@ -169,7 +204,7 @@
 			<input type="text" id="sNum">
 			<input type="text" id="rNum">
 			<textarea rows="3" cols="75" id="msgText"></textarea>
-			<button class="btn_send" onclick="sendMsg()">버튼</button>
+			<button class="btn_send" onclick="sendMsg()"></button>
 		</div>
 	</section>	
 	

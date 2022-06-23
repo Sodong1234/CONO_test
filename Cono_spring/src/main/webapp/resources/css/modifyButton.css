@@ -49,6 +49,15 @@
   transition: 1s all ease;
 }
 
+/* #shape1 { */
+/*   stroke-width: 6px; */
+/*   fill: transparent; */
+/*   stroke: #F6C6EA; */
+/*   stroke-dasharray: 93 400; */
+/*   stroke-dashoffset: -174; */
+/*   transition: 1s all ease; */
+/* } */
+
 #text {
    margin-top: -33px; 
   text-align: center;
@@ -59,6 +68,10 @@
   text-align: center;
 }
 
+/* .text1 { */
+/*    margin-top: -33px;  */
+/*   text-align: center; */
+/* } */
 #text a {
   color: #17191d;
   text-decoration: none;
@@ -138,12 +151,14 @@ a.btnLightBlue {
 button.follwing {
     border: none;
     background: none;
+    margin-top: -21px;
+    left: 73px;
 }
 
 .follwing {
   display: block;
   position: relative;
-/*   float: left; */
+    float: right;
   width: 100px;
   padding: 0;
   margin: 8px 18px 8px 0;
@@ -190,12 +205,14 @@ button.follwing {
 button.msg_out {
     border: none;
     background: none;
+    margin-top: -68px;
+    left: 73px;
 }
 
 .msg_out {
   display: block;
   position: relative;
-/*   float: left; */
+    float: right;
   width: 100px;
   padding: 0;
   margin: 8px 18px 8px 0;

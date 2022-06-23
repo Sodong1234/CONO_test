@@ -54,7 +54,7 @@ h2{
     width: 120%;
 	height: 720px;
 	position: relative;
-	top: -20px;
+	top: 47px;
 	overflow: auto;
 
 }
@@ -104,8 +104,8 @@ a {
 }
 .msg_title {
 	align-items: center;
-	border-bottom-color: rgb(217, 217, 217);
-	border-bottom-style: solid;
+/* 	border-bottom-color: rgb(217, 217, 217); */
+/* 	border-bottom-style: solid; */
 	border-bottom-width: 1px;
 	border-image-outset: 0;
 	border-image-repeat: stretch;
