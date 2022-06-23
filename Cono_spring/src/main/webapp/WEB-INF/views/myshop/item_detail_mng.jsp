@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <%
 if(session.getAttribute("sId") == null) {
@@ -174,7 +175,7 @@ if(session.getAttribute("sId") == null) {
 <%-- 								<div class="detail-info__text-title">상품명 : ${itemDetail.get('item_title')}</div> --%>
 								<div class="detail-info__text-price__div">
 										<!-- 상품가격 --> 
-									<h4 style=" font-family: 'Cafe24Ohsquare';" > 가격 : ${itemDetail.get('item_price')} </h4>
+									<h4 style=" font-family: 'Cafe24Ohsquare';" ><fmt:formatNumber value="${itemDetail.get('item_price')}" pattern="\#,###.##"/></h4>
 								</div>
 								<table>
 									<tr style="text-align:center;">

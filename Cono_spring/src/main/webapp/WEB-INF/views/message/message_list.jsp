@@ -10,6 +10,7 @@
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <link href="${path}/resources/css/msg.css" rel="stylesheet" />
 <link href="${path}/resources/sass/msgbtn.scss" rel="stylesheet" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
 <script type="text/javascript">
 
 	function msgDelete() {
