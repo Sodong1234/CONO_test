@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>myshop/item_review_mng.jsp</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item_detail.css">
 <style type="text/css">
 img {
 	width: 100px;
@@ -23,7 +24,7 @@ img {
 }
 #progress_div progress {
 	width: 100%;
-    height: 20px;
+    height: 28px;
 }
 /* progress bar 배경 */
 .progress::-webkit-progress-bar {	
@@ -50,11 +51,19 @@ img {
 	padding: 30px 30px 10px 30px;
 	border-radius: 10px;
 	border-collapse: collapse;
-	line-height: 75px;
+	line-height: 5px;
 }
 #review_list tr {
 	background: #e1f3f0;
  	height: 20px; 
+ 	vertical-align: middle;
+}
+#review_list tr td {
+	padding: 15px;
+	height: 10px;
+}
+#progress_div tr {
+	vertical-align: middle;
 }
 
 /*  paging  */
@@ -91,15 +100,85 @@ img {
 	margin: 0 50%;
 }
 /* ------------------------- 이미지 슬라이드 ------------------------- */
-.item_img_slides {
-	width: 80%;
-  	margin: 10px auto;
+#item_img_slide_show {
+	width: 1200px;
+	margin: 0 auto;
 }
-.item_img_slides td {
+#item_img_slide_show ul li{
+	list-style-type: none;
+	float: left;
+}
+
+.swiper-wrapper {
+	width: 1000px;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+	margin: 0 auto;
+}
+.swiper-wrapper ul {
+	width: 5000px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 0;
+}
+.swiper-wrapper ul li {
+	display: inline-block; 
+}
+.swiper-wrapper img {
+	width: 200px;
+	height: 200px;
+}
+#previous {
+/* 	position: absolute; */
+	cursor: pointer;
+	z-index: 1;
+}
+#next {
+/* 	position: absolute; */
+	cursor: pointer;
+	z-index: 1;
+}
+#img_slide_direction {
 	text-align: center;
 }
 </style>
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var imgs;
+		var img_count;
+		var img_position = 1;
+		
+		imgs = $(".swiper-wrapper ul");
+		img_count = imgs.children().length;
+		
+		$("#previous").click(function() {
+			back();
+		});
+		$("#next").click(function() {
+			next();
+		});
+		
+		function back() {
+			if(img_position > 1) {
+				imgs.animate({
+					left:'+=200px'
+				});
+				img_position--;
+			}
+		}
+		function next() {
+			if(img_position < img_count) {
+				imgs.animate({
+					left:'-=200px'
+				});
+				img_position++;
+			}
+		}
+	});
+</script>
 </head>
 <body>
 	
@@ -134,7 +213,6 @@ img {
 			
 				<div id="progress_div">
 					<table style="width: 100%;">
-						<!-- 막대 표현 어떻게 할지 고민..!! -->
 						<tr>
 							<td width="10%">5점</td>
 							<td width="80%">
@@ -187,70 +265,55 @@ img {
 		
 		<!---------------------------------------- 아이템 이미지 슬라이드 ------------------------------------------------->
 		<div id="item_img_slide_show">
-			
-			<table class="item_img_slides">
-				<!-- 페이징 처리 처럼 옆으로 누르면 넘어가는 방식(한 칸씩 이동..! 부드럽게) -->
-				<!-- URL 파라미터로 구분(상품 번호?) -->
-				<tr>
-				<td>
-					<!-- [이전] 링크 동작 -->
-					<c:choose>
-						<c:when test="${imgPageInfo.pageNum > 1}">
-<%-- 							<input type="button" value=" < " onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }&pageNum=${pageInfo.pageNum}&imgPageNum=${imgPageInfo.pageNum-1}'"> --%>
-							<input type="button" value=" < " onclick="location.href='ItemReviewMng.shop?pageNum=${pageInfo.pageNum}'">
-						</c:when>
-						<c:otherwise>
-							<input type="button" value=" < " disabled="disabled">
-						</c:otherwise>
-					</c:choose>
-				</td>
-					<c:forEach items="${imgNameList }" var="imgName">
-<%-- 						<td onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }&pageNum=${pageInfo.pageNum}&imgPageNum=${imgPageInfo.pageNum}'"> --%>
-						<td onclick="location.href='ItemReviewMng.shop?pageNum=${pageInfo.pageNum}&item_idx=${imgName.get('item_idx')}'">
-							<c:choose>
-								<c:when test="${imgName.get('img_name') ne null }">
-									<img alt="" src="resources/upload/file/${imgName.get('img_name') }">
-								</c:when>
-								<c:otherwise>
-									<img alt="" src="<spring:url value='/resources/default_img.png'/>">
-								</c:otherwise>
-							</c:choose>
-<%-- 							<span>${imgName.get('item_idx') }</span> --%>
-						</td>
-					</c:forEach>
-					<td>
-						<!-- [다음] 링크 동작 -->
+			<div class="swiper-wrapper">
+				<ul>
+					<c:forEach items="${imgNameList }" var="img">
 						<c:choose>
-							<c:when test="${imgPageInfo.pageNum < imgPageInfo.maxPage}">
-<%-- 								<input type="button" value=" > " onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }&pageNum=${pageInfo.pageNum }&imgPageNum=${imgPageInfo.pageNum+1 }'"> --%>
-								<input type="button" value=" > " onclick="location.href='ItemReviewMng.shop?pageNum=${pageInfo.pageNum }'">
+							<c:when test="${img.get('img_name') ne null}">
+								<li>
+									<img class="image" src="resources/upload/file/${img.get('img_name') }" onclick="location.href='ItemReviewMng.shop?item_idx=${img.get('item_idx') }'"><br>
+								</li>
 							</c:when>
-							<c:otherwise>
-								<input type="button" value=" > " disabled="disabled">
-							</c:otherwise>
 						</c:choose>
-					</td>
-				</tr>
-			</table>
+					</c:forEach>
+				</ul>
+			</div>
+			<div id="img_slide_direction">
+				<span id="previous"><</span>
+				<span id="next">></span>
+			</div>
 		</div>
 		<!----------------------------------------------------------------------------------------------------------->
-		
-		
 	
 		<div id="item_review_list">
-			<!-- URL 파라미터로 구분(sort) -->
-<!-- 			추천순&nbsp;최신순&nbsp;평점순 -->
 			<table id="review_list" style="width: 100%;">
-				<c:forEach items="${reviewList }" var="review">
-					<tr>
-						<td width="100px">${review.get('review_score') }</td>
-						<td width="300px">${review.get('review_content') }</td>
-						<td width="100px">${review.get('review_date') }</td>
-						<td>${review.get('member_id') }</td>
-					</tr>
-					<tr>
-					</tr>
-				</c:forEach>
+				<c:choose>
+					<c:when test="${reviewList ne '[]' }">
+						<c:forEach items="${reviewList }" var="review">
+							<tr>
+								<td width="50px">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+						  				<path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+									</svg>
+									<span> ${review.get('review_score') } / 5 </span> <br>
+								</td>
+								<td rowspan="2" width="350px">${review.get('review_content') }</td>
+								<td width="100px">${review.get('review_date') }</td>
+							</tr>
+								<td>${review.get('item_title') }</td>
+								<td>${review.get('member_id') }</td>
+							<tr>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:when test="${reviewList eq '[]' }">
+						<tr>
+							<th colspan="4" style="text-align: center;">
+								작성된 후기가 없습니다 :)
+							</th>
+						</tr>
+					</c:when>
+				</c:choose>
 			</table>
 		</div>
 	
@@ -260,7 +323,7 @@ img {
 			<!-- [이전] 링크 동작 -->
 			<c:choose>
 				<c:when test="${pageInfo.pageNum > 1}">
-					<input type="button" value=" < " onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }&pageNum=${pageInfo.pageNum - 1}c'">
+					<input type="button" value=" < " onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }&pageNum=${pageInfo.pageNum - 1}'">
 				</c:when>
 				<c:otherwise>
 					<input type="button" value=" < " disabled="disabled">
@@ -282,7 +345,7 @@ img {
 			<!-- [다음] 링크 동작 -->
 			<c:choose>
 				<c:when test="${pageInfo.pageNum < pageInfo.maxPage}">
-					<input type="button" value=" > " onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }&ItemR">
+					<input type="button" value=" > " onclick="location.href='ItemReviewMng.shop?item_idx=${imgName.get('item_idx') }&pageNum=${pageInfo.pageNum - 1}">
 				</c:when>
 				<c:otherwise>
 					<input type="button" value=" > " disabled="disabled">

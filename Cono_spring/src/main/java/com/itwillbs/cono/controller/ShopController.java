@@ -302,6 +302,10 @@ public class ShopController {
 		
 		// 후기 리스트 조회
 		List<HashMap<String, String>> reviewList = service.selectReviewList(member_id, item_idx, pageInfo);
+		for(HashMap<String, String> review : reviewList) {
+			review.put("review_date", review.get("review_date").substring(0,4) + "." + review.get("review_date").substring(4,6) + "." +review.get("review_date").substring(6,8) + " " +
+					review.get("review_date").substring(8,10) + ":" +review.get("review_date").substring(10,12) + ":" +review.get("review_date").substring(12));
+		}
 
 		// ----------------------------------------------------------------------------------
 		

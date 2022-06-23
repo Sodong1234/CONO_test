@@ -104,7 +104,7 @@ if(session.getAttribute("sId") == null) {
 					<input id="prodno" type="hidden" data-no="78">
 					<!-- 이미지 리스트 -->
 					<div class="swiper-container detail-info__image__list">
-							<div class="detail-info__image--prev swiper-button-next swiper-button-white" id="previous">&#10094;</div>
+						<div class="detail-info__image--prev swiper-button-next swiper-button-white" id="previous">&#10094;</div>
 						<div class="swiper-wrapper">
 							<ul>
 								<c:forEach items="${imgList }" var="item">
@@ -118,7 +118,7 @@ if(session.getAttribute("sId") == null) {
 								</c:forEach>
 							</ul>
 						</div>
-							<div class="detail-info__image--next swiper-button-prev swiper-button-white" id="next">&#10095;</div>
+						<div class="detail-info__image--next swiper-button-prev swiper-button-white" id="next">&#10095;</div>
 						<!-- 슬라이더 버튼 수 -->
 						<div class="swiper-pagination">
 							<div class="paginationBtn" style="text-align: center">

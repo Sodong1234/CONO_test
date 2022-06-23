@@ -238,7 +238,7 @@
 	
 	<!-- 후기 리스트 조회 -->
 	<select id="selectReviewList" resultType="java.util.HashMap">
-		SELECT r.review_idx, r.review_content, r.review_date, r.member_id, r.review_score
+		SELECT r.review_idx, r.review_content, r.review_date, r.member_id, r.review_score, i.item_title
 		FROM review r, item i, shop s
 		WHERE 1=1
 		AND i.item_idx = r.item_idx 
