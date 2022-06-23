@@ -13,11 +13,18 @@
 <script type="text/javascript">
 	$(function() {
 		$("#coupon_idx").on("change", function() {
-			$("#coupon_select_result").html($("#coupon_idx option:selected").text()+"원");
+			if($("#coupon_idx option:selected").text() === '쿠폰 선택') {
+				$("#coupon_select_result").html('없음');	
+			} else {
+				$("#coupon_select_result").html($("#coupon_idx option:selected").text()+"원");
+			}
 			let coupon_price = $("#coupon_idx option:selected").text().split("/")[1];
 			let total_price = ${itemDetail.item_price * param.ord_quantity } - coupon_price;
-			$("#totalPrice").html("${itemDetail.item_price * param.ord_quantity  }원 - " + coupon_price + "원 = " + total_price + "원")
-			
+			if($("#coupon_idx option:selected").text() === '쿠폰 선택') {
+				$("#totalPrice").html("<fmt:formatNumber value='${itemDetail.item_price * param.ord_quantity  }' pattern='#,###.##'/></span>원</span>");
+			} else {
+				$("#totalPrice").html("${itemDetail.item_price * param.ord_quantity  }원 - " + coupon_price + "원 = " + total_price + "원")
+			} 
 			
 		});
 	});
@@ -57,50 +64,55 @@
 						</table>
 					</div>
 				</div>
-	<!-- 			<div class="deliveryAddress"> -->
-	<!-- 				<h2 class="delivery-address__caption-header">받는사람정보</h2> -->
-	<!-- 				<table class="delivery-address"> -->
-	<!-- 					<tbody> -->
-	<!-- 						<tr> -->
-	<!-- 							<th class="delivery-address__th">이름</th> -->
-	<!-- 							<td -->
-	<!-- 								class="delivery-address__td delivery-address__td--name delivery-address__td-rocket-fresh-mvp2"> -->
-	<!-- 								<span class="delivery-address__name">이름받아오기</span> -->
-	<!-- 							</td> -->
-	<!-- 						</tr> -->
-	<!-- 						<tr> -->
-	<!-- 							<th class="delivery-address__th">배송주소</th> -->
-	<!-- 							<td class="delivery-address__td">주소받아오기</td> -->
-	<!-- 						</tr> -->
-	<!-- 						<tr> -->
-	<!-- 							<th class="delivery-address__th delivery-address__th--no-line">연락처</th> -->
-	<!-- 							<td class="delivery-address__td delivery-address__td--no-line">연락처받아오기</td> -->
-	<!-- 						</tr> -->
-	<!-- 					</tbody> -->
-	<!-- 				</table> -->
-	<!-- 			</div> -->
 				<div class="item" style="position: relative;">
 					<div class="item-info__retail" style="margin-top: 8px;">
 						<div class="retailGroupTitle">상품정보</div>
 						<div class="GroupBox">
 							<div class="whenDelivery">
 								<span class="whenDelivery-info"> 
-									<span class="delivery-date"><strong> ${itemDetail.shop_name }</strong></span>
+									<span class="delivery-date"><strong> </strong></span>
 								</span>
 							</div>
 							<div class="item-list">
 								<div class="item-box">
-									<div class="item-title">
-										<p style="font-size: 16px; color: #111;">
-											<span class="item-condition"></span> ${itemDetail.item_title }
-										</p>
-									</div>
+									<table style="width: 100%">
+										<tr>
+											<td rowspan="2">
+												<c:choose>
+													<c:when test="${itemDetail.img_name ne null }">
+														<img src="${path }/resources/upload/file/${itemDetail.img_name }">
+													</c:when>
+													<c:when test="${itemDetail.get('img_name') eq null }">
+														<img src="resources/default_img.png">
+													</c:when>
+												</c:choose>
+											</td>
+											<td>${itemDetail.item_title }</td>
+										</tr>
+										<tr>
+											<td>${param.ord_quantity } 개</td>
+										</tr>
+										<tr>
+											<td>주문 요청사항</td>
+											<td><textarea name="ord_reqContent" rows="" cols="" placeholder="요구사항 입력"></textarea></td>
+										</tr>
+									</table>
+<!-- 									<div class="item-title"> -->
+<!-- 										<p style="font-size: 16px; color: #111;"> -->
+<%-- 											<span class="item-condition">${itemDetail.item_title }</span> --%>
+<!-- 										</p> -->
+<!-- 									</div> -->
+<!-- 									<div class="item-title"> -->
+<!-- 										<p style="font-size: 10px; color: #fff;"> -->
+<%-- 											<span class="item-condition">${itemDetail.shop_name }</span> --%>
+<!-- 										</p> -->
+<!-- 									</div> -->
 								</div>
 							</div>
-							<div>
-								주문 요청 사항
-								<textarea name="ord_reqContent" rows="" cols="">요구사항 적으세여</textarea>
-							</div> 
+<!-- 							<div> -->
+<!-- 								주문 요청 사항 -->
+<!-- 								<textarea name="ord_reqContent" rows="" cols="">요구사항 적으세여</textarea> -->
+<!-- 							</div>  -->
 						</div>
 					</div>
 				</div>
@@ -113,10 +125,10 @@
 						</colgroup>
 						<tbody>
 						<tr class="payType-wrap">
-								<th class="wrap-title">잔액</th>
+								<th class="wrap-title">보유 코인</th>
 								<td class="inputWrap payType" style="padding: 0 15px;">
 <%-- 															<strong>${balanceCoin }원</strong> --%>
-															<strong><fmt:formatNumber value="${balanceCoin }" pattern="\#,###.##"/>원</strong>
+															<strong><fmt:formatNumber value="${balanceCoin }" pattern="#,###.##"/>원</strong>
 									</td>
 								</tr>
 						
@@ -128,7 +140,7 @@
 									<div class="payOrder">
 										<strong class="price"> 
 <%-- 										<span id="totalPriceDisp" class="use-calculation-for-totalprice"> ${itemDetail.item_price * param.ord_quantity  } </span>  --%>
-										<span id="totalPriceDisp" class="use-calculation-for-totalprice"><fmt:formatNumber value="${itemDetail.item_price * param.ord_quantity  }" pattern="\#,###.##"/></span>
+										<span id="totalPriceDisp" class="use-calculation-for-totalprice"><fmt:formatNumber value="${itemDetail.item_price * param.ord_quantity  }" pattern="#,###.##"/></span>
 										<span class="unit">원</span>
 										</strong>
 									</div>
@@ -138,23 +150,19 @@
 								<th class="wrap-title" scope="row">할인쿠폰</th>
 								<td>
 									<div class="payCoupon">
-										<div class="price" style="display: inline-block;">
-											<strong> 
+										<div style="display: inline-block;">
+<!-- 											<strong>  -->
 												<select name="coupon_idx" id="coupon_idx">
-													<option value="0"></option>
+													<option value="0">쿠폰 선택</option>
 													<c:forEach items="${coupons }" var="coupon">
 														<option value="${coupon.coupon_idx }">${coupon.coupon_title } / ${coupon.coupon_price }</option>
 													</c:forEach>
-												</select>
+												</select><br>
 	<!-- 											<SPAN CLASS="VALUE USE-CALCULATION-FOR-TOTALPRICE">쿠폰가격받아오기</SPAN> -->
-												선택된 쿠폰<br>
-												<span class="unit" id="coupon_select_result"></span>
-											</strong>
+												<b>선택된 쿠폰</b>
+												<span id="coupon_select_result">없음</span>
+<!-- 											</strong> -->
 										</div>
-	<!-- 									<div class="selected-coupon"> -->
-	<!-- 										<span class="message" style="padding-right: 10px;">적용 -->
-	<!-- 											가능한 할인 쿠폰이 없습니다.</span> -->
-	<!-- 									</div> -->
 									</div>
 									<div class="coupon-selector coupon-selecter">
 										<!-- 여기다가 쿠폰 뭐 어떻게 적용 가능 할텐데.. 나는 잘 모르게따 ㅜ -->
@@ -165,23 +173,12 @@
 								</td>
 							</tr>
 							<tr>
-	<!-- 							<th class="wrap-title" scope="row">배송비</th> -->
-	<!-- 							<td class="delivery-total-price"> -->
-	<!-- 								<div class="payDelivery"> -->
-	<!-- 									<strong class="price"> <span -->
-	<!-- 										class="delivery-total-price-value use-calculation-for-totalprice">배송비 -->
-	<!-- 											받아오기</span> <span class="unit">원</span> -->
-	<!-- 									</strong> -->
-	<!-- 								</div> -->
-	<!-- 							</td> -->
 							</tr>
 							<tr>
 								<th class="wrap-title">총결제금액</th>
 								<td>
 									<div class="payPrice">
-										<strong class="price">
-										<span class="unit" id="totalPrice"></span>
-										</strong>
+										<span id="totalPrice"><span id="totalPriceDisp" class="use-calculation-for-totalprice"><fmt:formatNumber value="${itemDetail.item_price * param.ord_quantity  }" pattern="#,###.##"/></span>원</span>
 									</div>
 								</td>
 							</tr>

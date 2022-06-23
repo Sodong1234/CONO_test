@@ -4,7 +4,7 @@
 
 	<!-- 상품 상세 정보 조회 -->
 	<select id="selectItemDetail" resultType="java.util.HashMap">
-		SELECT s.shop_name, i.shop_idx, i.item_idx, i.item_title, i.item_content, i.item_price, i.item_date, i.item_status, COUNT(w.member_id) as wish, i.item_readCnt
+		SELECT s.shop_name, g.img_name, i.shop_idx, i.item_idx, i.item_title, i.item_content, i.item_price, i.item_date, i.item_status, COUNT(w.member_id) as wish, i.item_readCnt
 			   , c.category_big, c.category_small, i.item_region, i.item_hide, i.item_quantity
 	      FROM item AS i
 	      LEFT JOIN wish AS w
@@ -13,6 +13,8 @@
 	        ON i.item_idx = c.item_idx
 	      JOIN shop s
 	        ON i.shop_idx = s.shop_idx
+	      JOIN img g
+	        ON g.item_idx = i.item_idx
 	     WHERE i.item_idx = #{item_idx}
 	</select>
 	
@@ -148,7 +150,14 @@
 	
 	<!-- 코인 잔액 조회 -->
 	<select id="selectBalanceCoin" resultType="int">
-		select coin_total, max(coin_date) from coin where member_id=#{buyer_id}
+		SELECT coin_total, max(coin_date) 
+		  FROM coin 
+		 WHERE 1=1
+		   AND coin_date = (SELECT MAX(coin_date)
+		   					  FROM coin
+		   					 WHERE member_id=#{buyer_id}
+		   				   )
+		
 	</select>
 		
 	<!-- 쿠폰 업데이트 -->
