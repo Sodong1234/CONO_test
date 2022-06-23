@@ -338,7 +338,6 @@ public class ShopController {
 			String img = service.selectImg(item_idx);
 			model.addAttribute("img", img);
 		}
-		
 		model.addAttribute("itemAvg", itemAvg);
 		model.addAttribute("itemScore", itemScore);
 		model.addAttribute("imgNameList", imgNameList);

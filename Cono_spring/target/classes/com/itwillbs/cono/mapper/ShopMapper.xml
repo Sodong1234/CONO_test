@@ -185,7 +185,7 @@
 	
 	<!-- 평균 평점과 후기 달린 아이템 개수 조회 -->		
 	<select id="selectItemAvg" resultType="java.util.HashMap">
-		SELECT ROUND(SUM(r.review_score)/COUNT(i.item_idx),2) as avg, COUNT(i.item_idx) as item_idx
+		SELECT IFNULL(ROUND(SUM(r.review_score)/COUNT(i.item_idx),2),'0.0') as avg, COUNT(i.item_idx) as item_idx
 		  FROM review r, item i, shop s
 		 WHERE 1=1
 		   AND r.item_idx = i.item_idx
@@ -206,11 +206,12 @@
 	<!-- 상품 고를 때 클릭할 이미지 조회 -->
 	<select id="selectItemImgName" resultType="java.util.HashMap">
 		SELECT i.item_idx, g.img_name
-		FROM item i, img g, shop s
+		FROM item i, img g, shop s, review r
 		WHERE i.shop_idx = s.shop_idx
 		AND g.item_idx = i.item_idx
 		AND g.img_idx = '1'
 		AND s.member_id = #{member_id}
+		AND r.item_idx = i.item_idx
 		ORDER BY i.item_idx*1
 <!-- 		LIMIT #{imgPageInfo.startRow}, #{imgPageInfo.listLimit} -->
 	</select>
