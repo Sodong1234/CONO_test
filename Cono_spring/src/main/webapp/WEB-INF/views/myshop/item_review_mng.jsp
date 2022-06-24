@@ -165,6 +165,34 @@ hr.hr-13 {
   font-family: 'IBMPlexSansKR-Regular';
 }
 
+/*
+슬라이드 버튼
+*/ 
+.css-arrow-left { 
+border-color: transparent #cdf0ea transparent transparent; 
+border-style: solid; 
+border-width: 10px 20px 10px 0; 
+float: left; 
+height: 0; 
+/* margin: 0 10px;  */
+width: 0;
+margin-top: -110px;
+margin-left: 65px;
+}
+
+.css-arrow-right { 
+border-color: transparent transparent transparent #cdf0ea; 
+border-style: solid; 
+border-width: 10px 0 10px 20px; 
+float: left; 
+height: 0; 
+/* margin: 0 10px;  */
+width: 0;
+margin-top: -110px;
+    margin-left: 1115px;
+}
+
+
 </style>
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
@@ -229,7 +257,7 @@ hr.hr-13 {
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
 		  				<path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
 					</svg>
-					<span> ${itemAvg.get('avg') } / 5 </span> <br>
+					<span> ${itemAvg.get('avg') } / 5 </span> &nbsp;&nbsp;
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
 			 			<path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
 			 			<path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z" />
@@ -244,35 +272,35 @@ hr.hr-13 {
 							<td width="80%">
 								<progress class="progress" value="${itemScore.get('5')/itemAvg.get('item_idx')*100 }" max="100"></progress>
 							</td>
-							<td>${itemScore.get('5') }</td>
+							<td>&nbsp;&nbsp;${itemScore.get('5') } 개</td>
 						</tr>
 						<tr>
 							<td>4점</td>
 							<td>
 								<progress class="progress" value="${itemScore.get('4')/itemAvg.get('item_idx')*100 }" max="100"></progress>
 							</td>
-							<td>${itemScore.get('4') }</td>
+							<td>&nbsp;&nbsp;${itemScore.get('4') } 개</td>
 						</tr>
 						<tr>
 							<td>3점</td>
 							<td>
 								<progress class="progress" value="${itemScore.get('3')/itemAvg.get('item_idx')*100 }" max="100"></progress>
 							</td>
-							<td>${itemScore.get('3') }</td>
+							<td>&nbsp;&nbsp;${itemScore.get('3') } 개</td>
 						</tr>
 						<tr>
 							<td>2점</td>
 							<td>
 								<progress class="progress" value="${itemScore.get('2')/itemAvg.get('item_idx')*100 }" max="100"></progress>
 							</td>
-							<td>${itemScore.get('2') }</td>
+							<td>&nbsp;&nbsp;${itemScore.get('2') } 개</td>
 						</tr>
 						<tr>
 							<td>1점</td>
 							<td>
 								<progress class="progress" value="${itemScore.get('1')/itemAvg.get('item_idx')*100 }" max="100"></progress>
 							</td>
-							<td>${itemScore.get('1') }</td>
+							<td>&nbsp;&nbsp;${itemScore.get('1') } 개</td>
 						</tr>
 					</table>
 				</div>
@@ -289,7 +317,6 @@ hr.hr-13 {
 		</div>
 		<hr style="width: 85%;
     margin-left: 85px;">
-		
 		<!---------------------------------------- 아이템 이미지 슬라이드 ------------------------------------------------->
 		<div id="item_img_slide_show">
 			<div class="swiper-wrapper">
@@ -306,8 +333,8 @@ hr.hr-13 {
 				</ul>
 			</div>
 			<div id="img_slide_direction">
-				<span id="previous"><</span>
-				<span id="next">></span>
+			<span id="previous" class="css-arrow-left"></span> &nbsp;&nbsp;&nbsp;&nbsp;
+				<span id="next" class="css-arrow-right"></span>
 			</div>
 		</div>
 		<!----------------------------------------------------------------------------------------------------------->
