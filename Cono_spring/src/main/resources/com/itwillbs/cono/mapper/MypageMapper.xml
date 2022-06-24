@@ -246,11 +246,7 @@
 	<insert id="insertReview">
 		INSERT INTO review 
 		VALUES (
-				(SELECT *
-			      FROM (SELECT IFNULL(MAX(review_idx)+1,'1') 
-			      		  FROM review
-			      		 ORDER BY review_idx*1
-			      		 LIMIT 1) temp)
+				(SELECT IFNULL(MAX(CAST(r.review_idx as unsigned)), 0) + 1 FROM review r)
 			    ,#{sId}
 <!-- 			    ,#{item_idx} -->
 			    ,#{ordresult.item_idx}
