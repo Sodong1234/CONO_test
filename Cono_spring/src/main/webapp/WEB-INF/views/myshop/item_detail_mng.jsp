@@ -228,7 +228,7 @@ if(session.getAttribute("sId") == null) {
 										 <br>
 									<div class="detail-info__text-body-bItem">
 											<br>
-										<div class="detail-info__text-body-bItem-title">상품소개</div>
+										<div class="detail-info__text-body-bItem-title">상품소개</div><br>
 										${itemDetail.get('item_content')}
 										<div class="detail-info__location" id="product_location"></div>
 											<br>

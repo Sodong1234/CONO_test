@@ -47,16 +47,18 @@ form {
  	display: inline-table; 
 }
 
+
+
 .listWarp132 {
 	/* text-align: right; */
+	width: 304px;
 	float: right;
-
-	  	margin-left: 30px;  
+	margin-left: 30px;
 }
 
-.shopModify{
-    margin-left: 380px;
-	float:right;
+.shopModify {
+	margin-left: 265px;
+	float: right;
 }
 </style>
 </head>

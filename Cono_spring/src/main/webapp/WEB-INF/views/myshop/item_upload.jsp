@@ -166,6 +166,33 @@ function checkNumber(event) {
 		
 	}
 
+// ------------------글자수 세기------------------------------
+	$(function() {
+	$('#product_subject').keyup(function(){
+		  var content = $(this).val();
+		  $('#cnt').html(content.length);
+		  if (content.length > 20){
+		    alert("최대 20자까지 입력 가능합니다.");
+		    $(this).val(content.substring(0, 20));
+		    $('#product_subject .count span').html(20);
+		  }
+		});
+		
+	});
+	
+	$(function() {
+	$('#product_content').keyup(function(){
+		  var content = $(this).val();
+		  $('#cnt2').html(content.length);
+		  if (content.length > 2000){
+		    alert("최대 2000자까지 입력 가능합니다.");
+		    $(this).val(content.substring(0, 2000));
+		    $('#product_content .count span').html(2000);
+		  }
+		});
+	});
+	
+	
 </script>
 <style type="text/css">
 	.section ul li {
@@ -298,11 +325,12 @@ function checkNumber(event) {
 											<div class="subjectBox">
 												<input type="text" placeholder="상품 제목을 입력해주세요."
 													class="subjectInput" id="product_subject"
-													name="item_title">
+													name="item_title" style="resize: "none"; maxlength="20">
 											</div>
 										</div>
 										<div class="subjectDiv" id="subjectDiv">
-										상품명을 2자 이상 입력해주세요.
+										상품명을 2자 이상 입력해주세요. &nbsp;&nbsp;&nbsp;
+										<div class="limit"><span id="cnt">0</span>/20</div>
 										</div>
 									</div>
 								</li>
@@ -390,10 +418,10 @@ function checkNumber(event) {
 									<div class="instruction_con">
 										<textarea placeholder="상품 설명을 입력해주세요." rows="6"
 											class="instruction" id="product_content"
-											name="item_content"></textarea>
+											name="item_content" style="resize: "none"; maxlength="2000"></textarea>
 										<div class="text">
 											<a target="_blank" href="/market/notice/fag"> </a>
-											<div class="limit">0/2000</div>
+											<div class="limit"><span id="cnt2">0</span>/2000</div>
 										</div>
 									</div>
 								</li>

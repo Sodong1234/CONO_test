@@ -362,7 +362,7 @@ img {
 	margin-bottom: 25px;
 }
 .detail-info__text-body-bItem-title {
-	position: relative;
+	position: absolute;
 	width: 90px;
 	padding-left: 15px;
 	color: rgb(153, 153, 153);
