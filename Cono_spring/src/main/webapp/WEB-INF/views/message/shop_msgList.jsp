@@ -105,10 +105,10 @@
 	</div>
 	
 	
-	<div class="box">
+	<div class="box" style="margin-top: -30px;">
 	<div class="msg_container" style="margin-top: 0%; background-color:#FFF0F5;" >
 		<div class="msg_title">
-			<h2 style="font-family: Cafe24Ohsquare;">코노톡 * 판매 문의</h2>
+			<h2 style="font-family: Cafe24Ohsquare; margin-left: 55px;">코노톡 * 판매 문의</h2>
 		</div>
 		
 <!-- 		room 리스트 -->
@@ -140,8 +140,10 @@
 	<section class="msg_board" style="background-color: #FFC0CB;">
 		<div class="board_head">
 			<fieldset class="msgbtn" id="msgbtn">
-			<div class="prof">
+			<div class="mn" style="margin-left: -180px; line-height: 6px;"> <br><br><br><br>
 				<span class="mname" id="mname" ></span> &nbsp;&nbsp;&nbsp;
+				</div>
+			<div class="prof" style="margin-top: -10px;">
 				<span class="itTitle" id="itTitle" style="margin-left: 10px;"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<img src='' class="prof_imName" id="prof_imName" style="margin-top:0px; "></img> &nbsp;&nbsp;&nbsp;
 				<button class="btn btn-primary2 btn-ghost btn-close" onclick="location.href='msgDelete()'">나가기</button>
