@@ -307,8 +307,8 @@ function checkNumber(event) {
 								<li class="list">
 									<div class="subject_sub"></div>
 									<div class="imageDiv" id="imageDiv">상품 사진을 등록해주세요.<br>
-										<b>* 상품 이미지는 상품 디테일 사진에 맞게 되어있음.</b><br>
-										이미지는 10mb 넘으면 안됨, 1대1 비율이어야함 <br>
+										<b>* 상품 이미지는 상품 디테일 사진에 맞게 되어있습니다.<br>
+										이미지는 10mb 넘으면 안됨, 200x200 사이즈 이미지에 최적화 되어 있습니다.</b> <br>
 										<!-- 									- 이미지를 클릭 할 경우 원본이미지를 확인할 수 있습니다.<br> -->
 										<!-- 									- 이미지를 클릭 후 이동하여 등록순서를 변경할 수 있습니다.<br> -->
 										<!-- 									- 큰 이미지일경우 이미지가 깨지는 경우가 발생할 수 있습니다.<br> -->
@@ -329,7 +329,7 @@ function checkNumber(event) {
 											</div>
 										</div>
 										<div class="subjectDiv" id="subjectDiv">
-										상품명을 2자 이상 입력해주세요. &nbsp;&nbsp;&nbsp;
+										최대 20자까지 입력 가능합니다. &nbsp;&nbsp;&nbsp;
 										<div class="limit"><span id="cnt">0</span>/20</div>
 										</div>
 									</div>
