@@ -149,7 +149,7 @@ p {
 		<jsp:include page="../search/recentView.jsp" />
 		<jsp:include page="../mypage/mypage_sidebar.jsp" />		
 	</div>
-	<div class="txt" style="position: relative; left: 380px; bottom: 980px;">구매중인 상품</div>
+	<div class="txt" style="position: relative; left: 380px; bottom: 980px; ">구매중인 상품</div>
 	<div class="search_filter">
 		<form id="filter_form" action="/search_item" method="get" >
 			<input type="hidden" name="keyword">
@@ -165,7 +165,7 @@ p {
 					<p class="name">${card.item_title }</p>
 					<p class="region">${card.item_region }</p>
 					<p class="price">${card.item_price }원</p>
-				<button value="${card.item_idx}">취소하기${card.item_idx}</button>
+				<button onclick="location.href='cancel_form?item_idx=${card.item_idx}'" value="${card.item_idx}">취소하기</button>
 				</a>
 			</div>
 		</c:forEach>
