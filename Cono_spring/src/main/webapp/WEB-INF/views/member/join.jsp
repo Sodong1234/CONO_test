@@ -173,7 +173,7 @@
 		});
 	});
 	
-	$(".sendMail").click(function () {
+	$("#sendMail").click(function () {
 		var email = $(".email").val();
 		
 		if(email == "") {
@@ -239,6 +239,31 @@ input[type="submit"] {
 	float: right;
 	margin: 10px;
 }
+
+:root {
+  --bg: #6EB4B5;
+  --primary: #6EB4B5;
+  --solid: #fff;
+  --btn-w: 10em;
+  --dot-w: calc(var(--btn-w)*.2);
+  --tr-X: calc(var(--btn-w) - var(--dot-w));
+}
+* {box-sizing: border-box;}
+*:before, *:after {box-sizing: border-box;}
+
+.btnSub {
+  position: relative;
+  margin: 0 auto;
+  width: var(--btn-w);
+  color: var(--primary);
+  border: .15em solid var(--primary);
+  border-radius: 5em;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.3em;
+  line-height: 2em;
+  cursor: pointer;  
+}
 </style>
 <!-- Bootstrap core JavaScript-->
 <script src="resources/vendor/jquery/jquery.min.js"></script>
@@ -302,8 +327,9 @@ input[type="submit"] {
 									<label for="email">이메일</label> 
 									<input type="email" class="form-control" name="member_email" id="email" placeholder="이메일을 입력해주세요" 
 									required onblur="checkEmail(this.value)">
-									<span id="checkEmailResult"></span><br>
-									<input type="button" value="이메일 인증요청" class="sendMail"><br> 
+									<span id="checkEmailResult"></span>
+									<button class=" col-md-3 mb-3 form-control" 
+									style="background-color: aquamarine;" id="sendMail" onclick="">이메일 인증요청</button>
 									<input type="text" name="number" id="number" placeholder="인증번호 입력"><br>
 								</div>					
 								<div class="mb-3">
@@ -339,7 +365,7 @@ input[type="submit"] {
 									약관 보기
 									</button>
 								</div> 
-								<input type="submit" value="가입하기" class="submit" id="submit">
+								<input type="submit" value="가입하기" class="btnSub" id="submit">
 						</div>
 					</div>
 				</div>
