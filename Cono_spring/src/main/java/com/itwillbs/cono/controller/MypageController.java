@@ -171,10 +171,17 @@ public class MypageController {
 		
 		// coin_total
 		String coin_total = service.selectCoinTotal(shop_member_id);
+		if(coin_total == null) {
+			coin_total = "0";
+		}
+		
 		// safe_coin
 		String safe_coin = service.selectSafeCoin(sId, item_idx, ord_date);
 		// 판매자 코인 입금
 //		coin_total = coin_total + safe_coin
+		System.out.println(coin_total);
+		System.out.println(safe_coin);
+		
 		service.insertCoinSeller(shop_member_id, safe_coin, coin_total);
 
 		
