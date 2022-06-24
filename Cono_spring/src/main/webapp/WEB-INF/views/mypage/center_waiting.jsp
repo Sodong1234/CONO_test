@@ -146,8 +146,10 @@ p {
 
 	<div id="wrap">
 		<jsp:include page="../header_footer/header.jsp" />
+		<jsp:include page="../search/recentView.jsp" />
+		<jsp:include page="../mypage/mypage_sidebar.jsp" />		
 	</div>
-	<hr>
+	<div class="txt" style="position: relative; left: 380px; bottom: 980px;">구매중인 상품</div>
 	<div class="search_filter">
 		<form id="filter_form" action="/search_item" method="get" >
 			<input type="hidden" name="keyword">
@@ -155,21 +157,22 @@ p {
 			<input type="hidden" name="type">
 		</form>			
 	</div>
-	<c:forEach var="card" items="${waitingList }">
-		<div class="products">
-			<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""
-				src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
-				<p class="name">${card.item_title }</p>
-				<p class="region">${card.item_region }</p>
-				<p class="price">${card.item_price }원</p>
-			<button value="${card.item_idx}">취소하기${card.item_idx}</button>
-			</a>
-		</div>
-	</c:forEach>
-
-	<div>
-		<jsp:include page="../header_footer/footer.jsp"/>
+	<div class="cardSelect" style="position: relative; right: 60px; bottom: 900px;">
+		<c:forEach var="card" items="${waitingList }">
+			<div class="products">
+				<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""
+					src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
+					<p class="name">${card.item_title }</p>
+					<p class="region">${card.item_region }</p>
+					<p class="price">${card.item_price }원</p>
+				<button value="${card.item_idx}">취소하기${card.item_idx}</button>
+				</a>
+			</div>
+		</c:forEach>
 	</div>
+	<footer style="position: relative; top: 300px;">
+		<jsp:include page="../header_footer/footer.jsp"/>
+	</footer>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
 crossorigin="anonymous"></script>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.cono.service.ItemService;
+import com.itwillbs.cono.service.MypageService;
 import com.itwillbs.cono.vo.CouponDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.OrdDTO;
@@ -25,6 +26,8 @@ public class ItemController {
 	
 	@Autowired
 	ItemService service;
+	@Autowired
+	MypageService service_mypage;
 	
 	// ------------------- 상품 상세 정보 조회 (구매자) - 이소영 ---------------
 	@RequestMapping(value = "itemDetail", method = RequestMethod.GET)
@@ -121,6 +124,9 @@ public class ItemController {
 //		if(service.checkCoin(member_id) != null) {
 			int checkCoin = Integer.parseInt(service.checkCoinTotal(ord, item_price));	// coin_total 
 			int ordCoin = Integer.parseInt(item_price) * Integer.parseInt(ord.getOrd_quantity());	// 주문 금액
+			System.out.println(checkCoin);
+			System.out.println(ordCoin);
+
 			if(checkCoin < ordCoin) {
 				model.addAttribute("msg", "코인이 부족합니다");
 				return "myshop/fail_back";
@@ -155,8 +161,11 @@ public class ItemController {
 		// coin 테이블 insert (판매자)	==> 아니 판매자는 아직 돈 들어가면 안된다... 바보양..
 //		service.insertCoinSeller(ord, item_price);
 		
+		List<HashMap<String, String>> waitingList = service_mypage.getWaitingList(member_id);
+		model.addAttribute("waitingList",waitingList);
 		
-		return "redirect:/";
+		
+		return "mypage/center_waiting";
 	}
 	// -------------------------------------------------------------------------
 	
