@@ -431,8 +431,19 @@ public class MypageController {
 		return "mypage/list_wish";
 	}
 
+	// 취소 신청 폼
+	@RequestMapping(value = "cancel_form", method = RequestMethod.POST)
+	public String cancelReq(HttpSession session, Model model, String item_idx) {
+		String sId = (String) session.getAttribute("sId");
+		
+		HashMap<String, String> itemInfo = service.getItemInfo(item_idx);
+		model.addAttribute("itemInfo",itemInfo);
+		
+		return "mypage/cancel_write";
+	}
+	
 	// 취소 신청 (가준)
-	@RequestMapping(value = "cancelReq", method = RequestMethod.POST)
+	@RequestMapping(value = "uploadCancel", method = RequestMethod.POST)
 	public String cancelReq(HttpSession session, Model model, String item_idx, String content) {
 		String sId = (String) session.getAttribute("sId");
 		
@@ -444,11 +455,11 @@ public class MypageController {
 		int insertCount = service.setCancelReq(dto);
 		
 		if(insertCount > 0) {
-			model.addAttribute("msg", "취소 접수가 완료되었습니다.");
+			System.out.println(1);
 		} else {
-			model.addAttribute("msg", "취소 접수에 실패하였습니다.");
+			System.out.println(0);
 		}
-		return "redirect:/mapage/cancel";
+		return "mypage/list_wish";
 	}
 	
 
