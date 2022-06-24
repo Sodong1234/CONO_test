@@ -16,6 +16,7 @@
 	      JOIN img g
 	        ON g.item_idx = i.item_idx
 	     WHERE i.item_idx = #{item_idx}
+	       AND g.img_idx = '1'
 	</select>
 	
 	<!-- 상품 이미지 조회 -->
