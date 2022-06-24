@@ -175,11 +175,12 @@ form {
 	width: 304px;
 	float: right;
 	margin-left: 30px;
+	margin-top: 7px
 }
 
 .shopModify {
 	margin-top: 7px;
-	margin-left: 48px;
+	margin-left: 265px;
 	float: right;
 }
 
@@ -260,6 +261,23 @@ form {
 
 
 			<div class="shopModify">
+			<!-- 팔로우 버튼 연결하기  -->
+			<c:choose>
+	<c:when test="${follow eq null }">
+			<input type ="button" value ="follow 하기" onclick="location.href='plusFollow?shop_idx=${shopInfo.get('shop_idx') }'">
+			</c:when>
+			
+			<c:when test="${follow ne null }">
+		<input type ="button" value ="follow 하기" onclick="location.href='deleteFollowing?shop_idx=${shopInfo.get('shop_idx') }'">
+			</c:when>
+</c:choose>
+			
+			
+			
+			
+			
+			
+			</div>
 				<div class="listWarp132" style="">
 					<ul role="list">
 
@@ -270,8 +288,7 @@ form {
 					</ul>
 
 				</div>
-			</div>
-
+			
 
 		</div>
 		<!-- middleWrap -->

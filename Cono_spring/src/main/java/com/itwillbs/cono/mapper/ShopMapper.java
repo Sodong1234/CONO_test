@@ -129,6 +129,9 @@ public interface ShopMapper {
 	// 팔로워 수
 	public int selectFollowerCount(String sId);
 	
+	//팔로우 추가
+	int insertFollow(String sId, String shop_idx);
+	
 	// 팔로잉 삭제
 	public int deleteFollowing(String sId, String shop_idx);
 	
@@ -154,6 +157,9 @@ public interface ShopMapper {
 	
 	// shop 주인 member_id 가져오기
 	String selectMemberId(String shop_idx);
+
+	
+
 
 	
 

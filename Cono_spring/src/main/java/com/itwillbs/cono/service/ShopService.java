@@ -418,6 +418,12 @@ public class ShopService {
 	public int getFollowerCount(String sId) {
 		return mapper.selectFollowerCount(sId);
 	}
+	
+	// 팔로우 추가 (김도은)
+	public int plusFollow(String sId, String shop_idx) {
+		return mapper.insertFollow(sId, shop_idx);
+		 
+	}
 	// 팔로잉 삭제
 	public int deleteFollowing(String sId, String shop_idx) {
 		return mapper.deleteFollowing(sId, shop_idx);
@@ -464,6 +470,8 @@ public class ShopService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 
 	
 	

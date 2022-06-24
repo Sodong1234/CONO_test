@@ -348,6 +348,14 @@
 		WHERE shop_idx = #{shop_idx} AND member_id = #{sId}
 	</delete>
 	
+	
+	<!-- 팔로우 추가 -->
+	<insert id="insertFollow">
+		INSERT INTO follow
+		VALUES (#{sId}, #{shop_idx})
+	</insert>
+	
+	
 	<!-- ================================================================================================================ -->
 	
 	<!-- 상점 조회 -->

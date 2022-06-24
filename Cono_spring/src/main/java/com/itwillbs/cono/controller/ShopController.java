@@ -508,6 +508,17 @@ public class ShopController {
 		return "myshop/list_following";
 	}
 	
+	// --------------------------- 팔로우 추가 하기 -- 김도은 ---------------------------
+	@RequestMapping(value = "plusFollow", method = RequestMethod.GET)
+	public String plusFollow(HttpSession session, Model model, String shop_idx) {
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		int plusCount = service.plusFollow(sId, shop_idx);
+		
+		return "redirect:/Myshop.shop?shop_idx=" + shop_idx;
+	}
+	// -------------------------------------------------------------------------
 	// 언팔
 	@RequestMapping(value = "deleteFollowing", method = RequestMethod.GET)
 	public String deleteFollowing (HttpSession session, Model model, String shop_idx) {
@@ -515,7 +526,9 @@ public class ShopController {
 		
 		int deleteCount = service.deleteFollowing(sId, shop_idx);
 		
-		return "myshop/list_following";
+//		return "myshop/list_following";
+		
+		return "redirect:/Myshop.shop?shop_idx=" + shop_idx;
 	}
  
 	//==================================================================================================================================================================
@@ -649,4 +662,8 @@ public class ShopController {
 		System.out.println(strHashedData);
 		return strHashedData;
 	}
+	
+// -------------------------------------------------------------------------
+
+
 }

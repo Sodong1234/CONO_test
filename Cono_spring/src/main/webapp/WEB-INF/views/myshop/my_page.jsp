@@ -54,6 +54,7 @@ form {
 	width: 304px;
 	float: right;
 	margin-left: 30px;
+	
 }
 
 .shopModify {
