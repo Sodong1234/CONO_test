@@ -302,8 +302,18 @@ p {
 		<!-- 헤더 -->
 		<jsp:include page="../header_footer/header.jsp" />
 	</div>
+	
+	<!-- 메뉴바 -->
+	<div id="menubar">
+		<jsp:include page="../header_footer/menubar.jsp" />
+	</div>
+
+
+		
+	
 	<jsp:include page="../search/recentView.jsp" />
 	<hr>
+	
 	<div class="search_option_item">
 		<div class="search_cate_title">정렬</div>
 		<div class="search_cate_contents">
