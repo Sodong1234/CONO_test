@@ -124,6 +124,7 @@ a{
 	border: 2px solid navy;
 	border-radius: 4px;
 	float: center;
+	
 	}
 
 #search-ranking {
@@ -162,8 +163,10 @@ a{
 
 #rank-number {
     margin-top: -9px;
-    color: #00ab33;
-    font-size: 16px;
+    color: #5F9EA0;
+    font-size: 20px;
+    font-style: bold;
+    font-family:'Cafe24Ohsquare';
 }
 
 #rank-title {
@@ -179,15 +182,24 @@ a{
 	padding: 5px 5px;
 	border: 2px solid #1597BB;
 	background-color: #1597BB;
-	font:bold italic;
-	color: navy;
+	font-style : italic;
+	
+	color: white;
 	border-radius: 6px;
 	margin: auto;
+	margin-left : 100px;
 }
 
 #readCnt {
 	float: right;
 	text-decoration: none;
+}
+
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 </style>
@@ -203,8 +215,9 @@ a{
 	  <div class="center-align">
 	    <div id="search-ranking">
 	      <div>
-	        <span id="rank-number">실시간 인기!</span>
+	        <span id="rank-number"> * 실시간 인기! *</span>
 	      </div>
+	   
 	      <ul>
 		    <p class="view"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>☆ 실시간 인기순위 ☆</strong> &nbsp;</p>
 		    	<c:if test="${sessionScope.hotList eq null }">
