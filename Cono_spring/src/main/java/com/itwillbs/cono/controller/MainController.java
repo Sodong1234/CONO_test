@@ -75,7 +75,7 @@ public class MainController {
 		
 		if(memberResult == null) {
 			model.addAttribute("msg", "로그인 실패");
-			return "member/fail_back";
+			return "userCenter/fail_back";
 		} else {
 			String member_nick = memberResult.getMember_nick();
 			System.out.println(member_nick);
