@@ -92,14 +92,15 @@ img {
 .paging a:hover{
    text-decoration: underline;
 }
-#selected_review_img_div {
-	width: 500px;
-}
+/* #selected_review_img_div { */
+/* /* 	width: 500px; */ 
+/* } */
 #selected_review_img_div img {
 	width: 200px;
 	height: 200px;
-	float: right;
-	margin: 0 50%;
+/* 	float: right; */
+/* 	margin: 0 50%; */
+	margin-left : 60px;
 }
 /* ------------------------- 이미지 슬라이드 ------------------------- */
 #item_img_slide_show {
