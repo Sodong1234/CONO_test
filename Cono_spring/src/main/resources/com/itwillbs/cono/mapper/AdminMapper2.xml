@@ -206,10 +206,6 @@
 		UPDATE ord
 		SET ord_status = 'C'
 		WHERE item_idx = #{item_idx}
-		UNION
-		UPDATE safe
-		SET safe_status = ''
-		WHERE item_idx = #{item_idx}
 	</update>
 	
 <!-- '거래취소' 시 코인 반환 -->

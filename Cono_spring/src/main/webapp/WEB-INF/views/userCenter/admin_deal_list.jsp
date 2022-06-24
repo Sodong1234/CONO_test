@@ -27,7 +27,7 @@
 		var dealConfirm = confirm("거래 취소 하시겠습니까?" + '\n' + "거래를 되돌릴 수 없습니다.");
 		
 		if(dealConfirm){
-			location.href="./AdminDealCancel?item_idx=" + item_idx + "&safe_coin=" + safe_coin + "&safe_status=" + safe_status + "&page=" + page;
+			location.href="./AdminDealCancel?item_idx=" + item_idx + "&safe_coin=" + safe_coin + "&safe_coin=" + safe_coin + "&ord_status=" + ord_status + "&page=" + page;
 		}
 	}
 
@@ -74,9 +74,8 @@
 					<td>${product.member_id }</td>
 					<td>${product.safe_coin }</td>
 					<td>${product.ord_date }</td>
-<%-- 					<td>${product.item_status }</td> --%>
-					<td>Y</td>
-					<td><input type="button" id="search_btn" value="거래취소" onclick="dealCancel('${product.item_idx }', '${product.safe_coin }', '${product.item_status }','${pageInfo.pageNum }')"></td>
+					<td>${product.ord_status }</td>
+					<td><input type="button" id="search_btn" value="거래취소" onclick="dealCancel('${product.item_idx }', '${product.safe_coin }', '${product.ord_status }','${pageInfo.pageNum }')"></td>
 				</tr>
 			</c:forEach>
 		</c:if>

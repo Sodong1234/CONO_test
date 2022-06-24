@@ -64,7 +64,7 @@ public interface AdminMapper2 {
 	public List<HashMap<String, Object>> selectAllDealCancel(int pageNum, int listLimit);
 
 	// 거래취소
-	public int updateDealCancel(@Param("item_idx")String item_idx, @Param("safe_status") String safe_status);
+	public int updateDealCancel(@Param("item_idx")String item_idx, @Param("ord_status") String ord_status);
 
 	
 

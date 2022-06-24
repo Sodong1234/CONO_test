@@ -313,9 +313,9 @@ public class AdminController2 {
 	// ------ 거래 취소 (관리자)
 	@RequestMapping(value = "/AdminDealCancel", method = RequestMethod.GET)
 	public String dealCancel(@RequestParam String item_idx, @RequestParam String safe_coin,
-								@RequestParam String safe_status, @RequestParam(defaultValue = "1")int pageNum, Model model) {
+								@RequestParam String ord_status, @RequestParam(defaultValue = "1")int pageNum, Model model) {
 		// 취소 작업 요청
-		int dealCancel = service.dealCancel(item_idx, safe_status);
+		int dealCancel = service.dealCancel(item_idx, ord_status);
 		
 		// 실패 시
 		if(dealCancel == 0) {

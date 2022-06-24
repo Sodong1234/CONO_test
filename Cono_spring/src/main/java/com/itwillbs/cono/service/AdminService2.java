@@ -117,9 +117,9 @@ public class AdminService2 {
 	}
 
 	//  거래취소 (관리자)
-	public int dealCancel(String item_idx, String safe_status) {
+	public int dealCancel(String item_idx, String ord_status) {
 		
-		return mapper.updateDealCancel(item_idx, safe_status);
+		return mapper.updateDealCancel(item_idx, ord_status);
 	}
 
 
