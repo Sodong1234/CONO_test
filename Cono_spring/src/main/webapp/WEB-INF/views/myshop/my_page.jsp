@@ -146,10 +146,12 @@ form {
 		<div class="listWarp132" style="">
 			<ul role="list">
 
-				<li data-icon="🦄">판매자 ID :${myShop.get('member_id') }</li>
-				<li data-icon="🌈">상점소개 : ${myShop.get('shop_content') }</li>
-				<li data-icon="😎">팔로워 : ${followerCnt } 명</li>
-				<%-- 				  <li data-icon="🦄"> 상점 오픈일 : ${myShop.get('member_date') }</li> --%>
+				<li data-icon="🦄"> ID </li>
+				<li> ${myShop.get('member_id') } </li> 
+				<li data-icon="🌈"> 상점 소개  </li>
+				<li> ${myShop.get('shop_content') } </li>
+				<li data-icon="😎"> 팔로워 ${followerCnt } 명 </li>
+			
 			</ul>
 			
 		</div>
