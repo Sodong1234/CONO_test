@@ -13,13 +13,13 @@ String sId = (String)session.getAttribute("sId");
 if (session.getAttribute("sId") == null) {
 	response.sendRedirect("MemberLogin.func");
 }
-String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
+// String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상점</title>
+<title>CONO::판매자의상점</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/my_page.css">
 <link rel="stylesheet"
@@ -207,8 +207,8 @@ form {
 		<h2 style="font-family: Cafe24Ohsquare;">
 			${shopInfo.get('shop_name') }의 상점 [${shopInfo.get('member_date') }]</h2>
 
-		<hr class="hr-13">
-		<hr>
+		<hr class="hr-13" style="width: 1060px;">
+		
 		<div class="shopInfo134">
 			<div class="shopForm134">
 
@@ -228,6 +228,7 @@ form {
 						</c:when>
 					</c:choose>
 					<!-- 						<input type="file" id="file" name="upload" onchange="readInputFile(this)" style="display: none;"> -->
+					<br>
 					<br>
 
 
@@ -287,11 +288,15 @@ form {
 			</div>
 				<div class="listWarp132" style="">
 					<ul role="list">
+				<li data-icon="🦄" style="font-weight: bolder;"> 아이디 </li>
+				<li> ${shopInfo.get('member_id') } </li> 
+				<li data-icon="🌈" style="font-weight: bolder;"> 상점 소개  </li>
+				<li> ${shopInfo.get('shop_content') } </li>
+				<li data-icon="😎" style="font-weight: bolder;"> 팔로워 ${followerCnt } 명
 
-						<li data-icon="🦄">판매자 ID :${shopInfo.get('member_id') }</li>
-						<li data-icon="🌈">상점소개 : ${shopInfo.get('shop_content') }</li>
-						<li data-icon="😎">팔로워 : ${followerCnt } 명</li>
-						<%-- 				  <li data-icon="🦄"> 상점 오픈일 : ${myShop.get('member_date') }</li> --%>
+<%-- 						<li data-icon="🦄">판매자 ID :${shopInfo.get('member_id') }</li> --%>
+<%-- 						<li data-icon="🌈">상점소개 : ${shopInfo.get('shop_content') }</li> --%>
+<%-- 						<li data-icon="😎">팔로워 : ${followerCnt } 명</li> --%>
 					</ul>
 
 				</div>

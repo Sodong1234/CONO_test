@@ -209,6 +209,11 @@ public class MainService {
           return resultMap;
       }
 
+	public int checkId(MemberDTO member) {
+		return mapper.checkId(member);
+	}
+
+
 
 	
 }

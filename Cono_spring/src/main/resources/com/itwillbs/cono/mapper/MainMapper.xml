@@ -15,6 +15,11 @@
 			    #{member_birth}, date_format(now(), '%Y%m%d'), "Y")
 	</insert>
 	
+	<select id="checkId" resultType="int">
+		SELECT COUNT(*) FROM member
+		WHERE member_id = #{member_id}
+	</select>
+	
 <!-- 	회원가입 축하 쿠폰 -->
 	<insert id="insertJoinCoupon">
 		INSERT INTO coupon

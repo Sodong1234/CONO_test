@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.cono.service.MainService;
 import com.itwillbs.cono.vo.ItemDTO;
@@ -186,6 +187,13 @@ public class MainController {
 			model.addAttribute("msg","회원가입 실패!");
 			return "fail_msg";
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="member/checkId", method = RequestMethod.POST)
+	public int checkId(MemberDTO member) {
+		int result = service.checkId(member);
+		return result;
 	}
 	
 	// 16진수 암호화

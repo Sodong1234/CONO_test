@@ -32,5 +32,8 @@ public interface MainMapper {
 
 	int selectCardListCount();
 
+	int checkId(MemberDTO member);
+
+
 
 }
