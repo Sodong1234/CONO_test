@@ -13,6 +13,11 @@
     font-style: normal;
 }
 
+* {
+	font-family: 'IBMPlexSansKR-Regular';
+	
+}
+
 
 
 a {

@@ -115,6 +115,8 @@
 	cursor: pointer;
 	z-index: 1;
 }
+
+
 </style>
 <div>
 	<!-- 상단 부분 -->
@@ -254,7 +256,8 @@
 							
 							<br>
 							
-							<div style="font-weight: bold;" > 판매자 : ${itemDetail.get('shop_name') } </div> 
+							<div style="font-weight: bold; font-family:'IBMPlexSansKR-Regular'; font-size: medium;" > 
+							판매자 : ${itemDetail.get('shop_name') } </div> 
 							
 							
 							<br>
@@ -263,7 +266,7 @@
 							
 <%-- 								<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}"> --%>
 								 
-								<input type="button" class = "btnShop" value="" onclick="location.href='Myshop.shop?item_idx=${itemDetail.item_idx}'"> &nbsp;&nbsp;&nbsp;
+								<input type="button" class="btnShop" value="" onclick="location.href='Myshop.shop?item_idx=${itemDetail.item_idx}'"> &nbsp;&nbsp;&nbsp;
 								<input type="button" class="btnMessage" value="" onclick="location.href='addMessageList?shop_idx=${itemDetail.shop_idx}&item_idx=${itemDetail.item_idx}'">
 <!-- 								</form> -->
 				
@@ -327,7 +330,7 @@
 									<br>
 									<div class="detail-info__text-body-bItem">
 										<br>
-										<div class="detail-info__text-body-bItem-title">상품소개</div>
+										<div class="detail-info__text-body-bItem-title">상품소개</div> <br><br>
 										${itemDetail.get('item_content')}
 										<div class="detail-info__location" id="product_location"></div>
 
