@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>myshop/item_order_mng.jsp</title>
+<title>CONO::상품구매진행</title>
 <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
 <style type="text/css">
 

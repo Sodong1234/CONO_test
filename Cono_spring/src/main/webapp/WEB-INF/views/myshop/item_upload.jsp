@@ -12,7 +12,7 @@ if(session.getAttribute("sId") == null) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>코노::상품등록</title>
+<title>CONO::상품등록</title>
 
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <%-- <script defer src="${path}/resources/js/registForm.js"></script> --%>

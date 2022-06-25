@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>myshop/item_review_mng.jsp</title>
+<title>CONO::상품후기관리</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item_detail.css">
 <style type="text/css">
 img {

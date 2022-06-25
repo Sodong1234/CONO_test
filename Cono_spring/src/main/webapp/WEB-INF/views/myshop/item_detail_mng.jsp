@@ -12,7 +12,7 @@ if(session.getAttribute("sId") == null) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CONO::상품관리</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item_detail.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/button_mng.css">
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
@@ -98,7 +98,7 @@ if(session.getAttribute("sId") == null) {
  } 
 
  h4{ 
-	 font-family: "Cafe24Ohsquare"; 
+	 font-family: 'Cafe24Ohsquare'; 
 	
 } 
 </style>

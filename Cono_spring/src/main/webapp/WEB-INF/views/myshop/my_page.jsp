@@ -14,7 +14,7 @@ if (session.getAttribute("sId") == null) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>myShop/my_page.jsp</title>
+<title>CONO::내상점</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/my_page.css">
 <link rel="stylesheet"

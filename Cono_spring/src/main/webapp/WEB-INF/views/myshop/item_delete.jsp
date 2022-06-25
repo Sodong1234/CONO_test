@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CONO::상품삭제</title>
 <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/nav.css">
 <style>
@@ -74,6 +74,13 @@ input[type=submit]{
 	width: 100%;
 	padding: 15px 0;
 }
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 
 </style>
@@ -91,7 +98,7 @@ input[type=submit]{
 		
 		<div class="delete">
 		
-		<h3>상품을 삭제하시겠습니까?</h3>
+		<h2 style="font-family: 'Cafe24Ohsquare';">상품을 삭제하시겠습니까?!</h2>
 
 		<form action="ItemDeletePro.shop" method="post">
 			<input type="hidden" name="item_idx" value="<%=request.getParameter("item_idx")%>">

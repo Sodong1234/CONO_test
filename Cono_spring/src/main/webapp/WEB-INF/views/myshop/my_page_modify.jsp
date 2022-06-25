@@ -77,7 +77,7 @@
 
 </style>
 <meta charset="UTF-8">
-<title>내 상점 수정</title>
+<title>CONO::내상점수정</title>
 </head>
 <body>
 	<div>

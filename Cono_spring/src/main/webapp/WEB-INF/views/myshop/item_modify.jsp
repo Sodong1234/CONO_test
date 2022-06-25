@@ -14,7 +14,7 @@ if (session.getAttribute("sId") == null) {
 	}
 %>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CONO::상품수정</title>
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <%-- <script defer src="${path}/resources/js/registForm.js"></script> --%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
