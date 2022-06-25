@@ -372,7 +372,7 @@ public class ShopController {
 	
 	// ---------------- 내상점 수정 비즈니스 로직 - 문현진 ---------------------
 	@RequestMapping(value = "/ProductMyshopModifyPro.shop", method = RequestMethod.POST)
-	public String getMyShopPost(HttpSession session, HttpServletRequest request, MemberDTO member, ShopDTO shop, MultipartFile[] upload, Model model) {
+	public String getMyShopPost(HttpSession session, HttpServletRequest request, MemberDTO member, ShopDTO shop, MultipartFile[] upload, String imgStatus, Model model) {
 		
 		member.setMember_id(session.getAttribute("sId").toString());
 		
@@ -388,7 +388,7 @@ public class ShopController {
 			return "fail_back";
 		}
 		
-		service.modifyMyshop(request, shop, upload, member);
+		service.modifyMyshop(request, shop, upload, member, imgStatus);
 		
 		return "redirect:/ProductMyshop.shop";
 	}

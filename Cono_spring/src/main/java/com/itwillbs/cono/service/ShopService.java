@@ -277,7 +277,7 @@ public class ShopService {
 	}
 
 	// 상점 정보 수정
-	public void modifyMyshop(HttpServletRequest request, ShopDTO shop, MultipartFile[] upload, MemberDTO member) {
+	public void modifyMyshop(HttpServletRequest request, ShopDTO shop, MultipartFile[] upload, MemberDTO member, String imgStatus) {
         
 		// 상점 원본 이미지 가져오기
 		HashMap<String, String> orgShopImg = mapper.selectMyShop(member.getMember_id());
@@ -291,19 +291,15 @@ public class ShopService {
         }
         
 		MultipartFile f = upload[0];
-		
 		// 전달 받은 파일이 없을 경우
+		System.out.println(f.isEmpty());
+		System.out.println(shop.getShop_img());
 		if(f.isEmpty()) {
 			// 원본 이미지가 있을 경우
 			if(orgShopImg.get("shop_img") != null) {
-				shop.setShop_img(null);
-				mapper.updateMyshop(shop);
-				
-				File file = new File(saveDir + "\\" + orgShopImg.get("shop_img"));
-	    		if(file.exists()) {	// 원본 이미지 삭제
-	    			file.delete();
-	    		}
+				shop.setShop_img(orgShopImg.get("shop_img"));
 			}
+			
 		// 전달 받은 파일이 있을 경우
 		} else {
 			String oriFileName = f.getOriginalFilename();	// 파일 실제 이름
@@ -312,12 +308,11 @@ public class ShopService {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 			String reName = shop.getShop_idx() + "_" + sdf.format(System.currentTimeMillis()) + ext;	// => 1_20200202.png
 			shop.setShop_img(reName);
-			mapper.updateMyshop(shop);
+			
 			
 			// 원본 이미지가 있을 경우
 			if(orgShopImg.get("shop_img") != null) {
 				File file = new File(saveDir + "\\" + orgShopImg.get("shop_img"));
-				System.out.println(saveDir + "\\" + orgShopImg.get("shop_img"));
 	    		if(file.exists()) {
 	    			file.delete(); // 원본 이미지 파일 삭제
 	    		}
@@ -335,6 +330,8 @@ public class ShopService {
 	    		}
 			}
 		}
+		
+		mapper.updateMyshop(shop);
 	}
 	
 	// 상품 평균 평점과 후기 달린 아이템의 개수 조회

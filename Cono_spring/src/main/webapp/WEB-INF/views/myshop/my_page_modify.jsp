@@ -38,6 +38,15 @@
 		document.getElementById('img').src = "http://localhost:8080/cono/resources/default_img.png";
 		$("#file").val("");
 	}
+	
+	function check() {
+		if(document.getElementById('img').src != "${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/resources/default_img.png") {
+			document.shopForm.imgStatus.value = "Y";
+			
+		} else {
+			document.shopForm.imgStatus.value = "N";
+		}
+	}
 </script>
 <style type="text/css">
 
@@ -72,8 +81,9 @@
 	<hr class="hr-13">
 	<hr>
 	
-		<form action="ProductMyshopModifyPro.shop" name="shopForm" method="post" enctype="multipart/form-data" >
+		<form action="ProductMyshopModifyPro.shop" name="shopForm" method="post" enctype="multipart/form-data" onsubmit="return check()">
 			<input type="hidden" name="shop_idx" value="${myShop.get('shop_idx') }">
+			<input type="hidden" name="imgStatus" value="">
 				<div class="form-group" style="width: 424px; margin-right: 70%; font-family:IBMPlexSansKR-Regular;" >
 						<c:choose>
 						<c:when test="${myShop.get('shop_img') eq null }">
