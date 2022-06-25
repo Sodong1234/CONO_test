@@ -47,6 +47,21 @@
 			document.shopForm.imgStatus.value = "N";
 		}
 	}
+	
+	
+	// 글자 수 체크
+	$(function() {
+		$('#board_content').keyup(function(){
+			  var content = $(this).val();
+			  $('#cnt').html(content.length);
+			  if (content.length > 20){
+			    alert("최대 50자까지 입력 가능합니다.");
+			    $(this).val(content.substring(0, 50));
+			    $('#board_content .count span').html(50);
+			  }
+			});
+			
+		});
 </script>
 <style type="text/css">
 
@@ -102,9 +117,11 @@
  				 <input type="text" class="form-control" placeholder="Default input" id="inputDefault" name="shop_name" value="${myShop.get('shop_name') }" >
 				      <label for="exampleTextarea" class="form-label mt-4">내 상점 소개</label>
 				      <textarea class="form-control" id="board_content" rows="5" name="shop_content">${myShop.get('shop_content') }</textarea>
+						<div class="limit" style="float: right;"><span id="cnt">0</span>/50</div>
 
-						<input type="submit" class="btn" value="수정" > 
-						<input type="button" class="btn" value="취소" onclick="history.back()">
+						<input type="submit" class="btn" style="width: 165px" value="수정" > 
+<!-- 						<input type="button" class="btn2" value="취소" onclick="history.back()"> -->
+						<button class="btn" style="width: 165px" onclick="history.back()">취소</button>
 	</form>
 				    </div>
 

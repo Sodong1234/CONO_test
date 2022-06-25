@@ -23,6 +23,7 @@ if (session.getAttribute("sId") == null) {
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm_common.css">
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm_btn.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/button_mng.css">
 <script type="text/javascript">
 
 // ---------------------------------- 카테고리 작업 --------------------------------------------------
@@ -246,7 +247,6 @@ function checkNumber(event) {
 			// 이미지 상태를 java로 넘기기 위해 하나의 String으로 합침
 // 			document.fr.imgStatus.value += imgStatus[${i}-1] + "/";
 		</c:forEach>
-			alert(document.fr.imgStatus.value);
 		
 	}
 
@@ -362,6 +362,16 @@ hr.hr-13 {
 									</div>
 									
 								</li>
+								
+								<li class="list">
+									<div class="subject_sub"></div>
+									<div class="imageDiv" id="imageDiv">
+										<b>* gif, .jpg, .png 확장자만 등록 가능합니다.<br>
+										&nbsp;&nbsp;&nbsp;200x200 크기에 최적화 되어 있습니다. <br> 
+										&nbsp;10mb를 초과하게 되면 등록이 되지 않습니다. </b> <br>
+									</div>
+								</li>
+								
 								<!-- 제목 -->
 								<li class="list">
 									<div class="subject_sub">
@@ -374,7 +384,7 @@ hr.hr-13 {
 											</div>
 										</div>
 										<div class="subjectDiv" id="subjectDiv">
-										상품명을 2자 이상 입력해주세요. &nbsp;&nbsp;&nbsp;
+										상품명은 최대 20자 까지 입력 가능합니다. &nbsp;&nbsp;&nbsp;
 										<div class="limit"><span id="cnt">0</span>/20</div>
 										</div>
 									</div>
@@ -422,8 +432,6 @@ hr.hr-13 {
 										<div class="locationDiv" id="locationDiv">거래지역을 선택해주세요.</div>
 										<div class="add_description">
 											<b> * 동·면·읍 까지 표시 됩니다.</b>
-											<!-- 	<b>* 주소 검색 후 구매자에게 알려주고 싶은 주소 범위까지만 나타나도록 주소를 수정해주세요.</b><br> -->
-											<!-- 	ex) 서울특별시 서초구 서초동 1303-34 → 서울특별시 서초구 서초동 -->
 										</div>
 										<div id="map"
 											style="width: 300px; height: 300px; margin-top: 10px; display: none">
@@ -485,8 +493,9 @@ hr.hr-13 {
 <!-- 		     		 <svg height="40" width="120" xmlns="http://www.w3.org/2000/svg"> -->
 		<!--       			 <rect id="shape" height="40" width="120" /> -->
 <!-- 		     	 	</svg> -->
-		    		<input type="submit" class="btn" value="수정" > 
-					<input type="button" class="btn" value="취소" onclick="history.back()">
+		    		<input type="submit" class="btn" style="width: 175px" value="수정" > 
+<!-- 					<input type="button" class="btn" value="취소" onclick="history.back()"> -->
+					<button class="btn" style="width: 175px" onclick="history.back()">취소</button>
 		   	 	</div>
 <!-- 			</div> -->
 		</form>

@@ -101,6 +101,7 @@ form {
 				</c:choose>
 				<!-- 						<input type="file" id="file" name="upload" onchange="readInputFile(this)" style="display: none;"> -->
 				<br>
+				<br>
 				<!-- <div class="w3-container"> -->
 
 				<div class="rigthIndi">
@@ -146,12 +147,12 @@ form {
 		<div class="listWarp132" style="">
 			<ul role="list">
 
-				<li data-icon="🦄"> ID </li>
+				<li data-icon="🦄" style="font-weight: bolder;"> 아이디 </li>
 				<li> ${myShop.get('member_id') } </li> 
-				<li data-icon="🌈"> 상점 소개  </li>
+				<li data-icon="🌈" style="font-weight: bolder;"> 상점 소개  </li>
 				<li> ${myShop.get('shop_content') } </li>
-				<li data-icon="😎"> 팔로워 ${followerCnt } 명 </li>
-			
+				<li data-icon="😎" style="font-weight: bolder;"> 팔로워 ${followerCnt } 명
+			 </li>
 			</ul>
 			
 		</div>

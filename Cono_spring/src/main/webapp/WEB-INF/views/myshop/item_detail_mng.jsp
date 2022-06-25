@@ -49,6 +49,8 @@ if(session.getAttribute("sId") == null) {
 			}
 		}
 	});
+	
+	
 </script>
 <style type="text/css">
 	.swiper-wrapper {
@@ -140,11 +142,10 @@ if(session.getAttribute("sId") == null) {
 						<!-- 슬라이더 버튼 수 -->
 						<div class="swiper-pagination">
 							<div class="paginationBtn" style="text-align: center">
-								<!-- productDetail.js -->
 							</div>
 						</div>
 						
-						<!-- 확대버튼 하는 중 -->
+						
 						<div class="prodDetailImgWrap1">
 									
 							<div class="prodDetailImgWrap2"> 
@@ -155,12 +156,10 @@ if(session.getAttribute("sId") == null) {
 									<div class="dtailImg_prodName"></div>
 									<!-- 이미지 리스트 -->
 									<div class="detailImgList" > 
-										<!-- productDetail.js -->
 									</div>
 									<div class="detailImg_buttonWrap">
-										<!-- productDetail.js -->
 									</div>
-								</div> <!--//ImgListWrap  -->
+								</div> 
 							</div>
 						</div>
 					</div>
@@ -172,7 +171,6 @@ if(session.getAttribute("sId") == null) {
 							<div class="detail-info__text-header">
 								<!-- 상품명 --> 
 								<h2 style=" font-family: 'Cafe24Ohsquare';"> ${itemDetail.get('item_title')}</h2>
-<%-- 								<div class="detail-info__text-title">상품명 : ${itemDetail.get('item_title')}</div> --%>
 								<div class="detail-info__text-price__div">
 										<!-- 상품가격 --> 
 									<h4 style=" font-family: 'Cafe24Ohsquare';" ><fmt:formatNumber value="${itemDetail.get('item_price')}" pattern="\#,###.##"/></h4>
