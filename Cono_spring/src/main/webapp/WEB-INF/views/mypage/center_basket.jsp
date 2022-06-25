@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CONO:장바구니</title>
 </head>
 <body>
 	<div id="wrap">

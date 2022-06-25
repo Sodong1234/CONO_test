@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CONO:회원 정보 수정</title>
 </head>
 <body>
 

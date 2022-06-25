@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CONO:환불 계좌</title>
 </head>
 <body>
 	<div id="wrap">
