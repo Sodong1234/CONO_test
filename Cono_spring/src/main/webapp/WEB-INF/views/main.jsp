@@ -85,11 +85,38 @@ a{
 	text-decoration: none;
 }
 
+*{
+
+font-family: 'IBMPlexSansKR-Regular';
+
+}
+
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 </style>
 
 
 <!-- 실시간 인기순위 -->
 <style type="text/css">
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+*{
+
+font-family: 'IBMPlexSansKR-Regular';
+
+}
 
 .relative {
     position: relative;

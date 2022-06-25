@@ -123,6 +123,11 @@
 	<jsp:include page="../header_footer/header.jsp" />
 </div>
 
+<!-- 메뉴바 -->
+	<div id="menubar">
+		<jsp:include page="../header_footer/menubar.jsp" />
+	</div>
+
 
 <div class="detail__area">
 	<div class="detail__div">

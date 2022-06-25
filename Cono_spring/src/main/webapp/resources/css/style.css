@@ -2110,13 +2110,14 @@ tbody {
 	border: solid #e4e4e4;
 	border-width: 0 1px 1px 0;
 	padding: 7px 10px 7px 15px;
-	font-weight: 700;
+	font-weight: bolder;
 	text-align: right;
 	background: #f4f4f4;
 	display: table-cell;
 	vertical-align: inherit;
 	border-collapse: collapse;
 	border-spacing: 0;
+	
 }
 
 .customer__col customer__col--2 {

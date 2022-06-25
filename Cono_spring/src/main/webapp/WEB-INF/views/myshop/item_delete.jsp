@@ -98,7 +98,7 @@ input[type=submit]{
 		
 		<div class="delete">
 		
-		<h2 style="font-family: 'Cafe24Ohsquare';">상품을 삭제하시겠습니까?!</h2>
+		<h2 style="font-family:'Cafe24Ohsquare';">상품을 삭제하시겠습니까?!</h2>
 
 		<form action="ItemDeletePro.shop" method="post">
 			<input type="hidden" name="item_idx" value="<%=request.getParameter("item_idx")%>">

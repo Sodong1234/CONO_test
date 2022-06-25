@@ -15,7 +15,7 @@ crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/mobile/www/css/swiper.min.css">
 <link rel="stylesheet" type="text/css" href="//static.danawa.com/css/shop.virtualestimate.css" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CONO::검색</title>
 <style>
 * {
 	box-sizing: border-box;
@@ -85,6 +85,8 @@ body h1 {
 	padding: 0;
 	width: 992px;
 	text-align: center;
+	font-family: 'IBMPlexSansKR-Regular';
+	
 }
 
 .products img {
@@ -201,11 +203,11 @@ p {
 }
 
 .search_box {
-	border-top: 1px solid;
+/* 	border-top: 1px solid; */
 	border-bottom: 1px solid;
 	width: 975px;
 	height: 100px;
-	margin-left: 30%;
+	margin-left: 24%;
 }
 
 .search_option_item {
@@ -270,6 +272,27 @@ margin: auto;
   .paging a:hover{
   	text-decoration: underline;
   }
+  
+  @font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+
+font-family: 'IBMPlexSansKR-Regular';
+
+
+}
+
+a{
+
+font-family: 'IBMPlexSansKR-Regular';
+
+}
+
 
 </style>
 <script src="resources/js/jquery-3.6.0.js"></script>
@@ -317,14 +340,12 @@ margin: auto;
 		<jsp:include page="../header_footer/menubar.jsp" />
 	</div>
 
-
-		
-	
 	<jsp:include page="../search/recentView.jsp" />
-	<hr>
+	
+	
 	<div class="search_box">
 		<div class="search_option_item">
-			<div class="search_cate_title">정렬</div>
+			<div class="search_cate_title"> ▷ 정렬</div>
 			<div class="search_cate_contents">
 				<ul class="search_cate_list">
 					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter1" id="filter1" value="0" checked="checked" onclick="filter1(this.value)"> <span class="item_text">최신순</span>
@@ -337,7 +358,7 @@ margin: auto;
 			</div>
 		</div>
 		<div class="search_option_item">
-			<div class="search_cate_title">가격대</div>
+			<div class="search_cate_title"> ▷ 가격대</div>
 			<div class="search_cate_contents">
 				<ul class="search_cate_list">
 					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="0" onclick="filter2(this.value)" checked="checked"> <span class="item_text">전체</span>
@@ -354,11 +375,12 @@ margin: auto;
 			</div>
 		</div>
 	</div>
-	<h1 id="search_data">'${searchText }' 검색 내용입니다.</h1>
+	
+	<h1 id="search_data" style="font-family: 'IBMPlexSansKR-Regular';">'${searchText }' 검색 내용입니다.</h1>
 	 <input type = "hidden" name ="pageNum" value="${pageNum }">
 	 <c:if test="${not empty cardList && pageInfo.listCount > 0}">	
 	<c:forEach var="card" items="${cardList }">
-		<div class="products">
+		<div class="products" style="font-family: 'IBMPlexSansKR-Regular';">
 			<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""
 				src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
 				<p class="name" >${card.item_title }</p>

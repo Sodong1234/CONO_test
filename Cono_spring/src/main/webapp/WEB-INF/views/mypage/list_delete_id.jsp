@@ -6,6 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>CONO:회원 탈퇴</title>
+<style type="text/css">
+
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+
+font-family: 'IBMPlexSansKR-Regular';
+
+
+}
+
+
+</style>
+
 </head>
 <body>
 	<div id="wrap">
@@ -24,7 +44,7 @@
 					<div class="deleteMember__box">
 						<div class="deleteMember__box__notice" style="padding:20px">
 							<section>
-								<h3>회원탈퇴 전, 유의사항을 확인해 주시기 바랍니다.</h3>
+								<h3 style="font-family: 'IBMPlexSansKR-Regular';">회원탈퇴 전, 유의사항을 확인해 주시기 바랍니다.</h3>
 								<ul>
 									<li>- 회원탈퇴 시 회원전용 웹 서비스 이용이 불가합니다.</li>
 									<li>- 거래정보가 있는 경우, 전자상거래 등에서의 소비자 보호에 관한 법률에 따라 계약 또는 청약철회에 관한 기록, 대금결제 및 재화 등의 공급에 관한 기록은 5년동안 보존됩니다.</li>
@@ -54,6 +74,7 @@
 							</label>
 						</div>
 					</div>
+					
 					<form action="delete_id" class="deleteMember__check-user">
 						<p class="deleteMember__check-user-msg" style="margin = 0 0 10px;">
 						<strong>보안을 위해 회원님의 아이디와 비밀번호를 확인 합니다.</strong></p>
@@ -67,8 +88,9 @@
 						</label>
 						<input type="submit" value="탈퇴" class="deleteMember__check-user-submit">
 						</form>
-					</div>
 				</form>
+					</div>
+					
 			</div>
 		</div>
 	</section>

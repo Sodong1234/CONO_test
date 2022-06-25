@@ -44,6 +44,12 @@
 	width: 100%;
 }
 
+li {
+
+list-style-type: none;
+
+}
+
 </style>
 </head>
 <body>

@@ -248,7 +248,6 @@ margin-top: -110px;
 			상품 후기 관리</h2>
 
 		<hr class="hr-13">
-			<hr style="height: 3px;">
 			<div id="review_score_div">
 				
 				<div class="storeIndication">

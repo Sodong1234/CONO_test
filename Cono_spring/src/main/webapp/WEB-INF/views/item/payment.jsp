@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>CONO::결제하기</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -29,15 +30,51 @@
 		});
 	});
 </script>
-<link rel="stylesheet"
-	href="${path}/resources/css/style.css"
-	type="text/css">
+
+<style type="text/css">
+
+h2{
+
+	font-family: 'Cafe24Ohsquare';
+
+}
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+
+font-family: 'IBMPlexSansKR-Regular';
+font-size: large;
+
+}
+
+
+</style>
+<!-- <link rel="stylesheet" -->
+<%-- 	href="${path}/resources/css/style.css" --%>
+<!-- 	type="text/css"> -->
 </head>
 <body>
+<div>
+		<!-- 상단 부분 -->
+		<jsp:include page="../header_footer/header.jsp"/>
+	</div>
 	<div class="paymentBody">
 		<div class="middle">
 			<div class="ordTitle">
-				<h3 class="title">주문/결제</h3>
+				<h2 class="title" style="font-family:'Cafe24Ohsquare';">주문/결제</h2>
 			</div>
 			<form action="PayItem" method="post">
 				<input type="hidden" name="ord_quantity" value="${param.ord_quantity }">
@@ -45,19 +82,19 @@
 				<input type="hidden" name="item_idx" value="${itemDetail.item_idx }">
 				<div class="customer">
 					<div class="customer__root" style="margin-top: 30px;">
-						<h2 class="customer__h2">구매자정보</h2>
+						<h2 class="customer__h2" style="font-family:'IBMPlexSansKR-Regular';">구매자정보</h2>
 						<table class="customer__table">
 							<tbody>
 								<tr>
-									<td class="customer__col customer__col--1">이름</td>
+									<td class="customer__col customer__col--1" >이름</td>
 									<td class="customer__col customer__col--2">${buyerInfo.member_id }</td>
 								</tr>
 								<tr>
-									<td class="customer__col customer__col--1">이메일</td>
+									<td class="customer__col customer__col--1" >이메일</td>
 									<td class="customer__col customer__col--2">${buyerInfo.member_email }</td>
 								</tr>
 								<tr>
-									<td class="customer__col customer__col--1">휴대전화번호</td>
+									<td class="customer__col customer__col--1" >휴대전화번호</td>
 									<td class="customer__col customer__col--2">${buyerInfo.member_phone }</td>
 								</tr>
 							</tbody>
@@ -75,9 +112,9 @@
 							</div>
 							<div class="item-list">
 								<div class="item-box">
-									<table style="width: 100%">
+									<table>
 										<tr>
-											<td rowspan="2">
+											<td>
 												<c:choose>
 													<c:when test="${itemDetail.img_name ne null }">
 														<img src="${path }/resources/upload/file/${itemDetail.img_name }">
@@ -87,16 +124,32 @@
 													</c:when>
 												</c:choose>
 											</td>
-											<td>${itemDetail.item_title }</td>
+											
 										</tr>
-										<tr>
-											<td>${param.ord_quantity } 개</td>
-										</tr>
-										<tr>
-											<td>주문 요청사항</td>
-											<td><textarea name="ord_reqContent" rows="" cols="" placeholder="요구사항 입력"></textarea></td>
-										</tr>
-									</table>
+											</table>
+											
+											<br>
+											<br>
+										<ul style="text-align: center;">
+											<li style="font-weight: bolder;"> 【 상품 이름 】 </li> 
+											<pre style="font-size: medium;">${itemDetail.item_title }</pre>
+																							
+											
+											<li style="font-weight: bolder;"> 【 수량 】 </li>
+											<pre>${param.ord_quantity } 개	</pre>
+											
+										
+									
+											
+											<li style="font-weight: bolder;">【 주문 요청 사항 】</li>
+											<li><textarea name="ord_reqContent" rows="5" cols="40" placeholder="요구사항을 입력하세요."></textarea></li>
+											
+											
+										</ul>
+<!-- 										</tr> -->
+<!-- 										<tr> -->
+<!-- 										</tr> -->
+								
 <!-- 									<div class="item-title"> -->
 <!-- 										<p style="font-size: 16px; color: #111;"> -->
 <%-- 											<span class="item-condition">${itemDetail.item_title }</span> --%>
@@ -116,8 +169,9 @@
 						</div>
 					</div>
 				</div>
+				<br>
 				<div class="order-section orderBox mb10 multiple-coupon">
-					<h2 class="checkout__h2">결제정보</h2>
+					<h2 class="checkout__h2" style="font-family:'IBMPlexSansKR-Regular';'">결제정보</h2>
 					<table class="pay-price">
 						<colgroup>
 							<col width="144">
@@ -187,6 +241,8 @@
 							</tbody>
 						</table>
 					</div>
+					<br>
+					<br>
 					<div class="orderBox wrap-order-agree">
 						<div class="agreeBtn">
 							<input type="image" src="${path }/resources/img/btn_payment.gif" width="260" height="60" alt="결제하기">
