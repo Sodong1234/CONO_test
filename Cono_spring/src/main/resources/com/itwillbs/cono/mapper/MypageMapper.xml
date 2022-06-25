@@ -104,7 +104,7 @@
 <!-- 	코인 충전 -->
 	<insert id="insertCoinAdd">
 		INSERT INTO coin
-		VALUES (1+(	SELECT COUNT(c.coin_idx) FROM coin c WHERE c.member_id = #{sId}),
+		VALUES (SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c),
 				#{sId}, 
 				#{payment_value}, 
 				'', 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.cono.service.AdminService2;
+import com.itwillbs.cono.service.MypageService;
 import com.itwillbs.cono.vo.PageInfo;
 
 @Controller
@@ -18,7 +19,8 @@ public class AdminController2 {
 	
 	@Autowired
 	AdminService2 service;
-	
+	@Autowired
+	MypageService mypage_service;
 	
 	// ------ 메인페이지로 이동!
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
@@ -313,9 +315,27 @@ public class AdminController2 {
 	// ------ 거래 취소 (관리자)
 	@RequestMapping(value = "/AdminDealCancel", method = RequestMethod.GET)
 	public String dealCancel(@RequestParam String item_idx, @RequestParam String safe_coin,
-								@RequestParam String ord_status, @RequestParam(defaultValue = "1")int pageNum, Model model) {
+								@RequestParam(defaultValue = "1")int pageNum, 
+								@RequestParam String member_id, @RequestParam String ord_idx, Model model) {
 		// 취소 작업 요청
-		int dealCancel = service.dealCancel(item_idx, ord_status);
+		int dealCancel = service.dealCancel(item_idx, ord_idx);
+		// 코인 바꾸기 (인서트)
+		String coin_total = mypage_service.getCoinTotal(member_id);  // 코인 잔액
+		int coinReturn = service.coinReturn(coin_total ,safe_coin , member_id);
+		// 쿠폰 반환(업데이트) -> Y -> N
+		int couponReturn = service.couponReturn(ord_idx);
+		// item 수량 변경(업데이트)
+		String itemQuantity_Total = service.itemQuantity_Total(item_idx, ord_idx).get(0).get("item_quantity");
+		String ord_quantity = service.itemQuantity_Total(item_idx, ord_idx).get(0).get("ord_quantity");
+		int quantityReturn = service.quantityReturn(itemQuantity_Total, ord_quantity, ord_idx);
+		// cancel Y 로 변경(업데이트)
+		int cancelStatusY = service.cancelStatusY(item_idx, ord_idx);
+		
+		System.out.println(dealCancel);
+		System.out.println(coinReturn);
+		System.out.println(couponReturn);
+		System.out.println(quantityReturn);
+		System.out.println(cancelStatusY);
 		
 		// 실패 시
 		if(dealCancel == 0) {
@@ -325,26 +345,40 @@ public class AdminController2 {
 		
 		model.addAttribute("pageNum", pageNum);
 		
-		return "/userCenter/admin_deal_list";
+		return "redirect:/AdminDealList";
 	}
 	
 	// ------ 거래 취소 로직 (관리자)
-	@RequestMapping(value = "/AdminDealCancel", method = RequestMethod.POST)
-	public String dealCancelPost(@RequestParam String item_idx, @RequestParam String safe_coin,
-								@RequestParam String safe_status, @RequestParam(defaultValue = "1")int pageNum, Model model) {
-		// 취소 작업 요청
-		int dealCancel = service.dealCancel(item_idx, safe_status);
-		
-		// 실패 시
-		if(dealCancel == 0) {
-			model.addAttribute("msg", "거래취소 실패!");
-			return "fail_back";
-		}
-		
-		model.addAttribute("pageNum", pageNum);
-		
-		return "/AdminDealCancelList";
-	}
+//	@RequestMapping(value = "/AdminDealCancel", method = RequestMethod.POST)
+//	public String dealCancelPost(
+//								@RequestParam String item_idx, @RequestParam String safe_coin,
+//								@RequestParam String safe_status, @RequestParam(defaultValue = "1")int pageNum, Model model) {
+//		//취소 작업 요청
+//		// safe_status N -> C 로변경
+//		int dealCancel = service.dealCancel(item_idx, safe_status);
+//		// 쿠폰 반환(업데이트) -> Y -> N
+//		int couponReturn = service.couponReturn(item_idx);
+//		
+//		// item 수량 변경(업데이트)
+//		int quantityReturn = service.quantityReturn(item_idx);
+//		// cancel Y 로 변경(업데이트)
+//		int cancelStatusY = service.cancelStatusY(item_idx);
+//		// 코인 바꾸기 (인서트)
+//		int coinReturn = service.coinReturn(safe_coin);
+//		
+//		
+//		
+//		
+//		// 실패 시
+//		if(dealCancel == 0) {
+//			model.addAttribute("msg", "거래취소 실패!");
+//			return "fail_back";
+//		}
+//		
+//		model.addAttribute("pageNum", pageNum);
+//		
+//		return "/AdminDealCancelList";
+//	}
 		
 	//========================================================================================
 	

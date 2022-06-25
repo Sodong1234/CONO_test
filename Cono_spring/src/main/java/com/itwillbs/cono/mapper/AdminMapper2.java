@@ -64,7 +64,17 @@ public interface AdminMapper2 {
 	public List<HashMap<String, Object>> selectAllDealCancel(int pageNum, int listLimit);
 
 	// 거래취소
-	public int updateDealCancel(@Param("item_idx")String item_idx, @Param("ord_status") String ord_status);
+	public int updateDealCancel(@Param("item_idx")String item_idx, @Param("ord_idx") String ord_idx);
+	// 쿠폰 반환
+	public int updateCouponReturn(String ord_idx);
+	// 코인 반환
+	public int insertCoinReturn(@Param("coin_total") String coin_total,@Param("safe_coin") String safe_coin,@Param("member_id") String member_id);
+	// 총 수량
+	public List<HashMap<String, String>> selectItemQuantityTotal(@Param("item_idx") String item_idx,@Param("ord_idx") String ord_idx);
+	// 반환 
+	public int updateItemQuantityReturn(@Param("itemQuantity_Total")String itemQuantity_Total,@Param("ord_idx") String ord_idx);
+	//
+	public int updateCancelStatus(@Param("item_idx") String item_idx, @Param("ord_idx") String ord_idx);
 
 	
 

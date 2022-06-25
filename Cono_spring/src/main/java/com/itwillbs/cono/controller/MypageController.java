@@ -431,7 +431,7 @@ public class MypageController {
 		return "mypage/list_wish";
 	}
 
-	// 취소 신청 폼
+	// 취소 신청 폼 (가준)
 	@RequestMapping(value = "cancel_form", method = RequestMethod.POST)
 	public String cancelReq(HttpSession session, Model model, String item_idx) {
 		String sId = (String) session.getAttribute("sId");

@@ -23,11 +23,11 @@
 </style>
 <script type="text/javascript">
 
-	function dealCancel(item_idx, coin_use, safe_status, page){
+	function dealCancel(item_idx, safe_coin, safe_status, pageNum, member_id, ord_idx){
 		var dealConfirm = confirm("거래 취소 하시겠습니까?" + '\n' + "거래를 되돌릴 수 없습니다.");
-		
+		alert("item_idx:" + item_idx+ "\n--" + "safe_coin:" + safe_coin + "safe_status:" + safe_status+"member_id:"+ member_id + "ord_idx:" + ord_idx);
 		if(dealConfirm){
-			location.href="./AdminDealCancel?item_idx=" + item_idx + "&safe_coin=" + safe_coin + "&safe_coin=" + safe_coin + "&ord_status=" + ord_status + "&page=" + page;
+			location.href="./AdminDealCancel?item_idx=" + item_idx + "&safe_coin=" + safe_coin + "&safe_status=" + safe_status + "&pageNum=" + pageNum + "&member_id=" + member_id + "&ord_idx=" + ord_idx;
 		}
 	}
 
@@ -59,6 +59,7 @@
 		<tr>
 			<th width="200">상품명</th>
 			<th width="100">상품번호</th>
+			<th width="100">주문번호</th>
 			<th width="100">구매자</th>
 			<th width="150">거래 코인</th>
 			<th width="150">거래 날짜</th>
@@ -71,11 +72,12 @@
 				<tr>
 					<td><a href="itemDetail?item_idx=${product.item_idx }" class="title">${product.item_title }</a></td>
 					<td>${product.item_idx }</td>
+					<td>${product.ord_idx }</td>
 					<td>${product.member_id }</td>
 					<td>${product.safe_coin }</td>
 					<td>${product.ord_date }</td>
 					<td>${product.ord_status }</td>
-					<td><input type="button" id="search_btn" value="거래취소" onclick="dealCancel('${product.item_idx }', '${product.safe_coin }', '${product.ord_status }','${pageInfo.pageNum }')"></td>
+					<td><input type="button" id="search_btn" value="거래취소" onclick="dealCancel('${product.item_idx }', '${product.safe_coin }', '${product.ord_status }','${pageInfo.pageNum }','${product.member_id }','${product.ord_idx }')"></td>
 				</tr>
 			</c:forEach>
 		</c:if>

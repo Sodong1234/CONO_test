@@ -3,6 +3,7 @@ package com.itwillbs.cono.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -117,9 +118,34 @@ public class AdminService2 {
 	}
 
 	//  거래취소 (관리자)
-	public int dealCancel(String item_idx, String ord_status) {
+	public int dealCancel(String item_idx, String ord_idx) {
 		
-		return mapper.updateDealCancel(item_idx, ord_status);
+		return mapper.updateDealCancel(item_idx, ord_idx);
+	}
+
+	public int couponReturn(String ord_idx) {
+		return mapper.updateCouponReturn(ord_idx);
+	}
+
+	public int coinReturn(String coin_total, String safe_coin, String member_id) {
+		if(coin_total == null) {
+			coin_total = "0";
+		}
+		coin_total = (Integer.parseInt(coin_total) - Integer.parseInt(safe_coin) + "");
+		return mapper.insertCoinReturn( coin_total, safe_coin, member_id);
+	}
+
+	public List<HashMap<String, String>> itemQuantity_Total(String item_idx, String ord_idx) {
+		return mapper.selectItemQuantityTotal(item_idx, ord_idx);
+	}
+
+	public int quantityReturn(String itemQuantity_Total, String ord_quantity, String ord_idx) {
+		itemQuantity_Total = (Integer.parseInt(itemQuantity_Total) + Integer.parseInt(ord_quantity) + "");
+		return mapper.updateItemQuantityReturn(itemQuantity_Total, ord_idx);
+	}
+
+	public int cancelStatusY(String item_idx, String ord_idx) {
+		return mapper.updateCancelStatus(item_idx, ord_idx);
 	}
 
 
