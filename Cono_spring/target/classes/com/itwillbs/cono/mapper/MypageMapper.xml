@@ -71,14 +71,14 @@
 		#{pageInfo.listLimit}
 	</select>
 	
-<!-- 	현재 보유 코인 -->
-	<select id="coinTotal" resultType="string">
-		SELECT c.coin_total
-		FROM coin c
-		WHERE member_id = #{sId}
-		ORDER BY coin_idx DESC
-		LIMIT 1
-	</select>
+<!--    현재 보유 코인 -->
+   <select id="coinTotal" resultType="string">
+      SELECT c.coin_total
+      FROM coin c
+      WHERE member_id = #{sId}
+      ORDER BY coin_idx*1 DESC
+      LIMIT 1
+   </select>
 	
 <!-- 	결제 데이터 삽입하기 -->
 	<insert id="insertPayment">
