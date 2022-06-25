@@ -25,7 +25,6 @@ body {
 	background: -o-linear-gradient(bottom left, #CFFFE5 0%, #6EB4B5 100%);
 	background: linear-gradient(to top right, #CFFFE5 0%, #6EB4B5 100%);
 }
-
 </style>
 <body>
 	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>

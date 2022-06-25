@@ -3831,7 +3831,7 @@ input[type=submit].btn-block {
     position: relative;
     display: -ms-inline-flexbox;
     display: inline-flex;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .btn-group-vertical>.btn,
@@ -3933,14 +3933,14 @@ input[type=submit].btn-block {
 
 .btn-group-vertical>.btn-group:not(:last-child)>.btn,
 .btn-group-vertical>.btn:not(:last-child):not(.dropdown-toggle) {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .btn-group-vertical>.btn-group:not(:first-child)>.btn,
 .btn-group-vertical>.btn:not(:first-child) {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .btn-group-toggle>.btn,

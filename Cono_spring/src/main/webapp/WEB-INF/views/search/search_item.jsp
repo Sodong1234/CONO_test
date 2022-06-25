@@ -200,10 +200,19 @@ p {
 	display: none;
 }
 
+.search_box {
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	width: 975px;
+	height: 100px;
+	margin-left: 30%;
+}
+
 .search_option_item {
     position: relative;
     padding: 0 17px;
-    
+/*     margin-left: 33%; */
+margin: auto;
 }
 
 .search_cate_title {
@@ -215,7 +224,7 @@ p {
 }
 
 .search_cate_contents {
-    float: left;
+	text-align: center;
 }
 
 .search_cate_list {
@@ -313,38 +322,38 @@ p {
 	
 	<jsp:include page="../search/recentView.jsp" />
 	<hr>
-	
-	<div class="search_option_item">
-		<div class="search_cate_title">정렬</div>
-		<div class="search_cate_contents">
-			<ul class="search_cate_list">
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter1" id="filter1" value="0" checked="checked" onclick="filter1(this.value)"> <span class="item_text">최신순</span>
-				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter1" id="filter1" value="1" onclick="filter1(this.value)"> <span class="item_text">높은 가격 순</span>
-				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter1" id="filter1" value="2" onclick="filter1(this.value)"> <span class="item_text">낮은 가격 순</span>
-				</label></li>
-			</ul>
+	<div class="search_box">
+		<div class="search_option_item">
+			<div class="search_cate_title">정렬</div>
+			<div class="search_cate_contents">
+				<ul class="search_cate_list">
+					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter1" id="filter1" value="0" checked="checked" onclick="filter1(this.value)"> <span class="item_text">최신순</span>
+					</label></li>
+					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter1" id="filter1" value="1" onclick="filter1(this.value)"> <span class="item_text">높은 가격 순</span>
+					</label></li>
+					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter1" id="filter1" value="2" onclick="filter1(this.value)"> <span class="item_text">낮은 가격 순</span>
+					</label></li>
+				</ul>
+			</div>
+		</div>
+		<div class="search_option_item">
+			<div class="search_cate_title">가격대</div>
+			<div class="search_cate_contents">
+				<ul class="search_cate_list">
+					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="0" onclick="filter2(this.value)" checked="checked"> <span class="item_text">전체</span>
+					</label></li>
+					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="1" onclick="filter2(this.value)"> <span class="item_text">3만원 이하</span>
+					</label></li>
+					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="2" onclick="filter2(this.value)"> <span class="item_text">3만원~5만원</span>
+					</label></li>
+					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="3" onclick="filter2(this.value)"> <span class="item_text">5만원~10만원</span>
+					</label></li>
+					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="4" onclick="filter2(this.value)"> <span class="item_text">10만원 이상</span>
+					</label></li>
+				</ul>
+			</div>
 		</div>
 	</div>
-	<div class="search_option_item">
-		<div class="search_cate_title">가격대</div>
-		<div class="search_cate_contents">
-			<ul class="search_cate_list">
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="0" onclick="filter2(this.value)" checked="checked"> <span class="item_text">전체</span>
-				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="1" onclick="filter2(this.value)" > <span class="item_text">3만원 이하</span>
-				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="2" onclick="filter2(this.value)" > <span class="item_text">3만원~5만원</span>
-				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="3" onclick="filter2(this.value)" > <span class="item_text">5만원~10만원</span>
-				</label></li>
-				<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="4" onclick="filter2(this.value)" > <span class="item_text">10만원 이상</span>
-				</label></li>
-			</ul>
-		</div>
-	</div>
-	
 	<h1 id="search_data">'${searchText }' 검색 내용입니다.</h1>
 	 <input type = "hidden" name ="pageNum" value="${pageNum }">
 	 <c:if test="${not empty cardList && pageInfo.listCount > 0}">	
