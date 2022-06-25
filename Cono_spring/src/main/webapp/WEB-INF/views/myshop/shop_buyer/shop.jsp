@@ -27,6 +27,7 @@ String[] myShopCountInfo = (String[]) request.getAttribute("myShopCountInfo");
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://www.w3schools.com/lib/w3-colors-flat.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 

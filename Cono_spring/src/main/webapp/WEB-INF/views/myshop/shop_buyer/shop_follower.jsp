@@ -7,6 +7,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#follower_list tr {
+	background: #e1f3f0;
+ 	height: 20px; 
+ 	vertical-align: middle;
+}
+#follower_list tr td {
+	padding: 15px;
+	height: 10px;
+}
+#follower_list tr {
+	vertical-align: middle;
+}
+
+
+</style>
 </head>
 <body>
 	<div id="item_follower_list">

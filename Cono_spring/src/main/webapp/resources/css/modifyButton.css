@@ -258,51 +258,104 @@ button.msg_out {
 
 /* 팔로우 버튼 */
 
-.follwBtn {
+.followBtn {
     border: none;
     background: none;
     margin-top: -21px;
-    left: 73px;
 }
 
-.follwBtn {
+.followBtn {
   display: block;
   position: relative;
     float: right;
   width: 100px;
   padding: 0;
   margin: 8px 18px 8px 0;
-  font-weight: 400;
+  font-weight: 800;
   text-align: center;
   line-height: 45px;
   color: #FFF;
-  border-radius: 50px;
+  border-radius: 3px;
   transition: all 0.2s ;
 }
 
 
-.follwBtn:before {
+.followBtn:before {
   background: #F6C6EA;
   color:white;
+  font-weight:bold;
   content: '팔로우';
   display: block;
   position: absolute;
   top: 0;
   left: 0;
-  width: 80px;
-  height: 40px;
-  border-radius: 50px;
+     width: 70px;
+    height: 42px;
+  border-radius: 3px;
   transition: all 0.2s ;
-}
+} 
 
 
-.follwBtn {
+.followBtn {
   background: #F6C6EA;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
 }
 
 
-.follwBtn:hover:before {
+.followBtn:hover:before {
+  margin-top: -2px;
+  margin-left: 0px;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
+
+.followCancelBtn {
+    border: none;
+    background: none;
+    margin-top: -21px;
+}
+
+.followCancelBtn {
+  display: block;
+  position: relative;
+    float: right;
+  width: 100px;
+  padding: 0;
+  margin: 8px 18px 8px 0;
+  font-weight: 800;
+  text-align: center;
+  line-height: 45px;
+  color: #FFF;
+  border-radius: 3px;
+  transition: all 0.2s ;
+}
+
+
+.followCancelBtn:before {
+  background: #F6C6EA;
+  color:white;
+  font-weight:bold;
+  content: '팔로우취소';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+      width: 70px;
+    height: 42px;
+  border-radius: 3px;
+  transition: all 0.2s ;
+}
+
+
+.followCancelBtn {
+  background: #F6C6EA;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+
+
+.followCancelBtn:hover:before {
   margin-top: -2px;
   margin-left: 0px;
   transform: scale(1.1,1.1);
