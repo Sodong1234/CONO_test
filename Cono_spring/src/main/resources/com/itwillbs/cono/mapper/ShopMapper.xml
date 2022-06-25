@@ -320,6 +320,12 @@
 	
 <!-- 	================================================ Center =================================================== -->
 <!-- 	================================================ List =================================================== -->
+
+	<select id="selectShop_idx" resultType="java.lang.String">
+		SELECT shop_idx
+		  FROM shop
+		 WHERE member_id=#{sId}
+	</select>
 	<!-- 	팔로잉 -->
 	<select id="selectFollowingList" resultType="java.util.HashMap">
 		SELECT s.shop_idx, s.shop_img, s.shop_name, s.shop_content
@@ -395,6 +401,7 @@
 		SELECT COUNT(*)
 		  FROM follow f, item i
 		 WHERE f.shop_idx = i.shop_idx
+		   AND i.item_idx=#{item_idx}
 	</select>
 	
 	<!-- 상점 상품 조회 -->

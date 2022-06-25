@@ -118,6 +118,10 @@ public interface ShopMapper {
 	
 	// ===========================================================================
 	
+	FollowDTO selectFollow(@Param("sId")String sId);
+
+	String selectShop_idx(String sId);
+	
 	// 팔로잉
 	public List<HashMap<String, String>> selectFollowingList(String sId);
 	

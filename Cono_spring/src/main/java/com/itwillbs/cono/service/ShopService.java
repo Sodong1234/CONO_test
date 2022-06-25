@@ -400,6 +400,14 @@ public class ShopService {
 		return mapper.selectItemListCount(member_id);
 	}
 	
+	public FollowDTO followList(String sId) {
+		return mapper.selectFollow(sId);
+	}
+
+	public String getShop_idx(String sId) {
+		return mapper.selectShop_idx(sId);
+	}
+
 	// 팔로잉 리스트
 	public List<HashMap<String, String>> getfollowingList(String sId) {
 		return mapper.selectFollowingList(sId);

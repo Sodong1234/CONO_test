@@ -493,8 +493,9 @@ public class ShopController {
 	@RequestMapping(value = "follow", method = RequestMethod.GET)
 	public String follower(HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
+		String shop_idx = service.getShop_idx(sId);
 		// 팔로잉 팔로워 정보 
-		List<HashMap<String, String>> followerList = service.getfollowerList(sId);
+		List<HashMap<String, String>> followerList = service.getfollowerList(shop_idx);
 		// 팔로잉 팔로워 수
 		int followingCount = service.getFollowingCount(sId);
 		int followerCount = service.getFollowerCount(sId);
@@ -517,6 +518,31 @@ public class ShopController {
 		model.addAttribute("followingCount", followingCount);
 
 		return "myshop/list_following";
+	}
+	
+	@RequestMapping(value = "deleteFollowerShop", method = RequestMethod.GET)
+	public String deleteFollower(String follow_shop_idx, HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		
+		// 상점 주인 shop_idx 가져오기
+		String shop_idx = service.getShop_idx(sId);
+		
+		// 팔로우한 사람의 member_id 찾기
+		String member_id = service.getMemberId(follow_shop_idx);
+		
+		int deleteCount = service.deleteFollowing(member_id, shop_idx);
+
+		return "redirect:/follow";
+	}
+	
+	@RequestMapping(value = "deleteFollowingShop", method = RequestMethod.GET)
+	public String deleteFollowing(String shop_idx, HttpSession session, Model model) {
+
+		String member_id = (String)session.getAttribute("sId");
+		
+		int deleteCount = service.deleteFollowing(member_id, shop_idx);
+
+		return "redirect:/following";
 	}
 	
 	// --------------------------- 팔로우 추가 하기 -- 김도은 ---------------------------
