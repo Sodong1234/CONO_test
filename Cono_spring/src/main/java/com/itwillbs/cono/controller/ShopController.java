@@ -509,26 +509,54 @@ public class ShopController {
 	}
 	
 	// --------------------------- 팔로우 추가 하기 -- 김도은 ---------------------------
+	
+//	@RequestMapping(value = "Myshop.shop", method = RequestMethod.GET)
+//	public String myshopGet (String item_idx, Model model, String shop_idx) {
+//
+//		// 상점 정보 조회
+//		HashMap<String, String> shopInfo = service.getShop(item_idx);
+//		
+//		String[] shopCountInfo = new String[3];
+//		
+//		// 상점 판매 횟수 조회
+//		shopCountInfo[0] = service.getShopSellCntBuyer(item_idx);
+//		// 상점 상품 개수 조회
+//		shopCountInfo[1] = service.getShopItemCntBuyer(item_idx);
+//		
+//		
+//		// 팔로워 수 조회
+//		String followerCnt = service.getFollowerCnt(item_idx);
+//		
+//		model.addAttribute("shopInfo", shopInfo);
+//		model.addAttribute("shopCountInfo", shopCountInfo);
+//		model.addAttribute("followerCnt", followerCnt);
+//		model.addAttribute("item_idx", item_idx);
+//		
+//		return "redirect:/Myshop.shop?shop_idx=" + shop_idx;
+//	}
+	
+	
+	
 	@RequestMapping(value = "plusFollow", method = RequestMethod.GET)
-	public String plusFollow(HttpSession session, Model model, String shop_idx) {
+	public String plusFollow(HttpSession session, Model model, String shop_idx,String item_idx) {
 		
 		String sId = (String)session.getAttribute("sId");
 		
 		int plusCount = service.plusFollow(sId, shop_idx);
 		
-		return "redirect:/Myshop.shop?shop_idx=" + shop_idx;
+		return "redirect:/Myshop.shop?shop_idx=" + shop_idx+"&item_idx="+item_idx;
 	}
 	// -------------------------------------------------------------------------
 	// 언팔
 	@RequestMapping(value = "deleteFollowing", method = RequestMethod.GET)
-	public String deleteFollowing (HttpSession session, Model model, String shop_idx) {
+	public String deleteFollowing (HttpSession session, Model model, String shop_idx,String item_idx) {
 		String sId = (String)session.getAttribute("sId");
 		
 		int deleteCount = service.deleteFollowing(sId, shop_idx);
 		
 //		return "myshop/list_following";
 		
-		return "redirect:/Myshop.shop?shop_idx=" + shop_idx;
+		return "redirect:/Myshop.shop?shop_idx=" + shop_idx+"&item_idx="+item_idx;
 	}
  
 	//==================================================================================================================================================================

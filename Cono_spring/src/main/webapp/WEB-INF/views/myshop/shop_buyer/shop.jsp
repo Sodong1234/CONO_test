@@ -7,6 +7,9 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%
+
+String sId = (String)session.getAttribute("sId");
+
 if (session.getAttribute("sId") == null) {
 	response.sendRedirect("MemberLogin.func");
 }
@@ -191,6 +194,8 @@ form {
 </style>
 </head>
 <body>
+
+<%-- <input type ="hidden" name ="shop_idx" value="${shopInfo.get('shop_idx') }"> --%>
 	<div>
 		<!-- 상단 부분 -->
 		<jsp:include page="../../header_footer/header.jsp" />
@@ -198,7 +203,9 @@ form {
 
 	<div class="cono">
 
-
+아이디!!!! ${sId }
+ 인덱스 !!!${shopInfo.get('shop_idx') }
+인덱스 !!!${shopInfo.get('item_idx') }
 
 		<h2 style="font-family: Cafe24Ohsquare;">
 			${shopInfo.get('shop_name') }의 상점 [${shopInfo.get('member_date') }]</h2>
@@ -264,11 +271,14 @@ form {
 			<!-- 팔로우 버튼 연결하기  -->
 			<c:choose>
 	<c:when test="${follow eq null }">
-			<input type ="button" value ="follow 하기" onclick="location.href='plusFollow?shop_idx=${shopInfo.get('shop_idx') }'">
+<%-- 			<input type ="button" value ="follow 하기" onclick="location.href='plusFollow?shop_idx=${shopInfo.shop_idx }'"> --%>
+			<button onclick="location.href='plusFollow?shop_idx=${shopInfo.get('shop_idx') }'"> 팔로우</button>
 			</c:when>
 			
 			<c:when test="${follow ne null }">
-		<input type ="button" value ="follow 하기" onclick="location.href='deleteFollowing?shop_idx=${shopInfo.get('shop_idx') }'">
+<%-- 		<input type ="button" value ="follow 취소하기" onclick="location.href='deleteFollowing?shop_idx=${shopInfo.shop_idx }'"> --%>
+			<button onclick="location.href='deleteFollowing?shop_idx=${shopInfo.get('shop_idx') }'"> 팔로우취소</button>
+			
 			</c:when>
 </c:choose>
 			

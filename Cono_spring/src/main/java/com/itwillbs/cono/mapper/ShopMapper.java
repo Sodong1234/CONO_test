@@ -130,10 +130,10 @@ public interface ShopMapper {
 	public int selectFollowerCount(String sId);
 	
 	//팔로우 추가
-	int insertFollow(String sId, String shop_idx);
+	int insertFollow(@Param("sId")String sId, @Param("shop_idx")String shop_idx);
 	
 	// 팔로잉 삭제
-	public int deleteFollowing(String sId, String shop_idx);
+	public int deleteFollowing(@Param("sId")String sId, @Param("shop_idx")String shop_idx);
 	
 	// 후기 이미지 개수 조회
 	int selectReviewImgListCount(String member_id);
