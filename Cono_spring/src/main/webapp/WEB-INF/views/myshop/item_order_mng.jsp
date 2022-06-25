@@ -115,21 +115,7 @@ hr.hr-13 {
   font-family: 'IBMPlexSansKR-Regular';
 }
 </style>
-<script type="text/javascript">	
-	function openTab(evt, tabName) {
-	      var i, tabcontent, tablinks;
-	      tabcontent = document.getElementsByClassName("tabcontent");
-	      for (i = 0; i < tabcontent.length; i++) {
-	        tabcontent[i].style.display = "none";
-	      }
-	      tablinks = document.getElementsByClassName("tablinks");
-	      for (i = 0; i < tablinks.length; i++) {
-	        tablinks[i].className = tablinks[i].className.replace(" active", "");
-	      }
-	      document.getElementById(tabName).style.display = "block";
-	      evt.currentTarget.className += " active";
-	}
-</script>
+
 </head>
 <body>
 	<!-- 상단 부분 -->
@@ -155,8 +141,10 @@ hr.hr-13 {
 	
 	<div class="allTab">
 		<div class="tab">
-			<button class="tablinks active" onclick="openTab(event, 'tab1')">구매진행</button>
-			<button class="tablinks" onclick="openTab(event, 'tab2')">구매완료</button>
+<!-- 			<button class="tablinks active" onclick="openTab(event, 'tab1')">구매진행</button> -->
+<!-- 			<button class="tablinks" onclick="openTab(event, 'tab2')">구매완료</button> -->
+			<button class="tablinks active" onclick="location.href='ItemOrdMng.shop'">구매진행</button>
+			<button class="tablinks" onclick="location.href='ItemOrdFinishMng.shop'">구매완료</button>
 		</div>
 		<!-- 탭 1 -->
 		<div class="tabBox">
@@ -180,7 +168,7 @@ hr.hr-13 {
 					      <td>${ord.get('ord_quantity') }</td>
 					      <td>${ord.get('member_id') }</td>
 <%-- 					      <td>${ord.get('item_price') }</td> --%>
- <td><fmt:formatNumber value="${ord.get('item_price') }" pattern="\#,###.##"/></td>
+ 						  <td><fmt:formatNumber value="${ord.get('item_price') }" pattern="\#,###.##"/></td>
 					      <td>${ord.get('ord_reqContent') }</td>
 					    </tr>
 					    </c:forEach>
@@ -219,65 +207,7 @@ hr.hr-13 {
 				</div>
 			</div>	<!-- 탭 1 -->
 			
-			<!-- 탭 2 -->
-			<div id="tab2" class="tabcontent" style="display: none;">
-				<h3 style="font-family: 'IBMPlexSansKR-Regular';">구매 완료 ▼</h3>
-					<table class="table table-hover" style="border:1px 0;border-color:bg-primary; width: 1080px;">
-						<tr>
-							<th scope="col">주문일시</th>
-							<th scope="col">주문상품</th>
-							<!--  <th scope="col">주문수량</th> -->
-							<th scope="col">주문한 사람</th>
-							<th scope="col">가격</th>
-							<th scope="col">주문 요청사항</th>
-						</tr>
-						<tbody>
-							<c:forEach items="${finishOrdList }" var="ord">
-								<tr class="table-primary">
-									<!--  <th scope="row">Primary</th> -->
-									<td>${ord.get('ord_date') }</td>
-									<td>${ord.get('item_title') }</td>
-									<%--   <td>${ord.get('ord_quantity') }</td> --%>
-									<td>${ord.get('member_id') }</td>
-<%-- 									<td>${ord.get('item_price') }</td> --%>
-				<td><fmt:formatNumber value="${ord.get('item_price') }" pattern="#,###.##"/></td>
-									<td>${ord.get('ord_reqContent') }</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-			    
-			<!-- 구매 완료 페이징 처리 -->
-<!-- 				<div class ="paging"> -->
-<%-- 					<c:choose> --%>
-<%-- 						<c:when test="${finPageInfo.pageNum > 1 }"> --%>
-<%-- 							<input type="button" value=" < " onclick="location.href='ItemOrdMng.shop?pageNum=${finPageInfo.pageNum - 1 }'"> --%>
-<%-- 						</c:when> --%>
-<%-- 						<c:otherwise> --%>
-<%-- 							<input type="button" value=" < "> --%>
-<%-- 						</c:otherwise> --%>
-<%-- 					</c:choose> --%>
-			
-<%-- 					<c:forEach var="i" begin="${finPageInfo.startPage }" end="${finPageInfo.endPage }"> --%>
-<%-- 						<c:choose> --%>
-<%-- 						<c:when test="${finPageInfo.pageNum eq i }"> --%>
-<%-- 							${i } --%>
-<%-- 						</c:when> --%>
-<%-- 						<c:otherwise> --%>
-<%-- 							<a href="ItemOrdMng.shop?pageNum=${i }">${i }</a> --%>
-<%-- 						</c:otherwise> --%>
-<%-- 					</c:choose> --%>
-<%-- 					</c:forEach> --%>
-<%-- 					<c:choose> --%>
-<%-- 						<c:when test="${finPageInfo.pageNum < finPageInfo.maxPage }"> --%>
-<%-- 							<input type="button" value=" > " onclick="location.href='ItemOrdMng.shop?pageNum=${finPageInfo.pageNum + 1 }'"> --%>
-<%-- 						</c:when> --%>
-<%-- 						<c:otherwise> --%>
-<!-- 							<input type="button" value=" > "> -->
-<%-- 						</c:otherwise> --%>
-<%-- 					</c:choose> --%>
-<!-- 				</div> -->
-			</div>	<!-- 탭 2 -->
+
 		</div>	<!-- 탭1,2 -->
 	</div> <!-- allTab -->
 	</div>

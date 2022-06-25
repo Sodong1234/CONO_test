@@ -297,7 +297,7 @@
 		   AND ord.item_idx = i.item_idx
 		   AND s.member_id = #{member_id}
 		   AND ord.ord_status = 'Y'
-		LIMIT #{finPageInfo.startRow}, #{finPageInfo.listLimit}
+		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 	</select>
 	
 	<!-- 상품 조회 (페이징 처리를 위한 ListCount 조회) -->
