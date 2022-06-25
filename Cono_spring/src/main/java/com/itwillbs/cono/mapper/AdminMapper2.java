@@ -73,7 +73,7 @@ public interface AdminMapper2 {
 	public List<HashMap<String, String>> selectItemQuantityTotal(@Param("item_idx") String item_idx,@Param("ord_idx") String ord_idx);
 	// 반환 
 	public int updateItemQuantityReturn(@Param("itemQuantity_Total")String itemQuantity_Total,@Param("ord_idx") String ord_idx);
-	//
+	// 취소 수정
 	public int updateCancelStatus(@Param("item_idx") String item_idx, @Param("ord_idx") String ord_idx);
 
 	
