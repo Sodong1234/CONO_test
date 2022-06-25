@@ -101,10 +101,7 @@ if(request.getParameter("searchText") == null) {
 				<!-- ==============================양윤석============================= -->
 				<li class="test"><a href="#" onclick="confirmLogout()"><p>로그아웃</p></a></li>
 				<!-- ==============================양윤석============================= -->
-				<li class="test"><a href="#"><p>알림</p></a></li>
 				<li class="test"><a href="message_list"><p>메세지</p></a></li>
-				<li class="test"><a href="ProductMyshop.shop"><p>판매자 전용
-							마이페이지</p></a></li>
 				<c:if test="${sId eq 'admin'}">
 					<li class="test"><a href="adminMain"><p>관리자 전용 마이페이지</p></a></li>
 				</c:if>
