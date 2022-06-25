@@ -259,13 +259,13 @@
 							
 							<br>
 							
-							<form action="Myshop.shop" method="post">
+<!-- 							<form action="Myshop.shop" method="post"> -->
 							
-								<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}">
+<%-- 								<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}"> --%>
 								 
-								<input type="submit" class = "btnShop" value=""> &nbsp;&nbsp;&nbsp;
+								<input type="button" class = "btnShop" value="" onclick="location.href='Myshop.shop?item_idx=${itemDetail.item_idx}'"> &nbsp;&nbsp;&nbsp;
 								<input type="button" class="btnMessage" value="" onclick="location.href='addMessageList?shop_idx=${itemDetail.shop_idx}&item_idx=${itemDetail.item_idx}'">
-								</form>
+<!-- 								</form> -->
 				
 						
 							

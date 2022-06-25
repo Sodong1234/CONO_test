@@ -270,15 +270,15 @@ form {
 			<div class="shopModify">
 			<!-- 팔로우 버튼 연결하기  -->
 			<c:choose>
-	<c:when test="${follow eq null }">
+			<c:when test="${follow eq null }">
 <%-- 			<input type ="button" value ="follow 하기" onclick="location.href='plusFollow?shop_idx=${shopInfo.shop_idx }'"> --%>
-			<button onclick="location.href='plusFollow?shop_idx=${shopInfo.get('shop_idx') }'"> 팔로우</button>
+				<button onclick="location.href='plusFollow?shop_idx=${shopInfo.get('shop_idx') }&item_idx=${item_idx }'"> 팔로우</button>
 			</c:when>
 			
 			<c:when test="${follow ne null }">
-<%-- 		<input type ="button" value ="follow 취소하기" onclick="location.href='deleteFollowing?shop_idx=${shopInfo.shop_idx }'"> --%>
-			<button onclick="location.href='deleteFollowing?shop_idx=${shopInfo.get('shop_idx') }'"> 팔로우취소</button>
-			
+<%-- 			<input type ="button" value ="follow 취소하기" onclick="location.href='deleteFollowing?shop_idx=${shopInfo.shop_idx }'"> --%>
+				<button onclick="location.href='deleteFollowing?shop_idx=${shopInfo.get('shop_idx') }&item_idx=${item_idx }'"> 팔로우취소</button>
+				
 			</c:when>
 </c:choose>
 			

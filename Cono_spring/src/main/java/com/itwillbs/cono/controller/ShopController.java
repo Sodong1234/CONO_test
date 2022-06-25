@@ -562,7 +562,7 @@ public class ShopController {
 	//==================================================================================================================================================================
 	
 	// 상점 이동
-	@RequestMapping(value = "Myshop.shop", method = RequestMethod.POST)
+	@RequestMapping(value = "Myshop.shop", method = RequestMethod.GET)
 	public String myshop (String item_idx, Model model) {
 
 		// 상점 정보 조회
