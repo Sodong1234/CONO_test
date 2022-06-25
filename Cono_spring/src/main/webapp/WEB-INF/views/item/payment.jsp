@@ -74,7 +74,7 @@ font-size: large;
 	<div class="paymentBody">
 		<div class="middle">
 			<div class="ordTitle">
-				<h2 class="title" style="font-family:'Cafe24Ohsquare';">주문/결제</h2>
+				<h2 class="title" style="font-family:'Cafe24Ohsquare';">주문 / 결제</h2>
 			</div>
 			<form action="PayItem" method="post">
 				<input type="hidden" name="ord_quantity" value="${param.ord_quantity }">
@@ -82,11 +82,11 @@ font-size: large;
 				<input type="hidden" name="item_idx" value="${itemDetail.item_idx }">
 				<div class="customer">
 					<div class="customer__root" style="margin-top: 30px;">
-						<h2 class="customer__h2" style="font-family:'IBMPlexSansKR-Regular';">구매자정보</h2>
+						<h2 class="customer__h2" style="font-family:'IBMPlexSansKR-Regular';">구매자 정보</h2>
 						<table class="customer__table">
 							<tbody>
 								<tr>
-									<td class="customer__col customer__col--1" >이름</td>
+									<td class="customer__col customer__col--1" >아이디</td>
 									<td class="customer__col customer__col--2">${buyerInfo.member_id }</td>
 								</tr>
 								<tr>
@@ -94,7 +94,7 @@ font-size: large;
 									<td class="customer__col customer__col--2">${buyerInfo.member_email }</td>
 								</tr>
 								<tr>
-									<td class="customer__col customer__col--1" >휴대전화번호</td>
+									<td class="customer__col customer__col--1" >휴대폰번호</td>
 									<td class="customer__col customer__col--2">${buyerInfo.member_phone }</td>
 								</tr>
 							</tbody>
@@ -103,7 +103,7 @@ font-size: large;
 				</div>
 				<div class="item" style="position: relative;">
 					<div class="item-info__retail" style="margin-top: 8px;">
-						<div class="retailGroupTitle">상품정보</div>
+						<div class="retailGroupTitle">상품 정보</div>
 						<div class="GroupBox">
 							<div class="whenDelivery">
 								<span class="whenDelivery-info"> 
@@ -171,7 +171,7 @@ font-size: large;
 				</div>
 				<br>
 				<div class="order-section orderBox mb10 multiple-coupon">
-					<h2 class="checkout__h2" style="font-family:'IBMPlexSansKR-Regular';'">결제정보</h2>
+					<h2 class="checkout__h2" style="font-family:'IBMPlexSansKR-Regular';'">결제 정보</h2>
 					<table class="pay-price">
 						<colgroup>
 							<col width="144">
@@ -187,7 +187,7 @@ font-size: large;
 								</tr>
 						
 							<tr class="payOrder-wrap">
-								<th class="wrap-title" scope="row">상품가격 <input
+								<th class="wrap-title" scope="row">상품 가격 <input
 									type="hidden" value="총상품가격받아오기">
 								</th>
 								<td>
@@ -229,7 +229,7 @@ font-size: large;
 							<tr>
 							</tr>
 							<tr>
-								<th class="wrap-title">총결제금액</th>
+								<th class="wrap-title">총 결제 금액</th>
 								<td>
 									<div class="payPrice">
 										<span id="totalPrice"><span id="totalPriceDisp" class="use-calculation-for-totalprice"><fmt:formatNumber value="${itemDetail.item_price * param.ord_quantity  }" pattern="#,###.##"/></span>원</span>

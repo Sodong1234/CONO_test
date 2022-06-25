@@ -34,7 +34,8 @@ String sell_status = request.getParameter("sell_status");
 // 		$("#item_mng_hr").css("opacity","");
 // 		$("#item_mng_hr").css("height", "10px");
 // 		$("#item_mng_hr").css("box-shadow", "0 10px 10px -10px #8c8c8c inset");
-// ㅇ료 받 네 ㅇ
+// ㅇ료 받 네 ㅇ  하 ...................
+
 		
 	});
 </script>
@@ -84,7 +85,19 @@ String sell_status = request.getParameter("sell_status");
 /* 	border: 0; */
 /* 	box-shadow: 0 10px 10px -10px #8c8c8c inset; */
   
-}
+/* } */
+
+/* hr{ */
+
+/* 	margin: 0; */
+/*     color: gray; */
+/*     background-color: gray; */
+/*     opacity: 0;	 */
+/* 	height: 10px; */
+/* 	border: 0; */
+/* 	box-shadow: 0 10px 10px -10px #bbb inset; */
+
+/* } */
 </style>
 </head>
 
@@ -100,10 +113,13 @@ String sell_status = request.getParameter("sell_status");
 	</div>
 	
 	<div id="item_mng_wrap">
-	<h2 style="font-family: Cafe24Ohsquare;">
-			상품 관리</h2>
+	<h2 style="font-family: Cafe24Ohsquare;">상품 관리</h2>
 
-		<hr id="item_mng_hr" style="height: 10px;">
+<!-- 		<hr id="item_mng_hr" style="height: 10px;"> -->
+
+		
+		<img src="${path}/resources/img/mcsg.png">
+
 		
 		
 			<div class="row mb-4 float-end" style="margin-top:5px;" id="search_row">

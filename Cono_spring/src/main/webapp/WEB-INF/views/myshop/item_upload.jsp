@@ -15,12 +15,10 @@ if(session.getAttribute("sId") == null) {
 <title>CONO::상품등록</title>
 
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
-<%-- <script defer src="${path}/resources/js/registForm.js"></script> --%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm_common.css">
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm_btn.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
 <script type="text/javascript">
 // ---------------------------------- 카테고리 작업 --------------------------------------------------

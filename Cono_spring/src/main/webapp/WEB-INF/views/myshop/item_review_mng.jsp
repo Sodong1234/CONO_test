@@ -59,7 +59,7 @@
  	vertical-align: middle;
 }
 #review_list tr td {
-	padding: 15px;
+	padding: 22px;
 	height: 10px;
 }
 #progress_div tr {
