@@ -21,7 +21,7 @@ $(function() {
 		
 		if($("#qna_type > option").eq(0).prop("selected")) {
 			
-			alert("신고 유형을 선택하세요.");
+			alert("문의 유형을 선택하세요.");
 			$("#qna_type > option").eq(0).focus();
 			return false;
 			

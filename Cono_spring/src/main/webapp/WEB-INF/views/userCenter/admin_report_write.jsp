@@ -100,7 +100,7 @@ a {
 }
 
 select {
-	width:100px;
+	width:130px;
 	height :30px;
 	font-size: 13px;
 	color:#999;

@@ -89,6 +89,24 @@ a {
 }
 
 </style>
+
+
+<script type="text/javascript">
+
+// function(){
+	
+// var str = document.getElementById("textarea").value;
+
+// str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+
+// document.getElementById("textarea").value = str;
+	
+// }
+
+
+
+
+</script>
 </head>
 <body>
 	<div>
@@ -110,10 +128,11 @@ a {
 		
 			<div class = "admin_id"><input type="text" id="textBox"  name="member_id"  value="${sId }"required="required" placeholder="관리자 이름을 입력해주세요." /></div>
 			<div class = "subject"><input type="text" id="textBox"  name="qna_subject" value="Re:${qnaList.qna_subject }"required="required" /></div>
-			<div class = "content"><textarea rows="30" cols="100"  id="qna_content" required="required">
+			<div class = "content"><textarea rows="30" cols="100"  id="qna_content" name="qna_content" required="required" >
 			
-						----- 원본 글 내용 ------
-						${qnaList.qna_content }
+						
+			----- 원본 글 내용 ------
+			${qnaList.qna_content }
 						</textarea></div>
 			<div class = "buttonArea">
 				<input type="submit" value="답글등록" id ="btn">&nbsp;&nbsp;

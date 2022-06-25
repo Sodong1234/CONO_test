@@ -126,6 +126,9 @@ a {
 	float: right;
 }
 </style>
+
+
+
 </head>
 <body>
 	<div>
@@ -141,7 +144,7 @@ a {
 
 				<div class="qna_type">${qnaList.qna_type }</div>
 				<div class="title">${qnaList.getQna_subject() }</div>
-				<div class="writer">${sId }</div>
+				<div class="writer">${qnaList.getMember_id() }</div>
 				<div class="date">${qnaList.getQna_date() }</div>
 			</div>
 			<div class="board_list_body">
@@ -150,8 +153,14 @@ a {
 			</div>
 			<div class="btnArea">
 				<input type="button" value="목록" id="btn" onclick="location.href='AdminQNAList'"> 
+				
+				<c:choose>
+       			<c:when test="${qnaList.member_id eq sId || sId eq 'admin'}">
 				<input type="button" value="수정" id="btn" onclick="location.href='AdminQNAModifyForm.admin?qna_idx=${qnaList.getQna_idx() }&pageNum=${param.pageNum }'">
 				<input type="button" value="삭제" id="btn" onclick="location.href='AdminQNADeletePro.admin?qna_idx=${qnaList.getQna_idx() }&pageNum=${param.pageNum }'">
+				</c:when>
+				</c:choose>
+				
 				<%if(sId.equals("admin")){ %>
 				<input type="button" value="답변" id="btn" onclick="location.href='AdminQNAReplyForm.admin?qna_idx=${qnaList.getQna_idx() }&pageNum=${param.pageNum }'">
 				<%} %>

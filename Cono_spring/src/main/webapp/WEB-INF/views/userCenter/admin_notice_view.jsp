@@ -132,7 +132,7 @@ a {
 			<div class="board_list_wrap">
 			<div class="board_list_head">
 					<div class="title">제목 : ${noticeList.getNotice_subject() }</div>
-					<div class="writer">${sId }</div>
+					<div class="writer">${noticeList.getAdmin_id() }</div>
 					
 					<div class="date">${noticeList.getNotice_date() }</div>
 					
