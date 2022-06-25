@@ -4,7 +4,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +24,7 @@ if (session.getAttribute("sId") == null) {
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/registForm_btn.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
 <script type="text/javascript">
+
 // ---------------------------------- 카테고리 작업 --------------------------------------------------
 	$(function() {
 		
@@ -37,6 +38,72 @@ if (session.getAttribute("sId") == null) {
 				뷰티_미용:["스킨케어","메이크업"],
 				반려:["강아지 간식","고양이 간식", "기타"]
 		}
+		
+		switch ("${itemDetail.category_big}") {
+		case "패션" : $('#big').val('패션').prop("selected",true); 
+						 	for(let i = 0; i < categoryList['패션'].length; i++){
+								$("#category_area > select").append("<option value=" + categoryList['패션'][i] + ">" + categoryList['패션'][i] + "</option>");
+						 	}
+		break;
+		case "디지털_가전" :  $('#big').val('디지털_가전').prop("selected",true);
+				 			for(let i = 0; i < categoryList['디지털_가전'].length; i++){
+								$("#category_area > select").append("<option value=" + categoryList['디지털_가전'][i] + ">" + categoryList['디지털_가전'][i] + "</option>");
+					 		}
+				 			break;
+		case "스포츠_레저" : $('#big').val('스포츠_레저').prop("selected",true);
+							for(let i = 0; i < categoryList['스포츠_레저'].length; i++){
+								$("#category_area > select").append("<option value=" + categoryList['스포츠_레저'][i] + ">" + categoryList['스포츠_레저'][i] + "</option>");
+						 	}
+							break;
+		case "가구_인테리어" : $('#big').val('가구_인테리어').prop("selected",true); 
+							for(let i = 0; i < categoryList['가구_인테리어'].length; i++){
+								$("#category_area > select").append("<option value=" + categoryList['가구_인테리어'][i] + ">" + categoryList['가구_인테리어'][i] + "</option>");
+						 	}
+							break;
+		case "생활_가공식품" : $('#big').val('생활_가공식품').prop("selected",true); 
+							for(let i = 0; i < categoryList['생활_가공식품'].length; i++){
+								$("#category_area > select").append("<option value=" + categoryList['생활_가공식품'][i] + ">" + categoryList['생활_가공식품'][i] + "</option>");
+						 	}
+							break;
+		case "도서_티켓" : $('#big').val('도서_티켓').prop("selected",true); 
+							for(let i = 0; i < categoryList['도서_티켓'].length; i++){
+								$("#category_area > select").append("<option value=" + categoryList['도서_티켓'][i] + ">" + categoryList['도서_티켓'][i] + "</option>");
+						 	}
+							break;
+		case "뷰티_미용" : $('#big').val('뷰티_미용').prop("selected",true); 
+							for(let i = 0; i < categoryList['뷰티_미용'].length; i++){
+								$("#category_area > select").append("<option value=" + categoryList['뷰티_미용'][i] + ">" + categoryList['뷰티_미용'][i] + "</option>");
+						 	}
+							break;
+		case "반려" : $('#big').val('반려').prop("selected",true); 
+							for(let i = 0; i < categoryList['반려'].length; i++){
+								$("#category_area > select").append("<option value=" + categoryList['반려'][i] + ">" + categoryList['반려'][i] + "</option>");
+						 	}
+							break;
+		}
+		
+		switch ("${itemDetail.category_small}") {
+		case "여성패션" :$('#small').val('여성패션').prop("selected",true); break;
+		case "남성패션" : $('#small').val('남성패션').prop("selected",true); break;
+		case "모바일" :$('#small').val('모바일').prop("selected",true); break;
+		case "가전제품" :$('#small').val('가전제품').prop("selected",true); break;
+		case "카메라" :$('#small').val('카메라').prop("selected",true); break;
+		case "캠핑" : $('#small').val('캠핑').prop("selected",true); break;
+		case "헬스" : $('#small').val('헬스').prop("selected",true); break;
+		case "가구" : $('#small').val('가구').prop("selected",true); break;
+		case "인테리어" : $('#small').val('인테리어').prop("selected",true); break;
+		case "생활용품" : $('#small').val('생활용품').prop("selected",true); break;
+		case "식품" : $('#small').val('식품').prop("selected",true); break;
+		case "도서" : $('#small').val('도서').prop("selected",true); break;
+		case "상품권" :$('#small').val('상품권').prop("selected",true); break;
+		case "티켓" : $('#small').val('티켓').prop("selected",true); break;
+		case "스킨케어" : $('#small').val('스킨케어').prop("selected",true); break;
+		case "메이크업" :$('#small').val('메이크업').prop("selected",true); break;
+		case "강아지" : $('#small').val('강아지').prop("selected",true); break;
+		case "고양이" : $('#small').val('고양이').prop("selected",true); break;
+		case "기타" : $('#small').val('기타').prop("selected",true); break;
+		}
+		
 		
 		$("#big").on("change", function() {
 			let big = $("#big").val();
@@ -99,7 +166,7 @@ function checkNumber(event) {
 }
 
 // ------------------------------------------ 이미지 미리보기 ----------------------------------------
-<c:forEach var="i" begin="1" end="6">
+	<c:forEach var="i" begin="1" end="6">
 	$(function() {
 		// 이미지 클릭 시 파일 선택 창 열림
 		$('#target_img${i}').click(function (e) {
@@ -118,24 +185,19 @@ function checkNumber(event) {
 			reader.readAsDataURL(value.files[0]);
 		}
 	}
-	
 	</c:forEach>
+	
 	<c:forEach var="i" begin="1" end="6">
 	// 이미지 초기화
 	$(function() {
 		$("#delFile${i}").click(function() {
-			document.getElementById('target_img${i}').src = "${path}/resources/default_img.png";
+			document.getElementById('target_img${i}').src = "${pageContext.request.contextPath}/resources/default_img.png";
 			$("#file${i}").val("");
 		});
 	});
 	</c:forEach>
-// ---------------------------------------------------------------------------------------------------
-	function submitBtn() {
-		document.getElementById('btn').click();
-	}
 	
-	
-// ------------------글자수 세기------------------------------
+	// ---------------------------------------글자수 세기-------------------------------------------------
 	$(function() {
 	$('#product_subject').keyup(function(){
 		  var content = $(this).val();
@@ -149,17 +211,45 @@ function checkNumber(event) {
 		
 	});
 	
-$(function() {
+	$(function() {
 	$('#product_content').keyup(function(){
 		  var content = $(this).val();
 		  $('#cnt2').html(content.length);
-		  if (content.length > 2000){
+		  if (content.length > 1000){
 		    alert("최대 2000자까지 입력 가능합니다.");
-		    $(this).val(content.substring(0, 2000));
-		    $('#product_content .count span').html(2000);
+		    $(this).val(content.substring(0, 1000));
+		    $('#product_content .count span').html(1000);
 		  }
 		});
 	});
+	
+// ---------------------------------------------------------------------------------------------------
+	function submitBtn() {
+		document.getElementById('btn').click();
+	}
+	
+	function check() {
+		if($("#big").val() == null || $("#big").val() == "" || $("#small").val() == null || $("#small").val() == "") {
+			alert("카테고리 선택 필수");
+			return false;
+		}
+		<c:forEach var="i" begin="1" end="6">
+			if(document.getElementById('target_img${i}').src != "${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/resources/default_img.png") {
+				
+// 				alert(imgStatus[${i}-1]);
+// 				imgStatus[${i}-1] = 'Y';
+				document.fr.imgStatus.value += "Y/";
+				
+			} else {
+				document.fr.imgStatus.value += "N/";
+			}
+			// 이미지 상태를 java로 넘기기 위해 하나의 String으로 합침
+// 			document.fr.imgStatus.value += imgStatus[${i}-1] + "/";
+		</c:forEach>
+			alert(document.fr.imgStatus.value);
+		
+	}
+
 	
 	
 </script>
@@ -175,6 +265,8 @@ $(function() {
 }	
 #upload_img_area img {
 	margin: 5px 40px;
+	width: 200px;
+	height: 200px;
 }
 input[type=button] {
    background-color: white;
@@ -212,7 +304,7 @@ hr.hr-13 {
 
 <body>
 	<div class="cono" style="width: 1200px; margin: auto; margin-left: 350px; margin-right: 350px;">
-		<form action="ItemModifyPro.shop" method="post" enctype="multipart/form-data" onsubmit="return check()">
+		<form name="fr" action="ItemModifyPro.shop" method="post" enctype="multipart/form-data" onsubmit="return check()">
 			<input type="hidden" name="item_idx" value="${itemDetail.get('item_idx')}"> 
 			<input type="hidden" name="imgStatus" value="">
 			<div class="registWrap">
@@ -238,14 +330,14 @@ hr.hr-13 {
 													<li>
 														<c:choose>
 															<c:when test="${imgList.get(i-1).getImg_name() ne null}">
-																<img id="target_img${i }" src="resources/upload/file/${imgList.get(i-1).getImg_name() }" style="width: 200px; height: 200px;">
+																<img id="target_img${i }" src="resources/upload/file/${imgList.get(i-1).getImg_name() }">
 																<input type="file" id="file${i }" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile${i }(this)" style="display: none;">
-																<div class="delete_img"><input type="button" id="delFile${i }" onclick="deleteImg${i}()" value="X">이미지삭제</div>
+																<div class="delete_img"><input type="button" id="delFile${i }" value="X">이미지삭제</div>
 															</c:when>
 															<c:when test="${imgList.get(i-1).getImg_name() eq null}">
 																<img id="target_img${i }" alt="상점 이미지" src="resources/default_img.png">
 																<input type="file" id="file${i }" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile${i }(this)" style="display: none;">
-																<div class="delete_img"><input type="button" id="delFile${i }" onclick="deleteImg${i}()" value="X">이미지삭제</div>
+																<div class="delete_img"><input type="button" id="delFile${i }" value="X">이미지삭제</div>
 															</c:when>
 														</c:choose>
 													</li>
@@ -254,14 +346,14 @@ hr.hr-13 {
 													<li>
 														<c:choose>
 															<c:when test="${imgList.get(i-1).getImg_name() ne null}">
-																<img id="target_img${i }" src="resources/upload/file/${imgList.get(i-1).getImg_name() }" style="width: 200px; height: 200px;">
+																<img id="target_img${i }" src="resources/upload/file/${imgList.get(i-1).getImg_name() }">
 																<input type="file" id="file${i }" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile${i }(this)" style="display: none;">
-																<div class="delete_img"><input type="button" id="delFile${i }" onclick="deleteImg${i}()" value="X">이미지삭제</div>
+																<div class="delete_img"><input type="button" id="delFile${i }" value="X">이미지삭제</div>
 															</c:when>
 															<c:when test="${imgList.get(i-1).getImg_name() eq null}">
 																<img id="target_img${i }" alt="상점 이미지" src="resources/default_img.png">
 																<input type="file" id="file${i }" accept=".gif, .jpg, .png" name="upload" onchange="readInputFile${i }(this)" style="display: none;">
-																<div class="delete_img"><input type="button" id="delFile${i }" onclick="deleteImg${i}()" value="X">이미지삭제</div>
+																<div class="delete_img"><input type="button" id="delFile${i }" value="X">이미지삭제</div>
 															</c:when>
 														</c:choose>
 													</li>
@@ -293,6 +385,7 @@ hr.hr-13 {
 									<div class="category_sub">
 										카테고리
 									</div>
+
 									<div class="categoryStep">
 										<select name="category_big" id="big" size="8">
 											<option value="패션">패션</option>
@@ -374,7 +467,7 @@ hr.hr-13 {
 											name="item_content" style="resize: "none"; maxlength="2000">${itemDetail.get('item_content')} </textarea>
 										<div class="text">
 											<a target="_blank" href="/market/notice/fag"> </a>
-												<div class="limit"><span id="cnt2">0</span>/2000</div>
+												<div class="limit"><span id="cnt2">0</span>/1000</div>
 										</div>
 									</div>
 								</li>
