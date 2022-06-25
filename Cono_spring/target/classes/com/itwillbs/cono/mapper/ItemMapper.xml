@@ -51,11 +51,7 @@
 	<insert id="insertOrd">
 		INSERT INTO ord
 		VALUES (
-				(SELECT * 
-				FROM (SELECT IFNULL(MAX(ord_idx)+1, '1')
-			     	    FROM ord
-			     	   ORDER BY ord_idx*1
-			     	   LIMIT 1) AS A)
+				(SELECT IFNULL(MAX(CAST(o.ord_idx as unsigned)), 0) + 1 FROM ord o)
 			   ,#{item_idx}
 			   ,#{member_id}
 			   ,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
@@ -69,20 +65,16 @@
 	<select id="selectOrdDate" resultType="java.lang.String">
 		SELECT ord_date
 		  FROM ord
-		 WHERE ord_idx=(SELECT MAX(ord_idx)
-		                  FROM ord
-		                 WHERE member_id=#{member_id})
+		 WHERE ord_idx=(SELECT MAX(CAST(o.ord_idx as unsigned))
+		                  FROM ord o
+		                 WHERE o.member_id=#{member_id});
 	</select>
 	
 	<!-- safe 테이블 insert -->
 	<insert id="insertSafe">
 		INSERT INTO safe
 		VALUES (
-			   (SELECT *
-			      FROM (SELECT IFNULL(MAX(safe_idx)+1,'1') 
-			      		  FROM safe
-			      		 ORDER BY safe_idx*1 DESC
-			      		 LIMIT 1) temp)
+			   (SELECT IFNULL(MAX(CAST(s.safe_idx as unsigned)), 0) + 1 FROM safe s)
 			   ,#{ord.item_idx}
 			   ,(SELECT ord_idx 
 			       FROM ord 
@@ -90,7 +82,7 @@
 			        AND member_id=#{ord.member_id}
 			        AND ord_reqContent=#{ord.ord_reqContent}
 			        AND ord_quantity=#{ord.ord_quantity} 
-			        AND ord_date=#{ord_date}
+			        AND ord_date=#{ord.ord_date}
 			    )
 			   ,#{ord.member_id}
 			   ,(SELECT s.shop_idx 

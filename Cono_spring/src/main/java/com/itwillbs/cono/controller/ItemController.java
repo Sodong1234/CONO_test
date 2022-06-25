@@ -154,6 +154,10 @@ public class ItemController {
 		service.insertOrd(ord);
 		// safe 테이블 insert
 		String ord_date = service.selectOrdDate(ord);
+		ord.setOrd_date(ord_date);
+		System.out.println("ord : " + ord);
+		System.out.println("item_price : " + item_price);
+		System.out.println("ord_date : " + ord_date);
 		service.insertSafe(ord, item_price, ord_date);
 		// coin 테이블 insert (구매자)
 		service.insertCoin(ord, item_price, coupon.getCoupon_idx());
