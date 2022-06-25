@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CONO:구매 문의</title>
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <link href="${path}/resources/css/msg.css" rel="stylesheet" />
 <link href="${path}/resources/sass/msgbtn.scss" rel="stylesheet" />
