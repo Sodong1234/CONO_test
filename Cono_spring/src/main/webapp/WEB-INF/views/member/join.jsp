@@ -283,6 +283,9 @@ input[type="submit"] {
   line-height: 2em;
   cursor: pointer;  
 }
+
+
+
 </style>
 <!-- Bootstrap core JavaScript-->
 <script src="resources/vendor/jquery/jquery.min.js"></script>

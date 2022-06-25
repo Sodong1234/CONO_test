@@ -38,6 +38,22 @@ body {
 	background: linear-gradient(to top right, #CFFFE5 0%, #6EB4B5 100%);
 }
 
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+
+font-family: 'IBMPlexSansKR-Regular';
+
+
+
+}
+
 </style>
 <!-- Bootstrap core JavaScript-->
 <script src="resources/vendor/jquery/jquery.min.js"></script>

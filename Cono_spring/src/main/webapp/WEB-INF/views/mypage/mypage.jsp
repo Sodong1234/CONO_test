@@ -94,7 +94,7 @@
 			        					<div class="my-review__writable__content">내용 : ${item.item_content }</div>
 			        					<div class="my-review__writable__date">구매날짜 : ${item.ord_date }</div>
 <%-- 			        					<div class="my-review__writable__date">가격 : ${item.ord_quantity * item.item_price }코인</div> --%>
-			        					<div class="my-review__writable__date">가격 : <fmt:formatNumber value="${item.ord_quantity * item.item_price }" pattern="\#,###.##"/>코인</div>
+			        					<div class="my-review__writable__date">가격 : <fmt:formatNumber value="${item.ord_quantity * item.item_price }" pattern="#,###.##"/>원</div>
 			        					
 			        					<div class="my-review__writable__date">수량 : ${item.ord_quantity }개</div>
 			        				</div>

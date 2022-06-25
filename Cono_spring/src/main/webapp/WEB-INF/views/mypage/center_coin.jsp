@@ -20,11 +20,21 @@
 	</div>
  <style type="text/css">
 
+
  * { 
  	margin: 0; 
  	padding: 0; 
+ 	font-family: 'IBMPlexSansKR-Regular';
+ 	
  } 
 
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 
@@ -210,9 +220,9 @@ input[type=radio]{
 <%-- 							<td class="coin_add">${coinVO.coin_add }</td> --%>
 <%-- 							<td class="coin_use">${coinVO.coin_use }</td> --%>
 <%-- 							<td class="td_coin_total">${coinVO.coin_total }</td> --%>
-				<td class="coin_add"><fmt:formatNumber value="${coinVO.coin_add}" pattern="\#,###.##"/></td>
-				<td class="coin_use"><fmt:formatNumber value="${coinVO.coin_use}" pattern="\#,###.##"/></td>
-				<td class="td_coin_total"><fmt:formatNumber value="${coinVO.coin_total}" pattern="\#,###.##"/></td>
+				<td class="coin_add"><fmt:formatNumber value="${coinVO.coin_add}" pattern="#,###.##c"/></td>
+				<td class="coin_use"><fmt:formatNumber value="${coinVO.coin_use}" pattern="#,###.##c"/></td>
+				<td class="td_coin_total"><fmt:formatNumber value="${coinVO.coin_total}" pattern="#,###.##c"/></td>
 <%-- 			<td class="date"><fmt:formatDate value="${coinVO.coin_date}" type=”both” pattern="yyyy-MM-dd"/></td> --%>
 							<td class="date">${coinVO.coin_date }</td>
 				
