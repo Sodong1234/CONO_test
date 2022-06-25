@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.cono.vo.CategoryDTO;
+import com.itwillbs.cono.vo.FollowDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
@@ -141,7 +142,7 @@ public interface ShopMapper {
 	// ==========================================================================================
 	
 	// 상점 조회
-	HashMap<String, String> selectShop(String item_idx);
+	HashMap<String, String> selectShop(@Param("item_idx")String item_idx);
 	
 	// 판매 횟수 조회
 	String selectShopSellCntBuyer(String item_idx);
@@ -157,6 +158,8 @@ public interface ShopMapper {
 	
 	// shop 주인 member_id 가져오기
 	String selectMemberId(String shop_idx);
+
+	FollowDTO selectFollow(@Param("sId")String sId);
 
 	
 

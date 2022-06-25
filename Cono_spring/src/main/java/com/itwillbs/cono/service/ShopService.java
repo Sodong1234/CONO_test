@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.cono.mapper.ShopMapper;
 import com.itwillbs.cono.vo.CategoryDTO;
+import com.itwillbs.cono.vo.FollowDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
@@ -469,6 +470,10 @@ public class ShopService {
 	public int selectItemOrd(String item_idx) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public FollowDTO followList(String sId) {
+		return mapper.selectFollow(sId);
 	}
 
 	

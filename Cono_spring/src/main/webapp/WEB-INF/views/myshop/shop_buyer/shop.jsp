@@ -203,10 +203,6 @@ form {
 
 	<div class="cono">
 
-아이디!!!! ${sId }
- 인덱스 !!!${shopInfo.get('shop_idx') }
-인덱스 !!!${shopInfo.get('item_idx') }
-
 		<h2 style="font-family: Cafe24Ohsquare;">
 			${shopInfo.get('shop_name') }의 상점 [${shopInfo.get('member_date') }]</h2>
 
@@ -270,14 +266,14 @@ form {
 			<div class="shopModify">
 			<!-- 팔로우 버튼 연결하기  -->
 			<c:choose>
-			<c:when test="${follow eq null }">
-<%-- 			<input type ="button" value ="follow 하기" onclick="location.href='plusFollow?shop_idx=${shopInfo.shop_idx }'"> --%>
-				<button onclick="location.href='plusFollow?shop_idx=${shopInfo.get('shop_idx') }&item_idx=${item_idx }'"> 팔로우</button>
+			<c:when test="${followList eq null }">
+			<input type ="button" class="followBtn"value ="팔로우" onclick="location.href='plusFollow?shop_idx=${shopInfo.shop_idx }&item_idx=${item_idx }'">
+<%-- 				<button onclick="location.href='plusFollow?shop_idx=${shopInfo.get('shop_idx') }&item_idx=${item_idx }'"> 팔로우</button> --%>
 			</c:when>
 			
-			<c:when test="${follow ne null }">
-<%-- 			<input type ="button" value ="follow 취소하기" onclick="location.href='deleteFollowing?shop_idx=${shopInfo.shop_idx }'"> --%>
-				<button onclick="location.href='deleteFollowing?shop_idx=${shopInfo.get('shop_idx') }&item_idx=${item_idx }'"> 팔로우취소</button>
+			<c:when test="${followList ne null }">
+			<input type ="button" class="followCancelBtn"value ="팔로우취소" onclick="location.href='deleteFollowing?shop_idx=${shopInfo.shop_idx }&item_idx=${item_idx }'">
+<%-- 				<button onclick="location.href='deleteFollowing?shop_idx=${shopInfo.get('shop_idx') }&item_idx=${item_idx }'"> 팔로우취소</button> --%>
 				
 			</c:when>
 </c:choose>

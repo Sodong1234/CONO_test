@@ -348,6 +348,13 @@
 		WHERE shop_idx = #{shop_idx} AND member_id = #{sId}
 	</delete>
 	
+	<!-- 팔로우 조회 -->
+	<select id="selectFollow" resultType="com.itwillbs.cono.vo.FollowDTO">
+		SELECT shop_idx, member_id
+		  FROM follow
+		 WHERE member_id=#{sId}
+	
+	</select>
 	
 	<!-- 팔로우 추가 -->
 	<insert id="insertFollow">

@@ -20,11 +20,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.cono.service.ShopService;
 import com.itwillbs.cono.vo.CategoryDTO;
+import com.itwillbs.cono.vo.FollowDTO;
 import com.itwillbs.cono.vo.ImgDTO;
 import com.itwillbs.cono.vo.ItemDTO;
 import com.itwillbs.cono.vo.MemberDTO;
 import com.itwillbs.cono.vo.PageInfo;
 import com.itwillbs.cono.vo.ShopDTO;
+import com.itwillbs.cono.vo.WishDTO;
 
 @Controller
 public class ShopController {
@@ -563,8 +565,10 @@ public class ShopController {
 	
 	// 상점 이동
 	@RequestMapping(value = "Myshop.shop", method = RequestMethod.GET)
-	public String myshop (String item_idx, Model model) {
-
+	public String myshop (HttpSession session,String item_idx, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		
+		
 		// 상점 정보 조회
 		HashMap<String, String> shopInfo = service.getShop(item_idx);
 		
@@ -579,6 +583,14 @@ public class ShopController {
 		// 팔로워 수 조회
 		String followerCnt = service.getFollowerCnt(item_idx);
 		
+
+		// 팔로우 여부 조회
+		FollowDTO followList = null;
+		if(sId != null) {
+			followList = service.followList(sId);
+		}
+		
+		model.addAttribute("followList", followList);
 		model.addAttribute("shopInfo", shopInfo);
 		model.addAttribute("shopCountInfo", shopCountInfo);
 		model.addAttribute("followerCnt", followerCnt);
