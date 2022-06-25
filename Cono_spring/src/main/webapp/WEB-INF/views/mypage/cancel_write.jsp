@@ -93,7 +93,7 @@
                             <img src="resources/upload/file/${itemInfo.img_name}">
                         </a>
                         <ul class="info">
-                            <li class="brand"><a href="null/brands/runninghigh">{itemInfo.item_title }</a></li>
+                            <li class="brand"><a href="null/brands/runninghigh">${itemInfo.item_title }</a></li>
                             <li class="option">${itemInfo.item_quantity}</li>
                         </ul>
                     </div>

@@ -139,7 +139,7 @@ p {
 </style>
 <script type="text/javascript">
 	function cancelBtn() {
-		window.open("", "취소 작성", "width=600px,height=720px,top=180px,left=500px");
+		window.open("", "취소작성", "width=600px,height=720px,top=180px,left=500px");
 // 		event.stopPropagation();
 // 		event.preventDefault();
 	}	
@@ -171,7 +171,7 @@ p {
 			<div class="products">
 			
 			
-			<form action="cancel_form" method="post" onsubmit="return cancelBtn()">
+			<form action="cancel_form" method="post" target="취소작성" onsubmit="return cancelBtn()">
 				<a href="itemDetail?item_idx=${card.item_idx}"> 
 					<img alt="" src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
 					<p class="name" style="position: relative; z-index: 1;">${card.item_title }</p>
