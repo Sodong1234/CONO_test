@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <%
 if(session.getAttribute("sId") == null) {
 	response.sendRedirect("MemberLogin.func");
@@ -20,11 +21,27 @@ String sell_status = request.getParameter("sell_status");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <link rel="styleSheet" href="${pageContext.request.contextPath}/resources/css/item_mng.css">
-
+<script src="${path}/resources/js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	
+	$(function() {
+		$( '#item_mng_hr' ).removeAttr( 'style' );
+// 		$("hr").css("backgroundColor", "");
+// 		$("hr").css("opacity","");
+// 		$("#item_mng_hr").css("border", "");
+// 		$("#item_mng_hr").css("box-shadow", "");
+// 		$("#item_mng_hr").css("backgroundColor", "");
+// 		$("#item_mng_hr").css("opacity","");
+// 		$("#item_mng_hr").css("height", "10px");
+// 		$("#item_mng_hr").css("box-shadow", "0 10px 10px -10px #8c8c8c inset");
+// ㅇ료 받 네 ㅇ
+		
+	});
+</script>
 <style type="text/css">
 #item_mng_wrap {
 	width: 1040px;
-	margin: 0 430px;
+	margin: 25px 430px;
 }
 
 #search_row{
@@ -62,12 +79,10 @@ String sell_status = request.getParameter("sell_status");
   	text-decoration: underline;
   }
   
-  hr.hr-13 {
-  height: 10px;
-  border: 0;
-  box-shadow: 0 10px 10px -10px #8c8c8c inset;
-  width: 1020px;
-  margin-left: 441px;
+/*   #hr-134 { */
+/* 	height: 10px; */
+/* 	border: 0; */
+/* 	box-shadow: 0 10px 10px -10px #8c8c8c inset; */
   
 }
 </style>
@@ -84,13 +99,13 @@ String sell_status = request.getParameter("sell_status");
 		<jsp:include page="./myshop_sidebar.jsp"/>
 	</div>
 	
-	<h2 style="font-family: Cafe24Ohsquare; margin-left: 441px; margin-top: 25px;">
+	<div id="item_mng_wrap">
+	<h2 style="font-family: Cafe24Ohsquare;">
 			상품 관리</h2>
 
-		<hr class="hr-13">
+		<hr id="item_mng_hr" style="height: 10px;">
 		
 		
-	<div id="item_mng_wrap">
 			<div class="row mb-4 float-end" style="margin-top:5px;" id="search_row">
 				<form name="fr" action="ItemMng.shop" class="input-group" id="item_mng_shearch_box">
 					<select class="form-select"  name="sell_status">

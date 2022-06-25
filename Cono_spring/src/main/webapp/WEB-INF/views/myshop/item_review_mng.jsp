@@ -10,14 +10,12 @@
 <title>CONO::상품후기관리</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item_detail.css">
 <style type="text/css">
-img {
-	width: 100px;
-}
+/* img { */
+/* 	width: 100px; */
+/* } */
 #review_wrap {
-	width: 1200px;
-	margin: 0 350px;
-	margin-top: -72px;
-	margin-bottom: 25px;
+	width: 1040px;
+	margin: 25px 430px;
 }
 #progress_div {
 	width: 700px;
@@ -244,7 +242,7 @@ margin-top: -110px;
 	</div>
 	
 	<div id="review_wrap">
-		<div id="cono" style="margin-top: 10px; margin: 100px;">
+<!-- 		<div id="cono" style="margin-top: 10px; margin: 100px;"> -->
 		<div id="review_top">
 			<h2 style="font-family: Cafe24Ohsquare; margin-top: 25px;">
 			상품 후기 관리</h2>
@@ -316,7 +314,7 @@ margin-top: -110px;
 		</div>
 		
 		<div style="clear: both;"></div>
-		</div>
+<!-- 		</div> -->
 		<hr style="width: 85%;
     margin-left: 85px;">
 		<!---------------------------------------- 아이템 이미지 슬라이드 ------------------------------------------------->

@@ -52,7 +52,7 @@ hr.hr-13 {
 }
 #list_following_wrap {
 	width: 1040px;
-	margin: 0 430px;
+	margin: 25px 430px;
 }
 </style>
 </head>

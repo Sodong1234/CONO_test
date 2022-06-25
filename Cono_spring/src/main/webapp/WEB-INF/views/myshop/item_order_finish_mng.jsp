@@ -61,10 +61,10 @@ h3 {
 /* 탭 */
 
 .tab {
-/*   width: 100%; */
+  width: 100%; 
   height: 50px;
-  margin-right: 230px;
-  margin-left: 370px;
+/*   margin-right: 230px; */
+/*   margin-left: 370px; */
 }
 
 .tablinks {
@@ -93,8 +93,6 @@ hr.hr-13 {
   height: 10px;
   border: 0;
   box-shadow: 0 10px 10px -10px #8c8c8c inset;
-  width: 68.8%;
-  margin-left: 370px;
 }
 
 @font-face {
@@ -113,6 +111,10 @@ hr.hr-13 {
 
 *{
   font-family: 'IBMPlexSansKR-Regular';
+}
+.cono {
+	width: 1040px;
+	margin: 0 430px;
 }
 </style>
 
@@ -134,8 +136,8 @@ hr.hr-13 {
 	구매 완료 ('2') : ord 테이블 delete할 때
 	예약 중('3')
 	 -->
-	<div class="cono" style="margin-top: 25px;">
-		<h2 style="font-family: Cafe24Ohsquare; margin-left:370px;">상품 주문 관리</h2>
+	<div class="cono"  style="margin-top: 25px;">
+		<h2 style="font-family: Cafe24Ohsquare;">상품 주문 관리</h2>
 
 		<hr class="hr-13">
 	
@@ -151,7 +153,7 @@ hr.hr-13 {
 			<!-- 탭 2 -->
 			<div id="tab1" class="tabcontent" style="display: block;">
 				<h3 style="font-family: 'IBMPlexSansKR-Regular';">구매 완료 ▼</h3>
-					<table class="table table-hover" style="border:1px 0;border-color:bg-primary; width: 1080px;">
+					<table class="table table-hover" style="border:1px 0;border-color:bg-primary; width: 1040px;">
 						<tr>
 							<th scope="col">주문일시</th>
 							<th scope="col">주문상품</th>
