@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CONO::판매자의상점</title>
 <style type="text/css">
 #follower_list tr {
 	background: #e1f3f0;

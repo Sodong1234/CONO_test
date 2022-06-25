@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CONO::판매자의상점</title>
 <style type="text/css">
 #item_review_list {
 /* 	background: #cdf0ea; */
