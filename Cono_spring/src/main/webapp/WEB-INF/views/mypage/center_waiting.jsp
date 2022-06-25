@@ -138,8 +138,17 @@ p {
 }
 </style>
 <script type="text/javascript">
+	function cancelBtn(event) {
+		location.href='cancel_form?item_idx=${card.item_idx}';
+		event.stopPropagation();
+		event.preventDefault();
+	}	
 	
 </script>
+
+
+
+
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
@@ -160,13 +169,19 @@ p {
 	<div class="cardSelect" style="position: relative; right: 60px; bottom: 900px;">
 		<c:forEach var="card" items="${waitingList }">
 			<div class="products">
-				<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""
-					src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
-					<p class="name">${card.item_title }</p>
-					<p class="region">${card.item_region }</p>
-					<p class="price">${card.item_price }원</p>
-				<button onclick="location.href='cancel_form?item_idx=${card.item_idx}'" value="${card.item_idx}">취소하기</button>
+			
+			
+			
+				<a href="itemDetail?item_idx=${card.item_idx}"> 
+					<img alt="" src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
+					<p class="name" style="position: relative; z-index: 1;">${card.item_title }</p>
+					<p class="region" style="position: relative; z-index: 1;">${card.item_region }</p>
+					<p class="price" style="position: relative; z-index: 1;">${card.item_price }원</p>
+					<button class="btn btn-success" onclick="cancelBtn(event)" value="${card.item_idx}">취소하기</button>
 				</a>
+				
+				
+				
 			</div>
 		</c:forEach>
 	</div>
