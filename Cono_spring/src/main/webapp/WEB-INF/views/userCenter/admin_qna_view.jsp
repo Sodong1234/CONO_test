@@ -145,11 +145,7 @@ a {
 				<div class="date">${qnaList.getQna_date() }</div>
 			</div>
 			<div class="board_list_body">
-				<div class="content">${qnaList.getQna_content()} 내용내용내용내용내용내용내용내용내용
-		내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-		내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-		내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-		내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</div>
+				<div class="content">${qnaList.getQna_content()}</div>
 
 			</div>
 			<div class="btnArea">
