@@ -10,7 +10,7 @@ ArrayList<AdminQNADTO> qnaList = (ArrayList<AdminQNADTO>) request.getAttribute("
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QNA 검색 페이지</title>
+<title>CONO::QNA</title>
 <style type="text/css">
 * {
 	margin: 0;

@@ -9,7 +9,7 @@ String sId = (String) session.getAttribute("sId");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QNA 상세페이지</title>
+<title>CONO::QNA</title>
 <style type="text/css">
 * {
 	margin: 0;

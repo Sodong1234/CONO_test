@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>거래 현황 리스트</title>
+<title>CONO::거래현황</title>
 <link rel="stylesheet" href="resources/css/admin_table.css" />
 <style type="text/css">
 	p {

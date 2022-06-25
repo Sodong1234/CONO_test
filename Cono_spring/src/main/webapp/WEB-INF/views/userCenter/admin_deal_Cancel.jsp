@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>거래 취소 요청</title>
+<title>CONO::거래취소</title>
 <link rel="stylesheet" href="resources/css/admin_table.css" />
 <style type="text/css">
 p {

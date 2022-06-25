@@ -8,7 +8,7 @@ String sId = (String)session.getAttribute("sId");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Report 글쓰기 폼</title>
+<title>CONO::신고하기</title>
 <script src="resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 

@@ -9,7 +9,7 @@ String sId = (String) session.getAttribute("sId");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Report 상세페이지</title>
+<title>CONO::신고하기</title>
 <style type="text/css">
 * {
 	margin: 0;

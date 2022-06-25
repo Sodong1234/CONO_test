@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>회원 관리</title>
+<title>CONO::회원관리</title>
 <link rel="stylesheet" href="resources/css/admin_table.css" />
 <style type="text/css">
 p {

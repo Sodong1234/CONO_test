@@ -13,7 +13,7 @@ String sId = (String)session.getAttribute("sId");	// String 형변환
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 글쓰기 수정 폼</title>
+<title>CONO::공지사항</title>
 <style type="text/css">
 * {
 	margin: 0;

@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QNA 답변 폼</title>
+<title>CONO::QNA</title>
 <style type="text/css">
 * {
 	margin: 0;

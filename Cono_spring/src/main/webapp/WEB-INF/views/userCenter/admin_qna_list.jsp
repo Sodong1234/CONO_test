@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>qna</title>
+<title>CONO::QNA</title>
 <style type="text/css">
 * {
 	margin: 0;
