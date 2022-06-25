@@ -8,7 +8,6 @@ String sId = (String)session.getAttribute("sId");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <!-- <link rel="stylesheet" href="selectbox.css" /> -->
 <!-- <link rel="stylesheet" href="search.css" /> -->
 <!-- <link rel="stylesheet" href="table.css" /> -->

@@ -85,7 +85,7 @@ public class NaverLoginController {
         member.setMember_pass(id);
         member.setMember_nick(nickname);
         member.setMember_email(email);
-        member.setMember_birth(birthyear + "" + birthday);
+        member.setMember_birth(birthyear + "-" + birthday);
         member.setMember_phone(mobile);
 	        
         System.out.println("멤버 : " + member.toString());

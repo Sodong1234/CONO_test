@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>member/newLawWindow</title>
+<title>CONO::이용약관</title>
 <style>
 * {
 	text-align: center;

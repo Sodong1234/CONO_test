@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>member/login.jsp</title>
+<title>CONO::비밀번호 확인</title>
 </head>
 <body>
 		<div id="wrap">

@@ -5,7 +5,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
-
+<title>CONO::상품정보</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item_detail.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/button.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifyButton.css">
