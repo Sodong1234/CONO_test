@@ -159,9 +159,8 @@ public interface ShopMapper {
 	// shop 주인 member_id 가져오기
 	String selectMemberId(String shop_idx);
 
-	FollowDTO selectFollow(@Param("sId")String sId);
-
-	
+	// 팔로우조회
+	FollowDTO selectFollow(@Param("sId")String sId, @Param("shop_idx")String shop_idx);
 
 
 	

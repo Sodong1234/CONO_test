@@ -469,11 +469,11 @@ public class ShopService {
 		return 0;
 	}
 
-	public FollowDTO followList(String sId) {
-		return mapper.selectFollow(sId);
-	}
 
-	
+	// 팔로우조회
+	public FollowDTO followList(String sId, String shop_idx) {
+		return mapper.selectFollow(sId,shop_idx);
+	}
 
 	
 	

@@ -352,9 +352,10 @@
 	<select id="selectFollow" resultType="com.itwillbs.cono.vo.FollowDTO">
 		SELECT shop_idx, member_id
 		  FROM follow
-		 WHERE member_id=#{sId}
+		 WHERE member_id=#{sId} AND shop_idx = #{shop_idx}
 	
 	</select>
+	
 	
 	<!-- 팔로우 추가 -->
 	<insert id="insertFollow">

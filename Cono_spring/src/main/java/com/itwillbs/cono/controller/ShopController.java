@@ -594,10 +594,13 @@ public class ShopController {
 		
 
 		// 팔로우 여부 조회
+		String shop_idx = shopInfo.get("shop_idx");
 		FollowDTO followList = null;
+		
 		if(sId != null) {
-			followList = service.followList(sId);
+			followList = service.followList(sId,shop_idx);
 		}
+
 		
 		model.addAttribute("followList", followList);
 		model.addAttribute("shopInfo", shopInfo);
