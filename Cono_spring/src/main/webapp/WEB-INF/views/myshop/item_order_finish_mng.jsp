@@ -177,6 +177,7 @@ hr.hr-13 {
 							</c:forEach>
 						</tbody>
 					</table>
+					
 			    
 			<!-- 구매 완료 페이징 처리 -->
 				<div class ="paging">

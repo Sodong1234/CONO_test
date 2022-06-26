@@ -163,6 +163,8 @@ hr.hr-13 {
 					      <th scope="col">주문 요청사항</th>
 					    </tr>
 					  <tbody>
+					  
+				<c:if test="${not empty ordList && pageInfo.listCount > 0}"> 
 					  <c:forEach items="${ordList }" var="ord">
 						 <tr class="table-primary">
 					<!--       <th scope="row">Primary</th> -->
@@ -174,40 +176,43 @@ hr.hr-13 {
  						  <td><fmt:formatNumber value="${ord.get('item_price') }" pattern="\#,###.##"/></td>
 					      <td>${ord.get('ord_reqContent') }</td>
 					    </tr>
-					    </c:forEach>
+					   </c:forEach>
+				</c:if>  
+					    
 					   </tbody>
 					</table>
+					
 			
 			<!-- 구매 진행중 페이징 처리 -->
 				<div class ="paging">
-					<c:choose>
-						<c:when test="${pageInfo.pageNum > 1 }">
-							<input type="button" value=" < " onclick="location.href='ItemOrdMng.shop?pageNum=${pageInfo.pageNum - 1 }'">
-						</c:when>
-						<c:otherwise>
-							<input type="button" value=" < ">
-						</c:otherwise>
-					</c:choose>
-			
-					<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
-						<c:choose>
-						<c:when test="${pageInfo.pageNum eq i }">
-							${i }
-						</c:when>
-						<c:otherwise>
-							<a href="ItemOrdMng.shop?pageNum=${i }">${i }</a>
-						</c:otherwise>
-					</c:choose>
-					</c:forEach>
-					<c:choose>
-						<c:when test="${pageInfo.pageNum < pageInfo.maxPage }">
-							<input type="button" value=" > " onclick="location.href='ItemOrdMng.shop?pageNum=${pageInfo.pageNum + 1 }'">
-						</c:when>
-						<c:otherwise>
-							<input type="button" value=" > ">
-						</c:otherwise>
-					</c:choose>
-				</div>
+		<c:choose>
+			<c:when test="${pageInfo.pageNum > 1 }">
+				<input type="button" value=" < " onclick="location.href='ItemOrdMng.shop?pageNum=${pageInfo.pageNum - 1 }'">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value=" < ">
+			</c:otherwise>
+		</c:choose>
+
+		<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
+			<c:choose>
+			<c:when test="${pageInfo.pageNum eq i }">
+				${i }
+			</c:when>
+			<c:otherwise>
+				<a href="ItemOrdMng.shop?pageNum=${i }">${i }</a>
+			</c:otherwise>
+		</c:choose>
+		</c:forEach>
+		<c:choose>
+			<c:when test="${pageInfo.pageNum < pageInfo.maxPage }">
+				<input type="button" value=" > " onclick="location.href='ItemOrdMng.shop?pageNum=${pageInfo.pageNum + 1 }'">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value=" > ">
+			</c:otherwise>
+		</c:choose>
+	</div>
 			</div>	<!-- 탭 1 -->
 			
 

@@ -280,20 +280,20 @@ public class ShopController {
 		// 후기 개수 조회
 		int listCount = service.selectReviewListCount(member_id);
 		
-		// 페이징 처리
-		int listLimit = 5;
-		int pageLimit = 5;
-
-		int maxPage = (int)Math.ceil((double) listCount / listLimit);
-		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		int listLimit = 5; // 한 페이지 당 표시할 목록 갯수
+		int pageLimit = 5; // 한 페이지 당 표시할 페이지 목록 갯수
+		
+		// 페이징 처리를 위한 계산 작업
+		int maxPage = (int)Math.ceil((double)listCount / listLimit);
+		int startPage = ((int)((double)pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
 		int endPage = startPage + pageLimit - 1;
-		if (endPage > maxPage) {
+		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
 		// 조회 시작 게시물 번호(행 번호) 계산
 		int startRow = (pageNum - 1) * listLimit;
 		
-		// 페이징 처리 정보를 PageInfo 객체에 저장(후기 리스트)
+		// 페이징 처리 정보를 PageInfo 객체에 저장
 		PageInfo pageInfo = new PageInfo();
 		pageInfo.setPageNum(pageNum);
 		pageInfo.setMaxPage(maxPage);
@@ -302,7 +302,6 @@ public class ShopController {
 		pageInfo.setListCount(listCount);
 		pageInfo.setStartRow(startRow);
 		pageInfo.setListLimit(listLimit);
-		
 		
 		// 후기 리스트 조회
 		List<HashMap<String, String>> reviewList = service.selectReviewList(member_id, item_idx, pageInfo);
@@ -407,14 +406,16 @@ public class ShopController {
 			return "redirect:/login";
 		}
 		
+		System.out.println(pageNum);
+		
 		// 상품 주문(진행중) 개수 조회
 		int listCount = service.selectOrdListCount(member_id);
 		
 		// 페이징 처리
-		int listLimit = 5;
-		int pageLimit = 5;
+		int listLimit = 10;
+		int pageLimit = 10;
 
-		int maxPage = (int)Math.ceil((double) listCount / listLimit);
+		int maxPage = (int) Math.ceil((double) listCount / listLimit);
 		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
 		int endPage = startPage + pageLimit - 1;
 		if (endPage > maxPage) {
@@ -457,8 +458,8 @@ public class ShopController {
 		int listCount = service.selectFinishOrdListCount(member_id);
 				
 		// 페이징 처리
-		int listLimit = 5;
-		int pageLimit = 5;
+		int listLimit = 10;
+		int pageLimit = 10;
 
 		int maxPage = (int)Math.ceil((double) listCount / listLimit);
 		int startPage = ((int) ((double) pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
