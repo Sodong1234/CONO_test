@@ -257,7 +257,7 @@ form {
 
 							<!-- 						<div class="storeStar"> -->
 							<img width="20" height="23" class="star1" alt="별 "
-								src="resources/img/star.png">별점 ${itemAvg.get('avg') } / 5
+								src="resources/img/star.png">별점 ${shopCountInfo[2] } / 5
 							<!-- 						<div class="starIndicateNum"> </div> -->
 						</div>
 					</div>
@@ -292,8 +292,7 @@ form {
 				<li> ${shopInfo.get('member_id') } </li> 
 				<li data-icon="🌈" style="font-weight: bolder;"> 상점 소개  </li>
 				<li> ${shopInfo.get('shop_content') } </li>
-				<li data-icon="😎" style="font-weight: bolder;"> 팔로워 ${followerCnt } 명
-
+				<li data-icon="😎" style="font-weight: bolder;"> 팔로워 <span style="font-weight: normal;">${followerCnt}</span> 명
 <%-- 						<li data-icon="🦄">판매자 ID :${shopInfo.get('member_id') }</li> --%>
 <%-- 						<li data-icon="🌈">상점소개 : ${shopInfo.get('shop_content') }</li> --%>
 <%-- 						<li data-icon="😎">팔로워 : ${followerCnt } 명</li> --%>

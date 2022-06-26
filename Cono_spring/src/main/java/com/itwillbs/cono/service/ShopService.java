@@ -457,6 +457,11 @@ public class ShopService {
 		return mapper.selectShopItemCntBuyer(item_idx);
 	}
 	
+	// 상점 별점 조회
+	public String getShopAvgStar(String item_idx) {
+		return mapper.selectShopAvgStar(item_idx);
+	}
+	
 	// 팔로워 수 조회
 	public String getFollowerCnt(String item_idx) {
 		return mapper.selectFollowerCnt(item_idx);
@@ -472,16 +477,11 @@ public class ShopService {
 		return mapper.selectMemberId(shop_idx);
 	}
 
-	public int selectItemOrd(String item_idx) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
 	// 팔로우조회
 	public FollowDTO followList(String sId, String shop_idx) {
 		return mapper.selectFollow(sId,shop_idx);
 	}
+
 
 	
 	

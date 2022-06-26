@@ -522,6 +522,7 @@ public class ShopController {
 		return "myshop/list_following";
 	}
 	
+	// 팔로워 취소
 	@RequestMapping(value = "deleteFollowerShop", method = RequestMethod.GET)
 	public String deleteFollower(String follow_shop_idx, HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
@@ -536,7 +537,7 @@ public class ShopController {
 
 		return "redirect:/follow";
 	}
-	
+	// 팔로잉 취소
 	@RequestMapping(value = "deleteFollowingShop", method = RequestMethod.GET)
 	public String deleteFollowing(String shop_idx, HttpSession session, Model model) {
 
@@ -598,7 +599,7 @@ public class ShopController {
 		return "redirect:/Myshop.shop?shop_idx=" + shop_idx+"&item_idx="+item_idx;
 	}
  
-	//==================================================================================================================================================================
+	//============================================================ 구매자 시점의 상점 ==================================================================
 	
 	// 상점 이동
 	@RequestMapping(value = "Myshop.shop", method = RequestMethod.GET)
@@ -615,8 +616,8 @@ public class ShopController {
 		shopCountInfo[0] = service.getShopSellCntBuyer(item_idx);
 		// 상점 상품 개수 조회
 		shopCountInfo[1] = service.getShopItemCntBuyer(item_idx);
-		
-		
+		// 별점 조회
+		shopCountInfo[2] = service.getShopAvgStar(item_idx);
 		// 팔로워 수 조회
 		String followerCnt = service.getFollowerCnt(item_idx);
 		

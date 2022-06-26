@@ -154,6 +154,9 @@ public interface ShopMapper {
 	// 상품 횟수 조회
 	String selectShopItemCntBuyer(String item_idx);
 	
+	// 상점 별점 조회
+	String selectShopAvgStar(String item_idx);
+	
 	// 팔로워 수 조회
 	String selectFollowerCnt(String item_idx);
 	
@@ -165,6 +168,7 @@ public interface ShopMapper {
 
 	// 팔로우조회
 	FollowDTO selectFollow(@Param("sId")String sId, @Param("shop_idx")String shop_idx);
+
 
 
 	

@@ -370,7 +370,7 @@
 	</insert>
 	
 	
-	<!-- ================================================================================================================ -->
+	<!-- ===================================== 구매자 시점의 상점 ========================================== -->
 	
 	<!-- 상점 조회 -->
 	<select id="selectShop" resultType="java.util.HashMap">
@@ -384,16 +384,18 @@
 	<!-- 판매 횟수 조회 -->
 	<select id="selectShopSellCntBuyer" resultType="java.lang.String">
 		SELECT COUNT(*) sellCount 
-		FROM item it, shop s 
+		 FROM item it, shop s 
 		WHERE it.shop_idx = s.shop_idx
-		  AND item_status = 'Y'
+		  AND it.item_status = 'Y'
+		  AND it.item_idx = #{item_idx}
 	</select>
 	
 	<!-- 상품 횟수 조회 -->
 	<select id="selectShopItemCntBuyer" resultType="java.lang.String">
 		SELECT COUNT(*) itemCount
-		FROM item it, shop s 
+		 FROM item it, shop s 
 		WHERE it.shop_idx = s.shop_idx
+		  AND it.item_idx = #{item_idx}
 	</select>
 	
 	<!-- 팔로워 수 조회 -->
@@ -402,6 +404,15 @@
 		  FROM follow f, item i
 		 WHERE f.shop_idx = i.shop_idx
 		   AND i.item_idx=#{item_idx}
+	</select>
+	
+	<!-- 상점 별점 조회 -->
+	<select id="selectShopAvgStar" resultType="java.lang.String">
+		SELECT IFNULL(ROUND(SUM(r.review_score)/COUNT(i.item_idx),2),'0.0') as avg
+		  FROM item i, shop s, review r
+		 WHERE r.item_idx = i.item_idx
+		   AND i.shop_idx = s.shop_idx
+		   AND i.item_idx = #{item_idx} 
 	</select>
 	
 	<!-- 상점 상품 조회 -->
