@@ -317,11 +317,13 @@ form {
 		<div id="shop_resultArea"></div>
 	</div>
 	<!-- 	</div> -->
-
+	
+	<div style="clear: both;"></div>
+	
 	<div>
 		<!-- 하단 부분 -->
-		<footer style="position: relative; top: 800px;"
-			<jsp:include page="../../header_footer/footer.jsp"/>></footer>
+		<footer style="position: relative; top: 800px;">
+			<jsp:include page="../../header_footer/footer.jsp"/></footer>
 	</div>
 </body>
 </html>
