@@ -230,7 +230,7 @@
 									</c:choose>
 								</div>
 <%-- 								<h3 style="font-family:'Cafe24Ohsquare';">가격 : ${itemDetail.get('item_price')}</h3> --%>
-								<h3 style="font-family:'Cafe24Ohsquare';"> <fmt:formatNumber value="${itemDetail.get('item_price')}" pattern="\#,###.##"/></h3>
+								<h3 style="font-family:'Cafe24Ohsquare';"> <fmt:formatNumber value="${itemDetail.get('item_price')}" pattern="#,###.##"/>COIN</h3>
 								<table>
 								<tr style="text-align: center;">
 									<td>현재 수량 :&nbsp;</td>
