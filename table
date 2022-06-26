@@ -232,6 +232,13 @@ CREATE TABLE cancel (
 	PRIMARY KEY (cancel_idx,item_idx,member_id)
 );
 
+ CREATE TABLE account (
+   account_idx VARCHAR(20),
+    member_id VARCHAR(50),
+   accountName VARCHAR(20),
+   bankName VARCHAR(20),
+    accountNum VARCHAR(40)
+ );
 ------------------------ 삭제 예정 --------------------------------------
 CREATE TABLE alarm (
 	alarm_idx varchar(20) PRIMARY KEY,
