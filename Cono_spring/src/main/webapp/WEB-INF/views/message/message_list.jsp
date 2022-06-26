@@ -94,6 +94,9 @@
 		document.getElementById("sname").value = shop_name;
 		document.getElementById("prof_imName").src = "resources/upload/file/" + img_name;
 		document.getElementById("itTitle").value = item_title;
+		document.getElementById("sNum").value = shop_idx;
+		document.getElementById("rNum").value = msgList_room;
+		
 		
 		btn.style.visibility = "visible";
 		msg_form.style.visibility = "visible";
@@ -160,9 +163,6 @@
 			<c:forEach var="msgH" items="${msgList }">
 				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.shop_idx }', '${msgH.shop_name }','${msgH.img_name }','${msgH.item_title }')">
 <!-- 					room / shopname 저장 -->
-					<c:set value="${msgH.shop_name }" var="sName"></c:set>
-					<c:set value="${msgH.img_name }" var="imName"></c:set>
-					<c:set value="${msgH.item_title }" var="itTitle"></c:set>
 					<a href="#" class="room">
 						<span class="area-txt">
 							<span class="Hname">${msgH.shop_name }</span><br>
@@ -201,8 +201,8 @@
 		</div>
 <!-- 		메시지 전송 -->
 		<div class="msg_form" id="msg_form" style="visibility: hidden">
-			<input type="text" id="sNum">
-			<input type="text" id="rNum">
+			<input type="hidden" id="sNum">
+			<input type="hidden" id="rNum">
 			<textarea rows="3" cols="75" id="msgText"></textarea>
 			<button class="btn_send" onclick="sendMsg()"></button>
 		</div>

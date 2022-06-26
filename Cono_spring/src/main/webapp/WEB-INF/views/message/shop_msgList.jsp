@@ -20,6 +20,9 @@
 		document.getElementById("mname").value = member_nick;
 		document.getElementById("prof_imName").src = "resources/upload/file/" + img_name;
 		document.getElementById("itTitle").value = item_title;
+		document.getElementById("mId").value = member_id;
+		document.getElementById("rNum").value = msgList_room;
+		
 		
 		btn.style.visibility = "visible";
 		msg_form.style.visibility = "visible";
@@ -156,6 +159,8 @@
 		</div>
 <!-- 		메시지 전송 -->
 		<div class="msg_form" id="msg_form" style="visibility: hidden; margin-top:20px;  ">
+			<input type="hidden" id="mId">
+			<input type="hidden" id="rNum">
 			<textarea rows="3" cols="75" id="msgText"></textarea> &nbsp;&nbsp;
 			<button class="btn btn-primary2 btn-ghost btn-through" onclick="sendMsg()">버튼</button>
 		</div>
