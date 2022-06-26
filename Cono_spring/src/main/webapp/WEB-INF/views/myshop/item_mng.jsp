@@ -191,10 +191,19 @@ String sell_status = request.getParameter("sell_status");
 								</c:choose>
 							</td>
 							<td onclick="location.href='ItemDetail.shop?item_idx=${item.get('item_idx') }'">${item.get("item_title") }</td>
-							<td>${item.get("item_price") }</td>
-<%-- <td><fmt:formatNumber value="${item.get('item_price') }" pattern="#,###.##"/></td> --%>
+<%-- 							<td>${item.get("item_price") }</td> --%>
+							<td><fmt:formatNumber value="${item.get('item_price') }" pattern="#,###.##"/></td>
 							<td>${item.get("item_date") }</td>
-							<td>${item.get("item_status") }</td>
+							<td>
+								<c:choose>
+									<c:when test="${item.get('item_status') eq '0' }">
+										판매 중
+									</c:when>
+									<c:when test="${item.get('item_status') eq '1' }">
+										판매 완료
+									</c:when>
+								</c:choose>
+							</td>
 							<td>${item.get("wish") }</td>
 							<td>${item.get("item_readCnt") }</td>
 <%-- 							<td><input type="checkbox" name="item_hide" class="item_hide" <c:if test="${item.get('item_hide') eq 'Y'}"> checked="checked"</c:if> --%>

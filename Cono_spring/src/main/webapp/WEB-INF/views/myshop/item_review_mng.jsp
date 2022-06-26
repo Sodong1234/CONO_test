@@ -50,8 +50,7 @@
 	border-radius: 10px;
 	border-collapse: collapse;
 	line-height: 5px;
-	width: 85%;
-    margin-left: 85px;
+	width: 100%;
 }
 #review_list tr {
 	background: #e1f3f0;
@@ -102,7 +101,7 @@
 }
 /* ------------------------- 이미지 슬라이드 ------------------------- */
 #item_img_slide_show {
-	width: 1200px;
+	width: 100%;
 	margin: 0 auto;
 }
 #item_img_slide_show ul li{
@@ -111,7 +110,7 @@
 }
 
 .swiper-wrapper {
-	width: 1000px;
+	width: 100%;
 	height: 200px;
 	overflow: hidden;
 	position: relative;
@@ -174,20 +173,20 @@ float: left;
 height: 0; 
 /* margin: 0 10px;  */
 width: 0;
-margin-top: -110px;
-margin-left: 65px;
+margin-top: -110px; 
+/* margin-left: 65px; */
 }
 
 .css-arrow-right { 
 border-color: transparent transparent transparent #cdf0ea; 
 border-style: solid; 
 border-width: 10px 0 10px 20px; 
-float: left; 
+float: right; 
 height: 0; 
 /* margin: 0 10px;  */
 width: 0;
-margin-top: -110px;
-    margin-left: 1115px;
+ margin-top: -110px; 
+/*     margin-left: 1115px; */
 }
 
 
@@ -314,8 +313,7 @@ margin-top: -110px;
 		
 		<div style="clear: both;"></div>
 <!-- 		</div> -->
-		<hr style="width: 85%;
-    margin-left: 85px;">
+		<hr style="width: 100%;">
 		<!---------------------------------------- 아이템 이미지 슬라이드 ------------------------------------------------->
 		<div id="item_img_slide_show">
 			<div class="swiper-wrapper">
@@ -332,7 +330,7 @@ margin-top: -110px;
 				</ul>
 			</div>
 			<div id="img_slide_direction">
-			<span id="previous" class="css-arrow-left"></span> &nbsp;&nbsp;&nbsp;&nbsp;
+				<span id="previous" class="css-arrow-left"></span> &nbsp;&nbsp;&nbsp;&nbsp;
 				<span id="next" class="css-arrow-right"></span>
 			</div>
 		</div>

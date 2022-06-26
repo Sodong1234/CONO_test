@@ -83,7 +83,14 @@ hr.hr-13 {
 						<div class="shop-profile-area">
 						
 							<div class="shop-thumbnail" style="background-image: ${follower.shop_img }">
-								<img class="image" src="${path }/resources/upload/shopImg/${follower.shop_img }">
+								<c:choose>
+									<c:when test="${follower.shop_img ne '' }">
+										<img class="image" src="${path }/resources/default_img.png">
+									</c:when>
+									<c:when test="${follower.shop_img eq '' }">
+										<img class="image" src="${path }/resources/upload/shopImg/${follower.shop_img }">
+									</c:when>
+								</c:choose>
 							</div>
 							<div class="shop-profile" >
 								<div class="text-area">

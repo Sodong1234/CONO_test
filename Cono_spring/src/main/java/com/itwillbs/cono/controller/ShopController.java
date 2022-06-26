@@ -58,10 +58,12 @@ public class ShopController {
 		// 별점 조회
 		HashMap<String, String> itemAvg = service.selectItemAvg(member_id);
 		// 팔로워 수 조회
+		int followingCount = service.getFollowingCount(member_id);
 		
 		model.addAttribute("itemAvg", itemAvg);
 		model.addAttribute("myShop", myShop);
 		model.addAttribute("myShopCountInfo", myShopCountInfo);
+		model.addAttribute("followingCount", followingCount);
 		
 		return "myshop/my_page";
 	}

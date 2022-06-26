@@ -183,9 +183,9 @@ function checkNumber(event) {
 		  var content = $(this).val();
 		  $('#cnt2').html(content.length);
 		  if (content.length > 2000){
-		    alert("최대 2000자까지 입력 가능합니다.");
-		    $(this).val(content.substring(0, 2000));
-		    $('#product_content .count span').html(2000);
+		    alert("최대 1000자까지 입력 가능합니다.");
+		    $(this).val(content.substring(0, 1000));
+		    $('#product_content .count span').html(1000);
 		  }
 		});
 	});
@@ -414,10 +414,10 @@ function checkNumber(event) {
 									<div class="instruction_con">
 										<textarea placeholder="상품 설명을 입력해주세요." rows="6"
 											class="instruction" id="product_content"
-											name="item_content" style="resize: "none"; maxlength="2000"></textarea>
+											name="item_content" style="resize: "none"; maxlength="1000"></textarea>
 										<div class="text">
 											<a target="_blank" href="/market/notice/fag"> </a>
-											<div class="limit"><span id="cnt2">0</span>/2000</div>
+											<div class="limit"><span id="cnt2">0</span>/1000</div>
 										</div>
 									</div>
 								</li>
