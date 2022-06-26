@@ -435,7 +435,7 @@ public class MypageController {
 	@RequestMapping(value = "waiting", method = RequestMethod.GET)
 	public String waiting(HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
-
+		
 		List<HashMap<String, String>> waitingList = service.getWaitingList(sId);
 		model.addAttribute("waitingList",waitingList);
 		
@@ -458,10 +458,11 @@ public class MypageController {
 
 	// 취소 신청 폼 (가준)
 	@RequestMapping(value = "cancel_form", method = RequestMethod.POST)
-	public String cancelReq(HttpSession session, Model model, String item_idx) {
+	public String cancelReq(HttpSession session, Model model, String item_idx, String ord_idx) {
 		String sId = (String) session.getAttribute("sId");
 		
 		HashMap<String, String> itemInfo = service.getItemInfo(item_idx);
+		model.addAttribute("ord_idx",ord_idx);
 		model.addAttribute("itemInfo",itemInfo);
 		
 		return "mypage/cancel_write";
@@ -469,12 +470,13 @@ public class MypageController {
 	
 	// 취소 신청 (가준)
 	@RequestMapping(value = "uploadCancel", method = RequestMethod.POST)
-	public String cancelReq(HttpSession session, Model model, String item_idx, String content) {
+	public String cancelReq(HttpSession session, Model model, String item_idx, String content, String ord_idx) {
 		String sId = (String) session.getAttribute("sId");
-		
+		System.out.println("ord_idx ;:::" + ord_idx);
 		CancelDTO dto = new CancelDTO();
 		dto.setItem_idx(item_idx);
 		dto.setMember_id(sId);
+		dto.setOrd_idx(ord_idx);
 		dto.setCancel_content(content);
 		System.out.println("item_idx" + item_idx);
 		int insertCount = service.setCancelReq(dto);

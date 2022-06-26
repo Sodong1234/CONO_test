@@ -178,8 +178,8 @@
 		RIGHT OUTER JOIN safe s
 			ON i.item_idx = s.item_idx
 		WHERE 1=1
-          AND o.ord_status = 'N'
-          AND s.safe_status = 'N'
+<!--           AND o.ord_status = 'N' -->
+<!--           AND s.safe_status = 'N' -->
 		
 	</select>
 	

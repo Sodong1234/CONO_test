@@ -14,10 +14,19 @@ public class CancelDTO {
 	private String cancel_idx;
 	private String item_idx;
 	private String member_id;
+	private String ord_idx;
 	private String cancel_content;
 	private String cancel_date;
 	private String cancel_status;
 	
+	
+	
+	public String getOrd_idx() {
+		return ord_idx;
+	}
+	public void setOrd_idx(String ord_idx) {
+		this.ord_idx = ord_idx;
+	}
 	public String getCancel_idx() {
 		return cancel_idx;
 	}

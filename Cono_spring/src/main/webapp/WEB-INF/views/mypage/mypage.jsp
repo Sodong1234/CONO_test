@@ -143,7 +143,12 @@
 	    					</div>
 	    					<div class="cancel__list-status">
 	    						<div class="cancel__list-status-cancel">
-	    							<strong>취소완료</strong>
+	    							<c:if test="${item.cancel_status eq 'N'}">
+	    								<strong>취소 중</strong>
+	    							</c:if>
+	    							<c:if test="${item.cancel_status eq 'C'}">
+	    								<strong>취소 완료</strong>
+	    							</c:if>
 	    							<span class="cancel__list-status-when"><br>환불금액<br>
 	    								<span class="cancel__list-status-how"><br>>${item.ord_quantity * item.item_price } 코인</span>
 	    							</span>

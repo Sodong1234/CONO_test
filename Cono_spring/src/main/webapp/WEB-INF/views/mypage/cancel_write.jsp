@@ -116,6 +116,7 @@
                     </div>
                     <!-- //후기 작성 -->
                     <div class="n-btn-group">
+                    	<input type="hidden" name="ord_idx" value="${ord_idx}">
                     	<input type="hidden" name="item_idx" value="${itemInfo.item_idx}">
                         <input type="submit" class="n-btn btn-accent" id="btnSave" value="등록">
                     </div>

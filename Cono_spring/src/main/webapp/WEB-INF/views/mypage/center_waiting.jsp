@@ -172,24 +172,24 @@ p {
 					<c:when test="${waitingList eq null }">
 					<p style="position: relative; left: 300px">구매중인 상품이 존재하지 않습니다.</p>
 					</c:when>
-					<c:when test="${waitingList ne null }">
-				<c:forEach var="card" items="${waitingList }">
-					<div class="products">
-						<form action="cancel_form" method="post" target="취소작성"
-							onsubmit="return cancelBtn()">
-							<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""
-								src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
-								<p class="name">${card.item_title }</p>
-								<p class="region">${card.item_region }</p>
-								<p class="price">${card.item_price }원</p>
-
-								<input type="hidden" name="item_idx" value="${card.item_idx }">
-								<input type="submit" class="btn btn-success" value="취소하기" />
-							</a>
-						</form>
-					</div>
-				</c:forEach>
-			</c:when>
+					<c:when test="${waitingList ne null}">
+						<c:forEach var="card" items="${waitingList }">
+							<div class="products">
+								<form action="cancel_form" method="post" target="취소작성"
+									onsubmit="return cancelBtn()">
+									<a href="itemDetail?item_idx=${card.item_idx}"> <img alt=""
+										src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
+										<p class="name">${card.item_title }</p>
+										<p class="region">${card.item_region }</p>
+										<p class="price">${card.item_price }원</p>
+										<input type="hidden" name="ord_idx" value="${card.ord_idx }">
+										<input type="hidden" name="item_idx" value="${card.item_idx }">
+										<input type="submit" class="btn btn-success" value="취소하기" />
+									</a>
+								</form>
+							</div>
+						</c:forEach>
+					</c:when>
 				</c:choose>
 	</div>
 	<footer style="position: relative; top: 300px;">
