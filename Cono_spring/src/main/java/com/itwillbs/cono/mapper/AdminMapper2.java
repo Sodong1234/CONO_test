@@ -76,6 +76,8 @@ public interface AdminMapper2 {
 	// 취소 수정
 	public int updateCancelStatus(@Param("item_idx") String item_idx, @Param("ord_idx") String ord_idx);
 
+	public int updateSafeStatuc(String ord_idx);
+
 	
 
 	

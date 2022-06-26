@@ -70,7 +70,7 @@
 <body>
 <section class="mypage-cont">
             <form action="uploadCancel" id="reviewForm" name="reviewForm" method="post">
-                
+            <input type="hidden" id="insertCheck" name="insertCheck" value="${insertCheck }"> 
     <header class="n-section-title">
         <h1 class="tit">취소작성</h1>
     </header>
@@ -107,7 +107,7 @@
                             <div class="input-area">
                                 <!-- Text -->
                                 <div class="tab-block is-active" data-tab="text">
-                                    <textarea id="goods_text" placeholder="내용" name="review_content"></textarea>
+                                    <textarea id="goods_text" placeholder="내용" name="cancel_content"></textarea>
                                     <p class="info" id="text_size"><span id="cnt">0 자</span> / 500자 이하</p>
                                 </div>
                             </div>
@@ -116,6 +116,7 @@
                     </div>
                     <!-- //후기 작성 -->
                     <div class="n-btn-group">
+                    	<input type="hidden" name="item_idx" value="${itemInfo.item_idx}">
                         <input type="submit" class="n-btn btn-accent" id="btnSave" value="등록">
                     </div>
                 </div>

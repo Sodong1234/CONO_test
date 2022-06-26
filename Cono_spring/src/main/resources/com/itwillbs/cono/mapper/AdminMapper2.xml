@@ -249,7 +249,12 @@
 		   AND o.ord_idx = #{ord_idx}
 		   AND c.item_idx = #{item_idx}
 	</update>
-
+<!-- 	safe 변경 -->
+	<update id="updateSafeStatuc">
+		UPDATE safe s
+		   SET s.safe_status = 'C'
+		 WHERE s.ord_idx = #{ord_idx} 
+	</update>
 
 
 

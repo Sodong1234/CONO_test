@@ -330,13 +330,16 @@ public class AdminController2 {
 		int quantityReturn = service.quantityReturn(itemQuantity_Total, ord_quantity, ord_idx);
 		// cancel Y 로 변경(업데이트)
 		int cancelStatusY = service.cancelStatusY(item_idx, ord_idx);
+		// safe 상태 C 로 변경
+		int safeStatusC = service.safeStatusC(ord_idx);
+		
 		
 		System.out.println(dealCancel);
 		System.out.println(coinReturn);
 		System.out.println(couponReturn);
 		System.out.println(quantityReturn);
 		System.out.println(cancelStatusY);
-		
+		System.out.println(safeStatusC);
 		// 실패 시
 		if(dealCancel == 0) {
 			model.addAttribute("msg", "거래취소 실패!");

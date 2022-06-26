@@ -132,6 +132,7 @@ public class AdminService2 {
 			coin_total = "0";
 		}
 		coin_total = (Integer.parseInt(coin_total) - Integer.parseInt(safe_coin) + "");
+		System.out.println("coin_total : " + coin_total);
 		return mapper.insertCoinReturn( coin_total, safe_coin, member_id);
 	}
 
@@ -146,6 +147,10 @@ public class AdminService2 {
 
 	public int cancelStatusY(String item_idx, String ord_idx) {
 		return mapper.updateCancelStatus(item_idx, ord_idx);
+	}
+
+	public int safeStatusC(String ord_idx) {
+		return mapper.updateSafeStatuc(ord_idx);
 	}
 
 

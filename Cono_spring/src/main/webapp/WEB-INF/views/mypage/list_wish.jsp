@@ -29,10 +29,10 @@
 			<div class="ui_grid mt10">
 				<div class="ui_grid__cols--4">
 				<c:choose>
-					<c:when test="${wish.item_idx eq null }">
+					<c:when test="${wishList eq null }">
 					회원님께서 찜한 상품이 존재하지 않습니다.
 					</c:when>
-					<c:when test="${wish.item_idx eq null }">
+					<c:when test="${wishList ne null }">
 					<c:forEach var="wish" items="${wishList}">
 						<div class="ui_grid__item">
 							<div class="base-card card--vertical product">

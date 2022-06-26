@@ -451,15 +451,16 @@ public class MypageController {
 		dto.setItem_idx(item_idx);
 		dto.setMember_id(sId);
 		dto.setCancel_content(content);
-		
+		System.out.println("item_idx" + item_idx);
 		int insertCount = service.setCancelReq(dto);
-		
+		String insertCheck = "";
 		if(insertCount > 0) {
-			System.out.println(1);
-		} else {
-			System.out.println(0);
+			insertCheck = "done";
 		}
-		return "mypage/list_wish";
+		
+		model.addAttribute("insertCheck", insertCheck);
+		
+		return "mypage/cancel_write";
 	}
 	
 

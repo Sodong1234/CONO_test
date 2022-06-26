@@ -169,7 +169,7 @@ public class ItemController {
 		model.addAttribute("waitingList",waitingList);
 		
 		
-		return "mypage/center_waiting";
+		return "redirect:/waiting";
 	}
 	// -------------------------------------------------------------------------
 	
