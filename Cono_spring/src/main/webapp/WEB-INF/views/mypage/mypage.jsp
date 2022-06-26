@@ -94,7 +94,7 @@
 			        					<div class="my-review__writable__content">내용 : ${item.item_content }</div>
 			        					<div class="my-review__writable__date">구매날짜 : ${item.ord_date }</div>
 <%-- 			        					<div class="my-review__writable__date">가격 : ${item.ord_quantity * item.item_price }코인</div> --%>
-			        					<div class="my-review__writable__date">가격 : <fmt:formatNumber value="${item.ord_quantity * item.item_price }" pattern="#,###.##"/>원</div>
+			        					<div class="my-review__writable__date">가격 : <fmt:formatNumber value="${item.ord_quantity * item.item_price }" pattern="#,###.##"/>c</div>
 			        					
 			        					<div class="my-review__writable__date">수량 : ${item.ord_quantity }개</div>
 			        				</div>
@@ -137,7 +137,7 @@
 	    							</div>
 	    							<div class="cancel__list-price">
 	    								<div class="cancel__list-quantity">${item.ord_quantity }개</div>
-	    								<div class="cancel__list-priceCheck">${item.ord_quantity * item.item_price } 코인</div>
+	    								<div class="cancel__list-priceCheck">${item.ord_quantity * item.item_price } C</div>
 	    							</div>
 	    						</div>
 	    					</div>
@@ -150,7 +150,7 @@
 	    								<strong>취소 완료</strong>
 	    							</c:if>
 	    							<span class="cancel__list-status-when"><br>환불금액<br>
-	    								<span class="cancel__list-status-how"><br>>${item.ord_quantity * item.item_price } 코인</span>
+	    								<span class="cancel__list-status-how"><br>>${item.ord_quantity * item.item_price } c</span>
 	    							</span>
 	    						</div>
 	    					</div>

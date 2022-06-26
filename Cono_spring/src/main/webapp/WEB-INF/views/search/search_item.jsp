@@ -365,9 +365,9 @@ font-family: 'IBMPlexSansKR-Regular';
 					</label></li>
 					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="1" onclick="filter2(this.value)"> <span class="item_text">30000c 이하</span>
 					</label></li>
-					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="2" onclick="filter2(this.value)"> <span class="item_text">30000c~50000c</span>
-					</label></li>
-					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="3" onclick="filter2(this.value)"> <span class="item_text">50000c~100000c</span>
+					<li class="search_cate_item" style="width: 180px;"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="2" onclick="filter2(this.value)"> <span class="item_text">30000c~50000c</span>
+					</label></li>	
+					<li class="search_cate_item" style="width: 180px;"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="3" onclick="filter2(this.value)"> <span class="item_text">50000c~100000c</span>
 					</label></li>
 					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="4" onclick="filter2(this.value)"> <span class="item_text">100000c 이상</span>
 					</label></li>
