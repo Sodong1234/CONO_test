@@ -178,6 +178,7 @@
 		RIGHT OUTER JOIN safe s
 			ON i.item_idx = s.item_idx
 		WHERE 1=1
+		ORDER BY o.ord_date DESC
 <!--           AND o.ord_status = 'N' -->
 <!--           AND s.safe_status = 'N' -->
 		
@@ -187,6 +188,7 @@
 	<select id="selectDealCancelListCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
 		FROM cancel
+		WHERE cancel_status = 'N'
 	</select>
 	
 <!-- 거래 취소 요청 리스트 -->
