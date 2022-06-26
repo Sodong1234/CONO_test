@@ -59,8 +59,14 @@ font-family: 'IBMPlexSansKR-Regular';
 font-size: large;
 
 }
-
-
+.item-box img {
+	width: 300px;
+	height: 300px;
+}
+.item-box {
+	width: 100%; 
+	text-align: center;
+}
 </style>
 <!-- <link rel="stylesheet" -->
 <%-- 	href="${path}/resources/css/style.css" --%>
@@ -112,9 +118,9 @@ font-size: large;
 							</div>
 							<div class="item-list">
 								<div class="item-box">
-									<table>
-										<tr>
-											<td>
+<!-- 									<table class="item-box-table"> -->
+<!-- 										<tr> -->
+<!-- 											<td> -->
 												<c:choose>
 													<c:when test="${itemDetail.img_name ne null }">
 														<img src="${path }/resources/upload/file/${itemDetail.img_name }">
@@ -123,13 +129,9 @@ font-size: large;
 														<img src="resources/default_img.png">
 													</c:when>
 												</c:choose>
-											</td>
-											
-										</tr>
-											</table>
-											
-											<br>
-											<br>
+<!-- 											</td> -->
+<!-- 										</tr> -->
+<!-- 											</table> -->
 										<ul style="text-align: center;">
 											<li style="font-weight: bolder;"> 【 상품 이름 】 </li> 
 											<pre style="font-size: medium;">${itemDetail.item_title }</pre>
@@ -138,12 +140,8 @@ font-size: large;
 											<li style="font-weight: bolder;"> 【 수량 】 </li>
 											<pre>${param.ord_quantity } 개	</pre>
 											
-										
-									
-											
 											<li style="font-weight: bolder;">【 주문 요청 사항 】</li>
 											<li><textarea name="ord_reqContent" rows="5" cols="40" placeholder="요구사항을 입력하세요."></textarea></li>
-											
 											
 										</ul>
 <!-- 										</tr> -->
