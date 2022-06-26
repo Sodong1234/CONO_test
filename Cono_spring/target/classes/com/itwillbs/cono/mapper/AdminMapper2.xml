@@ -177,7 +177,9 @@
 		RIGHT OUTER JOIN safe s
 			ON i.item_idx = s.item_idx
 		WHERE 1=1
+		  AND s.ord_idx = o.ord_idx
 		ORDER BY o.ord_date DESC
+
 <!--           AND o.ord_status = 'N' -->
 <!--           AND s.safe_status = 'N' -->
 		

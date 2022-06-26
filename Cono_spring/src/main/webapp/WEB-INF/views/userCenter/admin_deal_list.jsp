@@ -77,7 +77,12 @@
 					<td>${product.safe_coin }</td>
 					<td>${product.ord_date }</td>
 					<td>${product.ord_status }</td>
+					<c:if test="${product.ord_status eq 'N'}">
 					<td><input type="button" id="search_btn" value="거래취소" onclick="dealCancel('${product.item_idx }', '${product.safe_coin }', '${product.ord_status }','${pageInfo.pageNum }','${product.member_id }','${product.ord_idx }')"></td>
+					</c:if>
+					<c:if test="${product.ord_status ne 'N'}">
+					<td></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</c:if>
