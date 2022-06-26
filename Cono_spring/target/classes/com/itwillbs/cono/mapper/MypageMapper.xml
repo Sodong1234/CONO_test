@@ -104,7 +104,7 @@
 <!-- 	코인 충전 -->
 	<insert id="insertCoinAdd">
 		INSERT INTO coin
-		VALUES (SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c),
+		VALUES (SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c WHERE c.member_id = #{sId}),
 				#{sId}, 
 				#{payment_value}, 
 				'', 
@@ -283,7 +283,7 @@
 	<insert id="insertCoinSeller">
 		INSERT INTO coin
 		VALUES (
-				(SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c)
+				(SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c WHERE c.member_id = #{shop_member_id})
 			   ,#{shop_member_id}
 			   ,#{safe_coin}
 			   ,''

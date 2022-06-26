@@ -335,7 +335,7 @@ public class AdminController2 {
 		
 		
 		System.out.println(dealCancel);
-		System.out.println(coinReturn);
+		System.out.println("coinReturn" + coinReturn + "--" + "멤버 : " + member_id);
 		System.out.println(couponReturn);
 		System.out.println(quantityReturn);
 		System.out.println(cancelStatusY);

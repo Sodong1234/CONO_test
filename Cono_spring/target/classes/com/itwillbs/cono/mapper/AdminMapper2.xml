@@ -166,9 +166,8 @@
 	<select id="selectDealListCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
 		FROM ord
-		WHERE ord_status = 'N'
 	</select>
-	
+
 <!-- 현재 진행 거래 리스트 -->
 	<select id="selectAllDeal" resultType="java.util.HashMap">
 		SELECT i.item_title, o.item_idx, o.member_id, s.safe_coin, o.ord_date, o.ord_status, o.ord_idx
@@ -238,10 +237,10 @@
 	</update>
 	
 <!-- 	'거래취소'시 코인 반환 -->
-	<update id="insertCoinReturn">
+	<insert id="insertCoinReturn">
 		INSERT INTO coin
-		VALUES ((SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c),#{member_id},#{safe_coin},'',#{coin_total},date_format(now(), '%Y%m%d%H%i%S'))
-	</update>
+		VALUES ((SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c WHERE c.member_id = #{member_id}),#{member_id},#{safe_coin},'',#{coin_total},date_format(now(), '%Y%m%d%H%i%S'))
+	</insert>
 <!-- 	'거래취소'시 Cancel Status -> Y 로 변경 -->
 	<update id="updateCancelStatus">
 		UPDATE cancel c LEFT OUTER JOIN ord o

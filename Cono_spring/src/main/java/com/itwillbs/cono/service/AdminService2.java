@@ -131,7 +131,7 @@ public class AdminService2 {
 		if(coin_total == null) {
 			coin_total = "0";
 		}
-		coin_total = (Integer.parseInt(coin_total) - Integer.parseInt(safe_coin) + "");
+		coin_total = (Integer.parseInt(coin_total) + Integer.parseInt(safe_coin) + "");
 		System.out.println("coin_total : " + coin_total);
 		return mapper.insertCoinReturn( coin_total, safe_coin, member_id);
 	}
