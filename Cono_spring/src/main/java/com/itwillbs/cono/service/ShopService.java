@@ -481,6 +481,11 @@ public class ShopService {
 	public FollowDTO followList(String sId, String shop_idx) {
 		return mapper.selectFollow(sId,shop_idx);
 	}
+	
+	// 상점 팔로워 수 조회
+	public int getFollowCount(String member_id) {
+		return mapper.selectFollowCount(member_id);
+	}
 
 
 	

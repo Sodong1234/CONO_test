@@ -132,7 +132,7 @@ public interface ShopMapper {
 	public int selectFollowingCount(String sId);
 	
 	// 팔로워 수
-	public int selectFollowerCount(String sId);
+	public int selectFollowerCount(String member_id);
 	
 	//팔로우 추가
 	int insertFollow(@Param("sId")String sId, @Param("shop_idx")String shop_idx);
@@ -168,6 +168,9 @@ public interface ShopMapper {
 
 	// 팔로우조회
 	FollowDTO selectFollow(@Param("sId")String sId, @Param("shop_idx")String shop_idx);
+	
+	// 내상점 팔로워 수 조회
+	int selectFollowCount(String item_idx);
 
 
 

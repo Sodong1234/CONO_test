@@ -250,6 +250,12 @@
 		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 	</select>
 	
+	<select id="selectFollowCount" resultType="int">
+		SELECT COUNT(member_id) 
+		 FROM follow 
+		WHERE shop_idx = (SELECT s.shop_idx FROM shop s WHERE s.member_id = #{member_id})
+	</select>
+	
 	<!-- 클릭된 이미지 조회 -->
 	<select id="selectImg" resultType="java.lang.String">
 		SELECT img_name
@@ -384,10 +390,13 @@
 	<!-- 판매 횟수 조회 -->
 	<select id="selectShopSellCntBuyer" resultType="java.lang.String">
 		SELECT COUNT(*) sellCount 
-		 FROM item it, shop s 
+		 FROM item it, shop s, ord o
 		WHERE it.shop_idx = s.shop_idx
-		  AND it.item_status = 'Y'
-		  AND it.item_idx = #{item_idx}
+		  AND o.item_idx = it.item_idx
+		  AND ord_status = 'Y'
+       	  AND s.shop_idx = (SELECT shop_idx 
+	      					  FROM item 
+	      					 WHERE item_idx=#{item_idx})
 	</select>
 	
 	<!-- 상품 횟수 조회 -->
@@ -395,7 +404,9 @@
 		SELECT COUNT(*) itemCount
 		 FROM item it, shop s 
 		WHERE it.shop_idx = s.shop_idx
-		  AND it.item_idx = #{item_idx}
+       	  AND s.shop_idx = (SELECT shop_idx 
+	      					  FROM item 
+	      					 WHERE item_idx=#{item_idx})
 	</select>
 	
 	<!-- 팔로워 수 조회 -->
@@ -408,11 +419,13 @@
 	
 	<!-- 상점 별점 조회 -->
 	<select id="selectShopAvgStar" resultType="java.lang.String">
-		SELECT IFNULL(ROUND(SUM(r.review_score)/COUNT(i.item_idx),2),'0.0') as avg
-		  FROM item i, shop s, review r
-		 WHERE r.item_idx = i.item_idx
-		   AND i.shop_idx = s.shop_idx
-		   AND i.item_idx = #{item_idx} 
+           SELECT IFNULL(ROUND(SUM(r.review_score)/COUNT(i.item_idx),2),'0.0') as avg
+             FROM item i, shop s, review r
+			WHERE i.item_idx = r.item_idx
+              AND i.shop_idx = s.shop_idx
+              AND s.shop_idx = (SELECT shop_idx 
+              					  FROM item 
+              					 WHERE item_idx=#{item_idx})
 	</select>
 	
 	<!-- 상점 상품 조회 -->
