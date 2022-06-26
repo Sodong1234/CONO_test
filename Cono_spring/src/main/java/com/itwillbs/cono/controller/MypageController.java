@@ -100,12 +100,14 @@ public class MypageController {
 		
 		boolean purchasedCheck = purchasedList.isEmpty();
 		model.addAttribute("purchasedCheck",purchasedCheck);
+		System.out.println("완료 : " + purchasedCheck);
 		
 		// 취소 상품
 		List<HashMap<String, String>> canceledList = service.getCanceledList(sId);
 		model.addAttribute("canceledList",canceledList);
 		
 		boolean canceledCheck = canceledList.isEmpty();
+		System.out.println("취소 : " + canceledCheck);
 		model.addAttribute("canceledCheck",canceledCheck);
 		
 		return "mypage/mypage";

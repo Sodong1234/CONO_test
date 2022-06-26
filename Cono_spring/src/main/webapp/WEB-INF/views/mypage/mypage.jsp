@@ -76,8 +76,10 @@
 	    <label for="tab2">취소 / 환불</label>
 	    
      		<!-- 	        				구매완료 내용 시작 -->
-     <c:if test="${purchasedCheck eq true} ">
-     	회원님께서 구매 완료한 상품이 존재하지 않습니다.
+     <c:if test="${purchasedCheck eq true}">
+     	<br>
+     	<br>
+     	<h5>회원님께서 구매 완료한 상품이 존재하지 않습니다.</h5>
      </c:if>
      <c:if test="${purchasedCheck eq false}">
 		<c:forEach var="item" items="${purchasedList }">
@@ -115,8 +117,10 @@
 	</c:if>		
 <!-- 	        				구매완료 내용 끝 -->
 <!-- 							취소 시작  -->
-	 <c:if test="${canceledCheck eq true} ">
-     	회원님께서 취소한 상품이 존재하지 않습니다.
+	 <c:if test="${canceledCheck eq true}">
+     	<br>
+     	<br>
+     	<h5>회원님께서 구매 완료한 상품이 존재하지 않습니다.</h5>
      </c:if>
      <c:if test="${canceledCheck eq false}">
 		<c:forEach var="item" items="${canceledList}" >
