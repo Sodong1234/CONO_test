@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CONO::팔로잉</title>
+<title>CONO::팔로워</title>
 <script src="${path}/resources/js/jquery-3.6.0.js"></script>
 <style type="text/css">
 section {
@@ -66,14 +66,14 @@ hr.hr-13 {
 		<jsp:include page="./myshop_sidebar.jsp"/>
 	</div>
 	<div id="list_following_wrap">
-		<h2 style="font-family: Cafe24Ohsquare;"> 팔로잉/팔로워 상점</h2>
+		<h2 style="font-family: Cafe24Ohsquare;"> 팔로워/팔로잉 상점</h2>
 
 		<hr class="hr-13"  >
 	
 		<section>
 			<nav class="navstyle">
-				<a href="follow" class="activefollow">팔로잉 상점</a>
-				<a href="following" class="activefollower">팔로워 상점</a>
+				<a href="follow" class="activefollow">팔로워 상점</a>
+				<a href="following" class="activefollower">팔로잉 상점</a>
 			</nav>
 			<p><strong style="font-weight: bold;">${followerCount }명</strong>이 내 상점을 팔로우 중입니다. </p>
 			<c:forEach var="follower" items="${followerList }">

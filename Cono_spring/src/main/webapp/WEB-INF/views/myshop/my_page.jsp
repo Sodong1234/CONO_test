@@ -151,7 +151,7 @@ form {
 				<li> ${myShop.get('member_id') } </li> 
 				<li data-icon="🌈" style="font-weight: bolder;"> 상점 소개  </li>
 				<li> ${myShop.get('shop_content') } </li>
-				<li data-icon="😎" style="font-weight: bolder;"> 팔로워 <span style="font-weight: normal;">${followingCount}</span> 명
+				<li data-icon="😎" style="font-weight: bolder;"> 팔로워 <span style="font-weight: normal;">${followCount }</span> 명
 			 </li>
 			</ul>
 			
