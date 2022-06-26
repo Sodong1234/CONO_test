@@ -110,7 +110,7 @@
 }
 
 .swiper-wrapper {
-	width: 100%;
+	width: 90%;
 	height: 200px;
 	overflow: hidden;
 	position: relative;
