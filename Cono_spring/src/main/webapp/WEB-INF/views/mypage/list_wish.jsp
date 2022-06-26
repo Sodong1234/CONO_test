@@ -49,7 +49,7 @@
 										<div class="product-info__price">
 <%-- 											<span class="price-origin"> ${wish.item_price}  --%>
 											<span class="price-origin"><fmt:formatNumber value="${wish.item_price}" pattern="#,###.##"/>
-											<span style="font-size: 14px;">원</span>
+											<span style="font-size: 14px;">c</span>
 											</span>
 										</div>
 										<br>

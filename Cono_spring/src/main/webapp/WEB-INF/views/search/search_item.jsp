@@ -363,13 +363,13 @@ font-family: 'IBMPlexSansKR-Regular';
 				<ul class="search_cate_list">
 					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="0" onclick="filter2(this.value)" checked="checked"> <span class="item_text">전체</span>
 					</label></li>
-					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="1" onclick="filter2(this.value)"> <span class="item_text">3만원 이하</span>
+					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="1" onclick="filter2(this.value)"> <span class="item_text">30000c 이하</span>
 					</label></li>
-					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="2" onclick="filter2(this.value)"> <span class="item_text">3만원~5만원</span>
+					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="2" onclick="filter2(this.value)"> <span class="item_text">30000c~50000c</span>
 					</label></li>
-					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="3" onclick="filter2(this.value)"> <span class="item_text">5만원~10만원</span>
+					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="3" onclick="filter2(this.value)"> <span class="item_text">50000c~100000c</span>
 					</label></li>
-					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="4" onclick="filter2(this.value)"> <span class="item_text">10만원 이상</span>
+					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="4" onclick="filter2(this.value)"> <span class="item_text">100000c 이상</span>
 					</label></li>
 				</ul>
 			</div>
@@ -385,9 +385,9 @@ font-family: 'IBMPlexSansKR-Regular';
 				src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
 				<p class="name" >${card.item_title }</p>
 				<p class="region">${card.item_region }</p>
-<%-- 				<p class="price">${card.item_price }원</p> --%>
+<%-- 				<p class="price">${card.item_price }c</p> --%>
 				<p class="price" style="padding-left: 0px;">
-	<fmt:formatNumber value="${card.item_price }" pattern="#,###.##"/>원</p>
+	<fmt:formatNumber value="${card.item_price }" pattern="#,###.##"/>c</p>
 				
 			</a>
 		</div>

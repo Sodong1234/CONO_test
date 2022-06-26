@@ -44,7 +44,7 @@
 							</div>
 							<div class="coupon-contents__body">
 								<div class="coupon-contents__discount-value">
-									${coupon.coupon_price } <span style="font-size: 24px;">원</span>
+									${coupon.coupon_price } <span style="font-size: 24px;">C</span>
 								</div>
 								<div class="coupon-contents__discount-condition">
 									${coupon.coupon_content }

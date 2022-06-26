@@ -231,7 +231,7 @@ p {
 			<img alt="" src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
 				<p class="name">${recentView.item_title }</p>
 				<p class="region">${recentView.item_region }</p>
-				<p class="price">${recentView.item_price }원</p>
+				<p class="price">${recentView.item_price }c</p>
 			</a>
 		</div>
 	</c:forEach>

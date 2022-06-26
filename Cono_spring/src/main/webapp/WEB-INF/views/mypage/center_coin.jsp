@@ -192,8 +192,8 @@ input[type=radio]{
       <div id="payCheck" class ="payCheck" align="center">
       <form action="payment" method="post" >
       <table class="payTable">
-	      <tr><td class ="radioBtn"><input type="radio" name="payment_value" value="10000" class="radio">  &nbsp;&nbsp;10,000원&nbsp;&nbsp;</td><td class ="radioBtn"><input type="radio" name="payment_value" value="30000" class="radio">	&nbsp;&nbsp;30,000원&nbsp;&nbsp;</td></tr>
-	      <tr><td class ="radioBtn"><input type="radio" name="payment_value" value="50000" class="radio">  &nbsp;&nbsp;50,000원&nbsp;&nbsp;</td><td class ="radioBtn"><input type="radio" name="payment_value" value="100000" class="radio">	 &nbsp;&nbsp;100,000원&nbsp;&nbsp;</td></tr>
+	      <tr><td class ="radioBtn"><input type="radio" name="payment_value" value="10000" class="radio">  &nbsp;&nbsp;10,000c&nbsp;&nbsp;</td><td class ="radioBtn"><input type="radio" name="payment_value" value="30000" class="radio">	&nbsp;&nbsp;30,000c&nbsp;&nbsp;</td></tr>
+	      <tr><td class ="radioBtn"><input type="radio" name="payment_value" value="50000" class="radio">  &nbsp;&nbsp;50,000c&nbsp;&nbsp;</td><td class ="radioBtn"><input type="radio" name="payment_value" value="100000" class="radio">	 &nbsp;&nbsp;100,000c&nbsp;&nbsp;</td></tr>
         </table>
          <div class="btnArea"><input type="submit" value="결제하기" class="btn"></div>
       </form>

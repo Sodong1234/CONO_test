@@ -80,8 +80,8 @@
 				    <img alt="" src="<spring:url value='/resources/upload/file/${item.img_name }'/>">
 					<p class="name">${item.item_title }</p>
 					<p class="region">${item.item_region }</p>
-<%-- 					<p class="price">${item.item_price }원</p> --%>
-					<p class="price"><fmt:formatNumber value="${item.item_price }" pattern="#,###.##"/>원</p>
+<%-- 					<p class="price">${item.item_price }c</p> --%>
+					<p class="price"><fmt:formatNumber value="${item.item_price }" pattern="#,###.##"/>c</p>
 				</a>
 			</div>
 		</c:forEach>

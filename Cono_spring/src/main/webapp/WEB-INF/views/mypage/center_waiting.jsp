@@ -181,7 +181,7 @@ p {
 										src="<spring:url value='/resources/upload/file/${card.img_name }'/>">
 										<p class="name">${card.item_title }</p>
 										<p class="region">${card.item_region }</p>
-										<p class="price">${card.item_price }원</p>
+										<p class="price">${card.item_price }c</p>
 										<input type="hidden" name="ord_idx" value="${card.ord_idx }">
 										<input type="hidden" name="item_idx" value="${card.item_idx }">
 										<input type="submit" class="btn btn-success" value="취소하기" />

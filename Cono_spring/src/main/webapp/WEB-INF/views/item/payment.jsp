@@ -17,14 +17,14 @@
 			if($("#coupon_idx option:selected").text() === '쿠폰 선택') {
 				$("#coupon_select_result").html('없음');	
 			} else {
-				$("#coupon_select_result").html($("#coupon_idx option:selected").text()+"원");
+				$("#coupon_select_result").html($("#coupon_idx option:selected").text()+"c");
 			}
 			let coupon_price = $("#coupon_idx option:selected").text().split("/")[1];
 			let total_price = ${itemDetail.item_price * param.ord_quantity } - coupon_price;
 			if($("#coupon_idx option:selected").text() === '쿠폰 선택') {
-				$("#totalPrice").html("<fmt:formatNumber value='${itemDetail.item_price * param.ord_quantity  }' pattern='#,###.##'/></span>원</span>");
+				$("#totalPrice").html("<fmt:formatNumber value='${itemDetail.item_price * param.ord_quantity  }' pattern='#,###.##'/></span>c</span>");
 			} else {
-				$("#totalPrice").html("${itemDetail.item_price * param.ord_quantity  }원 - " + coupon_price + "원 = " + total_price + "원")
+				$("#totalPrice").html("${itemDetail.item_price * param.ord_quantity  }c - " + coupon_price + "c = " + total_price + "c")
 			} 
 			
 		});
@@ -179,8 +179,8 @@ font-size: large;
 						<tr class="payType-wrap">
 								<th class="wrap-title">보유 코인</th>
 								<td class="inputWrap payType" style="padding: 0 15px;">
-<%-- 															<strong>${balanceCoin }원</strong> --%>
-															<strong><fmt:formatNumber value="${balanceCoin }" pattern="#,###.##"/>원</strong>
+<%-- 															<strong>${balanceCoin }c</strong> --%>
+															<strong><fmt:formatNumber value="${balanceCoin }" pattern="#,###.##"/>c</strong>
 									</td>
 								</tr>
 						
@@ -193,7 +193,7 @@ font-size: large;
 										<strong class="price"> 
 <%-- 										<span id="totalPriceDisp" class="use-calculation-for-totalprice"> ${itemDetail.item_price * param.ord_quantity  } </span>  --%>
 										<span id="totalPriceDisp" class="use-calculation-for-totalprice"><fmt:formatNumber value="${itemDetail.item_price * param.ord_quantity  }" pattern="#,###.##"/></span>
-										<span class="unit">원</span>
+										<span class="unit">c</span>
 										</strong>
 									</div>
 								</td>
@@ -229,7 +229,7 @@ font-size: large;
 							<tr>
 								<th class="wrap-title">총 결제 금액</th>
 								<td><div class="payPrice" >
-									&nbsp;&nbsp;&nbsp;<span id="totalPrice" style="font-size: xx-large; font-weight: bolder; color: red;"><span id="totalPriceDisp" class="use-calculation-for-totalprice"  style="font-size: xx-large; font-weight: bolder; color: red;"><fmt:formatNumber value="${itemDetail.item_price * param.ord_quantity  }" pattern="#,###.##" /></span>원</span>
+									&nbsp;&nbsp;&nbsp;<span id="totalPrice" style="font-size: xx-large; font-weight: bolder; color: red;"><span id="totalPriceDisp" class="use-calculation-for-totalprice"  style="font-size: xx-large; font-weight: bolder; color: red;"><fmt:formatNumber value="${itemDetail.item_price * param.ord_quantity  }" pattern="#,###.##" /></span>c</span>
 									</div>
 								</td>
 							</tr>
