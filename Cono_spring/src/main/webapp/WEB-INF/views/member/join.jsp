@@ -18,6 +18,7 @@
 	var isCheckPass = false;
 	var isCheckPhone = false;
 	var isCheckEmail = false;
+	var isCheckLaw = false;
 	
 	function checkId() {
 		$.ajax({
@@ -132,7 +133,11 @@
 	}
 
 	function checkSubmit() {
-		if (!isCheckRetypePass) {
+		if (!isCheckId) {
+			alert("아이디 중복 확인 필수!");
+			document.fr.member_id.focus();
+			return false;
+		} else if (!isCheckRetypePass) {
 			alert("패스워드 확인 필수!");
 			document.fr.pass2.focus();
 			return false;
@@ -140,26 +145,25 @@
 			alert("패스워드 규칙 확인 필수");
 			document.fr.pass.focus();
 			return false;
-		} else if (!isCheckPhone) {
-			alert("전화번호 확인 필수!");
-			document.fr.phone.focus();
-			return false;
 		} else if (!isCheckEmail) {
 			alert("이메일 확인 필수!");
 			document.fr.email.focus();
 			return false;
-		} else if (!isCheckId) {
-			alert("아이디 중복 확인 필수!");
-			document.fr.member_id.focus();
+		} else if (!isCheckPhone) {
+			alert("전화번호 확인 필수!");
+			document.fr.phone.focus();
 			return false;
-		} 
+		} else if (!isCheckLaw) {
+			alert("필수 약관에 동의하셔야 가입 가능합니다.");
+			return false;
+		}
 	}
 	// 		else if(checkIdResult == false) {
 	// 			alert("아이디 중복확인 필수!");
 	// 			document.fr.id.focus();
 	// 			return false;
 	// 		}
-	
+
 	$(document).ready(function() {
 		$("#check_all").click(function() {
 			if ($("#check_all").is(":checked"))
@@ -178,33 +182,34 @@
 				$("#check_all").prop("checked", true);
 		});
 	});
-	
-		$(function() {
-			$("#submit").click(function () {
-				if($("#check_1").is(":checked") == false) {
-					alert("필수 약관에 동의하셔야 가입 가능합니다.");
-					return false;
-				} else if($("#check_2").is(":checked") == false) {
-					alert("필수 약관에 동의하셔야 가입 가능합니다.");
-					return false;
-				} else {
-					$("#join").submit();
-				}
-			});
+
+	$(function() {
+		$("#submit").click(function() {
+			if ($("#check_1").is(":checked") == false) {
+				// 					alert("필수 약관에 동의하셔야 가입 가능합니다.");
+				// 					return false;
+				isCheckLaw = false;
+			} else if ($("#check_2").is(":checked") == false) {
+				// 					alert("필수 약관에 동의하셔야 가입 가능합니다.");
+				// 					return false;
+				isCheckLaw = false;
+			} else {
+				isCheckLaw = true;
+				$("#join").submit();
+			}
 		});
-// 	$("#sendMail").click(function () {
-// 		var email = $(".email").val();
-		
-// 		if(email == "") {
-// 			alert("메일 주소를 입력해주세요!");
-// 			return false;
-// 		}
-		
-		
-// 	})
-	
-// =========================================== 메일 발송 ===============================
-	
+	});
+	// 	$("#sendMail").click(function () {
+	// 		var email = $(".email").val();
+
+	// 		if(email == "") {
+	// 			alert("메일 주소를 입력해주세요!");
+	// 			return false;
+	// 		}
+
+	// 	})
+
+	// =========================================== 메일 발송 ===============================
 </script>
 <link href="../css/default.css" rel="stylesheet" type="text/css">
 <link href="../css/subpage.css" rel="stylesheet" type="text/css">
@@ -310,20 +315,20 @@ input[type="submit"] {
 				<div class="container">
 					<div class="input-form-backgroud row">
 						<div class="input-form col-md-12 mx-auto">
-							<h4 class="mb-3">회원가입</h4>
+							<h4 class="mb-3">회원가입2</h4>
 								<div class="row">
 									<div class="col-md-6 mb-3">
 										<label for="name">아이디</label> 
-										<input type="text" class="form-control" name="member_id" id="member_id"  placeholder="아이디를 입력해주세요" required>
+										<input type="text" class="form-control" name="member_id" id="member_id" placeholder="아이디를 입력해주세요">
 									</div>
 									<div class="col-md-3 mb-3">
 										<label for="dup">&nbsp;</label>
 										<button class="form-control" id="dupBtn" style="background-color: aquamarine;"
-										onclick="checkId();" value="N">중복확인</button>
+										onclick="checkId(this.value)" value="N">중복확인</button>
 									</div>
 									<div class="col-md-6 mb-3">
 										<label for="nick">별명</label> 
-										<input type="text" class="form-control" name="member_nick" id="nick" placeholder="닉네임을 입력해주세요" required>
+										<input type="text" class="form-control" name="member_nick" id="nick" placeholder="닉네임을 입력해주세요">
 									</div>
 									<div> 
 									<!-- 별명 오른쪽 빈칸 만들기용.. -->
@@ -333,22 +338,19 @@ input[type="submit"] {
 									<div class="col-md-6 mb-3">
 										<label for="passworid">비밀번호</label>
 										<input type="password" class="form-control" 
-										name="member_pass" id="pass" placeholder="영문 + 숫자 + 특수문자 8자 이상" 
-										required onkeyup="checkPass(this.value)">
+										name="member_pass" id="pass" placeholder="영문 + 숫자 + 특수문자 8자 이상" onkeyup="checkPass(this.value)">
 										<span id="checkPassResult"></span><br>
 									</div>
 									<div class="col-md-6 mb-3">
 										<label for="password">비밀번호 확인</label> 
 										<input type="password" class="form-control" 
-										name="pass2" id="pass2" placeholder="비밀번호 확인" 
-										required onkeyup="checkRetypePass(this.value)">
+										name="pass2" id="pass2" placeholder="비밀번호 확인" onkeyup="checkRetypePass(this.value)">
 										<span id="checkRetypePassResult"></span><br>
 									</div>
 								</div>
 								<div class="mb-3">
 									<label for="email">이메일</label> 
-									<input type="email" class="form-control" name="member_email" id="email" placeholder="이메일을 입력해주세요" 
-									required onblur="checkEmail(this.value)">
+									<input type="email" class="form-control" name="member_email" id="email" placeholder="이메일을 입력해주세요" onblur="checkEmail(this.value)">
 									<span id="checkEmailResult"></span>
 									<button class=" col-md-3 mb-3 form-control" 
 									style="background-color: aquamarine;" id="sendMail" onclick="">이메일 인증요청</button>
@@ -356,12 +358,11 @@ input[type="submit"] {
 								</div>					
 								<div class="mb-3">
 									<label for="birth">생년월일</label> 
-									<input type="date" class="form-control" name="member_birth" id="birth" placeholder="생년월일" required>
+									<input type="date" class="form-control" name="member_birth" id="birth" placeholder="생년월일">
 								</div>
 								<div class="mb-3">
 									<label for="phone">전화번호</label> 
-									<input type="text" class="form-control" name="member_phone" id="phone" placeholder="전화번호 입력" 
-									required onblur="checkPhone(this.value)">
+									<input type="text" class="form-control" name="member_phone" id="phone" placeholder="전화번호 입력" onblur="checkPhone(this.value)">
 									<span id="checkPhoneResult"></span><br>
 								</div>
 								<div class="checkbox_group">

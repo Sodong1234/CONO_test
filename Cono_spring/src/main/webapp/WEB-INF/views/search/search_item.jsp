@@ -141,8 +141,9 @@ p {
 .price {
 	margin-top: 4px;
 	margin-bottom: 80px;
-	color: #6EB4B5;
-	font-size: 13pt;
+	color: #4d8e8f;
+	font-size: 17pt;
+	font-weight: bold;
 }
 
 /* 필터정보 */
