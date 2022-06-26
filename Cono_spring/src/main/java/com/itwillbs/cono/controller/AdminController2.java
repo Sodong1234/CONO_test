@@ -75,8 +75,8 @@ public class AdminController2 {
 	public String MemberList(@RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String search,
 			@RequestParam(defaultValue = "1") int pageNum, Model model) {
 		
-		int listLimit = 15;	// 페이지 당 글 목록 갯수
-		int pageLimit = 5;	// 페이지 당 페이지 목록 갯수
+		int listLimit = 10;	// 페이지 당 글 목록 갯수
+		int pageLimit = 10;	// 페이지 당 페이지 목록 갯수
 		
 		// 회원수 조회
 		Integer listCount = service.getMemberListCount(searchType, "%" + search + "%");
@@ -118,8 +118,8 @@ public class AdminController2 {
 	public String MemberListPost(@RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String search,
 			@RequestParam(defaultValue = "1") int pageNum, Model model) {
 		
-		int listLimit = 15;	// 페이지 당 글 목록 갯수
-		int pageLimit = 5;	// 페이지 당 페이지 목록 갯수
+		int listLimit = 10;	// 페이지 당 글 목록 갯수
+		int pageLimit = 10;	// 페이지 당 페이지 목록 갯수
 		
 		// 회원수 조회
 		int listCount = service.getMemberListCount(searchType, "%" + search + "%");
@@ -160,8 +160,8 @@ public class AdminController2 {
 	public String ExitMemberListPost(@RequestParam(defaultValue = "") String searchType, @RequestParam(defaultValue = "") String search,
 			@RequestParam(defaultValue = "1") int pageNum, Model model) {
 		
-		int listLimit = 15;	// 페이지 당 글 목록 갯수
-		int pageLimit = 5;	// 페이지 당 페이지 목록 갯수
+		int listLimit = 10;	// 페이지 당 글 목록 갯수
+		int pageLimit = 10;	// 페이지 당 페이지 목록 갯수
 		
 		// 회원수 조회
 		int listCount = service.getExitMemberListCount();
@@ -236,7 +236,7 @@ public class AdminController2 {
 		
 		// 페이징 처리
 		int listLimit = 10;
-		int pageLimit = 5;
+		int pageLimit = 10;
 		
 		// 현재 거래 수 조회
 		int listCount = service.getAdminDealListCount();
@@ -277,7 +277,7 @@ public class AdminController2 {
 		
 		// 페이징 처리
 		int listLimit = 10;
-		int pageLimit = 5;
+		int pageLimit = 10;
 		
 		// 현재 거래 수 조회
 		int listCount = service.getAdminDealCancelListCount();

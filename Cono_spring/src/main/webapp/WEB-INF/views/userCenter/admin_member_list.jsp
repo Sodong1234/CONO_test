@@ -28,7 +28,7 @@ a:hover {
 
 	// 회원 탈퇴
 	function confirmExit(member_id, page){
-		var exitConfirm = confirm("탈퇴를 진행하시겠습니까?" + '\n' + "탈퇴한 아이디는 복원하실 수 없습니다.");
+		var exitConfirm = confirm("아이디 정지를 진행하시겠습니까?" + '\n' + "정지된 아이디는 서비스를 사용하실 수 없습니다.");
 		
 		if(exitConfirm){
 			location.href="./AdminMemberExit?member_id=" + member_id + "&page=" + page;
@@ -63,7 +63,7 @@ a:hover {
 			<form>
 				<input type="hidden" name="pageNum" value="${pageNum}">
 				<select name="searchType" class="ssearch">
-					<option value="">전체</option>
+					<option value="">선택</option>
 					<option value="id" <c:if test="${searchType ne null and searchType eq 'id'}">selected</c:if>>아이디</option>
 					<option value="nick" <c:if test="${searchType ne null and searchType eq 'nick'}">selected</c:if>>닉네임</option>
 					<option value="shop" <c:if test="${searchType ne null and searchType eq 'shop'}">selected</c:if>>판매여부</option>
@@ -107,36 +107,33 @@ a:hover {
 
 
 <!-- 페이징 처리 -->
-	<section class="paging">
+	<section class="paging" style="margin-bottom: 60px">
 		<!-- [이전] 링크 동작 -->
 		<c:choose>
-			<c:when test="${pageNum > 1}">
-				<input type="button"  value=" < " onclick="location.href='AdminMemberList?page=${pageNum - 1}<c:if test="${search ne null }">&search=${search }&searchType=${searchType }</c:if>'">
+			<c:when test="${pageInfo.pageNum > 1 }">
+				<input type="button" value=" < " onclick="location.href='AdminMemberList?pageNum=${pageInfo.pageNum - 1 }'">
 			</c:when>
 			<c:otherwise>
-				<input type="button"  value=" < " disabled="disabled">
+				<input type="button" value=" < ">
 			</c:otherwise>
 		</c:choose>
-			
-		<!-- 페이지 번호 --> 
-		<c:forEach var="i" begin="${startPage }" end="${endPage }">
-			<c:choose>
-				<c:when test="${pageNum eq i}">
-					${i }
-				</c:when>
-				<c:otherwise>
-					<a href="AdminMemberList?page=${i }<c:if test="${search ne null }">&search=${search }&searchType=${searchType }</c:if>">${i }</a>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
 
-		<!-- [다음] 링크 동작 -->
-		<c:choose>
-			<c:when test="${pageNum < maxPage}">
-				<input type="button" value=" > " onclick="location.href='AdminMemberList?page=${pageNum + 1}<c:if test="${search ne null }">&search=${search }&searchType=${searchType }</c:if>'">
+		<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
+			<c:choose>
+			<c:when test="${pageInfo.pageNum eq i }">
+				${i }
 			</c:when>
 			<c:otherwise>
-				<input type="button" value=" > " disabled="disabled">
+				<a href="AdminMemberList?pageNum=${i }">${i }</a>
+			</c:otherwise>
+		</c:choose>
+		</c:forEach>
+		<c:choose>
+			<c:when test="${pageInfo.pageNum < pageInfo.maxPage }">
+				<input type="button" value=" > " onclick="location.href='AdminMemberList?pageNum=${pageInfo.pageNum + 1 }'">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value=" > ">
 			</c:otherwise>
 		</c:choose>
 	</section>

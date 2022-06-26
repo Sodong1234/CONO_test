@@ -25,7 +25,7 @@
 
 	function dealCancel(item_idx, safe_coin, safe_status, pageNum, member_id, ord_idx){
 		var dealConfirm = confirm("거래 취소 하시겠습니까?" + '\n' + "거래를 되돌릴 수 없습니다.");
-		alert("item_idx:" + item_idx+ "\n--" + "safe_coin:" + safe_coin + "safe_status:" + safe_status+"member_id:"+ member_id + "ord_idx:" + ord_idx);
+
 		if(dealConfirm){
 			location.href="./AdminDealCancel?item_idx=" + item_idx + "&safe_coin=" + safe_coin + "&safe_status=" + safe_status + "&pageNum=" + pageNum + "&member_id=" + member_id + "&ord_idx=" + ord_idx;
 		}
