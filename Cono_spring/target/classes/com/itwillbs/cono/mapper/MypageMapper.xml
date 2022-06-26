@@ -302,6 +302,17 @@
 		   AND ord_date=#{ord_date}
 	</select>
 	
+	<!-- 후기 내역 ListCount 조회 -->
+	<select id="selectReviewListCount" resultType="int">
+		SELECT COUNT(i.item_title)
+		  FROM item i, ord o, shop s, review r
+		 WHERE i.item_idx=o.item_idx
+		   AND s.shop_idx=i.shop_idx
+		   AND r.item_idx=i.item_idx
+		   AND o.ord_idx=r.ord_idx
+		   AND ord_status='Y'
+		   AND o.member_id=#{sId}
+	</select>
 	<!-- 후기 내역 조회 -->
 	<select id="selectReviewList" resultType="java.util.HashMap">
 		SELECT i.item_title, o.ord_quantity, s.shop_name, o.ord_date, r.review_content, r.review_score, r.review_date
@@ -312,6 +323,7 @@
 		   AND o.ord_idx=r.ord_idx
 		   AND ord_status='Y'
 		   AND o.member_id=#{sId}
+		 LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
 	</select>
 	
 <!-- 		회원 탈퇴 -->

@@ -194,13 +194,6 @@ div {
 		<!-- //filter -->
 
 		<table class="n-table table-col" id="wrapReviewArea">
-<%-- 			<colgroup> --%>
-<%-- 				<col style="width: *"> --%>
-<%-- 				<col style="width: 12.8%"> --%>
-<%-- 				<col style="width: 12.8%"> --%>
-<%-- 				<col style="width: 12.8%"> --%>
-<%-- 				<col style="width: 12.8%"> --%>
-<%-- 			</colgroup> --%>
 			<thead>
 				<tr>
 <!-- 					<th scope="col">상품번호</th> -->
@@ -285,7 +278,7 @@ div {
 		<div class ="paging">
 		<c:choose>
 			<c:when test="${pageInfo.pageNum > 1 }">
-				<input type="button" value=" < " onclick="location.href='readReviewList?pageNum=${pageInfo.pageNum - 1 }'">
+				<input type="button" value=" < " onclick="location.href='readOrdList?pageNum=${pageInfo.pageNum - 1 }'">
 			</c:when>
 			<c:otherwise>
 				<input type="button" value=" < ">
@@ -298,13 +291,13 @@ div {
 				${i }
 			</c:when>
 			<c:otherwise>
-				<a href="readReviewList?pageNum=${i }">${i }</a>
+				<a href="readOrdList?pageNum=${i }">${i }</a>
 			</c:otherwise>
 		</c:choose>
 		</c:forEach>
 		<c:choose>
 			<c:when test="${pageInfo.pageNum < pageInfo.maxPage }">
-				<input type="button" value=" > " onclick="location.href='IreadReviewList?pageNum=${pageInfo.pageNum + 1 }'">
+				<input type="button" value=" > " onclick="location.href='readOrdList?pageNum=${pageInfo.pageNum + 1 }'">
 			</c:when>
 			<c:otherwise>
 				<input type="button" value=" > ">

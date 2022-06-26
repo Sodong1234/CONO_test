@@ -84,8 +84,10 @@ public interface MypageMapper {
 	public String selectSafeCoin(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
 	// coin_total
 	public String selectCoinTotal(String shop_member_id);
+	// 후기 내역 ListCount 조회
+	public int selectReviewListCount(String sId);
 	// 후기 내역 조회
-	public List<HashMap<String, String>> selectReviewList(String sId);
+	public List<HashMap<String, String>> selectReviewList(@Param("sId") String sId, @Param("pageInfo") PageInfo pageInfo);
 	// 회원 정보 수정페이지 진입 전 비밀번호 확인 작업
 	public MemberDTO checkPass(@Param("sId") String sId, @Param("passwd") String passwd);
 	// 취소신청

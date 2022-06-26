@@ -177,10 +177,13 @@ public class MypageService {
 	public String selectCoinTotal(String shop_member_id) {
 		return mapper.selectCoinTotal(shop_member_id);
 	}
-	
+	// 후기 내역 ListCount 조회
+	public int getReviewListCount(String sId) {
+		return mapper.selectReviewListCount(sId);
+	}
 	// 후기 내역 조회
-	public List<HashMap<String, String>> getReviewList(String sId) {
-		return mapper.selectReviewList(sId);
+	public List<HashMap<String, String>> getReviewList(String sId, PageInfo pageInfo) {
+		return mapper.selectReviewList(sId, pageInfo);
 	}
 
 	// 회원 정보 수정페이지 진입 전 비밀번호 확인 작업
@@ -195,6 +198,7 @@ public class MypageService {
 	public String selectShop_idx(String item_idx) {
 		return mapper.selectShop_idx(item_idx);
 	}
+
 	
 
 	

@@ -181,13 +181,6 @@ div {
 			<li>작성 시 관리자 확인 후 적립금이 지급됩니다.</li>
 			<li>후기작성은 구매확정일로부터 90일까지 가능합니다.</li>
 		</ul>
-		<form name="f1" method="get" action="/goods/mypage/review/write-review">
-			<input type="hidden" name="stateType" value=""> 
-			<input type="hidden" name="period" value=""> 
-			<input type="hidden" name="fromOrderDate" value=""> 
-			<input type="hidden" name="toOrderDate" value=""> 
-			<input type="hidden" name="page" value="1">
-		</form>
 		<!-- //filter -->
 
 		<table class="n-table table-col" id="wrapReviewArea">
@@ -195,8 +188,8 @@ div {
 				<tr>
 <!-- 					<th scope="col">상품번호</th> -->
 					<th scope="col">상품정보</th>
-					<th scope="col">구매일</th>
-					<th scope="col">후기 내용/평점</th>
+					<th scope="col">후기 내용</th>
+					<th scope="col">구매일/평점</th>
 					<th scope="col">후기 작성일</th>
 				</tr>
 			</thead>
@@ -212,12 +205,12 @@ div {
 							</div>
 						</td>
 						<td>
-							${review.ord_date }
+							${review.review_content }
 						</td>
 						<td>
 							<ul class="info">
-								<li class="brand">${review.review_content }</li>
-								<li class="brand">${review.review_score }</li>
+								<li class="brand">${review.ord_date }</li>
+								<li class="brand">${review.review_score } 점</li>
 							</ul>
 						</td>
 						<td>
@@ -228,35 +221,35 @@ div {
 			</tbody>
 		</table>
 		
-<!-- 	<div class ="paging"> -->
-<%-- 		<c:choose> --%>
-<%-- 			<c:when test="${pageInfo.pageNum > 1 }"> --%>
-<%-- 				<input type="button" value=" < " onclick="location.href='readReviewList?pageNum=${pageInfo.pageNum - 1 }'"> --%>
-<%-- 			</c:when> --%>
-<%-- 			<c:otherwise> --%>
-<%-- 				<input type="button" value=" < "> --%>
-<%-- 			</c:otherwise> --%>
-<%-- 		</c:choose> --%>
+	<div class ="paging">
+		<c:choose>
+			<c:when test="${pageInfo.pageNum > 1 }">
+				<input type="button" value=" < " onclick="location.href='reviewList?pageNum=${pageInfo.pageNum - 1 }'">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value=" < ">
+			</c:otherwise>
+		</c:choose>
 
-<%-- 		<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }"> --%>
-<%-- 			<c:choose> --%>
-<%-- 			<c:when test="${pageInfo.pageNum eq i }"> --%>
-<%-- 				${i } --%>
-<%-- 			</c:when> --%>
-<%-- 			<c:otherwise> --%>
-<%-- 				<a href="readReviewList?pageNum=${i }">${i }</a> --%>
-<%-- 			</c:otherwise> --%>
-<%-- 		</c:choose> --%>
-<%-- 		</c:forEach> --%>
-<%-- 		<c:choose> --%>
-<%-- 			<c:when test="${pageInfo.pageNum < pageInfo.maxPage }"> --%>
-<%-- 				<input type="button" value=" > " onclick="location.href='IreadReviewList?pageNum=${pageInfo.pageNum + 1 }'"> --%>
-<%-- 			</c:when> --%>
-<%-- 			<c:otherwise> --%>
-<!-- 				<input type="button" value=" > "> -->
-<%-- 			</c:otherwise> --%>
-<%-- 		</c:choose> --%>
-<!-- 	</div> -->
+		<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
+			<c:choose>
+			<c:when test="${pageInfo.pageNum eq i }">
+				${i }
+			</c:when>
+			<c:otherwise>
+				<a href="reviewList?pageNum=${i }">${i }</a>
+			</c:otherwise>
+		</c:choose>
+		</c:forEach>
+		<c:choose>
+			<c:when test="${pageInfo.pageNum < pageInfo.maxPage }">
+				<input type="button" value=" > " onclick="location.href='reviewList?pageNum=${pageInfo.pageNum + 1 }'">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value=" > ">
+			</c:otherwise>
+		</c:choose>
+	</div>
 	</section>
 
 	<div class="clear" style="position: relative; top: 4500px;">

@@ -232,13 +232,38 @@ public class MypageController {
 	
 	// 후기 내역 조회
 	@RequestMapping(value = "reviewList", method = RequestMethod.GET)
-	public String getReviewList(@ModelAttribute ReviewDTO review, String item_idx, HttpSession session, Model model) {
+	public String getReviewList(@RequestParam(defaultValue = "1") int pageNum, @ModelAttribute ReviewDTO review, String item_idx, HttpSession session, Model model) {
 		
 		String sId = (String)session.getAttribute("sId");
 		
-		List<HashMap<String, String>> reviewList = service.getReviewList(sId);
+		int listCount = service.getReviewListCount(sId);
+		int listLimit = 10; // 한 페이지 당 표시할 목록 갯수
+		int pageLimit = 10; // 한 페이지 당 표시할 페이지 목록 갯수
+		
+		// 페이징 처리를 위한 계산 작업
+		int maxPage = (int)Math.ceil((double)listCount / listLimit);
+		int startPage = ((int)((double)pageNum / pageLimit + 0.9) - 1) * pageLimit + 1;
+		int endPage = startPage + pageLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		// 조회 시작 게시물 번호(행 번호) 계산
+		int startRow = (pageNum - 1) * listLimit;
+		
+		// 페이징 처리 정보를 PageInfo 객체에 저장
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setPageNum(pageNum);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setListCount(listCount);
+		pageInfo.setStartRow(startRow);
+		pageInfo.setListLimit(listLimit);
+		
+		List<HashMap<String, String>> reviewList = service.getReviewList(sId, pageInfo);
 		
 		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("pageInfo", pageInfo);
 		return "mypage/list_review_list";
 	}
 	
