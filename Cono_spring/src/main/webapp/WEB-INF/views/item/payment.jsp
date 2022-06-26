@@ -228,9 +228,8 @@ font-size: large;
 							</tr>
 							<tr>
 								<th class="wrap-title">총 결제 금액</th>
-								<td>
-									<div class="payPrice">
-										<span id="totalPrice"><span id="totalPriceDisp" class="use-calculation-for-totalprice"><fmt:formatNumber value="${itemDetail.item_price * param.ord_quantity  }" pattern="#,###.##"/></span>원</span>
+								<td><div class="payPrice" style="font-size: xx-large; font-weight: bolder; color: red;" >
+										<span id="totalPrice" ><span id="totalPriceDisp" class="use-calculation-for-totalprice" ><fmt:formatNumber value="${itemDetail.item_price * param.ord_quantity  }" pattern="#,###.##" /></span>원</span>
 									</div>
 								</td>
 							</tr>
