@@ -225,6 +225,7 @@ CREATE TABLE cancel (
 	cancel_idx VARCHAR(20),
 	item_idx VARCHAR(20),
 	member_id VARCHAR(50),
+	ord_idx VARCHAR(20),
 	cancel_content VARCHAR(1000),
 	cancel_date VARCHAR(20),
 	cancel_status VARCHAR(3),
