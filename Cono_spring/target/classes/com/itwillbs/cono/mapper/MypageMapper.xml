@@ -350,10 +350,19 @@
 	
 <!-- 	취소신청 -->
 	<insert id="insertCancelReq">
-		INSERT into cancel values (IFNULL((SELECT MAX(c.cancel_idx) FROM cancel c),'1'),#{item_idx},#{member_id},#{ord_idx},#{cancel_content},DATE_FORMAT(now(), "%Y-%m-%d %H:%i"),'N')
+		INSERT into cancel values (IFNULL((SELECT MAX(c.cancel_idx) FROM cancel c),'0') + 1,#{item_idx},#{member_id},#{ord_idx},#{cancel_content},DATE_FORMAT(now(), "%Y-%m-%d %H:%i"),'N')
 	</insert>
 	
 	
+	<insert id="insertAccountInfo">
+		INSERT into account values (IFNULL((SELECT MAX(a.account_idx) FROM account a),'0') + 1  , #{sId}, #{accountName}, #{bankName}, #{accountNum})
+	</insert>
+	
+	<select id="selectAccountInfo" resultType="com.itwillbs.cono.vo.AccountInfoDTO">
+		SELECT accountName, bankName, accountNum
+		FROM account
+		WHERE member_id = #{sId}
+	</select>
 
 <!-- 	================================================ Center =================================================== -->
 <!-- 	================================================ List =================================================== -->

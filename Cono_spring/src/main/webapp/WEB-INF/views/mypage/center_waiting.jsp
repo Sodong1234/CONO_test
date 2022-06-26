@@ -169,10 +169,10 @@ p {
 	</div>
 	<div class="cardSelect" style="position: relative; right: 60px; bottom: 900px;">
 				<c:choose>
-					<c:when test="${waitingList eq null }">
+					<c:when test="${waitingCheck eq true }">
 					<p style="position: relative; left: 300px">구매중인 상품이 존재하지 않습니다.</p>
 					</c:when>
-					<c:when test="${waitingList ne null}">
+					<c:when test="${waitingCheck eq false }">
 						<c:forEach var="card" items="${waitingList }">
 							<div class="products">
 								<form action="cancel_form" method="post" target="취소작성"

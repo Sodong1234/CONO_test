@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.cono.service.MypageService;
+import com.itwillbs.cono.vo.AccountInfoDTO;
 import com.itwillbs.cono.vo.CancelDTO;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
@@ -97,9 +98,15 @@ public class MypageController {
 		List<HashMap<String, String>> purchasedList = service.getPurchasedList(sId);
 		model.addAttribute("purchasedList",purchasedList);
 		
+		boolean purchasedCheck = purchasedList.isEmpty();
+		model.addAttribute("purchasedCheck",purchasedCheck);
+		
 		// 취소 상품
 		List<HashMap<String, String>> canceledList = service.getCanceledList(sId);
 		model.addAttribute("canceledList",canceledList);
+		
+		boolean canceledCheck = canceledList.isEmpty();
+		model.addAttribute("canceledCheck",canceledCheck);
 		
 		return "mypage/mypage";
 	}
@@ -320,6 +327,9 @@ public class MypageController {
 	// 계좌 정보 관리
 	@RequestMapping(value = "accountInfo", method = RequestMethod.GET)
 	public String account(HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		AccountInfoDTO account = service.selectAccountInfo(sId);
+		model.addAttribute("account", account);
 		return "mypage/list_account";
 	}
 	
@@ -439,6 +449,8 @@ public class MypageController {
 		List<HashMap<String, String>> waitingList = service.getWaitingList(sId);
 		model.addAttribute("waitingList",waitingList);
 		
+		boolean waitingCheck = waitingList.isEmpty();
+		model.addAttribute("waitingCheck",waitingCheck);
 		
 		return "mypage/center_waiting";
 	}
@@ -450,6 +462,9 @@ public class MypageController {
 		// 위시 리스트 상품
 		List<HashMap<String, String>> wishList = service.getwishList(sId);
 		model.addAttribute("wishList", wishList);
+		
+		boolean wishCheck = wishList.isEmpty();
+		model.addAttribute("wishCheck", wishCheck);
 		
 		List<HashMap<String, String>> getRecent = service.getRecent(sId);
 		model.addAttribute("getRecent", getRecent);
@@ -472,13 +487,11 @@ public class MypageController {
 	@RequestMapping(value = "uploadCancel", method = RequestMethod.POST)
 	public String cancelReq(HttpSession session, Model model, String item_idx, String content, String ord_idx) {
 		String sId = (String) session.getAttribute("sId");
-		System.out.println("ord_idx ;:::" + ord_idx);
 		CancelDTO dto = new CancelDTO();
 		dto.setItem_idx(item_idx);
 		dto.setMember_id(sId);
 		dto.setOrd_idx(ord_idx);
 		dto.setCancel_content(content);
-		System.out.println("item_idx" + item_idx);
 		int insertCount = service.setCancelReq(dto);
 		String insertCheck = "";
 		if(insertCount > 0) {
@@ -490,5 +503,19 @@ public class MypageController {
 		return "mypage/cancel_write";
 	}
 	
-
+	@RequestMapping(value = "setAccountInfo", method = RequestMethod.POST)
+	public String setAccountInfo(HttpSession session, Model model, String accountName, String bankName, String accountNum) {
+		String sId = (String) session.getAttribute("sId");
+		System.out.println("accountName: " + accountName);
+		System.out.println("bankName: " + bankName);
+		System.out.println("accountNum: " + accountNum);
+		
+		int insertCount = service.insertAccountInfo(sId, accountName, bankName, accountNum);
+		System.out.println(insertCount);
+		
+		AccountInfoDTO account = service.selectAccountInfo(sId);
+		model.addAttribute("account", account);
+		
+		return "mypage/list_account";
+	}
 }

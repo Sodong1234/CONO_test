@@ -76,91 +76,101 @@
 	    <label for="tab2">취소 / 환불</label>
 	    
      		<!-- 	        				구매완료 내용 시작 -->
-	<c:forEach var="item" items="${purchasedList }">
+     <c:if test="${purchasedCheck eq true} ">
+     	회원님께서 구매 완료한 상품이 존재하지 않습니다.
+     </c:if>
+     <c:if test="${purchasedCheck eq false}">
+		<c:forEach var="item" items="${purchasedList }">
+		
+		    <section id="content1">
+		        <div class="my-review__writable js_reviewWritableListContainer">
+		        	<div class="my-review__writable__list-container">
+		        		<ul class="writable_reviews" style="list-style: none;">
 	
-	    <section id="content1">
-	        <div class="my-review__writable js_reviewWritableListContainer">
-	        	<div class="my-review__writable__list-container">
-	        		<ul class="writable_reviews" style="list-style: none;">
-
-		        			<li class="my-review__writable__list">
-		        				<div class="my-review__writable__image-wrap" style="display: inline-block;">
-		        					<img class="my-review__writable__image" src="resources/upload/file/${item.img_name}" title="test" alt="test">
-		        				</div>
-									<div class="my-review__writable__content-wrap">
-										<input type="button" value="상세정보" onclick="itemDetail?item_idx=${item.item_idx}">
-										<div class="my-review__writable__content">판매자 : ${item.shop_name }</div>
-			        					<div class="my-review__writable__content-title">제목 : ${item.item_title }</div>
-			        					<div class="my-review__writable__content">내용 : ${item.item_content }</div>
-			        					<div class="my-review__writable__date">구매날짜 : ${item.ord_date }</div>
-<%-- 			        					<div class="my-review__writable__date">가격 : ${item.ord_quantity * item.item_price }코인</div> --%>
-			        					<div class="my-review__writable__date">가격 : <fmt:formatNumber value="${item.ord_quantity * item.item_price }" pattern="#,###.##"/>c</div>
-			        					
-			        					<div class="my-review__writable__date">수량 : ${item.ord_quantity }개</div>
+			        			<li class="my-review__writable__list">
+			        				<div class="my-review__writable__image-wrap" style="display: inline-block;">
+			        					<img class="my-review__writable__image" src="resources/upload/file/${item.img_name}" title="test" alt="test">
 			        				</div>
-			        				<div class="my-review__writable__btn-wrap">
-			        				</div>
-		        			</li>
-
-	        		</ul>
-	        	</div>
-	        </div>
-	    </section>
-	    
-	</c:forEach>
+										<div class="my-review__writable__content-wrap">
+											<input type="button" value="상세정보" onclick="itemDetail?item_idx=${item.item_idx}">
+											<div class="my-review__writable__content">판매자 : ${item.shop_name }</div>
+				        					<div class="my-review__writable__content-title">제목 : ${item.item_title }</div>
+				        					<div class="my-review__writable__content">내용 : ${item.item_content }</div>
+				        					<div class="my-review__writable__date">구매날짜 : ${item.ord_date }</div>
+	<%-- 			        					<div class="my-review__writable__date">가격 : ${item.ord_quantity * item.item_price }코인</div> --%>
+				        					<div class="my-review__writable__date">가격 : <fmt:formatNumber value="${item.ord_quantity * item.item_price }" pattern="#,###.##"/>c</div>
+				        					
+				        					<div class="my-review__writable__date">수량 : ${item.ord_quantity }개</div>
+				        				</div>
+				        				<div class="my-review__writable__btn-wrap">
+				        				</div>
+			        			</li>
+	
+		        		</ul>
+		        	</div>
+		        </div>
+		    </section>
+		    
+		</c:forEach>
+	</c:if>		
 <!-- 	        				구매완료 내용 끝 -->
 <!-- 							취소 시작  -->
-	<c:forEach var="item" items="${canceledList}" >
-	    <section id="content2">	
-	    	<div class="cancel">
-	    		<div class="cancel__list">
-	    			<div class="cancel__list-date">
-	    				<div class="cancel__list-cancelDate1">
-	    					취소접수일 : 
-	    				</div>
-	    				<div class="cancel__list-cancelDate2">${item.ord_date }</div>
-	    				<span class="and">|</span>
-<!-- 	    				<div class="calcel__list-orderDate1"> -->
-<!-- 	    					주문일 :  -->
-<!-- 	    				</div> -->
-<%-- 	    				<div class="cancel__list-orderDate2">${item.ord_date }</div> --%>
-	    			</div>
-	    			<div class="cancel__list-content">
-	    				<div class="cancel__list-contentCheck">
-	    					<div class="cancel__list-contentTitle">
-	    						<div class="cancel__list-contentTitle2" style="display: table-cell;">
-	    							<div class="cancel__list-contentTitle3">
-	    								<img class="my-review__writable__image" src="resources/upload/file/${item.img_name}" title="test" alt="test">
-	    								<div class="cancel__list-title">${item.item_title }</div>
-	    								<div class="cancel__list-subContent">${item.item_content }</div>
-	    								<input type="button" value="상세정보" onclick="itemDetail?item_idx=${item.item_idx}">
-	    							</div>
-	    							<div class="cancel__list-price">
-	    								<div class="cancel__list-quantity">${item.ord_quantity }개</div>
-	    								<div class="cancel__list-priceCheck">${item.ord_quantity * item.item_price } C</div>
-	    							</div>
-	    						</div>
-	    					</div>
-	    					<div class="cancel__list-status">
-	    						<div class="cancel__list-status-cancel">
-	    							<c:if test="${item.cancel_status eq 'N'}">
-	    								<strong>취소 중</strong>
-	    							</c:if>
-	    							<c:if test="${item.cancel_status eq 'C'}">
-	    								<strong>취소 완료</strong>
-	    							</c:if>
-	    							<span class="cancel__list-status-when"><br>환불금액<br>
-	    								<span class="cancel__list-status-how"><br>>${item.ord_quantity * item.item_price } c</span>
-	    							</span>
-	    						</div>
-	    					</div>
-	    				</div>
-	    			</div>
-	    		</div>
-	    	</div>
-	    </section>
-	    
-	</c:forEach>
+	 <c:if test="${canceledCheck eq true} ">
+     	회원님께서 취소한 상품이 존재하지 않습니다.
+     </c:if>
+     <c:if test="${canceledCheck eq false}">
+		<c:forEach var="item" items="${canceledList}" >
+		    <section id="content2">	
+		    	<div class="cancel">
+		    		<div class="cancel__list">
+		    			<div class="cancel__list-date">
+		    				<div class="cancel__list-cancelDate1">
+		    					취소접수일 : 
+		    				</div>
+		    				<div class="cancel__list-cancelDate2">${item.ord_date }</div>
+		    				<span class="and">|</span>
+	<!-- 	    				<div class="calcel__list-orderDate1"> -->
+	<!-- 	    					주문일 :  -->
+	<!-- 	    				</div> -->
+	<%-- 	    				<div class="cancel__list-orderDate2">${item.ord_date }</div> --%>
+		    			</div>
+		    			<div class="cancel__list-content">
+		    				<div class="cancel__list-contentCheck">
+		    					<div class="cancel__list-contentTitle">
+		    						<div class="cancel__list-contentTitle2" style="display: table-cell;">
+		    							<div class="cancel__list-contentTitle3">
+		    								<img class="my-review__writable__image" src="resources/upload/file/${item.img_name}" title="test" alt="test">
+		    								<div class="cancel__list-title">${item.item_title }</div>
+		    								<div class="cancel__list-subContent">${item.item_content }</div>
+		    								<input type="button" value="상세정보" onclick="itemDetail?item_idx=${item.item_idx}">
+		    							</div>
+		    							<div class="cancel__list-price">
+		    								<div class="cancel__list-quantity">${item.ord_quantity }개</div>
+		    								<div class="cancel__list-priceCheck">${item.ord_quantity * item.item_price } C</div>
+		    							</div>
+		    						</div>
+		    					</div>
+		    					<div class="cancel__list-status">
+		    						<div class="cancel__list-status-cancel">
+		    							<c:if test="${item.cancel_status eq 'N'}">
+		    								<strong>취소 중</strong>
+		    							</c:if>
+		    							<c:if test="${item.cancel_status eq 'C'}">
+		    								<strong>취소 완료</strong>
+		    							</c:if>
+		    							<span class="cancel__list-status-when"><br>환불금액<br>
+		    								<span class="cancel__list-status-how"><br>>${item.ord_quantity * item.item_price } c</span>
+		    							</span>
+		    						</div>
+		    					</div>
+		    				</div>
+		    			</div>
+		    		</div>
+		    	</div>
+		    </section>
+		    
+		</c:forEach>
+	</c:if>		
 <!-- 							취소 끝 -->
 	</div>
 <!-- 	=============================== main (주문 정보 section) end =============================== -->

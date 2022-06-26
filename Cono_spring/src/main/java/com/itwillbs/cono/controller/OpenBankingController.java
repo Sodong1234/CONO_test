@@ -22,7 +22,7 @@ public class OpenBankingController {
 	@Autowired
 	private OpenBankingService openBankingService;
 	
-	@RequestMapping(value = "/list_account", method = RequestMethod.GET)
+	@RequestMapping(value = "/tokenCallback", method = RequestMethod.GET)
 	public String getToken(@ModelAttribute RequestTokenVO requestToken, Model model) {
 		// OAuth 인증 완료 후 전송되는 인증코드(code)를 자동으로 RequestTokenVO 객체에 저장
 		System.out.println("인증코드 : " + requestToken.getCode());
@@ -50,7 +50,7 @@ public class OpenBankingController {
 		// Service 객체의 findAccount() 메서드를 호출하여 사용자 정보 조회
 		// => 파라미터 : AccountSearchRequestVO, 리턴타입 AccountSearchResponseVO
 		AccountSearchResponseVO accountList = openBankingService.findAccount(accountSearchRequestVO);
-		
+
 		// Model 객체에 AccountSearchResponseVO 객체와 엑세스토큰 저장
 		model.addAttribute("accountList", accountList);
 		model.addAttribute("access_token", accountSearchRequestVO.getAccess_token());

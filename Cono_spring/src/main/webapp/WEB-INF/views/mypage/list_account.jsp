@@ -5,6 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>CONO:환불 계좌</title>
+<script type="text/javascript">
+	window.onload=function() {
+		document.getElementById('accountName').value = ${account.accountName };
+		document.getElementById('accountNum').value = ${account.accountNum };
+		var bankName = document.getElementById('bankName');
+		alert(bankName.value)
+		if (var i=0; i<bankName.options.length; i++) {
+			if(bankName.options[i].value == ${account.bankName }) {
+				bankName.options[i].selected = true;
+			}
+		}
+	}
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -20,15 +33,18 @@
 						<li class="userInfo__msg">
 							<span class="useInfo__plzmsg">환불계좌를 등록해주세요.</span>
 						</li>
+						
 						<li class="userinfo__value">
+						<form action="setAccountInfo" method="post">
 							<div class="userInfo__setName">
-								<div class="userInfo__name1">예금주</div>
-								<div class="userInfo__name2">${name }테스트</div>
+								<div class="userInfo__name1" >예금주</div>
+								<input type="text" placeholder="예금주를 입력해주세요." id="accountName" name="accountName" class="userInfo__account2">
+<!-- 								<div class="userInfo__name2">테스트</div> -->
 							</div>
 							<div class="userInfo__setBank">
 								<div class="userInfo__bank1">은행</div>
 								<div class="userInfo__selectBank">
-									<select class="userInfo__selectBankList">
+									<select class="userInfo__selectBankList" name="bankName" id="bankName">
 										<option value="NONE" disabled selected>은행을 선택해주세요.</option>
 										<option value="002">산업은행</option>
 										<option value="003">기업은행</option>
@@ -54,12 +70,26 @@
 									</select>	
 								</div>
 							</div>
+							
 							<div class="userInfo__setAccount">
 								<div class="userInfo__account1">계좌번호</div>
-								<input type="number" placeholder="계좌번호를 입력해주세요." class="userInfo__account2">
-								<button class="userInfo__accountCheck">인증</button>
+								<input type="number" placeholder="계좌번호를 입력해주세요." name="accountNum" id="accountNum" class="userInfo__account2">
+								
+<!-- 								<form method="get" action="https://testapi.openbanking.or.kr/oauth/2.0/authorize"> -->
+<%-- 									필요 파라미터는 입력데이터 없이 hidden 속성으로 전달 --%>
+<!-- 									<input type="hidden" name="response_type" value="code"> -->
+<!-- 									<input type="hidden" name="client_id" value="234192c2-8c1a-4cdb-a1d3-49e0f2ecc09a"> -->
+<!-- 									<input type="hidden" name="redirect_uri" value="http://localhost:8080/cono/tokenCallback"> -->
+<!-- 									<input type="hidden" name="scope" value="login inquiry transfer"> -->
+<!-- 									<input type="hidden" name="state" value="12345678123456781234567812345678"> -->
+<!-- 									<input type="hidden" name="auth_type" value="0"> -->
+<!-- 									<input type="submit" value="토큰발급" class="userInfo__accountCheck"> -->
+<!-- 								</form> -->
+								<input type="submit" value="등록" class="userInfo__accountCheck">
 							</div>
+						</form>
 						</li>
+						
 						<div class="userInfo__check">
 							<input type="checkbox" class="userInfo__checkBox">
 							<span>성명, 은행명, 계좌번호를 환불목적으로 수집, 5년간 처리에 동의</span>
@@ -87,41 +117,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	<div>	<!-- 2.2.3 등록계좌조회 API -->
-		<%-- JSTL 을 사용하여 accessToken 객체가 없을 경우 "토큰발급" 버튼 표시 --%>
-	<c:if test="${accessToken eq null }">
-		<h3>토큰 미발급 상태이므로 토큰 발급 필수!</h3>
-		<%-- /authorize URL 요청을 통해 OAuth 인증 요청 작업 수행 --%>
-		<form method="get" action="https://testapi.openbanking.or.kr/oauth/2.0/authorize">
-			<%-- 필요 파라미터는 입력데이터 없이 hidden 속성으로 전달 --%>
-			<input type="hidden" name="response_type" value="code">
-			<input type="hidden" name="client_id" value="234192c2-8c1a-4cdb-a1d3-49e0f2ecc09a">
-			<input type="hidden" name="redirect_uri" value="http://localhost:8080/cono/list_account">
-			<input type="hidden" name="scope" value="login inquiry transfer">
-			<input type="hidden" name="state" value="12345678123456781234567812345678">
-			<input type="hidden" name="auth_type" value="0">
-			<input type="submit" value="토큰발급">
-		</form>
-	</c:if>
-	<hr>
-	<h3>인증완료</h3>
-	<h3>엑세스 토큰 : ${responseToken.access_token }</h3>
-	<h3>사용자 번호 : ${responseToken.user_seq_no }</h3>
-	<hr>
-		<form method="get" action="accountList">
-			<%-- 필요 파라미터는 입력데이터 없이 hidden 속성으로 전달 --%>
-			<input type="hidden" name="access_token" value="${responseToken.access_token }">
-			<input type="hidden" name="user_seq_no" value="${responseToken.user_seq_no }">
-			<input type="hidden" name="include_cancel_yn" value="Y">
-			<input type="hidden" name="sort_order" value="D">
-			<input type="submit" value="등록계좌조회">
-		</form>
-		
-	</div>
-	
-	
 	<div style="position: relative; top: 565px;">
  		<jsp:include page="../header_footer/footer.jsp"/>
  	</div>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.itwillbs.cono.vo.AccountInfoDTO;
 import com.itwillbs.cono.vo.CancelDTO;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
@@ -94,6 +95,10 @@ public interface MypageMapper {
 	public int insertCancelReq(CancelDTO dto);
 	// 샵아이디 검색 for 판매자입금
 	public String selectShop_idx(String item_idx);
+	// 계좌 입력
+	public int insertAccountInfo(@Param("sId") String sId, @Param("accountName")String accountName, @Param("bankName")String bankName, @Param("accountNum")String accountNum);
+	
+	public AccountInfoDTO selectAccountInfo(String sId);
 	
 
 	

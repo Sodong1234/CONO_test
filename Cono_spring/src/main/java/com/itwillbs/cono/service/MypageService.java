@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.cono.mapper.MypageMapper;
+import com.itwillbs.cono.vo.AccountInfoDTO;
 import com.itwillbs.cono.vo.CancelDTO;
 import com.itwillbs.cono.vo.CoinDTO;
 import com.itwillbs.cono.vo.CouponDTO;
@@ -197,6 +198,14 @@ public class MypageService {
 
 	public String selectShop_idx(String item_idx) {
 		return mapper.selectShop_idx(item_idx);
+	}
+
+	public int insertAccountInfo(String sId, String accountName, String bankName, String accountNum) {
+		return mapper.insertAccountInfo(sId, accountName, bankName, accountNum);
+	}
+
+	public AccountInfoDTO selectAccountInfo(String sId) {
+		return mapper.selectAccountInfo(sId);
 	}
 
 	
