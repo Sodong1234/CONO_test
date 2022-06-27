@@ -71,10 +71,13 @@ public class MainController {
 		member.setMember_pass(result);
 
 		MemberDTO memberResult = service.loginMember(member);
-
+		int deleteMember = 0;
+		if(memberResult.getMember_status().equals("N")) {
+			deleteMember = 1;
+		}
 
 		
-		if(memberResult == null) {
+		if(memberResult == null || deleteMember == 1) {
 			model.addAttribute("msg", "로그인 실패");
 			return "userCenter/fail_back";
 		} else {
