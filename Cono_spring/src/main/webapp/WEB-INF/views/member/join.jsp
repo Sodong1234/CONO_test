@@ -95,23 +95,23 @@
 
 			switch (count) {
 			case 4:
-				document.getElementById("checkPassResult").innerHTML = "사용 가능한 비밀번호(안전)";
+				document.getElementById("checkPassResult").innerHTML = "사용 가능한 비밀번호";
 				document.getElementById("checkPassResult").style.color = "GREEN";
 				isCheckPass = true;
 				break;
 			case 3:
-				document.getElementById("checkPassResult").innerHTML = "사용 가능한 비밀번호(보통)";
-				document.getElementById("checkPassResult").style.color = "yellow";
-				isCheckPass = true;
+				document.getElementById("checkPassResult").innerHTML = "사용 가능한 비밀번호";
+				document.getElementById("checkPassResult").style.color = "GREEN";
+				isCheckPass = false;
 				break;
 			case 2:
-				document.getElementById("checkPassResult").innerHTML = "사용 가능한 비밀번호(위험)";
-				document.getElementById("checkPassResult").style.color = "orange";
-				isCheckPass = true;
+				document.getElementById("checkPassResult").innerHTML = "영문, 숫자, 특수문자를 조합한 8자 이상의 비밀번호를 입력해주세요.";
+				document.getElementById("checkPassResult").style.color = "RED";
+				isCheckPass = false;
 				break;
 			default:
-				document.getElementById("checkPassResult").innerHTML = "영문,숫자,특수문자 8~16자 필수";
-				document.getElementById("checkPassResult").style.color = "red";
+				document.getElementById("checkPassResult").innerHTML = "영문, 숫자, 특수문자를 조합한 8자 이상의 비밀번호를 입력해주세요.";
+				document.getElementById("checkPassResult").style.color = "RED";
 				isCheckPass = false;
 			}
 
