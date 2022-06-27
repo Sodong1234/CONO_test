@@ -352,7 +352,7 @@ input[type="submit"] {
 									<label for="email">이메일</label> 
 									<input type="email" class="form-control" name="member_email" id="email" placeholder="이메일을 입력해주세요" onblur="checkEmail(this.value)">
 									<span id="checkEmailResult"></span>
-									<button class=" col-md-3 mb-3 form-control" 
+									<button type="button" class=" col-md-3 mb-3 form-control" 
 									style="background-color: aquamarine;" id="sendMail" onclick="">이메일 인증요청</button>
 									<input type="text" name="number" id="number" placeholder="인증번호 입력"><br>
 								</div>					
