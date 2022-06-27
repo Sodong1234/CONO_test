@@ -120,7 +120,7 @@
 	 <c:if test="${canceledCheck eq true}">
      	<br>
      	<br>
-     	<h5>회원님께서 구매 완료한 상품이 존재하지 않습니다.</h5>
+     	<h5>회원님께서 취소/환불한 상품이 존재하지 않습니다.</h5>
      </c:if>
      <c:if test="${canceledCheck eq false}">
 		<c:forEach var="item" items="${canceledList}" >

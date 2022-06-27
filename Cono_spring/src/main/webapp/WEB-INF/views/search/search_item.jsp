@@ -215,7 +215,7 @@ p {
     position: relative;
     padding: 0 17px;
 /*     margin-left: 33%; */
-margin: auto;
+	margin: auto;
 }
 
 .search_cate_title {
@@ -231,10 +231,9 @@ margin: auto;
 }
 
 .search_cate_list {
-    width: 640px;
+    width: 750px;
     height: 27px;
     overflow: hidden;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -361,7 +360,7 @@ font-family: 'IBMPlexSansKR-Regular';
 		<div class="search_option_item">
 			<div class="search_cate_title"> ▷ 가격대</div>
 			<div class="search_cate_contents">
-				<ul class="search_cate_list">
+				<ul class="search_cate_list" style="position: relative; right: 6px;">
 					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="0" onclick="filter2(this.value)" checked="checked"> <span class="item_text">전체</span>
 					</label></li>
 					<li class="search_cate_item"><label class="item_checkbox"> <input type="radio" name="filter2" id="filter2" value="1" onclick="filter2(this.value)"> <span class="item_text">30000c 이하</span>
