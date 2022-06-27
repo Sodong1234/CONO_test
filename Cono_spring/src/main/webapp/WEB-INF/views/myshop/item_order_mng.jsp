@@ -173,7 +173,7 @@ hr.hr-13 {
 					      <td>${ord.get('ord_quantity') }</td>
 					      <td>${ord.get('member_id') }</td>
 <%-- 					      <td>${ord.get('item_price') }</td> --%>
- 						  <td><fmt:formatNumber value="${ord.get('item_price') }" pattern="\#,###.##"/></td>
+ 						  <td><fmt:formatNumber value="${ord.get('item_price') }" pattern="#,###.##"/></td>
 					      <td>${ord.get('ord_reqContent') }</td>
 					    </tr>
 					   </c:forEach>

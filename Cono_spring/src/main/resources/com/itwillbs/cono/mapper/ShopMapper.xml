@@ -271,6 +271,7 @@
         WHERE shop_idx = (SELECT shop_idx
 							FROM shop
                             WHERE member_id = #{member_id})
+        AND i.item_idx = o.item_idx
 		AND o.ord_status = 'N'
 	</select>
 	
@@ -292,6 +293,7 @@
         WHERE i.shop_idx = (SELECT shop_idx
 							FROM shop
                             WHERE member_id = #{member_id})
+        AND i.item_idx = o.item_idx
 		AND o.ord_status = 'Y'
 	</select>
 
