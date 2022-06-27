@@ -342,12 +342,21 @@
 	</select>
 	
 <!-- 		회원 탈퇴 -->
-	<delete id="deleteId">
-		DELETE FROM member
-		WHERE member_id=#{id} AND member_pass=#{passwd}
-	</delete>
+	<update id="deleteId">
+		UPDATE member set member_status = 'N'
+		WHERE member_id = #{id} AND member_pass=#{passwd}
+	</update>
 	
+	<select id="selectShop_idxBymember" resultType="string">
+		SELECT shop_idx FROM shop WHERE member_id = #{id}
+	</select>
 	
+	<update id="deleteItem">
+		UPDATE item 
+		SET item_status='1' 
+		WHERE shop_idx = #{shop_idx}
+	</update>
+<!-- 	회원 탈퇴 끝 -->
 <!-- 	취소신청 -->
 	<insert id="insertCancelReq">
 		INSERT into cancel values (IFNULL((SELECT MAX(c.cancel_idx) FROM cancel c),'0') + 1,#{item_idx},#{member_id},#{ord_idx},#{cancel_content},DATE_FORMAT(now(), "%Y-%m-%d %H:%i"),'N')

@@ -208,6 +208,14 @@ public class MypageService {
 		return mapper.selectAccountInfo(sId);
 	}
 
+	public boolean deleteItem(String shop_idx) {
+		return mapper.deleteItem(shop_idx);
+	}
+
+	public String selectShop_idxBymember(String id) {
+		return mapper.selectShop_idxBymember(id);
+	}
+
 	
 
 	

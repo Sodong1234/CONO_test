@@ -79,8 +79,6 @@ public interface MypageMapper {
 	public boolean updateSafeStatus(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
 	// ord 테이블 조회 (가지고 다닐거)
 	public OrdDTO selectOrd(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
-	// 회원 탈퇴 로직
-	public boolean deleteId(@Param("id") String id, @Param("passwd") String passwd);
 	// safe_coin
 	public String selectSafeCoin(@Param("sId") String sId, @Param("item_idx") String item_idx, @Param("ord_date") String ord_date);
 	// coin_total
@@ -99,6 +97,11 @@ public interface MypageMapper {
 	public int insertAccountInfo(@Param("sId") String sId, @Param("accountName")String accountName, @Param("bankName")String bankName, @Param("accountNum")String accountNum);
 	
 	public AccountInfoDTO selectAccountInfo(String sId);
+	
+	// 회원 탈퇴 로직
+	public boolean deleteId(@Param("id") String id, @Param("passwd") String passwd);
+	public boolean deleteItem(@Param("shop_idx") String shop_idx);
+	public String selectShop_idxBymember(String id);
 	
 
 	

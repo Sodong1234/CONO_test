@@ -353,8 +353,14 @@ public class MypageController {
 		String algorithm = "SHA-256";
 		String result = hashing(algorithm, passwd);
 		
+		// member_status N 변경
 		boolean isDeleteSuccess = service.deleteId(id, result);
-
+		// shop_idx 추출
+		String shop_idx = service.selectShop_idxBymember(id);
+		// item_status = '1'
+		boolean isDeleteItemSuccess = service.deleteItem(shop_idx);
+		System.out.println(isDeleteSuccess);
+		System.out.println(isDeleteItemSuccess);
 		if (!isDeleteSuccess) {
 			model.addAttribute("msg", "입력 정보가 올바르지 않습니다!");
 			return "fail_back";
