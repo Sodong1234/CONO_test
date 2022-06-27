@@ -310,9 +310,13 @@ public class MypageController {
 		model.addAttribute("member", member);
 		return "mypage/list_memberInfo_modify_form"; // 폼
 	}
-
+	// 정보 수정
 	@RequestMapping(value = "memberInfo_modify", method = RequestMethod.POST)
 	public String modify(HttpSession session, MemberDTO member, Model model) {
+		String pass = member.getMember_pass();
+		String algorithm = "SHA-256";
+		String result = hashing(algorithm, pass);
+		member.setMember_pass(result);
 		String sId = (String)session.getAttribute("sId");
 
 		int updateCount = service.modifyMember(sId, member);
