@@ -15,17 +15,6 @@ crossorigin="anonymous">
 <link href="../css/default.css" rel="stylesheet" type="text/css">
 <link href="../css/subpage.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
-
-<!-- Custom fonts for this template-->
-<link href="resources/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-<!-- Custom styles for this template-->
-<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
-<script>
-
-</script>
 </head>
 <style>
 body {
@@ -77,7 +66,7 @@ font-family: 'IBMPlexSansKR-Regular';
 							<div class="col-lg-6">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">로그인</h1>
+										<h1 class="h4 text-gray-900 mb-4">로그인1</h1>
 									</div>
 									<form class="user" action="login" method="post" id="login">
 										<div class="form-floating">
@@ -99,14 +88,11 @@ font-family: 'IBMPlexSansKR-Regular';
 										<a href="https://kauth.kakao.com/oauth/authorize?client_id=f9f5f6880f6e92a9e2fabbf34781366d&redirect_uri=http://localhost:8080/cono/kakao_callback&response_type=code" class="btn btn-warning btn-user btn-block"> 
 											<i class="fab fa-google fa-fw"></i> 카카오로 로그인
 										</a> 
-										<a href="" class="btn btn-success btn-user btn-block" onclick="location.href='${urlNaver}'" > 
+										<a class="btn btn-success btn-user btn-block" name="naver" onclick="location.href='${urlNaver}'" > 
 											<i class="fab fa-facebook-f fa-fw"></i> 네이버로 로그인
 										</a>
 									</form>
 									<hr>
-									<div class="text-center">
-										<a class="small" href="./forget.jsp">Forgot Password?</a>
-									</div>
 									<div class="text-center">
 										<a class="small" href="joinHow">Create an Account!</a>
 									</div>
