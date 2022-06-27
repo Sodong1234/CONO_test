@@ -50,6 +50,13 @@ public interface AdminMapper2 {
 	// 탈퇴 회원 리스트
 	public List<HashMap<String, Object>> selectExitMember(PageInfo pageInfo);
 	
+	//탈퇴회원 shop 아이디 찾기
+	public String selectShopMember(String member_id);
+
+	//shop 아이템 찾기
+	public boolean updateItem(String shop_idx);
+
+	
 	// -------------------(관리자) 거래 현황 조회 - 김혜은 ----------------------------
 	// 현재 진행 거래 수
 	public int selectDealListCount();

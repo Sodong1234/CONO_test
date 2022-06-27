@@ -52,7 +52,7 @@ a:hover {
 	</div>
 	
 	<div class="body">
-		<h2><a href="./AdminMemberList">MEMBER</a> &nbsp; / &nbsp; <a href="./AdminExitMemberList">탈퇴회원보기</a></h2>
+		<h2><a href="./AdminMemberList">MEMBER</a> &nbsp; / &nbsp; <a href="./AdminExitMemberList">정지회원보기</a></h2>
 		
 		<p>현재 회원 수 : ${listCount }</p>
 			
@@ -66,7 +66,7 @@ a:hover {
 					<option value="">선택</option>
 					<option value="id" <c:if test="${searchType ne null and searchType eq 'id'}">selected</c:if>>아이디</option>
 					<option value="nick" <c:if test="${searchType ne null and searchType eq 'nick'}">selected</c:if>>닉네임</option>
-					<option value="shop" <c:if test="${searchType ne null and searchType eq 'shop'}">selected</c:if>>판매여부</option>
+					<option value="shop" <c:if test="${searchType ne null and searchType eq 'shop'}">selected</c:if>>전화번호</option>
 				</select>
 				<input type="text" name="search" value="<c:if test="${search ne null}">${search }</c:if>" placeholder="검색어를 입력하세요">
 				<input type="submit" id="search_btn" value="검색">

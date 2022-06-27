@@ -3,6 +3,8 @@ package com.itwillbs.cono.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -215,14 +217,17 @@ public class AdminController2 {
 	
 	// ------ 회원 정지 (관리자) - 김혜은
 	@RequestMapping(value = "/AdminMemberExit", method = RequestMethod.GET)
-	public String adminMemberExit(@RequestParam String member_id, @RequestParam(defaultValue = "1")int pageNum, Model model) {
+	public String adminMemberExit(HttpSession session, @RequestParam String member_id, @RequestParam(defaultValue = "1")int pageNum, Model model) {
 		
 		int exitCount = service.exitMember(member_id);
 		
-		if(exitCount == 0) {
-			model.addAttribute("msg", "회원 탈퇴 실패!");
-			return "fail_back";
-		}
+		// shop_idx 추출
+		String shop_idx = service.selectShopMember(member_id);
+		// item_status = '1'
+		boolean isDeleteItemSuccess = service.updateItem(shop_idx);
+		System.out.println(isDeleteItemSuccess);
+		
+		session.invalidate();
 		
 		model.addAttribute("pageNum", pageNum);
 		

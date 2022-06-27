@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -75,7 +75,7 @@ hr {
 					<p>${memberCount} 명</p>
 	  			</div>
   			</a>
-  			<a href="">
+  			<a href="./AdminMemberList">
 	  			<div class="val-box">
 					<h3>NEW USER</h3>
 					<hr>
@@ -89,7 +89,7 @@ hr {
 					<p>${dealCount} 건</p>
 				</div>
 			</a>
-			<a href="./AdminDealCancelList">
+			<a href="./AdminDealList">
 				<div class="val-box">
 					<h3>거래취소 요청</h3>
 					<hr>
@@ -99,14 +99,14 @@ hr {
   		</div> <!-- 첫번째 줄 -->
   		
 		<div class="values" style="margin-top: 120px;">
-			<a href="">		
+			<a href="AdminQNAList">		
 	  			<div class="val-box">
 					<h3>답변대기</h3>
 					<hr>
 					<p>${qnaWaitCount} 건</p>
 	  			</div>
 	  		</a>
-	  		<a href="">
+	  		<a href="AdminReportList">
 	  			<div class="val-box">
 					<h3>신고된 글</h3>
 					<hr>

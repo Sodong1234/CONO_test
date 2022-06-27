@@ -93,7 +93,7 @@
 				AND t.member_nick LIKE #{search}
 			</when>
 			<when test="!search.equals('') and searchType.equals('shop')">	
-				AND t.shop_name LIKE #{search}
+				AND t.member_phone LIKE #{search}
 			</when>
 		</choose>
 		GROUP BY t.member_id
@@ -136,6 +136,19 @@
 		 WHERE member_id = #{member_id}
 	</update>
 	
+<!-- 탈퇴회원 shop 아이디 찾기 -->
+	<select id="selectShopMember" resultType="string">
+		SELECT shop_idx FROM shop WHERE member_id = #{member_id}
+	</select>
+	
+<!-- shop 아이템 찾기 -->
+	<update id="updateItem">
+		UPDATE item 
+		SET item_status='1' 
+		WHERE shop_idx = #{shop_idx}
+	</update>
+	
+	
 <!-- 탈퇴 회원 수 -->
 	<select id="selectExitMemberCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
@@ -152,6 +165,7 @@
 		SELECT member_id
 			 , member_nick
 			 , member_phone
+			 , member_email
 			 , member_date
 			 , member_status
 		  FROM member
@@ -159,6 +173,20 @@
 	</select>
 	
 <!-- 회원정보 삭제 -->
+	<update id="deleteId">
+		UPDATE member set member_status = 'N'
+		WHERE member_id = #{member_id}
+	</update>
+	
+	<select id="selectShop_idxBymember" resultType="string">
+		SELECT shop_idx FROM shop WHERE member_id = #{member_id}
+	</select>
+	
+	<update id="deleteItem">
+		UPDATE item 
+		SET item_status='1' 
+		WHERE shop_idx = #{shop_idx}
+	</update>
 	
 <!-- ================================================================================================================================== -->
 

@@ -67,7 +67,7 @@ public class AdminService2 {
 		return mapper.selectAllMember(searchType, search, pageInfo);
 	}
 
-	// 회원 정지
+	// 회원 정지 수
 	public int exitMember(String member_id) {
 		
 		return mapper.updateExitMember(member_id);
@@ -89,6 +89,17 @@ public class AdminService2 {
 	public List<HashMap<String, Object>> getExitMemberList(PageInfo pageInfo) {
 		
 		return mapper.selectExitMember(pageInfo);
+	}
+//	탈퇴회원 shop 아이디 찾기
+	public String selectShopMember(String member_id) {
+		
+		return mapper.selectShopMember(member_id);
+	}
+
+//	shop 아이템 찾기
+	public boolean updateItem(String shop_idx) {
+		
+		return mapper.updateItem(shop_idx);
 	}
 
 

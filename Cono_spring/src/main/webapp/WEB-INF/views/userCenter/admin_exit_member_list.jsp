@@ -60,9 +60,9 @@
 	</div>
 	
 	<div class="body">
-		<h2><a href="./AdminMemberList">MEMBER</a> &nbsp; / &nbsp; <a href="./AdminExitMemberList">탈퇴회원조회</a></h2>
+		<h2><a href="./AdminMemberList">MEMBER</a> &nbsp; / &nbsp; <a href="./AdminExitMemberList">정지회원조회</a></h2>
 		
-		<p>탈퇴 회원 수 : ${listCount }</p>
+		<p>정지 회원 수 : ${listCount }</p>
 			
 		<hr>
 

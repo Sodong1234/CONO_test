@@ -49,7 +49,7 @@
 <div class="body">
 
 
-	<h2><a href="./AdminDealList">거래 현황</a> &nbsp; / &nbsp; <a href="./AdminDealCancelList">거래취소요청</a></h2>
+	<h2><a href="./AdminDealList">거래 현황</a></h2>
 
 	<p>현재 거래 현황 : ${listCount }</p>
 	
