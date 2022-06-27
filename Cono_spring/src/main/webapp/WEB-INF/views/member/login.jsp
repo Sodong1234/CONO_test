@@ -66,7 +66,7 @@ font-family: 'IBMPlexSansKR-Regular';
 							<div class="col-lg-6">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">로그인1</h1>
+										<h1 class="h4 text-gray-900 mb-4">로그인</h1>
 									</div>
 									<form class="user" action="login" method="post" id="login">
 										<div class="form-floating">
