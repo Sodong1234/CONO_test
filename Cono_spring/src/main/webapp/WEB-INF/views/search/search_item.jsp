@@ -297,12 +297,13 @@ font-family: 'IBMPlexSansKR-Regular';
 </style>
 <script src="resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
+	//필터 고정
 	$(function () {
 		$("input:radio[name='filter1'][value='${filter1}']").attr('checked', true);
 		$("input:radio[name='filter2'][value='${filter2}']").attr('checked', true);
 	});
 	
-	
+	// 필터 1 기능 구현
 	function filter1(value) {
 		var searchText = document.getElementById("searchText").value;
 		$("#search_data").html = searchText + "검색 내용입니다.";
@@ -311,6 +312,7 @@ font-family: 'IBMPlexSansKR-Regular';
 		location.href="search_item?searchText="+ searchText+"&filter1="+filter1+"&filter2="+filter2;
 		
 	}
+	// 필터 2 기능 구현
 	function filter2(value) {
 		var searchText = document.getElementById("searchText").value;
 		$("#search_data").html = searchText + "검색 내용입니다.";
@@ -376,7 +378,7 @@ font-family: 'IBMPlexSansKR-Regular';
 		</div>
 	</div>
 	
-	<h1 id="search_data" style="font-family: 'IBMPlexSansKR-Regular';">'${searchText }' 검색 내용입니다.</h1>
+	<h1 id="search_data" style="font-family: 'IBMPlexSansKR-Regular';">'${searchText}' 검색 내용입니다.</h1>
 	 <input type = "hidden" name ="pageNum" value="${pageNum }">
 	 <c:if test="${not empty cardList && pageInfo.listCount > 0}">	
 	<c:forEach var="card" items="${cardList }">

@@ -13,6 +13,8 @@ if(request.getParameter("searchText") == null) {
 }
 %>
 <script type="text/javascript">
+
+
 	function userCenterList() {
 		let userCenterList = document.getElementById("userCenterList");
 		userCenterList.style.visibility = "visible";
@@ -27,11 +29,16 @@ if(request.getParameter("searchText") == null) {
 	
 	// =========================양윤석==================================
 	//============== 가준 검색 ============
+		// 필터와 함께 검색기능
 	function search_item() {
-		let searchText = document.getElementById("searchText").value
+		// 검색 내용 고정
+		let searchText = document.getElementById("searchText").value;
+
+// 		document.getElementById("searchText").value = ${searchText };
+		// 검색
 		location.href = ("search_item?searchText=" + searchText + "&filter1=0" + "&filter2=0");
 	}
-	
+	// 샵 로그인 체크
 	function myShop_loginCheck() {
 		if("${sId}" == "") {
 			alert("로그인이 필요합니다.");
@@ -39,7 +46,7 @@ if(request.getParameter("searchText") == null) {
 			location.href="ProductMyshop.shop";
 		}
 	}
-	
+	// 좋아요 들어가는거 로그인 체크
 	function wish_loginCheck() {
 		if("${sId}" == "") {
 			alert("로그인이 필요합니다.");
@@ -47,7 +54,7 @@ if(request.getParameter("searchText") == null) {
 			location.href="wish";
 		}
 	}
-	
+	// 신고하기 로그인 체크
 	function report_loginCheck() {
 		if("${sId}" == "") {
 			alert("로그인이 필요합니다.");
@@ -55,7 +62,7 @@ if(request.getParameter("searchText") == null) {
 			location.href="AdminReportList";
 		}
 	}
-	
+	// 문의하기 체크
 	function qna_loginCheck() {
 		if("${sId}" == "") {
 			alert("로그인이 필요합니다.");
@@ -132,7 +139,7 @@ if(request.getParameter("searchText") == null) {
 
 		<div class="search">
 			<input type="text" class="searchTerm" id="searchText"
-				placeholder="상품을 입력하세요">
+				placeholder="상품을 입력하세요" value="${searchText }">
 			<button type="submit" class="searchButton" onclick="search_item()">
 				<i class="fa fa-search"></i>
 			</button>
