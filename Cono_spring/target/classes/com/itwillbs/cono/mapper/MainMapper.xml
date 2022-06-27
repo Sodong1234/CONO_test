@@ -124,7 +124,7 @@
 		</if>
 				   <!-- 		최신 정렬 -->
 		<if test='filter1 == "0"'>
-			ORDER BY it.item_date ASC
+			ORDER BY it.item_date DESC
 		</if>
 <!-- 		가격 높은 순 -->
 		<if test='filter1 == "1"'>
