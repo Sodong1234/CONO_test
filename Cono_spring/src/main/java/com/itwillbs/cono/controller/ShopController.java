@@ -577,7 +577,7 @@ public class ShopController {
 //	}
 	
 	
-	
+	// 팔로우하기
 	@RequestMapping(value = "plusFollow", method = RequestMethod.GET)
 	public String plusFollow(HttpSession session, Model model, String shop_idx,String item_idx) {
 		

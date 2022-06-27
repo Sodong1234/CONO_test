@@ -37,7 +37,7 @@ public class MessageController {
 		dto.setMsgChat_content("상품 문의 입니다~");
 		service.setMsgContent(dto);
 		
-		return "message/message_list";
+		return "redirect:/message_list";
 	}
 	// member - shop room 목록
 	@RequestMapping(value = "message_list", method = RequestMethod.GET)

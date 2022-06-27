@@ -87,7 +87,7 @@
 		});
 	}
 	// 헤더 클릭시 내용 호출을 위한 함수
-	function getMsgList(msgList_room, shop_idx, shop_name, img_name, item_title) {
+	function getMsgList(msgList_room, shop_idx, shop_name, img_name, item_title, item_idx) {
 		var btn = document.getElementById("msgbtn");
 		var msg_form = document.getElementById("msg_form");
 		
@@ -96,6 +96,7 @@
 		document.getElementById("itTitle").value = item_title;
 		document.getElementById("sNum").value = shop_idx;
 		document.getElementById("rNum").value = msgList_room;
+		document.getElementById("iNum").value = item_idx;
 		
 		
 		btn.style.visibility = "visible";
@@ -107,6 +108,18 @@
 		
 	}
 		
+	
+	// 샵 가기
+	function goShop() {
+		var item_idx = document.getElementById("iNum").value;
+		location.href="Myshop.shop?item_idx="+item_idx;
+	}
+	// 아이템 가기
+	function goItem() {
+		var item_idx = document.getElementById("iNum").value;
+		location.href="itemDetail?item_idx=" + item_idx;
+	}
+
 </script>
 </head>
 <style type="text/css">
@@ -161,7 +174,7 @@
 <!-- 		room 리스트 -->
 		<ul class="circle">
 			<c:forEach var="msgH" items="${msgList }">
-				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.shop_idx }', '${msgH.shop_name }','${msgH.img_name }','${msgH.item_title }')">
+				<li class="msg_item" onclick="getMsgList('${msgH.msgList_room }', '${msgH.shop_idx }', '${msgH.shop_name }','${msgH.img_name }','${msgH.item_title }','${msgH.item_idx }')">
 <!-- 					room / shopname 저장 -->
 					<a href="#" class="room">
 						<span class="area-txt">
@@ -187,9 +200,9 @@
 		<div class="board_head">
 			<fieldset class="msgbtn" id="msgbtn" >
 			<div class="prof">
-				<span class="sname" id="sname"></span> <br>
+				<span class="sname" id="sname" onclick="goShop()"></span> <br>
 				<span class="itTitle" id="itTitle"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<img src='' class="prof_imName" id="prof_imName"></img>&nbsp;&nbsp;&nbsp;&nbsp;
+				<img src='' class="prof_imName" id="prof_imName" onclick="goItem()"></img>&nbsp;&nbsp;&nbsp;&nbsp;
 				<button class="follwing" onclick="location.href='following'">팔로우</button> <br>
 				<button class="msg_out" onclick="msgDelete()">나가기</button>
 			</div>
@@ -203,6 +216,7 @@
 		<div class="msg_form" id="msg_form" style="visibility: hidden">
 			<input type="hidden" id="sNum">
 			<input type="hidden" id="rNum">
+			<input type="hidden" id="iNum">
 			<textarea rows="3" cols="75" id="msgText"></textarea>
 			<button class="btn_send" onclick="sendMsg()"></button>
 		</div>

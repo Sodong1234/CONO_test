@@ -15,8 +15,8 @@
 	
 <!-- 	MsgList 뽑기 -->
 	<select id="selectMsgList" resultType="java.util.HashMap">
-		SELECT t.shop_name, t.member_id, t.shop_idx, t.msgList_room, t.msgChat_content, t.msgChat_time, t.item_title, t.img_name
-			FROM (SELECT s.shop_name, l.member_id, l.shop_idx, l.msgList_room, c.msgChat_content, c.msgChat_time, it.item_title, im.img_name
+		SELECT t.shop_name, t.member_id, t.shop_idx, t.msgList_room, t.msgChat_content, t.msgChat_time, t.item_title, t.img_name, t.item_idx
+			FROM (SELECT s.shop_name, l.member_id, l.shop_idx, l.msgList_room, c.msgChat_content, c.msgChat_time, it.item_title, im.img_name, it.item_idx
 				FROM msgList l
 					LEFT OUTER JOIN shop s
 						 ON l.shop_idx = s.shop_idx
