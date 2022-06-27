@@ -102,7 +102,7 @@
 			case 3:
 				document.getElementById("checkPassResult").innerHTML = "사용 가능한 비밀번호";
 				document.getElementById("checkPassResult").style.color = "GREEN";
-				isCheckPass = false;
+				isCheckPass = true;
 				break;
 			case 2:
 				document.getElementById("checkPassResult").innerHTML = "영문, 숫자, 특수문자를 조합한 8자 이상의 비밀번호를 입력해주세요.";
