@@ -315,7 +315,7 @@ input[type="submit"] {
 				<div class="container">
 					<div class="input-form-backgroud row">
 						<div class="input-form col-md-12 mx-auto">
-							<h4 class="mb-3">회원가입2</h4>
+							<h4 class="mb-3">회원가입</h4>
 								<div class="row">
 									<div class="col-md-6 mb-3">
 										<label for="name">아이디</label> 
@@ -323,7 +323,7 @@ input[type="submit"] {
 									</div>
 									<div class="col-md-3 mb-3">
 										<label for="dup">&nbsp;</label>
-										<button class="form-control" id="dupBtn" style="background-color: aquamarine;"
+										<button type="button" class="form-control" id="dupBtn" style="background-color: aquamarine;"
 										onclick="checkId(this.value)" value="N">중복확인</button>
 									</div>
 									<div class="col-md-6 mb-3">
