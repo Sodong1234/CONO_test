@@ -1,29 +1,29 @@
-0. admin(관리자)
+테이블 구성
+
 1. member (구매자, 회원정보) - 회원가입시 생성
 2. shop (상점) - 회원가입시 생성 
 3. item (상품정보) - 포스팅시 생성
 4. img (상품이미지) - 상품등록시 같이 생성
-5. review (후기) - 후기 작성시 생김 (myPage 후기, 구매완료)
-6. 
-7. wish (찜) - 
-8. star (별점) - 후기 등록시 생성
-9. basket (장바구니) - 장바구니 담기 클릭시 생성
-예외 : 같은 아이템을 장바구니에 담을시 -> '이미 장바구니에 있습니다' 알림띄우기
-10. ord (주문) - 상품 상세정보, 장바구니에서 구매하기 클릭 후 결제 완료시 생성 
-11. reserved (예약) - 판매자가 구매자와 1:1 문의 중 예약걸기 버튼 클릭시 생성 + 아이템 락
-12. mainCategory (메인 카테고리) - 큰거 10개 
-13. category (소분류) -  
-14. coupon (쿠폰) - 일단 회원가입시 생성 / 생일날 00시 기준 생성
-15. follow (팔로우) - 팔로우 클릭시 생성 
-16. alarm (알림) - ( 구매완료 / 예약완료 / 후기 등등 알림 주기 ... 나중에 생각나면 다적기) 
-★★★★★ 알람 헤더 만들어야함
-17. msgHeader (메시지 헤더) - 1:1 문의 버튼 클릭 시 생성 
-18. msgChat (채팅 내용) - 채팅 발송 시 생성 
+5. review (후기) - 후기 작성시 생성
+6. wish (찜) - 좋아요 클릭시 생성
+7. ord (주문) - 상품 결제시 생성
+8. mainCategory (메인화면 카테고리) - 조회수 측정 (사용안함)
+9. category (카테고리) - 장바구니 담기 클릭시 생성
+10. coupon (쿠폰) - 회원가입시 
+11. follow (팔로우) - 팔로우 신청시 생성
+12. coin (코인) - 결제 완료시 생성
+13. safe (금고) - 상품 결제시 생성
+14. recentView (최근조회) - 상품 조회시 생성
+15. payment (결제) - 코은 충전을 위한 결제시 생성
+16. notice (공지사항) - 공지 등록시 생성
+17. qna (문의) - 문의 등록시 생성
+18. report (신고) - 신고 작성시 생성
+19. msgList (메시지 목록) - 1:1문의하기 클릭시 생성
+20. msgChat (메시지 내용) - 메시지 내용 전달시 생성
+21. cancel (취소) - 상품 취소시 생성
+22. account (계좌정보) - 계좌 등록시 생성
 
-CREATE TABLE admin (
-	admin_id PRIMARY KEY,
-	admin_pass PRIMARY KEY
-);
+
 
 CREATE TABLE member (
 	member_id varchar(50) PRIMARY KEY,
@@ -239,12 +239,5 @@ CREATE TABLE cancel (
    bankName VARCHAR(20),
     accountNum VARCHAR(40)
  );
------------------------- 삭제 예정 --------------------------------------
-CREATE TABLE alarm (
-	alarm_idx varchar(20) PRIMARY KEY,
-	shop_idx varchar(20),
-	alarm_title varchar(50),
-	alarm_content varchar(1000),
-	alarm_status varchar(5)
-);
+
 
