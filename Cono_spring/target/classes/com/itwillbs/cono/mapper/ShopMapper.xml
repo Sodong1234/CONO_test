@@ -25,7 +25,7 @@
 		SELECT COUNT(item_idx)
 		 FROM item it, shop s 
 		WHERE s.member_id = #{member_id}
-          AND it.shop_idx = s.shop_idx;
+          AND it.shop_idx = s.shop_idx
 	</select>
 	
 	<!-- 등록된 상품 개수(item_idx) 조회 -->
