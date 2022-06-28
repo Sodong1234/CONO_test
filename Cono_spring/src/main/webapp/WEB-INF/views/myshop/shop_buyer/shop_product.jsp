@@ -67,8 +67,11 @@
 .price {
 	margin-top: 4px;
 	margin-bottom: 80px;
-	color: #5CFFD1;
-	font-size: 13pt;
+	color: #4d8e8f;
+    font-size: 13pt;
+    font-weight: bold;
+    padding: 0;
+}
 }
 </style>
 </head>
@@ -86,6 +89,5 @@
 			</div>
 		</c:forEach>
 	</div>
-	
 </body>
 </html>
