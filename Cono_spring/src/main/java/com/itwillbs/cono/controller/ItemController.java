@@ -177,7 +177,13 @@ public class ItemController {
 	@RequestMapping(value = "increaseWish", method = RequestMethod.GET)
 	public String increaseWish(String item_idx, HttpSession session, Model model) {
 		
-		String member_id = session.getAttribute("sId").toString();
+		String member_id = null;
+		if(session.getAttribute("sId") != null) {
+			member_id = session.getAttribute("sId").toString(); 
+		} else {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			return "./myshop/fail_back";
+		}
 		
 		service.increaseWish(item_idx, member_id);
 		

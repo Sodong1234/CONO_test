@@ -24,7 +24,13 @@ public class MessageController {
 	// 문의하기 버튼 클릭시 room 생성
 	@RequestMapping(value = "addMessageList", method = RequestMethod.GET)
 	public String insert_message_list(Model model, HttpSession session, String shop_idx, String item_idx) {
-		String sId = (String)session.getAttribute("sId");
+		String sId = null;
+		if(session.getAttribute("sId") != null) {
+			sId = session.getAttribute("sId").toString(); 
+		} else {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			return "./myshop/fail_back";
+		}
 		String room = service.getRoomNum();
 		
 		service.setMessageList(sId, shop_idx, item_idx);

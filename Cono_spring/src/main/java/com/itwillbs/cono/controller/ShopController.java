@@ -605,8 +605,14 @@ public class ShopController {
 	// 상점 이동
 	@RequestMapping(value = "Myshop.shop", method = RequestMethod.GET)
 	public String myshop (HttpSession session,String item_idx, Model model) {
-		String sId = (String)session.getAttribute("sId");
 		
+		String sId = null;
+		if(session.getAttribute("sId") != null) {
+			sId = session.getAttribute("sId").toString(); 
+		} else {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			return "./myshop/fail_back";
+		}
 		
 		// 상점 정보 조회
 		HashMap<String, String> shopInfo = service.getShop(item_idx);
