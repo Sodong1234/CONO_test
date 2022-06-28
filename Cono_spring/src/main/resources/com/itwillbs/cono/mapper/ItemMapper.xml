@@ -67,7 +67,7 @@
 		  FROM ord
 		 WHERE ord_idx=(SELECT MAX(CAST(o.ord_idx as unsigned))
 		                  FROM ord o
-		                 WHERE o.member_id=#{member_id});
+		                 WHERE o.member_id=#{member_id})
 	</select>
 	
 	<!-- safe 테이블 insert -->

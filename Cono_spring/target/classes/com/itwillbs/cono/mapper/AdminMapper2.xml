@@ -157,7 +157,7 @@
 			ON m.member_id = s.member_id
 		  LEFT OUTER JOIN coin c
 			ON s.member_id = c.member_id
-		 WHERE m.member_status='N';
+		 WHERE m.member_status='N'
 	</select>
 	
 <!-- 탈퇴 회원 리스트 -->
@@ -169,7 +169,7 @@
 			 , member_date
 			 , member_status
 		  FROM member
-		 WHERE member_status='N';
+		 WHERE member_status='N'
 	</select>
 	
 <!-- 회원정보 삭제 -->
