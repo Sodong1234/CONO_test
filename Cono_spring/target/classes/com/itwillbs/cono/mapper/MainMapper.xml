@@ -19,17 +19,16 @@
 		SELECT COUNT(*) FROM member
 		WHERE member_id = #{member_id}
 	</select>
-	
 <!-- 	회원가입 축하 쿠폰 -->
 	<insert id="insertJoinCoupon">
 		INSERT INTO coupon
-		VALUES (IFNULL((SELECT MAX(c.coupon_idx) FROM coupon c) + 1,1), #{member_id},'','가입 축하 쿠폰','가입을 축하합니다! 20000c 이상 구매시 이용 가능' ,'5000','N')
+		VALUES ((SELECT IFNULL(MAX(CAST(c.coupon_idx as unsigned)), 0) + 1 FROM coupon c), #{member_id},'','가입 축하 쿠폰','가입을 축하합니다! 20000c 이상 구매시 이용 가능' ,'5000','N')
 	</insert>
 	
 <!-- 		회원가입시 샵 기본 정보 생성 -->
 	<insert id="insertShopInfo">
 		INSERT INTO shop
-		VALUES (IFNULL((SELECT MAX(s.shop_idx) FROM shop s) + 1,1),#{member_id},#{member_nick},null,'')
+		VALUES ((SELECT IFNULL(MAX(CAST(s.shop_idx as unsigned)), 0) + 1 FROM shop s),#{member_id},#{member_nick},null,'')
 	</insert>
 	
 <!-- 실시간 인기상품 - 김혜은 -->
