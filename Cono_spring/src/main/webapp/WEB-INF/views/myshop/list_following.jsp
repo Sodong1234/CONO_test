@@ -98,7 +98,7 @@ hr.hr-13 {
 									<p class="shop-introduce">${follow.shop_content }</p>
 								</div>
 								<button class="cancleFollowing" id="deleteFollowing" onclick="location.href='deleteFollowingShop?shop_idx=${follow.shop_idx}'">
-									<i class="idus-icon-check" style="font-size: 12px;"></i>언팔로우
+									<i class="idus-icon-check" style="font-size: 12px;"></i> 팔로우 취소
 								</button>
 							</div>
 						</div>
