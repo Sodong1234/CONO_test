@@ -101,7 +101,6 @@ a {
    
 	<div class ="body">
 	<div class="hh"><h1>Notice Modify Page</h1></div>
-	${param.pageNum } ttttttt
 	<div class="wrtie">
 		<form action="AdminNoticeModifyPro.admin" method="post">
 			<input type="hidden" name="notice_idx" value="<%=noticeList.getNotice_idx()%>"> 

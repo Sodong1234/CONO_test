@@ -274,7 +274,7 @@ form {
 			</c:when>
 			
 			<c:when test="${followList ne null }">
-			<input type ="button" class="followCancelBtn"value ="팔로우취소" onclick="location.href='deleteFollowing?shop_idx=${shopInfo.shop_idx }&item_idx=${item_idx }'">
+			<input type ="button" class="followCancelBtn"value ="팔로우 취소" onclick="location.href='deleteFollowing?shop_idx=${shopInfo.shop_idx }&item_idx=${item_idx }'">
 <%-- 				<button onclick="location.href='deleteFollowing?shop_idx=${shopInfo.get('shop_idx') }&item_idx=${item_idx }'"> 팔로우취소</button> --%>
 				
 			</c:when>
