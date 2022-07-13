@@ -173,7 +173,7 @@ if(session.getAttribute("sId") == null) {
 								<h2 style=" font-family: 'Cafe24Ohsquare';"> ${itemDetail.get('item_title')}</h2>
 								<div class="detail-info__text-price__div">
 										<!-- 상품가격 --> 
-									<h4 style=" font-family: 'Cafe24Ohsquare';" ><fmt:formatNumber value="${itemDetail.get('item_price')}" pattern="\#,###.##"/></h4>
+									<h4 style=" font-family: 'Cafe24Ohsquare';" ><fmt:formatNumber value="${itemDetail.get('item_price')}" pattern="#,###.##"/>COIN</h4>
 								</div>
 								<table>
 									<tr style="text-align:center;">

@@ -69,7 +69,7 @@ public class MainController {
 		String algorithm = "SHA-256";
 		String result = hashing(algorithm, pass);
 		member.setMember_pass(result);
-
+		System.out.println("result : " + result);
 		MemberDTO memberResult = service.loginMember(member);
 		int deleteMember = 0;
 		if(memberResult == null) {
@@ -210,7 +210,7 @@ public class MainController {
 			MessageDigest md = MessageDigest.getInstance(algorithm);
 			
 			byte[] byteText = strPlaintext.getBytes();
-			System.out.println(Arrays.toString(byteText));
+//			System.out.println(Arrays.toString(byteText));
 			
 			md.update(byteText);
 			
@@ -223,7 +223,7 @@ public class MainController {
 			System.out.println("입력한 암호화 알고리즘 존재 x");
 			e.printStackTrace();
 		}
-		System.out.println(strHashedData);
+//		System.out.println(strHashedData);
 		return strHashedData;
 	}
 // -===================================== 모든 검색 ================================
