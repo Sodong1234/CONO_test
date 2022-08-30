@@ -1,0 +1,365 @@
+.position {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 15%;
+}
+
+#workarea {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #1e1a3e;
+  font-family: Raleway;
+}
+
+#personal {
+  color:white;
+  text-decoration:none;
+  position:absolute;
+  bottom:15px;
+  right:2%;
+}
+
+.spot {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.svg-wrapper {
+  margin-top: 0;
+  position: relative;
+  width: 120px;
+  height: 40px;
+  display: inline-block;
+  border-radius: 3px;
+  margin-left: 5px;
+  margin-right: 5px
+}
+
+#shape {
+  stroke-width: 6px;
+  fill: transparent;
+  stroke: #F6C6EA;
+  stroke-dasharray: 75 400;
+  stroke-dashoffset: -182;
+  transition: 1s all ease;
+}
+
+/* #shape1 { */
+/*   stroke-width: 6px; */
+/*   fill: transparent; */
+/*   stroke: #F6C6EA; */
+/*   stroke-dasharray: 93 400; */
+/*   stroke-dashoffset: -174; */
+/*   transition: 1s all ease; */
+/* } */
+
+#text {
+   margin-top: -33px; 
+  text-align: center;
+}
+
+#text1 {
+   margin-top: -33px; 
+  text-align: center;
+}
+
+/* .text1 { */
+/*    margin-top: -33px;  */
+/*   text-align: center; */
+/* } */
+#text a {
+  color: #17191d;
+  text-decoration: none;
+  font-weight:50px;
+  font-size: 1.1em;
+}
+
+.svg-wrapper:hover #shape {
+  stroke-dasharray: 50 0;
+  stroke-width: 5px;
+  stroke-dashoffset: 0;
+  stroke: #F6C6EA;
+}
+
+
+
+
+
+/* 지역선택 버튼 */
+
+a,
+a:visited {
+  text-decoration: none;
+/*   color: #00AE68; */
+}
+
+a.btnLightBlue {
+  display: block;
+  position: relative;
+/*   float: left; */
+  width: 100px;
+  padding: 0;
+  margin: 8px 18px 8px 0;
+  font-weight: 400;
+  text-align: center;
+  line-height: 45px;
+  color: #FFF;
+  border-radius: 5px;
+  transition: all 0.2s ;
+}
+
+
+.btnLightBlue:before {
+	background: #9DDFD3;
+	color:white;
+  content: '지역선택';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+  transition: all 0.2s ;
+}
+
+
+.btnLightBlue {
+  background: #9DDFD3;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+
+
+.btnLightBlue:hover:before {
+  margin-top: -2px;
+  margin-left: 0px;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
+
+
+/* 메세지 페이지 버튼 */
+
+
+button.follwing {
+    border: none;
+    background: none;
+    margin-top: -21px;
+    left: 73px;
+}
+
+.follwing {
+  display: block;
+  position: relative;
+    float: right;
+  width: 100px;
+  padding: 0;
+  margin: 8px 18px 8px 0;
+  font-weight: 400;
+  text-align: center;
+  line-height: 45px;
+  color: #FFF;
+  border-radius: 50px;
+  transition: all 0.2s ;
+}
+
+
+.follwing:before {
+  background: #F6C6EA;
+  color:white;
+  content: '팔로우';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 40px;
+  border-radius: 50px;
+  transition: all 0.2s ;
+}
+
+
+.follwing {
+  background: #F6C6EA;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+
+
+.follwing:hover:before {
+  margin-top: -2px;
+  margin-left: 0px;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
+
+
+button.msg_out {
+    border: none;
+    background: none;
+    margin-top: -68px;
+    left: 73px;
+}
+
+.msg_out {
+  display: block;
+  position: relative;
+    float: right;
+  width: 100px;
+  padding: 0;
+  margin: 8px 18px 8px 0;
+  font-weight: 400;
+  text-align: center;
+  line-height: 45px;
+  color: #FFF;
+  border-radius: 50px;
+  transition: all 0.2s ;
+}
+
+
+.msg_out:before {
+  background: #9DDFD3;
+  color:white;
+  content: '나가기';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 40px;
+  border-radius: 50px;
+  transition: all 0.2s ;
+}
+
+
+.msg_out {
+  background: #9DDFD3;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+
+
+.msg_out:hover:before {
+  margin-top: -2px;
+  margin-left: 0px;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
+
+
+/* 팔로우 버튼 */
+
+.followBtn {
+    border: none;
+    background: none;
+    margin-top: -21px;
+}
+
+.followBtn {
+  display: block;
+  position: relative;
+    float: right;
+  width: 100px;
+  padding: 0;
+  margin: 8px 18px 8px 0;
+  font-weight: 800;
+  text-align: center;
+  line-height: 45px;
+  color: #FFF;
+  border-radius: 3px;
+  transition: all 0.2s ;
+}
+
+
+.followBtn:before {
+  background: #F6C6EA;
+  color:white;
+  font-weight:bold;
+  content: '팔로우';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+     width: 70px;
+    height: 42px;
+  border-radius: 3px;
+  transition: all 0.2s ;
+} 
+
+
+.followBtn {
+  background: #F6C6EA;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+
+
+.followBtn:hover:before {
+  margin-top: -2px;
+  margin-left: 0px;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
+
+.followCancelBtn {
+    border: none;
+    background: none;
+    margin-top: -21px;
+}
+
+.followCancelBtn {
+  display: block;
+  position: relative;
+    float: right;
+  width: 100px;
+  padding: 0;
+  margin: 8px 18px 8px 0;
+  font-weight: 800;
+  text-align: center;
+  line-height: 45px;
+  color: #FFF;
+  border-radius: 3px;
+  transition: all 0.2s ;
+}
+
+
+.followCancelBtn:before {
+  background: #F6C6EA;
+  color:white;
+  font-weight:bold;
+  content: '팔로우취소';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+      width: 70px;
+    height: 42px;
+  border-radius: 3px;
+  transition: all 0.2s ;
+}
+
+
+.followCancelBtn {
+  background: #F6C6EA;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+
+
+.followCancelBtn:hover:before {
+  margin-top: -2px;
+  margin-left: 0px;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}

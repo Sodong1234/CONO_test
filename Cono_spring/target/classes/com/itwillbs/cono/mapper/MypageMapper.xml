@@ -5,4 +5,376 @@
 	<select id="selectRecentViewCount" resultType="java.lang.Integer">
 		
 	</select>  
+	
+	<select id="selectBoardList" resultType="java.util.HashMap">
+<!-- 		SELECT it.item_idx, im.img_name, it.item_title, it.item_price, it.item_region , it.item_date  -->
+<!-- 		FROM item it, recentView re, img im -->
+<!-- 		WHERE re.member_id = #{sId} AND it.item_idx IN (re.item_idx) AND it.item_idx = im.item_idx AND im.img_idx = '1' -->
+<!-- 		ORDER BY re.viewTime DESC -->
+	</select>
+	
+<!-- 	최근조회 -->
+	<select id="selectRecent" resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_name, it.item_title
+		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, recentView rv
+		WHERE 1=1
+		  AND rv.member_id = #{sId} AND rv.item_idx = it.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1'
+		  AND it.item_quantity > 0
+		ORDER BY rv.viewTime DESC
+		LIMIT 0,3
+	</select>
+	
+	
+<!-- 	회원 상세 정보 (for 회원 정보 수정) -->
+	<select id="selectMemberInfo" resultType="com.itwillbs.cono.vo.MemberDTO">
+		SELECT * FROM member 
+		WHERE member_id = #{sId}
+	</select>
+	
+<!-- 	회원 정보 수정페이지 진입 전 비밀번호 확인 작업 -->
+	<select id="checkPass" resultType="com.itwillbs.cono.vo.MemberDTO">
+		SELECT member_pass 
+		FROM member 
+		WHERE member_id = #{sId} AND member_pass = #{passwd}
+	</select>
+
+<!-- 	회원 정보 수정 -->
+	<update id="updateMemberInfo">
+		UPDATE member
+		<choose>
+			<when test="member.member_pass eq null">
+				SET member_nick = #{member.member_nick}, member_email = #{member.member_email}, member_phone = #{member.member_phone}
+				WHERE member_id = #{sId}
+			</when>
+			<otherwise>
+				SET member_pass = #{member.member_pass}, member_nick = #{member.member_nick}, member_email = #{member.member_email}, member_phone = #{member.member_phone}
+				WHERE member_id = #{sId}
+			</otherwise>
+		</choose>
+	</update>
+<!-- 	================================================Center=================================================== -->
+<!-- 	코인 내역 리스트 COUNT  -->
+	<select id="coinListCount" resultType="int">
+		SELECT COUNT(coin_idx)
+		FROM coin
+		WHERE member_id = #{sId}
+		
+	</select>	
+	
+<!-- 	코인 이용 내역 조회 -->
+	<select id="selectCoinInfoList" resultType="com.itwillbs.cono.vo.CoinDTO">
+		SELECT coin_idx, coin_add, coin_use, coin_total, coin_date
+		FROM coin c
+		WHERE member_id = #{sId}
+		ORDER BY coin_idx+0 DESC
+		LIMIT #{pageInfo.startRow},
+		#{pageInfo.listLimit}
+	</select>
+	
+<!--    현재 보유 코인 -->
+   <select id="coinTotal" resultType="string">
+      SELECT c.coin_total
+      FROM coin c
+      WHERE member_id = #{sId}
+      ORDER BY coin_idx*1 DESC
+      LIMIT 1
+   </select>
+	
+<!-- 	결제 데이터 삽입하기 -->
+	<insert id="insertPayment">
+		INSERT INTO payment
+		VALUES (
+				1+(SELECT COUNT(p.payment_idx) FROM payment p WHERE member_id = #{sId}), 
+				#{sId}, 
+				(SELECT m.member_phone FROM member m WHERE m.member_id = #{sId}),
+			    #{payment_value},
+			    date_format(now(), '%Y%m%d%H%i%S')
+			    )
+	</insert>
+	
+<!-- 	결제 데이터 받아오기 -->
+	<select id="selectPayment" resultType="com.itwillbs.cono.vo.PaymentDTO">
+		SELECT payment_idx, member_id, member_phone, payment_value, payment_date
+		FROM payment
+		WHERE member_id = #{sId}
+		ORDER BY payment_idx DESC
+		LIMIT 1
+	</select>
+	
+<!-- 	코인 충전 -->
+	<insert id="insertCoinAdd">
+		INSERT INTO coin
+		VALUES ((SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c WHERE c.member_id = #{sId}),
+				#{sId}, 
+				#{payment_value}, 
+				'', 
+				(#{payment_value} + #{balance}), 
+				date_format(now(), '%Y%m%d%H%i%S'))
+	</insert>
+	
+<!-- 	현재 보유중인 쿠폰 수 -->
+	<select id="selectCouponCount" resultType="java.lang.Integer">
+		SELECT COUNT(coupon_idx)
+		  FROM coupon
+		 WHERE member_id = #{sId}
+		 AND coupon_status ='N'
+	</select>
+	
+<!-- 	현재 보유 쿠폰 리스트 -->
+	<select id="couponList" resultType="com.itwillbs.cono.vo.CouponDTO">
+		SELECT coupon_idx, coupon_title, coupon_content, coupon_price
+		  FROM coupon
+		 WHERE member_id = #{sId} AND coupon_status ='N'
+	</select>
+	
+<!-- 	구매 중 -->
+	<select id="selectWaitingList" resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_name, it.item_title, it.item_region, it.item_price, it.item_date, c.cancel_status, o.ord_idx
+		FROM (item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, ord o)
+			LEFT OUTER JOIN cancel c ON o.ord_idx = c.ord_idx
+		WHERE o.member_id = #{sId}
+		  AND o.ord_status = 'N' 
+		  AND it.item_idx = o.item_idx 
+		  AND im.item_idx = it.item_idx 
+		  AND im.img_idx = '1'
+		  AND c.ord_idx IS NULL
+		  AND c.cancel_status is NULL
+	</select>
+	<select id="selectWaitingCount" resultType="java.lang.Integer">
+		SELECT COUNT(it.item_idx)
+		  FROM (item it, ord o) left outer join cancel c ON o.ord_idx = c.ord_idx
+		 WHERE 1=1
+		   AND it.item_idx = o.item_idx 
+		   AND o.member_id = #{sId}
+		   AND o.ord_status = 'N'
+           AND c.ord_idx IS NULL
+	</select>
+<!-- 	찜 상품 수 -->
+	<select id="selectWishCount" resultType="java.lang.Integer">
+		SELECT COUNT(w.item_idx) FROM wish w WHERE w.member_id = #{sId}
+	</select>
+<!-- 		찜 상품 내용 -->
+	<select id="selectWishList" resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_name, it.item_title, it.item_region, it.item_price, it.item_date
+		  FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, wish w
+		 WHERE 1=1 
+		   AND w.member_id = #{sId} 
+		   AND it.item_idx = w.item_idx 
+		   AND im.item_idx = it.item_idx 
+		   AND im.img_idx = '1'
+	</select>
+
+<!-- 		구매완료된 상품 리스트 -->
+	<select id="selectPurchasedList"  resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_name, s.shop_name ,it.item_title, it.item_content ,it.item_price, o.ord_quantity ,o.ord_date
+		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, ord o, shop s
+		WHERE o.ord_status = 'Y' AND o.member_id = #{sId} AND it.item_idx = o.item_idx AND im.item_idx = it.item_idx AND im.img_idx = '1' AND s.shop_idx = it.shop_idx
+	</select>
+
+<!-- 		취소상품 리스트 -->
+	<select id="selectCancelList"  resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_name, s.shop_name ,it.item_title, it.item_content ,it.item_price, o.ord_quantity ,o.ord_date, c.cancel_status
+		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, shop s, ord o, cancel c
+		WHERE 1=1 
+          AND o.member_id = #{sId}
+          AND it.item_idx = o.item_idx 
+          AND c.ord_idx = o.ord_idx
+          AND im.item_idx = it.item_idx 
+          AND im.img_idx = '1' 
+          AND s.shop_idx = it.shop_idx
+          ORDER BY o.ord_date DESC
+	</select>
+	
+<!-- 		내가 쓴 리뷰 리스트 -->	
+	<select id="selectReadPurchaseList" resultType="java.util.HashMap">
+		SELECT o.item_idx, s.shop_name, i.item_title, i.item_price, im.img_name, o.ord_date, o.ord_status, o.ord_reqContent, o.ord_quantity, r.review_idx
+		  FROM ord o 
+		  JOIN item i
+			ON o.item_idx = i.item_idx
+		  JOIN img im
+		    ON im.item_idx = o.item_idx
+		  JOIN shop s
+		    ON i.shop_idx = s.shop_idx
+		  LEFT JOIN review r
+		    ON o.ord_idx = r.ord_idx
+		 WHERE o.member_id = #{sId}
+		   AND im.img_idx='1'
+		 LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
+		   
+	</select>
+	
+	<!-- 구매내역 개수 조회 -->
+	<select id="selectPurchaseListCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM ord
+		 WHERE member_id=#{sId}
+	</select>
+	
+	<!-- 후기 작성할 아이템 조회 -->
+	<select id="selectItemInfo" resultType="java.util.HashMap">
+		SELECT it.item_idx, it.item_title, it.item_quantity, im.img_name
+		  FROM item it LEFT OUTER JOIN img im
+		    ON it.item_idx = im.item_idx
+		 WHERE 1=1
+		   AND it.item_idx = #{item_idx}
+		   AND im.img_idx = '1'
+	</select>
+	
+	<!-- 후기 등록 -->
+	<insert id="insertReview">
+		INSERT INTO review 
+		VALUES (
+				(SELECT IFNULL(MAX(CAST(r.review_idx as unsigned)), 0) + 1 FROM review r)
+			    ,#{sId}
+<!-- 			    ,#{item_idx} -->
+			    ,#{ordresult.item_idx}
+			    ,(SELECT ord_idx
+   				   FROM ord
+   				  WHERE member_id=#{sId}
+   				    AND item_idx=#{ordresult.item_idx}
+					AND ord_date=#{ordresult.ord_date}
+					AND ord_reqContent=#{ordresult.ord_reqContent}
+					AND ord_status='Y'
+                   )
+			    ,#{review.review_content}
+			    ,#{review.review_score}
+			    ,date_format(now(), '%Y%m%d%H%i%S')
+			   )
+	</insert>
+	
+	<!-- 구매 확정 -->
+	<update id="updateordStatus">
+		UPDATE ord
+		   SET ord_status='Y'
+		 WHERE member_id=#{sId}
+		   AND item_idx=#{item_idx}
+		   AND ord_date=#{ord_date}
+	</update>
+	
+	<select id="selectSafeCoin" resultType="java.lang.String">
+		SELECT safe_coin 
+			       FROM safe 
+			      WHERE ord_idx=(SELECT ord_idx
+			      				   FROM ord
+			      				  WHERE member_id=#{sId}
+			      				    AND item_idx=#{item_idx}
+									AND ord_date=#{ord_date}
+									AND ord_status='Y'
+			                    )
+	</select>
+	
+	<select id="selectCoinTotal" resultType="java.lang.String">
+		 SELECT coin_total
+		  FROM coin
+		 WHERE coin_date = (SELECT * 
+		 			         FROM (SELECT max(coin_date) FROM coin WHERE member_id=#{shop_member_id}) AS a)
+				
+	</select>
+	
+<!-- 	판매자 검색 -->
+	<select id="selectShop_idx" resultType="java.lang.String">
+		SELECT s.member_id
+		  FROM item i, shop s
+		 WHERE i.shop_idx = s.shop_idx
+		   AND i.item_idx = #{item_idx}
+	</select>
+	
+	<!-- 판매자한테 safe에 저장된 코인 입금 -->
+	<insert id="insertCoinSeller">
+		INSERT INTO coin
+		VALUES (
+				(SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c WHERE c.member_id = #{shop_member_id})
+			   ,#{shop_member_id}
+			   ,#{safe_coin}
+			   ,''
+			   ,#{coin_total} + #{safe_coin}
+			   ,date_format(now(), '%Y%m%d%H%i%S')
+			   )
+			   
+	</insert>
+	
+	<!-- safe 테이블 status 변경 -->
+	<update id="updateSafeStatus">
+		UPDATE safe
+		   SET safe_status='Y'
+		 WHERE item_idx=#{item_idx}
+		   AND member_id=#{sId}
+		   AND ord_idx= (SELECT ord_idx
+		   				   FROM ord
+		   			      WHERE member_id=#{sId}
+	      				    AND item_idx=#{item_idx}
+							AND ord_date=#{ord_date}
+							AND ord_status='Y'
+	                    )
+	</update>
+	
+	<!-- ord 테이블 조회 (가지고 다닐거) -->
+	<select id="selectOrd" resultType="com.itwillbs.cono.vo.OrdDTO">
+		SELECT ord_idx, item_idx, member_id, ord_date, ord_reqContent, ord_quantity, ord_status
+		  FROM ord
+		 WHERE member_id=#{sId}
+		   AND item_idx=#{item_idx}
+		   AND ord_date=#{ord_date}
+	</select>
+	
+	<!-- 후기 내역 ListCount 조회 -->
+	<select id="selectReviewListCount" resultType="int">
+		SELECT COUNT(i.item_title)
+		  FROM item i, ord o, shop s, review r
+		 WHERE i.item_idx=o.item_idx
+		   AND s.shop_idx=i.shop_idx
+		   AND r.item_idx=i.item_idx
+		   AND o.ord_idx=r.ord_idx
+		   AND ord_status='Y'
+		   AND o.member_id=#{sId}
+	</select>
+	<!-- 후기 내역 조회 -->
+	<select id="selectReviewList" resultType="java.util.HashMap">
+		SELECT i.item_title, o.ord_quantity, s.shop_name, o.ord_date, r.review_content, r.review_score, r.review_date
+		  FROM item i, ord o, shop s, review r
+		 WHERE i.item_idx=o.item_idx
+		   AND s.shop_idx=i.shop_idx
+		   AND r.item_idx=i.item_idx
+		   AND o.ord_idx=r.ord_idx
+		   AND ord_status='Y'
+		   AND o.member_id=#{sId}
+		 LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
+	</select>
+	
+<!-- 		회원 탈퇴 -->
+	<update id="deleteId">
+		UPDATE member set member_status = 'N'
+		WHERE member_id = #{id} AND member_pass=#{passwd}
+	</update>
+	
+	<select id="selectShop_idxBymember" resultType="string">
+		SELECT shop_idx FROM shop WHERE member_id = #{id}
+	</select>
+	
+	<update id="deleteItem">
+		UPDATE item 
+		SET item_status='1' 
+		WHERE shop_idx = #{shop_idx}
+	</update>
+<!-- 	회원 탈퇴 끝 -->
+<!-- 	취소신청 -->
+	<insert id="insertCancelReq">
+		INSERT into cancel values (IFNULL((SELECT MAX(c.cancel_idx) FROM cancel c),'0') + 1,#{item_idx},#{member_id},#{ord_idx},#{cancel_content},DATE_FORMAT(now(), "%Y-%m-%d %H:%i"),'N')
+	</insert>
+	
+	
+	<insert id="insertAccountInfo">
+		INSERT into account values (IFNULL((SELECT MAX(a.account_idx) FROM account a),'0') + 1  , #{sId}, #{accountName}, #{bankName}, #{accountNum})
+	</insert>
+	
+	<select id="selectAccountInfo" resultType="com.itwillbs.cono.vo.AccountInfoDTO">
+		SELECT accountName, bankName, accountNum
+		FROM account
+		WHERE member_id = #{sId}
+	</select>
+
+<!-- 	================================================ Center =================================================== -->
+<!-- 	================================================ List =================================================== -->
+
+	
 </mapper>

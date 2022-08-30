@@ -13,6 +13,8 @@ CREATE TABLE qna (
 	qna_re_seq INT,
 	qna_date varchar(8),
 	qna_status varchar(20)
+	
+	qna_secret varchar(2)
 );
 
 */
@@ -29,6 +31,16 @@ public class AdminQNADTO {
 	private int qna_re_seq;
 	private String qna_date;
 	private String qna_status;
+	private int num;
+	private boolean qna_secret;
+	
+	
+	public boolean getQna_secret() {
+		return qna_secret;
+	}
+	public void setQna_secret(boolean qna_secret) {
+		this.qna_secret = qna_secret;
+	}
 	public String getQna_idx() {
 		return qna_idx;
 	}
@@ -89,12 +101,18 @@ public class AdminQNADTO {
 	public void setQna_status(String qna_status) {
 		this.qna_status = qna_status;
 	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	@Override
 	public String toString() {
 		return "AdminQNADTO [qna_idx=" + qna_idx + ", member_id=" + member_id + ", qna_type=" + qna_type
 				+ ", qna_subject=" + qna_subject + ", qna_content=" + qna_content + ", qna_re_ref=" + qna_re_ref
 				+ ", qna_re_lev=" + qna_re_lev + ", qna_re_seq=" + qna_re_seq + ", qna_date=" + qna_date
-				+ ", qna_status=" + qna_status + "]";
+				+ ", qna_status=" + qna_status + ", num=" + num + ", qna_secret=" + qna_secret + "]";
 	}
 	
 	

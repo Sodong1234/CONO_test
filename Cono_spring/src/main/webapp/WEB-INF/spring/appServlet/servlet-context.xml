@@ -25,4 +25,14 @@
 	<context:component-scan base-package="com.itwillbs.cono.controller" />
 	<context:component-scan base-package="com.itwillbs.cono.service" />
 	
+	<!-- 파일 업로드 객체 설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <beans:property name="maxUploadSize" value="10485760"/><!-- 10MB -->
+	</beans:bean>
+	
+		<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="com.itwillbs.cono.vo.NaverLoginBO" />
+	
 </beans:beans>
+
+

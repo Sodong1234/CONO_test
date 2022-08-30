@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.cono.mapper.ShopMapper">
+	
+	<!-- 내 상점 정보 조회 -->
+	<select id="selectMyShop" resultType="java.util.HashMap">
+		SELECT s.shop_idx, s.shop_img, s.member_id, s.shop_name, s.shop_content, m.member_date
+		  FROM shop s, member m
+		 WHERE s.member_id = m.member_id
+		   AND m.member_id = #{member_id}
+	</select>
+	
+	<!-- 내 상점 판매 횟수 조회 -->
+	<select id="selectShopSellCnt" resultType="java.lang.String">
+		SELECT COUNT(i.item_idx)
+		  FROM item i, ord o, shop s
+		 WHERE i.item_idx=o.item_idx
+		   AND i.shop_idx=s.shop_idx
+		   AND s.member_id=#{member_id}
+		   AND o.ord_status='Y'
+	</select>
+	
+	<!-- 내 상점 상품 개수 조회 -->
+	<select id="selectShopItemCnt" resultType="java.lang.String">
+		SELECT COUNT(item_idx)
+		 FROM item it, shop s 
+		WHERE s.member_id = #{member_id}
+          AND it.shop_idx = s.shop_idx
+	</select>
+	
+	<!-- 등록된 상품 개수(item_idx) 조회 -->
+	<select id="selectItemIdx" resultType="java.lang.Integer">
+		SELECT item_idx 
+		  FROM item
+		 ORDER BY item_idx*1 DESC
+		 LIMIT 1
+
+	</select>
+	
+	<!-- item 테이블 insert -->
+	<insert id="insertItem">
+		INSERT INTO item
+		VALUES (#{item.item_idx}
+			   , (SELECT shop_idx FROM shop WHERE member_id=#{member_id})
+			   , #{item.item_title}
+			   , #{item.item_content}
+			   , #{item.item_price}
+			   , date_format(now(), '%Y%m%d%H%i%S')
+			   , '0'
+			   , '0'
+			   , 'N'
+			   , '0'
+			   , #{item.item_region}
+			   , #{item.item_quantity}
+			   )
+	</insert>
+	 
+	<!-- category 테이블 insert -->
+	<insert id="insertCategory">
+		INSERT INTO category VALUES (#{category.category_big},#{category.category_small},#{item.item_idx})
+	</insert>
+	
+	<!-- img 테이블 img_idx 조회 -->
+<!-- 	<select id="selectImgIdx" resultType="java.lang.Integer"> -->
+<!-- 		SELECT COUNT(img_idx) FROM img WHERE item_idx = #{item_idx} -->
+<!-- 	</select> -->
+	
+	<!-- img 테이블 insert -->
+	<insert id="insertImgList">
+		INSERT INTO img 
+		VALUES (#{img.img_idx},
+			    #{item.item_idx}, #{img.img_real_name}, #{img.img_name})
+	</insert>
+	
+	<!-- 상품 관리 (상품 리스트 조회) -->
+	<select id="selectItemList" resultType="java.util.HashMap">
+		<!-- 임시 코드... -->
+		SELECT i.item_idx, g.img_name, i.item_title, i.item_price, i.item_date, i.item_status, COUNT(w.member_id) as wish, i.item_readCnt, i.item_hide
+		FROM item AS i
+		LEFT OUTER JOIN wish AS w
+		ON i.item_idx = w.item_idx
+		JOIN shop AS s
+		ON i.shop_idx = s.shop_idx
+		JOIN img AS g
+		ON i.item_idx = g.item_idx
+		WHERE s.member_id = #{member_id}
+		AND g.img_idx='1'
+		<if test="keyword != null">
+			AND i.item_title LIKE #{keyword}
+		</if>
+		<if test="sell_status != null and !sell_status.equals('')">
+			AND i.item_status = #{sell_status}
+		</if>
+		GROUP BY i.item_idx
+		ORDER BY i.item_idx+0 DESC
+		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
+	</select>
+	
+	<!-- 상품 숨김 기능 -->
+	<update id="updateItemHide">
+		UPDATE item SET item_hide=#{item_hide} WHERE item_idx=#{item_idx}
+	</update>
+	
+	<!-- 상품 상세 정보 조회 -->
+	<select id="selectItemDetail" resultType="java.util.HashMap">
+		SELECT i.item_idx, i.item_title, i.item_content, i.item_price, i.item_date, i.item_status, COUNT(w.member_id) as wish, i.item_readCnt
+			   , c.category_big, c.category_small, i.item_region, i.item_hide, i.item_quantity
+	      FROM item AS i
+	      LEFT JOIN wish AS w
+	        ON i.item_idx = w.item_idx
+	      JOIN category AS c
+	        ON i.item_idx = c.item_idx
+	     WHERE i.item_idx = #{item_idx}
+	</select>
+	
+	<!-- 상품 이미지 조회 -->
+	<select id="selectImgList" resultType="com.itwillbs.cono.vo.ImgDTO">
+		SELECT img_idx, img_real_name , img_name FROM img WHERE item_idx=#{item_idx}
+	</select>
+	
+	<!-- 상품 이미지 변경 -->
+	<update id="updateImg">
+		UPDATE img SET img_real_name=#{img.img_real_name}, img_name=#{img.img_name} WHERE item_idx=#{item.item_idx} AND img_idx=#{img_idx}
+	</update>
+	
+	<!-- 상품 정보 변경 -->
+	<update id="updateItem">
+		UPDATE item 
+		   SET item_title=#{item_title}, item_content=#{item_content}, item_price=#{item_price}, item_quantity=#{item_quantity} 
+		 WHERE item_idx=#{item_idx}
+	</update>
+	
+	<!-- 카테고리 정보 변경 -->
+	<update id="updateCategory">
+		UPDATE category 
+		   SET category_big=#{category.category_big }, category_small=#{category.category_small } 
+		 WHERE item_idx=#{item.item_idx}
+	</update>
+	
+	<!-- 상품 삭제 (item) -->
+	<delete id="deleteItem">
+		DELETE FROM item
+		      WHERE item_idx=#{item_idx}
+		        AND shop_idx = (SELECT shop_idx
+		                          FROM shop
+		                         WHERE member_id=#{member.member_id}
+		                       )
+	</delete>
+	
+	<!-- 상품 삭제 (img) -->
+	<delete id="deleteImg">
+		DELETE FROM img
+		      WHERE item_idx=#{item_idx}
+	</delete>
+	
+	<!-- 상품 삭제 (category) -->
+	<delete id="deleteCategory">
+		DELETE FROM category
+		      WHERE item_idx=#{item_idx}
+	</delete>
+	
+	<!-- 상점 수정 회원 확인 -->
+	<select id="selectMember" resultType="com.itwillbs.cono.vo.MemberDTO">
+		SELECT * 
+		  FROM member
+		 WHERE member_id=#{member_id}
+		   AND member_pass=#{member_pass}
+	</select>
+	
+	<select id="isOrdered" resultType="int">
+		SELECT COUNT(*)
+		  FROM ord
+		 WHERE item_idx = #{item_idx}
+		   AND ord_status = 'N' 
+	</select>
+	
+	<!-- 상점 정보 수정 -->
+	<update id="updateMyshop">
+		UPDATE shop
+		   SET shop_img = #{shop.shop_img},
+		       shop_name = #{shop.shop_name},
+		       shop_content = #{shop.shop_content}
+		 WHERE shop_idx = #{shop.shop_idx}
+	</update>
+	
+	<!-- 평균 평점과 후기 달린 아이템 개수 조회 -->		
+	<select id="selectItemAvg" resultType="java.util.HashMap">
+		SELECT IFNULL(ROUND(SUM(r.review_score)/COUNT(i.item_idx),2),'0.0') as avg, COUNT(i.item_idx) as item_idx
+		  FROM review r, item i, shop s
+		 WHERE 1=1
+		   AND r.item_idx = i.item_idx
+		   AND i.shop_idx = s.shop_idx
+		   AND s.member_id = #{member_id}
+	</select>
+	
+	<!-- 각 점수 별 상품 개수 조회 -->
+	<select id="selectItemScore" resultType="java.lang.String">
+		SELECT COUNT(i.item_idx)
+		FROM shop s, item i, review r
+		WHERE r.item_idx = i.item_idx
+		AND i.shop_idx = s.shop_idx
+		AND s.member_id = #{member_id}
+		AND r.review_score = #{i}
+	</select>
+	
+	<!-- 상품 고를 때 클릭할 이미지 조회 -->
+	<select id="selectItemImgName" resultType="java.util.HashMap">
+		SELECT i.item_idx, g.img_name
+		FROM item i, img g, shop s, review r
+		WHERE i.shop_idx = s.shop_idx
+		AND g.item_idx = i.item_idx
+		AND g.img_idx = '1'
+		AND s.member_id = #{member_id}
+		AND r.item_idx = i.item_idx
+		ORDER BY i.item_idx*1
+<!-- 		LIMIT #{imgPageInfo.startRow}, #{imgPageInfo.listLimit} -->
+	</select>
+	
+	<!-- 후기 이미지 개수 조회 -->
+	<select id="selectReviewImgListCount" resultType="int">
+		SELECT COUNT(i.item_idx)
+		FROM item i, img g, shop s
+		WHERE i.shop_idx = s.shop_idx
+		AND g.item_idx = i.item_idx
+		AND g.img_idx = '1'
+		AND s.member_id = #{member_id}
+		ORDER BY i.item_idx*1
+	</select>
+	
+	<!-- 후기 리스트 개수 -->
+	<select id="selectReviewListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM review r, item i, shop s
+		 WHERE r.item_idx = i.item_idx
+		   AND i.shop_idx = s.shop_idx
+		   AND s.member_id=#{member_id}
+	</select>
+	
+	<!-- 후기 리스트 조회 -->
+	<select id="selectReviewList" resultType="java.util.HashMap">
+		SELECT r.review_idx, r.review_content, r.review_date, r.member_id, r.review_score, i.item_title
+		FROM review r, item i, shop s
+		WHERE 1=1
+		AND i.item_idx = r.item_idx 
+		AND i.shop_idx = s.shop_idx
+		AND s.member_id = #{member_id}
+		<if test="item_idx != null">
+			AND i.item_idx LIKE #{item_idx}
+		</if>
+		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
+	</select>
+	
+	<select id="selectFollowCount" resultType="int">
+		SELECT COUNT(member_id) 
+		 FROM follow 
+		WHERE shop_idx = (SELECT s.shop_idx FROM shop s WHERE s.member_id = #{member_id})
+	</select>
+	
+	<!-- 클릭된 이미지 조회 -->
+	<select id="selectImg" resultType="java.lang.String">
+		SELECT img_name
+		  FROM img
+		 WHERE item_idx = #{item_idx}
+		   AND img_idx = '1'
+	</select>
+	
+	<!-- 상품 주문(진행중) 개수 조회 -->
+	<select id="selectOrdListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		FROM item i, ord o
+        WHERE shop_idx = (SELECT shop_idx
+							FROM shop
+                            WHERE member_id = #{member_id})
+        AND i.item_idx = o.item_idx
+		AND o.ord_status = 'N'
+	</select>
+	
+	<!-- 상품 주문 (진행중) 리스트 조회 -->			<!-- 이거도 해야대넹~~ i.member_id 읎애라 -->
+	<select id="selectOrdList" resultType="java.util.HashMap">
+		SELECT ord.ord_date, i.item_title, ord.member_id, i.item_price, ord.ord_reqContent
+		  FROM ord ord, item i, shop s
+		WHERE i.shop_idx = s.shop_idx
+		   AND ord.item_idx = i.item_idx
+		   AND s.member_id = #{member_id}
+		   AND ord.ord_status = 'N'
+		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
+	</select>
+	
+	<!-- 상품 주문(완료) 개수 조회 -->
+	<select id="selectFinishOrdListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		FROM item i, ord o
+        WHERE i.shop_idx = (SELECT shop_idx
+							FROM shop
+                            WHERE member_id = #{member_id})
+        AND i.item_idx = o.item_idx
+		AND o.ord_status = 'Y'
+	</select>
+
+	<!-- 상품 주문 (완료) 리스트 조회 -->
+	<select id="selectFinishOrdList" resultType="java.util.HashMap">
+		SELECT ord.ord_date, i.item_title, ord.member_id , i.item_price, ord.ord_reqContent
+		FROM ord ord, item i, shop s
+		WHERE i.shop_idx = s.shop_idx
+		   AND ord.item_idx = i.item_idx
+		   AND s.member_id = #{member_id}
+		   AND ord.ord_status = 'Y'
+		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
+	</select>
+	
+	<!-- 상품 조회 (페이징 처리를 위한 ListCount 조회) -->
+	<select id="selectItemListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		  FROM item 
+		 WHERE shop_idx = (SELECT shop_idx
+		 				     FROM shop
+		 				    WHERE member_id=#{member_id})
+		  
+	</select>
+	
+	<select id="selectItemOrd" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM ord 
+		 WHERE item_idx=#{item_idx}
+		   AND ord_status='Y'
+	</select>
+	
+	
+<!-- 	================================================ Center =================================================== -->
+<!-- 	================================================ List =================================================== -->
+
+	<select id="selectShop_idx" resultType="java.lang.String">
+		SELECT shop_idx
+		  FROM shop
+		 WHERE member_id=#{sId}
+	</select>
+	<!-- 	팔로잉 -->
+	<select id="selectFollowingList" resultType="java.util.HashMap">
+		SELECT s.shop_idx, s.shop_img, s.shop_name, s.shop_content
+		FROM shop s, follow f
+		WHERE f.member_id = #{sId} AND s.shop_idx = f.shop_idx
+	</select>
+<!-- 	팔로워 -->
+	<select id="selectFollowerList" resultType="java.util.HashMap">
+		SELECT s.shop_idx, s.shop_img, s.shop_name, s.shop_content
+		FROM shop s, follow f
+		WHERE f.shop_idx = #{shop_idx} AND f.member_id = s.member_id
+	</select>
+<!-- 	팔로잉 수 -->
+	<select id="selectFollowingCount" resultType="java.lang.Integer">
+		SELECT COUNT(shop_idx) FROM follow WHERE member_id = #{sId}
+	</select>
+<!-- 	팔로워 수 -->
+	<select id="selectFollowerCount" resultType="java.lang.Integer">
+		SELECT COUNT(member_id) 
+		FROM follow 
+		WHERE shop_idx = (SELECT s.shop_idx FROM shop s WHERE s.member_id = #{sId})
+	</select>
+<!-- 	팔로잉 삭제 -->
+	<delete id="deleteFollowing">
+		DELETE FROM follow
+		WHERE shop_idx = #{shop_idx} AND member_id = #{sId}
+	</delete>
+	
+	<!-- 팔로우 조회 -->
+	<select id="selectFollow" resultType="com.itwillbs.cono.vo.FollowDTO">
+		SELECT shop_idx, member_id
+		  FROM follow
+		 WHERE member_id=#{sId} AND shop_idx = #{shop_idx}
+	
+	</select>
+	
+	
+	<!-- 팔로우 추가 -->
+	<insert id="insertFollow">
+		INSERT INTO follow
+		VALUES (#{sId}, #{shop_idx})
+	</insert>
+	
+	
+	<!-- ===================================== 구매자 시점의 상점 ========================================== -->
+	
+	<!-- 상점 조회 -->
+	<select id="selectShop" resultType="java.util.HashMap">
+		SELECT s.shop_idx, s.shop_img, s.member_id, s.shop_name, s.shop_content, m.member_date
+		  FROM shop s, item i, member m
+		 WHERE s.member_id = m.member_id
+		   AND i.shop_idx = s.shop_idx
+		   AND i.item_idx = #{item_idx}
+	</select>
+	
+	<!-- 판매 횟수 조회 -->
+	<select id="selectShopSellCntBuyer" resultType="java.lang.String">
+		SELECT COUNT(*) sellCount 
+		 FROM item it, shop s, ord o
+		WHERE it.shop_idx = s.shop_idx
+		  AND o.item_idx = it.item_idx
+		  AND ord_status = 'Y'
+       	  AND s.shop_idx = (SELECT shop_idx 
+	      					  FROM item 
+	      					 WHERE item_idx=#{item_idx})
+	</select>
+	
+	<!-- 상품 횟수 조회 -->
+	<select id="selectShopItemCntBuyer" resultType="java.lang.String">
+		SELECT COUNT(*) itemCount
+		 FROM item it, shop s 
+		WHERE it.shop_idx = s.shop_idx
+       	  AND s.shop_idx = (SELECT shop_idx 
+	      					  FROM item 
+	      					 WHERE item_idx=#{item_idx})
+	</select>
+	
+	<!-- 팔로워 수 조회 -->
+	<select id="selectFollowerCnt" resultType="java.lang.String">
+		SELECT COUNT(*)
+		  FROM follow f, item i
+		 WHERE f.shop_idx = i.shop_idx
+		   AND i.item_idx=#{item_idx}
+	</select>
+	
+	<!-- 상점 별점 조회 -->
+	<select id="selectShopAvgStar" resultType="java.lang.String">
+           SELECT IFNULL(ROUND(SUM(r.review_score)/COUNT(i.item_idx),2),'0.0') as avg
+             FROM item i, shop s, review r
+			WHERE i.item_idx = r.item_idx
+              AND i.shop_idx = s.shop_idx
+              AND s.shop_idx = (SELECT shop_idx 
+              					  FROM item 
+              					 WHERE item_idx=#{item_idx})
+	</select>
+	
+	<!-- 상점 상품 조회 -->
+	<select id="selectItemListBuyer" resultType="java.util.HashMap">
+		SELECT i.item_idx, g.img_name, i.item_title, i.item_price, i.item_date, i.item_status, COUNT(w.member_id), i.item_readCnt, i.item_hide
+		FROM item AS i
+		LEFT OUTER JOIN wish AS w
+		ON i.item_idx = w.item_idx
+		JOIN shop AS s
+		ON i.shop_idx = s.shop_idx
+		JOIN img AS g
+		ON i.item_idx = g.item_idx
+		WHERE s.shop_idx=#{shop_idx}
+		AND g.img_idx='1'
+		GROUP BY i.item_idx
+		ORDER BY i.item_idx+0 ASC
+	</select>
+	
+	<!-- shop 주인 member_id 가져오기 -->
+	<select id="selectMemberId" resultType="java.lang.String">
+		SELECT m.member_id AS sId
+		  FROM member m, shop s
+		 WHERE m.member_id = s.member_id
+		   AND s.shop_idx = #{shop_idx}
+	</select>
+	
+</mapper>

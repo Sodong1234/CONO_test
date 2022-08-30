@@ -2,11 +2,11 @@ package com.itwillbs.cono.vo;
 
 public class MsgChatDTO {
 	private String msgChat_idx;
-	private String shop_idx;
-	private String member_id;
+	private String msgList_room;
+	private String msgChat_send;
+	private String msgChat_recv;
 	private String msgChat_content;
 	private String msgChat_time;
-	
 	
 	public String getMsgChat_idx() {
 		return msgChat_idx;
@@ -14,17 +14,23 @@ public class MsgChatDTO {
 	public void setMsgChat_idx(String msgChat_idx) {
 		this.msgChat_idx = msgChat_idx;
 	}
-	public String getShop_idx() {
-		return shop_idx;
+	public String getMsgList_room() {
+		return msgList_room;
 	}
-	public void setShop_idx(String shop_idx) {
-		this.shop_idx = shop_idx;
+	public void setMsgList_room(String msgList_room) {
+		this.msgList_room = msgList_room;
 	}
-	public String getMember_id() {
-		return member_id;
+	public String getMsgChat_send() {
+		return msgChat_send;
 	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setMsgChat_send(String msgChat_send) {
+		this.msgChat_send = msgChat_send;
+	}
+	public String getMsgChat_recv() {
+		return msgChat_recv;
+	}
+	public void setMsgChat_recv(String msgChat_recv) {
+		this.msgChat_recv = msgChat_recv;
 	}
 	public String getMsgChat_content() {
 		return msgChat_content;
@@ -39,5 +45,9 @@ public class MsgChatDTO {
 		this.msgChat_time = msgChat_time;
 	}
 	
+	
+	
+	
+
 	
 }

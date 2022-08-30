@@ -1,11 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.itwillbs.cono.mapper.MainMapper">
-  
-  <select id="checkMember" resultType="com.itwillbs.cono.vo.MemberDTO">
+<!--   	로그인 -->
+	<select id="checkMember" resultType="com.itwillbs.cono.vo.MemberDTO">
 		SELECT * FROM member
 		WHERE member_id=#{member_id} AND member_pass=#{member_pass}
 	</select>
+	
+<!-- 	회원가입 -->
+	<insert id="insertMember">
+		INSERT INTO member 
+		VALUES (#{member_id},#{member_pass},#{member_email},
+			    #{member_phone},#{member_nick},"logo",
+			    #{member_birth}, date_format(now(), '%Y%m%d'), "Y")
+	</insert>
+	
+	<select id="checkId" resultType="int">
+		SELECT COUNT(*) FROM member
+		WHERE member_id = #{member_id}
+	</select>
+<!-- 	회원가입 축하 쿠폰 -->
+	<insert id="insertJoinCoupon">
+		INSERT INTO coupon
+		VALUES ((SELECT IFNULL(MAX(CAST(c.coupon_idx as unsigned)), 0) + 1 FROM coupon c), #{member_id},'','가입 축하 쿠폰','가입을 축하합니다! 20000c 이상 구매시 이용 가능' ,'5000','N')
+	</insert>
+	
+<!-- 		회원가입시 샵 기본 정보 생성 -->
+	<insert id="insertShopInfo">
+		INSERT INTO shop
+		VALUES ((SELECT IFNULL(MAX(CAST(s.shop_idx as unsigned)), 0) + 1 FROM shop s),#{member_id},#{member_nick},null,'')
+	</insert>
+	
+<!-- 실시간 인기상품 - 김혜은 -->
+	<select id="selectHotItemList" resultType="com.itwillbs.cono.vo.ItemDTO">
+		SELECT CAST(@rownum:=@rownum+1  AS UNSIGNED) AS num, item_idx, item_title, item_readCnt
+		FROM item, (SELECT @rownum:=0) TMP
+		ORDER BY LENGTH(item_readCnt) DESC, item_readCnt DESC
+		LIMIT 0, 10
+	</select>
+	
+	
+	
+<!-- 	==================================================================아이템 정렬 시작 -->
+<!-- 	상품검색 ( 지역 / 제목 ) -->
+<!-- 	<select id="selectCardList" resultType="java.util.HashMap"> -->
+<!-- 		SELECT it.item_idx, im.img_name, it.item_title, it.item_region, it.item_price, it.item_date -->
+<!-- 		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx -->
+<!-- 		WHERE 1=1 -->
+<!-- 		  AND im.item_idx = it.item_idx  -->
+<!-- 		  AND im.img_idx = '1'  -->
+<!-- 		  AND it.item_quantity > 0 -->
+<!-- 		  AND (it.item_title LIKE #{searchText}  -->
+<!-- 		   OR it.item_region LIKE #{searchText}) -->
+<!-- 		ORDER BY it.item_date DESC -->
+<!-- 		LIMIT 0,20 --> 
+<!-- 		LIMIT #{pageInfo.startRow}, -->
+<!-- 		#{pageInfo.listLimit} -->
+<!-- 	</select> -->
+	
+<!-- 		카테고리 검색 -->
+	<select id="selectCategoryCardList" resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_name, it.item_title, it.item_region, it.item_price, it.item_date
+		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx
+					 LEFT OUTER JOIN category cg ON cg.item_idx = it.item_idx
+		WHERE 1=1
+		  AND im.item_idx = it.item_idx AND im.img_idx = '1' AND cg.category_big = #{cgr}
+		  AND it.item_quantity > 0
+		  AND it.item_status = '0'
+		ORDER BY it.item_date DESC
+<!-- 		LIMIT 0,20 -->
+	</select>
+	
+	
+<!-- 	최근 조회 상품  -->
+	<select id="selectRecent" resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_name, it.item_title
+		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx, recentView rv
+		WHERE 1=1
+		  AND rv.member_id = #{sId} 
+		  AND rv.item_idx = it.item_idx 
+		  AND im.item_idx = it.item_idx 
+		  AND im.img_idx = '1'
+		  AND it.item_quantity > 0
+		  AND it.item_status = '0'
+		ORDER BY rv.viewTime DESC
+		LIMIT 0,3
+	</select>
+	
+	
+<!-- 	가격대 조회 -->
+	<select id="selectPriceList" resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_name, it.item_title, it.item_region, it.item_price, it.item_date
+		FROM item it LEFT OUTER JOIN img im ON it.item_idx = im.item_idx
+					 LEFT OUTER JOIN category cg ON cg.item_idx = it.item_idx
+		WHERE 1=1 
+		  AND im.item_idx = it.item_idx 
+		  AND im.img_idx = '1'
+		  AND it.item_status = '0'
+		  AND it.item_quantity > 0
+		  AND (it.item_title LIKE #{searchText} 
+		   OR it.item_region LIKE #{searchText})
+		   
+<!-- 		전체 -->
+		<if test='filter2 == "0"'>
+			AND it.item_price >= 0
+		</if>
+<!-- 		0 ~ 3 만원 -->
+		<if test='filter2 == "1"'>
+			AND (30000 >= it.item_price AND it.item_price >= 0)
+		</if>
+<!-- 		3~5 -->
+		<if test='filter2 == "2"'>
+			AND (50000 >= it.item_price AND it.item_price >= 30000)
+		</if>
+<!-- 		5~ 10 -->
+		<if test='filter2 == "3"'>
+			AND (100000 >= it.item_price AND it.item_price >= 50000)
+		</if>
+<!-- 		10 이상 -->
+		<if test='filter2 == "4"'>
+			AND it.item_price >= 100000
+		</if>
+				   <!-- 		최신 정렬 -->
+		<if test='filter1 == "0"'>
+			ORDER BY it.item_date DESC
+		</if>
+<!-- 		가격 높은 순 -->
+		<if test='filter1 == "1"'>
+			ORDER BY cast(it.item_price as unsigned) DESC
+		</if>
+<!-- 		가격 낮은 순 -->
+		<if test='filter1 == "2"'>
+            ORDER BY cast(it.item_price as unsigned) ASC
+		</if>
+		LIMIT #{pageInfo.startRow},
+		#{pageInfo.listLimit}
+
+	</select>
+	
+	
+	<select id="selectCardListCount" resultType="java.lang.Integer">
+		SELECT COUNT(item_idx) 
+		FROM item 
+		WHERE item_quantity > 0
+	</select>
+	<!-- 	==================================================================아이템 정렬 끝 -->
+	
 	
 </mapper>
 

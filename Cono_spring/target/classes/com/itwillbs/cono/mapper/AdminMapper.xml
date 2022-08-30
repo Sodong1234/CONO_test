@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.cono.mapper.AdminMapper">
+
+<!--공 지 사 항 -->
+	<!-- 공지사항 총 게시물 수 조회(검색 기능 추가) -->
+	<select id="selectNoticeListCount"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM notice
+		<choose>
+			<when test="!search.equals('') and searchType.equals('subject')">
+				WHERE notice_subject LIKE #{search}
+			</when>
+			<when test="!search.equals('') and searchType.equals('content')">
+				WHERE notice_content LIKE #{search}
+			</when>
+		</choose>
+	</select>
+
+	<!-- 공지사항 목록 조회 -->
+	<select id="selectNoticeList"
+		resultType="com.itwillbs.cono.vo.AdminNoticeDTO">
+		SELECT * FROM notice
+		<choose>
+			<when test="!search.equals('') and searchType.equals('subject')">
+				WHERE notice_subject LIKE #{search}
+			</when>
+			<when test="!search.equals('') and searchType.equals('content')">
+				WHERE notice_content LIKE #{search}
+			</when>
+		</choose>
+		ORDER BY notice_idx+0 DESC
+		LIMIT #{pageInfo.startRow},
+		#{pageInfo.listLimit}
+	</select>
+
+	<!-- 공지사항 글쓰기 -->
+	<insert id="insertNotice">
+		INSERT INTO notice
+		VALUES (1+(SELECT
+		COUNT(n.notice_idx) FROM notice n ), #{admin_id}, #{notice_subject},
+		#{notice_content}, DATE_FORMAT(now(), "%Y-%m-%d") )
+	</insert>
+
+	<!-- 공지사항 상세페이지 -->
+	<select id="selectNoticeView"
+		resultType="com.itwillbs.cono.vo.AdminNoticeDTO">
+		SELECT * FROM notice WHERE notice_idx=#{notice_idx}
+	</select>
+
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteNoticeList">
+		DELETE FROM notice WHERE notice_idx=#{notice_idx}
+	</delete>
+
+	<!-- 공지사항 수정 -->
+	<update id="updateNotice">
+		UPDATE notice SET admin_id=#{admin_id},notice_subject=#{notice_subject},notice_content=#{notice_content} 
+		WHERE notice_idx=#{notice_idx}
+	</update>
+	
+	
+	<!-- qna -->
+	<!-- qna 총 게시물 수 조회 -->
+	<select id="selectQNAListCount" resultType="java.lang.Integer">
+	SELECT COUNT(*) FROM qna
+	</select>
+	
+	<!-- qna 목록 조회 -->
+	<select id="selectQNAList"
+		resultType="com.itwillbs.cono.vo.AdminQNADTO">
+		SELECT @rownum:=@rownum-1 AS num
+				, A.qna_idx
+					, A.member_id
+					, A.qna_type
+					, A.qna_subject
+					, A.qna_content
+					, A.qna_date
+					, A.qna_status
+					, A.qna_re_ref
+					, A.qna_re_lev
+					, A.qna_re_seq
+					, A.qna_secret
+					 FROM qna A
+					, (SELECT @rownum:=(SELECT COUNT(*)+1 FROM qna)) TMP
+					 ORDER BY qna_re_ref+0 DESC LIMIT #{pageInfo.startRow},#{pageInfo.listLimit}
+	</select>
+
+	<!-- qna 글쓰기 -->
+	<select id="selectQNANum" resultType="java.lang.Integer">
+		SELECT IFNULL(MAX(CAST(qna_idx as unsigned)), 0) + 1 AS num FROM qna
+	</select>
+
+	<insert id="insertQNA">
+		INSERT INTO qna VALUES (#{num},#{member_id},#{qna_type},#{qna_subject},#{qna_content},#{num},'0','0',DATE_FORMAT(now(), "%Y-%m-%d"),'답변대기',#{qna_secret})
+	</insert>
+
+	<!-- qna 상세페이지 -->
+	<select id="selectQNAView"
+		resultType="com.itwillbs.cono.vo.AdminQNADTO">
+		SELECT * FROM qna WHERE qna_idx=#{qna_idx}
+	</select>
+
+<!-- 	 qna 삭제  -->
+	<delete id="deleteQNAList">
+		DELETE FROM qna WHERE qna_idx=#{qna_idx}
+	</delete>
+
+<!-- 	 qna 수정 -->
+	<update id="updateQNA">
+		UPDATE qna SET member_id=#{member_id},qna_subject=#{qna_subject},qna_content=#{qna_content} 
+		WHERE qna_idx=#{qna_idx}
+	</update>
+	
+	<!--- 답글 순서번호 조정 -->
+
+	<select id="selectNumSeq" resultType="java.lang.Integer">
+		SELECT IFNULL(MAX(qna_re_seq), 0) + 1 AS seq_num
+		  FROM qna
+		 WHERE qna_re_ref = #{qna_re_ref}
+		   AND qna_re_lev = #{qna_re_lev}
+	</select>
+	
+	<insert id="writeQNAReply">
+		INSERT INTO qna VALUES (#{num},
+		
+		(SELECT q.member_id 
+ 		FROM qna q
+ 		WHERE q.qna_re_ref = #{qnaList.qna_idx})
+<!--  		#{sId} -->
+ 		,' ㄴ답변',#{qnaList.qna_subject},#{qnaList.qna_content},#{qnaList.qna_idx},#{qnaList.qna_re_lev}+1,#{num_seq},DATE_FORMAT(now(), "%Y-%m-%d"),"",1)
+	</insert>
+	
+	<update id="updateQNAStatus">
+		UPDATE qna SET qna_status='답변완료'
+		WHERE qna_idx=#{qna_idx} 
+	</update>
+	
+	<!-- 신고하기 -->
+	<!-- 신고하기 게시물 수 카운트 -->
+	<select id="selectReportListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM report
+	</select>
+	
+	<!-- 신고하기 목록 조회 -->
+	<select id="selectReportList"
+	resultType="com.itwillbs.cono.vo.AdminReportDTO">
+		SELECT * FROM report
+		ORDER BY report_idx+0 DESC
+		LIMIT #{pageInfo.startRow},
+		#{pageInfo.listLimit}
+	</select>
+	
+	<!-- 신고하기 글쓰기 -->
+	
+	<insert id="writeReport">
+		INSERT INTO report VALUES (
+				(SELECT COUNT(r.report_idx) FROM report r)+1
+				, #{member_id}, #{item_idx},#{report_type},#{report_subject},#{report_content},DATE_FORMAT(now(), "%Y-%m-%d"),'처리중',1)
+	</insert>
+	
+	<!-- 신고하기 상세페이지 -->
+	<select id="selectReportView" resultType="com.itwillbs.cono.vo.AdminReportDTO">
+		SELECT * FROM report WHERE report_idx=#{report_idx}
+	</select>
+	
+	<!-- 신고하기 글수정 -->
+	<update id="updateReport">
+		UPDATE report SET member_id=#{member_id},report_subject=#{report_subject},report_content=#{report_content} 
+		WHERE report_idx=#{report_idx}
+	</update>
+	
+	<!-- 신고하기 글삭제 -->
+	<delete id="deleteReportList">
+		DELETE FROM report WHERE report_idx=#{report_idx}
+	</delete>
+	
+	<!-- 관리자가 신고당한 글 삭제 -->
+	<delete id="deleteReportListAdmin">
+		DELETE FROM i,g,c USING (item i LEFT JOIN img g ON i.item_idx = g.item_idx) LEFT JOIN category c ON i.item_idx = c.item_idx WHERE i.item_idx=#{item_idx}
+	
+	</delete>
+	
+	<update id="updateReportStatus">
+		UPDATE report SET report_status='처리완료'
+		WHERE report_idx=#{report_idx} 
+	</update>
+	
+	
+</mapper>

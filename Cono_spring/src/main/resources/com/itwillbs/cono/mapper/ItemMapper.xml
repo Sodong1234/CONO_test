@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.cono.mapper.ItemMapper">
+
+	<!-- 상품 상세 정보 조회 -->
+	<select id="selectItemDetail" resultType="java.util.HashMap">
+		SELECT s.shop_name, g.img_name, i.shop_idx, i.item_idx, i.item_title, i.item_content, i.item_price, i.item_date, i.item_status, COUNT(w.member_id) as wish, i.item_readCnt
+			   , c.category_big, c.category_small, i.item_region, i.item_hide, i.item_quantity
+	      FROM item AS i
+	      LEFT JOIN wish AS w
+	        ON i.item_idx = w.item_idx
+	      JOIN category AS c
+	        ON i.item_idx = c.item_idx
+	      JOIN shop s
+	        ON i.shop_idx = s.shop_idx
+	      JOIN img g
+	        ON g.item_idx = i.item_idx
+	     WHERE i.item_idx = #{item_idx}
+	       AND g.img_idx = '1'
+	</select>
+	
+	<!-- 상품 이미지 조회 -->
+	<select id="selectImgList" resultType="com.itwillbs.cono.vo.ImgDTO">
+		SELECT img_idx, img_real_name , img_name 
+		  FROM img 
+		 WHERE item_idx=#{item_idx}
+	</select>
+	
+	<!-- 구매하기 클릭 시 아이템 상태 변경 -->
+<!-- 	<update id="updateItemStatus"> -->
+<!-- 		UPDATE item  -->
+<!-- 		   SET item_status='1'  -->
+<!-- 		 WHERE item_idx=#{item_idx} -->
+<!-- 	</update> -->
+	
+	<!-- item 테이블 수량 변경 -->
+	<update id="updateItemQuantity">
+		UPDATE item 
+		   SET item_quantity=item_quantity - #{ord_quantity}
+		 WHERE item_idx=#{item_idx}
+	</update>
+	
+	<!-- item 수량 체크 -->
+	<select id="selectItemQuantity" resultType="java.lang.String">
+		SELECT item_quantity
+		  FROM item
+		 WHERE item_idx=#{item_idx}
+	</select>
+	
+	<!-- ord 테이블 insert -->
+	<insert id="insertOrd">
+		INSERT INTO ord
+		VALUES (
+				(SELECT IFNULL(MAX(CAST(o.ord_idx as unsigned)), 0) + 1 FROM ord o)
+			   ,#{item_idx}
+			   ,#{member_id}
+			   ,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+<!-- 				,DATE_FORMAT(now(), "%Y-%m%d-%H%i") -->
+			   ,#{ord_reqContent}
+			   ,#{ord_quantity}
+			   ,'N'
+			   )
+	</insert>
+	<!-- ord_date 조회 -->
+	<select id="selectOrdDate" resultType="java.lang.String">
+		SELECT ord_date
+		  FROM ord
+		 WHERE ord_idx=(SELECT MAX(CAST(o.ord_idx as unsigned))
+		                  FROM ord o
+		                 WHERE o.member_id=#{member_id})
+	</select>
+	
+	<!-- safe 테이블 insert -->
+	<insert id="insertSafe">
+		INSERT INTO safe
+		VALUES (
+			   (SELECT IFNULL(MAX(CAST(s.safe_idx as unsigned)), 0) + 1 FROM safe s)
+			   ,#{ord.item_idx}
+			   ,(SELECT ord_idx 
+			       FROM ord 
+			      WHERE item_idx=#{ord.item_idx} 
+			        AND member_id=#{ord.member_id}
+			        AND ord_reqContent=#{ord.ord_reqContent}
+			        AND ord_quantity=#{ord.ord_quantity} 
+			        AND ord_date=#{ord.ord_date}
+			    )
+			   ,#{ord.member_id}
+			   ,(SELECT s.shop_idx 
+			       FROM shop s, item i
+			      WHERE s.shop_idx=i.shop_idx
+			        AND i.item_idx=#{ord.item_idx})
+			   ,#{item_price}*#{ord.ord_quantity}
+			   ,'N'
+			   )
+	</insert>
+	<!-- coin 테이블 insert (구매자) -->
+	<insert id="insertCoin">
+		INSERT INTO coin
+		VALUES (
+			    (SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c)
+				,#{ord.member_id}	
+				,''	<!-- add -->	
+				,#{item_price} * #{ord.ord_quantity}		<!-- use --> 
+				,#{coin_total}
+				,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+			   )
+	</insert>
+	
+	<!-- 상품 수량 0일 경우 상품 상태  -->
+	<update id="updateItemStatus">
+		UPDATE item 
+		   SET item_status='1' 
+		 WHERE item_idx=#{item_idx}
+	</update>
+	
+	<!-- coin_total 값 들고오기 -->
+	<select id="selectCoinTotal" resultType="java.lang.String">
+		SELECT coin_total
+		  FROM coin
+		 WHERE coin_date = (SELECT * 
+		 			         FROM (SELECT max(coin_date) FROM coin WHERE member_id=#{member_id}) AS a)
+	</select>
+	
+	<!-- 구매자 정보 가져오기 -->
+	<select id="selectBuyerInfo" resultType="java.util.HashMap">
+		SELECT member_id, member_email, member_phone 
+		  FROM member
+		 WHERE member_id=#{buyer_id}
+	</select>
+	
+	<!-- 사용 가능한 할인 쿠폰 가져오기 -->
+	<select id="selectUsableCoupon" resultType="java.util.HashMap">
+		SELECT coupon_idx, coupon_title, coupon_price
+		  FROM coupon
+		 WHERE member_id=#{buyer_id} 
+		   AND #{item_price} * #{ord_quantity} >= coupon_price
+	</select>
+	
+	<!-- 코인 잔액 조회 -->
+	<select id="selectBalanceCoin" resultType="int">
+		SELECT coin_total, max(coin_date) 
+		  FROM coin 
+		 WHERE 1=1
+		   AND coin_date = (SELECT MAX(coin_date)
+		   					  FROM coin
+		   					 WHERE member_id=#{buyer_id}
+		   				   )
+		
+	</select>
+		
+	<!-- 쿠폰 업데이트 -->
+	<update id="updateCoupon">
+		UPDATE coupon 
+		   SET item_idx=#{item_idx}
+		       , coupon_status='Y'
+		 WHERE coupon_idx=#{coupon_idx} 
+	</update>
+		
+	<!-- 쿠폰 가격 조회 -->
+	<select id="selectCouponPrice" resultType="java.lang.String">
+		SELECT coupon_price
+		  FROM coupon
+		 WHERE coupon_idx=#{coupon_idx}
+	</select>
+	
+	<!-- 찜 버튼 활성화(증가) -->
+	<insert id="insertWish">
+		INSERT INTO wish
+		VALUES (#{item_idx}, #{member_id})
+	</insert>
+	
+	<!-- 찜 여부 조회 -->
+	<select id="selectWish" resultType="com.itwillbs.cono.vo.WishDTO">
+		SELECT item_idx, member_id
+		  FROM wish
+		 WHERE item_idx=#{item_idx}
+		   AND member_id=#{member_id}
+	</select>
+	
+	<!-- 찜 취소 -->
+	<delete id="deleteWish">
+		DELETE FROM wish
+		 WHERE item_idx=#{item_idx}
+		   AND member_id=#{member_id}
+	</delete>
+	<!-- coin 테이블 insert (판매자) -->
+	<!-- 판매자는 아직 나가면 안되는데?!! -->
+<!-- 	<insert id="insertCoinSeller"> -->
+<!-- 		INSERT INTO coin -->
+<!-- 		VALUES ( -->
+<!-- 				(SELECT (MAX(coin_idx),'0') FROM coin) AS coin_idx -->
+<!-- 				,#{ord.member_id}	 -->
+<!-- 				,#{item_price}	add -->
+<!-- 				,'0'	 use -->
+<!-- 				,(SELECT (coin_total+#{item_price}) FROM coin WHERE coin_idx=(select IFNULL(MAX(coin_idx),'1') from coin)) AS coin_total -->
+<!-- 				,DATE_FORMAT(now(), "%Y%m%d%H%i%s") -->
+<!-- 			   ) -->
+<!-- 	</insert> -->
+
+<!--       최근 존재 -->
+   <select id="selectRecentExist" resultType="java.lang.Integer">
+      SELECT COUNT(item_idx) 
+        FROM recentView
+       WHERE member_id = #{member_id} 
+         AND item_idx = #{item_idx}
+   </select>
+<!--          최근 조회 insert -->
+   <insert id="insertRecentView">
+      <if test="existRecent == 0">
+         INSERT INTO recentView 
+             VALUES (#{member_id}, #{item_idx} 
+             ,DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+<!-- 			,DATE_FORMAT(now(), "%Y-%m%d-%H%i") -->
+             )
+      </if>
+      <if test="existRecent != 0">
+         UPDATE recentView 
+            SET viewTime = DATE_FORMAT(now(), "%Y%m%d%H%i%s")
+          WHERE member_id = #{member_id} AND item_idx = #{item_idx}
+      </if>
+   </insert>
+   
+   <!-- 코인 존재 여부 확인 -->
+   <select id="selectCoin" resultType="com.itwillbs.cono.vo.CoinDTO">
+   		SELECT *
+   		  FROM coin
+   		 WHERE member_id=#{member_id}
+   </select>
+   
+   
+   <!-- 조회수 증가 -->
+   <update id="updateReadcount">
+	   UPDATE item
+	   SET  item_readCnt = item_readCnt + 1
+	   WHERE item_idx = #{item_idx}
+   </update>
+
+<!-- 	최근 조회 -->
+	<select id="selectBoardList" resultType="java.util.HashMap">
+		SELECT it.item_idx, im.img_name, it.item_title, it.item_price, it.item_region , it.item_date 
+		FROM item it, recentView re, img im
+		WHERE re.member_id = #{sId} AND it.item_idx IN (re.item_idx) AND it.item_idx = im.item_idx AND im.img_idx = '1'
+		ORDER BY re.viewTime DESC
+	</select>
+</mapper>

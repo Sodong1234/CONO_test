@@ -1,0 +1,316 @@
+/* 폰트 */
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+	font-family:IBMPlexSansKR-Regular;
+	
+}
+
+
+
+h2{
+	
+	font-family:Cafe24Ohsquare;
+	
+}
+
+.prof_imName{
+	width: 125px;
+	height: 125px;
+	border-radius: 30%; 
+	margin-top : -25px;
+	
+	
+	
+}
+
+.mname{
+	
+	font-size: large;
+    font-style: inherit;
+    font-weight: bold;
+	
+	
+}
+
+/* 리스트 스타일 */
+
+.circle{
+    counter-reset: list-counter;
+    float:left;
+    width: 120%;
+	height: 720px;
+	position: relative;
+	top: 47px;
+	overflow: auto;
+
+}
+.circle li{
+    margin: 1.5em 0;
+    list-style: none;    
+}
+.circle li:before{
+    content: counter(list-counter);
+    counter-increment: list-counter;
+    width: 1.5em;
+    height: 1.5em;
+/*     padding: .3em; */
+/*     margin-right: 1em; */
+    border-radius: 50%;
+    border: .25em solid #ccc;
+    background: #87CEFA;
+    color: 		#FFFFFF;
+    font-family: Cafe24Ohsquare;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    
+}
+
+a {
+	text-decoration: none;
+}
+.Hname, .Htxt {
+	text-decoration: none;
+}
+.box {
+	width: 1080px;
+	height: 986px;
+	margin: auto;
+	margin-left: 80px;
+/* 	margin-top: 75px; */
+}
+.msg_container {
+	width: 700px;
+	height: 1100px;
+	background: #F0FFFF;
+	margin-left : 30%;
+	margin-top : -8%;
+	border-radius: 5em;
+	
+	
+}
+.msg_title {
+	align-items: center;
+/* 	border-bottom-color: rgb(217, 217, 217); */
+/* 	border-bottom-style: solid; */
+	border-bottom-width: 1px;
+	border-image-outset: 0;
+	border-image-repeat: stretch;
+	border-image-slice: 100%;
+	border-image-source: none;
+	border-image-width: 1;
+	color: rgb(0, 0, 0);
+	display: inline;
+	font-size: 12px;
+	font-stretch: 100%;
+	font-style: normal;
+	font-weight: 400;
+	height: 80px;
+	justify-content :space-between;
+	line-height: 18px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	padding-bottom: 20px;
+	padding-left: 24px;
+	padding-right: 24px;
+	padding-top: 23px;
+	top: 0px;
+	vertical-align: baseline;
+	width: 342px;
+	-webkit-box-align: center;
+	-webkit-box-pack: justify;
+}
+.msg_lists {
+	width: 100%;
+	height: 706px;
+	position: relative;
+	top: 0px;
+	overflow: auto;
+}
+.msg_item {
+	height: 70px;
+	width : 350px;
+	position: relative;
+/* 	border: 1px solid #D2D2FF; */
+	border-radius: 5em;
+	background: #B0E0E6;
+}
+.area_item {
+	margin: auto;
+	height: 63px;
+	width: 318px;
+	position: relative;
+	top: 20px;
+	left: 50px;
+}
+.area_txt {
+	display: inline;
+	width: 220px;
+	height: 100px;
+	margin-right: 10px;
+}
+.Htxt {
+	display: block;
+	width: 220px;
+	height: 36px;
+	font: 12px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	text-align: center;
+	margin-top: -17px;
+	font-style: italic;
+}
+.Hname {
+	position: relative;
+	right: -4px;
+	font-size: large;	
+	/* font-style: inherit; */
+	font-weight: bold;
+}
+.Htime {
+	position: relative;
+	left: 217px;
+	top: -20px;
+}
+.msg_board {
+	display: inline-block;
+	width: 713px;
+	height: 986px;
+	background-color: #E8F5FF;
+	position: relative;
+	top: -1100px;
+	left: 698px;
+	border-radius: 5em;
+}
+.board_head {
+	width: 706px;
+	height: 200px;
+	display: block;
+	position: relative;
+	text-align: center;
+}
+.prof {
+	display: inline-block;
+	width: 488px;
+	height: 48px;
+	margin-top: 20px;
+	position: relative;
+	left: 40px;
+}
+.msgbtn {
+	display: inline-block;
+	margin-top: 20p;
+	visibility: hidden;
+}
+.msg_area {
+	width: 713px;
+	height:680px;
+	background-color: #E0EBFF;
+	overflow: auto;
+	margin-top: -5%;
+}
+.msg_for {
+	width: 711px;
+	height: 93px;
+	position: relative;
+	background-color: maroon;
+	top:691px;
+}
+textarea {
+	width: 605px;
+	height: 80px;
+	position: initial;
+	font-size: 14px;
+	border-radius: 7px;
+	border: 1px solid transparent;
+	resize: none;
+	left: 30px;
+	top: 10px;
+	display: inline-block;
+}
+.btn_send {
+	display: inline-block;
+	position: relative;
+	left: 30px;
+	border: 20px;
+}
+
+
+
+/* message_content_list */
+.sendBox, .recvBox {
+	width: 100%;
+	height: 35px;
+	display: block;
+	position: relative;
+	top:20px;
+}
+.sendMsg {
+/* 	border: 1px solid #46B4B4; */
+	border-radius: 10px;
+	background-color:#87CEEB;
+	color: white;
+	float: right;
+/* 	font-family: 'Noto Sans KR', sans-serif; */
+ 	font-family: IBMPlexSansKR-Regular;
+ 	font-style: inherit;
+	display: block;
+	position: relative;
+	right: 20px;
+	padding: 3px 7px;
+}
+.recvMsg {
+	border: 1px solid white;
+	border-radius: 10px;
+	background-color: white;
+	color: black;
+	float: left;
+	display: block;
+	font-family: 'Noto Sans KR', sans-serif;
+	display: block;
+	position: relative;
+	left: 20px;
+	padding: 3px 7px;
+}
+.stime {
+	float: right;
+	position: relative;
+	right: 25px;
+	top:2px;
+}
+.rtime {
+	float: left;
+	position: relative;
+	left: 25px;
+	top:2px;
+}
+
+.sname {
+	
+	
+font-size: large;	
+font-style: inherit;
+font-weight: bold;
+margin-left: -333px;
+	
+}
+

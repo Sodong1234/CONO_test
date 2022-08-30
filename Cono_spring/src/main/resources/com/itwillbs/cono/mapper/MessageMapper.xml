@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.cono.mapper.MessageMapper">
+<!-- 	문의하기 버튼 클릭시 insert -->
+	<insert id="insertMsgList">
+		INSERT INTO msgList 
+		VALUES (1+(SELECT COUNT(l.msgList_room) FROM msgList l),
+				#{sId}, #{shop_idx}, #{item_idx}, '0'
+				)
+	</insert>
+	<select id="selectRoomNun" resultType="string">
+		SELECT COUNT(msgList_room)+1
+		  FROM msgList
+	</select>
+	
+<!-- 	MsgList 뽑기 -->
+	<select id="selectMsgList" resultType="java.util.HashMap">
+		SELECT t.shop_name, t.member_id, t.shop_idx, t.msgList_room, t.msgChat_content, t.msgChat_time, t.item_title, t.img_name, t.item_idx
+			FROM (SELECT s.shop_name, l.member_id, l.shop_idx, l.msgList_room, c.msgChat_content, c.msgChat_time, it.item_title, im.img_name, it.item_idx
+				FROM msgList l
+					LEFT OUTER JOIN shop s
+						 ON l.shop_idx = s.shop_idx
+					LEFT OUTER JOIN item it
+						 ON l.item_idx = it.item_idx
+					LEFT OUTER JOIN img im
+						 ON it.item_idx = im.item_idx
+					LEFT OUTER JOIN (SELECT msgList_room ,msgChat_time, msgChat_content
+						   			   FROM msgChat
+								 	  WHERE (msgList_room ,msgChat_time) 
+								 	  in 
+								 	  (SELECT msgList_room, MAX(msgChat_time) as msgChat_time
+										 FROM msgChat
+										GROUP BY msgList_room)) c
+				         ON l.msgList_room = c.msgList_room) t
+		WHERE t.member_id = #{sId}
+        group by t.msgList_room
+		ORDER BY t.msgChat_time DESC
+	</select>
+	
+<!-- 	MsgChat insert -->
+	<insert id="insertMsgContent">
+		INSERT INTO msgChat 
+		VALUES (1+(SELECT COUNT(c.msgChat_idx) FROM msgChat c WHERE c.msgList_room = #{dto.msgList_room})
+				,#{dto.msgList_room}, #{dto.msgChat_send},#{dto.msgChat_recv}, #{dto.msgChat_content}, date_format(now(), '%m-%d %H:%i:%S'))
+	</insert>
+	
+<!-- 	멤버 입장에서 AllMsg select -->
+	<select id="selectAllMsg" resultType="java.util.HashMap">
+		SELECT mc.msgChat_send, mc.msgChat_recv, mc.msgChat_content, mc.msgChat_time
+		FROM msgChat mc
+		WHERE msgList_room = #{msgList_room}
+		ORDER BY mc.msgChat_time ASC
+	</select>
+<!-- 	샵 네임 -->
+	<select id="selectShop_name" resultType="string">
+		SELECT s.shop_name
+		  FROM shop s, msgList l
+		 WHERE l.msgList_room = #{msgList_room}
+		   AND l.shop_idx = s.shop_idx
+	</select>
+	
+<!-- 	deleteMsg -->
+	<delete id="deleteMsg">
+		DELETE FROM l, c 
+			USING msgList l
+			LEFT JOIN msgChat c
+		    ON l.msgList_room = c.msgList_room
+		WHERE c.msgList_room = #{msgList_room}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	<select id="selectShop_idx" resultType="string">
+		SELECT shop_idx FROM shop WHERE member_id = #{sId}
+	</select>
+	
+	<select id="selectShopMsgList" resultType="java.util.HashMap">
+		SELECT t.member_nick, t.member_id, t.shop_idx, t.msgList_room, t.msgChat_content, t.msgChat_time, t.msgList_status, t.item_title, t.img_name
+		FROM (SELECT m.member_nick, m.member_id, l.shop_idx, l.msgList_room, c.msgChat_content, c.msgChat_time, l.msgList_status, it.item_title, im.img_name
+				FROM msgList l
+				LEFT OUTER JOIN member m
+							 ON l.member_id = m.member_id
+				LEFT OUTER JOIN item it
+						 ON l.item_idx = it.item_idx
+				LEFT OUTER JOIN img im
+						 ON it.item_idx = im.item_idx
+				LEFT OUTER JOIN (SELECT msgList_room ,msgChat_time, msgChat_content
+						   FROM msgChat
+						  WHERE (msgList_room ,msgChat_time) in (
+								SELECT msgList_room, MAX(msgChat_time) as msgChat_time
+								  FROM msgChat
+								 GROUP BY msgList_room)) c
+					        ON l.msgList_room = c.msgList_room) t
+		WHERE t.shop_idx = #{shop_idx}
+        group by t.msgList_room
+		ORDER BY t.msgChat_time DESC
+	</select>
+	<select id="selectShop_member_nick" resultType='string'>
+		SELECT m.member_nick
+		  FROM member m, msgList l
+		 WHERE l.msgList_room = #{msgList_room}
+		   AND l.member_id = m.member_id
+	</select>
+	
+	
+	
+</mapper>

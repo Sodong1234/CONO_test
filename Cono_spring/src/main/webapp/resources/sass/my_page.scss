@@ -1,0 +1,76 @@
+// Learn more about this technique:
+// @link https://moderncss.dev/totally-custom-list-styles/
+
+$multicolumn: false;
+
+* {
+  box-sizing: border-box;
+}
+
+/* lists reset */
+ol,
+ul {
+	
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-gap: 1rem;
+
+  @if ($multicolumn) {
+    grid-template-columns: repeat(auto-fill, minmax(22ch, 1fr));
+  }
+}
+
+li {
+  display: grid;
+  grid-template-columns: 0 1fr;
+  grid-gap: 1.75em;
+  align-items: start;
+  font-size: 1.5rem;
+  line-height: 1.25;
+
+  @if ($multicolumn == false) {
+    max-width: 25ch;
+  }
+}
+
+ul li::before {
+  content: attr(data-icon);
+  font-size: 1.25em;
+}
+
+ol {
+  --li-bg: purple;
+  counter-reset: orderedlist;
+
+  li::before {
+    counter-increment: orderedlist;
+    content: counter(orderedlist);
+    font-family: "Indie Flower";
+    font-size: 1.25em;
+    line-height: 0.75;
+    width: 1.5rem;
+    padding-top: 0.25rem;
+    text-align: center;
+    color: #fff;
+    background-color: var(--li-bg);
+    border-radius: 0.25em;
+  }
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  grid-gap: 3rem;
+  padding: 1rem;
+  font-family: "Baloo 2", sans-serif;
+  color: #3c2948;
+  background-color: mintcream;
+
+  @if ($multicolumn == false) {
+    grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
+  }
+}

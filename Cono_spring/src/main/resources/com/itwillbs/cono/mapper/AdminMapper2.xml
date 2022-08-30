@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.cono.mapper.AdminMapper2">
+
+<!-- 대시보드 -->
+<!-- 전체회원 -->
+	<select id="selectDashMember" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM member m
+		  LEFT OUTER JOIN shop s
+			ON m.member_id = s.member_id
+		 WHERE m.member_status = 'Y'
+	</select>
+	
+<!-- 새로운 회원 -->
+	<select id="selectDashNewMember" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM member
+		 WHERE member_date = CURRENT_DATE()
+		   AND member_status = 'Y'
+	</select>
+	
+<!-- 답변대기 -->
+	<select id="selectDashQnaWait" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM qna
+		WHERE qna_status = '답변대기'
+	</select>
+	
+<!-- 신고된 글 -->
+	<select id="selectDashReport" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM report
+		 WHERE report_status = '처리중'
+	</select>
+	
+<!-- 전체상품 -->
+	<select id="selectDashAllItem" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM item
+	</select>
+
+<!-- 오늘 등록된 상품 -->
+	<select id="selectDashNewItem" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM item
+		 WHERE LEFT(item_date, 8) = REPLACE(CURRENT_DATE(), '-', '')
+	</select>
+	
+<!-- ============================================================ -->
+<!-- 회원 수 조회(검색 기능 추가) -->
+	<select id="selectMemberListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM member m
+		LEFT OUTER JOIN shop s
+			ON m.member_id = s.member_id
+		WHERE m.member_status = 'Y'
+		<choose>
+			<when test="!search.equals('') and searchType.equals('id')">	
+				AND m.member_id LIKE #{search}
+			</when>
+			<when test="!search.equals('') and searchType.equals('nick')">	
+				AND  m.member_nick LIKE #{search}
+			</when>
+			<when test="!search.equals('') and searchType.equals('shop')">	
+				AND  s.shop_idx LIKE #{search}
+			</when>
+		</choose>
+	</select>
+	
+<!-- 회원 리스트 조회(검색 기능 추가) -->
+	<select id="selectAllMember" resultType="java.util.HashMap">
+		SELECT t.member_id, t.member_nick, t.shop_name, t.coin_total, t.member_email, t.member_phone, t.member_birth, t.member_date, t.member_status
+		FROM 
+			(SELECT m.member_id, m.member_nick, s.shop_name, c.coin_total, m.member_email, m.member_phone, m.member_birth, m.member_date, m.member_status 
+			FROM member m
+			LEFT OUTER JOIN shop s
+				ON m.member_id = s.member_id
+			LEFT OUTER JOIN 
+				(SELECT member_id, coin_total
+				FROM coin
+				WHERE (member_id, coin_date)  IN (
+					SELECT member_id, MAX(coin_date) AS coin_date
+					FROM coin
+				GROUP BY member_id)) c
+			ON c.member_id = m.member_id) t
+		WHERE t.member_status = 'Y'
+		<choose>
+			<when test="!search.equals('') and searchType.equals('id')">	
+				AND t.member_id LIKE #{search}
+			</when>
+			<when test="!search.equals('') and searchType.equals('nick')">	
+				AND t.member_nick LIKE #{search}
+			</when>
+			<when test="!search.equals('') and searchType.equals('shop')">	
+				AND t.member_phone LIKE #{search}
+			</when>
+		</choose>
+		GROUP BY t.member_id
+		ORDER BY t.member_date DESC
+		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit}
+	
+<!-- 		SELECT m.member_id, m.member_nick, s.shop_name, c.coin_total, m.member_email, m.member_phone, m.member_birth, m.member_date, m.member_status -->
+<!-- 		FROM member m -->
+<!-- 		LEFT OUTER JOIN shop s -->
+<!-- 			ON m.member_id = s.member_id -->
+<!-- 		LEFT OUTER JOIN coin c -->
+<!-- 			ON s.member_id = c.member_id -->
+<!-- 		<choose> -->
+<!-- 			<when test="!search.equals('') and searchType.equals('id')">	 -->
+<!-- 				WHERE m.member_id LIKE #{search} -->
+<!-- 			</when> -->
+<!-- 			<when test="!search.equals('') and searchType.equals('nick')">	 -->
+<!-- 				WHERE m.member_nick LIKE #{search} -->
+<!-- 			</when> -->
+<!-- 			<when test="!search.equals('') and searchType.equals('shop')">	 -->
+<!-- 				WHERE s.shop_name LIKE #{search} -->
+<!-- 			</when> -->
+<!-- 		</choose> -->
+<!-- 		WHERE m.member_status = 'Y' -->
+<!-- 		ORDER BY m.member_date DESC -->
+<!-- 		LIMIT #{pageInfo.startRow}, #{pageInfo.listLimit} -->
+	</select>
+	
+<!-- 회원 정지 -->
+	<update id="updateExitMember">
+		UPDATE member
+		   SET member_status = 'N'
+		 WHERE member_id = #{member_id}
+	</update>
+	
+<!-- 회원 되돌리기 -->
+	<update id="updateBackMember">
+		UPDATE member
+		   SET member_status = 'Y'
+		 WHERE member_id = #{member_id}
+	</update>
+	
+<!-- 탈퇴회원 shop 아이디 찾기 -->
+	<select id="selectShopMember" resultType="string">
+		SELECT shop_idx FROM shop WHERE member_id = #{member_id}
+	</select>
+	
+<!-- shop 아이템 찾기 -->
+	<update id="updateItem">
+		UPDATE item 
+		SET item_status='1' 
+		WHERE shop_idx = #{shop_idx}
+	</update>
+	
+	
+<!-- 탈퇴 회원 수 -->
+	<select id="selectExitMemberCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM member m
+		  LEFT OUTER JOIN shop s
+			ON m.member_id = s.member_id
+		  LEFT OUTER JOIN coin c
+			ON s.member_id = c.member_id
+		 WHERE m.member_status='N'
+	</select>
+	
+<!-- 탈퇴 회원 리스트 -->
+	<select id="selectExitMember" resultType="java.util.HashMap">
+		SELECT member_id
+			 , member_nick
+			 , member_phone
+			 , member_email
+			 , member_date
+			 , member_status
+		  FROM member
+		 WHERE member_status='N'
+	</select>
+	
+<!-- 회원정보 삭제 -->
+	<update id="deleteId">
+		UPDATE member set member_status = 'N'
+		WHERE member_id = #{member_id}
+	</update>
+	
+	<select id="selectShop_idxBymember" resultType="string">
+		SELECT shop_idx FROM shop WHERE member_id = #{member_id}
+	</select>
+	
+	<update id="deleteItem">
+		UPDATE item 
+		SET item_status='1' 
+		WHERE shop_idx = #{shop_idx}
+	</update>
+	
+<!-- ================================================================================================================================== -->
+
+<!-- 현재 진행 거래수 -->
+	<select id="selectDealListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM ord
+	</select>
+
+<!-- 현재 진행 거래 리스트 -->
+	<select id="selectAllDeal" resultType="java.util.HashMap">
+		SELECT i.item_title, o.item_idx, o.member_id, s.safe_coin, o.ord_date, o.ord_status, o.ord_idx
+		FROM item i
+		RIGHT OUTER JOIN ord o
+			ON i.item_idx = o.item_idx
+		RIGHT OUTER JOIN safe s
+			ON i.item_idx = s.item_idx
+		WHERE 1=1
+		  AND s.ord_idx = o.ord_idx
+		ORDER BY o.ord_date DESC
+
+<!--           AND o.ord_status = 'N' -->
+<!--           AND s.safe_status = 'N' -->
+		
+	</select>
+	
+<!-- 거래 취소 요청 수 -->
+	<select id="selectDealCancelListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM cancel
+		WHERE cancel_status = 'N'
+	</select>
+	
+<!-- 거래 취소 요청 리스트 -->
+	<select id="selectAllDealCancel" resultType="java.util.HashMap">
+		SELECT i.item_title, o.item_idx, c.cancel_date, c.cancel_content, o.member_id AS buyer, sh.member_id AS seller, s.safe_coin
+		FROM item i
+		RIGHT OUTER JOIN ord o
+			ON i.item_idx = o.item_idx
+		RIGHT OUTER JOIN safe s
+			ON i.item_idx = s.item_idx
+		JOIN shop sh
+			ON i.shop_idx = sh.shop_idx
+		JOIN cancel c
+			ON i.item_idx = c.item_idx
+		WHERE item_status = '0' 
+	</select>
+
+<!-- '거래취소' 시 거래상태 수정('거래중'N' / '거래완료'Y / '거래취소' C) -->
+	<update id="updateDealCancel">
+		UPDATE ord
+		SET ord_status = 'C'
+		WHERE item_idx = #{item_idx}
+		  AND ord_idx = #{ord_idx}
+	</update>
+<!-- 	'거래취소'시 쿠폰 반환 -->
+	<update id="updateCouponReturn">
+		UPDATE coupon c LEFT OUTER JOIN ord o 
+		ON c.member_id = o.member_id
+		SET c.coupon_status = 'N', c.item_idx = ""
+		WHERE 1=1
+		  AND o.ord_idx = #{ord_idx}
+	</update>
+<!-- 	'거래취소'시 아이템 수량 변경 -->
+	<select id="selectItemQuantityTotal" resultType="java.util.HashMap">
+		SELECT it.item_quantity, o.ord_quantity
+		FROM item it left outer join ord o
+			on it.item_idx = o.item_idx
+		WHERE it.item_idx = #{item_idx}
+		  AND o.ord_idx = #{ord_idx}
+	</select>
+	<update id="updateItemQuantityReturn">
+		UPDATE item i LEFT OUTER JOIN ord o
+			on i.item_idx = o.item_idx
+		SET i.item_quantity = #{itemQuantity_Total}
+		WHERE 1=1
+		  AND o.ord_idx = #{ord_idx}
+	</update>
+	
+<!-- 	'거래취소'시 코인 반환 -->
+	<insert id="insertCoinReturn">
+		INSERT INTO coin
+		VALUES ((SELECT IFNULL(MAX(CAST(c.coin_idx as unsigned)), 0) + 1 FROM coin c WHERE c.member_id = #{member_id}),#{member_id},#{safe_coin},'',#{coin_total},date_format(now(), '%Y%m%d%H%i%S'))
+	</insert>
+<!-- 	'거래취소'시 Cancel Status -> Y 로 변경 -->
+	<update id="updateCancelStatus">
+		UPDATE cancel c LEFT OUTER JOIN ord o
+			on c.item_idx = o.item_idx
+		   SET cancel_status = 'C'
+		 WHERE 1=1 
+		   AND o.ord_idx = #{ord_idx}
+		   AND c.item_idx = #{item_idx}
+	</update>
+<!-- 	safe 변경 -->
+	<update id="updateSafeStatuc">
+		UPDATE safe s
+		   SET s.safe_status = 'C'
+		 WHERE s.ord_idx = #{ord_idx} 
+	</update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

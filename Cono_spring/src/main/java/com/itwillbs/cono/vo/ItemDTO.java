@@ -19,6 +19,7 @@ CREATE TABLE item (
 public class ItemDTO {
 	private String item_idx;
 	private String shop_idx;
+	private String member_id;
 	private String item_title;
 	private String item_content;
 	private String item_price;
@@ -29,7 +30,16 @@ public class ItemDTO {
 	private String item_readCnt;
 	private String item_region;
 	private String item_quantity;
+	private String num;
 	
+	
+	
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
 	public String getItem_idx() {
 		return item_idx;
 	}
@@ -101,6 +111,13 @@ public class ItemDTO {
 	}
 	public void setItem_quantity(String item_quantity) {
 		this.item_quantity = item_quantity;
+	}
+	
+	public String getNum() {
+		return num;
+	}
+	public void setNum(String num) {
+		this.num = num;
 	}
 	
 	@Override

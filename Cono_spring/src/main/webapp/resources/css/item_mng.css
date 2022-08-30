@@ -1,0 +1,69 @@
+@charset "EUC-KR";
+/* ------------ img_mng.jsp -------------- */
+body{
+	margin: 0px;
+	padding: 0px;
+}
+.row {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#nav_row {
+/* 	border: 1px solid black; */
+	text-align: center;
+	height: 50px;
+	border-radius: 5px;
+}
+#nav_row a {
+	line-height: 50px;
+	text-decoration: none;
+	color: white;
+}
+#search_row {
+	width: 500px;
+	float: right;
+}
+#list_row {
+	margin: auto;
+	padding: 0px;
+	clear: both;
+}
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+	
+	 font-family: 'IBMPlexSansKR-Regular';
+	
+}
+
+/* hr:not([size]){ */
+/* 	margin: 0; */
+/*     color: gray; */
+/*     background-color: gray; */
+/*     opacity: 0; */
+/* 	height: 10px; */
+/* 	border: 0; */
+/* 	box-shadow: 0 10px 10px -10px #bbb inset; */
+	
+/* } */
+
+
+
+
+
+
+
+/* -------------------------------------- */
